@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -332,6 +333,8 @@
     <Compile Include="Requests\BaseQuery.cs" />
     <Compile Include="Requests\CustomerList\IndexQuery.cs" />
     <Compile Include="Requests\CustomerList\CustomerListQuery.cs" />
+    <Compile Include="Requests\CustomerList\UpdateSuspendedCommand.cs" />
+    <Compile Include="Requests\CustomerList\UpdateClosedCommand.cs" />
     <Compile Include="ViewModels\CustomerList\IndexViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\CustomerListViewModel.cs" />
   </ItemGroup>
@@ -407,6 +410,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\CustomerList\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CustomerListPopup\_CreditPopup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CustomerListPopup\_StatusPopup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CustomerListPopup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\components\pager.ts" />

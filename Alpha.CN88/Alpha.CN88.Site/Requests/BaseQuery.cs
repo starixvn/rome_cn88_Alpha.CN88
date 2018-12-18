@@ -26,9 +26,15 @@
 
         public int ViewerId => viewer.Id;
 
+        public string ViewerName => viewer.Name;
+
         public byte ViewerLevelId => viewer.LevelId;
 
         public virtual UserLevel ActorLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
+
+        public int SubAccountId => viewer.SubAccountId;
+
+        public string IP => viewer.IP;
 
         public string Language => viewer.Language;
 

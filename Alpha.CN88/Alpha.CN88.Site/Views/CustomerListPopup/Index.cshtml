@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Example of Bootstrap 3 Modal Events</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#myModal").on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget);  // Button that triggered the modal
+				var username = button.data('username'); // Extract value from data-* attributes
+				$(this).find('.modal-title').text('Update Credit - ' + username);
+
+				var formContent = $("#" + button.data('formId')).clone().removeClass("hidden");
+				$("#error-message").addClass("hidden");
+				$(this).find('#modal-content').empty().append(formContent);
+			});
+
+			$("#save-btn").click(function () {
+				$.ajax({
+					type: "POST",
+					url: $("#myModal").find('form').data('updateUrl'),
+					data: {},
+					dataType: "json",
+					beforeSend: function (xhr) {
+						//	xhr.setRequestHeader("__RequestVerificationToken", requestVerificationToken);
+					}
+				})
+					.done(function (data) {
+						if (data.IsSuccessful) {
+						}
+						else {
+							$("#error-message").text(data.Message).removeClass("hidden");
+						}
+					})
+					.always(function () { });
+			});
+		});
+	</script>
+	<style type="text/css">
+		.bs-example {
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="bs-example container">
+		<!-- Button HTML (to Trigger Modal) -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-username="ABC01" data-form-id="credit-form">Update Credit</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-username="ABC01" data-form-id="status-form">Update Status</button>
+
+		<!-- Modal HTML -->
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Update Credit - ABC01</h4>
+					</div>
+					<div class="modal-body">	
+					<div class="alert alert-danger fade in hidden" id="error-message"></div>
+						<div id="modal-content"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" id="save-btn">Save</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		@Html.Partial("_CreditPopup")
+		@Html.Partial("_StatusPopup")
+
+	</div>
+</body>
+</html>                            

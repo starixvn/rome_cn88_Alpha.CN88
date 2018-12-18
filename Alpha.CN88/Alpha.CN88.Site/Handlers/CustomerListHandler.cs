@@ -1,5 +1,6 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
+    using Alpha.CN88.Models;
     using MediatR;
     using Params.CustomerList;
     using Requests.CustomerList;
@@ -8,7 +9,9 @@
 
     public class CustomerListHandler :
          IRequestHandler<IndexQuery, IndexViewModel>,
-         IRequestHandler<CustomerListQuery, CustomerListViewModel>
+         IRequestHandler<CustomerListQuery, CustomerListViewModel>,
+         IRequestHandler<UpdateClosedCommand, Result>,
+         IRequestHandler<UpdateSuspendedCommand, Result>
     {
         private readonly CustomerListService service;
 
@@ -34,5 +37,25 @@
 
             return new CustomerListViewModel(model);
         }
+
+        public Result Handle(UpdateClosedCommand command)
+            => service.UpdateClosed(new UpdateClosedParam(
+               command.SearchAccountId,
+               command.ViewerId,
+               command.SubAccountId,
+               command.Language,
+               command.IP,
+               command.ViewerName,
+               command.Closed));
+
+        public Result Handle(UpdateSuspendedCommand command)
+           => service.UpdateSusspended(new UpdateSuspendedParam(
+              command.SearchAccountId,
+              command.ViewerId,
+              command.SubAccountId,
+              command.Language,
+              command.IP,
+              command.ViewerName,
+              command.Suspended));
     }
 }

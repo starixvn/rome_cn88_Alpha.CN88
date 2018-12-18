@@ -10,6 +10,8 @@
     public interface CustomerListDataAccess
     {
         CustomerListModel GetCustomerList(CustomerListCriteria criteria);
+
+        Result UpdateCustomerStatus(UpdateCustomerStatusCmd command);
     }
 
     public class CustomerListDataAccessImpl : CustomerListDataAccess
@@ -52,6 +54,20 @@
             }
 
             return new CustomerListModel(totalCustomers, customers);
+        }
+
+        public Result UpdateCustomerStatus(UpdateCustomerStatusCmd command)
+        {
+            using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
+            {
+                objectDb.ExecuteNonQueryAsync(command.GetSpParams());
+
+                var outputParams = objectDb.GetOuputParams();
+
+                return new Result(
+                    int.Parse(outputParams["errcode"].ToString()),
+                    outputParams["errmsg"]?.ToString());
+            }
         }
     }
 }

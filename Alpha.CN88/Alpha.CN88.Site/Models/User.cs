@@ -21,5 +21,9 @@
         public byte LevelId => userSession.RoleId;
 
         public bool IsInternal => userSession.IsInternal;
+        
+        public int SubAccountId => userSession.SubAccId;
+
+        public string IP => userSession.UserLoginIp;
     }
 }

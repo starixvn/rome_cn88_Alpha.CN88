@@ -11,5 +11,9 @@
         byte LevelId { get; }
 
         bool IsInternal { get; }
+        
+        int SubAccountId { get; }
+
+        string IP { get; }
     }
 }
