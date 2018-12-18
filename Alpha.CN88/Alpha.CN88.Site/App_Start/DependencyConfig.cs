@@ -50,13 +50,14 @@
 
             container.RegisterCollection(typeof(INotificationHandler<>), assemblies);
             container.RegisterCollection(typeof(IAsyncNotificationHandler<>), assemblies);
+
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
             container.RegisterSingleton(new MultiInstanceFactory(container.GetAllInstances));
         }
 
         private static IEnumerable<Assembly> GetAssemblies()
         {
-            yield return typeof(HomeController).Assembly;
+            yield return typeof(SiteBaseController).Assembly;
         }
 
         private static void RegisterDataAccesses(Container container)

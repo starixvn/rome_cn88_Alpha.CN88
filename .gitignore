@@ -52,4 +52,5 @@ artifacts/
 _Chutzpah.coverage.html
 
 *.test.html
-build/BuildTask.Release.log
+*.log
+packages/**
