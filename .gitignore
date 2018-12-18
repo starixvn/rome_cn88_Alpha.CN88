@@ -54,3 +54,4 @@ _Chutzpah.coverage.html
 *.test.html
 *.log
 packages/**
+/.vs
