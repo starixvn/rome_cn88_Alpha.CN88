@@ -4,5 +4,17 @@
     "inputFiles": [
       "assets/styles/site.css"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/customer-list/index.js",
+    "inputFiles": [
+      "assets/scripts/components/single-selection-dropdown.js",
+      "assets/scripts/components/pager.js",
+      "assets/scripts/site-infrastructure.js",
+      "assets/scripts/customer-list/master-list.js",
+      "assets/scripts/customer-list/agent-list.js",
+      "assets/scripts/customer-list/member-list.js",
+      "assets/scripts/customer-list/index.js"
+    ]
   }
 ]

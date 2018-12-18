@@ -4,16 +4,18 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Web.Mvc;
+    using CN88.Models;
     using Controllers;
+    using DataAccesses;
     using Fanex.Data.Repository;
     using MediatR;
     using Models;
+    using Services.CustomerList;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
-    using CN88.Models;
 
     public static class DependencyConfig
     {
@@ -63,12 +65,16 @@
         private static void RegisterDataAccesses(Container container)
         {
             container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
+
+            container.RegisterPerWebRequest<CustomerListDataAccess, CustomerListDataAccessImpl>();
         }
 
         private static void RegisterServices(Container container)
         {
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.RegisterSingleton<IUser, User>();
+
+            container.RegisterPerWebRequest<CustomerListService, CustomerListServiceImpl>();
         }
     }
 }

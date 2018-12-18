@@ -1,0 +1,5 @@
+﻿<Functions SiteId="115" SiteName="CN88">
+  <Function Name="Customer List">
+    <Setting Key="Age_Customer_DownlineList_Sel" SpName="Age_Customer_DownlineList_Sel" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
+</Functions>

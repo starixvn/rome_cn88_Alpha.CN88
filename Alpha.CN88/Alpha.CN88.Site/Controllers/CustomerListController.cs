@@ -13,8 +13,10 @@
 
         [HttpGet]
         public ActionResult Index(IndexQuery message)
-        {
-            return View(mediator.Send(message));
-        }
+            => View(mediator.Send(message));
+
+        [HttpGet]
+        public JsonResult GetCustomerList(CustomerListQuery message)
+            => Json(mediator.Send(message), JsonRequestBehavior.AllowGet);
     }
 }

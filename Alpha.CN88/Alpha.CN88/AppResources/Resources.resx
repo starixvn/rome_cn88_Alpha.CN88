@@ -169,4 +169,13 @@
   <data name="of" xml:space="preserve">
     <value>of</value>
   </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>Displaying {from} to {to} of {total} items</value>
+  </data>
+  <data name="MasterIsRequired" xml:space="preserve">
+    <value>Master is required.</value>
+  </data>
+  <data name="AgentIsRequired" xml:space="preserve">
+    <value>Agent is required.</value>
+  </data>
 </root>

@@ -1,5 +1,87 @@
 ﻿@import "variables";
+@import "_mixins.scss";
 
-.demo {
-    font-size: large;
+.form-group {
+    padding-bottom: 0px;
+}
+
+.filter .form-group label {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    color: #333333;
+}
+
+.filter .multiselect .multiselect-selected-text {
+    width: 130px;
+}
+
+#txt-username-master, #txt-username-agent, #txt-username-member,
+#txt-viewed-master, #txt-viewed-agent {
+    width: 210px;
+}
+
+.no-info {
+    color: #FF0000;
+}
+
+.row-open {
+    background-color: #FFFFFF;
+}
+
+.row-suspended {
+    background-color: #F8DED7;
+}
+
+.row-closed.reason-0 {
+    background-color: #CCC7BA;
+}
+
+.row-closed.reason-3 {
+    background-color: #86C5E4;
+}
+
+.row-closed.reason-2 {
+    background-color: #F79646;
+}
+
+.row-closed.reason-1 {
+    background-color: #B3A2C7;
+}
+
+.view-downline, .update-credit, .update-status {
+    color: #045ace;
+    cursor: pointer;
+
+    &:hover {
+        color: #f60;
+    }
+}
+
+.icon-edit, .icon-add {
+    cursor: pointer;
+}
+
+.msg-error {
+    width: 983px;
+}
+
+.output {
+    @include border-radius(1px);
+    @include box-shadow-multiple('0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23)');
+    background: #fff;
+    position: absolute;
+    top: 85px;
+    left: 42px;
+    width: 230px;
+    z-index: 9999;
+
+    .opOut, .opOver {
+        padding: 0 5px;
+    }
+
+    .opOver {
+        cursor: pointer;
+        background: #dedede;
+    }
 }

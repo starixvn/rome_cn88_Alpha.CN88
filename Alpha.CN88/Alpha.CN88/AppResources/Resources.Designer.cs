@@ -88,6 +88,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent is required..
+        /// </summary>
+        public static string AgentIsRequired {
+            get {
+                return ResourceManager.GetString("AgentIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {
@@ -129,6 +138,15 @@ namespace Alpha.CN88.AppResources {
         public static string Master {
             get {
                 return ResourceManager.GetString("Master", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master is required..
+        /// </summary>
+        public static string MasterIsRequired {
+            get {
+                return ResourceManager.GetString("MasterIsRequired", resourceCulture);
             }
         }
         
@@ -219,6 +237,15 @@ namespace Alpha.CN88.AppResources {
         public static string Page {
             get {
                 return ResourceManager.GetString("Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Displaying {from} to {to} of {total} items.
+        /// </summary>
+        public static string Pager_DisplayItems {
+            get {
+                return ResourceManager.GetString("Pager_DisplayItems", resourceCulture);
             }
         }
         
