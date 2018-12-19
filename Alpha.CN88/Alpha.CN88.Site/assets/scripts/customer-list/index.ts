@@ -9,6 +9,8 @@ class CustomerList {
 
     directDownline: string;
     $navTabs: JQuery;
+    dcs_AddCustomerLink: string;
+    dcs_EditCustomerLink: string;
 
     viewResources = {
         NoInformationIsAvailable: '',
@@ -63,6 +65,18 @@ class CustomerList {
                 return false;
             }
         });
+
+        switch (parseInt(this.directDownline)) {
+            case siteInfrastructure.roleId.master:
+                this.masterList.viewMasters();
+                break;
+            case siteInfrastructure.roleId.agent:
+                this.agentList.viewAgents();
+                break;
+            case siteInfrastructure.roleId.member:
+                this.memberList.viewMembers();
+                break;
+        }
     };
 
     cacheDOMElements = () => {
@@ -77,6 +91,9 @@ class CustomerList {
         this.viewResources.Page = this.$("#Page").val();
         this.viewResources.Of = this.$("#of").val();
         this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
+
+        this.dcs_AddCustomerLink = this.$("#DCS_AddCustomerLink").val();
+        this.dcs_EditCustomerLink = this.$("#DCS_EditCustomerLink").val();
     };
     changeTab = function (level: string) {
         this.$(".tab-content").addClass("display-none");
@@ -111,13 +128,22 @@ class CustomerList {
         alert(custId + username);
     };
     updateAccount = (custId: any, username: any) => {
-        alert(custId + username);
+        window.location.href = this.dcs_EditCustomerLink + "?" + this.$.param({
+            custId: custId,
+            username: username
+        });
     };
     addAgentForMaster = (custId: any, username: any) => {
-        alert(custId + username);
+        window.location.href = this.dcs_AddCustomerLink + "?" + this.$.param({
+            custId: custId,
+            username: username
+        });
     };
     addMemberForAgent = (custId: any, username: any) => {
-        alert(custId + username);
+        window.location.href = this.dcs_AddCustomerLink + "?" + this.$.param({
+            custId: custId,
+            username: username
+        });
     };
     getStatusName = (status: number) => {
         if (status == siteInfrastructure.customerStatus.open) {

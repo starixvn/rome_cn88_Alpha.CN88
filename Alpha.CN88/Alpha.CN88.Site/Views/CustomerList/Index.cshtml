@@ -1,5 +1,6 @@
 ﻿@using Alpha.CN88.Site.ViewModels.CustomerList
 @using Alpha.CN88.Constants
+@using Alpha.CN88.Configurations
 @model IndexViewModel
 @section Styles {
     @StaticResources.AssetStyles.Render($"/bundles/site-cn88/tab-{Model.ActorLevel.DisplayName.ToLowerInvariant()}")
@@ -102,8 +103,8 @@
                     <div class="form-group">
                         <input id="btn-submit-agent" class="btn-submit" type="button" value="@Resources.Submit" />
                     </div>
+                    <div id="msg-err-agent" class="msg msg-error display-none">@Resources.MasterIsRequired</div>
                 </form>
-                <div id="msg-err-agent" class="msg msg-error display-none">@Resources.MasterIsRequired</div>
             </div>
             <table id="tbl-agent" class="tblRpt tblRpt-bordered tblRpt-hover display-none">
                 <thead>
@@ -152,8 +153,8 @@
                 <div class="form-group">
                     <input id="btn-submit-member" class="btn-submit" type="button" value="@Resources.Submit" />
                 </div>
+                <div id="msg-err-member" class="msg msg-error display-none">@Resources.AgentIsRequired</div>
             </form>
-            <div id="msg-err-member" class="msg msg-error display-none">@Resources.AgentIsRequired</div>
         </div>
         <table id="tbl-member" class="tblRpt tblRpt-bordered tblRpt-hover display-none">
             <thead>
@@ -186,6 +187,8 @@
 @Html.Hidden("of", Resources.of)
 @Html.Hidden("Pager_DisplayItems", Resources.Pager_DisplayItems)
 @Html.Hidden("usernameAutoSuggestionPath", IndexViewModel.UsernameAutoSuggestionPath)
+@Html.Hidden("DCS_AddCustomerLink", AppSettings.DCS_AddCustomerLink)
+@Html.Hidden("DCS_EditCustomerLink", AppSettings.DCS_EditCustomerLink)
 
 @section Scripts {
     @StaticResources.RenderScripts("~/assets/bundles/customer-list/index")

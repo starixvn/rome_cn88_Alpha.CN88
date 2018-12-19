@@ -53,7 +53,12 @@ class AgentList {
         this.$dropdownStatusAgent = this.$("#dropdown-status-agent");
 
         this.$("#btn-submit-agent").click(this.viewAgents);
-        this.initAutoComplete();
+
+        if (this.directDownline >= siteInfrastructure.roleId.master) {
+            this.initAutoComplete();
+        }
+
+        this.$tblAgent.stickyTableHeaders();
     };
 
     cacheDOMElements = () => {
@@ -169,9 +174,6 @@ class AgentList {
         }
 
         this.$.unblockUI();
-    };
-    viewAgent = (custId: any, username: any) => {
-        alert(custId + username);
     };
     pagingAgentList = () => {
         this.paramAgent.PageIndex = this.$("#PageIndexAgent").val();

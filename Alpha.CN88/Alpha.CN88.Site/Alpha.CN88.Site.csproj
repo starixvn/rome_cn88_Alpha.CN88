@@ -352,7 +352,9 @@
     <Content Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.config" />
+    <Content Include="Web.AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -461,6 +463,7 @@
     <Content Include="App_Data\SPNames\UAT\DBARC.bodb_Archive.BODBDownlineNet" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\CustomerList\Edit.cshtml" />
     <None Include="Web.AppSettings.backupMNL3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>

@@ -20,6 +20,10 @@
 
         public static string StoreProcedurePath => GetConfigValue("StoreProcedurePath");
 
+        public static string DCS_AddCustomerLink => GetConfigValue("DCS_AddCustomerLink");
+
+        public static string DCS_EditCustomerLink => GetConfigValue("DCS_EditCustomerLink");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

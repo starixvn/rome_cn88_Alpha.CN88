@@ -46,6 +46,7 @@ class MasterList {
         this.$dropdownStatusMaster = this.$("#dropdown-status-master");
 
         this.$("#btn-submit-master").click(this.viewMasters);
+        this.$tblMaster.stickyTableHeaders();
     };
 
     cacheDOMElements = () => {

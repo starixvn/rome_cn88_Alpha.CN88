@@ -52,6 +52,11 @@ class MemberList {
         this.$dropdownStatusMember = this.$("#dropdown-status-member");
 
         this.$("#btn-submit-member").click(this.viewMembers);
+        this.$tblMember.stickyTableHeaders();
+
+        if (this.directDownline >= siteInfrastructure.roleId.agent) {
+            this.initAutoComplete();
+        }
     };
 
     cacheDOMElements = () => {
@@ -105,7 +110,7 @@ class MemberList {
                 var customer = rs.Customers[i];
                 html += "<tr class='" + this.indexManager.getCustomerColor(customer) + "'>" +
                     "<td class='text-center'>" + customerIndex + "</td>" +
-                    "<td class='view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
+                    "<td>" + customer.Username + "</td>" +
                     "<td>" + customer.Name + "</td>" +
                     "<td class='text-right update-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0") + "</td>" +
                     "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
@@ -120,11 +125,6 @@ class MemberList {
         this.$tblMember.find("> tbody").empty().html(html);
 
         var self = this;
-        this.$tblMember.find(".view-downline").click(function () {
-            var $this = self.$(this);
-
-            self.viewMember($this.attr("cust-id"), $this.html());
-        });
         this.$tblMember.find(".update-credit").click(function () {
             var $this = self.$(this);
 
@@ -161,9 +161,6 @@ class MemberList {
         }
 
         this.$.unblockUI();
-    };
-    viewMember = (custId: any, username: any) => {
-        alert(custId + username);
     };
     pagingMemberList = () => {
         this.paramMember.PageIndex = this.$("#PageIndexMember").val();

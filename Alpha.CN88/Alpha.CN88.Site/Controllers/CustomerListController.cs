@@ -17,6 +17,10 @@
             => View(mediator.Send(message));
 
         [HttpGet]
+        public ActionResult Edit(int custId, string username)
+            => View();
+
+        [HttpGet]
         public JsonResult GetCustomerList(CustomerListQuery message)
             => Json(mediator.Send(message), JsonRequestBehavior.AllowGet);
 
