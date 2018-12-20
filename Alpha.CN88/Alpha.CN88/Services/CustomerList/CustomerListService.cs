@@ -3,12 +3,15 @@
     using Alpha.CN88.Models;
     using Criteria.CustomerList;
     using DataAccesses;
+    using Fanex.Data.Repository;
     using Models.CustomerList;
     using Params.CustomerList;
 
     public interface CustomerListService
     {
         CustomerListModel GetCustomerList(CustomerListParam param);
+
+        Result UpdateCredit(UpdateCreditParam param);
 
         Result UpdateClosed(UpdateClosedParam param);
 
@@ -17,10 +20,13 @@
 
     public class CustomerListServiceImpl : CustomerListService
     {
+        private readonly int failErrorCode = 100;
+        private readonly IDynamicRepository dynamicRepository;
         private readonly CustomerListDataAccess customerListDataAccess;
 
-        public CustomerListServiceImpl(CustomerListDataAccess customerListDataAccess)
+        public CustomerListServiceImpl(IDynamicRepository dynamicRepository, CustomerListDataAccess customerListDataAccess)
         {
+            this.dynamicRepository = dynamicRepository;
             this.customerListDataAccess = customerListDataAccess;
         }
 
@@ -29,6 +35,24 @@
             var criteria = new CustomerListCriteria(param);
 
             return customerListDataAccess.GetCustomerList(criteria);
+        }
+
+        public Result UpdateCredit(UpdateCreditParam param)
+        {
+            var command = new UpdateCreditCriteria(
+                    param.SearchAccountId,
+                    param.RoleId,
+                    param.CreditAmount,
+                    param.ActorId,
+                    param.SubAccountId,
+                    param.Language,
+                    param.IP);
+
+             dynamicRepository.ExecuteAsync(command);
+
+            return command.CreditProblem
+                ? Result.CreateErrorResult(failErrorCode, command.ErrMsg)
+                : Result.CreateSuccessResult();
         }
 
         public Result UpdateClosed(UpdateClosedParam param)

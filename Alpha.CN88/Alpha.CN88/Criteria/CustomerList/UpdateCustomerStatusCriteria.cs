@@ -3,9 +3,9 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class UpdateCustomerStatusCmd : NonQueryCommand
+    public class UpdateCustomerStatusCriteria : NonQueryCommand
     {
-        public UpdateCustomerStatusCmd(
+        public UpdateCustomerStatusCriteria(
             int searchAccountId,
             int actorId,
             int subAccountId,

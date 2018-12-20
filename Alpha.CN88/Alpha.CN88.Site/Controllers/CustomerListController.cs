@@ -32,6 +32,12 @@
         public ActionResult StatusPopup(StatusPopupQuery message)
          => View(mediator.Send(message));
 
+        [HttpPost]
+        public JsonResult UpdateCredit(CreditCommand command)
+        {
+            return Json(Result.CreateErrorResult(-101, "A problem has been occurred while submitting your data"));
+        }
+
         //[AntiXsrfFilter]
         [HttpPost]
         public JsonResult UpdateClosed(UpdateClosedCommand command)

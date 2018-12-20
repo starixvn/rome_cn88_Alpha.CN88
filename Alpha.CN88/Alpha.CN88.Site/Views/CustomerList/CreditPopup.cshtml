@@ -7,25 +7,21 @@
 <div class="container">
 	<form role="form">
 		<div class="form-group row">
-			<div class="col-xs-2">
+			<div class="col-xs-3">
 				@Resources.UsedCredit
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-9">
 				<span>@Model.UsedCredit</span>
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-xs-2">@Resources.Credit</div>
+			<div class="col-xs-3">@Resources.Credit</div>
 			<div class="col-xs-4">
 				<input class="form-control" id="credit" />
 			</div>
 			<div class="col-xs-5">[@Model.UsedCredit; @Model.LimitedCredit]</div>
-		</div>
-		<div class="form-group row text-right">
-			<div class="col-xs-6">
+			<div class="col-xs-12 text-right">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">@Resources.Cancel</button>
-			</div>
-			<div class="col-xs-1">
 				<button type="button" class="btn btn-primary" id="save-btn">@Resources.Save</button>
 			</div>
 		</div>

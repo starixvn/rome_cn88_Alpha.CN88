@@ -11,7 +11,7 @@
     {
         CustomerListModel GetCustomerList(CustomerListCriteria criteria);
 
-        Result UpdateCustomerStatus(UpdateCustomerStatusCmd command);
+        Result UpdateCustomerStatus(UpdateCustomerStatusCriteria command);
     }
 
     public class CustomerListDataAccessImpl : CustomerListDataAccess
@@ -56,7 +56,7 @@
             return new CustomerListModel(totalCustomers, customers);
         }
 
-        public Result UpdateCustomerStatus(UpdateCustomerStatusCmd command)
+        public Result UpdateCustomerStatus(UpdateCustomerStatusCriteria command)
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
             {

@@ -1,6 +1,6 @@
 ﻿namespace Alpha.CN88.Criteria.CustomerList
 {
-    public class UpdateSuspendedCriteria : UpdateCustomerStatusCmd
+    public class UpdateSuspendedCriteria : UpdateCustomerStatusCriteria
     {
         public UpdateSuspendedCriteria(
             int searchAccountId,

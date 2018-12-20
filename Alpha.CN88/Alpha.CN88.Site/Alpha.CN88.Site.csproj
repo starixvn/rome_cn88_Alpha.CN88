@@ -335,6 +335,7 @@
     <Compile Include="Requests\CustomerList\CreditPopupQuery.cs" />
     <Compile Include="Requests\CustomerList\IndexQuery.cs" />
     <Compile Include="Requests\CustomerList\CustomerListQuery.cs" />
+    <Compile Include="Requests\CustomerList\CreditCommand.cs" />
     <Compile Include="Requests\CustomerList\UpdateSuspendedCommand.cs" />
     <Compile Include="Requests\CustomerList\UpdateClosedCommand.cs" />
     <Compile Include="ViewModels\CustomerList\StatusPopupViewModel.cs" />

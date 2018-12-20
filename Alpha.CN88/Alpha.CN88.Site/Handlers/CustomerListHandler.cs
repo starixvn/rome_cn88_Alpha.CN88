@@ -12,6 +12,7 @@
          IRequestHandler<CustomerListQuery, CustomerListViewModel>,
          IRequestHandler<CreditPopupQuery, CreditPopupViewModel>,
          IRequestHandler<StatusPopupQuery, StatusPopupViewModel>,
+         IRequestHandler<CreditCommand, Result>,
          IRequestHandler<UpdateClosedCommand, Result>,
          IRequestHandler<UpdateSuspendedCommand, Result>
     {
@@ -45,6 +46,17 @@
 
         public StatusPopupViewModel Handle(StatusPopupQuery message)
          => new StatusPopupViewModel(message);
+
+        public Result Handle(CreditCommand message)
+           => service.UpdateCredit(
+               new UpdateCreditParam(
+                   message.CustId,
+                   message.SearchAccountRoleId,
+                   message.CreditAmount,
+                   message.ViewerId,
+                   message.SubAccountId,
+                   message.Language,
+                   message.IP));
 
         public Result Handle(UpdateClosedCommand command)
             => service.UpdateClosed(new UpdateClosedParam(
