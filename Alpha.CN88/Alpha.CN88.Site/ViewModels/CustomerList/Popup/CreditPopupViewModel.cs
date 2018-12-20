@@ -6,12 +6,12 @@
     {
         public CreditPopupViewModel(CreditPopupQuery query)
         {
-            UsedCredit = query.UsedCredit;
-            LimitedCredit = query.LimitedCredit;
+            //UsedCredit = query.UsedCredit;
+            //LimitedCredit = query.LimitedCredit;
         }
 
-        public decimal UsedCredit { get; }
+        public decimal UsedCredit { get; } = 50;
 
-        public decimal LimitedCredit { get; }
+        public decimal LimitedCredit { get; } = 20000;
     }
 }

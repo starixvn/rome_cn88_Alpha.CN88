@@ -12,6 +12,14 @@
 	};
 
 	updateCredit = () => {
+		let minCredit = this.$("#MinCredit").val();
+		let maxCredit = this.$("#MaxCredit").val();
+		let credit = this.$("#credit").val();
+
+		if (credit < minCredit || credit > maxCredit) {
+			this.$("#error-message").html('').text("Invalid Value").removeClass("hidden");
+			return;
+		}
 		this.submit("UpdateCredit", {});
 	};
 };

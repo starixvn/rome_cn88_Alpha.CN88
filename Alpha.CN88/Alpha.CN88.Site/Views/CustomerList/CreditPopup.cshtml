@@ -39,6 +39,9 @@
 		</form>
 	</div>
 
+	@Html.Hidden("MinCredit", Model.UsedCredit)
+	@Html.Hidden("MaxCredit", Model.LimitedCredit)
+
 	@section Scripts {
 		@StaticResources.RenderScripts("~/assets/bundles/customer-list/popup/credit-popup")
 	}
