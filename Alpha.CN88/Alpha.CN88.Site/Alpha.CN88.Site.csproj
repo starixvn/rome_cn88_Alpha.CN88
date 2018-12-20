@@ -239,6 +239,10 @@
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="assets\bundles\customer-list\index.js" />
     <Content Include="assets\bundles\customer-list\index.min.js" />
+    <Content Include="assets\bundles\customer-list\popup\credit-popup.js" />
+    <Content Include="assets\bundles\customer-list\popup\credit-popup.min.js" />
+    <Content Include="assets\bundles\customer-list\popup\status-popup.js" />
+    <Content Include="assets\bundles\customer-list\popup\status-popup.min.js" />
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.min.css" />
     <Content Include="assets\styles\images\1F.gif" />
@@ -331,15 +335,15 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
-    <Compile Include="Requests\CustomerList\StatusPopupQuery.cs" />
-    <Compile Include="Requests\CustomerList\CreditPopupQuery.cs" />
+    <Compile Include="Requests\CustomerList\Popup\StatusPopupQuery.cs" />
+    <Compile Include="Requests\CustomerList\Popup\CreditPopupQuery.cs" />
     <Compile Include="Requests\CustomerList\IndexQuery.cs" />
     <Compile Include="Requests\CustomerList\CustomerListQuery.cs" />
-    <Compile Include="Requests\CustomerList\CreditCommand.cs" />
-    <Compile Include="Requests\CustomerList\UpdateSuspendedCommand.cs" />
-    <Compile Include="Requests\CustomerList\UpdateClosedCommand.cs" />
-    <Compile Include="ViewModels\CustomerList\StatusPopupViewModel.cs" />
-    <Compile Include="ViewModels\CustomerList\CreditPopupViewModel.cs" />
+    <Compile Include="Requests\CustomerList\Popup\CreditCommand.cs" />
+    <Compile Include="Requests\CustomerList\Popup\UpdateSuspendedCommand.cs" />
+    <Compile Include="Requests\CustomerList\Popup\UpdateClosedCommand.cs" />
+    <Compile Include="ViewModels\CustomerList\Popup\StatusPopupViewModel.cs" />
+    <Compile Include="ViewModels\CustomerList\Popup\CreditPopupViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\IndexViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\CustomerListViewModel.cs" />
   </ItemGroup>
@@ -421,6 +425,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\components\pager.ts" />
     <TypeScriptCompile Include="assets\scripts\components\single-selection-dropdown.ts" />
+    <TypeScriptCompile Include="assets\scripts\customer-list\popup\popup-base.ts" />
+    <TypeScriptCompile Include="assets\scripts\customer-list\popup\status-popup.ts" />
+    <TypeScriptCompile Include="assets\scripts\customer-list\popup\credit-popup.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\member-list.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\agent-list.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\master-list.ts" />

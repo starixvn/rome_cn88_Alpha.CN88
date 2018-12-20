@@ -1,29 +1,46 @@
 ﻿@model CreditPopupViewModel
 
-@section Styles {
-	@StaticResources.AssetStyles.Render($"/bundles/site-cn88/tab-super")
-}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@(ViewBag.Title ?? "Alpha - CN88")</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
 
-<div class="container">
-	<form role="form">
-		<div class="form-group row">
-			<div class="col-xs-3">
-				@Resources.UsedCredit
+	@section Styles {
+		@StaticResources.AssetStyles.Render($"/bundles/site-cn88/bootstrap")
+	}
+</head>
+<body>
+	<div class="container">
+		<div class="alert alert-danger fade in hidden" id="error-message"></div>
+		<form role="form">
+			<div class="form-group row">
+				<div class="col-xs-3">
+					@Resources.UsedCredit
+				</div>
+				<div class="col-xs-9">
+					<span>@Model.UsedCredit</span>
+				</div>
 			</div>
-			<div class="col-xs-9">
-				<span>@Model.UsedCredit</span>
+			<div class="form-group row">
+				<div class="col-xs-3">@Resources.Credit</div>
+				<div class="col-xs-4">
+					<input class="form-control" id="credit" />
+				</div>
+				<div class="col-xs-5">[@Model.UsedCredit; @Model.LimitedCredit]</div>
+				<div class="col-xs-12 text-right">
+					<button type="button" class="btn btn-secondary">@Resources.Cancel</button>
+					<button type="button" class="btn btn-primary" id="save-btn">@Resources.Save</button>
+				</div>
 			</div>
-		</div>
-		<div class="form-group row">
-			<div class="col-xs-3">@Resources.Credit</div>
-			<div class="col-xs-4">
-				<input class="form-control" id="credit" />
-			</div>
-			<div class="col-xs-5">[@Model.UsedCredit; @Model.LimitedCredit]</div>
-			<div class="col-xs-12 text-right">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">@Resources.Cancel</button>
-				<button type="button" class="btn btn-primary" id="save-btn">@Resources.Save</button>
-			</div>
-		</div>
-	</form>
-</div>
+		</form>
+	</div>
+
+	@section Scripts {
+		@StaticResources.RenderScripts("~/assets/bundles/customer-list/popup/credit-popup")
+	}
+</body>
+</html>

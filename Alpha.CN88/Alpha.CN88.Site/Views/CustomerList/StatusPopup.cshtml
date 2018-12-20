@@ -1,26 +1,46 @@
 ﻿@model StatusPopupViewModel
 @using Alpha.CN88.Constants
 
-@section Styles {
-	@StaticResources.AssetStyles.Render($"/bundles/site-cn88/tab-super")
-}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@(ViewBag.Title ?? "Alpha - CN88")</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
 
-<div class="container">
-	<form role="form">
-		<div class="form-group">
-			<div class="row">
-				<label>@Resources.Status</label>
-				<select id="dropdown-status" class="dropdown-status">
-					<option value="@CustomerStatus.All">@Resources.All</option>
-					<option value="@CustomerStatus.Open">@Resources.Open</option>
-					<option value="@CustomerStatus.Closed">@Resources.Closed</option>
-					<option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
-				</select>
+	@section Styles {
+		@StaticResources.AssetStyles.Render($"/bundles/site-cn88/bootstrap")
+	}
+</head>
+<body>
+	<div class="container">
+		<div class="alert alert-danger fade in hidden" id="error-message"></div>
+		<form role="form">
+			<div class="form-group row">
+				<div class="col-xs-2">
+					@Resources.Status
+				</div>
+				<div class="col-xs-9">
+					<select id="dropdown-status" class="dropdown-status">
+						<option value="@CustomerStatus.Open">@Resources.Open</option>
+						<option value="@CustomerStatus.Closed">@Resources.Closed</option>
+						<option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
+					</select>
+				</div>
+				<div class="col-xs-7 pl-sm-5 text-right">
+					<button type="button" class="btn btn-secondary">@Resources.Cancel</button>
+					<button type="button" class="btn btn-primary" id="save-btn">@Resources.Save</button>
+				</div>
 			</div>
-			<div class="row">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">@Resources.Cancel</button>
-				<button type="button" class="btn btn-primary" id="save-btn">@Resources.Save</button>
-			</div>
-		</div>
-</form>
-</div>
+		</form>
+	</div>
+
+	@section Scripts {
+		@StaticResources.RenderScripts("~/assets/bundles/customer-list/popup/status-popup")
+	}
+</body>
+</html>
+
+

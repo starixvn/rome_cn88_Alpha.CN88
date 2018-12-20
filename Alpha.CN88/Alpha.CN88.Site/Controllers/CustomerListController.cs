@@ -50,11 +50,5 @@
         {
             return Json(Result.CreateErrorResult(-101, "A problem has been occurred while submitting your data"));
         }
-
-        [HttpPost]
-        public JsonResult UpdateCredit()
-        {
-            return Json(Result.CreateErrorResult(-101, "A problem has been occurred while submitting your data"));
-        }
     }
 }
