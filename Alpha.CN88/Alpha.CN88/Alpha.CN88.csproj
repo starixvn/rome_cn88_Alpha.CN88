@@ -104,6 +104,7 @@
     <EmbeddedResource Include="AppResources\Resources.th-TH.resx" />
     <EmbeddedResource Include="AppResources\Resources.vi-VN.resx" />
     <EmbeddedResource Include="AppResources\Resources.zh-CN.resx" />
+    <EmbeddedResource Include="AppResources\Resources.zh-Hans.resx" />
     <EmbeddedResource Include="AppResources\Resources.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup />

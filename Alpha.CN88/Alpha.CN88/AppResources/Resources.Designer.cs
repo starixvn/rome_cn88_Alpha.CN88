@@ -19,7 +19,7 @@ namespace Alpha.CN88.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -124,7 +124,7 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CreationDate.
+        ///   Looks up a localized string similar to Created Date.
         /// </summary>
         public static string CreationDate {
             get {
@@ -138,6 +138,15 @@ namespace Alpha.CN88.AppResources {
         public static string Credit {
             get {
                 return ResourceManager.GetString("Credit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -174,33 +183,6 @@ namespace Alpha.CN88.AppResources {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Agent.
-        /// </summary>
-        public static string NewAgent {
-            get {
-                return ResourceManager.GetString("NewAgent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Master.
-        /// </summary>
-        public static string NewMaster {
-            get {
-                return ResourceManager.GetString("NewMaster", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Member.
-        /// </summary>
-        public static string NewMember {
-            get {
-                return ResourceManager.GetString("NewMember", resourceCulture);
             }
         }
         
