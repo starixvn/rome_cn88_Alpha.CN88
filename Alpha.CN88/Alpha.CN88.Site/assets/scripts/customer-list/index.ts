@@ -2,7 +2,8 @@
 /// <reference path="../components/pager.ts" />
 
 class CustomerList {
-    $: JQueryStatic;
+	$: JQueryStatic;
+	topWindow: any;
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
@@ -30,8 +31,10 @@ class CustomerList {
         $: JQueryStatic,
         statusComponent: SingleSelectionDropdownComponent,
         numeral: any,
-        pager: PagerComponent) {
-        this.$ = $;
+		pager: PagerComponent,
+		topWindow: any) {
+		this.$ = $;
+		this.topWindow = topWindow;
         this.statusComponent = statusComponent;
         this.numeral = numeral;
         this.pager = pager;
@@ -121,11 +124,17 @@ class CustomerList {
         return "row-closed reason-" + customer.CloseReason;
     };
 
-    updateCredit = (custId: any, username: any) => {
-        alert(custId + username);
+	updateCredit = (custId: any, username: any) => {
+		let url = this.$("#creditPopupUrl").val(),
+			caption = this.$("#UpdateCredit").val();
+
+		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 700, 400);       
     };
-    updateStatus = (custId: any, username: any) => {
-        alert(custId + username);
+	updateStatus = (custId: any, username: any) => {
+		let url = this.$("#statusPopupUrl").val(),
+			caption = this.$("#UpdateStatus").val();
+
+		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 700, 400);       
     };
     updateAccount = (custId: any, username: any) => {
         window.location.href = this.dcs_EditCustomerLink + "?" + this.$.param({
@@ -171,6 +180,7 @@ $(() => {
         $,
         new SingleSelectionDropdownComponent($),
         numeral,
-        new PagerComponent($));
+		new PagerComponent($),
+		window.top);
     customerList.init();
 });

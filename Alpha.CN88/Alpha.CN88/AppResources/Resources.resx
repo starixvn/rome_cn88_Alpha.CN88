@@ -201,4 +201,19 @@
   <data name="AgentIsRequired" xml:space="preserve">
     <value>Agent is required.</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="UsedCredit" xml:space="preserve">
+    <value>Used Credit</value>
+  </data>
+  <data name="UpdateCredit" xml:space="preserve">
+    <value>Update Credit</value>
+  </data>
+  <data name="UpdateStatus" xml:space="preserve">
+    <value>Update Status</value>
+  </data>
 </root>

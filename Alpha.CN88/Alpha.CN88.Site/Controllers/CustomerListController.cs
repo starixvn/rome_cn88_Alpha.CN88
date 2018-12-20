@@ -24,6 +24,14 @@
         public JsonResult GetCustomerList(CustomerListQuery message)
             => Json(mediator.Send(message), JsonRequestBehavior.AllowGet);
 
+        [HttpGet]
+        public ActionResult CreditPopup(CreditPopupQuery message)
+           => View(mediator.Send(message));
+
+        [HttpGet]
+        public ActionResult StatusPopup(StatusPopupQuery message)
+         => View(mediator.Send(message));
+
         //[AntiXsrfFilter]
         [HttpPost]
         public JsonResult UpdateClosed(UpdateClosedCommand command)

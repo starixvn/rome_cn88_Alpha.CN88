@@ -10,6 +10,8 @@
     public class CustomerListHandler :
          IRequestHandler<IndexQuery, IndexViewModel>,
          IRequestHandler<CustomerListQuery, CustomerListViewModel>,
+         IRequestHandler<CreditPopupQuery, CreditPopupViewModel>,
+         IRequestHandler<StatusPopupQuery, StatusPopupViewModel>,
          IRequestHandler<UpdateClosedCommand, Result>,
          IRequestHandler<UpdateSuspendedCommand, Result>
     {
@@ -37,6 +39,12 @@
 
             return new CustomerListViewModel(model);
         }
+
+        public CreditPopupViewModel Handle(CreditPopupQuery message)
+           => new CreditPopupViewModel(message);
+
+        public StatusPopupViewModel Handle(StatusPopupQuery message)
+         => new StatusPopupViewModel(message);
 
         public Result Handle(UpdateClosedCommand command)
             => service.UpdateClosed(new UpdateClosedParam(

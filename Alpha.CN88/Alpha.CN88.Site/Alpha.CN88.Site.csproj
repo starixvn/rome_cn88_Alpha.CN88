@@ -331,10 +331,14 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
+    <Compile Include="Requests\CustomerList\StatusPopupQuery.cs" />
+    <Compile Include="Requests\CustomerList\CreditPopupQuery.cs" />
     <Compile Include="Requests\CustomerList\IndexQuery.cs" />
     <Compile Include="Requests\CustomerList\CustomerListQuery.cs" />
     <Compile Include="Requests\CustomerList\UpdateSuspendedCommand.cs" />
     <Compile Include="Requests\CustomerList\UpdateClosedCommand.cs" />
+    <Compile Include="ViewModels\CustomerList\StatusPopupViewModel.cs" />
+    <Compile Include="ViewModels\CustomerList\CreditPopupViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\IndexViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\CustomerListViewModel.cs" />
   </ItemGroup>
@@ -414,15 +418,6 @@
     <Content Include="Views\CustomerList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\CustomerListPopup\_CreditPopup.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\CustomerListPopup\_StatusPopup.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\CustomerListPopup\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\components\pager.ts" />
     <TypeScriptCompile Include="assets\scripts\components\single-selection-dropdown.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\member-list.ts" />
@@ -464,6 +459,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\CustomerList\Edit.cshtml" />
+    <Content Include="Views\CustomerList\CreditPopup.cshtml" />
+    <Content Include="Views\CustomerList\StatusPopup.cshtml" />
     <None Include="Web.AppSettings.backupMNL3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </None>
