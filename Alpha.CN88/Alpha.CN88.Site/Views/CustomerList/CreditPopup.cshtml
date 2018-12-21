@@ -1,4 +1,4 @@
-﻿@model CreditPopupViewModel
+﻿@model CreditRangeViewModel
 
 <!DOCTYPE html>
 <html>
@@ -18,33 +18,36 @@
 	<div class="popup-modal">
 		<div class="col-xs-12 hidden msg" id="error-message"></div>
 		<div class="form-group col-xs-12">
-			<div class="col-xs-5">
+			<div class="col-xs-3">
 				@Resources.UsedCredit
 			</div>
-			<div class="col-xs-7">
-				<span>@Model.UsedCredit</span>
+			<div class="col-xs-9">
+				<span>@((Model.CustLevel.IsMemberLevel() ? Model.CreditModel.BetCredit : Model.CreditModel.UsedCredit).ToString("N0"))</span>
 			</div>
 		</div>
 		<div class="form-group col-xs-12">
-			<div class="col-xs-5">@Resources.Credit</div>
+			<div class="col-xs-3">@Resources.Credit</div>
 			<div class="col-xs-4">
 				<input class="textbox" id="credit" />
 			</div>
-			<div class="col-xs-3 credit-range">
-				[@Model.UsedCredit; @Model.LimitedCredit]
+			<div class="col-xs-4 credit-range">
+				[@Model.CreditModel.MinCredit.ToString("N0"); @Model.CreditModel.MaxCredit.ToString("N0")]
 			</div>
 		</div>
-		<div class="col-xs-12 row-info popup-bottom list-button">
+		<div class="col-xs-10 row-info popup-bottom list-button">
 			<button type="button" class="btn-submit">@Resources.Save</button>
 			<button type="button" class="btn-cancel">@Resources.Cancel</button>
 		</div>
 	</div>
 
-	@Html.Hidden("MinCredit", Model.UsedCredit)
-	@Html.Hidden("MaxCredit", Model.LimitedCredit)
+	@Html.Hidden("MinCredit", Model.CreditModel.MinCredit)
+	@Html.Hidden("MaxCredit", Model.CreditModel.MaxCredit)
+	@Html.Hidden("CustId", Model.CustId)
+	@Html.Hidden("UpdateSuccessfully", Resources.UpdateSuccessfully)
 
 	@section Scripts {
 		@StaticResources.RenderScripts("~/assets/bundles/customer-list/popup/credit-popup")
+		@StaticResources.AssetScripts.Render("/bundles/common/cleave")
 	}
 </body>
 </html>

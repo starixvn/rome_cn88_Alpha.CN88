@@ -9,8 +9,6 @@
         {
         }
 
-        public int SearchAccountId { get; set; }
-
         public bool Closed { get; set; }
     }
 }

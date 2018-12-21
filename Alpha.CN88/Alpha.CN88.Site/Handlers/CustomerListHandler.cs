@@ -10,7 +10,7 @@
     public class CustomerListHandler :
          IRequestHandler<IndexQuery, IndexViewModel>,
          IRequestHandler<CustomerListQuery, CustomerListViewModel>,
-         IRequestHandler<CreditPopupQuery, CreditPopupViewModel>,
+         IRequestHandler<CreditPopupQuery, CreditRangeViewModel>,
          IRequestHandler<StatusPopupQuery, StatusPopupViewModel>,
          IRequestHandler<CreditCommand, Result>,
          IRequestHandler<UpdateClosedCommand, Result>,
@@ -41,8 +41,8 @@
             return new CustomerListViewModel(model);
         }
 
-        public CreditPopupViewModel Handle(CreditPopupQuery message)
-           => new CreditPopupViewModel(message);
+        public CreditRangeViewModel Handle(CreditPopupQuery message)
+           => new CreditRangeViewModel(message, service.GetCreditRangeModel(message.CustId));
 
         public StatusPopupViewModel Handle(StatusPopupQuery message)
          => new StatusPopupViewModel(message);
@@ -51,7 +51,6 @@
            => service.UpdateCredit(
                new UpdateCreditParam(
                    message.CustId,
-                   message.SearchAccountRoleId,
                    message.CreditAmount,
                    message.ViewerId,
                    message.SubAccountId,
@@ -60,7 +59,7 @@
 
         public Result Handle(UpdateClosedCommand command)
             => service.UpdateClosed(new UpdateClosedParam(
-               command.SearchAccountId,
+               command.CustId,
                command.ViewerId,
                command.SubAccountId,
                command.Language,
@@ -70,7 +69,7 @@
 
         public Result Handle(UpdateSuspendedCommand command)
            => service.UpdateSusspended(new UpdateSuspendedParam(
-              command.SearchAccountId,
+              command.CustId,
               command.ViewerId,
               command.SubAccountId,
               command.Language,

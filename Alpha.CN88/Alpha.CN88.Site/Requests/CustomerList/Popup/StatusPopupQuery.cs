@@ -10,8 +10,6 @@
         {
         }
 
-        public int SearchAccountId { get; set; }
-
         public int Status { get; set; }
     }
 }

@@ -17,6 +17,7 @@
 
 	public submit(url: string, data: any) {
 		let self = this;
+		
 		this.$.ajax({
 			type: "POST",
 			url: url,
@@ -27,9 +28,9 @@
 			}
 		})
 			.done(function (data) {
-				if (data.IsSuccessful) {
+				if (data.IsSuccess) {
 					self.$("#error-message")
-						.text("Update Successfully!")
+						.text(self.$("#UpdateSuccessfully").val())
 						.removeClass("hidden")
 						.removeClass("msg-error")
 						.addClass("msg-success");

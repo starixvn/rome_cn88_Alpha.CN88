@@ -4,7 +4,6 @@
     {
         public UpdateCreditParam(
            int searchAccountId,
-           byte roleId,
            decimal creditAmount,
            int actorId,
            int subAccountId,
@@ -16,7 +15,6 @@
             SubAccountId = subAccountId;
             Language = language;
             IP = ip;
-            RoleId = roleId;
             CreditAmount = creditAmount;
         }
 
@@ -29,8 +27,6 @@
         public string Language { get; }
 
         public string IP { get; }
-
-        public byte RoleId { get; }
 
         public decimal CreditAmount { get; }
     }

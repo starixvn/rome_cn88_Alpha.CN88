@@ -11,6 +11,8 @@
     {
         CustomerListModel GetCustomerList(CustomerListParam param);
 
+        CreditRangeModel GetCreditRangeModel(int searchAccountId);
+
         Result UpdateCredit(UpdateCreditParam param);
 
         Result UpdateClosed(UpdateClosedParam param);
@@ -37,11 +39,13 @@
             return customerListDataAccess.GetCustomerList(criteria);
         }
 
+        public CreditRangeModel GetCreditRangeModel(int searchAccountId)
+            => dynamicRepository.Get<CreditRangeModel>(new SelectCreditRangeCriteria(searchAccountId));
+
         public Result UpdateCredit(UpdateCreditParam param)
         {
             var command = new UpdateCreditCriteria(
                     param.SearchAccountId,
-                    param.RoleId,
                     param.CreditAmount,
                     param.ActorId,
                     param.SubAccountId,
@@ -50,9 +54,9 @@
 
              dynamicRepository.ExecuteAsync(command);
 
-            return command.CreditProblem
-                ? Result.CreateErrorResult(failErrorCode, command.ErrMsg)
-                : Result.CreateSuccessResult();
+            return command.ErrCode.Equals(0)
+                ? Result.CreateSuccessResult(): 
+                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 
         public Result UpdateClosed(UpdateClosedParam param)

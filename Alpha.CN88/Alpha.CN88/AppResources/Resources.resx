@@ -210,4 +210,7 @@
   <data name="UpdateStatus" xml:space="preserve">
     <value>Update Status</value>
   </data>
+  <data name="UpdateSuccessfully" xml:space="preserve">
+    <value>Update Successfully !</value>
+  </data>
 </root>

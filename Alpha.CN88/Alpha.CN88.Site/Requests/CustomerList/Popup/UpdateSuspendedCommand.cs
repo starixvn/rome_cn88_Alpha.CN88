@@ -9,8 +9,6 @@
         {
         }
 
-        public int SearchAccountId { get; set; }
-
         public bool Suspended { get; set; }
     }
 }

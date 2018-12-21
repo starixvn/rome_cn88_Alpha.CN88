@@ -343,8 +343,8 @@
     <Compile Include="Requests\CustomerList\Popup\CreditCommand.cs" />
     <Compile Include="Requests\CustomerList\Popup\UpdateSuspendedCommand.cs" />
     <Compile Include="Requests\CustomerList\Popup\UpdateClosedCommand.cs" />
+    <Compile Include="ViewModels\CustomerList\Popup\CreditRangeViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\Popup\StatusPopupViewModel.cs" />
-    <Compile Include="ViewModels\CustomerList\Popup\CreditPopupViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\IndexViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\CustomerListViewModel.cs" />
   </ItemGroup>

@@ -76,11 +76,13 @@
     <Compile Include="Constants\CloseReasonConstant.cs" />
     <Compile Include="Constants\CustomerStatus.cs" />
     <Compile Include="Criteria\CustomerList\CustomerListCriteria.cs" />
+    <Compile Include="Criteria\CustomerList\SelectCreditRangeCriteria.cs" />
     <Compile Include="Criteria\CustomerList\UpdateCreditCriteria.cs" />
     <Compile Include="Criteria\CustomerList\UpdateSuspendedCriteria.cs" />
     <Compile Include="Criteria\CustomerList\UpdateClosedCriteria.cs" />
     <Compile Include="Criteria\CustomerList\UpdateCustomerStatusCriteria.cs" />
     <Compile Include="DataAccesses\CustomerListDataAccess.cs" />
+    <Compile Include="Models\CustomerList\CreditRangeModel.cs" />
     <Compile Include="Models\CustomerList\CustomerListModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\Enumeration.cs" />

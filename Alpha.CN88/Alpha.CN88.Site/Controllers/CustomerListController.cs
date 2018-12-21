@@ -33,10 +33,8 @@
          => View(mediator.Send(message));
 
         [HttpPost]
-        public JsonResult UpdateCredit(CreditCommand command)
-        {
-            return Json(Result.CreateErrorResult(-101, "A problem has been occurred while submitting your data"));
-        }
+        public ActionResult UpdateCredit(CreditCommand command)
+        => JsonData(command);
 
         //[AntiXsrfFilter]
         [HttpPost]

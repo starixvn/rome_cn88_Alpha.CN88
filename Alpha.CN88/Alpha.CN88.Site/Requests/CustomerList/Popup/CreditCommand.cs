@@ -12,8 +12,6 @@
             this.viewer = viewer;
         }
 
-        public byte SearchAccountRoleId { get; set; }
-
         public decimal CreditAmount { get; set; }
     }
 }

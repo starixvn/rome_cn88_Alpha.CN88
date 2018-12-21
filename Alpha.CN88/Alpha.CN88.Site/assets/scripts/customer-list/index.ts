@@ -124,11 +124,11 @@ class CustomerList {
         return "row-closed reason-" + customer.CloseReason;
     };
 
-    updateCredit = (custId: any, username: any) => {
-        let url = this.$("#creditPopupUrl").val(),
+	updateCredit = (custId: any, username: any, custLevelId: any) => {
+		let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevel=${custLevelId}`,
             caption = this.$("#UpdateCredit").val();
 
-        this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 400, 250);
+		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 550, 250);       
     };
     updateStatus = (custId: any, username: any) => {
         let url = this.$("#statusPopupUrl").val(),
