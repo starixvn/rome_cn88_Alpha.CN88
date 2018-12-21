@@ -2,8 +2,8 @@
 /// <reference path="../components/pager.ts" />
 
 class CustomerList {
-	$: JQueryStatic;
-	topWindow: any;
+    $: JQueryStatic;
+    topWindow: any;
     numeral: any;
     statusComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
@@ -31,10 +31,10 @@ class CustomerList {
         $: JQueryStatic,
         statusComponent: SingleSelectionDropdownComponent,
         numeral: any,
-		pager: PagerComponent,
-		topWindow: any) {
-		this.$ = $;
-		this.topWindow = topWindow;
+        pager: PagerComponent,
+        topWindow: any) {
+        this.$ = $;
+        this.topWindow = topWindow;
         this.statusComponent = statusComponent;
         this.numeral = numeral;
         this.pager = pager;
@@ -124,17 +124,17 @@ class CustomerList {
         return "row-closed reason-" + customer.CloseReason;
     };
 
-	updateCredit = (custId: any, username: any) => {
-		let url = this.$("#creditPopupUrl").val(),
-			caption = this.$("#UpdateCredit").val();
+    updateCredit = (custId: any, username: any) => {
+        let url = this.$("#creditPopupUrl").val(),
+            caption = this.$("#UpdateCredit").val();
 
-		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 400, 250);       
+        this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 400, 250);
     };
-	updateStatus = (custId: any, username: any) => {
-		let url = this.$("#statusPopupUrl").val(),
-			caption = this.$("#UpdateStatus").val();
+    updateStatus = (custId: any, username: any) => {
+        let url = this.$("#statusPopupUrl").val(),
+            caption = this.$("#UpdateStatus").val();
 
-		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 300, 250);       
+        this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 300, 250);
     };
     updateAccount = (custId: any, username: any) => {
         window.location.href = this.dcs_EditCustomerLink + "?" + this.$.param({
@@ -173,6 +173,26 @@ class CustomerList {
         this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.member + "']").click();
         this.memberList.viewMembersOfAgent(custId, username);
     };
+    reloadCreditValue = (custId: any, newValue: any) => {
+        this.$(".update-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0"));
+    };
+    reloadStatusValue = (custId: any, newValue: any) => {
+        this.$(".update-status[cust-id='" + custId + "']").html(this.getStatusName(newValue));
+        this.$(".row-customer[cust-id='" + custId + "']")
+            .removeClass()
+            .addClass("row-customer " + this.reloadStatusColor(newValue));
+    };
+    reloadStatusColor = (status: any) => {
+        if (status == siteInfrastructure.customerStatus.open) {
+            return "row-open";
+        }
+
+        if (status == siteInfrastructure.customerStatus.suspended) {
+            return "row-suspended";
+        }
+
+        return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Admin;
+    };
 };
 
 $(() => {
@@ -180,7 +200,7 @@ $(() => {
         $,
         new SingleSelectionDropdownComponent($),
         numeral,
-		new PagerComponent($),
-		window.top);
+        new PagerComponent($),
+        window.top);
     customerList.init();
 });

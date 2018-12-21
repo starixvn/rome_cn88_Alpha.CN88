@@ -84,7 +84,7 @@ class MasterList {
         } else {
             for (var i = 0; i < rs.Customers.length; i++ , customerIndex++) {
                 var customer = rs.Customers[i];
-                html += "<tr class='" + this.indexManager.getCustomerColor(customer) + "'>" +
+                html += "<tr class='row-customer " + this.indexManager.getCustomerColor(customer) + "' cust-id='" + customer.CustId + "'>" +
                     "<td class='text-center'>" + customerIndex + "</td>" +
                     "<td class='view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
                     "<td>" + customer.Name + "</td>" +
