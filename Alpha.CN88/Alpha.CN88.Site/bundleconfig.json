@@ -30,5 +30,11 @@
 			"assets/scripts/customer-list/popup/popup-base.js",
 			"assets/scripts/customer-list/popup/status-popup.js"
 		]
+	},
+	{
+		"outputFileName": "assets/bundles/credit.css",
+		"inputFiles": [
+			"assets/styles/credit.css"
+		]
 	}
 ]

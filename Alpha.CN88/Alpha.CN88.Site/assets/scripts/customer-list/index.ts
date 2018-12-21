@@ -128,13 +128,13 @@ class CustomerList {
 		let url = this.$("#creditPopupUrl").val(),
 			caption = this.$("#UpdateCredit").val();
 
-		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 500, 250);       
+		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 400, 250);       
     };
 	updateStatus = (custId: any, username: any) => {
 		let url = this.$("#statusPopupUrl").val(),
 			caption = this.$("#UpdateStatus").val();
 
-		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 500, 250);       
+		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 300, 250);       
     };
     updateAccount = (custId: any, username: any) => {
         window.location.href = this.dcs_EditCustomerLink + "?" + this.$.param({

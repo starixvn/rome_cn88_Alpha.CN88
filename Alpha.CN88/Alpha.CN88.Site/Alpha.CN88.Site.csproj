@@ -466,6 +466,7 @@
     <Content Include="Views\CustomerList\Edit.cshtml" />
     <Content Include="Views\CustomerList\CreditPopup.cshtml" />
     <Content Include="Views\CustomerList\StatusPopup.cshtml" />
+    <Content Include="assets\styles\credit.scss" />
     <Content Include="Web.AppSettings.backupMNL3.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>

@@ -7,13 +7,14 @@
 		this.registerEvents();
 	};
 
-	registerEvents = (): void => {
+	registerEvents() {
+		super.registerEvents();
 		this.$("#save-btn").bind("click", this.updateStatus);
 	};
 
 	updateStatus = () => {
 		let url = this.$("#dropdown-status").val() == 2 ? "UpdateSuspended" : "UpdateClosed";
-		this.submit(url, {});
+		super.submit(url, {});
 	};
 };
 

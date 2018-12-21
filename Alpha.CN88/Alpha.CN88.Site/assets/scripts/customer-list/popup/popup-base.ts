@@ -1,13 +1,21 @@
 ﻿class PopupBase {
-	$: JQueryStatic;
-	topWindow: any;
+	public $: JQueryStatic;
+	public topWindow: any;
 
 	constructor($: JQueryStatic, topWindow: any) {
 		this.$ = $;
 		this.topWindow = topWindow;
 	};
 
-	submit = (url: string, data: any) => {
+	public registerEvents() {
+		this.$(".btn-cancel").bind("click", this.closePopup);
+	};
+
+	closePopup = () => {
+		this.topWindow.ageWnd.close();
+	}
+
+	public submit(url: string, data: any) {
 		let self = this;
 		this.$.ajax({
 			type: "POST",
@@ -20,9 +28,18 @@
 		})
 			.done(function (data) {
 				if (data.IsSuccessful) {
+					self.$("#error-message")
+						.text("Update Successfully!")
+						.removeClass("hidden")
+						.removeClass("msg-error")
+						.addClass("msg-success");
 				}
 				else {
-					self.$("#error-message").text(data.Message).removeClass("hidden");
+					self.$("#error-message")
+						.text(data.Message)
+						.removeClass("hidden")
+						.removeClass("msg-success")
+						.addClass("msg-error");
 				}
 			})
 			.always(function () { });

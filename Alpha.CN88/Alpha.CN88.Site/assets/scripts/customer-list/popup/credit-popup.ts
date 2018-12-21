@@ -7,14 +7,15 @@
 		this.registerEvents();
 	};
 
-	registerEvents = (): void => {
-		this.$("#save-btn").bind("click", this.updateCredit);
+	registerEvents() {
+		super.registerEvents();
+		this.$(".btn-submit").bind("click", this.updateCredit);
 	};
 
 	updateCredit = () => {
-		let minCredit = this.$("#MinCredit").val();
-		let maxCredit = this.$("#MaxCredit").val();
-		let credit = this.$("#credit").val();
+		let minCredit = parseFloat(this.$("#MinCredit").val());
+		let maxCredit = parseFloat(this.$("#MaxCredit").val());
+		let credit = parseFloat(this.$("#credit").val());
 
 		if (credit < minCredit || credit > maxCredit) {
 			this.$("#error-message").html('').text("Invalid Value").removeClass("hidden");
