@@ -55,3 +55,4 @@ _Chutzpah.coverage.html
 *.log
 packages/**
 .vs/
+*.user
