@@ -116,7 +116,7 @@ class AgentList {
                     "<td>" + customer.Name + "</td>" +
                     "<td class='text-right update-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0") + "</td>" +
                     "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
-                    "<td class='text-center update-status' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                    "<td class='text-center update-status' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='text-center'>" +
                     "<span class='icon-edit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'></span>" +
                     "<span class='icon-add' cust-id='" + customer.CustId + "' username='" + customer.Username + "'></span>" +
@@ -136,12 +136,12 @@ class AgentList {
         this.$tblAgent.find(".update-credit").click(function () {
             var $this = self.$(this);
 
-            self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"));
+            self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), siteInfrastructure.roleId.agent);
         });
         this.$tblAgent.find(".update-status").click(function () {
             var $this = self.$(this);
 
-            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"));
+            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"));
         });
         this.$tblAgent.find(".icon-edit").click(function () {
             var $this = self.$(this);

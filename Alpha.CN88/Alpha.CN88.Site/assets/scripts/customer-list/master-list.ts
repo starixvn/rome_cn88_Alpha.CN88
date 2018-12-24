@@ -79,6 +79,9 @@ class MasterList {
         var html = "";
         var customerIndex = this.paramMaster.PageSize * (this.paramMaster.PageIndex - 1) + 1;
 
+        // credit: CustLevelId
+        // status: UpdateStatusId
+
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='7' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
         } else {
@@ -90,7 +93,7 @@ class MasterList {
                     "<td>" + customer.Name + "</td>" +
                     "<td class='text-right update-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0") + "</td>" +
                     "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
-                    "<td class='text-center update-status' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
+                    "<td class='text-center update-status' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='text-center'>" +
                     "<span class='icon-edit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'></span>" +
                     "<span class='icon-add' cust-id='" + customer.CustId + "' username='" + customer.Username + "'></span>" +
@@ -110,12 +113,12 @@ class MasterList {
         this.$tblMaster.find(".update-credit").click(function () {
             var $this = self.$(this);
 
-            self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"));
+            self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), siteInfrastructure.roleId.master);
         });
         this.$tblMaster.find(".update-status").click(function () {
             var $this = self.$(this);
 
-            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"));
+            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"));
         });
         this.$tblMaster.find(".icon-edit").click(function () {
             var $this = self.$(this);

@@ -121,34 +121,41 @@ class CustomerList {
             return "row-suspended";
         }
 
-        return "row-closed reason-" + customer.CloseReason;
+        if (customer.Status == siteInfrastructure.customerStatus.closed) {
+            return "row-closed reason-" + customer.CloseReason;
+        }
+
+        return "";
     };
 
-	updateCredit = (custId: any, username: any, custLevelId: any) => {
-		let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevel=${custLevelId}`,
+    updateCredit = (custId: any, username: any, custLevelId: any) => {
+        let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevel=${custLevelId}`,
             caption = this.$("#UpdateCredit").val();
 
-		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 550, 250);       
-	};
-	updateStatus = (custId: any, username: any, updateStatusId: any) => {
-		let url = `${this.$("#statusPopupUrl").val()}?custId=${custId}&UpdateStatusId=${updateStatusId}`,
+        this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 550, 250);
+    };
+    updateStatus = (custId: any, username: any, updateStatusId: any) => {
+        let url = `${this.$("#statusPopupUrl").val()}?custId=${custId}&UpdateStatusId=${updateStatusId}`,
             caption = this.$("#UpdateStatus").val();
 
         this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 300, 250);
     };
     updateAccount = (custId: any, username: any) => {
+        alert(custId + username);
         window.location.href = this.dcs_EditCustomerLink + "?" + this.$.param({
             custId: custId,
             username: username
         });
     };
     addAgentForMaster = (custId: any, username: any) => {
+        alert(custId + username);
         window.location.href = this.dcs_AddCustomerLink + "?" + this.$.param({
             custId: custId,
             username: username
         });
     };
     addMemberForAgent = (custId: any, username: any) => {
+        alert(custId + username);
         window.location.href = this.dcs_AddCustomerLink + "?" + this.$.param({
             custId: custId,
             username: username
@@ -163,7 +170,11 @@ class CustomerList {
             return this.viewResources.Closed;
         }
 
-        return this.viewResources.Suspended;
+        if (status == siteInfrastructure.customerStatus.suspended) {
+            return this.viewResources.Suspended;
+        }
+
+        return "";
     };
     viewMaster = (custId: any, username: any) => {
         this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.agent + "']").click();
