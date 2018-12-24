@@ -336,13 +336,12 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
-    <Compile Include="Requests\CustomerList\Popup\StatusPopupQuery.cs" />
+    <Compile Include="Requests\CustomerList\Popup\CustomerStatusPopupQuery.cs" />
     <Compile Include="Requests\CustomerList\Popup\CreditPopupQuery.cs" />
     <Compile Include="Requests\CustomerList\IndexQuery.cs" />
     <Compile Include="Requests\CustomerList\CustomerListQuery.cs" />
     <Compile Include="Requests\CustomerList\Popup\CreditCommand.cs" />
-    <Compile Include="Requests\CustomerList\Popup\UpdateSuspendedCommand.cs" />
-    <Compile Include="Requests\CustomerList\Popup\UpdateClosedCommand.cs" />
+    <Compile Include="Requests\CustomerList\Popup\CustomerStatusCommand.cs" />
     <Compile Include="ViewModels\CustomerList\Popup\CreditRangeViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\Popup\StatusPopupViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\IndexViewModel.cs" />

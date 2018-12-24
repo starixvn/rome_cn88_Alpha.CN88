@@ -25,7 +25,6 @@ class CreditPopup extends PopupBase {
 		let maxCredit = parseFloat(this.$("#MaxCredit").val());
 		let credit = parseFloat(this.cleaveCredit.getRawValue());
 		let custId = this.$("#CustId").val();
-		//alert(credit);
 
 		if (isNaN(credit) || credit < minCredit || credit > maxCredit) {
 			this.$("#error-message").html('').text("Invalid Value").removeClass("hidden");

@@ -129,9 +129,9 @@ class CustomerList {
             caption = this.$("#UpdateCredit").val();
 
 		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 550, 250);       
-    };
-    updateStatus = (custId: any, username: any) => {
-        let url = this.$("#statusPopupUrl").val(),
+	};
+	updateStatus = (custId: any, username: any, updateStatusId: any) => {
+		let url = `${this.$("#statusPopupUrl").val()}?custId=${custId}&UpdateStatusId=${updateStatusId}`,
             caption = this.$("#UpdateStatus").val();
 
         this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 300, 250);

@@ -3,5 +3,6 @@
     <Setting Key="Age_Customer_DownlineList_Sel" SpName="Age_Customer_DownlineList_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CS_Customer_Credit_Sel" SpName="Age_CS_Customer_Credit_Sel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CS_Customer_Credit_Upd" SpName="Age_CS_Customer_Credit_Upd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_CS_Customer_Status_Upd" SpName="Age_CS_Customer_Status_Upd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

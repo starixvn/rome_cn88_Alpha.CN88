@@ -1,9 +1,9 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
-    using System.Web.Mvc;
-    using Alpha.CN88.Models;
+    using Alpha.Web.Filters;
     using MediatR;
     using Requests.CustomerList;
+    using System.Web.Mvc;
 
     public class CustomerListController : SiteBaseController
     {
@@ -29,24 +29,15 @@
            => View(mediator.Send(message));
 
         [HttpGet]
-        public ActionResult StatusPopup(StatusPopupQuery message)
-         => View(mediator.Send(message));
+        public ActionResult StatusPopup(CustomerStatusPopupQuery message)
+            => View(mediator.Send(message));
 
-        [HttpPost]
+        [HttpPost, AntiXsrfFilter]
         public ActionResult UpdateCredit(CreditCommand command)
-        => JsonData(command);
+            => JsonData(command);
 
-        //[AntiXsrfFilter]
-        [HttpPost]
-        public JsonResult UpdateClosed(UpdateClosedCommand command)
-        {
-            return Json(Result.CreateErrorResult(-101, "A problem has been occurred while submitting your data"));
-        }
-
-        [HttpPost]
-        public JsonResult UpdateSuspended(UpdateSuspendedCommand command)
-        {
-            return Json(Result.CreateErrorResult(-101, "A problem has been occurred while submitting your data"));
-        }
+        [HttpPost, AntiXsrfFilter]
+        public ActionResult CustomerStatus(CustomerStatusCommand command)
+            => JsonData(command);
     }
 }

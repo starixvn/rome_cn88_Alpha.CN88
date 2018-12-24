@@ -4,11 +4,11 @@
 
     public class StatusPopupViewModel
     {
-        public StatusPopupViewModel(StatusPopupQuery query)
+        public StatusPopupViewModel(CustomerStatusPopupQuery query)
         {
-            Status = query.Status;
+            UpdateStatusId = query.UpdateStatusId;
         }
 
-        public int Status { get; }
+        public int UpdateStatusId { get; }
     }
 }

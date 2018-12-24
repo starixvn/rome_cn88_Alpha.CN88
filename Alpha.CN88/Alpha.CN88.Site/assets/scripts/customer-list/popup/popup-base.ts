@@ -24,7 +24,7 @@
 			data: data,
 			dataType: "json",
 			beforeSend: function (xhr) {
-				//	xhr.setRequestHeader("__RequestVerificationToken", requestVerificationToken);
+				xhr.setRequestHeader("__RequestVerificationToken", $("input[name=\"__RequestVerificationToken\"]").val());
 			}
 		})
 			.done(function (data) {

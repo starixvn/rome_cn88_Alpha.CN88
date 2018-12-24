@@ -11,10 +11,9 @@
          IRequestHandler<IndexQuery, IndexViewModel>,
          IRequestHandler<CustomerListQuery, CustomerListViewModel>,
          IRequestHandler<CreditPopupQuery, CreditRangeViewModel>,
-         IRequestHandler<StatusPopupQuery, StatusPopupViewModel>,
+         IRequestHandler<CustomerStatusPopupQuery, StatusPopupViewModel>,
          IRequestHandler<CreditCommand, Result>,
-         IRequestHandler<UpdateClosedCommand, Result>,
-         IRequestHandler<UpdateSuspendedCommand, Result>
+         IRequestHandler<CustomerStatusCommand, Result>
     {
         private readonly CustomerListService service;
 
@@ -44,7 +43,7 @@
         public CreditRangeViewModel Handle(CreditPopupQuery message)
            => new CreditRangeViewModel(message, service.GetCreditRangeModel(message.CustId));
 
-        public StatusPopupViewModel Handle(StatusPopupQuery message)
+        public StatusPopupViewModel Handle(CustomerStatusPopupQuery message)
          => new StatusPopupViewModel(message);
 
         public Result Handle(CreditCommand message)
@@ -57,24 +56,14 @@
                    message.Language,
                    message.IP));
 
-        public Result Handle(UpdateClosedCommand command)
-            => service.UpdateClosed(new UpdateClosedParam(
+        public Result Handle(CustomerStatusCommand command)
+            => service.UpdateCustomerStatus(new UpdateCustomerStatusParam(
                command.CustId,
                command.ViewerId,
                command.SubAccountId,
+               command.UpdateStatusId,
                command.Language,
                command.IP,
-               command.ViewerName,
-               command.Closed));
-
-        public Result Handle(UpdateSuspendedCommand command)
-           => service.UpdateSusspended(new UpdateSuspendedParam(
-              command.CustId,
-              command.ViewerId,
-              command.SubAccountId,
-              command.Language,
-              command.IP,
-              command.ViewerName,
-              command.Suspended));
+               command.ViewerName));
     }
 }

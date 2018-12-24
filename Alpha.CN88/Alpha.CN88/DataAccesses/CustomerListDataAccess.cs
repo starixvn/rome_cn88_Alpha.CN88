@@ -1,17 +1,18 @@
 ﻿namespace Alpha.CN88.DataAccesses
 {
-    using System.Collections.Generic;
     using Criteria.CustomerList;
     using Fanex.Common;
     using Fanex.Data;
+    using Fanex.Data.Repository;
     using Models;
     using Models.CustomerList;
+    using System.Collections.Generic;
 
     public interface CustomerListDataAccess
     {
         CustomerListModel GetCustomerList(CustomerListCriteria criteria);
 
-        Result UpdateCustomerStatus(UpdateCustomerStatusCriteria command);
+        Result UpdateNonQuery(NonQueryCommand command);
     }
 
     public class CustomerListDataAccessImpl : CustomerListDataAccess
@@ -56,7 +57,7 @@
             return new CustomerListModel(totalCustomers, customers);
         }
 
-        public Result UpdateCustomerStatus(UpdateCustomerStatusCriteria command)
+        public Result UpdateNonQuery(NonQueryCommand command)
         {
             using (var objectDb = ObjectDbFactory.CreateInstance(command.GetSettingKey()))
             {

@@ -15,9 +15,7 @@
 
         Result UpdateCredit(UpdateCreditParam param);
 
-        Result UpdateClosed(UpdateClosedParam param);
-
-        Result UpdateSusspended(UpdateSuspendedParam param);
+        Result UpdateCustomerStatus(UpdateCustomerStatusParam param);
     }
 
     public class CustomerListServiceImpl : CustomerListService
@@ -52,43 +50,28 @@
                     param.Language,
                     param.IP);
 
-             dynamicRepository.ExecuteAsync(command);
+             dynamicRepository.Execute(command);
 
             return command.ErrCode.Equals(0)
                 ? Result.CreateSuccessResult(): 
                 Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
 
-        public Result UpdateClosed(UpdateClosedParam param)
+        public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)
         {
-            var result = customerListDataAccess.UpdateCustomerStatus(
-                new UpdateClosedCriteria(
+            var command = new UpdateCustomerStatusCriteria(
                     param.SearchAccountId,
                     param.ActorId,
                     param.SubAccountId,
+                    param.UpdateStatusId,
                     param.Language,
-                    param.IP,
-                    param.Closed));
+                    param.IP);
 
-            return result.IsSuccess
-                ? Result.CreateSuccessResult()
-                : result;
-        }
+            dynamicRepository.Execute(command);
 
-        public Result UpdateSusspended(UpdateSuspendedParam param)
-        {
-            var result = customerListDataAccess.UpdateCustomerStatus(
-                new UpdateSuspendedCriteria(
-                    param.SearchAccountId,
-                    param.ActorId,
-                    param.SubAccountId,
-                    param.Language,
-                    param.IP,
-                    param.Suspended));
-
-            return result.IsSuccess
-                ? Result.CreateSuccessResult()
-                : result;
+            return command.ErrCode.Equals(0)
+                ? Result.CreateSuccessResult() :
+                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
         }
     }
 }

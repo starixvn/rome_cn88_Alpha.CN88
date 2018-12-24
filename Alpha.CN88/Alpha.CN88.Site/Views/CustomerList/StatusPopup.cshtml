@@ -24,9 +24,9 @@
 			</div>
 			<div class="col-xs-7">
 				<select id="dropdown-status" class="dropdown-status">
-					<option value="@CustomerStatus.Open">@Resources.Open</option>
-					<option value="@CustomerStatus.Closed">@Resources.Closed</option>
-					<option value="@CustomerStatus.Suspended">@Resources.Suspended</option>
+					<option value="@CustomerStatus.Open" @(Model.UpdateStatusId.Equals(CustomerStatus.Open) ? "selected" : string.Empty)>@Resources.Open</option>
+					<option value="@CustomerStatus.Closed" @(Model.UpdateStatusId.Equals(CustomerStatus.Closed) ? "selected" : string.Empty)>@Resources.Closed</option>
+					<option value="@CustomerStatus.Suspended" @(Model.UpdateStatusId.Equals(CustomerStatus.Suspended) ? "selected" : string.Empty)>@Resources.Suspended</option>
 				</select>
 			</div>
 		</div>
@@ -36,6 +36,7 @@
 		</div>
 	</div>
 
+	@Html.AntiForgeryToken()
 	@section Scripts {
 		@StaticResources.RenderScripts("~/assets/bundles/customer-list/popup/status-popup")
 	}

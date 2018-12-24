@@ -9,12 +9,14 @@
             int searchAccountId,
             int actorId,
             int subAccountId,
+            byte updateStatusId,
             string language,
             string ip)
         {
             SearchAccountId = searchAccountId;
             ActorId = actorId;
             SubAccountId = subAccountId;
+            UpdateStatusId = updateStatusId;
             Language = language;
             IP = ip;
         }
@@ -27,6 +29,9 @@
 
         [SpParam(SqlParamName = "SubAccId")]
         public int SubAccountId { get; }
+
+        [SpParam(SqlParamName = "UpdStatusId")]
+        public byte UpdateStatusId { get; }
 
         public string Language { get; }
 
