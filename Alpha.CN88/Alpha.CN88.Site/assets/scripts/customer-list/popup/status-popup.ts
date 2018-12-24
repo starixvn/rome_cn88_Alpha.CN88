@@ -9,12 +9,11 @@
 
 	registerEvents() {
 		super.registerEvents();
-		this.$("#save-btn").bind("click", this.updateStatus);
+		this.$(".btn-submit").bind("click", this.updateStatus);
 	};
 
 	updateStatus = () => {
-		let url = this.$("#dropdown-status").val() == 2 ? "UpdateSuspended" : "UpdateClosed";
-		super.submit(url, {});
+		this.submit("UpdateCustomerStatus", {"CustId": this.$("#CustId").val(), "UpdateStatusId": this.$("#dropdown-status").val() });
 	};
 };
 

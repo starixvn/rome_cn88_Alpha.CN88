@@ -27,11 +27,11 @@ class CreditPopup extends PopupBase {
 		let custId = this.$("#CustId").val();
 
 		if (isNaN(credit) || credit < minCredit || credit > maxCredit) {
-			this.$("#error-message").html('').text("Invalid Value").removeClass("hidden");
+			this.updateFailed("Invalid Value");
 			return;
 		}
 
-		this.submit(`UpdateCredit?CreditAmount=${credit}&CustId=${custId}`, {});
+		this.submit("UpdateCredit", {"CustId": custId, "CreditAmount": credit});
 	};
 };
 

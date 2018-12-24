@@ -36,6 +36,8 @@
 		</div>
 	</div>
 
+	@Html.Hidden("CustId", Model.CustId)
+	@Html.Hidden("UpdateSuccessfully", Resources.UpdateSuccessfully)
 	@Html.AntiForgeryToken()
 	@section Scripts {
 		@StaticResources.RenderScripts("~/assets/bundles/customer-list/popup/status-popup")

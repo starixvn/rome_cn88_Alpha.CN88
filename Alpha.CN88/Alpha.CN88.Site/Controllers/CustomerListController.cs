@@ -37,7 +37,7 @@
             => JsonData(command);
 
         [HttpPost, AntiXsrfFilter]
-        public ActionResult CustomerStatus(CustomerStatusCommand command)
+        public ActionResult UpdateCustomerStatus(CustomerStatusCommand command)
             => JsonData(command);
     }
 }
