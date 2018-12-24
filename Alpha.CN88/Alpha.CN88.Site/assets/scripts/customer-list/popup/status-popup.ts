@@ -24,7 +24,6 @@
 	reloadCallback(custId: any, newValue: any) {
 		this.topWindow.main.customerList.reloadStatusValue(custId, newValue);
 	}
-	
 };
 
 $(() => {

@@ -28,6 +28,7 @@
 
 	public submit(url: string, data: any, custId: any, newValue: any) {
 		let self = this;
+		this.$.blockUI();
 
 		this.$.ajax({
 			type: "POST",
@@ -40,7 +41,7 @@
 			.done(function (data) {
 				data.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Message);
 			})
-			.always(function () { });
+			.always(function () { self.$.unblockUI(); });
 	}
 
 	updateSuccesfully(custId: any, newValue: any) {
@@ -56,16 +57,14 @@
 	showSuccesfullyMessage() {
 		this.$("#error-message").html('')
 			.text(this.resources.UpdateSuccessfully)
-			.removeClass("hidden")
-			.removeClass("msg-error")
+			.removeClass("hidden msg-error")
 			.addClass("msg-success");
 	}
 
 	public showFailedMessage(message: any) {
 		this.$("#error-message").html('')
 			.text(message)
-			.removeClass("hidden")
-			.removeClass("msg-success")
+			.removeClass("hidden msg-success")
 			.addClass("msg-error");
 	}
 };

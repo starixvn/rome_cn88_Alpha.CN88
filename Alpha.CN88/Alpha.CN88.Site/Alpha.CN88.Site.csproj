@@ -245,6 +245,8 @@
     <Content Include="assets\bundles\customer-list\popup\status-popup.min.js" />
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.min.css" />
+    <Content Include="assets\bundles\popup.css" />
+    <Content Include="assets\bundles\popup.min.css" />
     <Content Include="assets\styles\images\1F.gif" />
     <Content Include="assets\styles\images\1L.gif" />
     <Content Include="assets\styles\images\firstGoal.gif" />

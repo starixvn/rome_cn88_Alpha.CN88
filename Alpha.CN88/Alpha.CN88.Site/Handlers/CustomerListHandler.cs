@@ -41,13 +41,13 @@
         }
 
         public CreditRangeViewModel Handle(CreditPopupQuery message)
-           => new CreditRangeViewModel(message, service.GetCreditRangeModel(message.CustId));
+         => new CreditRangeViewModel(message, service.GetCreditRangeModel(message.CustId));
 
         public StatusPopupViewModel Handle(CustomerStatusPopupQuery message)
          => new StatusPopupViewModel(message);
 
         public Result Handle(CreditCommand message)
-           => service.UpdateCredit(
+         => service.UpdateCredit(
                new UpdateCreditParam(
                    message.CustId,
                    message.CreditAmount,
