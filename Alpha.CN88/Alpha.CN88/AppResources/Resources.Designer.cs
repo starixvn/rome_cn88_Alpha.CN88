@@ -151,6 +151,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Value.
+        /// </summary>
+        public static string InvalidValue {
+            get {
+                return ResourceManager.GetString("InvalidValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master.
         /// </summary>
         public static string Master {

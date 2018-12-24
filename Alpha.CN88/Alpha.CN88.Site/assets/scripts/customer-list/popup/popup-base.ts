@@ -1,6 +1,10 @@
 ﻿class PopupBase {
 	public $: JQueryStatic;
 	public topWindow: any;
+	resources = {
+		UpdateSuccessfully: '',
+		InvalidValue: ''
+	};
 
 	constructor($: JQueryStatic, topWindow: any) {
 		this.$ = $;
@@ -11,11 +15,18 @@
 		this.$(".btn-cancel").bind("click", this.closePopup);
 	}
 
+	public getResource() {
+		this.resources.UpdateSuccessfully = this.$("#UpdateSuccessfully").val();
+	}
+
 	closePopup = () => {
 		this.topWindow.ageWnd.close();
 	}
 
-	public submit(url: string, data: any) {
+	public reloadCallback(custId: any, newValue: any) {
+	}
+
+	public submit(url: string, data: any, custId: any, newValue: any) {
 		let self = this;
 
 		this.$.ajax({
@@ -27,20 +38,30 @@
 				xhr.setRequestHeader("__RequestVerificationToken", $("input[name=\"__RequestVerificationToken\"]").val());
 			}})
 			.done(function (data) {
-				data.IsSuccess ? self.updateSuccesfully() : self.updateFailed(data.Message);
+				data.IsSuccess ? self.updateSuccesfully(custId, newValue) : self.showFailedMessage(data.Message);
 			})
 			.always(function () { });
 	}
 
-	public updateSuccesfully() {
+	updateSuccesfully(custId: any, newValue: any) {
+		let self = this;
+		this.showSuccesfullyMessage();
+
+		setTimeout(function () {
+			self.reloadCallback(custId, newValue);
+			self.closePopup();
+		}, 3000);
+	}
+
+	showSuccesfullyMessage() {
 		this.$("#error-message").html('')
-			.text(this.$("#UpdateSuccessfully").val())
+			.text(this.resources.UpdateSuccessfully)
 			.removeClass("hidden")
 			.removeClass("msg-error")
 			.addClass("msg-success");
 	}
 
-	public updateFailed(message: any) {
+	public showFailedMessage(message: any) {
 		this.$("#error-message").html('')
 			.text(message)
 			.removeClass("hidden")

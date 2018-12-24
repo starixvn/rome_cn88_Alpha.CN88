@@ -32,9 +32,9 @@
 		]
 	},
 	{
-		"outputFileName": "assets/bundles/credit.css",
+		"outputFileName": "assets/bundles/popup.css",
 		"inputFiles": [
-			"assets/styles/credit.css"
+			"assets/styles/popup.css"
 		]
 	}
 ]

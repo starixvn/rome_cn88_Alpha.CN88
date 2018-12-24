@@ -4,38 +4,50 @@ class CreditPopup extends PopupBase {
 	cleaveCredit: any;
 	constructor($: JQueryStatic, topWindow: any) {
 		super($, topWindow);
-	};
+	}
 
 	init = () => {
 		this.registerEvents();
+		this.getResource();
 		this.cleaveCredit = new Cleave('#credit', {
 			numeral: true,
-			numeralDecimalMark: '.',
+			numeralPositiveOnly: true,
+			numeralDecimalScale: 0,
 			delimiter: ','
 		});
-	};
+	}
 
 	registerEvents() {
 		super.registerEvents();
 		this.$(".btn-submit").bind("click", this.updateCredit);
-	};
+	}
+
+	getResource() {
+		super.getResource();
+		this.resources.InvalidValue = this.$("#InvalidValue").val();
+	}
 
 	updateCredit = () => {
-		let minCredit = parseFloat(this.$("#MinCredit").val());
-		let maxCredit = parseFloat(this.$("#MaxCredit").val());
-		let credit = parseFloat(this.cleaveCredit.getRawValue());
-		let custId = this.$("#CustId").val();
+		let minCredit = parseFloat(this.$("#MinCredit").val()),
+			maxCredit = parseFloat(this.$("#MaxCredit").val()),
+			credit = parseFloat(this.cleaveCredit.getRawValue()),
+			custId = this.$("#CustId").val(),
+			data = { "CustId": custId, "CreditAmount": credit };
 
 		if (isNaN(credit) || credit < minCredit || credit > maxCredit) {
-			this.updateFailed("Invalid Value");
+			this.showFailedMessage(this.resources.InvalidValue);
 			return;
 		}
 
-		this.submit("UpdateCredit", {"CustId": custId, "CreditAmount": credit});
-	};
-};
+		this.submit("UpdateCredit", data, custId, credit);
+	}
+
+	reloadCallback(custId: any, newValue: any) {
+		this.topWindow.main.customerList.reloadCreditValue(custId, newValue);
+	}
+}
 
 $(() => {
 	const creditPopup: any = new CreditPopup($, window.top);
 	creditPopup.init();
-});
+})

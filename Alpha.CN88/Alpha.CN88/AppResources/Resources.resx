@@ -213,4 +213,7 @@
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Update Successfully !</value>
   </data>
+  <data name="InvalidValue" xml:space="preserve">
+    <value>Invalid Value</value>
+  </data>
 </root>

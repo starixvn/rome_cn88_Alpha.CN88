@@ -1,6 +1,10 @@
 ﻿@import '_variables.scss';
 @import '_mixins.scss';
 
+body {
+	background-color: transparent;
+}
+
 .popup-modal {
 	padding: 20px 0;
 
