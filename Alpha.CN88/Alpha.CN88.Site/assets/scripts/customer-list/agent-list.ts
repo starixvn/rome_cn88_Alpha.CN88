@@ -1,90 +1,64 @@
 ﻿/// <reference path="../components/single-selection-dropdown.ts" />
 /// <reference path="../components/pager.ts" />
 /// <reference path="../site-infrastructure.ts" />
+/// <reference path="base-list.ts" />
 declare var initAutoComplete: any;
 
-class AgentList {
-    $: JQueryStatic;
-    numeral: any;
-    statusComponent: SingleSelectionDropdownComponent;
-    pager: PagerComponent;
-
-    $dropdownStatusAgent: JQuery;
+class AgentList extends BaseList {
     $viewedMaster: JQuery;
-    $usernameAgent: JQuery;
-    $tblAgent: JQuery;
     $errAgent: JQuery;
-    getCustomerListUrl: string;
     directDownline: number;
 
     $output: JQuery;
     usernameAutoSuggestionPath: string;
-
-    paramAgent = {
-        DownlineUsername: null,
-        Username: "",
-        SearchRoleId: 0,
-        Status: 0,
-        PageSize: 100,
-        PageIndex: 1
-    };
-    viewResources: any;
-    indexManager = null;
 
     constructor(
         $: JQueryStatic,
         statusComponent: SingleSelectionDropdownComponent,
         numeral: any,
         pager: PagerComponent) {
-        this.$ = $;
-        this.statusComponent = statusComponent;
-        this.numeral = numeral;
-        this.pager = pager;
+        super($, statusComponent, numeral, pager, "Agent");
     }
 
-    init = (viewResources: any, indexManager: any) => {
-        this.viewResources = viewResources;
-        this.indexManager = indexManager;
+    public init(viewResources: any, indexManager: any) {
+        super.init(
+            viewResources,
+            indexManager,
+            this.renderAgentList,
+            siteInfrastructure.roleId.agent,
+            indexManager.viewAgent,
+            indexManager.addMemberForAgent);
 
         this.cacheDOMElements();
 
-        this.statusComponent.render(
-            new SingleSelectionDropdownOption("dropdown-status-agent", "UserSelectedStatusIdAgent"));
-        this.$dropdownStatusAgent = this.$("#dropdown-status-agent");
-
-        this.$("#btn-submit-agent").click(this.viewAgents);
-
+        this.$("#btn-submit-agent").off("click").on("click", this.viewAgents);
         if (this.directDownline >= siteInfrastructure.roleId.master) {
             this.initAutoComplete();
         }
+    }
 
-        this.$tblAgent.stickyTableHeaders();
-    };
+    public cacheDOMElements() {
+        super.cacheDOMElements();
 
-    cacheDOMElements = () => {
         this.$viewedMaster = this.$("#txt-viewed-master");
-        this.$usernameAgent = this.$("#txt-username-agent");
-        this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
-        this.$tblAgent = this.$("#tbl-agent");
         this.directDownline = parseInt(this.$("#directDownline").val());
         this.$errAgent = this.$("#msg-err-agent");
-
         this.usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath").val();
         this.$output = this.$("#output");
-    };
+    }
     viewAgents = () => {
         this.$.blockUI();
-        this.paramAgent = {
+        this.reportParam = {
             DownlineUsername: this.$("#txt-viewed-master").val(),
-            Username: this.$usernameAgent.val(),
+            Username: this.$username.val(),
             SearchRoleId: siteInfrastructure.roleId.agent,
-            Status: this.$dropdownStatusAgent.find("option:selected").val(),
-            PageSize: this.paramAgent.PageSize,
-            PageIndex: this.paramAgent.PageIndex
+            Status: this.$dropdownStatus.find("option:selected").val(),
+            PageSize: this.reportParam.PageSize,
+            PageIndex: this.reportParam.PageIndex
         };
 
         if (this.directDownline != siteInfrastructure.roleId.agent &&
-            this.paramAgent.DownlineUsername == "") {
+            this.reportParam.DownlineUsername == "") {
             this.$errAgent.removeClass("display-none");
             this.$.unblockUI();
             return;
@@ -93,17 +67,21 @@ class AgentList {
         this.$errAgent.addClass("display-none");
         this.$.ajax({
             method: "GET",
-            data: this.paramAgent,
+            data: this.reportParam,
             url: this.getCustomerListUrl,
             cache: false,
             success: this.renderAgentList
         });
     };
     renderAgentList = (rs: any) => {
-        this.$tblAgent.removeClass("display-none");
+        if (!rs.Customers) {
+            return;
+        }
+
+        this.$tblReport.removeClass("display-none");
 
         var html = "";
-        var customerIndex = this.paramAgent.PageSize * (this.paramAgent.PageIndex - 1) + 1;
+        var customerIndex = this.reportParam.PageSize * (this.reportParam.PageIndex - 1) + 1;
 
         if (rs.Customers.length == 0) {
             html = "<tr><td colspan='7' align='center' class='no-info'>" + this.viewResources.NoInformationIsAvailable + "</td></tr>";
@@ -118,74 +96,23 @@ class AgentList {
                     "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
                     "<td class='text-center update-status' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='text-center'>" +
-                    "<span class='icon-edit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'></span>" +
-                    "<span class='icon-add' cust-id='" + customer.CustId + "' username='" + customer.Username + "'></span>" +
+                    "<span class='icon-edit' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasUpdatePermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
+                    "<span class='icon-add' cust-id='" + customer.CustId + "' username='" + customer.Username + "' " + (this.HasAddNewPermission ? "" : "disabled='disabled' title='" + this.indexManager.viewResources.Disabled + "'") + "></span>" +
                     "</td>" +
                     "</tr>";
             }
         }
 
-        this.$tblAgent.find("> tbody").empty().html(html);
-
-        var self = this;
-        this.$tblAgent.find(".view-downline").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.viewAgent($this.attr("cust-id"), $this.html());
-        });
-        this.$tblAgent.find(".update-credit").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), siteInfrastructure.roleId.agent);
-        });
-        this.$tblAgent.find(".update-status").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"));
-        });
-        this.$tblAgent.find(".icon-edit").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"));
-        });
-        this.$tblAgent.find(".icon-add").click(function () {
-            var $this = self.$(this);
-
-            self.indexManager.addMemberForAgent($this.attr("cust-id"), $this.attr("username"));
-        });
-
-        this.$tblAgent.find("> tfoot").empty();
-        this.$("#PageIndexAgent").remove();
-        this.$("#PageSizeAgent").remove();
-        if (rs.TotalCustomers > siteInfrastructure.pageList[0]) {
-            var footer = "<tr>" +
-                "<td colspan='7'><div id='report-pager-agent' " +
-                "data-labelpage='" + this.viewResources.Page + "'" +
-                "data-labelof='" + this.viewResources.Of + "'" +
-                "data-labeldisplayitems='" + this.viewResources.Pager_DisplayItems + "'" +
-                "data-pageindex='" + this.paramAgent.PageIndex + "'" +
-                "data-pagesize='" + this.paramAgent.PageSize + "'" +
-                "data-totalrecords='" + rs.TotalCustomers + "'" +
-                "></div></td>" +
-                "</tr>";
-
-            this.$tblAgent.find("> tfoot").html(footer);
-            this.pager.render(new PagerOption(this.pagingAgentList, "report-pager-agent", "form-agent", "PageIndexAgent", "PageSizeAgent"));
-        }
-
-        this.$.unblockUI();
-    };
-    pagingAgentList = () => {
-        this.paramAgent.PageIndex = this.$("#PageIndexAgent").val();
-        this.paramAgent.PageSize = this.$("#PageSizeAgent").val();
-        this.viewAgents();
+        this.$tblReport.find("> tbody").empty().html(html);
+        this.$(window).trigger('resize.stickyTableHeaders');
+        super.bindReportEvents(rs);
     };
     viewAgentsOfMaster = (custId: any, username: any) => {
         this.$viewedMaster.val(username);
-        this.$usernameAgent.val("");
+        this.$username.val("");
 
-        this.paramAgent.PageIndex = 1;
-        this.paramAgent.PageSize = 100;
+        this.reportParam.PageIndex = 1;
+        this.reportParam.PageSize = 100;
 
         this.statusComponent.changeSelection(siteInfrastructure.customerStatus.all);
 

@@ -2,217 +2,248 @@
 /// <reference path="../components/pager.ts" />
 
 class CustomerList {
-	$: JQueryStatic;
-	topWindow: any;
-	numeral: any;
-	statusComponent: SingleSelectionDropdownComponent;
-	pager: PagerComponent;
+    $: JQueryStatic;
+    topWindow: any;
+    numeral: any;
+    statusComponent: SingleSelectionDropdownComponent;
+    pager: PagerComponent;
 
-	directDownline: string;
-	$navTabs: JQuery;
-	dcs_AddCustomerLink: string;
-	dcs_EditCustomerLink: string;
+    directDownline: string;
+    $navTabs: JQuery;
+    AddCustomerLink: string;
+    EditCustomerLink: string;
 
-	viewResources = {
-		NoInformationIsAvailable: '',
-		Open: '',
-		Closed: '',
-		Suspended: '',
-		Page: '',
-		Of: '',
-		Pager_DisplayItems: ''
-	};
+    viewResources = {
+        NoInformationIsAvailable: '',
+        Open: '',
+        Closed: '',
+        Suspended: '',
+        Page: '',
+        Of: '',
+        Pager_DisplayItems: '',
+        Disabled: ''
+    };
 
-	masterList: MasterList;
-	agentList: AgentList;
-	memberList: MemberList;
+    masterList: MasterList;
+    agentList: AgentList;
+    memberList: MemberList;
+    HasUpdatePermission: boolean;
+    HasAddNewPermission: boolean;
+    Language: string;
+    ViewerId: string;
+    ActorLevel: string;
 
-	constructor(
-		$: JQueryStatic,
-		statusComponent: SingleSelectionDropdownComponent,
-		numeral: any,
-		pager: PagerComponent,
-		topWindow: any) {
-		this.$ = $;
-		this.topWindow = topWindow;
-		this.statusComponent = statusComponent;
-		this.numeral = numeral;
-		this.pager = pager;
+    constructor(
+        $: JQueryStatic,
+        statusComponent: SingleSelectionDropdownComponent,
+        numeral: any,
+        pager: PagerComponent,
+        topWindow: any) {
+        this.$ = $;
+        this.topWindow = topWindow;
+        this.statusComponent = statusComponent;
+        this.numeral = numeral;
+        this.pager = pager;
 
-		this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
-		this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
-		this.memberList = new MemberList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
-	}
+        this.masterList = new MasterList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
+        this.agentList = new AgentList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
+        this.memberList = new MemberList($, new SingleSelectionDropdownComponent($), numeral, new PagerComponent($));
+    }
 
-	init = () => {
-		this.cacheDOMElements();
+    init = () => {
+        this.cacheDOMElements();
 
-		this.masterList.init(this.viewResources, this);
-		this.agentList.init(this.viewResources, this);
-		this.memberList.init(this.viewResources, this);
+        this.masterList.init(this.viewResources, this);
+        this.agentList.init(this.viewResources, this);
+        this.memberList.init(this.viewResources, this);
 
-		this.$navTabs.find("li[level='" + this.directDownline + "']").addClass("active");
-		this.$(".tab-content[level='" + this.directDownline + "']").removeClass("display-none");
+        this.$navTabs.find("li[level='" + this.directDownline + "']").addClass("active");
+        this.$(".tab-content[level='" + this.directDownline + "']").removeClass("display-none");
 
-		var self = this;
-		this.$(".lnk-changetab").click(function () {
-			var $this = self.$(this);
-			self.$navTabs.find("> li").removeClass("active");
-			$this.addClass("active");
+        var self = this;
+        this.$(".lnk-changetab").click(function () {
+            var $this = self.$(this);
+            self.$navTabs.find("> li").removeClass("active");
+            $this.addClass("active");
 
-			self.changeTab($this.attr("level"));
-		});
+            self.changeTab($this.attr("level"));
+        });
 
-		this.$(".form-inline").bind("keypress", function (e) {
-			if (e.keyCode == 13) {
-				return false;
-			}
-		});
+        this.$(".form-inline").bind("keypress", function (e) {
+            if (e.keyCode == 13) {
+                return false;
+            }
+        });
 
-		switch (parseInt(this.directDownline)) {
-			case siteInfrastructure.roleId.master:
-				this.masterList.viewMasters();
-				break;
-			case siteInfrastructure.roleId.agent:
-				this.agentList.viewAgents();
-				break;
-			case siteInfrastructure.roleId.member:
-				this.memberList.viewMembers();
-				break;
-		}
-	};
+        switch (parseInt(this.directDownline)) {
+            case siteInfrastructure.roleId.master:
+                this.masterList.viewList();
+                break;
+            case siteInfrastructure.roleId.agent:
+                this.agentList.viewAgents();
+                break;
+            case siteInfrastructure.roleId.member:
+                this.memberList.viewMembers();
+                break;
+        }
+    };
 
-	cacheDOMElements = () => {
-		this.directDownline = this.$("#directDownline").val();
-		this.$navTabs = this.$("#nav-tabs");
+    cacheDOMElements = () => {
+        this.directDownline = this.$("#directDownline").val();
+        this.$navTabs = this.$("#nav-tabs");
 
-		this.viewResources.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
-		this.viewResources.Open = this.$("#Open").val();
-		this.viewResources.Closed = this.$("#Closed").val();
-		this.viewResources.Suspended = this.$("#Suspended").val();
+        this.viewResources.NoInformationIsAvailable = this.$("#NoInformationIsAvailable").val();
+        this.viewResources.Open = this.$("#Open").val();
+        this.viewResources.Closed = this.$("#Closed").val();
+        this.viewResources.Suspended = this.$("#Suspended").val();
 
-		this.viewResources.Page = this.$("#Page").val();
-		this.viewResources.Of = this.$("#of").val();
-		this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
+        this.viewResources.Page = this.$("#Page").val();
+        this.viewResources.Of = this.$("#of").val();
+        this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
+        this.viewResources.Disabled = this.$("#Disabled").val();
 
-		this.dcs_AddCustomerLink = this.$("#DCS_AddCustomerLink").val();
-		this.dcs_EditCustomerLink = this.$("#DCS_EditCustomerLink").val();
-	};
-	changeTab = function (level: string) {
-		this.$(".tab-content").addClass("display-none");
-		this.$(".tab-content[level='" + level + "']").removeClass("display-none");
+        this.AddCustomerLink = this.$("#AddCustomerLink").val();
+        this.EditCustomerLink = this.$("#EditCustomerLink").val();
+        this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
+        this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
+        this.Language = this.$("#Language").val();
+        this.ViewerId = this.$("#ViewerId").val();
+        this.ActorLevel = this.$("#ActorLevel").val();
+    };
+    changeTab = function (level: string) {
+        this.$(".tab-content").addClass("display-none");
+        this.$(".tab-content[level='" + level + "']").removeClass("display-none");
 
-		switch (parseInt(level)) {
-			case siteInfrastructure.roleId.agent:
-				this.agentList.initAutoComplete();
-				break;
-			case siteInfrastructure.roleId.member:
-				this.memberList.initAutoComplete();
-				break;
-		}
-	};
+        switch (parseInt(level)) {
+            case siteInfrastructure.roleId.agent:
+                this.agentList.initAutoComplete();
+                break;
+            case siteInfrastructure.roleId.member:
+                this.memberList.initAutoComplete();
+                break;
+        }
+    };
 
-	getCustomerColor = (customer: any) => {
-		if (customer.Status == siteInfrastructure.customerStatus.open) {
-			return "row-open";
-		}
+    getCustomerColor = (customer: any) => {
+        if (customer.Status == siteInfrastructure.customerStatus.open) {
+            return "row-open";
+        }
 
-		if (customer.Status == siteInfrastructure.customerStatus.suspended) {
-			return "row-suspended";
-		}
+        if (customer.Status == siteInfrastructure.customerStatus.suspended) {
+            return "row-suspended";
+        }
 
-		if (customer.Status == siteInfrastructure.customerStatus.closed) {
-			return "row-closed reason-" + customer.CloseReason;
-		}
+        if (customer.Status == siteInfrastructure.customerStatus.closed) {
+            return "row-closed reason-" + customer.CloseReason;
+        }
 
-		return "";
-	};
+        return "";
+    };
 
-	updateCredit = (custId: any, username: any, custLevelId: any) => {
-		let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevel=${custLevelId}`,
-			caption = this.$("#UpdateCredit").val();
+    updateCredit = (custId: any, username: any, custLevelId: any) => {
+        let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevel=${custLevelId}`,
+            caption = this.$("#UpdateCredit").val();
 
-		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 550, 250);
-	};
-	updateStatus = (custId: any, username: any, updateStatusId: any) => {
-		let url = `${this.$("#statusPopupUrl").val()}?custId=${custId}&UpdateStatusId=${updateStatusId}`,
-			caption = this.$("#UpdateStatus").val();
+        this.topWindow.popupManager.open(url, `${caption} - ${username}`, 550, 250);
+    };
+    updateStatus = (custId: any, username: any, updateStatusId: any) => {
+        let url = `${this.$("#statusPopupUrl").val()}?custId=${custId}&UpdateStatusId=${updateStatusId}`,
+            caption = this.$("#UpdateStatus").val();
 
-		this.topWindow.ageWnd.open(url, `${caption} - ${username}`, undefined, undefined, 300, 250);
-	};
-	updateAccount = (custId: any, username: any) => {
-		alert(custId + username);
-		window.location.href = this.dcs_EditCustomerLink + "?" + this.$.param({
-			custId: custId,
-			username: username
-		});
-	};
-	addAgentForMaster = (custId: any, username: any) => {
-		alert(custId + username);
-		window.location.href = this.dcs_AddCustomerLink + "?" + this.$.param({
-			custId: custId,
-			username: username
-		});
-	};
-	addMemberForAgent = (custId: any, username: any) => {
-		alert(custId + username);
-		window.location.href = this.dcs_AddCustomerLink + "?" + this.$.param({
-			custId: custId,
-			username: username
-		});
-	};
-	getStatusName = (status: number) => {
-		if (status == siteInfrastructure.customerStatus.open) {
-			return this.viewResources.Open;
-		}
+        this.topWindow.popupManager.open(url, `${caption} - ${username}`, 300, 250);
+    };
+    updateAccount = (custId: any, username: any, custLevelId: any) => {
+        window.location.href = this.EditCustomerLink + "?" + this.$.param({
+            Language: this.Language,
+            ProductId: 0,
+            CustomerLevel: custLevelId,
+            CustomerId: custId,
+            IsReadOnly: !this.HasUpdatePermission,
+            IsCreateNew: false,
+            UplineId: this.ViewerId,
+            ActorLevel: this.ActorLevel
+        });
+    };
+    addAgentForMaster = (custId: any, username: any, custLevelId: any) => {
+        window.location.href = this.EditCustomerLink + "?" + this.$.param({
+            Language: this.Language,
+            ProductId: 0,
+            CustomerLevel: custLevelId,
+            CustomerId: custId,
+            IsReadOnly: !this.HasUpdatePermission,
+            IsCreateNew: true,
+            UplineId: this.ViewerId,
+            ActorLevel: this.ActorLevel
+        });
+    };
+    addMemberForAgent = (custId: any, username: any, custLevelId: any) => {
+        window.location.href = this.EditCustomerLink + "?" + this.$.param({
+            Language: this.Language,
+            ProductId: 0,
+            CustomerLevel: custLevelId,
+            CustomerId: custId,
+            IsReadOnly: !this.HasUpdatePermission,
+            IsCreateNew: true,
+            UplineId: this.ViewerId,
+            ActorLevel: this.ActorLevel
+        });
+    };
+    getStatusName = (status: number) => {
+        if (status == siteInfrastructure.customerStatus.open) {
+            return this.viewResources.Open;
+        }
 
-		if (status == siteInfrastructure.customerStatus.closed) {
-			return this.viewResources.Closed;
-		}
+        if (status == siteInfrastructure.customerStatus.closed) {
+            return this.viewResources.Closed;
+        }
 
-		if (status == siteInfrastructure.customerStatus.suspended) {
-			return this.viewResources.Suspended;
-		}
+        if (status == siteInfrastructure.customerStatus.suspended) {
+            return this.viewResources.Suspended;
+        }
 
-		return "";
-	};
-	viewMaster = (custId: any, username: any) => {
-		this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.agent + "']").click();
-		this.agentList.viewAgentsOfMaster(custId, username);
-	};
-	viewAgent = (custId: any, username: any) => {
-		this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.member + "']").click();
-		this.memberList.viewMembersOfAgent(custId, username);
-	};
-	reloadCreditValue = (custId: any, newValue: any) => {
-		this.$(".update-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0"));
-	};
-	reloadStatusValue = (custId: any, newValue: any) => {
-		this.$(".update-status[cust-id='" + custId + "']").html(this.getStatusName(newValue));
-		this.$(".row-customer[cust-id='" + custId + "']")
-			.removeClass()
-			.addClass("row-customer " + this.reloadStatusColor(newValue));
-	};
-	reloadStatusColor = (status: any) => {
-		if (status == siteInfrastructure.customerStatus.open) {
-			return "row-open";
-		}
+        return "";
+    };
+    viewMaster = (custId: any, username: any) => {
+        this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.agent + "']").click();
+        this.agentList.viewAgentsOfMaster(custId, username);
+    };
+    viewAgent = (custId: any, username: any) => {
+        this.$(".lnk-changetab[level='" + siteInfrastructure.roleId.member + "']").click();
+        this.memberList.viewMembersOfAgent(custId, username);
+    };
+    reloadCreditValue = (custId: any, newValue: any) => {
+        this.$(".update-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0"));
+    };
+    reloadStatusValue = (custId: any, newValue: any) => {
+        var column = this.$(".update-status[cust-id='" + custId + "']");
+        column.html(this.getStatusName(newValue));
+        column.attr("current-status", newValue);
 
-		if (status == siteInfrastructure.customerStatus.suspended) {
-			return "row-suspended";
-		}
+        this.$(".row-customer[cust-id='" + custId + "']")
+            .removeClass()
+            .addClass("row-customer " + this.reloadStatusColor(newValue));
 
-		return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Admin;
-	};
+    };
+    reloadStatusColor = (status: any) => {
+        if (status == siteInfrastructure.customerStatus.open) {
+            return "row-open";
+        }
+
+        if (status == siteInfrastructure.customerStatus.suspended) {
+            return "row-suspended";
+        }
+
+        return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Admin;
+    };
 };
 
 const customerList = new CustomerList(
-	$,
-	new SingleSelectionDropdownComponent($),
-	numeral,
-	new PagerComponent($),
-	window.top);
+    $,
+    new SingleSelectionDropdownComponent($),
+    numeral,
+    new PagerComponent($),
+    window.top);
 
 $(() => {
-	customerList.init();
+    customerList.init();
 });

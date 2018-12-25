@@ -27,6 +27,7 @@
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
     <Use64BitIISExpress />
+    <WebGreaseLibPath>..\..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,8 +57,20 @@
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.1.6\lib\net40\Alpha.Web.dll</HintPath>
+    <Reference Include="Alpha.Web, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn88\lib\net461\Alpha.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.7.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -76,6 +89,14 @@
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.CustomerSetting.Module.Core, Version=2.0.4.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.CustomerSetting.Module.Core.2.0.4.1\lib\net461\Fanex.CustomerSetting.Module.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.CustomerSetting.Security, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.CustomerSetting.Security.2.0.0.5\lib\net40\Fanex.CustomerSetting.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Data, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.2.1.0.1\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
@@ -88,12 +109,20 @@
       <HintPath>..\..\packages\Fanex.Data.Repository.1.0.2.1\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.GoldDeluxe.CoreSetting, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.GoldDeluxe.Setting.1.0.1.1\lib\net461\Fanex.GoldDeluxe.CoreSetting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Logging, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.1.0.4\lib\net40\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Products, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Products.1.0.0.1\lib\net40\Fanex.Products.dll</HintPath>
+    <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Razorbill.Security, Version=3.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Razorbill.Security.3.0.1.7\lib\net461\Fanex.Razorbill.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -161,8 +190,8 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.3.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.3.7\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.2, Culture=neutral, processorArchitecture=MSIL">
@@ -192,6 +221,10 @@
       <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
@@ -215,6 +248,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Infrastructure">
@@ -247,6 +284,36 @@
     <Content Include="assets\bundles\default.min.css" />
     <Content Include="assets\bundles\popup.css" />
     <Content Include="assets\bundles\popup.min.css" />
+    <Content Include="assets\scripts\tests\libs\autocomplete.js" />
+    <Content Include="assets\scripts\tests\libs\bootbox.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\button.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\collapse.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\datetimepicker.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\dropdown.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\modal.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\multiselect.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\nexDatePicker.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\tooltip.js" />
+    <Content Include="assets\scripts\tests\libs\bootstrap\transition.js" />
+    <Content Include="assets\scripts\tests\libs\datepicker.js" />
+    <Content Include="assets\scripts\tests\libs\jasmine-jquery.js" />
+    <Content Include="assets\scripts\tests\libs\jasmine.js" />
+    <Content Include="assets\scripts\tests\libs\jquery\blockUI.js" />
+    <Content Include="assets\scripts\tests\libs\jquery\cookie.js" />
+    <Content Include="assets\scripts\tests\libs\jquery\jquery-1.11.3.js" />
+    <Content Include="assets\scripts\tests\libs\jquery\stickytableheaders.js" />
+    <Content Include="assets\scripts\tests\libs\mobile\isMobile.js" />
+    <Content Include="assets\scripts\tests\libs\moment.js" />
+    <Content Include="assets\scripts\tests\libs\monPickr-0.0.3.js" />
+    <Content Include="assets\scripts\tests\libs\numeral\numeral.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.draggable.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.linkbutton.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.pagination.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.parser.js" />
+    <Content Include="assets\scripts\tests\libs\pagination\jquery.resizable.js" />
+    <Content Include="assets\scripts\tests\libs\store.js" />
+    <Content Include="assets\scripts\tests\libs\tablesorter.js" />
+    <Content Include="assets\scripts\tests\libs\tiny-draggable.js" />
     <Content Include="assets\styles\images\1F.gif" />
     <Content Include="assets\styles\images\1L.gif" />
     <Content Include="assets\styles\images\firstGoal.gif" />
@@ -325,6 +392,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\CN88CustomerSettingClientRegistration.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerListController.cs" />
@@ -334,6 +402,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\CustomerListHandler.cs" />
+    <Compile Include="Helpers\IPHelper.cs" />
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -423,6 +492,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\components\pager.ts" />
     <TypeScriptCompile Include="assets\scripts\components\single-selection-dropdown.ts" />
+    <TypeScriptCompile Include="assets\scripts\customer-list\base-list.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\popup\popup-base.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\popup\status-popup.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\popup\credit-popup.ts" />
@@ -431,6 +501,14 @@
     <TypeScriptCompile Include="assets\scripts\customer-list\master-list.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\index.ts" />
     <TypeScriptCompile Include="assets\scripts\site-infrastructure.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\components\pager-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\components\single-selection-dropdown-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\customer-list\member-list-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\customer-list\agent-list-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\customer-list\index-template.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\customer-list\base-list-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\customer-list\master-list-tests.ts" />
+    <TypeScriptCompile Include="assets\scripts\tests\apps\customer-list\index-tests.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine\index.d.ts" />
@@ -522,6 +600,9 @@
       <Project>{32f77acd-7726-49d0-8b2a-78caf55f6073}</Project>
       <Name>Alpha.CN88</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\scripts\tests\chutzpah.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -9,8 +9,14 @@
         public IndexQuery(IUser viewer) : base(viewer)
         {
             IsInternal = viewer.IsInternal;
+            HasUpdatePermission = viewer.HasUpdatePermission;
+            HasAddNewPermission = viewer.HasAddNewPermission;
         }
 
         public bool IsInternal { get; }
+
+        public bool HasUpdatePermission { get; }
+
+        public bool HasAddNewPermission { get; }
     }
 }

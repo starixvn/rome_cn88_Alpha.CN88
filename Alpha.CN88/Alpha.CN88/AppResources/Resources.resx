@@ -216,4 +216,7 @@
   <data name="InvalidValue" xml:space="preserve">
     <value>Invalid Value</value>
   </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
 </root>

@@ -177,4 +177,7 @@
   <data name="Edit" xml:space="preserve">
     <value>Tùy chỉnh</value>
   </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Vô hiệu hóa</value>
+  </data>
 </root>

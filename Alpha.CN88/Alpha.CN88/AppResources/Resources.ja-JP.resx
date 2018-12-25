@@ -177,4 +177,7 @@
   <data name="Edit" xml:space="preserve">
     <value>編集</value>
   </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
 </root>

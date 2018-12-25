@@ -1,0 +1,165 @@
+﻿/// <reference path="../components/single-selection-dropdown.ts" />
+/// <reference path="../components/pager.ts" />
+/// <reference path="../site-infrastructure.ts" />
+
+class BaseList {
+    $: JQueryStatic;
+    numeral: any;
+    statusComponent: SingleSelectionDropdownComponent;
+    pager: PagerComponent;
+
+    $dropdownStatus: JQuery;
+    $username: JQuery;
+    $tblReport: JQuery;
+    getCustomerListUrl: string;
+
+    reportParam = {
+        DownlineUsername: null,
+        Username: "",
+        SearchRoleId: 0,
+        Status: 0,
+        PageSize: 100,
+        PageIndex: 1
+    };
+
+    viewResources: any;
+    indexManager = null;
+    HasUpdatePermission: boolean;
+    HasAddNewPermission: boolean;
+
+    levelName: string;
+    levelNameLowerCase: string;
+    renderList: Function;
+
+    levelId: number;
+    viewDownlineFunction: Function;
+    addDownlineFunction: Function;
+
+    constructor(
+        $: JQueryStatic,
+        statusComponent: SingleSelectionDropdownComponent,
+        numeral: any,
+        pager: PagerComponent,
+        levelName: string) {
+        this.$ = $;
+        this.statusComponent = statusComponent;
+        this.numeral = numeral;
+        this.pager = pager;
+        this.levelName = levelName;
+        this.levelNameLowerCase = levelName.toLowerCase();
+    }
+
+    public init(
+        viewResources: any,
+        indexManager: any,
+        renderList: Function,
+        levelId: number,
+        viewDownlineFunction: Function,
+        addDownlineFunction: Function) {
+        this.viewResources = viewResources;
+        this.indexManager = indexManager;
+        this.renderList = renderList;
+        this.levelId = levelId;
+        this.viewDownlineFunction = viewDownlineFunction;
+        this.addDownlineFunction = addDownlineFunction;
+
+        this.cacheDOMElements();
+
+        this.statusComponent.render(
+            new SingleSelectionDropdownOption("dropdown-status-" + this.levelNameLowerCase, "UserSelectedStatusId" + this.levelName));
+        this.$dropdownStatus = this.$("#dropdown-status-" + this.levelNameLowerCase);
+        this.$tblReport.stickyTableHeaders();
+
+        this.$("#btn-submit-" + this.levelName.toLowerCase()).click(this.viewList);
+    }
+
+    public cacheDOMElements() {
+        this.$username = this.$("#txt-username-" + this.levelNameLowerCase);
+        this.getCustomerListUrl = this.$("#getCustomerListUrl").val();
+        this.$tblReport = this.$("#tbl-" + this.levelNameLowerCase);
+        this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
+        this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
+    };
+    viewList = () => {
+        this.$.blockUI();
+        this.reportParam = {
+            DownlineUsername: null,
+            Username: this.$username.val(),
+            SearchRoleId: siteInfrastructure.roleId.master,
+            Status: this.$dropdownStatus.find("option:selected").val(),
+            PageSize: this.reportParam.PageSize,
+            PageIndex: this.reportParam.PageIndex
+        };
+
+        this.$.ajax({
+            method: "GET",
+            data: this.reportParam,
+            url: this.getCustomerListUrl,
+            cache: false,
+            success: (rs) => {
+                this.renderList(rs);
+            }
+        });
+    };
+    pagingList = () => {
+        this.reportParam.PageIndex = this.$("#PageIndex" + this.levelName).val();
+        this.reportParam.PageSize = this.$("#PageSize" + this.levelName).val();
+        this.viewList();
+    };
+    public bindReportEvents(rs) {
+        var self = this;
+        this.$tblReport.find(".view-downline").click(function () {
+            var $this = self.$(this);
+
+            self.viewDownlineFunction($this.attr("cust-id"), $this.html());
+        });
+        this.$tblReport.find(".update-credit").click(function () {
+            var $this = self.$(this);
+
+            self.indexManager.updateCredit($this.attr("cust-id"), $this.attr("username"), self.levelId);
+        });
+        this.$tblReport.find(".update-status").click(function () {
+            var $this = self.$(this);
+
+            self.indexManager.updateStatus($this.attr("cust-id"), $this.attr("username"), $this.attr("current-status"));
+        });
+
+        if (this.HasUpdatePermission) {
+            this.$tblReport.find(".icon-edit").click(function () {
+                var $this = self.$(this);
+
+                self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), self.levelId);
+            });
+        }
+
+        if (this.HasAddNewPermission) {
+            this.$tblReport.find(".icon-add").click(function () {
+                var $this = self.$(this);
+
+                self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId);
+            });
+        }
+
+        this.$tblReport.find("> tfoot").empty();
+        this.$("#PageIndex" + this.levelName).remove();
+        this.$("#PageSize" + this.levelName).remove();
+        if (rs.TotalCustomers >= siteInfrastructure.pageList[0]) {
+            var footer = "<tr>" +
+                "<td colspan='7'><div id='report-pager-" + this.levelNameLowerCase + "' " +
+                "data-labelpage='" + this.viewResources.Page + "'" +
+                "data-labelof='" + this.viewResources.Of + "'" +
+                "data-labeldisplayitems='" + this.viewResources.Pager_DisplayItems + "'" +
+                "data-pageindex='" + this.reportParam.PageIndex + "'" +
+                "data-pagesize='" + this.reportParam.PageSize + "'" +
+                "data-totalrecords='" + rs.TotalCustomers + "'" +
+                "></div></td>" +
+                "</tr>";
+
+            this.$tblReport.find("> tfoot").html(footer);
+            this.pager.render(new PagerOption(this.pagingList, "report-pager-" + this.levelNameLowerCase, "form-" + this.levelNameLowerCase, "PageIndex" + this.levelName, "PageSize" + this.levelName));
+        }
+
+        this.$.unblockUI();
+    }
+}
+

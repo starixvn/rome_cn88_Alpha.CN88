@@ -9,6 +9,7 @@
     using Configurations;
     using Fanex.Data;
     using Fanex.Data.OldConnectionStringProvider;
+    using global::CN88.CustomerSetting.Client;
     using Helpers;
     using ONEbook.UM.Filters;
     using Web;
@@ -23,6 +24,7 @@
             MvcHandler.DisableMvcResponseHeader = true;
 
             AreaRegistration.RegisterAllAreas();
+            CN88CustomerSettingRegistration.Init();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             DependencyConfig.Init();
