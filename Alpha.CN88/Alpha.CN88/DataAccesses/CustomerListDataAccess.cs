@@ -1,12 +1,12 @@
 ﻿namespace Alpha.CN88.DataAccesses
 {
+    using System.Collections.Generic;
     using Criteria.CustomerList;
     using Fanex.Common;
     using Fanex.Data;
     using Fanex.Data.Repository;
     using Models;
     using Models.CustomerList;
-    using System.Collections.Generic;
 
     public interface CustomerListDataAccess
     {
@@ -19,8 +19,6 @@
     {
         public CustomerListModel GetCustomerList(CustomerListCriteria criteria)
         {
-            // return CustomerListStub.MasterList(criteria);
-
             if (!criteria.IsValid())
             {
                 return new CustomerListModel();

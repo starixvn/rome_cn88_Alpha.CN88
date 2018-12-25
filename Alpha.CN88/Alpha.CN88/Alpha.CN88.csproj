@@ -80,6 +80,7 @@
     <Compile Include="Criteria\CustomerList\UpdateCreditCriteria.cs" />
     <Compile Include="Criteria\CustomerList\UpdateCustomerStatusCriteria.cs" />
     <Compile Include="DataAccesses\CustomerListDataAccess.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\CustomerList\CreditRangeModel.cs" />
     <Compile Include="Models\CustomerList\CustomerListModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
