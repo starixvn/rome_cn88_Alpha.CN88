@@ -44,6 +44,7 @@
         {
             var command = new UpdateCreditCriteria(
                     param.SearchAccountId,
+                    param.SearchAccountRoleId,
                     param.CreditAmount,
                     param.ActorId,
                     param.SubAccountId,
@@ -52,9 +53,9 @@
 
              dynamicRepository.Execute(command);
 
-            return command.ErrCode.Equals(0)
-                ? Result.CreateSuccessResult(): 
-                Result.CreateErrorResult(command.ErrCode, command.ErrMsg);
+            return command.CreditProblem
+               ? Result.CreateErrorResult(failErrorCode, command.ErrMsg)
+               : Result.CreateSuccessResult();
         }
 
         public Result UpdateCustomerStatus(UpdateCustomerStatusParam param)

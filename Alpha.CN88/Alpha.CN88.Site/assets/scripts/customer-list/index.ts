@@ -141,7 +141,7 @@ class CustomerList {
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
-        let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevel=${custLevelId}`,
+		let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevelId=${custLevelId}`,
             caption = this.$("#UpdateCredit").val();
 
         this.topWindow.popupManager.open(url, `${caption} - ${username}`, 550, 250);
@@ -233,7 +233,7 @@ class CustomerList {
             return "row-suspended";
         }
 
-        return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Admin;
+		return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Upline;
     };
 };
 

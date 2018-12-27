@@ -32,7 +32,12 @@ class CreditPopup extends PopupBase {
 			maxCredit = parseFloat(this.$("#MaxCredit").val()),
 			credit = parseFloat(this.cleaveCredit.getRawValue()),
 			custId = this.$("#CustId").val(),
-			data = { "CustId": custId, "CreditAmount": credit };
+			custLevelId = this.$("#CustLevelId").val(),
+			data = {
+				"CustId": custId,
+				"CustLevelId": custLevelId,
+				"CreditAmount": credit
+			};
 
 		if (isNaN(credit) || credit < minCredit || credit > maxCredit) {
 			this.showFailedMessage(this.resources.InvalidValue);
