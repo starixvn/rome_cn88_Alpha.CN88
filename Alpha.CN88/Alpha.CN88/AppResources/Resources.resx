@@ -211,7 +211,7 @@
     <value>Update Status</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
-    <value>Update Successfully !</value>
+    <value>Update Successfully!</value>
   </data>
   <data name="InvalidValue" xml:space="preserve">
     <value>Invalid Value</value>

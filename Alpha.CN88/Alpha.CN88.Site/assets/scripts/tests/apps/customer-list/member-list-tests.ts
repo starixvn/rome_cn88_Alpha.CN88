@@ -83,7 +83,7 @@
             });
 
             // assert
-            expect($("#tbl-member > tbody").html()).toEqual('<tr class="row-customer StatusColor" cust-id="1"><td class="text-center">1</td><td>Username</td><td>Name</td><td class="text-right update-credit" cust-id="1" username="Username">1,000</td><td class="text-center">CreationDateStr</td><td class="text-center update-status" cust-id="1" username="Username" current-status="1">StatusName</td><td class="text-center"><span class="icon-edit" cust-id="1" username="Username"></span></td></tr>');
+            expect($("#tbl-member > tbody").html()).toEqual('<tr class="row-customer StatusColor" cust-id="1"><td class="text-center">1</td><td>Username</td><td>Name</td><td class="text-right update-credit" cust-id="1" username="Username">1,000.00</td><td class="text-center">CreationDateStr</td><td class="text-center update-status" cust-id="1" username="Username" current-status="1">StatusName</td><td class="text-center"><span class="icon-edit" cust-id="1" username="Username"></span></td></tr>');
         });
     });
     describe("_viewMembersOfAgent ", () => {
@@ -115,7 +115,4 @@
             expect(memberList.$.blockUI).toHaveBeenCalled();
         });
     });
-
-
-
 });

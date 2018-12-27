@@ -253,7 +253,7 @@
             var actualValue = customerListIndex.reloadStatusColor(siteInfrastructure.customerStatus.closed);
 
             // assert
-            expect(actualValue).toEqual("row-closed reason-1");
+            expect(actualValue).toEqual("row-closed reason-2");
         });
     });
     describe("_reloadCreditValue", () => {
@@ -266,7 +266,7 @@
             customerListIndex.reloadCreditValue(1, 1000);
 
             // assert
-            expect($(".update-credit").html()).toEqual("1,000");
+            expect($(".update-credit").html()).toEqual("1,000.00");
         });
     });
     describe("_reloadStatusValue", () => {

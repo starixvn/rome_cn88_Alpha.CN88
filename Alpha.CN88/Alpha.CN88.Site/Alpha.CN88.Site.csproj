@@ -70,7 +70,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.CustomerSetting.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta01\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
+      <HintPath>..\..\packages\CN88.CustomerSetting.Client.1.0.0-beta02\lib\net461\CN88.CustomerSetting.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.7.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -542,7 +542,6 @@
     <Content Include="App_Data\SPNames\UAT\DBARC.bodb_Archive.BODBDownlineNet" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\CustomerList\Edit.cshtml" />
     <Content Include="Views\CustomerList\CreditPopup.cshtml" />
     <Content Include="Views\CustomerList\StatusPopup.cshtml" />
     <Content Include="assets\styles\popup.scss" />

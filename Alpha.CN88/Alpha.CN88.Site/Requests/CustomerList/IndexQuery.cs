@@ -18,5 +18,17 @@
         public bool HasUpdatePermission { get; }
 
         public bool HasAddNewPermission { get; }
+
+        public string DownlineUsername { get; set; }
+
+        public string Username { get; set; }
+
+        public byte SearchRoleId { get; set; }
+
+        public byte Status { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int PageIndex { get; set; }
     }
 }

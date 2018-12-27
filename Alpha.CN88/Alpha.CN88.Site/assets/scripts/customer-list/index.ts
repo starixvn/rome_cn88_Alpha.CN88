@@ -10,8 +10,17 @@ class CustomerList {
 
     directDownline: string;
     $navTabs: JQuery;
-    AddCustomerLink: string;
     EditCustomerLink: string;
+    CurrentLink: string;
+
+    reportParam = {
+        DownlineUsername: null,
+        Username: "",
+        SearchRoleId: 0,
+        Status: 0,
+        PageSize: 100,
+        PageIndex: 1
+    };
 
     viewResources = {
         NoInformationIsAvailable: '',
@@ -75,16 +84,31 @@ class CustomerList {
             }
         });
 
-        switch (parseInt(this.directDownline)) {
-            case siteInfrastructure.roleId.master:
-                this.masterList.viewList();
-                break;
-            case siteInfrastructure.roleId.agent:
-                this.agentList.viewAgents();
-                break;
-            case siteInfrastructure.roleId.member:
-                this.memberList.viewMembers();
-                break;
+        if (this.reportParam.SearchRoleId > 0) {
+            this.$(".lnk-changetab[level='" + this.reportParam.SearchRoleId + "']").click();
+            switch (this.reportParam.SearchRoleId) {
+                case siteInfrastructure.roleId.master:
+                    this.masterList.reloadState(this.reportParam);
+                    break;
+                case siteInfrastructure.roleId.agent:
+                    this.agentList.reloadState(this.reportParam);
+                    break;
+                case siteInfrastructure.roleId.member:
+                    this.memberList.reloadState(this.reportParam);
+                    break;
+            }
+        } else {
+            switch (parseInt(this.directDownline)) {
+                case siteInfrastructure.roleId.master:
+                    this.masterList.viewList();
+                    break;
+                case siteInfrastructure.roleId.agent:
+                    this.agentList.viewAgents();
+                    break;
+                case siteInfrastructure.roleId.member:
+                    this.memberList.viewMembers();
+                    break;
+            }
         }
     };
 
@@ -102,13 +126,23 @@ class CustomerList {
         this.viewResources.Pager_DisplayItems = this.$("#Pager_DisplayItems").val();
         this.viewResources.Disabled = this.$("#Disabled").val();
 
-        this.AddCustomerLink = this.$("#AddCustomerLink").val();
         this.EditCustomerLink = this.$("#EditCustomerLink").val();
+        this.CurrentLink = this.$("#CurrentLink").val();
+
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
         this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
         this.Language = this.$("#Language").val();
         this.ViewerId = this.$("#ViewerId").val();
         this.ActorLevel = this.$("#ActorLevel").val();
+
+        this.reportParam = {
+            DownlineUsername: this.$("#DownlineUsername").val(),
+            Username: this.$("#Username").val(),
+            SearchRoleId: parseInt(this.$("#SearchRoleId").val()),
+            Status: parseInt(this.$("#Status").val()),
+            PageSize: parseInt(this.$("#PageSize").val()),
+            PageIndex: 1
+        };
     };
     changeTab = function (level: string) {
         this.$(".tab-content").addClass("display-none");
@@ -141,7 +175,7 @@ class CustomerList {
     };
 
     updateCredit = (custId: any, username: any, custLevelId: any) => {
-		let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevelId=${custLevelId}`,
+        let url = `${this.$("#creditPopupUrl").val()}?custId=${custId}&custLevelId=${custLevelId}`,
             caption = this.$("#UpdateCredit").val();
 
         this.topWindow.popupManager.open(url, `${caption} - ${username}`, 550, 250);
@@ -152,10 +186,12 @@ class CustomerList {
 
         this.topWindow.popupManager.open(url, `${caption} - ${username}`, 300, 250);
     };
-    updateAccount = (custId: any, username: any, custLevelId: any) => {
+    updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+        this.storeCurrentPage(reportParam);
+
         window.location.href = this.EditCustomerLink + "?" + this.$.param({
             Language: this.Language,
-            ProductId: 0,
+            ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
             IsReadOnly: !this.HasUpdatePermission,
@@ -164,27 +200,31 @@ class CustomerList {
             ActorLevel: this.ActorLevel
         });
     };
-    addAgentForMaster = (custId: any, username: any, custLevelId: any) => {
+    addAgentForMaster = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+        this.storeCurrentPage(reportParam);
+
         window.location.href = this.EditCustomerLink + "?" + this.$.param({
             Language: this.Language,
-            ProductId: 0,
+            ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
             IsReadOnly: !this.HasUpdatePermission,
             IsCreateNew: true,
-            UplineId: this.ViewerId,
+            UplineId: custId,
             ActorLevel: this.ActorLevel
         });
     };
-    addMemberForAgent = (custId: any, username: any, custLevelId: any) => {
+    addMemberForAgent = (custId: any, username: any, custLevelId: any, reportParam: any) => {
+        this.storeCurrentPage(reportParam);
+
         window.location.href = this.EditCustomerLink + "?" + this.$.param({
             Language: this.Language,
-            ProductId: 0,
+            ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
             IsReadOnly: !this.HasUpdatePermission,
             IsCreateNew: true,
-            UplineId: this.ViewerId,
+            UplineId: custId,
             ActorLevel: this.ActorLevel
         });
     };
@@ -212,7 +252,7 @@ class CustomerList {
         this.memberList.viewMembersOfAgent(custId, username);
     };
     reloadCreditValue = (custId: any, newValue: any) => {
-        this.$(".update-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0"));
+        this.$(".update-credit[cust-id='" + custId + "']").html(this.numeral(newValue).format("###,0.00"));
     };
     reloadStatusValue = (custId: any, newValue: any) => {
         var column = this.$(".update-status[cust-id='" + custId + "']");
@@ -233,7 +273,17 @@ class CustomerList {
             return "row-suspended";
         }
 
-		return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Upline;
+        return "row-closed reason-" + siteInfrastructure.closeReasonConstant.Upline;
+    };
+    storeCurrentPage = (reportParam: any) => {
+        var currentPage = this.CurrentLink + "?" + this.$.param(reportParam);
+        var $currentPage = this.topWindow.$("body #reloadCN88CustomerListCallBackUrl");
+
+        if ($currentPage.length == 0) {
+            this.topWindow.$("body").append("<input id='reloadCN88CustomerListCallBackUrl' type='hidden' value='' />");
+        }
+
+        this.topWindow.$("body #reloadCN88CustomerListCallBackUrl").val(currentPage);
     };
 };
 

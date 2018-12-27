@@ -331,7 +331,7 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Successfully !.
+        ///   Looks up a localized string similar to Update Successfully!.
         /// </summary>
         public static string UpdateSuccessfully {
             get {

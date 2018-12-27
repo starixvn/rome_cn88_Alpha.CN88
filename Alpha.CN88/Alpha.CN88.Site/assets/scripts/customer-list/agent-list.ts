@@ -92,7 +92,7 @@ class AgentList extends BaseList {
                     "<td class='text-center'>" + customerIndex + "</td>" +
                     "<td class='view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
                     "<td>" + customer.Name + "</td>" +
-                    "<td class='text-right update-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0") + "</td>" +
+                    "<td class='text-right update-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                     "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
                     "<td class='text-center update-status' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='text-center'>" +
@@ -124,6 +124,18 @@ class AgentList extends BaseList {
         initAutoComplete(this.$viewedMaster[0], queryUsernameURL);
         this.$output.css("top", this.$viewedMaster.offset().top + 30);
         this.$output.css("left", this.$viewedMaster.offset().left);
+    };
+    reloadState = (reportParam: any) => {
+        this.$("#txt-viewed-master").val(reportParam.DownlineUsername);
+        this.$username.val(reportParam.Username);
+        this.$dropdownStatus.val(reportParam.Status);
+        this.reportParam.PageSize = reportParam.PageSize;
+        this.reportParam.PageIndex = reportParam.PageIndex;
+
+        this.$("#PageIndexAgent").val(reportParam.PageIndex);
+        this.$("#PageSizeAgent").val(reportParam.PageIndex);
+
+        this.viewAgents();
     };
 }
 

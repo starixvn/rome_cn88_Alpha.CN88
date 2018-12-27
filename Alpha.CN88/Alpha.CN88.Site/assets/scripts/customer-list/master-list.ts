@@ -37,7 +37,7 @@ class MasterList extends BaseList {
                     "<td class='text-center'>" + customerIndex + "</td>" +
                     "<td class='view-downline' cust-id='" + customer.CustId + "'>" + customer.Username + "</td>" +
                     "<td>" + customer.Name + "</td>" +
-                    "<td class='text-right update-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0") + "</td>" +
+                    "<td class='text-right update-credit' cust-id='" + customer.CustId + "' username='" + customer.Username + "'>" + this.numeral(customer.Credit).format("###,0.00") + "</td>" +
                     "<td class='text-center'>" + customer.CreationDateStr + "</td>" +
                     "<td class='text-center update-status' cust-id='" + customer.CustId + "' username='" + customer.Username + "' current-status='" + customer.Status + "'>" + this.indexManager.getStatusName(customer.Status) + "</td>" +
                     "<td class='text-center'>" +
@@ -51,6 +51,17 @@ class MasterList extends BaseList {
         this.$tblReport.find("> tbody").empty().html(html);
         this.$(window).trigger('resize.stickyTableHeaders');
         super.bindReportEvents(rs);
+    };
+    reloadState = (reportParam: any) => {
+        this.$username.val(reportParam.Username);
+        this.$dropdownStatus.val(reportParam.Status);
+        this.reportParam.PageSize = reportParam.PageSize;
+        this.reportParam.PageIndex = reportParam.PageIndex;
+
+        this.$("#PageIndexMaster").val(reportParam.PageIndex);
+        this.$("#PageSizeMaster").val(reportParam.PageIndex);
+
+        this.viewList();
     };
 }
 

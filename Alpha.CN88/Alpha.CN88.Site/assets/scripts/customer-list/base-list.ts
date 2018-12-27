@@ -128,7 +128,7 @@ class BaseList {
             this.$tblReport.find(".icon-edit").click(function () {
                 var $this = self.$(this);
 
-                self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), self.levelId);
+                self.indexManager.updateAccount($this.attr("cust-id"), $this.attr("username"), self.levelId, self.reportParam);
             });
         }
 
@@ -136,7 +136,7 @@ class BaseList {
             this.$tblReport.find(".icon-add").click(function () {
                 var $this = self.$(this);
 
-                self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId);
+                self.addDownlineFunction($this.attr("cust-id"), $this.attr("username"), self.levelId - 1, self.reportParam);
             });
         }
 

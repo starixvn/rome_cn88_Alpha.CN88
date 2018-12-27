@@ -189,8 +189,8 @@
 @Html.Hidden("of", Resources.of)
 @Html.Hidden("Pager_DisplayItems", Resources.Pager_DisplayItems)
 @Html.Hidden("usernameAutoSuggestionPath", IndexViewModel.UsernameAutoSuggestionPath)
-@Html.Hidden("AddCustomerLink", IndexViewModel.AddCustomerLink)
 @Html.Hidden("EditCustomerLink", IndexViewModel.EditCustomerLink)
+@Html.Hidden("CurrentLink", IndexViewModel.CurrentLink)
 
 @Html.Hidden("UpdateStatus", Resources.UpdateStatus)
 @Html.Hidden("UpdateCredit", Resources.UpdateCredit)
@@ -200,6 +200,13 @@
 @Html.Hidden("Language", Model.Language)
 @Html.Hidden("ViewerId", Model.ViewerId)
 @Html.Hidden("ActorLevel", Model.ActorLevel.Value)
+
+@Html.Hidden("DownlineUsername", Model.DownlineUsername)
+@Html.Hidden("Username", Model.Username)
+@Html.Hidden("SearchRoleId", Model.SearchRoleId)
+@Html.Hidden("Status", Model.Status)
+@Html.Hidden("PageSize", Model.PageSize)
+@Html.Hidden("PageIndex", Model.PageIndex)
 
 @section Scripts {
     @StaticResources.RenderScripts("~/assets/bundles/customer-list/index")

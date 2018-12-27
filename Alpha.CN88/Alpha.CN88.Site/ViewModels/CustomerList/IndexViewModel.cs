@@ -15,6 +15,13 @@
 
             Language = query.Language;
             ViewerId = query.ViewerId;
+
+            DownlineUsername = query.DownlineUsername;
+            Username = query.Username;
+            SearchRoleId = query.SearchRoleId;
+            Status = query.Status;
+            PageSize = query.PageSize;
+            PageIndex = query.PageIndex;
         }
 
         public UserLevel ActorLevel { get; set; }
@@ -28,12 +35,24 @@
         public static string UsernameAutoSuggestionPath
             => MicroSites.OldMainUrl("~/_GlobalResources/Handlers/QueryUserName.ashx");
 
-        public static string AddCustomerLink => MicroSites.CN88Url("~/CN88/CreateCustomer");
+        public static string EditCustomerLink => MicroSites.CN88Url("~/CN88CustomerSetting/ViewCustomerSetting/Index");
 
-        public static string EditCustomerLink => MicroSites.CN88Url("~/CN88/ViewCustomerSetting/Index");
+        public static string CurrentLink => MicroSites.CN88Url("~/CustomerList/Index");
 
         public string Language { get; }
 
-        public int ViewerId { get; set; }
+        public int ViewerId { get; }
+
+        public string DownlineUsername { get; }
+
+        public string Username { get; }
+
+        public byte SearchRoleId { get; }
+
+        public byte Status { get; }
+
+        public int PageSize { get; }
+
+        public int PageIndex { get; }
     }
 }
