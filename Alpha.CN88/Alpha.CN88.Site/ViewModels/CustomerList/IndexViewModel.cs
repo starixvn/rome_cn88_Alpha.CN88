@@ -35,7 +35,7 @@
         public static string UsernameAutoSuggestionPath
             => MicroSites.OldMainUrl("~/_GlobalResources/Handlers/QueryUserName.ashx");
 
-        public static string EditCustomerLink => MicroSites.CN88Url("~/CN88CustomerSetting/ViewCustomerSetting/Index");
+        public static string EditCustomerLink => $"{MicroSites.CN88Url()}/CN88CustomerSetting/ViewCustomerSetting";
 
         public static string CurrentLink => MicroSites.CN88Url("~/CustomerList/Index");
 
