@@ -89,3 +89,7 @@
 .btn .multiselect-selected-text {
     text-transform: none;
 }
+
+.multiselect-container.dropdown-menu label.radio {
+    display: block;
+}
