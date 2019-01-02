@@ -180,4 +180,7 @@
   <data name="Disabled" xml:space="preserve">
     <value>비활성화</value>
   </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>하부라인 목록</value>
+  </data>
 </root>

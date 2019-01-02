@@ -180,4 +180,7 @@
   <data name="Disabled" xml:space="preserve">
     <value>Disabled</value>
   </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>Downline List</value>
+  </data>
 </root>

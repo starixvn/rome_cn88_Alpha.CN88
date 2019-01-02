@@ -180,4 +180,7 @@
   <data name="Disabled" xml:space="preserve">
     <value>禁用</value>
   </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>下线名单</value>
+  </data>
 </root>

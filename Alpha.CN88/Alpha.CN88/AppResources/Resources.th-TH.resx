@@ -180,4 +180,7 @@
   <data name="Disabled" xml:space="preserve">
     <value>ปิดการใช้งาน</value>
   </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>รายชื่อลูกค้า</value>
+  </data>
 </root>

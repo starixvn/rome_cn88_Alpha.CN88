@@ -180,4 +180,7 @@
   <data name="Disabled" xml:space="preserve">
     <value>Vô hiệu hóa</value>
   </data>
+  <data name="DownlineList" xml:space="preserve">
+    <value>Thành viên</value>
+  </data>
 </root>

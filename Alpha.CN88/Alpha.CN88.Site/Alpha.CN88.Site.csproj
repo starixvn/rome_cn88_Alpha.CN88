@@ -271,7 +271,9 @@
     <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.xml" />
     <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="assets\bundles\customer-list\index.js" />
     <Content Include="assets\bundles\customer-list\index.min.js" />
