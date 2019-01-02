@@ -31,7 +31,13 @@ class AgentList extends BaseList {
 
         this.cacheDOMElements();
 
-        this.$("#btn-submit-agent").off("click").on("click", this.viewAgents);
+        var self = this;
+        this.$("#btn-submit-agent").off("click").on("click", function () {
+            self.reportParam.PageSize = 100;
+            self.reportParam.PageIndex = 1;
+            self.viewAgents();
+        });
+
         if (this.directDownline >= siteInfrastructure.roleId.master) {
             this.initAutoComplete();
         }

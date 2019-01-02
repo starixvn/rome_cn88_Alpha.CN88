@@ -30,7 +30,12 @@ class MemberList extends BaseList {
 
         this.cacheDOMElements();
 
-        this.$("#btn-submit-member").off("click").on("click", this.viewMembers);
+        var self = this;
+        this.$("#btn-submit-member").off("click").on("click", function () {
+            self.reportParam.PageSize = 100;
+            self.reportParam.PageIndex = 1;
+            self.viewMembers();
+        });
         if (this.directDownline >= siteInfrastructure.roleId.agent) {
             this.initAutoComplete();
         }
