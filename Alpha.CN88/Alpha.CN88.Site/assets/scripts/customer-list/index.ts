@@ -11,6 +11,7 @@ class CustomerList {
     directDownline: string;
     $navTabs: JQuery;
     EditCustomerLink: string;
+    CreateCustomerLink: string;
     CurrentLink: string;
 
     reportParam = {
@@ -127,6 +128,7 @@ class CustomerList {
         this.viewResources.Disabled = this.$("#Disabled").val();
 
         this.EditCustomerLink = this.$("#EditCustomerLink").val();
+        this.CreateCustomerLink = this.$("#CreateCustomerLink").val();
         this.CurrentLink = this.$("#CurrentLink").val();
 
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
@@ -195,7 +197,6 @@ class CustomerList {
             CustomerLevel: custLevelId,
             CustomerId: custId,
             IsReadOnly: !this.HasUpdatePermission,
-            IsCreateNew: false,
             UplineId: this.ViewerId,
             ActorLevel: this.ActorLevel
         });
@@ -203,13 +204,12 @@ class CustomerList {
     addAgentForMaster = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
 
-        window.location.href = this.EditCustomerLink + "?" + this.$.param({
+        window.location.href = this.CreateCustomerLink + "?" + this.$.param({
             Language: this.Language,
             ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
             IsReadOnly: !this.HasUpdatePermission,
-            IsCreateNew: true,
             UplineId: custId,
             ActorLevel: this.ActorLevel
         });
@@ -217,7 +217,7 @@ class CustomerList {
     addMemberForAgent = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
 
-        window.location.href = this.EditCustomerLink + "?" + this.$.param({
+        window.location.href = this.CreateCustomerLink + "?" + this.$.param({
             Language: this.Language,
             ProductId: 1,
             CustomerLevel: custLevelId,
