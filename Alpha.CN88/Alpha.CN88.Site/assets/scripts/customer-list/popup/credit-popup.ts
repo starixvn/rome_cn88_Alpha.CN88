@@ -12,7 +12,7 @@ class CreditPopup extends PopupBase {
 		this.cleaveCredit = new Cleave('#credit', {
 			numeral: true,
 			numeralPositiveOnly: true,
-			numeralDecimalScale: 0,
+			numeralDecimalMark: '.',
 			delimiter: ','
 		});
 	}
