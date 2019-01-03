@@ -213,8 +213,8 @@
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>Update Successfully!</value>
   </data>
-  <data name="InvalidValue" xml:space="preserve">
-    <value>Invalid Value</value>
+  <data name="ExceededAgentCredit" xml:space="preserve">
+    <value>Sorry, increase credit unsuccessfully. You have exceeded your agent credit.</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>Disabled</value>

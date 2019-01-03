@@ -3,7 +3,7 @@
 	public topWindow: any;
 	resources = {
 		UpdateSuccessfully: '',
-		InvalidValue: ''
+		ExceededAgentCredit: ''
 	};
 
 	constructor($: JQueryStatic, topWindow: any) {

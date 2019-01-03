@@ -19,7 +19,7 @@ namespace Alpha.CN88.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -160,11 +160,11 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Value.
+        ///   Looks up a localized string similar to Sorry, increase credit unsuccessfully. You have exceeded your agent credit..
         /// </summary>
-        public static string InvalidValue {
+        public static string ExceededAgentCredit {
             get {
-                return ResourceManager.GetString("InvalidValue", resourceCulture);
+                return ResourceManager.GetString("ExceededAgentCredit", resourceCulture);
             }
         }
         
