@@ -126,7 +126,7 @@ class AgentList extends BaseList {
     };
     initAutoComplete = () => {
         var queryUsernameURL = this.usernameAutoSuggestionPath + "?" +
-            this.$.param({ isDir: 0, issub: 0, ismember: 0 });
+            this.$.param({ isDir: 1, issub: 0, ismember: 0 });
         initAutoComplete(this.$viewedMaster[0], queryUsernameURL);
         this.$output.css("top", this.$viewedMaster.offset().top + 30);
         this.$output.css("left", this.$viewedMaster.offset().left);
