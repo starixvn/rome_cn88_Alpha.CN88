@@ -409,6 +409,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
+    <Compile Include="Requests\CustomerList\CreateCustomerQuery.cs" />
     <Compile Include="Requests\CustomerList\Popup\CustomerStatusPopupQuery.cs" />
     <Compile Include="Requests\CustomerList\Popup\CreditPopupQuery.cs" />
     <Compile Include="Requests\CustomerList\IndexQuery.cs" />

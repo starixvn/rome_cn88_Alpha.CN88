@@ -209,7 +209,7 @@ class CustomerList {
             ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
-            IsReadOnly: !this.HasUpdatePermission,
+            IsReadOnly: !this.HasAddNewPermission,
             UplineId: custId,
             ActorLevel: this.ActorLevel
         });
@@ -222,7 +222,7 @@ class CustomerList {
             ProductId: 1,
             CustomerLevel: custLevelId,
             CustomerId: custId,
-            IsReadOnly: !this.HasUpdatePermission,
+            IsReadOnly: !this.HasAddNewPermission,
             IsCreateNew: true,
             UplineId: custId,
             ActorLevel: this.ActorLevel

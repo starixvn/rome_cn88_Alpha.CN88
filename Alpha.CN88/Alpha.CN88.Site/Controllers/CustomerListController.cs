@@ -1,9 +1,10 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
+    using System.Collections.Generic;
+    using System.Web.Mvc;
     using Alpha.Web.Filters;
     using MediatR;
     using Requests.CustomerList;
-    using System.Web.Mvc;
 
     public class CustomerListController : SiteBaseController
     {
@@ -35,5 +36,23 @@
         [HttpPost, AntiXsrfFilter]
         public ActionResult UpdateCustomerStatus(CustomerStatusCommand command)
             => JsonData(command);
+
+        [HttpGet]
+        public ActionResult Create(CreateCustomerQuery message)
+        {
+            var urlString = new List<string>
+            {
+                "~/CN88CustomerSetting/ViewCustomerSetting/Create?",
+                $"Language={message.Language}",
+                $"&ProductId=1",
+                $"&CustomerLevel={message.CustLevelId}",
+                $"&CustomerId={message.ViewerId}",
+                $"&IsReadOnly={!message.HasAddNewPermission}",
+                $"&UplineId={message.ViewerId}",
+                $"&ActorLevel={message.ViewerLevelId}"
+            };
+
+            return Redirect(string.Join(string.Empty, urlString));
+        }
     }
 }
