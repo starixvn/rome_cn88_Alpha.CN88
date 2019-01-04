@@ -15,27 +15,25 @@
             => HasPermissionOnProductId(permissionContext);
 
         public override bool VerifyUpdatePermission(PermissionContext permissionContext)
-            => this.IsAllowPermissionBasedOnSubAccAndInternalAcc() && HasPermissionOnProductId(permissionContext);
+            => IsAllowPermissionBasedOnSubAccAndInternalAcc() && HasPermissionOnProductId(permissionContext);
 
         public override bool VerifyMultipleUpdatePermission(PermissionContext permissionContext)
-            => this.IsAllowPermissionBasedOnSubAccAndInternalAcc() && HasPermissionOnProductId(permissionContext);
+            => IsAllowPermissionBasedOnSubAccAndInternalAcc() && HasPermissionOnProductId(permissionContext);
 
         public override SettingContext FetchSettingContext()
         {
             var currentUserSession = UserSessionService.GetUserSessionInstance(HttpContext.Current.Session.SessionID);
-            var settingContext = new SettingContext()
+            return new SettingContext()
             {
-                ActorId = (int)currentUserSession.UserId,
-                ActorName = (string)currentUserSession.UserName,
-                ActorLevel = (byte)currentUserSession.RoleId,
-                SubAccountId = (int)currentUserSession.SubAccId,
-                Language = (string)currentUserSession.Language,
+                ActorId = currentUserSession.UserId,
+                ActorName = currentUserSession.UserName,
+                ActorLevel = currentUserSession.RoleId,
+                SubAccountId = currentUserSession.SubAccId,
+                Language = currentUserSession.Language,
                 Domain = HttpContext.Current.Request.Url.Host,
                 IP = IPHelper.CustomerIp(),
                 HashKey = HttpContext.Current.Session.SessionID
             };
-
-            return settingContext;
         }
 
         private bool IsAllowPermissionBasedOnSubAccAndInternalAcc()
