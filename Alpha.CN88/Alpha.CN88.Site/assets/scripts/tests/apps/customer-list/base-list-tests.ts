@@ -25,6 +25,7 @@
         spyOn(baseList, "cacheDOMElements").and.callThrough();
         spyOn(statusComponent, "render");
         spyOn(baseList, "viewList").and.callThrough();
+        spyOn(baseList, "loadData").and.callThrough();
         spyOn($, "blockUI");
     });
 
@@ -90,9 +91,9 @@
             baseList.pagingList();
         });
 
-        it("_call viewList", () => {
+        it("_call loadData", () => {
             // assert
-            expect(baseList.viewList).toHaveBeenCalled();
+            expect(baseList.loadData).toHaveBeenCalled();
         });
     });
 

@@ -71,13 +71,7 @@ class AgentList extends BaseList {
         }
 
         this.$errAgent.addClass("display-none");
-        this.$.ajax({
-            method: "GET",
-            data: this.reportParam,
-            url: this.getCustomerListUrl,
-            cache: false,
-            success: this.renderAgentList
-        });
+        this.loadData();
     };
     renderAgentList = (rs: any) => {
         if (!rs.Customers) {

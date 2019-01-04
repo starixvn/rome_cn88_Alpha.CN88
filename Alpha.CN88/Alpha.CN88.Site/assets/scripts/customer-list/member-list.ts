@@ -69,13 +69,7 @@ class MemberList extends BaseList {
         }
 
         this.$errMember.addClass("display-none");
-        this.$.ajax({
-            method: "GET",
-            data: this.reportParam,
-            url: this.getCustomerListUrl,
-            cache: false,
-            success: this.renderMemberList
-        });
+        this.loadData();
     };
     renderMemberList = (rs: any) => {
         if (!rs.Customers) {

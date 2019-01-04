@@ -85,17 +85,7 @@ class BaseList {
         this.HasUpdatePermission = this.$("#HasUpdatePermission").val() == "1";
         this.HasAddNewPermission = this.$("#HasAddNewPermission").val() == "1";
     };
-    viewList = () => {
-        this.$.blockUI();
-        this.reportParam = {
-            DownlineUsername: null,
-            Username: this.$username.val(),
-            SearchRoleId: siteInfrastructure.roleId.master,
-            Status: this.$dropdownStatus.find("option:selected").val(),
-            PageSize: this.reportParam.PageSize,
-            PageIndex: this.reportParam.PageIndex
-        };
-
+    public loadData() {
         this.$.ajax({
             method: "GET",
             data: this.reportParam,
@@ -105,11 +95,24 @@ class BaseList {
                 this.renderList(rs);
             }
         });
+    }
+
+    viewList = () => {
+        this.$.blockUI();
+        this.reportParam = {
+            DownlineUsername: null,
+            Username: this.$username.val(),
+            SearchRoleId: this.levelId,
+            Status: this.$dropdownStatus.find("option:selected").val(),
+            PageSize: this.reportParam.PageSize,
+            PageIndex: this.reportParam.PageIndex
+        };
+        this.loadData();
     };
     pagingList = () => {
         this.reportParam.PageIndex = this.$("#PageIndex" + this.levelName).val();
         this.reportParam.PageSize = this.$("#PageSize" + this.levelName).val();
-        this.viewList();
+        this.loadData();
     };
     public bindReportEvents(rs) {
         var self = this;
