@@ -31,7 +31,7 @@
 
         public string Username { get; }
 
-        public string Name { get; }
+        public string Name { get; set; }
 
         public decimal Credit { get; }
 

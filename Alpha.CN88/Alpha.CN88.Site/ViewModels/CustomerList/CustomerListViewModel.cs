@@ -1,6 +1,7 @@
 ﻿namespace Alpha.CN88.Site.ViewModels.CustomerList
 {
     using System.Collections.Generic;
+    using System.Web;
     using CN88.Models;
     using CN88.Models.CustomerList;
 
@@ -10,6 +11,11 @@
         {
             TotalCustomers = model.TotalCustomers;
             Customers = model.Customers;
+
+            foreach (var c in Customers)
+            {
+                c.Name = HttpUtility.HtmlEncode(c.Name);
+            }
         }
 
         public int TotalCustomers { get; }
