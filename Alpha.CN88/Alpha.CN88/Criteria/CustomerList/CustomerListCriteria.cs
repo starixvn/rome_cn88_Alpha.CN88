@@ -9,9 +9,9 @@
         public CustomerListCriteria(CustomerListParam param)
         {
             ViewerId = param.ViewerId;
-            DownlineUsername = param.DownlineUsername;
+            DownlineUsername = string.IsNullOrWhiteSpace(param.DownlineUsername) ? string.Empty : param.DownlineUsername.Trim();
             SearchRoleId = param.SearchRoleId;
-            Username = string.IsNullOrWhiteSpace(param.Username) ? string.Empty : param.Username;
+            Username = string.IsNullOrWhiteSpace(param.Username) ? string.Empty : param.Username.Trim();
             Status = param.Status;
             PageSize = param.PageSize;
             PageIndex = param.PageIndex;
