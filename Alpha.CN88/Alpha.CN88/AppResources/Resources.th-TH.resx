@@ -183,4 +183,7 @@
   <data name="DownlineList" xml:space="preserve">
     <value>รายชื่อลูกค้า</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>กลุ่ม</value>
+  </data>
 </root>

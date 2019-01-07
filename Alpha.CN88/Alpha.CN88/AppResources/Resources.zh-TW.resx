@@ -183,4 +183,7 @@
   <data name="DownlineList" xml:space="preserve">
     <value>下線名單</value>
   </data>
+  <data name="Group" xml:space="preserve">
+    <value>組別</value>
+  </data>
 </root>

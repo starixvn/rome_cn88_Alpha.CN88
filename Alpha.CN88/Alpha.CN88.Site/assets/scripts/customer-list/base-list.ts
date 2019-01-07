@@ -34,6 +34,7 @@ class BaseList {
     levelId: number;
     viewDownlineFunction: Function;
     addDownlineFunction: Function;
+    reportColSpan: number;
 
     constructor(
         $: JQueryStatic,
@@ -60,6 +61,7 @@ class BaseList {
         this.indexManager = indexManager;
         this.renderList = renderList;
         this.levelId = levelId;
+        this.reportColSpan = levelId == siteInfrastructure.roleId.member ? 8 : 7;
         this.viewDownlineFunction = viewDownlineFunction;
         this.addDownlineFunction = addDownlineFunction;
 
@@ -153,7 +155,7 @@ class BaseList {
         this.$("#PageSize" + this.levelName).remove();
         if (rs.TotalCustomers >= siteInfrastructure.pageList[0]) {
             var footer = "<tr>" +
-                "<td colspan='7'><div id='report-pager-" + this.levelNameLowerCase + "' " +
+                "<td colspan='" + this.reportColSpan + "'><div id='report-pager-" + this.levelNameLowerCase + "' " +
                 "data-labelpage='" + this.viewResources.Page + "'" +
                 "data-labelof='" + this.viewResources.Of + "'" +
                 "data-labeldisplayitems='" + this.viewResources.Pager_DisplayItems + "'" +

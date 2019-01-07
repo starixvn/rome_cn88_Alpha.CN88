@@ -15,6 +15,7 @@
             foreach (var c in Customers)
             {
                 c.Name = HttpUtility.HtmlEncode(c.Name);
+                c.Group = HttpUtility.HtmlEncode(c.Group);
             }
         }
 
