@@ -1,9 +1,5 @@
 ﻿namespace Alpha.CN88.Site
 {
-    using System.Diagnostics;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Routing;
     using App_Start;
     using Auth.Filters;
     using Configurations;
@@ -12,8 +8,17 @@
     using global::CN88.CustomerSetting.Client;
     using Helpers;
     using ONEbook.UM.Filters;
+    using Sunplus.Agent.Model.Entities;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Routing;
     using Web;
     using Web.Helpers;
+    using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -26,7 +31,7 @@
             AreaRegistration.RegisterAllAreas();
             CN88CustomerSettingRegistration.Init();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+            LoggingConfig.Init();
             DependencyConfig.Init();
 
             AppSettings.Verify();
@@ -54,6 +59,38 @@
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
 
             return versionInfo.FileVersion;
+        }
+
+
+        /// <summary>
+        /// Application error event handler.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            //if (Request.IsLocal)
+            //{
+            //    return;
+            //}
+
+            Exception ex = Server.GetLastError();
+            var currentCustomer = UserSession.Current;
+
+            if (ex is FormatException &&
+                Request.Params.AllKeys.Any(key => Auth.Configurations.AuthorizationSection.Instance.CustIdQueryStringParamNames.Any(cf => string.Equals(key, cf, StringComparison.OrdinalIgnoreCase))))
+            {
+                return;
+            }
+
+            ExceptionHandler.Handle(ex,
+                new Dictionary<string, object>
+                {
+                    ["CustId"] = currentCustomer?.CustId,
+                    ["CustName"] = currentCustomer?.UserName,
+                    ["SubAccountName"] = currentCustomer?.SubUserName,
+                    ["AdminName"] = currentCustomer?.AdminName
+                });
         }
     }
 }

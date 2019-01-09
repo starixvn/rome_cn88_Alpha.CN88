@@ -20,6 +20,8 @@
 
         public static string StoreProcedurePath => GetConfigValue("StoreProcedurePath");
 
+        public static string AssetAppPath => GetConfigValue("AssetAppPath");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

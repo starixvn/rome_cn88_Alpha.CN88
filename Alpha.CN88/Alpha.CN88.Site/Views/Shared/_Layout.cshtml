@@ -12,9 +12,10 @@
     @RenderSection("Styles", required: false)
 </head>
 <body>
-    @RenderBody()
-    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
-    @StaticResources.AssetScripts.Render("/bundles/site-cn88/default")
-    @RenderSection("Scripts", required: false)
+	@RenderBody()
+	@StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+	@StaticResources.AssetScripts.Render("/bundles/site-cn88/default")
+	@RenderSection("Scripts", required: false)
+	@Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
 </body>
 </html>
