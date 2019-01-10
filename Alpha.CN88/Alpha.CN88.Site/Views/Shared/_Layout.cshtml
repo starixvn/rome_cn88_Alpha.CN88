@@ -16,6 +16,6 @@
 	@StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
 	@StaticResources.AssetScripts.Render("/bundles/site-cn88/default")
 	@RenderSection("Scripts", required: false)
-	@*@Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())*@
+	@Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
 </body>
 </html>
