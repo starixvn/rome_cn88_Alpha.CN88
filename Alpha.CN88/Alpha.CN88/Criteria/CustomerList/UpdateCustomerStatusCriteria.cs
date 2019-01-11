@@ -33,7 +33,7 @@
         [SpParam(SqlParamName = "UpdStatusId")]
         public byte UpdateStatusId { get; }
 
-        public byte SystemID => 1;
+        public byte SystemID => 2;
 
         public string Language { get; }
 
