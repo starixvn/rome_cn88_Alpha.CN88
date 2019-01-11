@@ -42,7 +42,7 @@
         {
             var urlString = new List<string>
             {
-                "~/CN88CustomerSetting/ViewCustomerSetting/Create?",
+                "~/CN88CustomerSetting/ViewCN88CustomerSetting/Create?",
                 $"Language={message.Language}",
                 $"&ProductId=1",
                 $"&CustomerLevel={message.CustLevelId}",
