@@ -18,7 +18,7 @@
             set { appSettingValues = value; }
         }
 
-        public static string StoreProcedurePath => GetConfigValue("StoreProcedurePath");
+        public static string StoreProcedurePath => GetConfigValue("StoredProcedurePath");
 
         public static string AssetAppPath => GetConfigValue("AssetAppPath");
 
