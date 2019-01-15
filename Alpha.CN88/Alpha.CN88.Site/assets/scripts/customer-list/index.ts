@@ -190,6 +190,7 @@ class CustomerList {
     };
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
+        this.topWindow.showCN88CancelButton = true;
 
         window.location.href = this.EditCustomerLink + "?" + this.$.param({
             Language: this.Language,
@@ -203,6 +204,7 @@ class CustomerList {
     };
     addAgentForMaster = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
+        this.topWindow.showCN88CancelButton = true;
 
         window.location.href = this.CreateCustomerLink + "?" + this.$.param({
             Language: this.Language,
@@ -216,6 +218,7 @@ class CustomerList {
     };
     addMemberForAgent = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
+        this.topWindow.showCN88CancelButton = true;
 
         window.location.href = this.CreateCustomerLink + "?" + this.$.param({
             Language: this.Language,
