@@ -184,9 +184,11 @@ class CustomerList {
     };
     updateStatus = (custId: any, username: any, updateStatusId: any) => {
         let url = `${this.$("#statusPopupUrl").val()}?custId=${custId}&UpdateStatusId=${updateStatusId}`,
-            caption = this.$("#UpdateStatus").val();
+			popupTitle = `${this.$("#UpdateStatus").val()} - ${username}`;
 
-        this.topWindow.popupManager.open(url, `${caption} - ${username}`, 300, 250);
+		let width = this.topWindow.displayTextWidth(popupTitle, this.$(".col-username").css("fontSize"));
+
+		this.topWindow.popupManager.open(url, popupTitle, width + 200, 250);
     };
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);
