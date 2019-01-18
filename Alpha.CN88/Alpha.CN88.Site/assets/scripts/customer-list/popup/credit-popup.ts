@@ -25,6 +25,7 @@ class CreditPopup extends PopupBase {
 	getResource() {
 		super.getResource();
 		this.resources.ExceededAgentCredit = this.$("#ExceededAgentCredit").val();
+		this.resources.InputNumberError = this.$("#InputNumberError").val();
 	}
 
 	updateCredit = () => {
@@ -39,7 +40,12 @@ class CreditPopup extends PopupBase {
 				"CreditAmount": credit
 			};
 
-		if (isNaN(credit) || credit < minCredit || credit > maxCredit) {
+		if (isNaN(credit)) {
+			this.showFailedMessage(this.resources.InputNumberError);
+			return;
+		}
+
+		if (credit < minCredit || credit > maxCredit) {
 			this.showFailedMessage(this.resources.ExceededAgentCredit);
 			return;
 		}

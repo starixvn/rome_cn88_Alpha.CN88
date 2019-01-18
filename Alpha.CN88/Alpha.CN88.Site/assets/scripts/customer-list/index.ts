@@ -188,7 +188,7 @@ class CustomerList {
 
 		let width = this.topWindow.displayTextWidth(popupTitle, this.$(".col-username").css("fontSize"));
 
-		this.topWindow.popupManager.open(url, popupTitle, width + 200, 250);
+		this.topWindow.popupManager.open(url, popupTitle, width + 150, 250);
     };
     updateAccount = (custId: any, username: any, custLevelId: any, reportParam: any) => {
         this.storeCurrentPage(reportParam);

@@ -222,4 +222,7 @@
   <data name="Group" xml:space="preserve">
     <value>Group</value>
   </data>
+  <data name="InputNumberError" xml:space="preserve">
+    <value>Please input a value number !</value>
+  </data>
 </root>

@@ -3,7 +3,8 @@
 	public topWindow: any;
 	resources = {
 		UpdateSuccessfully: '',
-		ExceededAgentCredit: ''
+		ExceededAgentCredit: '',
+		InputNumberError:''
 	};
 
 	constructor($: JQueryStatic, topWindow: any) {
