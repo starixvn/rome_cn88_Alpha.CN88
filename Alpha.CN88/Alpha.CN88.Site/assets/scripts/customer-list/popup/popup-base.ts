@@ -4,7 +4,8 @@
 	resources = {
 		UpdateSuccessfully: '',
 		ExceededAgentCredit: '',
-		InputNumberError:''
+		InputNumberError: '',
+		ThereIsNoChange: ''
 	};
 
 	constructor($: JQueryStatic, topWindow: any) {

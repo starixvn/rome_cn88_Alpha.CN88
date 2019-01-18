@@ -33,6 +33,8 @@
 
 @Html.Hidden("CustId", Model.CustId)
 @Html.Hidden("UpdateSuccessfully", Resources.UpdateSuccessfully)
+@Html.Hidden("CurrentStatusId", Model.UpdateStatusId)
+@Html.Hidden("ThereIsNoChange", Resources.ThereIsNoChange)
 @Html.AntiForgeryToken()
 
 @section Scripts {

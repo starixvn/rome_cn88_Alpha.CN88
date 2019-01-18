@@ -225,4 +225,7 @@
   <data name="InputNumberError" xml:space="preserve">
     <value>Please input a value number !</value>
   </data>
+  <data name="ThereIsNoChange" xml:space="preserve">
+    <value>There is no change to update.</value>
+  </data>
 </root>

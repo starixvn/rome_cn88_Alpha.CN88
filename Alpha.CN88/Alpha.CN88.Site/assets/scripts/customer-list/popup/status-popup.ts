@@ -5,7 +5,7 @@
 
 	init = () => {
 		this.registerEvents();
-		super.getResource();
+		this.getResource();
 	}
 
 	registerEvents() {
@@ -13,11 +13,21 @@
 		this.$(".btn-submit").bind("click", this.updateStatus);
 	}
 
+	getResource() {
+		super.getResource();
+		this.resources.ThereIsNoChange = this.$("#ThereIsNoChange").val();
+	}
+
 	updateStatus = () => {
 		let custId = this.$("#CustId").val(),
 			updateStatusId = this.$("#dropdown-status").val(),
 			data = { "CustId": custId, "UpdateStatusId": updateStatusId };
-		
+
+		if (this.$("#CurrentStatusId").val() === updateStatusId) {
+			this.showFailedMessage(this.resources.ThereIsNoChange);
+			return;
+		}
+
 		this.submit("UpdateCustomerStatus", data, custId, updateStatusId);
 	}
 
