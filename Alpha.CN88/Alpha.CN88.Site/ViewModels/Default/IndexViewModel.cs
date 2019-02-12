@@ -53,7 +53,7 @@
 
         public int SubAccId { get; }
 
-        public string MainRootPath => UrlHelper.MapMainPath("~/Home/Index");
+        public string MainRootPath => UrlHelper.MapMainPath("~/");
 
         public string DefaultPath => getDefaultUrl?.Invoke() ?? MainRootPath;
 
