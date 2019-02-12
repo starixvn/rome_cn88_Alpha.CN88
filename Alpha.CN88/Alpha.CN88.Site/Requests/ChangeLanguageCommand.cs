@@ -1,0 +1,31 @@
+﻿namespace Alpha.CN88.Site.Requests
+{
+    using Constants;
+    using MediatR;
+    using Sunplus.Agent.Model.Entities;
+
+    public class ChangeLanguageCommand : IRequest<string>
+    {
+        private readonly IUserSession userSession;
+
+        public ChangeLanguageCommand(IUserSession userSession, string languageCode)
+        {
+            this.userSession = userSession;
+            LanguageCode = languageCode;
+        }
+
+        public string LanguageCode { get; }
+
+        public virtual void ChangeLanguage(string languageCode)
+        {
+            if (string.IsNullOrWhiteSpace(languageCode) ||
+                !Language.CodeKeys.ContainsKey(languageCode))
+            {
+                return;
+            }
+
+            userSession.Language = languageCode;
+            userSession.LangKey = Language.CodeKeys[languageCode];
+        }
+    }
+}

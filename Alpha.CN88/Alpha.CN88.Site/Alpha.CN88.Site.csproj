@@ -314,6 +314,14 @@
     <Content Include="assets\bundles\customer-list\popup\credit-popup.min.js" />
     <Content Include="assets\bundles\customer-list\popup\status-popup.js" />
     <Content Include="assets\bundles\customer-list\popup\status-popup.min.js" />
+    <Content Include="assets\bundles\default-index.css" />
+    <Content Include="assets\bundles\default-index.js" />
+    <Content Include="assets\bundles\default-index.min.css">
+      <DependentUpon>default-index.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\default-index.min.js">
+      <DependentUpon>default-index.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\default.css" />
     <Content Include="assets\bundles\default.min.css" />
     <Content Include="assets\bundles\popup.css" />
@@ -354,6 +362,7 @@
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
+    <Content Include="favico.ico" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
     <Content Include="Web.uat2.config">
@@ -433,17 +442,27 @@
     <Compile Include="App_Start\LoggingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerListController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\SiteBaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\CustomerListHandler.cs" />
+    <Compile Include="Handlers\DefaultHandler.cs" />
+    <Compile Include="Handlers\LanguageHandler.cs" />
+    <Compile Include="Handlers\MenuBarHandler.cs" />
+    <Compile Include="Helpers\BrowserHelper.cs" />
+    <Compile Include="Helpers\BrowserHelperImpl.cs" />
     <Compile Include="Helpers\IPHelper.cs" />
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\AllLanguagesQuery.cs" />
     <Compile Include="Requests\BaseQuery.cs" />
+    <Compile Include="Requests\ChangeLanguageCommand.cs" />
     <Compile Include="Requests\CustomerList\CreateCustomerQuery.cs" />
     <Compile Include="Requests\CustomerList\Popup\CustomerStatusPopupQuery.cs" />
     <Compile Include="Requests\CustomerList\Popup\CreditPopupQuery.cs" />
@@ -451,10 +470,16 @@
     <Compile Include="Requests\CustomerList\CustomerListQuery.cs" />
     <Compile Include="Requests\CustomerList\Popup\CreditCommand.cs" />
     <Compile Include="Requests\CustomerList\Popup\CustomerStatusCommand.cs" />
+    <Compile Include="Requests\Default\IndexQuery.cs" />
+    <Compile Include="Requests\Default\MenuBarQuery.cs" />
+    <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\Popup\CreditRangeViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\Popup\StatusPopupViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\IndexViewModel.cs" />
     <Compile Include="ViewModels\CustomerList\CustomerListViewModel.cs" />
+    <Compile Include="ViewModels\Default\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Default\MenuBarViewModel.cs" />
+    <Compile Include="ViewModels\LanguageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -540,6 +565,7 @@
     <TypeScriptCompile Include="assets\scripts\customer-list\agent-list.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\master-list.ts" />
     <TypeScriptCompile Include="assets\scripts\customer-list\index.ts" />
+    <TypeScriptCompile Include="assets\scripts\default\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\apps\components\pager-tests.ts" />
     <TypeScriptCompile Include="assets\scripts\tests\apps\components\single-selection-dropdown-tests.ts" />
@@ -642,6 +668,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\scripts\tests\chutzpah.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Default\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Default\MenuBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Default\HeaderNav.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Language\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Alpha.CN88.sitemap" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Default\HiddenFields.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

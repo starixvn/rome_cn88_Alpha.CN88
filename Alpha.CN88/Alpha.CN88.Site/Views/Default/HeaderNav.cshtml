@@ -1,0 +1,29 @@
+﻿@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
+<section class="navbar header-nav" id="header-nav">
+    <ul class="nav navbar-nav list-top">
+        <li class="dropdown language">
+            @Html.Action("List", "Language")
+        </li>
+        <li class="online-member">
+            <span>@Resources.OnlineMembers: @Model.OnlineMember</span>
+        </li>
+        <li>
+            New URL
+        </li>
+        <li>
+            Live Chat
+        </li>
+        <li>
+            Contact Us
+        </li>
+        <li class="notification">
+            <a class="icon icon-bell withripple"></a>
+        </li>
+        <li>
+            Cust Icon
+        </li>
+        <li>
+            @Model.CustName
+        </li>
+    </ul>
+</section>

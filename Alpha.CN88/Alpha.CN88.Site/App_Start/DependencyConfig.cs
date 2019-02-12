@@ -8,14 +8,19 @@
     using Controllers;
     using DataAccesses;
     using Fanex.Data.Repository;
+    using Helpers;
     using MediatR;
     using Models;
+    using Services;
     using Services.CustomerList;
+    using Services.Impl;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
+    using Web.Helpers;
+    using Web.Helpers.Impl;
 
     public static class DependencyConfig
     {
@@ -73,8 +78,15 @@
         {
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.RegisterSingleton<IUser, User>();
+            container.RegisterSingleton<BrowserHelper, BrowserHelperImpl>();
+            container.RegisterSingleton<CachingManager, CachingManagerImpl>();
 
             container.RegisterPerWebRequest<CustomerListService, CustomerListServiceImpl>();
+            container.RegisterPerWebRequest<DefaultService, DefaultServiceImpl>();
+            container.RegisterPerWebRequest<SiteMenuService, SiteMenuServiceImpl>();
+            container.RegisterPerWebRequest<SiteMapReader, SiteMapReaderImpl>();
+            container.RegisterPerWebRequest<MenuItemBuilder, MenuItemBuilderImpl>();
+            container.RegisterPerWebRequest<SessionManager, SessionManagerImpl>();
         }
     }
 }

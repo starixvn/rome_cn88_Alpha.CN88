@@ -1,0 +1,39 @@
+﻿@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=@Model.InitialScaleViewPort, user-scalable=yes">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.RenderStyles("~/assets/bundles/default-index")
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+</head>
+<body>
+    <div id="header">
+        @Html.Partial("HeaderNav", Model)
+    </div>
+    <aside class="sidebar" id="side-bar">
+        <nav class="navigation" id="navigation">
+            @Html.Action("MenuBar")
+        </nav>
+    </aside>
+    <main class="content" id="content" data-default-url="@Model.DefaultPath">
+        <iframe frameborder="0" id="main" width="100%" height="100%" scrolling="auto" name="main" marginwidth="0" marginheight="0" allowtransparency="true" class="iframe-content"></iframe>
+    </main>
+    @Html.Partial("HiddenFields", Model)
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-main/default")
+    @StaticResources.RenderScripts("~/assets/bundles/default-index")
+    @GoogleAnalyticHepler.Render()
+</body>
+</html>

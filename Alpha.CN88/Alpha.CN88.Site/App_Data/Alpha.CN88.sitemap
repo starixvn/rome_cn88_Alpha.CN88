@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" enableLocalization="true">
+  <siteMapNode title="Alpha CN88 Site">
+    <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index"></siteMapNode>
+    <siteMapNode resourceKey="announcement">
+      <siteMapNode resourceKey="generalAnnouncement" appPath="CN88AppPath" url="Announcement/GeneralAnnouncement"></siteMapNode>
+      <siteMapNode resourceKey="importantAnnouncement" appPath="CN88AppPath" url="Announcement/ImportantAnnouncement"></siteMapNode>
+      <siteMapNode resourceKey="personalAnnouncement" appPath="CN88AppPath" url="Announcement/PersonalAnnouncement"></siteMapNode>
+    </siteMapNode>
+    <siteMapNode resourceKey="totalBets">
+      <siteMapNode resourceKey="overview" appPath="CN88AppPath" url="TotalBets/Overview"></siteMapNode>
+      <siteMapNode resourceKey="inplay" appPath="CN88AppPath" url="TotalBets/InPlay"></siteMapNode>
+      <siteMapNode resourceKey="today" appPath="CN88AppPath" url="TotalBets/Today"></siteMapNode>
+      <siteMapNode resourceKey="early" appPath="CN88AppPath" url="TotalBets/Early"></siteMapNode>
+      <siteMapNode resourceKey="started" appPath="CN88AppPath" url="TotalBets/Started"></siteMapNode>
+      <siteMapNode resourceKey="parlay" appPath="CN88AppPath" url="TotalBets/Parlay"></siteMapNode>
+      <siteMapNode resourceKey="outright" appPath="CN88AppPath" url="TotalBets/Outright"></siteMapNode>
+      <siteMapNode resourceKey="results" appPath="CN88AppPath" url="TotalBets/Results"></siteMapNode>
+      <siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>
+    </siteMapNode>
+    <siteMapNode resourceKey="accountManagement">
+      <siteMapNode resourceKey="masterAgent" appPath="CN88AppPath" url="AccountManagement/MasterAgent"></siteMapNode>
+      <siteMapNode resourceKey="agent" appPath="CN88AppPath" url="AccountManagement/Agent"></siteMapNode>
+      <siteMapNode resourceKey="member" appPath="CN88AppPath" url="AccountManagement/Member"></siteMapNode>
+      <siteMapNode resourceKey="subAccount" appPath="CN88AppPath" url="AccountManagement/SubAccount"></siteMapNode>
+      <siteMapNode resourceKey="problemAccount" appPath="CN88AppPath" url="AccountManagement/ProblemAccount"></siteMapNode>
+    </siteMapNode>
+    <siteMapNode resourceKey="reports">
+      <siteMapNode resourceKey="wagerReport" appPath="CN88AppPath" url="Reports/WagerReport"></siteMapNode>
+      <siteMapNode resourceKey="legacyReport" appPath="CN88AppPath" url="Reports/LegacyReport"></siteMapNode>
+      <siteMapNode resourceKey="oldReport" appPath="CN88AppPath" url="Reports/OldReport"></siteMapNode>
+      <siteMapNode resourceKey="exchangeRate" appPath="CN88AppPath" url="Reports/ExchangeRate"></siteMapNode>
+    </siteMapNode>
+    <siteMapNode resourceKey="help">
+      <siteMapNode resourceKey="newUrl" appPath="CN88AppPath" url="Help/NewUrl"></siteMapNode>
+      <siteMapNode resourceKey="troubleshooting" appPath="CN88AppPath" url="Help/Troubleshooting"></siteMapNode>
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

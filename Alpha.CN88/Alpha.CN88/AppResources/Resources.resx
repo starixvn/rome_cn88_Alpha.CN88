@@ -228,4 +228,7 @@
   <data name="ThereIsNoChange" xml:space="preserve">
     <value>There is no change to update.</value>
   </data>
+  <data name="OnlineMembers" xml:space="preserve">
+    <value>Online Members</value>
+  </data>
 </root>

@@ -34,12 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Alpha.Auth, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Auth.3.0.2.1\lib\net461\Alpha.Auth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Alpha.SubAccount, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Utilities, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.Utilities.3.0.0.1\lib\net40\Alpha.Utilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Alpha.Web, Version=1.0.1.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.1.8\lib\net461\Alpha.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.6.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -66,6 +74,14 @@
     </Reference>
     <Reference Include="Fanex.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.1.0.6\lib\net461\Fanex.Logging.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.Extensions.Web.1.0.7\lib\net461\Fanex.Logging.Extensions.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
@@ -117,8 +133,10 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -156,27 +174,53 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="AppResources\Sitemap.Designer.cs">
+      <DependentUpon>SitemapLabels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AppResources\SitemapLabels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SitemapLabels.resx</DependentUpon>
+    </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\CloseReasonConstant.cs" />
     <Compile Include="Constants\CustomerStatus.cs" />
+    <Compile Include="Constants\Language.cs" />
     <Compile Include="Criteria\CustomerList\CustomerListCriteria.cs" />
     <Compile Include="Criteria\CustomerList\SelectCreditRangeCriteria.cs" />
     <Compile Include="Criteria\CustomerList\UpdateCreditCriteria.cs" />
     <Compile Include="Criteria\CustomerList\UpdateCustomerStatusCriteria.cs" />
     <Compile Include="DataAccesses\CustomerListDataAccess.cs" />
+    <Compile Include="FunctionRegistry.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Models\CustomerList\CreditRangeModel.cs" />
     <Compile Include="Models\CustomerList\CustomerListModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\Device.cs" />
+    <Compile Include="Models\DeviceInfo.cs" />
     <Compile Include="Models\Enumeration.cs" />
     <Compile Include="Models\IUser.cs" />
+    <Compile Include="Models\Menus\IMenuItem.cs" />
+    <Compile Include="Models\Menus\MenuItem.cs" />
+    <Compile Include="Models\Menus\MenuStatus.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Params\CustomerList\CustomerListParam.cs" />
     <Compile Include="Params\CustomerList\UpdateCustomerStatusParam.cs" />
     <Compile Include="Params\CustomerList\UpdateCreditParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CachingManager.cs" />
     <Compile Include="Services\CustomerList\CustomerListService.cs" />
+    <Compile Include="Services\DefaultService.cs" />
+    <Compile Include="Services\Impl\CachingManagerImpl.cs" />
+    <Compile Include="Services\Impl\DefaultServiceImpl.cs" />
+    <Compile Include="Services\Impl\MenuItemBuilderImpl.cs" />
+    <Compile Include="Services\Impl\SiteMapReaderImpl.cs" />
+    <Compile Include="Services\Impl\SiteMenuServiceImpl.cs" />
+    <Compile Include="Services\MenuItemBuilder.cs" />
+    <Compile Include="Services\SiteMapReader.cs" />
+    <Compile Include="Services\SiteMenuService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -194,6 +238,17 @@
     <EmbeddedResource Include="AppResources\Resources.zh-CN.resx" />
     <EmbeddedResource Include="AppResources\Resources.zh-Hans.resx" />
     <EmbeddedResource Include="AppResources\Resources.zh-TW.resx" />
+    <EmbeddedResource Include="AppResources\SitemapLabels.ja-JP.resx" />
+    <EmbeddedResource Include="AppResources\SitemapLabels.ko-KR.resx" />
+    <EmbeddedResource Include="AppResources\SitemapLabels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SitemapLabels.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\SitemapLabels.th-TH.resx" />
+    <EmbeddedResource Include="AppResources\SitemapLabels.vi-VN.resx" />
+    <EmbeddedResource Include="AppResources\SitemapLabels.zh-CN.resx" />
+    <EmbeddedResource Include="AppResources\SitemapLabels.zh-Hans.resx" />
+    <EmbeddedResource Include="AppResources\SitemapLabels.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

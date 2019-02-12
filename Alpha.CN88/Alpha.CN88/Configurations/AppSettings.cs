@@ -29,6 +29,8 @@
             Require(StoreProcedurePath, nameof(StoreProcedurePath));
         }
 
+        public static string GetAppPath(string name) => AppSettingValues[name];
+
         private static void Require(string key, string keyName)
         {
             if (string.IsNullOrWhiteSpace(key))
