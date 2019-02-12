@@ -55,7 +55,7 @@
         return url.substr(0, i);
     },
     viewOnlineList: () => {
-        window.open(indexManager.urls.onlineList, "", "height=600,width=800")
+        window.open(indexManager.urls.onlineList, "", "height=600,width=800");
     }
 };
 
