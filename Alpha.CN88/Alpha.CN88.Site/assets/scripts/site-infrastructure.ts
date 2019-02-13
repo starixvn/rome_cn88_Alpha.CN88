@@ -27,6 +27,26 @@ class SiteInfrastructure {
         agent: 2,
         member: 1
     };
+
+    localStorage = {
+        get: (key: string) => {
+            return store.enabled ? store.get(key) : $.cookie(key);
+        },
+
+        set: (key: string, value: any) => {
+            store.enabled ? store.set(key, value) : $.cookie(key, value, this.localStorage.getCookieExpireOptions());
+        },
+
+        check: (key: string): boolean => {
+            return typeof store.get(key) !== 'undefined' || typeof $.cookie(key) !== 'undefined';
+        },
+
+        getCookieExpireOptions: () => {
+            var cookieExpire: any = { expires: 365, path: window.location.pathname };
+
+            return cookieExpire;
+        }
+    };
 }
 
 const siteInfrastructure = new SiteInfrastructure();

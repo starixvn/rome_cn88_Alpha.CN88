@@ -6,11 +6,22 @@
     },
     elements: {
         mainMenu: null,
-        subMenu: null
+        subMenu: null,
+        currentURLCookieName: null,
+        subMenuItems: null
+    },
+    currentState: {
+        mainMenuId: null
     },
     init: function () {
         indexManager.cacheElements();
         indexManager.bindEvents();
+
+        var currentMenu = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+        if (currentMenu) {
+            $("#" + currentMenu.mainMenu).click();
+            $(".sub-menu[data-main-menu='" + currentMenu.mainMenu + "']").find("#" + currentMenu.subMenu)[0].click();
+        }
     },
     cacheElements: function () {
         indexManager.urls.mainRootPath = top.document.getElementById('mainRootPath') != null
@@ -22,6 +33,8 @@
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
+        indexManager.elements.subMenuItems = $(".sub-menu-item");
+        indexManager.elements.currentURLCookieName = $("#currentURLCookieName").val();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -35,7 +48,14 @@
             var $this = $(this);
 
             $this.addClass("active");
-            indexManager.showSubMenu($this.attr("id"));
+            indexManager.mainMenuClick($this.attr("id"));
+        });
+        indexManager.elements.subMenuItems.on("click touchend", function () {
+            indexManager.elements.subMenuItems.removeClass("active");
+            var $this = $(this);
+
+            $this.addClass("active");
+            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
         });
     },
     changeLanguage: (lang) => {
@@ -71,14 +91,17 @@
     viewOnlineList: () => {
         window.open(indexManager.urls.onlineList, "", "height=600,width=800");
     },
-    showSubMenu: (id) => {
+    mainMenuClick: (id) => {
+        indexManager.currentState.mainMenuId = id;
         indexManager.elements.subMenu.addClass("display-none");
 
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
 
         subMenu.removeClass("display-none");
-        subMenu.find(".sub-menu-item >.redirect-item:first").click();
-        debugger;
+        subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
+    },
+    subMenuClick: (id) => {
+        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, { mainMenu: indexManager.currentState.mainMenuId, subMenu: id });
     }
 };
 
