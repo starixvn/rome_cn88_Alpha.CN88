@@ -18,9 +18,14 @@
         indexManager.bindEvents();
 
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
-        var currentMenu = history.pop();
-        if (currentMenu) {
-            $("#" + currentMenu.mainMenu).click();
+        if (history && history.length) {
+            var currentMenu = history.pop();
+            siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
+
+            indexManager.elements.mainMenu.removeClass("active");
+            $("#" + currentMenu.mainMenu).addClass("active");
+
+            indexManager.currentState.mainMenuId = currentMenu.mainMenu;
             $(".sub-menu[data-main-menu='" + currentMenu.mainMenu + "']").find("#" + currentMenu.subMenu)[0].click();
         }
     },
@@ -103,8 +108,11 @@
     },
     subMenuClick: (id) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
-        history.push({ mainMenu: indexManager.currentState.mainMenuId, subMenu: id });
+        if (!history) {
+            history = [];
+        }
 
+        history.push({ mainMenu: indexManager.currentState.mainMenuId, subMenu: id });
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
     }
 };
