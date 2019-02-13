@@ -17,7 +17,8 @@
         indexManager.cacheElements();
         indexManager.bindEvents();
 
-        var currentMenu = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+        var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+        var currentMenu = history.pop();
         if (currentMenu) {
             $("#" + currentMenu.mainMenu).click();
             $(".sub-menu[data-main-menu='" + currentMenu.mainMenu + "']").find("#" + currentMenu.subMenu)[0].click();
@@ -101,7 +102,10 @@
         subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
     },
     subMenuClick: (id) => {
-        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, { mainMenu: indexManager.currentState.mainMenuId, subMenu: id });
+        var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+        history.push({ mainMenu: indexManager.currentState.mainMenuId, subMenu: id });
+
+        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
     }
 };
 
