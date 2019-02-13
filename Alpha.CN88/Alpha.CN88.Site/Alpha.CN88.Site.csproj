@@ -682,7 +682,9 @@
     <Content Include="Views\Language\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Alpha.CN88.sitemap" />
+    <Content Include="App_Data\Alpha.CN88.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Default\HiddenFields.cshtml" />

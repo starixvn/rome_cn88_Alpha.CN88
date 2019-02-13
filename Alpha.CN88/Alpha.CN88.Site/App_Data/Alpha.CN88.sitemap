@@ -7,7 +7,7 @@
       <siteMapNode resourceKey="importantAnnouncement" appPath="CN88AppPath" url="Announcement/ImportantAnnouncement"></siteMapNode>
       <siteMapNode resourceKey="personalAnnouncement" appPath="CN88AppPath" url="Announcement/PersonalAnnouncement"></siteMapNode>
     </siteMapNode>
-    <siteMapNode resourceKey="totalBets">
+    <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]">
       <siteMapNode resourceKey="overview" appPath="CN88AppPath" url="TotalBets/Overview"></siteMapNode>
       <siteMapNode resourceKey="inplay" appPath="CN88AppPath" url="TotalBets/InPlay"></siteMapNode>
       <siteMapNode resourceKey="today" appPath="CN88AppPath" url="TotalBets/Today"></siteMapNode>
@@ -18,14 +18,14 @@
       <siteMapNode resourceKey="results" appPath="CN88AppPath" url="TotalBets/Results"></siteMapNode>
       <siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>
     </siteMapNode>
-    <siteMapNode resourceKey="accountManagement">
-      <siteMapNode resourceKey="masterAgent" appPath="CN88AppPath" url="AccountManagement/MasterAgent"></siteMapNode>
-      <siteMapNode resourceKey="agent" appPath="CN88AppPath" url="AccountManagement/Agent"></siteMapNode>
+    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]">
+      <siteMapNode resourceKey="masterAgent" appPath="CN88AppPath" url="AccountManagement/MasterAgent" roles="Super"></siteMapNode>
+      <siteMapNode resourceKey="agent" appPath="CN88AppPath" url="AccountManagement/Agent" roles="Master"></siteMapNode>
       <siteMapNode resourceKey="member" appPath="CN88AppPath" url="AccountManagement/Member"></siteMapNode>
-      <siteMapNode resourceKey="subAccount" appPath="CN88AppPath" url="AccountManagement/SubAccount"></siteMapNode>
-      <siteMapNode resourceKey="problemAccount" appPath="CN88AppPath" url="AccountManagement/ProblemAccount"></siteMapNode>
+      <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="CN88AppPath" url="AccountManagement/SubAccount"></siteMapNode>
+      <siteMapNode resourceKey="problemAccount" appPath="CN88AppPath" url="AccountManagement/ProblemAccount" roles="Super"></siteMapNode>
     </siteMapNode>
-    <siteMapNode resourceKey="reports">
+    <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]">
       <siteMapNode resourceKey="wagerReport" appPath="CN88AppPath" url="Reports/WagerReport"></siteMapNode>
       <siteMapNode resourceKey="legacyReport" appPath="CN88AppPath" url="Reports/LegacyReport"></siteMapNode>
       <siteMapNode resourceKey="oldReport" appPath="CN88AppPath" url="Reports/OldReport"></siteMapNode>
