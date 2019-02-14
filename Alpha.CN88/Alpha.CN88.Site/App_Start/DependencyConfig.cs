@@ -11,6 +11,7 @@
     using Helpers;
     using MediatR;
     using Models;
+    using Services.Authentication;
     using Services;
     using Services.CustomerList;
     using Services.Impl;
@@ -82,6 +83,7 @@
             container.RegisterSingleton<CachingManager, CachingManagerImpl>();
 
             container.RegisterPerWebRequest<CustomerListService, CustomerListServiceImpl>();
+            container.RegisterPerWebRequest<LoginParamParser, LoginParamParserImpl>();
             container.RegisterPerWebRequest<DefaultService, DefaultServiceImpl>();
             container.RegisterPerWebRequest<SiteMenuService, SiteMenuServiceImpl>();
             container.RegisterPerWebRequest<SiteMapReader, SiteMapReaderImpl>();

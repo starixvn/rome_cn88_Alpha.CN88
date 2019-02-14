@@ -1,5 +1,12 @@
 ﻿namespace Alpha.CN88.Site
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Routing;
     using App_Start;
     using Auth.Filters;
     using Configurations;
@@ -9,14 +16,8 @@
     using Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Reflection;
-    using System.Web.Mvc;
-    using System.Web.Routing;
     using Web;
+    using Web.Filters;
     using Web.Helpers;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
 
@@ -44,11 +45,12 @@
                     enableWatching: true)
                 .Run();
 
-            ShareSession.Init();
+            //ShareSession.Init();
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
-            GlobalFilters.Filters.Add(new CheckBelongingFilter());
+            //GlobalFilters.Filters.Add(new CheckBelongingFilter());
+            //GlobalFilters.Filters.Add(new NoCacheFilter());
 
             StaticResources.Init(GetBuildVersion());
         }
