@@ -10,19 +10,13 @@
             if (menuItem.VisibileSubMenus.Any())
             {
                 <li class="menu-item @(menuItem.ShowSubMenus ? "active" : string.Empty)" id="menu-@(menuItem.ResourceKey.ToUpper())">
-                    <a class="withripple menu-opener parent-menu @(menuItem.ShowSubMenus ? "active" : string.Empty)">
-                        <span class="txt-item pull-left txt-@menuItem.ResourceKey.ToLower()">
-                            @Html.Raw(menuItem.DisplayName)
-                        </span>
-                    </a>
+                    <a class="txt-item pull-left menu-opener parent-menu @(menuItem.ShowSubMenus ? "active" : string.Empty)" href="#">@Html.Raw(menuItem.DisplayName)</a>
                 </li>
             }
             else
             {
                 <li class="menu-item" id="menu-@(menuItem.ResourceKey.ToUpper())">
-                    <a class="withripple menu-opener parent-menu redirect-item" href="@menuItem.Link" target="main">
-                        <span class="txt-item pull-left">@menuItem.DisplayName</span>
-                    </a>
+                    <a class="txt-item pull-left menu-opener parent-menu redirect-item" href="@menuItem.Link" target="main">@menuItem.DisplayName</a>
                 </li>
             }
         }
