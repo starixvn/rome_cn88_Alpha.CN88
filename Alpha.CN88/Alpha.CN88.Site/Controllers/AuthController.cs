@@ -114,6 +114,8 @@
 
             FormsAuthentication.RedirectFromLoginPage(userName, false, FormsAuthentication.FormsCookiePath);
 
+            FormsAuthentication.SetAuthCookie(GetCookieCurrentURLKey(custId, subAccId), false);
+
             return Redirect(FormsAuthentication.DefaultUrl);
         }
 

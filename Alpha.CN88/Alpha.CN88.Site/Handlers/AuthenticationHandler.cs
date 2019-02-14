@@ -4,11 +4,9 @@
     using System.Diagnostics;
     using CN88.Models.Authentication;
     using Fanex.Logging.Extensions.Web;
-    using Helpers;
     using MediatR;
     using Requests.Authentication;
     using Services.Authentication;
-    using Sunplus.Agent.Model.BL.Authorization;
 
     public class AuthenticationHandler :
         IRequestHandler<LoginQuery, AuthResult>,
@@ -105,10 +103,11 @@
 
         public bool Handle(LogoutQuery message)
         {
-            var authorizationBO = new AuthorizationBO(message.CurrentUserSession.NetSessionId);
-            authorizationBO.SignOut();
+            //var authorizationBO = new AuthorizationBO(message.CurrentUserSession.NetSessionId);
+            //authorizationBO.SignOut();
 
-            return true;
+            //return true;
+            throw new NotImplementedException();
         }
     }
 }
