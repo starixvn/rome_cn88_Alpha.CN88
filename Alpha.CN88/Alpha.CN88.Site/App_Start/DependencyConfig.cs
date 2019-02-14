@@ -78,12 +78,14 @@
             container.RegisterSingleton<BrowserHelper, BrowserHelperImpl>();
             container.RegisterSingleton<CachingManager, CachingManagerImpl>();
 
-            container.RegisterPerWebRequest<LoginParamParser, LoginParamParserImpl>();
             container.RegisterPerWebRequest<DefaultService, DefaultServiceImpl>();
             container.RegisterPerWebRequest<SiteMenuService, SiteMenuServiceImpl>();
             container.RegisterPerWebRequest<SiteMapReader, SiteMapReaderImpl>();
             container.RegisterPerWebRequest<MenuItemBuilder, MenuItemBuilderImpl>();
             container.RegisterPerWebRequest<SessionManager, SessionManagerImpl>();
+
+            container.RegisterPerWebRequest<LoginParamParser, LoginParamParserImpl>();
+            container.RegisterPerWebRequest<AuthenticationService, AuthenticationServiceImpl>();
         }
     }
 }

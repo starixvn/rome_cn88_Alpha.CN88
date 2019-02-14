@@ -2,5 +2,7 @@
 <Functions>
   <Function Name="AlphaAuth">
     <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_Checkin" SpName="Age_Checkin" DbName="DBONUSER.ON_USER.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Acc_CheckOut" SpName="Age_CheckOut" DbName="DBONUSER.ON_USER.BODBDownlineNetView" Plain="0" />
   </Function>
 </Functions>

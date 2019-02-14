@@ -2,4 +2,7 @@
   <Function Name="Customer List">
     <Setting Key="Age_CS_Customer_DownlineList_Sel" SpName="Age_CS_Customer_DownlineList_Sel" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
   </Function>
+  <Function Name="Login">
+    <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
 </Functions>
