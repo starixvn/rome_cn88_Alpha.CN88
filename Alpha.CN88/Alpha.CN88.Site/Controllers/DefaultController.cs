@@ -1,17 +1,15 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System.Web.Mvc;
+    using CN88.Models;
     using MediatR;
     using Requests.Default;
-    using Sunplus.Agent.Model.Entities;
 
     public class DefaultController : SiteBaseController
     {
-        private readonly IUserSession userSession;
+        private readonly IUser userSession;
 
-        public DefaultController(
-            IMediator mediator,
-            IUserSession userSession)
+        public DefaultController(IMediator mediator, IUser userSession)
             : base(mediator)
         {
             this.userSession = userSession;
@@ -22,7 +20,7 @@
 
         public ActionResult MenuBar()
         {
-            var viewModel = mediator.Send(new MenuBarQuery(userSession.RoleId, Request.UserAgent));
+            var viewModel = mediator.Send(new MenuBarQuery(userSession.LevelId, Request.UserAgent));
 
             return PartialView(viewModel);
         }
