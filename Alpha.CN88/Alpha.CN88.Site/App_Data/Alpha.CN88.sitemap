@@ -19,7 +19,7 @@
       <siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]">
-      <siteMapNode resourceKey="masterAgent" appPath="CN88AppPath" url="AccountManagement/MasterAgent" roles="Super"></siteMapNode>
+      <siteMapNode resourceKey="masterAgent" appPath="CN88AppPath" url="CustomerList/Index" roles="Super"></siteMapNode>
       <siteMapNode resourceKey="agent" appPath="CN88AppPath" url="AccountManagement/Agent" roles="Master"></siteMapNode>
       <siteMapNode resourceKey="member" appPath="CN88AppPath" url="AccountManagement/Member"></siteMapNode>
       <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="CN88AppPath" url="AccountManagement/SubAccount"></siteMapNode>
