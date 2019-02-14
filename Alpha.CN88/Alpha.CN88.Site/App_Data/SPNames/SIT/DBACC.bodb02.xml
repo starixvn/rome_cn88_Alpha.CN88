@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Status">
+    <Setting Key="Acc_CustomerSelStatus" SpName="Acc_CustomerSelStatus" DbName="DBACC.bodb02.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>

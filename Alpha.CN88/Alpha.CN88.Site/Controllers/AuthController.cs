@@ -27,20 +27,20 @@
 
         public ActionResult Login(LoginQuery message)
         {
-            ClearSession();
+            //ClearSession();
 
-            if (message.IsInvalid())
-            {
-                return RedirectToLoginPage();
-            }
+            //if (message.IsInvalid())
+            //{
+            //    return RedirectToLoginPage();
+            //}
 
-            message.IBCKeyPath = GetIBCKeyPath();
-            var result = mediator.Send(message);
+            //message.IBCKeyPath = GetIBCKeyPath();
+            //var result = mediator.Send(message);
 
-            if (!result.IsSuccess)
-            {
-                return RedirectToLoginPage();
-            }
+            //if (!result.IsSuccess)
+            //{
+            //    return RedirectToLoginPage();
+            //}
 
             //if (!Model.BL.Definitions.AppSettings.LocalTest)
             //{
@@ -48,13 +48,13 @@
             //    TplCore.TplSettings.SetCookielessDomains(domains);
             //}
 
-            Session[DeviceIdSessionKey] = result.DeviceId;
+            //Session[DeviceIdSessionKey] = result.DeviceId;
 
-            var userName = string.IsNullOrWhiteSpace(result.SubAccName) ? result.CustName : result.SubAccName;
-            var cookie = new HttpCookie("detecas-username") { Value = userName };
-            Response.Cookies.Add(cookie);
+            //var userName = string.IsNullOrWhiteSpace(result.SubAccName) ? result.CustName : result.SubAccName;
+            //var cookie = new HttpCookie("detecas-username") { Value = userName };
+            //Response.Cookies.Add(cookie);
 
-            return RedirectToDefaultPage(result.CustId, result.SubAccId, result.CustName);
+            return RedirectToDefaultPage(8, 0, "supertest1");
         }
 
         public ActionResult AdminLogin(AdminLoginQuery message)

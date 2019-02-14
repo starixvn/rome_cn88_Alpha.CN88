@@ -32,7 +32,7 @@
         {
             this.loginParamParser = loginParamParser;
             this.userSession = userSession;
-            authorizationBO = new AuthorizationBO(userSession.NetSessionId);
+            //authorizationBO = new AuthorizationBO(userSession.NetSessionId);
         }
 
         public AuthResult Login(
