@@ -124,7 +124,7 @@
     },
     mainMenuClick: (id) => {
         indexManager.elements.mainMenu.removeClass("active");
-        var $this = $(id);
+        var $this = $("#" + id);
 
         $this.addClass("active");
 
@@ -139,9 +139,9 @@
     },
     subMenuClick: (id) => {
         indexManager.elements.subMenuItems.removeClass("active");
-        var $this = $(id);
+        var $this = $("#" + id);
 
-        $this.addClass("active");
+        $this.parent().addClass("active");
 
         indexManager.addHistory({ mainMenu: indexManager.currentState.mainMenuId, subMenu: id });
     },
