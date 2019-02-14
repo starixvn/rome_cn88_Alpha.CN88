@@ -3,20 +3,20 @@
 <section id="main-menu-tab" class="mainmenu-container">
     <ul class="list-menu" id="main-menu-items">
         <li class="menu-item" id="menu-back">
-            <a class="txt-item pull-left">Back</a>
+            <a class="txt-item"><span class="icon-chevron-double-left"></span></a>
         </li>
         @foreach (var menuItem in Model.MenuItems)
         {
             if (menuItem.VisibileSubMenus.Any())
             {
                 <li class="menu-item @(menuItem.ShowSubMenus ? "active" : string.Empty)" id="menu-@(menuItem.ResourceKey.ToUpper())">
-                    <a class="txt-item pull-left menu-opener parent-menu @(menuItem.ShowSubMenus ? "active" : string.Empty)" href="#">@Html.Raw(menuItem.DisplayName)</a>
+                    <a class="txt-item menu-opener parent-menu @(menuItem.ShowSubMenus ? "active" : string.Empty)" href="#">@Html.Raw(menuItem.DisplayName)</a>
                 </li>
             }
             else
             {
                 <li class="menu-item" id="menu-@(menuItem.ResourceKey.ToUpper())">
-                    <a class="txt-item pull-left menu-opener parent-menu redirect-item" href="@menuItem.Link" target="main">@menuItem.DisplayName</a>
+                    <a class="txt-item menu-opener parent-menu redirect-item" href="@menuItem.Link" target="main">@menuItem.DisplayName</a>
                 </li>
             }
         }
