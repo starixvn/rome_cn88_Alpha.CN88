@@ -309,7 +309,9 @@
     </Content>
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="assets\bundles\customer-list\index.js" />
-    <Content Include="assets\bundles\customer-list\index.min.js" />
+    <Content Include="assets\bundles\customer-list\index.min.js">
+      <DependentUpon>index.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\customer-list\popup\credit-popup.js" />
     <Content Include="assets\bundles\customer-list\popup\credit-popup.min.js" />
     <Content Include="assets\bundles\customer-list\popup\status-popup.js" />
@@ -323,9 +325,13 @@
       <DependentUpon>default-index.js</DependentUpon>
     </Content>
     <Content Include="assets\bundles\default.css" />
-    <Content Include="assets\bundles\default.min.css" />
+    <Content Include="assets\bundles\default.min.css">
+      <DependentUpon>default.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\popup.css" />
-    <Content Include="assets\bundles\popup.min.css" />
+    <Content Include="assets\bundles\popup.min.css">
+      <DependentUpon>popup.css</DependentUpon>
+    </Content>
     <Content Include="assets\scripts\tests\libs\autocomplete.js" />
     <Content Include="assets\scripts\tests\libs\bootbox.js" />
     <Content Include="assets\scripts\tests\libs\bootstrap\button.js" />

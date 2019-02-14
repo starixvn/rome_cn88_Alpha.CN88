@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=@Model.InitialScaleViewPort, user-scalable=yes">
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
     @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/default")
     @StaticResources.RenderStyles("~/assets/bundles/default-index")
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,11 +23,9 @@
     <div id="header">
         @Html.Partial("HeaderNav", Model)
     </div>
-    <aside class="sidebar" id="side-bar">
-        <nav class="navigation" id="navigation">
-            @Html.Action("MenuBar")
-        </nav>
-    </aside>
+    <nav class="menubar" id="">
+        @Html.Action("MenuBar")
+    </nav>
     <main class="content" id="content" data-default-url="@Model.DefaultPath">
         <iframe frameborder="0" id="main" width="100%" height="100%" scrolling="auto" name="main" marginwidth="0" marginheight="0" allowtransparency="true" class="iframe-content"></iframe>
     </main>

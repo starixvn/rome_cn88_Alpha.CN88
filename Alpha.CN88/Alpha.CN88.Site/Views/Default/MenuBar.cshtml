@@ -3,7 +3,7 @@
 <section id="main-menu-tab" class="mainmenu-container">
     <ul class="list-menu" id="main-menu-items">
         <li class="menu-item" id="menu-back">
-            Back
+            <a class="txt-item pull-left">Back</a>
         </li>
         @foreach (var menuItem in Model.MenuItems)
         {
@@ -12,7 +12,6 @@
                 <li class="menu-item @(menuItem.ShowSubMenus ? "active" : string.Empty)" id="menu-@(menuItem.ResourceKey.ToUpper())">
                     <a class="withripple menu-opener parent-menu @(menuItem.ShowSubMenus ? "active" : string.Empty)">
                         <span class="txt-item pull-left txt-@menuItem.ResourceKey.ToLower()">
-                            <span class="icon icon-@menuItem.ResourceKey.ToLower()"></span>
                             @Html.Raw(menuItem.DisplayName)
                         </span>
                     </a>
@@ -22,7 +21,7 @@
             {
                 <li class="menu-item" id="menu-@(menuItem.ResourceKey.ToUpper())">
                     <a class="withripple menu-opener parent-menu redirect-item" href="@menuItem.Link" target="main">
-                        <span class="txt-item pull-left"><span class="icon icon-@menuItem.ResourceKey.ToLower()"></span>@menuItem.DisplayName</span>
+                        <span class="txt-item pull-left">@menuItem.DisplayName</span>
                     </a>
                 </li>
             }
