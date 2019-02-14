@@ -118,93 +118,96 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="home" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="announcement" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="totalBets" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="accountManagement" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="reports" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="help" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="agent" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="member" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="subAccount" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="problemAccount" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="Beta" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="generalAnnouncement" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="importantAnnouncement" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="personalAnnouncement" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="overview" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="inplay" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="today" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="early" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="started" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="parlay" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="outright" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="results" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="wagerMonitoringConsole" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="masterAgent" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="wagerReport" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="legacyReport" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="oldReport" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="exchangeRate" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="newUrl" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="troubleshooting" xml:space="preserve">
-    <value></value>
+    <value />
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>You are not authorized on this function.</value>
   </data>
 </root>
