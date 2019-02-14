@@ -1,22 +1,34 @@
 ﻿namespace Alpha.CN88.Models.Authentication
 {
-    public class AuthResult
+    public class AuthResult : Result
     {
-        public AuthResult()
+        public AuthResult(int code, string message)
+            : base(code, message)
         {
         }
 
-        public AuthResult(int custId, int subAccId, string custName)
+        public AuthResult(
+            int custId,
+            string custName,
+            int subAccId = 0,
+            string subAccName = null,
+            string deviceId = "N/A") : base(0, string.Empty)
         {
             CustId = custId;
-            SubAccId = subAccId;
             CustName = custName;
+            SubAccId = subAccId;
+            SubAccName = subAccName;
+            DeviceId = deviceId;
         }
 
         public int CustId { get; }
 
+        public string CustName { get; }
+
         public int SubAccId { get; }
 
-        public string CustName { get; }
+        public string SubAccName { get; }
+
+        public string DeviceId { get; }
     }
 }

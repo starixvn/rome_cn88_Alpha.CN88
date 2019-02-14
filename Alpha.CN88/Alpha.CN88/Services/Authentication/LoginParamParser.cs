@@ -32,6 +32,7 @@
         private const int AdminCustNameIndex = 0;
         private const int AdminIdIndex = 1;
         private const int AdminTimeTicksIndex = 2;
+        private const string DefaultSystemLogin = "NAP";
 
         private static readonly string[] ValidLanguages = new[] { "en-US", "zh-CN", "zh-TW" };
         private static readonly string[] ValidLanguageCodes = new[] { "E", "CS", "CT" };
@@ -110,7 +111,7 @@
             }
 
             var loginTime = new DateTime(timeTicks);
-            var systemLogin = loginParamsLength > 3 ? keyValuePairs[3] : "NAP";
+            var systemLogin = loginParamsLength > 3 ? keyValuePairs[3] : DefaultSystemLogin;
 
             return new AdminLoginParam(
                 adminId,

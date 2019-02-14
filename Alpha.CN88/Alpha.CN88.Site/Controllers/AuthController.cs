@@ -27,7 +27,6 @@
 
         public ActionResult Login(LoginQuery message)
         {
-            Response.Cache.SetNoStore();
             ClearSession();
 
             if (message.IsInvalid())
@@ -35,10 +34,10 @@
                 return RedirectToLoginPage();
             }
 
-            message.IBCKeyPath = Server.MapPath("~/App_Data/IbcKeys/ibckey.snk");
+            message.IBCKeyPath = GetIBCKeyPath();
             var result = mediator.Send(message);
 
-            if (result.CustId == 0)
+            if (!result.IsSuccess)
             {
                 return RedirectToLoginPage();
             }
@@ -49,12 +48,9 @@
             //    TplCore.TplSettings.SetCookielessDomains(domains);
             //}
 
-            //Session[DeviceIdSessionKey] = "";
+            Session[DeviceIdSessionKey] = result.DeviceId;
 
-            var userSession = message.CurrentUserSession;
-            userSession.UserLoginIp = IPHelper.CustomerIp();
-
-            var userName = string.IsNullOrWhiteSpace(userSession.SubUserName) ? userSession.UserName : userSession.SubUserName;
+            var userName = string.IsNullOrWhiteSpace(result.SubAccName) ? result.CustName : result.SubAccName;
             var cookie = new HttpCookie("detecas-username") { Value = userName };
             Response.Cookies.Add(cookie);
 
@@ -70,10 +66,10 @@
                 return RedirectToLoginPage();
             }
 
-            message.IBCKeyPath = Server.MapPath("~/App_Data/IbcKeys/ibckey.snk");
+            message.IBCKeyPath = GetIBCKeyPath();
             var result = mediator.Send(message);
 
-            if (result.CustId == 0)
+            if (!result.IsSuccess)
             {
                 return RedirectToLoginPage();
             }
@@ -105,6 +101,9 @@
         //        Response.Redirect("~/_Authorization/SignIn.aspx", true);
         //    }
         //}
+
+        private string GetIBCKeyPath()
+            => Server.MapPath("~/App_Data/IbcKeys/ibckey.snk");
 
         private RedirectResult RedirectToDefaultPage(int custId, int subAccId, string userName)
         {

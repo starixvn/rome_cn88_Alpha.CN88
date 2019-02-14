@@ -15,6 +15,7 @@
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
     using Web;
+    using Web.Filters;
     using Web.Helpers;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
 
@@ -46,7 +47,7 @@
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
             //GlobalFilters.Filters.Add(new CheckBelongingFilter());
-            //GlobalFilters.Filters.Add(new NoCacheFilter());
+            GlobalFilters.Filters.Add(new NoCacheFilter());
 
             StaticResources.Init(GetBuildVersion());
         }
