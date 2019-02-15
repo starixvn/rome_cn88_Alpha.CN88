@@ -7,14 +7,18 @@
     {
         public LanguageViewModel(
             Dictionary<string, string> data,
-            string currentLanguage = Language.Default)
+            string currentLanguageCode = Language.Default)
         {
             Data = data ?? Language.CodeNames;
-            CurrentLanguage = currentLanguage;
+            CurrentLanguageCode = currentLanguageCode;
+
+            CurrentLanguageName = Language.CodeNames[CurrentLanguageCode];
         }
 
         public Dictionary<string, string> Data { get; }
 
-        public string CurrentLanguage { get; }
+        public string CurrentLanguageCode { get; }
+
+        public string CurrentLanguageName { get; }
     }
 }

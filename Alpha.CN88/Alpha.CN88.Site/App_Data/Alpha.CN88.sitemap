@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" enableLocalization="true">
   <siteMapNode title="Alpha CN88 Site">
-    <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles="None"></siteMapNode>
+    <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles=""></siteMapNode>
     <siteMapNode resourceKey="announcement">
       <siteMapNode resourceKey="generalAnnouncement" appPath="CN88AppPath" url="Announcement/GeneralAnnouncement"></siteMapNode>
       <siteMapNode resourceKey="importantAnnouncement" appPath="CN88AppPath" url="Announcement/ImportantAnnouncement"></siteMapNode>
@@ -18,7 +18,7 @@
       <siteMapNode resourceKey="results" appPath="CN88AppPath" url="TotalBets/Results"></siteMapNode>
       <siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>
     </siteMapNode>
-    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="None">
+    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="">
       <siteMapNode resourceKey="masterAgent" appPath="FeaturesAppPath" url="CustomerList/Index" roles="Super"></siteMapNode>
       <siteMapNode resourceKey="agent" appPath="CN88AppPath" url="AccountManagement/Agent" roles="Master"></siteMapNode>
       <siteMapNode resourceKey="member" appPath="CN88AppPath" url="AccountManagement/Member"></siteMapNode>
