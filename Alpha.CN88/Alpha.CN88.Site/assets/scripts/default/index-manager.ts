@@ -144,7 +144,6 @@
         }
     },
     subMenuClick: (id) => {
-
         indexManager.elements.subMenuItems.removeClass("active");
         var $this = $("#" + id);
 
@@ -185,6 +184,8 @@
         indexManager.currentState.mainMenuId = currentMenu.mainMenu;
         var subMenu = $(".sub-menu[data-main-menu='" + currentMenu.mainMenu + "']");
         if (subMenu && subMenu.length) {
+            subMenu.removeClass("display-none");
+
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.find("#" + currentMenu.subMenu)[0].click();
         } else {
