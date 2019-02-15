@@ -1,15 +1,16 @@
 ﻿@using Alpha.CN88.Site.ViewModels;
 @model LanguageViewModel
 
-<a href="javascript:;" data-target="#" class="dropdown-toggle withripple language-selector-container" data-toggle="dropdown">
-    <span class="icon icon-flag language-selector langFlag-@Model.CurrentLanguage">
-    </span>
+<a href="javascript:;" data-target="#" class="dropdown-toggle language-selector-container" data-toggle="dropdown">
+    @*<span class="icon icon-flag language-selector langFlag-@Model.CurrentLanguage">
+    </span>*@
     <span class="language-text language-selector">
+        @Model.CurrentLanguage
     </span>
 </a>
 <ul class="dropdown-menu list-language" id="language" data-currentlanguage="@Model.CurrentLanguage">
     @foreach (var languageItem in Model.Data)
     {
-        <li class="@languageItem.Key"><a class="changelanguage-link" data-value="@languageItem.Key"><span class="icon-flag langFlag-@languageItem.Key.ToLowerInvariant()"></span>@languageItem.Value</a></li>
+        <li class="@languageItem.Key"><a class="changelanguage-link" data-value="@languageItem.Key">@languageItem.Value</a></li>
     }
 </ul>

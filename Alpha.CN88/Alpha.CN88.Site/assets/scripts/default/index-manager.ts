@@ -11,7 +11,8 @@
         subMenu: null,
         currentURLCookieName: null,
         subMenuItems: null,
-        mainFrame: null
+        mainFrame: null,
+        menuBar: null
     },
     currentState: {
         mainMenuId: null
@@ -37,6 +38,7 @@
         indexManager.elements.subMenuItems = $(".sub-menu-item");
         indexManager.elements.currentURLCookieName = $("#currentURLCookieName").val();
         indexManager.elements.mainFrame = $("#main");
+        indexManager.elements.menuBar = $(".menubar");
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -130,14 +132,17 @@
 
         indexManager.currentState.mainMenuId = id;
         indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.menuBar.removeClass("has-submenu");
 
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
+            indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
         }
     },
     subMenuClick: (id) => {
+
         indexManager.elements.subMenuItems.removeClass("active");
         var $this = $("#" + id);
 
@@ -172,9 +177,13 @@
         indexManager.elements.mainMenu.removeClass("active");
         $("#" + currentMenu.mainMenu).addClass("active");
 
+        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.menuBar.removeClass("has-submenu");
+
         indexManager.currentState.mainMenuId = currentMenu.mainMenu;
         var subMenu = $(".sub-menu[data-main-menu='" + currentMenu.mainMenu + "']");
         if (subMenu && subMenu.length) {
+            indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.find("#" + currentMenu.subMenu)[0].click();
         } else {
             $("#" + currentMenu.mainMenu).click();
