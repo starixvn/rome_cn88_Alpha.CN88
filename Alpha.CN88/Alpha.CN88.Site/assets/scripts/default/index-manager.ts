@@ -139,6 +139,8 @@
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
+        } else {
+            indexManager.addHistory({ mainMenu: indexManager.currentState.mainMenuId, subMenu: null });
         }
     },
     subMenuClick: (id) => {
