@@ -26,10 +26,10 @@
       <siteMapNode resourceKey="problemAccount" appPath="CN88AppPath" url="AccountManagement/ProblemAccount" roles="Super"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]">
-      <siteMapNode resourceKey="wagerReport" appPath="CN88AppPath" url="Reports/WagerReport"></siteMapNode>
-      <siteMapNode resourceKey="legacyReport" appPath="CN88AppPath" url="Reports/LegacyReport"></siteMapNode>
-      <siteMapNode resourceKey="oldReport" appPath="CN88AppPath" url="Reports/OldReport"></siteMapNode>
-      <siteMapNode resourceKey="exchangeRate" appPath="CN88AppPath" url="Reports/ExchangeRate"></siteMapNode>
+      <siteMapNode resourceKey="wagerReport" appPath="FeaturesAppPath" url="Main/Index"></siteMapNode>
+      <siteMapNode resourceKey="legacyReport" appPath="FeaturesAppPath" url="Reports/Legacy"></siteMapNode>
+      <siteMapNode resourceKey="oldReport" appPath="FeaturesAppPath" url="Reports/OldReport"></siteMapNode>
+      <siteMapNode resourceKey="exchangeRate" appPath="FeaturesAppPath" url="Reports/ExchangeRate"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="help">
       <siteMapNode resourceKey="newUrl" appPath="CN88AppPath" url="Help/NewUrl"></siteMapNode>
