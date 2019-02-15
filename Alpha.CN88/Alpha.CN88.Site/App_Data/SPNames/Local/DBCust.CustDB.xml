@@ -8,8 +8,8 @@
     <Setting Key="Age_CS_Customer_Status_Upd" SpName="Age_CS_Customer_Status_Upd" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Login">
-    <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline_uat4" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin_uat4" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Bet Choice Limit">
     <Setting Key="Age_CustSetting_BetChoiceLimitCheck" SpName="Age_CustSetting_BetChoiceLimitCheck" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
