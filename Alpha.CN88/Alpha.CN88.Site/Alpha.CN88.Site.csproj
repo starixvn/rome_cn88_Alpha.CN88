@@ -401,14 +401,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
-    <Content Include="assets\bundles\customer-list\index.js" />
-    <Content Include="assets\bundles\customer-list\index.min.js">
-      <DependentUpon>index.js</DependentUpon>
-    </Content>
-    <Content Include="assets\bundles\customer-list\popup\credit-popup.js" />
-    <Content Include="assets\bundles\customer-list\popup\credit-popup.min.js" />
-    <Content Include="assets\bundles\customer-list\popup\status-popup.js" />
-    <Content Include="assets\bundles\customer-list\popup\status-popup.min.js" />
     <Content Include="assets\bundles\default-index.css" />
     <Content Include="assets\bundles\default-index.js" />
     <Content Include="assets\bundles\default-index.min.css">
