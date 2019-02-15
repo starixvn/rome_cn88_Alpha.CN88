@@ -1,10 +1,11 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System;
+    using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
-    using Helpers;
+    using CN88.Helpers;
     using MediatR;
     using Requests.Authentication;
     using Sunplus.Agent.Utilities;
@@ -25,39 +26,8 @@
             return Content("Please login to start your session");
         }
 
+        [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
         public ActionResult Login(LoginQuery message)
-        {
-            //ClearSession();
-
-            //if (message.IsInvalid())
-            //{
-            //    return RedirectToLoginPage();
-            //}
-
-            //message.IBCKeyPath = GetIBCKeyPath();
-            //var result = mediator.Send(message);
-
-            //if (!result.IsSuccess)
-            //{
-            //    return RedirectToLoginPage();
-            //}
-
-            //if (!Model.BL.Definitions.AppSettings.LocalTest)
-            //{
-            //    string[] domains = Model.BL.Definitions.AppSettings.CookielessDomainCollection;
-            //    TplCore.TplSettings.SetCookielessDomains(domains);
-            //}
-
-            //Session[DeviceIdSessionKey] = result.DeviceId;
-
-            //var userName = string.IsNullOrWhiteSpace(result.SubAccName) ? result.CustName : result.SubAccName;
-            //var cookie = new HttpCookie("detecas-username") { Value = userName };
-            //Response.Cookies.Add(cookie);
-
-            return RedirectToDefaultPage(8, 0, "supertest1");
-        }
-
-        public ActionResult AdminLogin(AdminLoginQuery message)
         {
             ClearSession();
 
@@ -74,56 +44,72 @@
                 return RedirectToLoginPage();
             }
 
-            //if (!Model.BL.Definitions.AppSettings.LocalTest)
-            //{
-            //    string[] domains = Model.BL.Definitions.AppSettings.CookielessDomainCollection;
-            //    TplCore.TplSettings.SetCookielessDomains(domains);
-            //}
+            Session[DeviceIdSessionKey] = result.DeviceId;
 
-            return RedirectToDefaultPage(result.CustId, result.SubAccId, result.CustName);
+            return SetCookiesAndRedirectToDefaultPage(result.CustId, result.CustName, result.SubAccId, result.SubAccName);
         }
 
-        //public ActionResult Logout(LogoutQuery message)
+        //public ActionResult AdminLogin(AdminLoginQuery message)
         //{
-        //    mediator.Send(message);
         //    ClearSession();
 
-        //    if (Session.IsCookieless)
+        //    if (message.IsInvalid())
         //    {
         //        return RedirectToLoginPage();
         //    }
-        //    else
+
+        //    message.IBCKeyPath = GetIBCKeyPath();
+        //    var result = mediator.Send(message);
+
+        //    if (!result.IsSuccess)
         //    {
-        //        FormsAuthentication.SignOut();
-
-        //        ClearCookies();
-
-        //        Response.Redirect("~/_Authorization/SignIn.aspx", true);
+        //        return RedirectToLoginPage();
         //    }
+
+        //    //if (!Model.BL.Definitions.AppSettings.LocalTest)
+        //    //{
+        //    //    string[] domains = Model.BL.Definitions.AppSettings.CookielessDomainCollection;
+        //    //    TplCore.TplSettings.SetCookielessDomains(domains);
+        //    //}
+
+        //    return RedirectToDefaultPage(result.CustId, result.SubAccId, result.CustName);
         //}
+
+        public async Task<ActionResult> Logout(LogoutQuery message)
+        {
+            await mediator.SendAsync(message);
+            ClearSession();
+
+            if (!Session.IsCookieless)
+            {
+                FormsAuthentication.SignOut();
+                ClearCookies();
+            }
+
+            return RedirectToLoginPage();
+        }
 
         private string GetIBCKeyPath()
             => Server.MapPath("~/App_Data/IbcKeys/ibckey.snk");
 
-        private RedirectResult RedirectToDefaultPage(int custId, int subAccId, string userName)
+        private RedirectResult SetCookiesAndRedirectToDefaultPage(int custId, string custName, int subAccId, string SubAccName)
         {
-            Request.Cookies.Remove(GetCookieCurrentURLKey(custId, subAccId));
+            Request.Cookies.Remove(CookieHelper.GetCookieNameOfCurrentPage(custId, subAccId, Encryption.PearsonEncode));
+
+            var userName = string.IsNullOrWhiteSpace(SubAccName) ? custName : SubAccName;
+            var cookie = new HttpCookie("detecas-username") { Value = userName };
+            Response.Cookies.Add(cookie);
 
             Web.Validators.SessionValidator.AddSessionVerificationToken();
 
+            FormsAuthentication.SetAuthCookie(userName, false);
             FormsAuthentication.RedirectFromLoginPage(userName, false, FormsAuthentication.FormsCookiePath);
-
-            FormsAuthentication.SetAuthCookie(GetCookieCurrentURLKey(custId, subAccId), false);
 
             return Redirect(FormsAuthentication.DefaultUrl);
         }
 
-        private string GetCookieCurrentURLKey(int custId, int subAccId)
-            => Encryption.PearsonEncode($"{custId}_{subAccId}_URL");
-
         private RedirectResult RedirectToLoginPage()
             => Redirect(FormsAuthentication.LoginUrl);
-        //=> Redirect(Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl);
 
         private void ClearSession()
         {

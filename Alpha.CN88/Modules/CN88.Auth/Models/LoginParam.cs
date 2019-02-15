@@ -1,4 +1,4 @@
-﻿namespace Alpha.CN88.Params.Authentication
+﻿namespace CN88.Auth.Models
 {
     using System;
 
@@ -10,50 +10,44 @@
 
         public LoginParam(
             int custId,
+            string password,
             int subAccId,
             long timeTicks,
-            DateTime loginTime,
-            string password,
             string nickName,
             bool isNickName,
-            string language,
-            string langKey,
-            string deviceId,
-            string browserSize)
+            string languageKey,
+            RequestInfo requestInfo,
+            string deviceId)
         {
             CustId = custId;
+            Password = password;
             SubAccId = subAccId;
             TimeTicks = timeTicks;
-            LoginTime = loginTime;
-            Password = password;
             NickName = nickName;
-            IsNickName = isNickName;
-            Language = language;
-            LangKey = langKey;
+            IsNickName = IsNickName;
+            LanguageKey = languageKey;
+            RequestInfo = requestInfo;
             DeviceId = deviceId;
-            BrowserSize = browserSize;
         }
 
         public int CustId { get; }
+
+        public string Password { get; }
 
         public int SubAccId { get; }
 
         public long TimeTicks { get; }
 
-        public DateTime LoginTime { get; }
-
-        public string Password { get; }
+        public DateTime LoginTime => new DateTime(TimeTicks);
 
         public string NickName { get; }
 
         public bool IsNickName { get; }
 
-        public string Language { get; }
+        public string LanguageKey { get; }
 
-        public string LangKey { get; }
+        public RequestInfo RequestInfo { get; }
 
         public string DeviceId { get; }
-
-        public string BrowserSize { get; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Alpha.CN88.Site.Requests.Authentication
 {
-    using CN88.Models.Authentication;
+    using global::CN88.Auth.Models;
     using MediatR;
 
     public class LoginQuery : IRequest<AuthResult>

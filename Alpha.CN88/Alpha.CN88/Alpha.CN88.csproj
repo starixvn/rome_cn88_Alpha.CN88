@@ -78,10 +78,6 @@
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Cryptography.Aes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Cryptography.Aes.1.0.0.0-beta02\lib\net461\Fanex.Cryptography.Aes.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Fanex.CustomerSetting.Module.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CasinoLibrary.1.0.2.13\lib\net40\Fanex.CustomerSetting.Module.Casino.dll</HintPath>
       <Private>True</Private>
@@ -174,10 +170,6 @@
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RSACryptoPad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RSACryptoPad.1.0.0.0\lib\net40\RSACryptoPad.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Auth, Version=3.0.1.2, Culture=neutral, processorArchitecture=MSIL">
@@ -282,7 +274,6 @@
     <Compile Include="Constants\Language.cs" />
     <Compile Include="FunctionRegistry.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\Authentication\AuthResult.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\DeviceInfo.cs" />
@@ -294,10 +285,8 @@
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\Authentication\AdminLoginParam.cs" />
-    <Compile Include="Params\Authentication\LoginParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Authentication\AuthenticationService.cs" />
-    <Compile Include="Services\Authentication\LoginParamParser.cs" />
     <Compile Include="Services\CachingManager.cs" />
     <Compile Include="Services\DefaultService.cs" />
     <Compile Include="Services\Impl\CachingManagerImpl.cs" />
@@ -333,9 +322,6 @@
     <EmbeddedResource Include="AppResources\SitemapLabels.zh-CN.resx" />
     <EmbeddedResource Include="AppResources\SitemapLabels.zh-Hans.resx" />
     <EmbeddedResource Include="AppResources\SitemapLabels.zh-TW.resx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\aes.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Criteria\" />

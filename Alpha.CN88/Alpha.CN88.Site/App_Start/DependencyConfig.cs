@@ -1,23 +1,24 @@
 ﻿namespace Alpha.CN88.Site.App_Start
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using CN88.Models;
     using Controllers;
     using Fanex.Data.Repository;
+    using global::CN88.Auth.DataAccesses;
+    using global::CN88.Auth.Services;
     using Helpers;
     using MediatR;
     using Models;
     using Services;
-    using Services.Authentication;
     using Services.Impl;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Web.Helpers;
     using Web.Helpers.Impl;
 
@@ -68,7 +69,8 @@
 
         private static void RegisterDataAccesses(Container container)
         {
-            container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Singleton);
+            container.RegisterSingleton<IDynamicRepository, DynamicRepository>();
+            container.RegisterSingleton<AuthenticationDataAccess, AuthenticationDataAccessImpl>();
         }
 
         private static void RegisterServices(Container container)
@@ -86,6 +88,7 @@
 
             container.RegisterPerWebRequest<LoginParamParser, LoginParamParserImpl>();
             container.RegisterPerWebRequest<AuthenticationService, AuthenticationServiceImpl>();
+            container.RegisterPerWebRequest<SessionUpdater, SessionUpdaterImpl>();
         }
     }
 }

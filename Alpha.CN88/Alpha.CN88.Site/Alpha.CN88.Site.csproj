@@ -364,10 +364,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="UAParser, Version=2.1.0.0, Culture=neutral, PublicKeyToken=f7377bf021646069, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UAParser.2.1.0.0\lib\net40-Client\UAParser.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -495,7 +491,6 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\AuthenticationHandler.cs" />
-    <Compile Include="Helpers\DeviceHelper.cs" />
     <Compile Include="Handlers\DefaultHandler.cs" />
     <Compile Include="Handlers\LanguageHandler.cs" />
     <Compile Include="Handlers\MenuBarHandler.cs" />
@@ -620,6 +615,10 @@
       <Project>{32f77acd-7726-49d0-8b2a-78caf55f6073}</Project>
       <Name>Alpha.CN88</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\CN88.Auth\CN88.Auth.csproj">
+      <Project>{382efae7-d5be-4344-92f1-1f95e8e35903}</Project>
+      <Name>CN88.Auth</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\scripts\tests\chutzpah.json" />
@@ -649,6 +648,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\scripts\tests\apps\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\ProductSection.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

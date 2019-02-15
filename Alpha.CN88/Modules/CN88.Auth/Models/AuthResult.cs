@@ -1,9 +1,8 @@
-﻿namespace Alpha.CN88.Models.Authentication
+﻿namespace CN88.Auth.Models
 {
-    public class AuthResult : Result
+    public class AuthResult
     {
-        public AuthResult(int code, string message)
-            : base(code, message)
+        public AuthResult()
         {
         }
 
@@ -12,7 +11,7 @@
             string custName,
             int subAccId = 0,
             string subAccName = null,
-            string deviceId = "N/A") : base(0, string.Empty)
+            string deviceId = "N/A")
         {
             CustId = custId;
             CustName = custName;
@@ -30,5 +29,8 @@
         public string SubAccName { get; }
 
         public string DeviceId { get; }
+
+        public bool IsSuccess
+            => CustId > 0;
     }
 }
