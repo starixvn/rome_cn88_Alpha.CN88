@@ -1,7 +1,6 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System;
-    using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -26,7 +25,7 @@
             return Content("Please login to start your session");
         }
 
-        [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
+        //[OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
         public ActionResult Login(LoginQuery message)
         {
             ClearSession();
@@ -49,41 +48,38 @@
             return SetCookiesAndRedirectToDefaultPage(result.CustId, result.CustName, result.SubAccId, result.SubAccName);
         }
 
-        //public ActionResult AdminLogin(AdminLoginQuery message)
-        //{
-        //    ClearSession();
-
-        //    if (message.IsInvalid())
-        //    {
-        //        return RedirectToLoginPage();
-        //    }
-
-        //    message.IBCKeyPath = GetIBCKeyPath();
-        //    var result = mediator.Send(message);
-
-        //    if (!result.IsSuccess)
-        //    {
-        //        return RedirectToLoginPage();
-        //    }
-
-        //    //if (!Model.BL.Definitions.AppSettings.LocalTest)
-        //    //{
-        //    //    string[] domains = Model.BL.Definitions.AppSettings.CookielessDomainCollection;
-        //    //    TplCore.TplSettings.SetCookielessDomains(domains);
-        //    //}
-
-        //    return RedirectToDefaultPage(result.CustId, result.SubAccId, result.CustName);
-        //}
-
-        public async Task<ActionResult> Logout(LogoutQuery message)
+        public ActionResult AdminLogin(AdminLoginQuery message)
         {
-            await mediator.SendAsync(message);
+            ClearSession();
+
+            if (message.IsInvalid())
+            {
+                return RedirectToLoginPage();
+            }
+
+            message.IBCKeyPath = GetIBCKeyPath();
+            var result = mediator.Send(message);
+
+            if (!result.IsSuccess)
+            {
+                return RedirectToLoginPage();
+            }
+
+            Request.Cookies.Remove(CookieHelper.GetCookieNameOfCurrentPage(result.CustId, result.SubAccId, Encryption.PearsonEncode));
+            FormsAuthentication.RedirectFromLoginPage(result.CustName, false);
+
+            return Redirect(FormsAuthentication.DefaultUrl);
+        }
+
+        public ActionResult Logout(LogoutQuery message)
+        {
+            mediator.Send(message);
             ClearSession();
 
             if (!Session.IsCookieless)
             {
-                FormsAuthentication.SignOut();
                 ClearCookies();
+                FormsAuthentication.SignOut();
             }
 
             return RedirectToLoginPage();
@@ -92,18 +88,18 @@
         private string GetIBCKeyPath()
             => Server.MapPath("~/App_Data/IbcKeys/ibckey.snk");
 
-        private RedirectResult SetCookiesAndRedirectToDefaultPage(int custId, string custName, int subAccId, string SubAccName)
+        private RedirectResult SetCookiesAndRedirectToDefaultPage(int custId, string custName, int subAccId, string subAccName)
         {
             Request.Cookies.Remove(CookieHelper.GetCookieNameOfCurrentPage(custId, subAccId, Encryption.PearsonEncode));
 
-            var userName = string.IsNullOrWhiteSpace(SubAccName) ? custName : SubAccName;
+            var userName = string.IsNullOrWhiteSpace(subAccName) ? custName : subAccName;
             var cookie = new HttpCookie("detecas-username") { Value = userName };
             Response.Cookies.Add(cookie);
 
-            Web.Validators.SessionValidator.AddSessionVerificationToken();
+            //Web.Validators.SessionValidator.AddSessionVerificationToken();
 
-            FormsAuthentication.SetAuthCookie(userName, false);
-            FormsAuthentication.RedirectFromLoginPage(userName, false, FormsAuthentication.FormsCookiePath);
+            //FormsAuthentication.SetAuthCookie(userName, false);
+            //FormsAuthentication.RedirectFromLoginPage(userName, false, FormsAuthentication.FormsCookiePath);
 
             return Redirect(FormsAuthentication.DefaultUrl);
         }

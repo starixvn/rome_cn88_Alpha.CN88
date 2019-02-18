@@ -3,9 +3,9 @@
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class LogoutCriteria : NonQueryCommand
+    public class LogoutCommand : NonQueryCommand
     {
-        public LogoutCriteria(
+        public LogoutCommand(
             int onlineUserId,
             string userName,
             byte roleId,

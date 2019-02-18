@@ -37,7 +37,6 @@
 
         public override bool IsValid()
             => CustId > 0
-            && SubAccId >= 0
             && !string.IsNullOrWhiteSpace(NetSessionId)
             && ServerId > 0;
     }

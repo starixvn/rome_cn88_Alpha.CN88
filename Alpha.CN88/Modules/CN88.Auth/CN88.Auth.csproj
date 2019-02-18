@@ -142,14 +142,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criteria\AdminLoginCommand.cs" />
     <Compile Include="Criteria\CheckBetChoiceLimitCriteria.cs" />
     <Compile Include="Criteria\CheckinCommand.cs" />
     <Compile Include="Criteria\GetCustomerStatusCriteria.cs" />
-    <Compile Include="Criteria\LoginCriteria.cs" />
-    <Compile Include="Criteria\LogoutCriteria.cs" />
+    <Compile Include="Criteria\LoginCommand.cs" />
+    <Compile Include="Criteria\LogoutCommand.cs" />
     <Compile Include="DataAccesses\AuthenticationDataAccess.cs" />
+    <Compile Include="Models\AdminLoginParam.cs" />
     <Compile Include="Models\AuthResult.cs" />
     <Compile Include="Models\LoginParam.cs" />
+    <Compile Include="Models\LogoutParam.cs" />
     <Compile Include="Models\RequestInfo.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

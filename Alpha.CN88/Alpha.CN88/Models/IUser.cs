@@ -19,5 +19,13 @@
         bool HasUpdatePermission { get; }
 
         bool HasAddNewPermission { get; }
+
+        int OnlineUserId { get; }
+
+        string SubUserName { get; }
+
+        string NickName { get; }
+
+        int ServerId { get; }
     }
 }

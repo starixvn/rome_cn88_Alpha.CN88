@@ -18,7 +18,7 @@
 
         LoginParam ToObject(string[] keyValuePairs);
 
-        //AdminLoginParam ToAdminObject(string[] keyValuePairs);
+        AdminLoginParam ToAdminObject(string[] keyValuePairs);
     }
 
     public class LoginParamParserImpl : LoginParamParser
@@ -103,35 +103,30 @@
                 string.IsNullOrWhiteSpace(deviceId) ? "N/A" : deviceId);
         }
 
-        //public AdminLoginParam ToAdminObject(string[] keyValuePairs)
-        //{
-        //    // AdminLoginParams: custName, adminId, loginTime, systemLogin: optional.
-        //    int adminId;
-        //    long timeTicks;
-        //    var custName = keyValuePairs[AdminCustNameIndex];
-        //    var loginParamsLength = keyValuePairs.Length;
+        public AdminLoginParam ToAdminObject(string[] keyValuePairs)
+        {
+            // AdminLoginParams: custName, adminId, loginTime, systemLogin: optional.
+            int adminId;
+            long timeTicks;
+            var custName = keyValuePairs[AdminCustNameIndex];
+            var loginParamsLength = keyValuePairs.Length;
 
-        //    if (loginParamsLength < 2
-        //        || string.IsNullOrEmpty(custName)
-        //        || !int.TryParse(keyValuePairs[AdminIdIndex], out adminId)
-        //        || !long.TryParse(keyValuePairs[AdminTimeTicksIndex], out timeTicks))
-        //    {
-        //        return new AdminLoginParam();
-        //    }
+            if (loginParamsLength < 2
+                || string.IsNullOrEmpty(custName)
+                || !int.TryParse(keyValuePairs[AdminIdIndex], out adminId)
+                || !long.TryParse(keyValuePairs[AdminTimeTicksIndex], out timeTicks))
+            {
+                return new AdminLoginParam();
+            }
 
-        //    var loginTime = new DateTime(timeTicks);
-        //    var systemLogin = loginParamsLength > 3 ? keyValuePairs[3] : DefaultSystemLogin;
-
-        //    return new AdminLoginParam(
-        //        adminId,
-        //        systemLogin,
-        //        custName,
-        //        timeTicks,
-        //        loginTime,
-        //        ValidLanguages[0],
-        //        ValidLanguageCodes[0],
-        //        loginParamsLength >= 11 ? keyValuePairs[BrowserSizeIndex] : string.Empty);
-        //}
+            return new AdminLoginParam(
+                adminId,
+                loginParamsLength > 3 ? keyValuePairs[3] : DefaultSystemLogin,
+                custName,
+                timeTicks,
+                ValidLanguageKeys[0],
+                GetRequestInfo(GetRequest(), loginParamsLength >= 11 ? keyValuePairs[BrowserSizeIndex] : string.Empty));
+        }
 
         private static HttpRequest GetRequest()
             => HttpContext.Current.Request;

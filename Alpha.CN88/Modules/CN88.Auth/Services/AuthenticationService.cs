@@ -1,6 +1,6 @@
 ﻿namespace CN88.Auth.Services
 {
-    using System.Threading.Tasks;
+    using System;
     using Criteria;
     using DataAccesses;
     using Fanex.Data.Repository;
@@ -10,12 +10,9 @@
     {
         AuthResult Login(string requestParam, string ibckeyPath);
 
-        Task LogoutAsync(
-           int onlineUserId,
-           string userName,
-           byte roleId,
-           int serverId,
-           string nickName);
+        AuthResult AdminLogin(string requestParam, string ibckeyPath);
+
+        void Logout(LogoutParam logoutParam);
     }
 
     public class AuthenticationServiceImpl : AuthenticationService
@@ -42,7 +39,7 @@
             var keyValuePairs = loginParamParser.DecryptString(requestParam, ibckeyPath);
             var loginParam = loginParamParser.ToObject(keyValuePairs);
 
-            var criteria = new LoginCriteria(
+            var criteria = new LoginCommand(
                 loginParam.CustId,
                 loginParam.Password,
                 loginParam.SubAccId,
@@ -57,22 +54,47 @@
                 loginParam.RequestInfo.CountryCode);
 
             var outputParams = authenticationDataAccess.ExecuteNonQuery(criteria);
+            var errorCode = Convert.ToInt32(outputParams["errcode"]);
 
-            if (criteria.ErrorCode != 0)
-            {
-                new AuthResult();
-            }
-
-            return sessionUpdater.Update(loginParam, outputParams);
+            return errorCode != 0
+                ? new AuthResult()
+                : sessionUpdater.Update(loginParam, outputParams);
         }
 
-        public async Task LogoutAsync(
-            int onlineUserId,
-            string userName,
-            byte roleId,
-            int serverId,
-            string nickName)
-            => await dynamicRepository.ExecuteAsync(
-                new LogoutCriteria(onlineUserId, userName, roleId, serverId, nickName));
+        public AuthResult AdminLogin(string requestParam, string ibckeyPath)
+        {
+            var keyValuePairs = loginParamParser.DecryptString(requestParam, ibckeyPath);
+            var loginParam = loginParamParser.ToAdminObject(keyValuePairs);
+
+            var criteria = new AdminLoginCommand(
+                loginParam.CustName,
+                loginParam.AdminId,
+                loginParam.LoginTime,
+                loginParam.LanguageKey,
+                loginParam.RequestInfo.LoginIP,
+                loginParam.RequestInfo.LoginDomain,
+                loginParam.RequestInfo.BrowserName,
+                loginParam.RequestInfo.Platform,
+                loginParam.RequestInfo.CountryCode);
+
+            var outputParams = authenticationDataAccess.ExecuteNonQuery(criteria);
+            var errorCode = Convert.ToInt32(outputParams["errcode"]);
+
+            return errorCode != 0
+                ? new AuthResult()
+                : sessionUpdater.UpdateAdmin(loginParam, outputParams);
+        }
+
+        public void Logout(LogoutParam logoutParam)
+        {
+            dynamicRepository.Execute(new LogoutCommand(
+                logoutParam.OnlineUserId,
+                string.IsNullOrWhiteSpace(logoutParam.SubUserName) ? logoutParam.CustName : logoutParam.SubUserName,
+                logoutParam.CustRoleId,
+                logoutParam.ServerId,
+                logoutParam.NickName));
+
+            sessionUpdater.ClearUserSession();
+        }
     }
 }

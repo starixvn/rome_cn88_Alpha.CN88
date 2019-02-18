@@ -32,5 +32,13 @@
         public bool HasUpdatePermission => !userSession.IsSubAcc || pageAccess.UpdateAccount;
 
         public bool HasAddNewPermission => !userSession.IsSubAcc || pageAccess.CreateAccount;
+
+        public int OnlineUserId => userSession.OnUserId;
+
+        public string SubUserName => userSession.SubUserName;
+
+        public string NickName => userSession.NickName;
+
+        public int ServerId => userSession.ServerId;
     }
 }

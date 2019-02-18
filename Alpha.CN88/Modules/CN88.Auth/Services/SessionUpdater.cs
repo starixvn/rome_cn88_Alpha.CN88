@@ -13,7 +13,11 @@
 
     public interface SessionUpdater
     {
-        AuthResult Update(LoginParam loginParam, Hashtable outputs);
+        AuthResult Update(LoginParam loginParam, Hashtable outputParams);
+
+        AuthResult UpdateAdmin(AdminLoginParam loginParam, Hashtable outputParams);
+
+        void ClearUserSession();
     }
 
     public class SessionUpdaterImpl : SessionUpdater
@@ -73,6 +77,56 @@
                 subAccName,
                 loginParam.DeviceId);
         }
+
+        public AuthResult UpdateAdmin(AdminLoginParam loginParam, Hashtable outputParams)
+        {
+            var userSession = UserSession.Current;
+
+            var custId = Convert.ToInt32(outputParams["custid"]);
+            var roleId = Convert.ToByte(outputParams["roleid"]);
+
+            if (!outputParams.Contains("username"))
+            {
+                outputParams["username"] = loginParam.CustName;
+            }
+
+            outputParams.Add("sitename", AppSettings.SiteNameFromRoleId(roleId));
+
+            outputParams.Add("subaccid", 0);
+            outputParams.Add("subaccname", string.Empty);
+
+            // on_userid already existed in internal login case.
+            var serverId = Convert.ToInt32(outputParams["serverid"]);
+            outputParams["on_userid"] = GetOnlineUserId(custId, -loginParam.AdminId, userSession.NetSessionId, serverId, loginParam.RequestInfo.LoginIP);
+
+            AddCustomerStatusToOutputParams(outputParams, custId, loginParam.AdminId, loginParam.SystemLogin);
+
+            // bool isAllowedTransferTotalBalance = this.dao.Age_Transfer_CheckTotalBalanceTransfer(custId, Sunplus.Agent.Model.BL.Definitions.AppSettings.AllowedListSuperAccounts);
+            outputParams.Add("isallowedtotalbalancetransfer", false);
+
+            // Cast un-unique fields with normal Login.
+            outputParams.Add("iscasinodisabled", outputParams["casinodisable"]);
+            outputParams.Remove("casinodisable");
+            outputParams.Add("iscasinosync", outputParams["casinosync"]);
+            outputParams.Remove("casinosync");
+
+            outputParams.Add("adminid", loginParam.AdminId);
+
+            // bool isShowConsolidated = ConfigurationManager.AppSettings["EnableConsolidatedReport"] == "1" && this.IsShownConsilatedReport(custId);
+            outputParams.Add("isshowconsolidated", false);
+
+            outputParams.Add("isShowBetChoiceLimit", authenticationDataAccess.IsShowBetChoiceLimit(new CheckBetChoiceLimitCriteria(custId)));
+
+            // session.IsInternalWebVPN = session.IsInternal && Request["isVpn"] == "1";
+            userSession.IsInternalWebVPN = false;
+
+            UserSessionService.SetUserSessionValues(userSession, outputParams, AfterUpdate);
+
+            return new AuthResult(custId, loginParam.CustName);
+        }
+
+        public void ClearUserSession()
+            => UserSessionService.RemoveUserSession(UserSession.Current);
 
         private int GetOnlineUserId(
             int custId,

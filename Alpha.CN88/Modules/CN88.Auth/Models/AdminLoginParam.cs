@@ -1,4 +1,4 @@
-﻿namespace Alpha.CN88.Params.Authentication
+﻿namespace CN88.Auth.Models
 {
     using System;
 
@@ -13,19 +13,15 @@
             string systemLogin,
             string custName,
             long timeTicks,
-            DateTime loginTime,
-            string language,
-            string langKey,
-            string browserSize)
+            string languageKey,
+            RequestInfo requestInfo)
         {
             AdminId = adminId;
             SystemLogin = systemLogin;
             CustName = custName;
             TimeTicks = timeTicks;
-            LoginTime = loginTime;
-            Language = language;
-            LangKey = langKey;
-            BrowserSize = browserSize;
+            LanguageKey = languageKey;
+            RequestInfo = requestInfo;
         }
 
         public int AdminId { get; }
@@ -36,12 +32,10 @@
 
         public long TimeTicks { get; }
 
-        public DateTime LoginTime { get; }
+        public DateTime LoginTime => new DateTime(TimeTicks);
 
-        public string Language { get; }
+        public string LanguageKey { get; }
 
-        public string LangKey { get; }
-
-        public string BrowserSize { get; }
+        public RequestInfo RequestInfo { get; }
     }
 }
