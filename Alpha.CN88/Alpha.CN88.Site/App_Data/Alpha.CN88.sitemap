@@ -5,7 +5,7 @@
     <siteMapNode resourceKey="announcement">
       <siteMapNode resourceKey="generalAnnouncement" appPath="CN88AppPath" url="Announcement/GeneralAnnouncement"></siteMapNode>
       <siteMapNode resourceKey="importantAnnouncement" appPath="CN88AppPath" url="Announcement/ImportantAnnouncement"></siteMapNode>
-      <siteMapNode resourceKey="personalAnnouncement" appPath="CN88AppPath" url="Announcement/PersonalAnnouncement" roles="None"></siteMapNode>
+      <siteMapNode resourceKey="personalAnnouncement" appPath="CN88AppPath" url="Announcement/PersonalAnnouncement" roles=""></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="None">
       <siteMapNode resourceKey="overview" appPath="CN88AppPath" url="TotalBets/Overview"></siteMapNode>

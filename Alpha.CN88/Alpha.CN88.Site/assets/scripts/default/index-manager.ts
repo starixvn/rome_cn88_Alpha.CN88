@@ -71,6 +71,7 @@
             indexManager.currentState.mainMenuId = id;
             indexManager.elements.subMenu.addClass("display-none");
             $(".sub-menu[data-main-menu='" + id + "']").removeClass("display-none");
+            indexManager.elements.menuBar.addClass("has-submenu");
             $("#sub-menu-PERSONALANNOUNCEMENT")[0].click();
         });
         $("#lnk-contact-us").on("click touchend", () => {
@@ -125,6 +126,10 @@
         window.open(indexManager.urls.onlineList, "", "height=600,width=800");
     },
     mainMenuClick: (id) => {
+        if (id == "menu-back") {
+            return;
+        }
+
         indexManager.elements.mainMenu.removeClass("active");
         var $this = $("#" + id);
 
@@ -189,7 +194,7 @@
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.find("#" + currentMenu.subMenu)[0].click();
         } else {
-            $("#" + currentMenu.mainMenu).click();
+            $("#" + currentMenu.mainMenu + "> a")[0].click();
         }
     }
 };
