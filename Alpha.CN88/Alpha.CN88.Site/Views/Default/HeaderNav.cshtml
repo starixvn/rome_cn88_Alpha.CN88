@@ -1,27 +1,36 @@
 ﻿@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
 <section class="header-nav" id="header-nav">
     <ul class="header-left">
-        <li class="dropdown language">
-            <span class="icon-web"></span>@Html.Action("List", "Language")
+        <li class="header-item dropdown language">
+            @Html.Action("List", "Language")
         </li>
-        <li class="online-member">
+        <li class="header-item online-member">
             <span>@Resources.OnlineMembers: @Model.OnlineMember</span>
         </li>
     </ul>
     <ul class="header-right">
-        <li id="lnk-new-url">
+        <li class="header-item" id="lnk-new-url">
             New URL
         </li>
-        <li id="lnk-live-chat">
+        <li class="header-item" id="lnk-live-chat">
             <span class="icon-chat"></span>Live Chat
         </li>
-        <li id="lnk-contact-us">
+        <li class="header-item" id="lnk-contact-us">
             Contact Us
         </li>
-        <li id="lnk-personal-announcement"><span class="icon-bell"></span></li>
-        <li>
-            Temp Username
-            @Model.CustName
+        <li class="header-item" id="lnk-personal-announcement"><span class="icon-bell"></span></li>
+        <li class="header-item">           
+            <a href="javascript:;" data-target="#" class="header-item dropdown-toggle" data-toggle="dropdown">
+                Temp Username
+                @Model.CustName
+                <span class="icon-chevron-down"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a>My Setting</a></li>
+                <li><a>Password Recorvery</a></li>
+                <li><a>Change Password</a></li>
+                <li><a>Logout</a></li>
+            </ul>
         </li>
     </ul>
 </section>
