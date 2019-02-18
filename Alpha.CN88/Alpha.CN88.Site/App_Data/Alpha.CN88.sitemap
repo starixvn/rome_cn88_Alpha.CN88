@@ -20,10 +20,10 @@
     </siteMapNode>
     <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="">
       <siteMapNode resourceKey="masterAgent" appPath="FeaturesAppPath" url="CustomerList/Index" roles="Super"></siteMapNode>
-      <siteMapNode resourceKey="agent" appPath="CN88AppPath" url="AccountManagement/Agent" roles="Master"></siteMapNode>
-      <siteMapNode resourceKey="member" appPath="CN88AppPath" url="AccountManagement/Member"></siteMapNode>
-      <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="CN88AppPath" url="AccountManagement/SubAccount"></siteMapNode>
-      <siteMapNode resourceKey="problemAccount" appPath="CN88AppPath" url="AccountManagement/ProblemAccount" roles="Super"></siteMapNode>
+      <siteMapNode resourceKey="agent" appPath="FeaturesAppPath" url="AccountManagement/Agent" roles="Master"></siteMapNode>
+      <siteMapNode resourceKey="member" appPath="FeaturesAppPath" url="AccountManagement/Member"></siteMapNode>
+      <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="AccountManagement/SubAccount"></siteMapNode>
+      <siteMapNode resourceKey="problemAccount" appPath="FeaturesAppPath" url="AccountManagement/ProblemAccount" roles="Super"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]">
       <siteMapNode resourceKey="wagerReport" appPath="FeaturesAppPath" url="Reports/Index"></siteMapNode>

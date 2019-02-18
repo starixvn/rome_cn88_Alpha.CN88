@@ -6,39 +6,6 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/customer-list/index.js",
-    "inputFiles": [
-      "assets/scripts/components/single-selection-dropdown.js",
-      "assets/scripts/components/pager.js",
-      "assets/scripts/site-infrastructure.js",
-      "assets/scripts/customer-list/base-list.js",
-      "assets/scripts/customer-list/master-list.js",
-      "assets/scripts/customer-list/agent-list.js",
-      "assets/scripts/customer-list/member-list.js",
-      "assets/scripts/customer-list/index.js"
-    ]
-  },
-  {
-    "outputFileName": "assets/bundles/customer-list/popup/credit-popup.js",
-    "inputFiles": [
-      "assets/scripts/customer-list/popup/popup-base.js",
-      "assets/scripts/customer-list/popup/credit-popup.js"
-    ]
-  },
-  {
-    "outputFileName": "assets/bundles/customer-list/popup/status-popup.js",
-    "inputFiles": [
-      "assets/scripts/customer-list/popup/popup-base.js",
-      "assets/scripts/customer-list/popup/status-popup.js"
-    ]
-  },
-  {
-    "outputFileName": "assets/bundles/popup.css",
-    "inputFiles": [
-      "assets/styles/popup.css"
-    ]
-  },
-  {
     "outputFileName": "Assets/bundles/default-index.css",
     "inputFiles": [
       "assets/styles/site.css"
