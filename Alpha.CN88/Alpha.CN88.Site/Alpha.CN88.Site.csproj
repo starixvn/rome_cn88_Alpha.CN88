@@ -397,6 +397,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="assets\bundles\customer-list\index.js" />
     <Content Include="assets\bundles\default-index.css" />
     <Content Include="assets\bundles\default-index.js" />
     <Content Include="assets\bundles\default-index.min.css">

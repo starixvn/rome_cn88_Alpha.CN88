@@ -78,6 +78,7 @@
             indexManager.elements.mainMenu.removeClass("active");
             indexManager.elements.subMenu.addClass("display-none");
 
+            indexManager.elements.menuBar.removeClass("has-submenu");
             indexManager.addHistory({ mainMenu: null, subMenu: null });
             indexManager.elements.mainFrame.attr("src", indexManager.urls.contactUs);
         });
