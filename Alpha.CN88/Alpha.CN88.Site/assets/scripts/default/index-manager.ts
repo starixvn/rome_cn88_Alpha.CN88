@@ -92,6 +92,15 @@
             siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
             indexManager.restoreLastMenu();
         });
+
+        $("#lnk-my-setting").on("click touchend", () => {
+        });
+        $("#lnk-password-recovery").on("click touchend", () => {
+        });
+        $("#lnk-change-password").on("click touchend", () => {
+        });
+        $("#lnk-logout").on("click touchend", () => {
+        });
     },
     changeLanguage: (lang) => {
         $.ajax({

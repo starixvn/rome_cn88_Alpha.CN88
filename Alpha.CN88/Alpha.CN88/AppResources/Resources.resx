@@ -123,4 +123,25 @@
   <data name="OnlineMembers" xml:space="preserve">
     <value>Online Members</value>
   </data>
+  <data name="MySetting" xml:space="preserve">
+    <value>My Setting</value>
+  </data>
+  <data name="PasswordRecorvery" xml:space="preserve">
+    <value>Password Recorvery</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="NewURL" xml:space="preserve">
+    <value>New URL</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="LiveChat" xml:space="preserve">
+    <value>Live Chat</value>
+  </data>
 </root>
