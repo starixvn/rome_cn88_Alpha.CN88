@@ -14,3 +14,4 @@
 \\*.napexternal2.config
 \\Assets\\scripts\\tests\\*
 \\typings\\*
+\\App_Data\\IbcKeys\\*
