@@ -2,13 +2,13 @@
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
-    using Alpha.CN88.Models;
-    using Alpha.CN88.Site.Requests;
+    using CN88.Models;
     using MediatR;
+    using Requests;
     using Web;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
-    public abstract class SiteBaseController : Controller
+    public abstract class SiteBaseController : BaseController
     {
         protected readonly IMediator mediator;
 

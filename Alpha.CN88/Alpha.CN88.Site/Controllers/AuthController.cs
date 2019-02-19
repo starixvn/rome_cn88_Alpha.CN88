@@ -22,17 +22,19 @@
 
         public ActionResult Index()
         {
-            return Content("Please login to start your session");
+            Session.Abandon();
+
+            return Redirect(Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl);
         }
 
-        //[OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
+        [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
         public ActionResult Login(LoginQuery message)
         {
-            ClearSession();
+            Session.RemoveAll();
 
             if (message.IsInvalid())
             {
-                return RedirectToLoginPage();
+                return RedirectToAction(nameof(Index));
             }
 
             message.IBCKeyPath = GetIBCKeyPath();
@@ -40,7 +42,7 @@
 
             if (!result.IsSuccess)
             {
-                return RedirectToLoginPage();
+                return RedirectToAction(nameof(Index));
             }
 
             Session[DeviceIdSessionKey] = result.DeviceId;
@@ -50,11 +52,11 @@
 
         public ActionResult AdminLogin(AdminLoginQuery message)
         {
-            ClearSession();
+            Session.RemoveAll();
 
             if (message.IsInvalid())
             {
-                return RedirectToLoginPage();
+                return RedirectToAction(nameof(Index));
             }
 
             message.IBCKeyPath = GetIBCKeyPath();
@@ -62,7 +64,7 @@
 
             if (!result.IsSuccess)
             {
-                return RedirectToLoginPage();
+                return RedirectToAction(nameof(Index));
             }
 
             Request.Cookies.Remove(CookieHelper.GetCookieNameOfCurrentPage(result.CustId, result.SubAccId, Encryption.PearsonEncode));
@@ -73,8 +75,8 @@
 
         public ActionResult Logout(LogoutQuery message)
         {
+            Session.RemoveAll();
             mediator.Send(message);
-            ClearSession();
 
             if (!Session.IsCookieless)
             {
@@ -82,13 +84,13 @@
                 FormsAuthentication.SignOut();
             }
 
-            return RedirectToLoginPage();
+            return RedirectToAction(nameof(Index));
         }
 
         private string GetIBCKeyPath()
             => Server.MapPath("~/App_Data/IbcKeys/ibckey.snk");
 
-        private RedirectResult SetCookiesAndRedirectToDefaultPage(int custId, string custName, int subAccId, string subAccName)
+        private RedirectToRouteResult SetCookiesAndRedirectToDefaultPage(int custId, string custName, int subAccId, string subAccName)
         {
             Request.Cookies.Remove(CookieHelper.GetCookieNameOfCurrentPage(custId, subAccId, Encryption.PearsonEncode));
 
@@ -96,22 +98,12 @@
             var cookie = new HttpCookie("detecas-username") { Value = userName };
             Response.Cookies.Add(cookie);
 
-            //Web.Validators.SessionValidator.AddSessionVerificationToken();
+            Web.Validators.SessionValidator.AddSessionVerificationToken();
 
             //FormsAuthentication.SetAuthCookie(userName, false);
-            //FormsAuthentication.RedirectFromLoginPage(userName, false, FormsAuthentication.FormsCookiePath);
+            FormsAuthentication.RedirectFromLoginPage(userName, false, FormsAuthentication.FormsCookiePath);
 
-            return Redirect(FormsAuthentication.DefaultUrl);
-        }
-
-        private RedirectResult RedirectToLoginPage()
-            => Redirect(FormsAuthentication.LoginUrl);
-
-        private void ClearSession()
-        {
-            // RemoveAll calls Clear internally.
-            Session.RemoveAll();
-            Session.Abandon();
+            return RedirectToAction("Index", "Default");
         }
 
         private void ClearCookies()
