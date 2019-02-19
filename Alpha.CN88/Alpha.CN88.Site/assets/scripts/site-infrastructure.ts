@@ -45,6 +45,11 @@ class SiteInfrastructure {
             var cookieExpire: any = { expires: 365, path: window.location.pathname };
 
             return cookieExpire;
+        },
+        clear: () => {
+            if (store.enabled) {
+                store.clear();
+            }
         }
     };
 }

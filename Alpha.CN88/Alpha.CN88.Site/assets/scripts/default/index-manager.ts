@@ -100,6 +100,7 @@
         $("#lnk-change-password").on("click touchend", () => {
         });
         $("#lnk-logout").on("click touchend", () => {
+            indexManager.signOut();
         });
     },
     changeLanguage: (lang) => {
@@ -206,6 +207,15 @@
         } else {
             $("#" + currentMenu.mainMenu + "> a")[0].click();
         }
+    },
+    signOut: function () {
+        var index: any = window;
+        while (index != index.parent) {
+            index = index.parent;
+        }
+
+        index.location.href = indexManager.urls.mainRootPath + 'Auth/Logout';
+        siteInfrastructure.localStorage.clear();
     }
 };
 
