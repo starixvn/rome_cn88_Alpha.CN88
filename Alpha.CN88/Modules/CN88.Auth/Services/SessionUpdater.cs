@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Data;
+    using System.Text.RegularExpressions;
     using Criteria;
     using DataAccesses;
     using Fanex.Data.Repository;
@@ -36,45 +37,23 @@
         public AuthResult Update(LoginParam loginParam, Hashtable outputParams)
         {
             var userSession = UserSession.Current;
+
             outputParams.Add("custid", loginParam.CustId);
-
-            var roleId = Convert.ToByte(outputParams["roleid"]);
-            outputParams.Add("sitename", AppSettings.SiteNameFromRoleId(roleId));
-
-            var isSubAcc = loginParam.SubAccId != 0;
-            var subAccName = isSubAcc ? outputParams["subusername"].ToString().ToUpperInvariant() : string.Empty;
-            outputParams.Add("subaccid", loginParam.SubAccId);
-            outputParams.Add("subaccname", subAccName);
-
-            if (isSubAcc)
-            {
-                outputParams.Remove("subusername");
-            }
-
-            var serverId = Convert.ToInt32(outputParams["serverid"]);
-            outputParams.Add("on_userid", GetOnlineUserId(loginParam.CustId, loginParam.SubAccId, userSession.NetSessionId, serverId, loginParam.RequestInfo.LoginIP));
-
-            AddCustomerStatusToOutputParams(outputParams, loginParam.CustId);
-
-            // bool isAllowedTransferTotalBalance = this.dao.Age_Transfer_CheckTotalBalanceTransfer(custId, Sunplus.Agent.Model.BL.Definitions.AppSettings.AllowedListSuperAccounts);
-            outputParams.Add("isallowedtotalbalancetransfer", false);
-
-            outputParams.Add("adminid", 0);
-
-            // bool isShowConsolidated = ConfigurationManager.AppSettings["EnableConsolidatedReport"] == "1" && this.IsShownConsilatedReport(custId);
-            outputParams.Add("isshowconsolidated", false);
-
-            outputParams.Add("isShowBetChoiceLimit", authenticationDataAccess.IsShowBetChoiceLimit(new CheckBetChoiceLimitCriteria(loginParam.CustId)));
+            AddToOutputParams(
+                loginParam.CustId,
+                loginParam.SubAccId,
+                loginParam.RequestInfo.LoginIP,
+                userSession.NetSessionId,
+                outputParams);
 
             userSession.UserLoginIp = loginParam.RequestInfo.LoginIP;
-
-            UserSessionService.SetUserSessionValues(userSession, outputParams, AfterUpdate);
+            SetUserSessionValues(userSession.NetSessionId, outputParams);
 
             return new AuthResult(
                 loginParam.CustId,
                 outputParams["username"].ToString(),
                 loginParam.SubAccId,
-                subAccName,
+                userSession.SubUserName,
                 loginParam.DeviceId);
         }
 
@@ -83,44 +62,17 @@
             var userSession = UserSession.Current;
 
             var custId = Convert.ToInt32(outputParams["custid"]);
-            var roleId = Convert.ToByte(outputParams["roleid"]);
+            outputParams.Add("username", loginParam.CustName);
+            AddToOutputParams(
+                custId,
+                0,
+                loginParam.RequestInfo.LoginIP,
+                userSession.NetSessionId,
+                outputParams,
+                loginParam.AdminId);
 
-            if (!outputParams.Contains("username"))
-            {
-                outputParams["username"] = loginParam.CustName;
-            }
-
-            outputParams.Add("sitename", AppSettings.SiteNameFromRoleId(roleId));
-
-            outputParams.Add("subaccid", 0);
-            outputParams.Add("subaccname", string.Empty);
-
-            // on_userid already existed in internal login case.
-            var serverId = Convert.ToInt32(outputParams["serverid"]);
-            outputParams["on_userid"] = GetOnlineUserId(custId, -loginParam.AdminId, userSession.NetSessionId, serverId, loginParam.RequestInfo.LoginIP);
-
-            AddCustomerStatusToOutputParams(outputParams, custId, loginParam.AdminId, loginParam.SystemLogin);
-
-            // bool isAllowedTransferTotalBalance = this.dao.Age_Transfer_CheckTotalBalanceTransfer(custId, Sunplus.Agent.Model.BL.Definitions.AppSettings.AllowedListSuperAccounts);
-            outputParams.Add("isallowedtotalbalancetransfer", false);
-
-            // Cast un-unique fields with normal Login.
-            outputParams.Add("iscasinodisabled", outputParams["casinodisable"]);
-            outputParams.Remove("casinodisable");
-            outputParams.Add("iscasinosync", outputParams["casinosync"]);
-            outputParams.Remove("casinosync");
-
-            outputParams.Add("adminid", loginParam.AdminId);
-
-            // bool isShowConsolidated = ConfigurationManager.AppSettings["EnableConsolidatedReport"] == "1" && this.IsShownConsilatedReport(custId);
-            outputParams.Add("isshowconsolidated", false);
-
-            outputParams.Add("isShowBetChoiceLimit", authenticationDataAccess.IsShowBetChoiceLimit(new CheckBetChoiceLimitCriteria(custId)));
-
-            // session.IsInternalWebVPN = session.IsInternal && Request["isVpn"] == "1";
             userSession.IsInternalWebVPN = false;
-
-            UserSessionService.SetUserSessionValues(userSession, outputParams, AfterUpdate);
+            SetUserSessionValues(userSession.NetSessionId, outputParams);
 
             return new AuthResult(custId, loginParam.CustName);
         }
@@ -128,24 +80,37 @@
         public void ClearUserSession()
             => UserSessionService.RemoveUserSession(UserSession.Current);
 
-        private int GetOnlineUserId(
+        private void AddToOutputParams(
             int custId,
             int subAccId,
-            string netSessionId,
-            int serverId,
-            string ip)
+            string ip,
+            string sessionId,
+            Hashtable outputParams,
+            int adminId = 0)
         {
-            var command = new CheckinCommand(custId, subAccId, netSessionId, serverId, ip);
-            dynamicRepository.Execute(command);
+            var roleId = Convert.ToByte(outputParams["roleid"]);
+            outputParams.Add("sitename", AppSettings.SiteNameFromRoleId(roleId));
 
-            return command.OnlineUserId;
+            var subAccName = string.Empty;
+
+            if (subAccId != 0)
+            {
+                subAccName = outputParams["subusername"].ToString().ToUpperInvariant();
+                outputParams.Remove("subusername");
+            }
+
+            outputParams.Add("subaccid", subAccId);
+            outputParams.Add("subaccname", subAccName);
+
+            var serverId = Convert.ToInt32(outputParams["serverid"]);
+            outputParams["on_userid"] = GetOnlineUserId(custId, adminId > 0 ? -adminId : subAccId, sessionId, serverId, ip);
+
+            outputParams.Add("adminid", adminId);
+
+            AddCustomerStatusToOutputParams(outputParams, custId, adminId);
         }
 
-        private void AddCustomerStatusToOutputParams(
-            Hashtable outputParams,
-            int custId,
-            int adminId = 0,
-            string systemLogin = "NAP")
+        private void AddCustomerStatusToOutputParams(Hashtable outputParams, int custId, int adminId, string systemLogin = "NAP")
         {
             var dataTable = authenticationDataAccess.ExecuteDataTable(
                 new GetCustomerStatusCriteria(custId, adminId, systemLogin));
@@ -161,8 +126,120 @@
             }
         }
 
-        private void AfterUpdate(IUserSession userSession, Hashtable outputParams)
+        private int GetOnlineUserId(
+            int custId,
+            int subAccId,
+            string netSessionId,
+            int serverId,
+            string ip)
         {
+            var command = new CheckinCommand(custId, subAccId, netSessionId, serverId, ip);
+            dynamicRepository.Execute(command);
+
+            return command.OnlineUserId;
+        }
+
+        private static void SetUserSessionValues(string sessionId, Hashtable outputParams)
+        {
+            var session = new UserSessionBase(sessionId);
+
+            session.CustId = (int)outputParams["custid"];
+            session.UserName = (outputParams["username"] as string).ToUpperInvariant().Trim();
+            session.SubAccId = (int)outputParams["subaccid"];
+
+            session.SubUserName = outputParams["subaccname"] as string;
+            session.SubPageAccess = (PageAccess)(outputParams["subpageaccess"] as string);
+
+            if (!session.IsSubAcc)
+            {
+                session.SubPageAccess.SetFullPermission();
+            }
+
+            session.SiteName = outputParams["sitename"] as string;
+            session.Site = outputParams["site"] as string;
+
+            session.Currency = outputParams["currency"] as string;
+            session.CurrencyId = (int)outputParams["currencyid"];
+            session.RoleId = Convert.ToByte(outputParams["roleid"]);
+            session.ServerId = (int)outputParams["serverid"];
+
+            session.AdminId = (int)outputParams["adminid"];
+            session.AdminName = outputParams["accusername"] as string;
+
+            session.IsLogged = session.IsInternal || !(bool)outputParams["isfirstlogin"];
+
+            try
+            {
+                // Security code.
+                session.IsForcedSecurityCode = (bool)outputParams["isforcedchangesecuritycode"];
+                session.SecurityCode = outputParams["securitycode"] as string;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                session.LastChangedPassword = (DateTime)outputParams["lastchangedpwddate"];
+            }
+            catch
+            {
+                session.LastChangedPassword = DateTime.MinValue;
+            }
+
+            try
+            {
+                DateTime pwdExpiry = (DateTime)outputParams["pwdexpiry"];
+                session.IsPasswordExpired = DateTime.Compare(DateTime.Now, pwdExpiry) >= 0;
+            }
+            catch
+            {
+                session.IsPasswordExpired = false;
+            }
+
+            if (outputParams.Contains("doublecommlosing"))
+            {
+                session.IsDoubleCommLosing = (bool)outputParams["doublecommlosing"];
+            }
+
+            if (outputParams.Contains("nickname"))
+            {
+                session.NickName = (outputParams["nickname"] + string.Empty).ToUpperInvariant();
+            }
+
+            if (outputParams.Contains("nicknameloginonly"))
+            {
+                session.IsNicknameLoginOnly = !string.IsNullOrEmpty(outputParams["nicknameloginonly"].ToString()) && (bool)outputParams["nicknameloginonly"];
+            }
+
+            if (outputParams.Contains("isnickname"))
+            {
+                session.IsNickname = !string.IsNullOrEmpty(outputParams["isnickname"].ToString()) && (bool)outputParams["isnickname"];
+            }
+
+            session.DisplayNickName = session.IsNickname ? session.NickName : session.UserName;
+
+            session.OnUserId = (int)outputParams["on_userid"];
+
+            session.IsDisabledAutoMPT = (bool)outputParams["disableautompt"];
+            session.SRecommendId = (int)outputParams["srecommend"];
+            session.MRecommendId = (int)outputParams["mrecommend"];
+            session.ARecommendId = (int)outputParams["arecommend"];
+            session.IsAdminCanViewVNIP = (bool)outputParams["isadmincanviewvnip"];
+
+            if (AppSettings.IsSupportMyanmarOdds)
+            {
+                session.IsMyanmarOdds = Convert.ToBoolean(outputParams["ismyanmarodds"]);
+            }
+
+            if (outputParams.ContainsKey("isimbc"))
+            {
+                session.IsIMBCCustomer = Convert.ToBoolean(outputParams["isimbc"]);
+            }
+
+            session.IsLimitedHostPermisionOnSubAccountFunction = !string.IsNullOrWhiteSpace(AppSettings.SubAccountPermission_LockAdminAccounts)
+                && Regex.IsMatch(string.Format(",{0},", AppSettings.SubAccountPermission_LockAdminAccounts), string.Format(",{0},", session.AdminId), RegexOptions.IgnoreCase)
+                && session.IsInternal;
         }
     }
 }

@@ -15,7 +15,6 @@
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
     using Web;
-    using Web.Filters;
     using Web.Helpers;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
 
@@ -46,7 +45,6 @@
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
-            GlobalFilters.Filters.Add(new NoCacheFilter());
 
             StaticResources.Init(GetBuildVersion());
         }
@@ -67,10 +65,10 @@
         /// <param name="e">Event arguments.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            //if (Request.IsLocal)
-            //{
-            //    return;
-            //}
+            if (Request.IsLocal)
+            {
+                return;
+            }
 
             Exception ex = Server.GetLastError();
             var currentCustomer = UserSession.Current;

@@ -79,7 +79,7 @@
             }
 
             Request.Cookies.Remove(CookieHelper.GetCookieNameOfCurrentPage(result.CustId, result.SubAccId, Encryption.PearsonEncode));
-            FormsAuthentication.RedirectFromLoginPage(userName, false);
+            FormsAuthentication.RedirectFromLoginPage(userName, false, FormsAuthentication.FormsCookiePath);
 
             return Redirect(FormsAuthentication.DefaultUrl);
         }
