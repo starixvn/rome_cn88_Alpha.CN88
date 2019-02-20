@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Data;
     using System.Text.RegularExpressions;
+    using System.Web;
     using Criteria;
     using DataAccesses;
     using Fanex.Data.Repository;
@@ -19,10 +20,14 @@
         AuthResult UpdateAdmin(AdminLoginParam loginParam, Hashtable outputParams);
 
         void ClearUserSession();
+
+        string CurrentCustomerStatus { get; set; }
     }
 
     public class SessionUpdaterImpl : SessionUpdater
     {
+        private const string CustomerClosedStatusSessionKey = "CN88.Auth.Services.SessionUpdaterImpl.CheckClosedStatus";
+
         private readonly IDynamicRepository dynamicRepository;
         private readonly AuthenticationDataAccess authenticationDataAccess;
 
@@ -83,6 +88,23 @@
 
         public void ClearUserSession()
             => UserSessionService.RemoveUserSession(UserSession.Current);
+
+        public string CurrentCustomerStatus
+        {
+            get
+            {
+                var session = HttpContext.Current.Session;
+
+                return (string)session[$"{session.SessionID}_{CustomerClosedStatusSessionKey}"];
+            }
+
+            set
+            {
+                var session = HttpContext.Current.Session;
+
+                session[$"{session.SessionID}_{CustomerClosedStatusSessionKey}"] = value;
+            }
+        }
 
         private void SetUserSessionValues(
             UserSessionBase userSession,

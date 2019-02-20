@@ -36,8 +36,8 @@
 
         public ActionResult Logout(LogoutQuery message)
         {
-            Session.RemoveAll();
             mediator.Send(message);
+            Session.RemoveAll();
 
             if (!Session.IsCookieless)
             {

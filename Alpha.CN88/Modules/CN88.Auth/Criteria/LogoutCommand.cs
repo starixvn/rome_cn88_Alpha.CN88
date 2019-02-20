@@ -31,7 +31,7 @@
         public string Nickname { get; }
 
         public override string GetSettingKey()
-            => "Acc_CheckOut";
+            => "Age_CheckOut";
 
         public override bool IsValid()
             => OnlineUserId > 0

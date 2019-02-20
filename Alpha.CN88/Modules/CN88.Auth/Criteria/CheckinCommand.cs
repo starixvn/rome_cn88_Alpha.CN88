@@ -33,7 +33,7 @@
         public int OnlineUserId { get; set; }
 
         public override string GetSettingKey()
-            => "Acc_Checkin";
+            => "Age_Checkin";
 
         public override bool IsValid()
             => CustId > 0

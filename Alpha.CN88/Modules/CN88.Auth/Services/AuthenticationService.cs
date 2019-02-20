@@ -1,6 +1,7 @@
 ﻿namespace CN88.Auth.Services
 {
     using System;
+    using Configurations;
     using Criteria;
     using DataAccesses;
     using Fanex.Data.Repository;
@@ -13,10 +14,16 @@
         AuthResult AdminLogin(string requestParam, string ibckeyPath);
 
         void Logout(LogoutParam logoutParam);
+
+        bool IsKickedOut(int custId, int onlineUserId);
+
+        bool IsActiveCustomer(int custId, int subAccId);
     }
 
     public class AuthenticationServiceImpl : AuthenticationService
     {
+        private readonly object lockStatus = new object();
+
         private readonly IDynamicRepository dynamicRepository;
         private readonly AuthenticationDataAccess authenticationDataAccess;
         private readonly LoginParamParser loginParamParser;
@@ -95,6 +102,42 @@
                 logoutParam.NickName));
 
             sessionUpdater.ClearUserSession();
+        }
+
+        public bool IsKickedOut(int custId, int onlineUserId)
+        {
+            var command = new ReCheckinCommand(onlineUserId);
+            dynamicRepository.Execute(command);
+
+            return command.IsKickedOut;
+        }
+
+        public bool IsActiveCustomer(int custId, int subAccId)
+        {
+            lock (lockStatus)
+            {
+                var currentCustomerStatus = sessionUpdater.CurrentCustomerStatus;
+
+                if (currentCustomerStatus != null)
+                {
+                    DateTime result;
+                    var sessionInfo = currentCustomerStatus.Split('_');
+
+                    return sessionInfo.Length > 1
+                        && DateTime.TryParse(sessionInfo[1], out result)
+                        && result >= DateTime.Now;
+                }
+
+                var command = new CheckActiveCustomerCommand(custId, subAccId);
+                dynamicRepository.Execute(command);
+
+                if (command.IsActive)
+                {
+                    sessionUpdater.CurrentCustomerStatus = $"true_{DateTime.Now.AddSeconds(AuthAppSettings.CustomerStatusExpireTime)}";
+                }
+
+                return command.IsActive;
+            }
         }
     }
 }

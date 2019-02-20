@@ -142,12 +142,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppResources\AuthResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AppResources\AuthResource.zh-Hans.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthResource.zh-Hans.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AppResources\AuthResource.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuthResource.zh-TW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Configurations\AuthAppSettings.cs" />
     <Compile Include="Criteria\AdminLoginCommand.cs" />
     <Compile Include="Criteria\CheckBetChoiceLimitCriteria.cs" />
     <Compile Include="Criteria\CheckinCommand.cs" />
+    <Compile Include="Criteria\CheckActiveCustomerCommand.cs" />
     <Compile Include="Criteria\GetCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\LoginCommand.cs" />
     <Compile Include="Criteria\LogoutCommand.cs" />
+    <Compile Include="Criteria\ReCheckinCommand.cs" />
     <Compile Include="DataAccesses\AuthenticationDataAccess.cs" />
     <Compile Include="Models\AdminLoginParam.cs" />
     <Compile Include="Models\AuthResult.cs" />
@@ -164,7 +182,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\aes.js" />
+    <EmbeddedResource Include="AppResources\AuthResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\AuthResource.zh-Hans.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthResource.zh-Hans.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppResources\AuthResource.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AuthResource.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

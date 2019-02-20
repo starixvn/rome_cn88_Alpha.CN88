@@ -6,8 +6,12 @@
 
     public class IndexQuery : BaseQuery, IRequest<IndexViewModel>
     {
-        public IndexQuery(IUser viewer) : base(viewer)
+        public IndexQuery(IUser viewer)
+            : base(viewer)
         {
+            OnlineUserId = viewer.OnlineUserId;
         }
+
+        public int OnlineUserId { get; }
     }
 }

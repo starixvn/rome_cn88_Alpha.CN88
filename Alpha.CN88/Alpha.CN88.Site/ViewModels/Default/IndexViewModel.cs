@@ -21,6 +21,7 @@
             CustName = message.CustName;
             CustId = message.CustId;
             SubAccId = message.SubAccountId;
+            OnlineUserId = message.OnlineUserId;
 
             this.browserHelper = browserHelper;
             OnlineMember = onlineMember;
@@ -52,6 +53,8 @@
         public int CustId { get; }
 
         public int SubAccId { get; }
+
+        public int OnlineUserId { get; }
 
         public string MainRootPath => UrlHelper.MapMainPath("~/");
 

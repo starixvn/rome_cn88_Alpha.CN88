@@ -4,7 +4,8 @@
         changeLanguage: null,
         onlineList: null,
         liveChat: null,
-        contactUs: null
+        contactUs: null,
+        reCheckin: null
     },
     elements: {
         mainMenu: null,
@@ -12,7 +13,8 @@
         currentURLCookieName: null,
         subMenuItems: null,
         mainFrame: null,
-        menuBar: null
+        menuBar: null,
+        onlineUserId: null
     },
     currentState: {
         mainMenuId: null
@@ -32,6 +34,7 @@
         indexManager.urls.onlineList = indexManager.urls.mainRootPath + "CustomerList/OnlineMember";
         indexManager.urls.liveChat = indexManager.urls.mainRootPath + "CustomerList/LiveChat";
         indexManager.urls.contactUs = indexManager.urls.mainRootPath + "Help/ContactUs";
+        indexManager.urls.reCheckin = indexManager.urls.mainRootPath + "ReCheckin";
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -39,6 +42,7 @@
         indexManager.elements.currentURLCookieName = $("#currentURLCookieName").val();
         indexManager.elements.mainFrame = $("#main");
         indexManager.elements.menuBar = $(".menubar");
+        indexManager.elements.onlineUserId = $("#OnlineUserId").val();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -102,6 +106,8 @@
         $("#lnk-logout").on("click touchend", () => {
             indexManager.signOut();
         });
+
+        setTimeout(indexManager.reCheckin, 30000);
     },
     changeLanguage: (lang) => {
         $.ajax({
@@ -216,6 +222,43 @@
 
         index.location.href = indexManager.urls.mainRootPath + 'Auth/Logout';
         siteInfrastructure.localStorage.clear();
+    },
+    reCheckin: function () {
+        $.ajax({
+            type: "POST",
+            url: indexManager.urls.reCheckin,
+            data: { onid: indexManager.elements.onlineUserId },
+            success: (result) => {
+                try {
+                    var message = result.Message;
+                    if (!result.IsSuccess) {
+                        if (message) {
+                            alert(message);
+                        } else {
+                            alert("Oops... you are here because of a system error, please notify the administrators.");
+                        }
+
+                        indexManager.signOut();
+                    }
+                }
+                catch (e) {
+                    if (typeof (result) === "string"
+                        && result.indexOf("Oops... you are here because of a system error") > 0) {
+                        indexManager.signOut();
+                        alert("Oops... you are here because of a system error, please notify the administrators.");
+                    }
+                }
+            },
+            error: (xhr) => {
+                if (xhr.status === 500) {
+                    indexManager.signOut();
+                    alert("Oops... you are here because of a system error, please notify the administrators.");
+                }
+            },
+            complete: () => {
+                setTimeout(indexManager.reCheckin, 30000);
+            }
+        });
     }
 };
 
