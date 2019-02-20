@@ -41,8 +41,8 @@
         private const int AdminTimeTicksIndex = 2;
         private const string DefaultSystemLogin = "NAP";
 
-        private static readonly string[] ValidLanguages = new[] { "en-US", "zh-Hans", "zh-TW" };
-        private static readonly string[] ValidLanguageKeys = new[] { "E", "CN", "CT" };
+        private static readonly string[] ValidLanguages = { "en-US", "zh-Hans", "zh-TW" };
+        private static readonly string[] ValidLanguageKeys = { "E", "CN", "CT" };
 
         public string[] DecryptString(string requestParam, string ibckeyPath)
         {
@@ -149,6 +149,7 @@
             }
             catch
             {
+                ExceptionHandler.Handle(new Exception("Cannot get request info"), TraceEventType.Information);
             }
 
             return new RequestInfo(
@@ -170,6 +171,7 @@
             }
             catch
             {
+                ExceptionHandler.Handle(new Exception("Cannot get country info"), TraceEventType.Information);
             }
 
             return country;

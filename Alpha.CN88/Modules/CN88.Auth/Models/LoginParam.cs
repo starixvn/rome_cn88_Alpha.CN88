@@ -25,7 +25,7 @@
             SubAccId = subAccId;
             TimeTicks = timeTicks;
             NickName = nickName;
-            IsNickName = IsNickName;
+            IsNickName = isNickName;
             Language = language;
             LanguageKey = languageKey;
             RequestInfo = requestInfo;
