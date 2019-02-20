@@ -1,7 +1,4 @@
-﻿"use strict";
-
-declare var numeral: any;
-declare var store: StoreJSStatic;
+﻿declare var numeral: any;
 interface JQuery {
     stickyTableHeaders(): void;
 }
