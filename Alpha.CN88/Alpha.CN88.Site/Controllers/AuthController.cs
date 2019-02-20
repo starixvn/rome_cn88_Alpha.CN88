@@ -57,7 +57,7 @@
                 return RedirectToAction(nameof(Index));
             }
 
-            message.IBCKeyPath = GetIBCKeyPath();
+            message.IBCKeyPath = GetIBCKeyPath("ibckey");
             var result = mediator.Send(message);
 
             if (!result.IsSuccess)
@@ -84,8 +84,8 @@
             return Redirect(FormsAuthentication.DefaultUrl);
         }
 
-        private string GetIBCKeyPath()
-            => Server.MapPath("~/App_Data/IbcKeys/ibckey.snk");
+        private string GetIBCKeyPath(string fileName)
+            => Server.MapPath($"~/App_Data/IbcKeys/{fileName}.snk");
 
         private void ClearCookies()
         {
