@@ -36,22 +36,24 @@
 
         public AuthResult Update(LoginParam loginParam, Hashtable outputParams)
         {
-            var userSession = UserSession.Current;
+            var userSession = UserSession.Current as UserSessionBase;
 
-            outputParams.Add("custid", loginParam.CustId);
-            AddToOutputParams(
-                loginParam.CustId,
-                loginParam.SubAccId,
-                loginParam.RequestInfo.LoginIP,
-                userSession.NetSessionId,
-                outputParams);
-
+            userSession.CustId = loginParam.CustId;
+            userSession.UserName = (outputParams["username"] as string).ToUpperInvariant().Trim();
+            userSession.Language = loginParam.Language;
+            userSession.LangKey = loginParam.LanguageKey;
             userSession.UserLoginIp = loginParam.RequestInfo.LoginIP;
-            SetUserSessionValues(userSession.NetSessionId, outputParams);
+
+            SetUserSessionValues(
+                userSession,
+                loginParam.CustId,
+                loginParam.RequestInfo.LoginIP,
+                outputParams,
+                loginParam.SubAccId);
 
             return new AuthResult(
                 loginParam.CustId,
-                outputParams["username"].ToString(),
+                userSession.UserName,
                 loginParam.SubAccId,
                 userSession.SubUserName,
                 loginParam.DeviceId);
@@ -59,58 +61,126 @@
 
         public AuthResult UpdateAdmin(AdminLoginParam loginParam, Hashtable outputParams)
         {
-            var userSession = UserSession.Current;
-
             var custId = Convert.ToInt32(outputParams["custid"]);
-            outputParams.Add("username", loginParam.CustName);
-            AddToOutputParams(
-                custId,
-                0,
-                loginParam.RequestInfo.LoginIP,
-                userSession.NetSessionId,
-                outputParams,
-                loginParam.AdminId);
 
+            var userSession = UserSession.Current as UserSessionBase;
+            userSession.CustId = custId;
+            userSession.UserName = loginParam.CustName.ToUpperInvariant().Trim();
+            userSession.Language = loginParam.Language;
+            userSession.LangKey = loginParam.LanguageKey;
             userSession.IsInternalWebVPN = false;
-            SetUserSessionValues(userSession.NetSessionId, outputParams);
 
-            return new AuthResult(custId, loginParam.CustName);
+            SetUserSessionValues(
+               userSession,
+               custId,
+               loginParam.RequestInfo.LoginIP,
+               outputParams,
+               adminId: loginParam.AdminId,
+               systemLogin: loginParam.SystemLogin);
+
+            return new AuthResult(custId, userSession.UserName);
         }
 
         public void ClearUserSession()
             => UserSessionService.RemoveUserSession(UserSession.Current);
 
-        private void AddToOutputParams(
+        private void SetUserSessionValues(
+            UserSessionBase userSession,
             int custId,
-            int subAccId,
             string ip,
-            string sessionId,
             Hashtable outputParams,
-            int adminId = 0)
+            int subAccId = 0,
+            int adminId = 0,
+            string systemLogin = "NAP")
         {
-            var roleId = Convert.ToByte(outputParams["roleid"]);
-            outputParams.Add("sitename", AppSettings.SiteNameFromRoleId(roleId));
-
-            var subAccName = string.Empty;
+            userSession.SubAccId = subAccId;
 
             if (subAccId != 0)
             {
-                subAccName = outputParams["subusername"].ToString().ToUpperInvariant();
-                outputParams.Remove("subusername");
+                userSession.SubUserName = outputParams["subusername"].ToString().ToUpperInvariant();
+                userSession.SubPageAccess = (PageAccess)(outputParams["subpageaccess"] as string);
+            }
+            else
+            {
+                userSession.SubUserName = string.Empty;
+                userSession.SubPageAccess.SetFullPermission();
             }
 
-            outputParams.Add("subaccid", subAccId);
-            outputParams.Add("subaccname", subAccName);
+            var roleId = Convert.ToByte(outputParams["roleid"]);
+            userSession.RoleId = roleId;
+            userSession.SiteName = AppSettings.SiteNameFromRoleId(roleId);
+            userSession.Site = outputParams["site"] as string;
+
+            userSession.Currency = outputParams["currency"] as string;
+            userSession.CurrencyId = (int)outputParams["currencyid"];
 
             var serverId = Convert.ToInt32(outputParams["serverid"]);
-            outputParams["on_userid"] = GetOnlineUserId(custId, adminId > 0 ? -adminId : subAccId, sessionId, serverId, ip);
+            userSession.ServerId = serverId;
+            userSession.OnUserId = GetOnlineUserId(custId, adminId > 0 ? -adminId : subAccId, userSession.NetSessionId, serverId, ip);
 
-            outputParams.Add("adminid", adminId);
+            userSession.AdminId = adminId;
+            userSession.AdminName = outputParams["accusername"] as string;
 
-            AddCustomerStatusToOutputParams(outputParams, custId, adminId);
+            userSession.IsLogged = userSession.IsInternal || !(bool)outputParams["isfirstlogin"];
+
+            try
+            {
+                // Security code.
+                userSession.IsForcedSecurityCode = (bool)outputParams["isforcedchangesecuritycode"];
+                userSession.SecurityCode = outputParams["securitycode"] as string;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                userSession.LastChangedPassword = (DateTime)outputParams["lastchangedpwddate"];
+            }
+            catch
+            {
+                userSession.LastChangedPassword = DateTime.MinValue;
+            }
+
+            try
+            {
+                DateTime pwdExpiry = (DateTime)outputParams["pwdexpiry"];
+                userSession.IsPasswordExpired = DateTime.Compare(DateTime.Now, pwdExpiry) >= 0;
+            }
+            catch
+            {
+                userSession.IsPasswordExpired = false;
+            }
+
+            if (outputParams.Contains("nickname"))
+            {
+                userSession.NickName = (outputParams["nickname"] + string.Empty).ToUpperInvariant();
+            }
+
+            if (outputParams.Contains("nicknameloginonly"))
+            {
+                userSession.IsNicknameLoginOnly = !string.IsNullOrEmpty(outputParams["nicknameloginonly"].ToString()) && (bool)outputParams["nicknameloginonly"];
+            }
+
+            if (outputParams.Contains("isnickname"))
+            {
+                userSession.IsNickname = !string.IsNullOrEmpty(outputParams["isnickname"].ToString()) && (bool)outputParams["isnickname"];
+            }
+
+            userSession.DisplayNickName = userSession.IsNickname ? userSession.NickName : userSession.UserName;
+
+            userSession.IsLimitedHostPermisionOnSubAccountFunction = !string.IsNullOrWhiteSpace(AppSettings.SubAccountPermission_LockAdminAccounts)
+                && Regex.IsMatch(string.Format(",{0},", AppSettings.SubAccountPermission_LockAdminAccounts), string.Format(",{0},", userSession.AdminId), RegexOptions.IgnoreCase)
+                && userSession.IsInternal;
+
+            SetCustomerStatusToUserSession(userSession, custId, adminId, systemLogin);
         }
 
-        private void AddCustomerStatusToOutputParams(Hashtable outputParams, int custId, int adminId, string systemLogin = "NAP")
+        private void SetCustomerStatusToUserSession(
+            UserSessionBase userSession,
+            int custId,
+            int adminId = 0,
+            string systemLogin = "NAP")
         {
             var dataTable = authenticationDataAccess.ExecuteDataTable(
                 new GetCustomerStatusCriteria(custId, adminId, systemLogin));
@@ -118,10 +188,27 @@
             if (dataTable.Rows.Count > 0)
             {
                 var drow = dataTable.Rows[0];
+                DataColumnCollection columns = dataTable.Columns;
 
-                foreach (DataColumn column in dataTable.Columns)
+                userSession.SRecommendId = Convert.ToInt32(drow["srecommend"]);
+                userSession.MRecommendId = Convert.ToInt32(drow["mrecommend"]);
+                userSession.ARecommendId = Convert.ToInt32(drow["arecommend"]);
+                userSession.IsDisabledAutoMPT = Convert.ToBoolean(drow["disableautompt"]);
+                userSession.IsAdminCanViewVNIP = Convert.ToBoolean(drow["isadmincanviewvnip"]);
+
+                if (AppSettings.IsSupportMyanmarOdds)
                 {
-                    outputParams.Add(column.ColumnName.ToLower(), drow[column]);
+                    userSession.IsMyanmarOdds = Convert.ToBoolean(drow["ismyanmarodds"]);
+                }
+
+                if (columns.Contains("isimbc"))
+                {
+                    userSession.IsIMBCCustomer = Convert.ToBoolean(drow["isimbc"]);
+                }
+
+                if (columns.Contains("doublecommlosing"))
+                {
+                    userSession.IsDoubleCommLosing = Convert.ToBoolean(drow["doublecommlosing"]);
                 }
             }
         }
@@ -137,109 +224,6 @@
             dynamicRepository.Execute(command);
 
             return command.OnlineUserId;
-        }
-
-        private static void SetUserSessionValues(string sessionId, Hashtable outputParams)
-        {
-            var session = new UserSessionBase(sessionId);
-
-            session.CustId = (int)outputParams["custid"];
-            session.UserName = (outputParams["username"] as string).ToUpperInvariant().Trim();
-            session.SubAccId = (int)outputParams["subaccid"];
-
-            session.SubUserName = outputParams["subaccname"] as string;
-            session.SubPageAccess = (PageAccess)(outputParams["subpageaccess"] as string);
-
-            if (!session.IsSubAcc)
-            {
-                session.SubPageAccess.SetFullPermission();
-            }
-
-            session.SiteName = outputParams["sitename"] as string;
-            session.Site = outputParams["site"] as string;
-
-            session.Currency = outputParams["currency"] as string;
-            session.CurrencyId = (int)outputParams["currencyid"];
-            session.RoleId = Convert.ToByte(outputParams["roleid"]);
-            session.ServerId = (int)outputParams["serverid"];
-
-            session.AdminId = (int)outputParams["adminid"];
-            session.AdminName = outputParams["accusername"] as string;
-
-            session.IsLogged = session.IsInternal || !(bool)outputParams["isfirstlogin"];
-
-            try
-            {
-                // Security code.
-                session.IsForcedSecurityCode = (bool)outputParams["isforcedchangesecuritycode"];
-                session.SecurityCode = outputParams["securitycode"] as string;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                session.LastChangedPassword = (DateTime)outputParams["lastchangedpwddate"];
-            }
-            catch
-            {
-                session.LastChangedPassword = DateTime.MinValue;
-            }
-
-            try
-            {
-                DateTime pwdExpiry = (DateTime)outputParams["pwdexpiry"];
-                session.IsPasswordExpired = DateTime.Compare(DateTime.Now, pwdExpiry) >= 0;
-            }
-            catch
-            {
-                session.IsPasswordExpired = false;
-            }
-
-            if (outputParams.Contains("doublecommlosing"))
-            {
-                session.IsDoubleCommLosing = (bool)outputParams["doublecommlosing"];
-            }
-
-            if (outputParams.Contains("nickname"))
-            {
-                session.NickName = (outputParams["nickname"] + string.Empty).ToUpperInvariant();
-            }
-
-            if (outputParams.Contains("nicknameloginonly"))
-            {
-                session.IsNicknameLoginOnly = !string.IsNullOrEmpty(outputParams["nicknameloginonly"].ToString()) && (bool)outputParams["nicknameloginonly"];
-            }
-
-            if (outputParams.Contains("isnickname"))
-            {
-                session.IsNickname = !string.IsNullOrEmpty(outputParams["isnickname"].ToString()) && (bool)outputParams["isnickname"];
-            }
-
-            session.DisplayNickName = session.IsNickname ? session.NickName : session.UserName;
-
-            session.OnUserId = (int)outputParams["on_userid"];
-
-            session.IsDisabledAutoMPT = (bool)outputParams["disableautompt"];
-            session.SRecommendId = (int)outputParams["srecommend"];
-            session.MRecommendId = (int)outputParams["mrecommend"];
-            session.ARecommendId = (int)outputParams["arecommend"];
-            session.IsAdminCanViewVNIP = (bool)outputParams["isadmincanviewvnip"];
-
-            if (AppSettings.IsSupportMyanmarOdds)
-            {
-                session.IsMyanmarOdds = Convert.ToBoolean(outputParams["ismyanmarodds"]);
-            }
-
-            if (outputParams.ContainsKey("isimbc"))
-            {
-                session.IsIMBCCustomer = Convert.ToBoolean(outputParams["isimbc"]);
-            }
-
-            session.IsLimitedHostPermisionOnSubAccountFunction = !string.IsNullOrWhiteSpace(AppSettings.SubAccountPermission_LockAdminAccounts)
-                && Regex.IsMatch(string.Format(",{0},", AppSettings.SubAccountPermission_LockAdminAccounts), string.Format(",{0},", session.AdminId), RegexOptions.IgnoreCase)
-                && session.IsInternal;
         }
     }
 }

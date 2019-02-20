@@ -15,6 +15,7 @@
             long timeTicks,
             string nickName,
             bool isNickName,
+            string language,
             string languageKey,
             RequestInfo requestInfo,
             string deviceId)
@@ -25,6 +26,7 @@
             TimeTicks = timeTicks;
             NickName = nickName;
             IsNickName = IsNickName;
+            Language = language;
             LanguageKey = languageKey;
             RequestInfo = requestInfo;
             DeviceId = deviceId;
@@ -43,6 +45,8 @@
         public string NickName { get; }
 
         public bool IsNickName { get; }
+
+        public string Language { get; }
 
         public string LanguageKey { get; }
 

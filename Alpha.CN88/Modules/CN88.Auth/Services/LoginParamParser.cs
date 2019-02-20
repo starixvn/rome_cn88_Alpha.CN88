@@ -41,8 +41,8 @@
         private const int AdminTimeTicksIndex = 2;
         private const string DefaultSystemLogin = "NAP";
 
-        private static readonly string[] ValidLanguages = new[] { "en-US", "zh-CN", "zh-TW" };
-        private static readonly string[] ValidLanguageKeys = new[] { "E", "CS", "CT" };
+        private static readonly string[] ValidLanguages = new[] { "en-US", "zh-Hans", "zh-TW" };
+        private static readonly string[] ValidLanguageKeys = new[] { "E", "CN", "CT" };
 
         public string[] DecryptString(string requestParam, string ibckeyPath)
         {
@@ -98,6 +98,7 @@
                 timeTicks,
                 keyValuePairs[NickNameIndex],
                 isNickName,
+                language,
                 languageKey,
                 GetRequestInfo(GetRequest(), keyValuePairs[BrowserSizeIndex]),
                 string.IsNullOrWhiteSpace(deviceId) ? "N/A" : deviceId);
@@ -124,6 +125,7 @@
                 loginParamsLength > 3 ? keyValuePairs[3] : DefaultSystemLogin,
                 custName,
                 timeTicks,
+                ValidLanguages[0],
                 ValidLanguageKeys[0],
                 GetRequestInfo(GetRequest(), loginParamsLength >= 11 ? keyValuePairs[BrowserSizeIndex] : string.Empty));
         }

@@ -13,6 +13,7 @@
             string systemLogin,
             string custName,
             long timeTicks,
+            string language,
             string languageKey,
             RequestInfo requestInfo)
         {
@@ -20,6 +21,7 @@
             SystemLogin = systemLogin;
             CustName = custName;
             TimeTicks = timeTicks;
+            Language = language;
             LanguageKey = languageKey;
             RequestInfo = requestInfo;
         }
@@ -33,6 +35,8 @@
         public long TimeTicks { get; }
 
         public DateTime LoginTime => new DateTime(TimeTicks);
+
+        public string Language { get; }
 
         public string LanguageKey { get; }
 
