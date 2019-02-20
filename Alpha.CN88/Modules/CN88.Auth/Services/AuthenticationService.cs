@@ -128,9 +128,12 @@
                     DateTime result;
                     var sessionInfo = currentCustomerStatus.Split('_');
 
-                    return sessionInfo.Length > 1
+                    if (sessionInfo.Length > 1
                         && DateTime.TryParse(sessionInfo[1], out result)
-                        && result >= DateTime.Now;
+                        && result >= DateTime.Now)
+                    {
+                        return true;
+                    }
                 }
 
                 var command = new CheckActiveCustomerCommand(custId, subAccId);
@@ -138,7 +141,7 @@
 
                 if (command.IsActive)
                 {
-                    sessionUpdater.CurrentCustomerStatus = $"true_{DateTime.Now.AddSeconds(AuthAppSettings.CustomerStatusExpireTime)}";
+                    sessionUpdater.CurrentCustomerStatus = $"True_{DateTime.Now.AddSeconds(AuthAppSettings.CustomerStatusExpireTime)}";
                 }
 
                 return command.IsActive;
