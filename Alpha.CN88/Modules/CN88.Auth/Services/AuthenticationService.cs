@@ -15,6 +15,8 @@
 
         void Logout(LogoutParam logoutParam);
 
+        bool IsDisabledCheckDuplicationLogin { get; }
+
         bool IsKickedOut(int custId, int onlineUserId);
 
         bool IsActiveCustomer(int custId, int subAccId);
@@ -103,6 +105,9 @@
 
             sessionUpdater.ClearUserSession();
         }
+
+        public bool IsDisabledCheckDuplicationLogin
+            => AuthAppSettings.DisabledCheckDuplicationLogin;
 
         public bool IsKickedOut(int custId, int onlineUserId)
         {

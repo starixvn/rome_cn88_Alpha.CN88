@@ -22,40 +22,50 @@
         [HttpPost]
         public ActionResult Index(int onId)
         {
-            Result result = Result.CreateSuccessResult();
-            var onlineUserId = user.OnlineUserId;
-
-            if (onId == 0 || onId != onlineUserId)
-            {
-                result = Result.CreateErrorResult(1, AuthResource.AccessDeny);
-            }
-            else
-            {
-                if (authenticationService.IsKickedOut(user.Id, onlineUserId))
-                {
-                    result = Result.CreateErrorResult(3, AuthResource.SessionKickedOut);
-                }
-                else if (!user.IsInternal && !authenticationService.IsActiveCustomer(user.Id, user.SubAccountId))
-                {
-                    result = Result.CreateErrorResult(2, AuthResource.CustomerClosed);
-                }
-            }
+            var result = authenticationService.IsDisabledCheckDuplicationLogin
+                ? Result.CreateSuccessResult()
+                : ProcessReCheckin(onId);
 
             if (!result.IsSuccess)
             {
-                authenticationService.Logout(
-                    new LogoutParam(onlineUserId, user.Name, user.SubUserName, user.NickName, user.LevelId, user.ServerId));
-
-                Session.RemoveAll();
-                Session.Abandon();
-
-                if (!Session.IsCookieless)
-                {
-                    FormsAuthentication.SignOut();
-                }
+                LogoutAndClearSession();
             }
 
             return Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        private Result ProcessReCheckin(int onlineUserId)
+        {
+            if (onlineUserId == 0 || onlineUserId != user.OnlineUserId)
+            {
+                return Result.CreateErrorResult(1, AuthResource.AccessDeny);
+            }
+
+            if (authenticationService.IsKickedOut(user.Id, onlineUserId))
+            {
+                return Result.CreateErrorResult(3, AuthResource.SessionKickedOut);
+            }
+
+            if (!user.IsInternal && !authenticationService.IsActiveCustomer(user.Id, user.SubAccountId))
+            {
+                return Result.CreateErrorResult(2, AuthResource.CustomerClosed);
+            }
+
+            return Result.CreateSuccessResult();
+        }
+
+        private void LogoutAndClearSession()
+        {
+            authenticationService.Logout(
+                new LogoutParam(user.OnlineUserId, user.Name, user.SubUserName, user.NickName, user.LevelId, user.ServerId));
+
+            Session.RemoveAll();
+            Session.Abandon();
+
+            if (!Session.IsCookieless)
+            {
+                FormsAuthentication.SignOut();
+            }
         }
     }
 }

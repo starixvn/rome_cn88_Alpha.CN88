@@ -18,8 +18,14 @@
             set { appSettingValues = value; }
         }
 
+        public static bool DisabledCheckDuplicationLogin
+            => GetBoolConfigValue("DisabledCheckDuplicationLogin");
+
         public static int CustomerStatusExpireTime
             => GetIntConfigValue("CustomerStatusExpireTime");
+
+        private static bool GetBoolConfigValue(string configName)
+            => GetConfigValue(configName) == "1";
 
         private static int GetIntConfigValue(string configName)
             => Convert.ToInt32(GetConfigValue(configName));
