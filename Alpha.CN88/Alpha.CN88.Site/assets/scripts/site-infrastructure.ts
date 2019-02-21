@@ -29,7 +29,7 @@ class SiteInfrastructure {
     localStorage = {
         get: (key: string) => {
             var result = store.enabled ? store.get(key) : $.cookie(key);
-            return JSON.parse(result);
+            return result ? JSON.parse(result) : undefined;
         },
 
         set: (key: string, value: any) => {
