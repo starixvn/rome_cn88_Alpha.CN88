@@ -14,7 +14,8 @@
         subMenuItems: null,
         mainFrame: null,
         menuBar: null,
-        onlineUserId: null
+        onlineUserId: null,
+        isInternal: null
     },
     currentState: {
         mainMenuId: null
@@ -43,6 +44,7 @@
         indexManager.elements.mainFrame = $("#main");
         indexManager.elements.menuBar = $(".menubar");
         indexManager.elements.onlineUserId = $("#OnlineUserId").val();
+        indexManager.elements.isInternal = $("#IsInternal").val().toString();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -222,6 +224,10 @@
 
         index.location.href = indexManager.urls.mainRootPath + 'Auth/Logout';
         siteInfrastructure.localStorage.clear();
+
+        if (indexManager.elements.isInternal == "1") {
+            index.close();
+        }
     },
     reCheckin: function () {
         $.ajax({

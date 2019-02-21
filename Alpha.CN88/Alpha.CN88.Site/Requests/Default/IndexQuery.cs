@@ -10,8 +10,11 @@
             : base(viewer)
         {
             OnlineUserId = viewer.OnlineUserId;
+            IsInternal = viewer.IsInternal;
         }
 
         public int OnlineUserId { get; }
+
+        public bool IsInternal { get; }
     }
 }

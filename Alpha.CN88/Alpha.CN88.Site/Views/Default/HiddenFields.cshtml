@@ -3,3 +3,4 @@
 @Html.Hidden("mainRootPath", Model.MainRootPath)
 @Html.Hidden("CustId", Model.CustId)
 @Html.Hidden("OnlineUserId", Model.OnlineUserId.ToString())
+@Html.Hidden("IsInternal", Model.IsInternal ? 1 : 0)

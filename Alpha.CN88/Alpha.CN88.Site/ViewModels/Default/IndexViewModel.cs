@@ -22,6 +22,7 @@
             CustId = message.CustId;
             SubAccId = message.SubAccountId;
             OnlineUserId = message.OnlineUserId;
+            IsInternal = message.IsInternal;
 
             this.browserHelper = browserHelper;
             OnlineMember = onlineMember;
@@ -51,6 +52,8 @@
         public string CustName { get; }
 
         public int CustId { get; }
+
+        public bool IsInternal { get; }
 
         public int SubAccId { get; }
 
