@@ -22,7 +22,7 @@
       <siteMapNode resourceKey="masterAgent" appPath="FeaturesAppPath" url="CustomerList/Index" roles="Super"></siteMapNode>
       <siteMapNode resourceKey="agent" appPath="FeaturesAppPath" url="AccountManagement/Agent" roles="Master"></siteMapNode>
       <siteMapNode resourceKey="member" appPath="FeaturesAppPath" url="AccountManagement/Member"></siteMapNode>
-      <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount"></siteMapNode>
+      <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount/Index"></siteMapNode>
       <siteMapNode resourceKey="problemAccount" appPath="FeaturesAppPath" url="AccountManagement/ProblemAccount" roles="Super"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]">
