@@ -207,4 +207,7 @@
   <data name="troubleshooting" xml:space="preserve">
     <value>Troubleshooting</value>
   </data>
+  <data name="downlineList" xml:space="preserve">
+    <value>Downline List</value>
+  </data>
 </root>
