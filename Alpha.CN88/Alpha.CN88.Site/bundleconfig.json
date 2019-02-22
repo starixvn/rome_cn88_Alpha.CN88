@@ -25,5 +25,12 @@
       "assets/scripts/security-helper.js",
       "assets/scripts/password/force-change-password.js"
     ]
+  },
+  {
+    "outputFileName": "Assets/bundles/home-index.js",
+    "inputFiles": [
+      "Assets/scripts/site-infrastructure.js",
+      "Assets/scripts/home/index-manager.js"
+    ]
   }
 ]

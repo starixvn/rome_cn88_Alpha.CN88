@@ -26,14 +26,11 @@
     <div class="status-summary">
         @Html.Action("StatusSummary")
     </div>
-    <div class="important-announcement">
-        @Html.Action("ImportantAnnouncement")
-    </div>
-    <div class="general-announcement">
-        @Html.Action("GeneralAnnouncement")
-    </div>
+    <div id="important-announcement" action-url="@Url.Action("ImportantAnnouncement", "Home")"></div>
+    <div id="general-announcement" action-url="@Url.Action("GeneralAnnouncement", "Home")"></div>
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-cn88/default")
+    @StaticResources.RenderScripts("~/assets/bundles/home-index")
     @GoogleAnalyticHepler.Render()
 </body>
 </html>

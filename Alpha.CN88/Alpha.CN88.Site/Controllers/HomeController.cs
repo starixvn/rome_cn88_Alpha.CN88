@@ -21,23 +21,15 @@
 
         [HttpGet]
         [ChildActionOnly]
-        public ActionResult StatusSummary()
-        {
-            return PartialView();
-        }
+        public ActionResult StatusSummary(StatusSummaryQuery message)
+            => PartialView(mediator.Send(message));
 
         [HttpGet]
-        [ChildActionOnly]
-        public ActionResult ImportantAnnouncement()
-        {
-            return PartialView();
-        }
+        public ActionResult ImportantAnnouncement(ImportantAnnouncementQuery message)
+            => PartialView(mediator.Send(message));
 
         [HttpGet]
-        [ChildActionOnly]
-        public ActionResult GeneralAnnouncement()
-        {
-            return PartialView();
-        }
+        public ActionResult GeneralAnnouncement(GeneralAnnouncementQuery message)
+            => PartialView(mediator.Send(message));
     }
 }

@@ -1,1 +1,23 @@
-﻿fdg 
+﻿@using Alpha.CN88.Site.ViewModels.Home
+@model GeneralAnnouncementViewModel
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">@Resources.Last5GeneralAnnouncement</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model.Announcements)
+        {
+            <tr>
+                <td>@a.AffectedDateStr</td>
+                <td>@Html.Raw(a.Content)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2"><div id="view-general-announcement">@Resources.ViewMore</div></td>
+        </tr>
+    </tfoot>
+</table>

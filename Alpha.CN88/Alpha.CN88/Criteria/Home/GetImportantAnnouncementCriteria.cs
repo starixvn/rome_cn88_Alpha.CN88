@@ -2,14 +2,17 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetGetAccountOverviewCriteria : CriteriaBase
+    public class GetImportantAnnouncementCriteria : CriteriaBase
     {
-        public GetGetAccountOverviewCriteria(int custId)
+        public GetImportantAnnouncementCriteria(int custId, string language)
         {
             CustId = custId;
+            Language = language;
         }
 
         public int CustId { get; }
+
+        public string Language { get; }
 
         public override string GetSettingKey() => "CS_AccountingPeriod_Sel";
 

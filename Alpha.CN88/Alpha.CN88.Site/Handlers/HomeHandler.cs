@@ -1,12 +1,16 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
+    using CN88.Models.Home;
     using MediatR;
     using Requests.Home;
     using Services;
     using ViewModels.Home;
 
     public class HomeHandler :
-        IRequestHandler<AccountOverviewQuery, AccountOverviewViewModel>
+        IRequestHandler<AccountOverviewQuery, AccountOverviewViewModel>,
+        IRequestHandler<StatusSummaryQuery, StatusSummaryReport>,
+        IRequestHandler<ImportantAnnouncementQuery, ImportantAnnouncementViewModel>,
+        IRequestHandler<GeneralAnnouncementQuery, GeneralAnnouncementViewModel>
     {
         private readonly HomeService homeService;
 
@@ -20,6 +24,27 @@
             var model = homeService.GetAccountOverview(message.CustId);
 
             return new AccountOverviewViewModel(model);
+        }
+
+        public StatusSummaryReport Handle(StatusSummaryQuery message)
+        {
+            var model = homeService.GetStatusSummary(message.CustId);
+
+            return model;
+        }
+
+        public ImportantAnnouncementViewModel Handle(ImportantAnnouncementQuery message)
+        {
+            var model = homeService.GetImportantAnnouncement(message.CustId, message.Language);
+
+            return new ImportantAnnouncementViewModel(model);
+        }
+
+        public GeneralAnnouncementViewModel Handle(GeneralAnnouncementQuery message)
+        {
+            var model = homeService.GetGeneralAnnouncement(message.CustId, message.Language);
+
+            return new GeneralAnnouncementViewModel(model);
         }
     }
 }

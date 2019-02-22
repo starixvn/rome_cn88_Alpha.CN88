@@ -190,13 +190,17 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\Language.cs" />
-    <Compile Include="Criteria\Home\GetGetAccountOverviewCriteria.cs" />
+    <Compile Include="Criteria\Home\GetAccountOverviewCriteria.cs" />
+    <Compile Include="Criteria\Home\GetGeneralAnnouncementCriteria.cs" />
+    <Compile Include="Criteria\Home\GetImportantAnnouncementCriteria.cs" />
+    <Compile Include="Criteria\Home\GetStatusSummaryCriteria.cs" />
     <Compile Include="DataAccesses\HomeDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="FunctionRegistry.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Models\AccountOverview.cs" />
+    <Compile Include="Models\AnnouncementModel.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\DeviceInfo.cs" />
     <Compile Include="Models\Enumeration.cs" />
@@ -205,6 +209,8 @@
     <Compile Include="Models\Menus\MenuItem.cs" />
     <Compile Include="Models\Menus\MenuStatus.cs" />
     <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\Home\StatusSummary.cs" />
+    <Compile Include="Models\Home\StatusSummaryReport.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CachingManager.cs" />
@@ -228,8 +234,8 @@
     <EmbeddedResource Include="AppResources\Resources.ja-JP.resx" />
     <EmbeddedResource Include="AppResources\Resources.ko-KR.resx" />
     <EmbeddedResource Include="AppResources\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="AppResources\Resources.th-TH.resx" />
     <EmbeddedResource Include="AppResources\Resources.vi-VN.resx" />

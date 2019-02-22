@@ -52,6 +52,25 @@ class SiteInfrastructure {
             }
         }
     };
+
+    loadInfo = ($: any, id: string, handleOnSuccessLoading: any) => {
+        let $component = $(id),
+            url = $component.attr('action-url');
+
+        if (url == '' || typeof url == 'undefined') {
+            return;
+        }
+
+        $.ajax({
+            method: 'GET',
+            url: url,
+            cache: false,
+            success: (responseHtml) => {
+                $component.html(responseHtml);
+                handleOnSuccessLoading();
+            }
+        });
+    }
 }
 
 const siteInfrastructure = new SiteInfrastructure();

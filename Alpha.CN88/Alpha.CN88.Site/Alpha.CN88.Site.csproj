@@ -353,6 +353,10 @@
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\home-index.js" />
+    <Content Include="assets\bundles\home-index.min.js">
+      <DependentUpon>home-index.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\password\force-change-password.js" />
     <Content Include="assets\scripts\tests\libs\autocomplete.js" />
     <Content Include="assets\scripts\tests\libs\bootbox.js" />
@@ -457,6 +461,9 @@
     <Compile Include="Requests\ChangeLanguageCommand.cs" />
     <Compile Include="Requests\Default\IndexQuery.cs" />
     <Compile Include="Requests\Default\MenuBarQuery.cs" />
+    <Compile Include="Requests\Home\GeneralAnnouncementQuery.cs" />
+    <Compile Include="Requests\Home\ImportantAnnouncementQuery.cs" />
+    <Compile Include="Requests\Home\StatusSummaryQuery.cs" />
     <Compile Include="Requests\Password\ChangePasswordCommand.cs" />
     <Compile Include="Requests\Home\AccountOverviewQuery.cs" />
     <Compile Include="Requests\Password\ForceChangePasswordQuery.cs" />
@@ -467,6 +474,8 @@
     <Compile Include="ViewModels\Default\IndexViewModel.cs" />
     <Compile Include="ViewModels\Default\MenuBarViewModel.cs" />
     <Compile Include="ViewModels\Home\AccountOverviewViewModel.cs" />
+    <Compile Include="ViewModels\Home\GeneralAnnouncementViewModel.cs" />
+    <Compile Include="ViewModels\Home\ImportantAnnouncementViewModel.cs" />
     <Compile Include="ViewModels\LanguageViewModel.cs" />
     <Compile Include="ViewModels\Password\ForceChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Password\PasswordViewModel.cs" />
@@ -527,6 +536,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\default\index-manager.ts" />
+    <TypeScriptCompile Include="assets\scripts\home\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\password\force-change-password.ts" />
     <TypeScriptCompile Include="assets\scripts\password\password-resources.ts" />
     <TypeScriptCompile Include="assets\scripts\security-helper.ts" />
@@ -612,9 +622,6 @@
     <Folder Include="assets\scripts\tests\apps\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\AccountOverview.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Password\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -622,9 +629,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\securitycode.json" />
-  </ItemGroup>
-    <ItemGroup>
-    <Content Include="Views\Home\AccountOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\StatusSummary.cshtml" />
@@ -635,7 +639,15 @@
   <ItemGroup>
     <Content Include="Views\Home\GeneralAnnouncement.cshtml" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Content Include="Views\Home\AccountOverview.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\HtmlHelpers.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Default\UnsupportedBrowsers.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

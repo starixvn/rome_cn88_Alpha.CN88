@@ -165,4 +165,31 @@
   <data name="PasswordLastChangedOn" xml:space="preserve">
     <value>Password Last Changed On</value>
   </data>
+  <data name="StatusSummary" xml:space="preserve">
+    <value>Status Summary</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="ViewOnly" xml:space="preserve">
+    <value>View Only</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>Suspended</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="ViewMore" xml:space="preserve">
+    <value>View More</value>
+  </data>
+  <data name="ImportantAnnouncement" xml:space="preserve">
+    <value>Important Announcement</value>
+  </data>
+  <data name="Last5GeneralAnnouncement" xml:space="preserve">
+    <value>Last 5 General Announcement</value>
+  </data>
 </root>

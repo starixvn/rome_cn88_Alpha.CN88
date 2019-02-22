@@ -1,1 +1,34 @@
-﻿fdg 
+﻿@using Alpha.CN88.Models.Home
+@model StatusSummaryReport
+<table>
+    <thead>
+        <tr>
+            <th>@Resources.StatusSummary</th>
+            <th>@Resources.Active</th>
+            <th>@Resources.Inactive</th>
+            <th>@Resources.ViewOnly</th>
+            <th>@Resources.Suspended</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model.StatusSummary)
+        {
+            <tr>
+                <td>@s.Name</td>
+                @HtmlHelpers.RenderNumberCell(s.Active)
+                @HtmlHelpers.RenderNumberCell(s.Inactive)
+                @HtmlHelpers.RenderNumberCell(s.ViewOnly)
+                @HtmlHelpers.RenderNumberCell(s.Suspened)
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>@Resources.Total</td>
+            @HtmlHelpers.RenderNumberCell(Model.Total.Active)
+            @HtmlHelpers.RenderNumberCell(Model.Total.Inactive)
+            @HtmlHelpers.RenderNumberCell(Model.Total.ViewOnly)
+            @HtmlHelpers.RenderNumberCell(Model.Total.Suspened)
+        </tr>
+    </tfoot>
+</table>
