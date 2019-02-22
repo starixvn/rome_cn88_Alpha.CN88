@@ -70,13 +70,7 @@
             window.open(indexManager.urls.liveChat, "", "height=600,width=800");
         });
         $("#lnk-personal-announcement").on("click touchend", () => {
-            indexManager.elements.mainMenu.removeClass("active");
-            indexManager.elements.subMenu.addClass("display-none");
-            indexManager.elements.menuBar.removeClass("has-submenu");            
-            indexManager.currentState.mainMenuId = "menu-ANNOUNCEMENT";
-            $("#" + indexManager.currentState.mainMenuId).addClass("active"); 
-            indexManager.addHistory({ mainMenu: indexManager.currentState.mainMenuId, subMenu: null });
-           
+            indexManager.activeMainMenu("menu-ANNOUNCEMENT");
         });
         $("#lnk-contact-us").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
@@ -264,6 +258,15 @@
                 setTimeout(indexManager.reCheckin, 30000);
             }
         });
+    },
+    activeMainMenu: (id) => {
+        indexManager.elements.mainMenu.removeClass("active");
+        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.menuBar.removeClass("has-submenu");
+
+        indexManager.currentState.mainMenuId = id;
+        $("#" + id).addClass("active");
+        indexManager.addHistory({ mainMenu: id, subMenu: null });
     }
 };
 

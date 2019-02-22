@@ -4,6 +4,7 @@
     using CN88.Helpers;
     using Helpers;
     using Requests.Default;
+    using Web.Helpers;
 
     public class IndexViewModel
     {
@@ -67,5 +68,7 @@
         public string DefaultPath => getDefaultUrl?.Invoke() ?? MainRootPath;
 
         public string CurrentURLCookieName => CookieHelper.GetCookieNameOfCurrentPage(CustId, SubAccId, encodeDataFunction);
+
+        public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=0");
     }
 }

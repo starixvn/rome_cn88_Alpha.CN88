@@ -16,15 +16,21 @@
         var self = this;
 
         this.$("#view-important-announcement").on("click touchend", function () {
-            self.topWindow.$("#menu-ANNOUNCEMENT").click();
+            self.topWindow.indexManager.activeMainMenu("menu-ANNOUNCEMENT");
+
+            var target = self.$(this).attr("data-target");
+
+            self.topWindow.$("#main").attr("src", target);
         });
     };
 
     initGeneralAnnouncement = () => {
         var self = this;
 
-        this.$("#view-genral-announcement").on("click touchend", function () {
-            self.topWindow.$("#menu-ANNOUNCEMENT").click();
+        this.$("#view-general-announcement").on("click touchend", function () {
+            self.topWindow.indexManager.activeMainMenu("menu-ANNOUNCEMENT");
+            var target = self.$(this).attr("data-target");
+            self.topWindow.$("#main").attr("src", target);
         });
     };
 };
