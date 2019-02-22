@@ -144,4 +144,25 @@
   <data name="LiveChat" xml:space="preserve">
     <value>Live Chat</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="AccountOverview" xml:space="preserve">
+    <value>Account Overview</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="CreditBalance" xml:space="preserve">
+    <value>Credit Balance</value>
+  </data>
+  <data name="NewMemberForThisPeriod" xml:space="preserve">
+    <value>New Member for this Period</value>
+  </data>
+  <data name="YourLastLogin" xml:space="preserve">
+    <value>Your Last Login</value>
+  </data>
+  <data name="PasswordLastChangedOn" xml:space="preserve">
+    <value>Password Last Changed On</value>
+  </data>
 </root>

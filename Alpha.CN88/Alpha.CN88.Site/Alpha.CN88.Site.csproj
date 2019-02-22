@@ -437,6 +437,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\AuthenticationHandler.cs" />
     <Compile Include="Handlers\DefaultHandler.cs" />
+    <Compile Include="Handlers\HomeHandler.cs" />
     <Compile Include="Handlers\LanguageHandler.cs" />
     <Compile Include="Handlers\MenuBarHandler.cs" />
     <Compile Include="Handlers\SecurityCodeHandler.cs" />
@@ -457,6 +458,7 @@
     <Compile Include="Requests\Default\IndexQuery.cs" />
     <Compile Include="Requests\Default\MenuBarQuery.cs" />
     <Compile Include="Requests\Password\ChangePasswordCommand.cs" />
+    <Compile Include="Requests\Home\AccountOverviewQuery.cs" />
     <Compile Include="Requests\Password\ForceChangePasswordQuery.cs" />
     <Compile Include="Requests\Password\ResetMainAccountPasswordCommand.cs" />
     <Compile Include="Requests\Password\ResetSubAccountPasswordCommand.cs" />
@@ -464,6 +466,7 @@
     <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\Default\IndexViewModel.cs" />
     <Compile Include="ViewModels\Default\MenuBarViewModel.cs" />
+    <Compile Include="ViewModels\Home\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\LanguageViewModel.cs" />
     <Compile Include="ViewModels\Password\ForceChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Password\PasswordViewModel.cs" />
@@ -609,7 +612,7 @@
     <Folder Include="assets\scripts\tests\apps\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Default\UnsupportedBrowsers.cshtml" />
+    <Content Include="Views\Home\AccountOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Password\Shared\_Layout.cshtml" />
@@ -620,6 +623,19 @@
   <ItemGroup>
     <Content Include="App_Data\securitycode.json" />
   </ItemGroup>
+    <ItemGroup>
+    <Content Include="Views\Home\AccountOverview.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\StatusSummary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ImportantAnnouncement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\GeneralAnnouncement.cshtml" />
+  </ItemGroup>
+
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

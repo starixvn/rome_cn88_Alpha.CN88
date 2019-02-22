@@ -1,0 +1,31 @@
+﻿@using Alpha.CN88.Site.ViewModels.Home
+@model AccountOverviewViewModel
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">@Resources.AccountOverview</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Resources.Credits</td>
+            <td>@Model.Credits</td>
+        </tr>
+        <tr>
+            <td>@Resources.CreditBalance</td>
+            <td>@Model.CreditBalance</td>
+        </tr>
+        <tr>
+            <td>@Resources.NewMemberForThisPeriod</td>
+            <td>@Model.NewMembers</td>
+        </tr>
+        <tr>
+            <td>@Resources.YourLastLogin</td>
+            <td>@Model.LastLoginDateStr</td>
+        </tr>
+        <tr>
+            <td>@Resources.PasswordLastChangedOn</td>
+            <td>@Model.LastPasswordChangedDateStr</td>
+        </tr>
+    </tbody>
+</table>

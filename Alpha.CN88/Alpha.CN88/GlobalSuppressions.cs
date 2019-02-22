@@ -21,4 +21,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Bug", "S3887:Mutable, non-private fields should not be \"readonly\"", Justification = "<Pending>", Scope = "member", Target = "~F:Alpha.CN88.FunctionRegistry.MenuItemDisplayNameRules")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Vulnerability", "S2386:Mutable fields should not be \"public static\"", Justification = "<Pending>", Scope = "member", Target = "~F:Alpha.CN88.Constants.Language.CodeKeys")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Bug", "S3887:Mutable, non-private fields should not be \"readonly\"", Justification = "<Pending>", Scope = "member", Target = "~F:Alpha.CN88.Constants.Language.CodeKeys")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S101:Types should be named in camel case", Justification = "<Pending>", Scope = "type", Target = "~T:Alpha.CN88.Services.HomeService")]
 

@@ -93,6 +93,7 @@
             container.RegisterPerWebRequest<AuthenticationService, AuthenticationServiceImpl>();
             container.RegisterPerWebRequest<SessionUpdater, SessionUpdaterImpl>();
 
+            container.RegisterPerWebRequest<HomeService, HomeServiceImpl>();
             container.RegisterPerWebRequest<SecurityCodeChecker, SecurityCodeCheckerImpl>();
             container.RegisterPerWebRequest<SecurityCodeService, SecurityCodeServiceImpl>();
 

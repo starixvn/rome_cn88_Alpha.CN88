@@ -1,2 +1,39 @@
-﻿Hello
-Home Page
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/default")
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+</head>
+<body>
+    <div>@Resources.Home</div>
+    <div class="account-overview">
+        @Html.Action("AccountOverview")
+    </div>
+    <div class="status-summary">
+        @Html.Action("StatusSummary")
+    </div>
+    <div class="important-announcement">
+        @Html.Action("ImportantAnnouncement")
+    </div>
+    <div class="general-announcement">
+        @Html.Action("GeneralAnnouncement")
+    </div>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-cn88/default")
+    @GoogleAnalyticHepler.Render()
+</body>
+</html>

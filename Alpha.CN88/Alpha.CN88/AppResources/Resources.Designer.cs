@@ -61,6 +61,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Overview.
+        /// </summary>
+        public static string AccountOverview {
+            get {
+                return ResourceManager.GetString("AccountOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string ChangePassword {
@@ -75,6 +84,33 @@ namespace Alpha.CN88.AppResources {
         public static string ContactUs {
             get {
                 return ResourceManager.GetString("ContactUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Balance.
+        /// </summary>
+        public static string CreditBalance {
+            get {
+                return ResourceManager.GetString("CreditBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        public static string Credits {
+            get {
+                return ResourceManager.GetString("Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
             }
         }
         
@@ -106,6 +142,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Member for this Period.
+        /// </summary>
+        public static string NewMemberForThisPeriod {
+            get {
+                return ResourceManager.GetString("NewMemberForThisPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New URL.
         /// </summary>
         public static string NewURL {
@@ -133,11 +178,29 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password Last Changed On.
+        /// </summary>
+        public static string PasswordLastChangedOn {
+            get {
+                return ResourceManager.GetString("PasswordLastChangedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password Recorvery.
         /// </summary>
         public static string PasswordRecorvery {
             get {
                 return ResourceManager.GetString("PasswordRecorvery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Last Login.
+        /// </summary>
+        public static string YourLastLogin {
+            get {
+                return ResourceManager.GetString("YourLastLogin", resourceCulture);
             }
         }
     }
