@@ -1,15 +1,15 @@
 ﻿namespace CN88.Auth.Models
 {
-    public class Result
+    public class SecurityResult
     {
         private const int DefaultErrorCode = 1;
 
-        public Result()
+        public SecurityResult()
             : this(0, string.Empty)
         {
         }
 
-        public Result(int code, string message)
+        public SecurityResult(int code, string message)
         {
             Code = code;
             Message = message;
@@ -25,7 +25,7 @@
         public bool IsFail
             => !IsSuccess;
 
-        public static Result CreateErrorResult(string message, int? code = null)
-            => new Result(code.HasValue ? code.Value : DefaultErrorCode, message);
+        public static SecurityResult CreateErrorResult(string message, int? code = null)
+            => new SecurityResult(code.HasValue ? code.Value : DefaultErrorCode, message);
     }
 }

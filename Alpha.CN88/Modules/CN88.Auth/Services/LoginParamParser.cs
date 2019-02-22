@@ -5,7 +5,7 @@
     using System.Web;
     using Fanex.Cryptography.Aes;
     using Fanex.Logging.Extensions.Web;
-    using Models;
+    using Params.Authentication;
     using RSACryptoPad;
     using Sunplus.Agent.Model.Common;
     using Sunplus.Agent.Utilities;

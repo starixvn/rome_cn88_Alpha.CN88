@@ -33,15 +33,15 @@
                 return View(UnSupportedBrowsers, browser);
             }
 
-            if (!user.IsLogged || user.IsPasswordExpired)
-            {
-                return RedirectToAction("ForceChangePassword", "Password");
-            }
+            //if (!user.IsLogged || user.IsPasswordExpired)
+            //{
+            //    return RedirectToAction("ForceChangePassword", "Password");
+            //}
 
-            if (securityCodeChecker.IsForcedChangeSecurityCode())
-            {
-                return RedirectToAction("Index", "SecurityCode");
-            }
+            //if (securityCodeChecker.IsForcedChangeSecurityCode())
+            //{
+            //    return RedirectToAction("Index", "SecurityCode");
+            //}
 
             return View(mediator.Send(message));
         }

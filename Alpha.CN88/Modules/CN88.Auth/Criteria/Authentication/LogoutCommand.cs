@@ -1,4 +1,4 @@
-﻿namespace CN88.Auth.Criteria
+﻿namespace CN88.Auth.Criteria.Authentication
 {
     using Fanex.Data;
     using Fanex.Data.Repository;

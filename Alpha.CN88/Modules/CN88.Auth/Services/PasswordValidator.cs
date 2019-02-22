@@ -14,9 +14,9 @@
 
         string Decrypt(string password, string encryptKey);
 
-        Result IsMatchSMAPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null);
+        SecurityResult IsMatchSMAPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null);
 
-        Result IsMatchMemberPasswordRule(string password, IEnumerable<string> invalidPasswords);
+        SecurityResult IsMatchMemberPasswordRule(string password, IEnumerable<string> invalidPasswords);
     }
 
     public class PasswordValidatorImpl : PasswordValidator
@@ -41,21 +41,21 @@
         public string Decrypt(string password, string encryptKey)
             => encryptor.RC4(encryptKey, encryptor.HexDecode(password));
 
-        public Result IsMatchSMAPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null)
+        public SecurityResult IsMatchSMAPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null)
         {
             if (oldPassword != null && oldPassword == password)
             {
-                return Result.CreateErrorResult(AuthResource.NewPwdSameOldOneError);
+                return SecurityResult.CreateErrorResult(AuthResource.NewPwdSameOldOneError);
             }
 
             if (IsEqualsPasswordHint(password))
             {
-                return Result.CreateErrorResult(AuthResource.PasswordWrongRuleError);
+                return SecurityResult.CreateErrorResult(AuthResource.PasswordWrongRuleError);
             }
 
             if (IsContainsInvalidChars(password, invalidPasswords))
             {
-                return Result.CreateErrorResult(AuthResource.NewPwdContainsUserNameOrNickNameError);
+                return SecurityResult.CreateErrorResult(AuthResource.NewPwdContainsUserNameOrNickNameError);
             }
 
             var rule1 = PasswordRule1.Match(password).Success ? 1 : 0;
@@ -64,25 +64,25 @@
             var rule4 = PasswordRule4.Match(password).Success ? 1 : 0;
 
             return (rule1 + rule2 + rule3 + rule4 >= 3) && NoWhiteSpace.Match(password).Success
-                ? new Result()
-                : Result.CreateErrorResult(AuthResource.PasswordWrongRuleError);
+                ? new SecurityResult()
+                : SecurityResult.CreateErrorResult(AuthResource.PasswordWrongRuleError);
         }
 
-        public Result IsMatchMemberPasswordRule(string password, IEnumerable<string> invalidPasswords)
+        public SecurityResult IsMatchMemberPasswordRule(string password, IEnumerable<string> invalidPasswords)
         {
             if (IsEqualsPasswordHint(password))
             {
-                return Result.CreateErrorResult(AuthResource.PasswordWrongRuleError);
+                return SecurityResult.CreateErrorResult(AuthResource.PasswordWrongRuleError);
             }
 
             if (IsContainsInvalidChars(password, invalidPasswords))
             {
-                return Result.CreateErrorResult(AuthResource.NewPwdContainsUserNameOrNickNameError);
+                return SecurityResult.CreateErrorResult(AuthResource.NewPwdContainsUserNameOrNickNameError);
             }
 
             return MemberPasswordRule.Match(password).Success && NoWhiteSpace.Match(password).Success
-                ? new Result()
-                : Result.CreateErrorResult(AuthResource.PasswordWrongRuleError);
+                ? new SecurityResult()
+                : SecurityResult.CreateErrorResult(AuthResource.PasswordWrongRuleError);
         }
 
         private static bool IsEqualsPasswordHint(string password)

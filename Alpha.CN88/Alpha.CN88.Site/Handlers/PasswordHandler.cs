@@ -13,9 +13,9 @@
     using Web.Helpers;
 
     public class PasswordHandler :
-        IAsyncRequestHandler<ChangePasswordCommand, Result>,
-        IAsyncRequestHandler<ResetMainAccountPasswordCommand, Result>,
-        IAsyncRequestHandler<ResetSubAccountPasswordCommand, Result>,
+        IAsyncRequestHandler<ChangePasswordCommand, SecurityResult>,
+        IAsyncRequestHandler<ResetMainAccountPasswordCommand, SecurityResult>,
+        IAsyncRequestHandler<ResetSubAccountPasswordCommand, SecurityResult>,
         IRequestHandler<ForceChangePasswordQuery, ForceChangePasswordViewModel>
     {
         private const bool IsDisableCasino = true;
@@ -35,12 +35,12 @@
             this.passwordService = passwordService;
         }
 
-        public async Task<Result> Handle(ChangePasswordCommand message)
+        public async Task<SecurityResult> Handle(ChangePasswordCommand message)
             => message.IsSubAccount
             ? await ChangeSubAccountPasswordAsync(message)
             : await ChangeMainAccountPasswordAsync(message);
 
-        public async Task<Result> Handle(ResetMainAccountPasswordCommand message)
+        public async Task<SecurityResult> Handle(ResetMainAccountPasswordCommand message)
             => await passwordService.ResetMainAccountPasswordAsync(new ResetMainAccountPasswordParam(
                 message.CustId,
                 message.SubAccountId,
@@ -54,7 +54,7 @@
                 message.LanguageKey,
                 message.InvalidPasswords));
 
-        public async Task<Result> Handle(ResetSubAccountPasswordCommand message)
+        public async Task<SecurityResult> Handle(ResetSubAccountPasswordCommand message)
             => await passwordService.ResetSubAccountPasswordAsync(new ResetSubAccountPasswordParam(
                 message.CustId,
                 message.SubAccountId,
@@ -95,7 +95,7 @@
             ? message.SubUserName
             : string.IsNullOrEmpty(message.NickName) ? message.ViewerName : message.NickName;
 
-        private async Task<Result> ChangeMainAccountPasswordAsync(ChangePasswordCommand message)
+        private async Task<SecurityResult> ChangeMainAccountPasswordAsync(ChangePasswordCommand message)
             => await passwordService.ChangeMainAccountPasswordAsync(new ChangeMainAccountPasswordParam(
                     message.CustId,
                     message.CurrentPassword,
@@ -108,7 +108,7 @@
                     message.LanguageKey,
                     message.InvalidPasswords));
 
-        private async Task<Result> ChangeSubAccountPasswordAsync(ChangePasswordCommand message)
+        private async Task<SecurityResult> ChangeSubAccountPasswordAsync(ChangePasswordCommand message)
             => await passwordService.ChangeSubAccountPasswordAsync(new ChangeSubAccountPasswordParam(
                     message.CustId,
                     message.SubAccountId,

@@ -1,12 +1,13 @@
 ﻿namespace Alpha.CN88.Site.Requests.Password
 {
     using System.Collections.Generic;
+    using CN88.Models;
     using global::CN88.Auth.Models;
     using MediatR;
 
-    public class ChangePasswordCommand : BaseQuery, IAsyncRequest<Result>
+    public class ChangePasswordCommand : BaseQuery, IAsyncRequest<SecurityResult>
     {
-        public ChangePasswordCommand(CN88.Models.IUser viewer)
+        public ChangePasswordCommand(IUser viewer)
             : base(viewer)
         {
             IsSubAccount = viewer.IsSubAcc;

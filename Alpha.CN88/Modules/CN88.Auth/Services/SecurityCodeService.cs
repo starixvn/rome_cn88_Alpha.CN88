@@ -1,26 +1,27 @@
 ﻿namespace CN88.Auth.Services
 {
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using AppResources;
-    using Criteria;
+    using Criteria.SecurityCode;
     using Fanex.Data.Repository;
     using Models;
-    using Params;
+    using Params.SecurityCode;
     using Sunplus.Agent.Utilities;
 
     public interface SecurityCodeService
     {
-        SCResult ChangeMainAccountSecurityCode(ChangeSecurityCodeParam param);
+        Task<SecurityResult> ChangeMainAccountSecurityCodeAsync(ChangeSecurityCodeParam param);
 
-        SCResult ChangeSubAccountSecurityCode(ChangeSecurityCodeParam param);
+        Task<SecurityResult> ChangeSubAccountSecurityCodeAsync(ChangeSecurityCodeParam param);
 
-        SCResult ResetSubAccountSecurityCode(ResetSecurityCodeParam param);
+        Task<SecurityResult> ResetSubAccountSecurityCodeAsync(ResetSecurityCodeParam param);
 
         string GenerateSecurityToken();
 
         string GenerateSalt(int custId);
 
-        SCResult VerifySecurityCode(VerifySecurityCodeParam param);
+        Task<SecurityResult> VerifySecurityCodeAsync(VerifySecurityCodeParam param);
     }
 
     public class SecurityCodeServiceImpl : SecurityCodeService
@@ -43,63 +44,57 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public SCResult ChangeMainAccountSecurityCode(ChangeSecurityCodeParam param)
+        public async Task<SecurityResult> ChangeMainAccountSecurityCodeAsync(ChangeSecurityCodeParam param)
         {
-            var validateResult = Validate(param.NewSecurityCode, param);
+            var validateResult = await ValidateAsync(param.NewSecurityCode, param);
 
-            if (validateResult.IsNotOk)
+            if (validateResult.IsFail)
             {
                 return validateResult;
             }
 
-            return UpdateSecurityCode(new UpdateMainAccountSecurityCodeCriteria
-            {
-                CustId = param.CustId,
-                SubaccId = param.SubAccId,
-                UserId = param.UserId,
-                HashedSecurityCode = HashSecurityCode(param.CustId, param.NewSecurityCode, param.IsResetMember),
-                IP = param.IP,
-                Language = param.Language
-            });
+            return await UpdateSecurityCodeAsync(new UpdateMainAccountSecurityCodeCriteria(
+                param.CustId,
+                param.SubAccId,
+                HashSecurityCode(param.CustId, param.NewSecurityCode, param.IsResetMember),
+                param.UserId,
+                param.IP,
+                param.LanguageKey));
         }
 
-        public SCResult ChangeSubAccountSecurityCode(ChangeSecurityCodeParam param)
+        public async Task<SecurityResult> ChangeSubAccountSecurityCodeAsync(ChangeSecurityCodeParam param)
         {
-            var validateResult = Validate(param.NewSecurityCode, param);
+            var validateResult = await ValidateAsync(param.NewSecurityCode, param);
 
-            if (validateResult.IsNotOk)
+            if (validateResult.IsFail)
             {
                 return validateResult;
             }
 
-            return UpdateSecurityCode(new UpdateSubAccountSecurityCodeCriteria
-            {
-                CustId = param.CustId,
-                SubaccId = param.SubAccId,
-                HashedSecurityCode = HashSecurityCode(param.SubAccId, param.NewSecurityCode),
-                IP = param.IP,
-                Language = param.Language
-            });
+            return await UpdateSecurityCodeAsync(new UpdateSubAccountSecurityCodeCriteria(
+                param.CustId,
+                param.SubAccId,
+                HashSecurityCode(param.SubAccId, param.NewSecurityCode),
+                param.IP,
+                param.LanguageKey));
         }
 
-        public SCResult ResetSubAccountSecurityCode(ResetSecurityCodeParam param)
+        public async Task<SecurityResult> ResetSubAccountSecurityCodeAsync(ResetSecurityCodeParam param)
         {
-            var validateResult = Validate(param.NewSecurityCode);
+            var validateResult = await ValidateAsync(param.NewSecurityCode);
 
-            if (!validateResult.IsOk)
+            if (validateResult.IsFail)
             {
                 return validateResult;
             }
 
-            return UpdateSecurityCode(new ResetSubAccountSecurityCodeCriteria
-            {
-                CustId = param.CustId,
-                SubaccId = param.SubAccId,
-                UserId = param.UserId,
-                HashedSecurityCode = HashSecurityCode(param.SubAccId, param.NewSecurityCode),
-                IP = param.IP,
-                Language = param.Language
-            });
+            return await UpdateSecurityCodeAsync(new ResetSubAccountSecurityCodeCriteria(
+                param.CustId,
+                param.SubAccId,
+                HashSecurityCode(param.SubAccId, param.NewSecurityCode),
+                param.UserId,
+                param.IP,
+                param.LanguageKey));
         }
 
         public string GenerateSecurityToken()
@@ -112,93 +107,93 @@
             return encryptor.ComputeHash(MD5, plainText, SECURITYCODEPADDING);
         }
 
-        public SCResult VerifySecurityCode(VerifySecurityCodeParam param)
+        public async Task<SecurityResult> VerifySecurityCodeAsync(VerifySecurityCodeParam param)
         {
             if (string.IsNullOrEmpty(param.SecurityCode))
             {
-                return SCResult.CreateErrorResult(AuthResource.InformSecCode);
+                return SecurityResult.CreateErrorResult(AuthResource.InformSecCode);
             }
 
             if (string.IsNullOrEmpty(param.SecurityCode) || string.IsNullOrEmpty(param.Salt))
             {
-                return SCResult.CreateErrorResult(AuthResource.InputWrongSecCodeError);
+                return SecurityResult.CreateErrorResult(AuthResource.InputWrongSecCodeError);
             }
 
             // Database store Security Code hashed with CustID/SubAccID Salt
             // But Security code send from client browser has been hashed with CustID/SubAccID Salt by SHA256 Algorithm
             // So we have to hased security code from database with CustID/SubAccID Salt by SHA256 first, then compare
             // with hased security code which was sent from client browser.
-            var actualSecurityCode = GetSecurityCode(param.CustId, param.SubAccId);
+            var actualSecurityCode = await GetSecurityCodeAsync(param.CustId, param.SubAccId);
             var hashedActualSecurityCodeWithSalt = encryptor.ComputeHash(SHA256, actualSecurityCode, param.Salt);
             var isCorrectSecurityCode = string.Equals(param.SecurityCode, hashedActualSecurityCodeWithSalt);
 
-            //// update counter after verify
-            return UpdateSecurityCodeCounter(param.CustId, isCorrectSecurityCode, param.Language, param.SubAccId, param.IP);
+            // Update counter after verify.
+            return await UpdateSecurityCodeCounterAsync(param.CustId, isCorrectSecurityCode, param.LanguageKey, param.SubAccId, param.IP);
         }
 
-        private SCResult Validate(
+        private async Task<SecurityResult> ValidateAsync(
             string securityCode,
             ChangeSecurityCodeParam param = null)
         {
             if (string.IsNullOrWhiteSpace(securityCode))
             {
-                return SCResult.CreateErrorResult(AuthResource.SecCodeEmptyError);
+                return SecurityResult.CreateErrorResult(AuthResource.SecCodeEmptyError);
             }
 
             if (!IsMatchedRules(securityCode))
             {
-                return SCResult.CreateErrorResult(AuthResource.SecCodeWrongRuleError);
+                return SecurityResult.CreateErrorResult(AuthResource.SecCodeWrongRuleError);
             }
 
             if (param != null && param.MustVerifyCurrentSecurityCode)
             {
                 if (string.IsNullOrWhiteSpace(param.CurrentSecurityCode))
                 {
-                    return SCResult.CreateErrorResult(AuthResource.OldSecCodeEmptyError);
+                    return SecurityResult.CreateErrorResult(AuthResource.OldSecCodeEmptyError);
                 }
 
-                var verifyResult = VerifySecurityCode(new VerifySecurityCodeParam
-                {
-                    CustId = param.CustId,
-                    SecurityCode = param.CurrentSecurityCode,
-                    IP = param.IP,
-                    Language = param.Language,
-                    Salt = param.Salt,
-                    SubAccId = param.SubAccId
-                });
+                var verifyResult = await VerifySecurityCodeAsync(new VerifySecurityCodeParam(
+                    param.CustId,
+                    param.SubAccId,
+                    param.CurrentSecurityCode,
+                    param.Salt,
+                    param.IP,
+                    param.LanguageKey));
 
-                if (verifyResult.IsNotOk)
+                if (verifyResult.IsFail)
                 {
                     return verifyResult;
                 }
             }
 
-            return new SCResult();
+            return new SecurityResult();
         }
 
         private static bool IsMatchedRules(string securityCode)
         {
-            int securityCodeLength = securityCode == null ? 0 : securityCode.Trim().Length;
+            var securityCodeLength = securityCode == null ? 0 : securityCode.Trim().Length;
 
             if (securityCodeLength != AllowSecurityCodeLength)
             {
                 return false;
             }
 
-            Regex regex = new Regex(SecurityCodeRule);
-            //// check digits and all of them are not the same
+            var regex = new Regex(SecurityCodeRule);
+            // Check digits and all of them are not the same.
             bool isMatched = regex.IsMatch(securityCode);
 
             if (isMatched)
             {
-                //// check 'Forward Run' and 'Backward Run'
-                bool isForwardRun = true, isBackwardRun = true;
-                int forward = 0, backward = 0;
+                // Check 'Forward Run' and 'Backward Run'.
+                var isForwardRun = true;
+                var isBackwardRun = true;
+                var forward = 0;
+                var backward = 0;
                 forward = backward = int.Parse(securityCode[0].ToString());
 
                 for (int i = 1; i < securityCodeLength; i++)
                 {
-                    int current = int.Parse(securityCode[i].ToString());
+                    var current = int.Parse(securityCode[i].ToString());
 
                     if (++forward != current)
                     {
@@ -219,8 +214,8 @@
 
         private string HashSecurityCode(int custId, string securityCode, bool isResetMember = false)
         {
-            //// because the Member site doesn't want to edit his code.
-            //// so that we must use the CfsEnCode method.
+            // Because the Member site doesn't want to edit his code.
+            // So that we must use the CfsEnCode method.
             if (isResetMember)
             {
                 return encryptor.CfsEnCode(securityCode);
@@ -231,80 +226,46 @@
             return encryptor.ComputeHash(SHA1, securityCode, salt);
         }
 
-        private string GetSecurityCode(int custId, int subAccountId)
+        private async Task<string> GetSecurityCodeAsync(int custId, int subAccountId)
         {
-            ICriteria criteria;
+            ICriteria criteria = subAccountId == 0
+                ? new GetMainAccountSecurityCodeCriteria(custId)
+                : new GetSubAccountSecurityCodeCriteria(custId, subAccountId);
 
-            if (subAccountId == 0)
-            {
-                criteria = new GetMainAccountSecurityCodeCriteria
-                {
-                    CustId = custId
-                };
-            }
-            else
-            {
-                criteria = new GetSubAccountSecurityCodeCriteria
-                {
-                    CustId = custId,
-                    SubaccId = subAccountId
-                };
-            }
-
-            return dynamicRepository.Get<string>(criteria);
+            return await dynamicRepository.GetAsync<string>(criteria);
         }
 
-        private SCResult UpdateSecurityCodeCounter(
+        private async Task<SecurityResult> UpdateSecurityCodeCounterAsync(
             int custId,
             bool isCorrectSecurityCode,
             string language,
             int subAccountId,
             string ip)
         {
-            SCNonQueryCommand command;
+            SecurityCodeNonQueryCommand command = subAccountId == 0
+                ? new UpdateMainAccountSecurityCodeCounterCriteria(custId, isCorrectSecurityCode, ip, language)
+                : new UpdateSubAccountSecurityCodeCounterCriteria(custId, subAccountId, isCorrectSecurityCode, ip, language);
 
-            if (subAccountId == 0)
-            {
-                command = new UpdateMainAccountSecurityCodeCounterCriteria
-                {
-                    CustId = custId,
-                    CheckedSecurityCode = isCorrectSecurityCode,
-                    IP = ip,
-                    Language = language
-                };
-            }
-            else
-            {
-                command = new UpdateSubAccountSecurityCodeCounterCriteria
-                {
-                    CustId = custId,
-                    SubaccId = subAccountId,
-                    CheckedSecurityCode = isCorrectSecurityCode,
-                    IP = ip,
-                    Language = language
-                };
-            }
-
-            var result = UpdateSecurityCode(command);
+            var result = await UpdateSecurityCodeAsync(command);
 
             if (result.Code == 200)
             {
                 // Account is closed.
-                return SCResult.CreateErrorResult(result.Message, 2);
+                return SecurityResult.CreateErrorResult(result.Message, 2);
             }
 
-            return result.IsFailed
-                ? SCResult.CreateErrorResult(AuthResource.InputWrongSecCodeError, 9009)
+            return result.IsFail
+                ? SecurityResult.CreateErrorResult(AuthResource.InputWrongSecCodeError, 9009)
                 : result;
         }
 
-        private SCResult UpdateSecurityCode(SCNonQueryCommand command)
+        private async Task<SecurityResult> UpdateSecurityCodeAsync(SecurityCodeNonQueryCommand command)
         {
-            dynamicRepository.Execute(command);
+            await dynamicRepository.ExecuteAsync(command);
 
-            return new SCResult(
-                command.ErrCode,
-                command.ErrCode == 0 ? AuthResource.UpdatedSuccessfully : command.ErrMsg);
+            return SecurityResult.CreateErrorResult(
+                command.ErrCode == 0 ? AuthResource.UpdatedSuccessfully : command.ErrMsg,
+                command.ErrCode);
         }
     }
 }

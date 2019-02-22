@@ -1,4 +1,4 @@
-﻿namespace CN88.Auth.Models
+﻿namespace CN88.Auth.Params.Authentication
 {
     using System;
 

@@ -3,9 +3,11 @@
     using System;
     using Configurations;
     using Criteria;
+    using Criteria.Authentication;
     using DataAccesses;
     using Fanex.Data.Repository;
     using Models;
+    using Params.Authentication;
 
     public interface AuthenticationService
     {

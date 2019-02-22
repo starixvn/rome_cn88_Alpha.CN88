@@ -1,15 +1,18 @@
-﻿namespace CN88.Auth.Criteria
+﻿namespace CN88.Auth.Criteria.Authentication
 {
     using System;
     using Fanex.Data;
     using Fanex.Data.Repository;
 
-    public class AdminLoginCommand : NonQueryCommand
+    public class LoginCommand : NonQueryCommand
     {
-        public AdminLoginCommand(
-            string userName,
-            int adminId,
+        public LoginCommand(
+            int custId,
+            string password,
+            int subAccId,
             DateTime loginTime,
+            string nickName,
+            bool isNickName,
             string languageKey,
             string loginIP,
             string loginDomain,
@@ -17,9 +20,12 @@
             string platform,
             string countryCode)
         {
-            UserName = userName;
-            AdminId = adminId;
+            CustId = custId;
+            Password = password;
+            SubAccId = subAccId;
             LoginTime = loginTime;
+            NickName = nickName;
+            IsNickName = IsNickName;
             LanguageKey = languageKey;
             LoginIP = loginIP;
             LoginDomain = loginDomain;
@@ -28,12 +34,18 @@
             CountryCode = countryCode;
         }
 
-        public string UserName { get; }
+        public int CustId { get; }
 
-        [SpParam(SqlParamName = "AccUserID")]
-        public int AdminId { get; }
+        [SpParam(SqlParamName = "UserPwd")]
+        public string Password { get; }
+
+        public int SubAccId { get; }
 
         public DateTime LoginTime { get; }
+
+        public string NickName { get; }
+
+        public bool IsNickName { get; }
 
         [SpParam(SqlParamName = "Language")]
         public string LanguageKey { get; }
@@ -49,10 +61,11 @@
         public string CountryCode { get; }
 
         public override string GetSettingKey()
-            => "Age_LoginDownline_Admin";
+            => "Age_LoginClaimDownline";
 
         public override bool IsValid()
-            => string.IsNullOrWhiteSpace(UserName)
-            && AdminId > 0;
+            => CustId > 0
+            && !string.IsNullOrWhiteSpace(Password)
+            && SubAccId >= 0;
     }
 }

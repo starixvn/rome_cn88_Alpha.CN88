@@ -1,10 +1,11 @@
 ﻿namespace Alpha.CN88.Site.Requests.Password
 {
     using System.Collections.Generic;
+    using CN88.Models;
 
     public class ResetMainAccountPasswordCommand : ResetSubAccountPasswordCommand
     {
-        public ResetMainAccountPasswordCommand(CN88.Models.IUser viewer)
+        public ResetMainAccountPasswordCommand(IUser viewer)
             : base(viewer)
         {
         }

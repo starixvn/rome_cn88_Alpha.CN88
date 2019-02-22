@@ -15,18 +15,15 @@
         private const string HashKeySessionKey = "ph";
         private const string SecurityCodeTokenSessionKey = "SECURITYCODETOKEN";
 
-        //private readonly IUser user;
         private readonly SessionManager sessionManager;
         private readonly Encryptor encryptor;
         private readonly SecurityCodeService securityCodeService;
 
         public SecurityCodeHandler(
-            //IUser user,
             SessionManager sessionManager,
             Encryptor encryptor,
             SecurityCodeService securityCodeService)
         {
-            //this.user = user;
             this.sessionManager = sessionManager;
             this.encryptor = encryptor;
             this.securityCodeService = securityCodeService;

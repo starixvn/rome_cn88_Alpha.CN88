@@ -2,17 +2,20 @@
 {
     using System.Web.Mvc;
     using System.Web.Security;
+    using System.Web.SessionState;
+    using CN88.Models;
     using global::CN88.Auth.AppResources;
     using global::CN88.Auth.Models;
+    using global::CN88.Auth.Params.Authentication;
     using global::CN88.Auth.Services;
     using Web;
 
     public class ReCheckinController : BaseController
     {
-        private readonly CN88.Models.IUser user;
+        private readonly IUser user;
         private readonly AuthenticationService authenticationService;
 
-        public ReCheckinController(CN88.Models.IUser user, AuthenticationService authenticationService)
+        public ReCheckinController(IUser user, AuthenticationService authenticationService)
         {
             this.user = user;
             this.authenticationService = authenticationService;
@@ -22,7 +25,7 @@
         public ActionResult Index(int onId)
         {
             var result = authenticationService.IsDisabledCheckDuplicationLogin
-                ? new Result()
+                ? new SecurityResult()
                 : ProcessReCheckin(onId);
 
             if (!result.IsSuccess)
@@ -33,24 +36,24 @@
             return Json(result, JsonRequestBehavior.DenyGet);
         }
 
-        private Result ProcessReCheckin(int onlineUserId)
+        private SecurityResult ProcessReCheckin(int onlineUserId)
         {
             if (onlineUserId == 0 || onlineUserId != user.OnlineUserId)
             {
-                return Result.CreateErrorResult(AuthResource.AccessDeny, 1);
+                return SecurityResult.CreateErrorResult(AuthResource.AccessDeny, 1);
             }
 
             if (authenticationService.IsKickedOut(user.Id, onlineUserId))
             {
-                return Result.CreateErrorResult(AuthResource.SessionKickedOut, 3);
+                return SecurityResult.CreateErrorResult(AuthResource.SessionKickedOut, 3);
             }
 
             if (!user.IsInternal && !authenticationService.IsActiveCustomer(user.Id, user.SubAccountId))
             {
-                return Result.CreateErrorResult(AuthResource.CustomerClosed, 2);
+                return SecurityResult.CreateErrorResult(AuthResource.CustomerClosed, 2);
             }
 
-            return new Result();
+            return new SecurityResult();
         }
 
         private void LogoutAndClearSession()

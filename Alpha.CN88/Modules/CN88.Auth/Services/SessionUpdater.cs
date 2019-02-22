@@ -6,9 +6,11 @@
     using System.Text.RegularExpressions;
     using System.Web;
     using Criteria;
+    using Criteria.Authentication;
     using DataAccesses;
     using Fanex.Data.Repository;
     using Models;
+    using Params.Authentication;
     using Sunplus.Agent.Model.BL;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;

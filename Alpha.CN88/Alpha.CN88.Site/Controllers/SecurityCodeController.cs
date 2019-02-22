@@ -1,12 +1,10 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System.Web.Mvc;
-    using System.Web.SessionState;
     using CN88.Models;
     using MediatR;
     using Requests.SecurityCode;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
     public class SecurityCodeController : SiteBaseController
     {
         private readonly IUser user;
