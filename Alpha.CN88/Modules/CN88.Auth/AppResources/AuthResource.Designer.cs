@@ -70,6 +70,60 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your browser is outdated and might not be working properly with our website. For a better support, we strongly recommend that you upgrade to a newer version. Please,.
+        /// </summary>
+        public static string BrowserIsOutOfDate {
+            get {
+                return ResourceManager.GetString("BrowserIsOutOfDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to click here to update your browser.
+        /// </summary>
+        public static string ClickToUpdateBrowser {
+            get {
+                return ResourceManager.GetString("ClickToUpdateBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password was not correctly confirmed..
+        /// </summary>
+        public static string ComfirmPasswordError {
+            get {
+                return ResourceManager.GetString("ComfirmPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Password.
+        /// </summary>
+        public static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account was closed so you&apos;re forced to logout. Please contact your upline for the assistance..
         /// </summary>
         public static string CustomerClosed {
@@ -79,11 +133,248 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following:
+        ///
+        ///  • Uppercase letter [A-Z] 
+        ///  • Lowercase letter [a-z] 
+        ///  • Numeric [0-9] 
+        ///  • Special character (!,@,#,etc..)
+        ///
+        ///For example: 59D7!4$h, 493abcDE
+        ///Notes: your password is cAsE sEnSiTiVe.
+        /// </summary>
+        public static string HintPasswordRules {
+            get {
+                return ResourceManager.GetString("HintPasswordRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please input your security code before proceeding!.
+        /// </summary>
+        public static string InformSecCode {
+            get {
+                return ResourceManager.GetString("InformSecCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong Security Code. Please try again..
+        /// </summary>
+        public static string InputWrongSecCodeError {
+            get {
+                return ResourceManager.GetString("InputWrongSecCodeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Password.
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password must not contain your username or nickname..
+        /// </summary>
+        public static string NewPwdContainsUserNameOrNickNameError {
+            get {
+                return ResourceManager.GetString("NewPwdContainsUserNameOrNickNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your new password must be totally different from your current one..
+        /// </summary>
+        public static string NewPwdSameOldOneError {
+            get {
+                return ResourceManager.GetString("NewPwdSameOldOneError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Password.
+        /// </summary>
+        public static string OldPassword {
+            get {
+                return ResourceManager.GetString("OldPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter old Security Code.
+        /// </summary>
+        public static string OldSecCodeEmptyError {
+            get {
+                return ResourceManager.GetString("OldSecCodeEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password has been changed successfully..
+        /// </summary>
+        public static string PasswordChangedSuccessfully {
+            get {
+                return ResourceManager.GetString("PasswordChangedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following:.
+        /// </summary>
+        public static string PasswordHint01 {
+            get {
+                return ResourceManager.GetString("PasswordHint01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Uppercase letter [A-Z]&lt;/li&gt;
+        ///&lt;li&gt;Lowercase letter [a-z]&lt;/li&gt;
+        ///&lt;li&gt;Numeric [0-9]&lt;/li&gt;
+        ///&lt;li&gt;Special character (!,,#,etc..)&lt;/li&gt;.
+        /// </summary>
+        public static string PasswordHint02 {
+            get {
+                return ResourceManager.GetString("PasswordHint02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;
+        ///&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: your password is cAsE sEnSiTiVe&lt;/p&gt;.
+        /// </summary>
+        public static string PasswordHint03 {
+            get {
+                return ResourceManager.GetString("PasswordHint03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password rules.
+        /// </summary>
+        public static string PasswordRules {
+            get {
+                return ResourceManager.GetString("PasswordRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi {0}, please change your password..
+        /// </summary>
+        public static string PasswordShower {
+            get {
+                return ResourceManager.GetString("PasswordShower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password does not meet the minimum security requirement..
+        /// </summary>
+        public static string PasswordWrongRuleError {
+            get {
+                return ResourceManager.GetString("PasswordWrongRuleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter Old Password!!!.
+        /// </summary>
+        public static string RequiredInputOldPwdError {
+            get {
+                return ResourceManager.GetString("RequiredInputOldPwdError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, password cannot be empty!!!.
+        /// </summary>
+        public static string RequiredPasswordError {
+            get {
+                return ResourceManager.GetString("RequiredPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field is required..
+        /// </summary>
+        public static string SecCodeEmptyError {
+            get {
+                return ResourceManager.GetString("SecCodeEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Security Code does not meet the security requirements..
+        /// </summary>
+        public static string SecCodeWrongRuleError {
+            get {
+                return ResourceManager.GetString("SecCodeWrongRuleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have been logged out because your account has logged into another session. Don&apos;t recognize this activity? Please contact your upline for assistance..
         /// </summary>
         public static string SessionKickedOut {
             get {
                 return ResourceManager.GetString("SessionKickedOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show password.
+        /// </summary>
+        public static string ShowPassword {
+            get {
+                return ResourceManager.GetString("ShowPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sub-Acc.
+        /// </summary>
+        public static string SubAcc {
+            get {
+                return ResourceManager.GetString("SubAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browser Update Required!.
+        /// </summary>
+        public static string TitleUnsupportBrowser {
+            get {
+                return ResourceManager.GetString("TitleUnsupportBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully updated..
+        /// </summary>
+        public static string UpdatedSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
             }
         }
     }

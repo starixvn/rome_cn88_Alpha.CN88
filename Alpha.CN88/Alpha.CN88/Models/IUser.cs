@@ -8,11 +8,17 @@
 
         string Language { get; }
 
+        string LanguageKey { get; }
+
         byte LevelId { get; }
 
         bool IsInternal { get; }
 
+        bool IsSubAcc { get; }
+
         int SubAccountId { get; }
+
+        string SubUserName { get; }
 
         string IP { get; }
 
@@ -22,10 +28,16 @@
 
         int OnlineUserId { get; }
 
-        string SubUserName { get; }
-
         string NickName { get; }
 
         int ServerId { get; }
+
+        bool IsLogged { get; }
+
+        bool IsPasswordExpired { get; }
+
+        bool IsForcedSecurityCode { get; }
+
+        string SecurityCode { get; }
     }
 }

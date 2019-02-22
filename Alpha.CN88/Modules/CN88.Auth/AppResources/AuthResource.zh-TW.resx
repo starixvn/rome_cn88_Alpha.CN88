@@ -120,10 +120,115 @@
   <data name="AccessDeny" xml:space="preserve">
     <value>對不起, 您不被允許進入此網頁.</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>退回</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>您的瀏覽器已屬逾期版本故未能全面支援我們的網站。 為了得到更全面的支援， 強烈建議您升級瀏覽器至新版本。</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>更改密碼</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>點擊此處升級瀏覽器</value>
+  </data>
+  <data name="ComfirmPasswordError" xml:space="preserve">
+    <value>您的密碼不能被確認</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>確認密碼</value>
+  </data>
   <data name="CustomerClosed" xml:space="preserve">
     <value>您的帳戶被關閉，你必須退出。請聯系您上線的援助。</value>
   </data>
+  <data name="HintPasswordRules" xml:space="preserve">
+    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：
+
+• 大写字母 [A-Z]
+• 小写字母 [a-z]
+• 数字 [0-9]
+• 特殊字符 （!、 @、 # 等。。)
+
+例如： 59D7!4$h, 493abcDE
+注意： 您的密码需有大小写</value>
+  </data>
+  <data name="InformSecCode" xml:space="preserve">
+    <value>請輸入您的保安碼以繼續執行!</value>
+  </data>
+  <data name="InputWrongSecCodeError" xml:space="preserve">
+    <value>保安碼不正確。請再重試。</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>新密碼</value>
+  </data>
+  <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
+    <value>您的密码不能包含您的用户名或昵称。</value>
+  </data>
+  <data name="NewPwdSameOldOneError" xml:space="preserve">
+    <value>您的新密码不能与旧密码相同。</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>舊密碼</value>
+  </data>
+  <data name="OldSecCodeEmptyError" xml:space="preserve">
+    <value>請輸入您的舊保安碼。</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>您已成功更改您的密码。</value>
+  </data>
+  <data name="PasswordHint01" xml:space="preserve">
+    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：</value>
+  </data>
+  <data name="PasswordHint02" xml:space="preserve">
+    <value>&lt;li&gt;大写字母 [A-Z]&lt;/li&gt;
+&lt;li&gt;小写字母 [a-z]&lt;/li&gt;
+&lt;li&gt;数字 [0-9]&lt;/li&gt;
+&lt;li&gt; 特殊字符 （!、 @、 # 等。。)&lt;/li&gt;</value>
+  </data>
+  <data name="PasswordHint03" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;59D7!4$h, 493abcDE&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;您的密码需有大小写&lt;/p&gt;</value>
+  </data>
+  <data name="PasswordRules" xml:space="preserve">
+    <value>密碼條規</value>
+  </data>
+  <data name="PasswordShower" xml:space="preserve">
+    <value>嗨 {0} ，請更改您的密碼。</value>
+  </data>
+  <data name="PasswordWrongRuleError" xml:space="preserve">
+    <value>您的密码不符合最低安全要求</value>
+  </data>
+  <data name="RequiredInputOldPwdError" xml:space="preserve">
+    <value>請輸入舊密碼</value>
+  </data>
+  <data name="RequiredPasswordError" xml:space="preserve">
+    <value>密碼不能留空</value>
+  </data>
+  <data name="SecCodeEmptyError" xml:space="preserve">
+    <value>必填欄</value>
+  </data>
+  <data name="SecCodeWrongRuleError" xml:space="preserve">
+    <value>您所提供的保安碼不符合要求。</value>
+  </data>
   <data name="SessionKickedOut" xml:space="preserve">
     <value>另一個相同帐号已登入介面,強制被登出. 如果此登入不是由您所進行, 請聯絡您的上線.</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>顯示密碼</value>
+  </data>
+  <data name="SubAcc" xml:space="preserve">
+    <value>Sub-Acc</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="TitleUnsupportBrowser" xml:space="preserve">
+    <value>Browser Update Required!</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>更新成功!</value>
   </data>
 </root>

@@ -12,6 +12,7 @@
     using Helpers;
     using MediatR;
     using Models;
+    using SecurityCode.Services;
     using Services;
     using Services.Impl;
     using SimpleInjector;
@@ -19,6 +20,7 @@
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
+    using Sunplus.Agent.Utilities;
     using Web.Helpers;
     using Web.Helpers.Impl;
 
@@ -79,6 +81,7 @@
             container.RegisterSingleton<IUser, User>();
             container.RegisterSingleton<BrowserHelper, BrowserHelperImpl>();
             container.RegisterSingleton<CachingManager, CachingManagerImpl>();
+            container.RegisterSingleton<Encryptor, EncryptorImpl>();
 
             container.RegisterPerWebRequest<DefaultService, DefaultServiceImpl>();
             container.RegisterPerWebRequest<SiteMenuService, SiteMenuServiceImpl>();
@@ -89,6 +92,12 @@
             container.RegisterPerWebRequest<LoginParamParser, LoginParamParserImpl>();
             container.RegisterPerWebRequest<AuthenticationService, AuthenticationServiceImpl>();
             container.RegisterPerWebRequest<SessionUpdater, SessionUpdaterImpl>();
+
+            container.RegisterPerWebRequest<SecurityCodeChecker, SecurityCodeCheckerImpl>();
+            container.RegisterPerWebRequest<SecurityCodeService, SecurityCodeServiceImpl>();
+
+            container.RegisterPerWebRequest<PasswordValidator, PasswordValidatorImpl>();
+            container.RegisterPerWebRequest<PasswordService, PasswordServiceImpl>();
         }
     }
 }

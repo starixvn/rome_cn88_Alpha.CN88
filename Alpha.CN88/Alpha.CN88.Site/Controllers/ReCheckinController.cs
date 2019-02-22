@@ -2,7 +2,6 @@
 {
     using System.Web.Mvc;
     using System.Web.Security;
-    using CN88.Models;
     using global::CN88.Auth.AppResources;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Services;
@@ -10,10 +9,10 @@
 
     public class ReCheckinController : BaseController
     {
-        private readonly IUser user;
+        private readonly CN88.Models.IUser user;
         private readonly AuthenticationService authenticationService;
 
-        public ReCheckinController(IUser user, AuthenticationService authenticationService)
+        public ReCheckinController(CN88.Models.IUser user, AuthenticationService authenticationService)
         {
             this.user = user;
             this.authenticationService = authenticationService;
@@ -23,7 +22,7 @@
         public ActionResult Index(int onId)
         {
             var result = authenticationService.IsDisabledCheckDuplicationLogin
-                ? Result.CreateSuccessResult()
+                ? new Result()
                 : ProcessReCheckin(onId);
 
             if (!result.IsSuccess)
@@ -38,20 +37,20 @@
         {
             if (onlineUserId == 0 || onlineUserId != user.OnlineUserId)
             {
-                return Result.CreateErrorResult(1, AuthResource.AccessDeny);
+                return Result.CreateErrorResult(AuthResource.AccessDeny, 1);
             }
 
             if (authenticationService.IsKickedOut(user.Id, onlineUserId))
             {
-                return Result.CreateErrorResult(3, AuthResource.SessionKickedOut);
+                return Result.CreateErrorResult(AuthResource.SessionKickedOut, 3);
             }
 
             if (!user.IsInternal && !authenticationService.IsActiveCustomer(user.Id, user.SubAccountId))
             {
-                return Result.CreateErrorResult(2, AuthResource.CustomerClosed);
+                return Result.CreateErrorResult(AuthResource.CustomerClosed, 2);
             }
 
-            return Result.CreateSuccessResult();
+            return new Result();
         }
 
         private void LogoutAndClearSession()

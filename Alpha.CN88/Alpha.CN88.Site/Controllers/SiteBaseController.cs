@@ -18,13 +18,11 @@
         }
 
         protected ActionResult View<TResponse>(IRequest<TResponse> message)
-        {
-            return View(mediator.Send(message));
-        }
+            => View(mediator.Send(message));
 
         protected ActionResult JsonData<TResponse>(
-          IRequest<TResponse> message,
-          JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
+            IRequest<TResponse> message,
+            JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
         {
             if (!(message as BaseQuery).IsValid())
             {

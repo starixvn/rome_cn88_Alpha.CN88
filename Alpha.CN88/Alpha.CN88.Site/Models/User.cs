@@ -21,11 +21,17 @@
 
         public string Language => userSession.Language;
 
+        public string LanguageKey => userSession.LangKey;
+
         public byte LevelId => userSession.RoleId;
 
         public bool IsInternal => userSession.IsInternal;
 
+        public bool IsSubAcc => userSession.IsSubAcc;
+
         public int SubAccountId => userSession.SubAccId;
+
+        public string SubUserName => userSession.SubUserName;
 
         public string IP => userSession.UserLoginIp;
 
@@ -35,10 +41,16 @@
 
         public int OnlineUserId => userSession.OnUserId;
 
-        public string SubUserName => userSession.SubUserName;
-
         public string NickName => userSession.NickName;
 
         public int ServerId => userSession.ServerId;
+
+        public bool IsLogged => userSession.IsLogged;
+
+        public bool IsPasswordExpired => userSession.IsPasswordExpired;
+
+        public bool IsForcedSecurityCode => userSession.IsForcedSecurityCode;
+
+        public string SecurityCode => userSession.SecurityCode;
     }
 }

@@ -1,26 +1,54 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System.Web.Mvc;
+    using System.Web.SessionState;
     using CN88.Models;
     using MediatR;
+    using Requests;
     using Requests.Default;
+    using SecurityCode.Services;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class DefaultController : SiteBaseController
     {
-        private readonly IUser userSession;
+        private const string UnSupportedBrowsers = "UnsupportedBrowsers";
 
-        public DefaultController(IMediator mediator, IUser userSession)
+        private readonly IUser user;
+        private readonly SecurityCodeChecker securityCodeChecker;
+
+        public DefaultController(IMediator mediator, IUser user, SecurityCodeChecker securityCodeChecker)
             : base(mediator)
         {
-            this.userSession = userSession;
+            this.user = user;
+            this.securityCodeChecker = securityCodeChecker;
         }
 
         [HttpGet]
-        public ActionResult Index(IndexQuery message) => View(mediator.Send(message));
+        public ActionResult Index(IndexQuery message)
+        {
+            var browser = mediator.Send(new BrowserQuery(user));
+
+            if (browser.IsUnsupportedBrowser)
+            {
+                return View(UnSupportedBrowsers, browser);
+            }
+
+            if (!user.IsLogged || user.IsPasswordExpired)
+            {
+                return RedirectToAction("ForceChangePassword", "Password");
+            }
+
+            if (securityCodeChecker.IsForcedChangeSecurityCode())
+            {
+                return RedirectToAction("Index", "SecurityCode");
+            }
+
+            return View(mediator.Send(message));
+        }
 
         public ActionResult MenuBar()
         {
-            var viewModel = mediator.Send(new MenuBarQuery(userSession.LevelId, Request.UserAgent));
+            var viewModel = mediator.Send(new MenuBarQuery(user.LevelId, Request.UserAgent));
 
             return PartialView(viewModel);
         }

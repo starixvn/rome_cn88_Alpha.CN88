@@ -1,0 +1,31 @@
+﻿@using CN88.Auth.AppResources
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    @RenderSection("Styles", required: false)
+    <title> @ViewBag.Title</title>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+</head>
+<body>
+    @RenderBody()
+    @Html.AntiForgeryToken()
+    @Html.Hidden("please-enter-oldPassword", AuthResource.RequiredInputOldPwdError)
+    @Html.Hidden("password-cannot-empty", AuthResource.RequiredPasswordError)
+    @Html.Hidden("not-correct-confirm-password", AuthResource.ComfirmPasswordError)
+    @Html.Hidden("password-at-least-8chars", AuthResource.PasswordRules)
+    @Html.Hidden("password-change-successfully", AuthResource.PasswordChangedSuccessfully)
+    @Html.Hidden("password-does-not-min-requirement", AuthResource.PasswordWrongRuleError)
+    @Html.Hidden("newPassword-must-be-diff-old", AuthResource.NewPwdSameOldOneError)
+    @Html.Hidden("password-not-contain-nickname-username", AuthResource.NewPwdContainsUserNameOrNickNameError)
+    @Html.Hidden("mainRootPath", Url.Content("~"))
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

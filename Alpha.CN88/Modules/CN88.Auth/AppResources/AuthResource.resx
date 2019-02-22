@@ -120,10 +120,115 @@
   <data name="AccessDeny" xml:space="preserve">
     <value>Sorry, You don't have permission to access this page.</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>Your browser is outdated and might not be working properly with our website. For a better support, we strongly recommend that you upgrade to a newer version. Please,</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>click here to update your browser</value>
+  </data>
+  <data name="ComfirmPasswordError" xml:space="preserve">
+    <value>The password was not correctly confirmed.</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
   <data name="CustomerClosed" xml:space="preserve">
     <value>Your account was closed so you're forced to logout. Please contact your upline for the assistance.</value>
   </data>
+  <data name="HintPasswordRules" xml:space="preserve">
+    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:
+
+  • Uppercase letter [A-Z] 
+  • Lowercase letter [a-z] 
+  • Numeric [0-9] 
+  • Special character (!,@,#,etc..)
+
+For example: 59D7!4$h, 493abcDE
+Notes: your password is cAsE sEnSiTiVe</value>
+  </data>
+  <data name="InformSecCode" xml:space="preserve">
+    <value>Please input your security code before proceeding!</value>
+  </data>
+  <data name="InputWrongSecCodeError" xml:space="preserve">
+    <value>Wrong Security Code. Please try again.</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
+    <value>Your password must not contain your username or nickname.</value>
+  </data>
+  <data name="NewPwdSameOldOneError" xml:space="preserve">
+    <value>Your new password must be totally different from your current one.</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="OldSecCodeEmptyError" xml:space="preserve">
+    <value>Please enter old Security Code</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Your password has been changed successfully.</value>
+  </data>
+  <data name="PasswordHint01" xml:space="preserve">
+    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:</value>
+  </data>
+  <data name="PasswordHint02" xml:space="preserve">
+    <value>&lt;li&gt;Uppercase letter [A-Z]&lt;/li&gt;
+&lt;li&gt;Lowercase letter [a-z]&lt;/li&gt;
+&lt;li&gt;Numeric [0-9]&lt;/li&gt;
+&lt;li&gt;Special character (!,,#,etc..)&lt;/li&gt;</value>
+  </data>
+  <data name="PasswordHint03" xml:space="preserve">
+    <value>&lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: your password is cAsE sEnSiTiVe&lt;/p&gt;</value>
+  </data>
+  <data name="PasswordRules" xml:space="preserve">
+    <value>Password rules</value>
+  </data>
+  <data name="PasswordShower" xml:space="preserve">
+    <value>Hi {0}, please change your password.</value>
+  </data>
+  <data name="PasswordWrongRuleError" xml:space="preserve">
+    <value>Your password does not meet the minimum security requirement.</value>
+  </data>
+  <data name="RequiredInputOldPwdError" xml:space="preserve">
+    <value>Please Enter Old Password!!!</value>
+  </data>
+  <data name="RequiredPasswordError" xml:space="preserve">
+    <value>Sorry, password cannot be empty!!!</value>
+  </data>
+  <data name="SecCodeEmptyError" xml:space="preserve">
+    <value>This field is required.</value>
+  </data>
+  <data name="SecCodeWrongRuleError" xml:space="preserve">
+    <value>The Security Code does not meet the security requirements.</value>
+  </data>
   <data name="SessionKickedOut" xml:space="preserve">
     <value>You have been logged out because your account has logged into another session. Don't recognize this activity? Please contact your upline for assistance.</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Show password</value>
+  </data>
+  <data name="SubAcc" xml:space="preserve">
+    <value>Sub-Acc</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="TitleUnsupportBrowser" xml:space="preserve">
+    <value>Browser Update Required!</value>
+  </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Successfully updated.</value>
   </data>
 </root>

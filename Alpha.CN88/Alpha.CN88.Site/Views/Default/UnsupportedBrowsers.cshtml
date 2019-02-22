@@ -1,0 +1,24 @@
+﻿@using CN88.Auth.AppResources
+@model Alpha.CN88.Site.ViewModels.BrowserViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @StaticResources.AssetStyles.Render($"/bundles/site-main/unsupport-browser/{Model.UserLevel}")
+    @StaticResources.RenderStyles("~/assets/styles/home/pageIElower10")
+    <title>Your browser is out of date</title>
+</head>
+<body class="unsupport-browser">
+    <div id="warning-browser-message" class="warning-browser-message">
+        <a href="@AppPathHelper.GetAppPath(HttpRuntime.AppDomainAppVirtualPath, "~/")" class="icon-close"></a>
+        <p class="title"><span class="icon-alert"></span>@AuthResource.TitleUnsupportBrowser</p>
+        <div class="content-msg">
+            <span>@AuthResource.BrowserIsOutOfDate</span><a href="@Model.DownloadNewBrowserLink" target="_blank"> @(AuthResource.ClickToUpdateBrowser).</a>
+        </div>
+    </div>
+</body>
+</html>
