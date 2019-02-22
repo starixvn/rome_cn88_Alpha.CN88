@@ -1,12 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" enableLocalization="true">
   <siteMapNode title="Alpha CN88 Site">
-    <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles=""></siteMapNode>
-    <siteMapNode resourceKey="announcement">
-      <siteMapNode resourceKey="generalAnnouncement" appPath="CN88AppPath" url="Announcement/GeneralAnnouncement"></siteMapNode>
-      <siteMapNode resourceKey="importantAnnouncement" appPath="CN88AppPath" url="Announcement/ImportantAnnouncement"></siteMapNode>
-      <siteMapNode resourceKey="personalAnnouncement" appPath="CN88AppPath" url="Announcement/PersonalAnnouncement" roles=""></siteMapNode>
-    </siteMapNode>
+    <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles="Agent,Master,Super"></siteMapNode>
+    <siteMapNode resourceKey="announcement" appPath="MessageAppPath" url="MessageHistory/Index?messageType=0"></siteMapNode>
     <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="None">
       <siteMapNode resourceKey="overview" appPath="CN88AppPath" url="TotalBets/Overview"></siteMapNode>
       <siteMapNode resourceKey="inplay" appPath="CN88AppPath" url="TotalBets/InPlay"></siteMapNode>
@@ -18,12 +14,12 @@
       <siteMapNode resourceKey="results" appPath="CN88AppPath" url="TotalBets/Results"></siteMapNode>
       <siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>
     </siteMapNode>
-    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="">
+    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="Agent,Master,Super">
       <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles=""></siteMapNode>
       <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount/Index"></siteMapNode>
       <siteMapNode resourceKey="problemAccount" appPath="FeaturesAppPath" url="AccountManagement/ProblemAccount" roles="Super"></siteMapNode>
     </siteMapNode>
-    <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]">
+    <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]" roles="">
       <siteMapNode resourceKey="wagerReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=1"></siteMapNode>
       <siteMapNode resourceKey="legacyReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=2"></siteMapNode>
       <siteMapNode resourceKey="oldReport" appPath="FeaturesAppPath" url="Reports/OldReport"></siteMapNode>

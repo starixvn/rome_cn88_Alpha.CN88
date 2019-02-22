@@ -71,14 +71,12 @@
         });
         $("#lnk-personal-announcement").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
-            var id = "menu-ANNOUNCEMENT";
-            $("#" + id).addClass("active");
-
-            indexManager.currentState.mainMenuId = id;
             indexManager.elements.subMenu.addClass("display-none");
-            $(".sub-menu[data-main-menu='" + id + "']").removeClass("display-none");
-            indexManager.elements.menuBar.addClass("has-submenu");
-            $("#sub-menu-PERSONALANNOUNCEMENT")[0].click();
+            indexManager.elements.menuBar.removeClass("has-submenu");            
+            indexManager.currentState.mainMenuId = "menu-ANNOUNCEMENT";
+            $("#" + indexManager.currentState.mainMenuId).addClass("active"); 
+            indexManager.addHistory({ mainMenu: indexManager.currentState.mainMenuId, subMenu: null });
+           
         });
         $("#lnk-contact-us").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
@@ -187,6 +185,7 @@
     restoreLastMenu: () => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
         if (!history || history.length == 0) {
+            indexManager.elements.mainMenu.find("a")[1].click();
             return;
         }
 

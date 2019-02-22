@@ -18,7 +18,7 @@
         <li class="header-item" id="lnk-contact-us">
             @Resources.ContactUs
         </li>
-        <li class="header-item" id="lnk-personal-announcement"><span class="icon-bell"></span></li>
+        <li class="header-item" id="lnk-personal-announcement"><a href="@MicroSites.MessageUrl("~/MessageHistory/Index?messageType=0")" target="main"><span class="icon-bell"></span></a></li>
         <li class="header-item dropdown header-custname">
             <a href="javascript:;" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
                 @Model.CustName
