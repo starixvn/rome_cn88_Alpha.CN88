@@ -1,6 +1,10 @@
 ﻿@import "variables";
 @import "_mixins.scss";
 
+body {
+    overflow: hidden;
+}
+
 .form-group {
     padding-bottom: 0px;
 }

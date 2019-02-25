@@ -1,6 +1,6 @@
 ﻿@using Alpha.CN88.Site.ViewModels.Home
 @model ImportantAnnouncementViewModel
-<table>
+<table class="tbl-style2">
     <thead>
         <tr>
             <th colspan="2">@Resources.ImportantAnnouncement</th>
@@ -10,14 +10,17 @@
         @foreach (var a in Model.Announcements)
         {
             <tr>
-                <td>@a.AffectedDateStr</td>
+                <td class="text-center col-date"><span class="date-box">@a.AffectedDateStr</span></td>
                 <td>@Html.Raw(a.Content)</td>
             </tr>
         }
+        
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="2"><div id="view-important-announcement" data-target="@Model.ImportantAnnouncementPath">@Resources.ViewMore</div></td>
+            <td colspan="2" class="text-center">
+                <span id="view-important-announcement" class="view-more" data-target="@Model.ImportantAnnouncementPath">@Resources.ViewMore</span>
+            </td>
         </tr>
     </tfoot>
 </table>

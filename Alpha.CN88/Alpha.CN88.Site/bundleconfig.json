@@ -32,5 +32,11 @@
       "Assets/scripts/site-infrastructure.js",
       "Assets/scripts/home/index-manager.js"
     ]
+  },
+  {
+    "outputFileName": "Assets/bundles/home-index.css",
+    "inputFiles": [
+      "assets/styles/home.css"
+    ]
   }
 ]

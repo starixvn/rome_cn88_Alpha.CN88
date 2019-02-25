@@ -1,13 +1,13 @@
 ﻿@using Alpha.CN88.Models.Home
 @model StatusSummaryReport
-<table>
+<table class="tbl-style2 status-summary">
     <thead>
         <tr>
             <th>@Resources.StatusSummary</th>
-            <th>@Resources.Active</th>
-            <th>@Resources.Inactive</th>
-            <th>@Resources.ViewOnly</th>
-            <th>@Resources.Suspended</th>
+            <th class="text-center">@Resources.Active</th>
+            <th class="text-center">@Resources.Inactive</th>
+            <th class="text-center">@Resources.ViewOnly</th>
+            <th class="text-center">@Resources.Suspended</th>
         </tr>
     </thead>
     <tbody>
@@ -15,20 +15,20 @@
         {
             <tr>
                 <td>@s.Name</td>
-                @HtmlHelpers.RenderNumberCell(s.Active)
-                @HtmlHelpers.RenderNumberCell(s.Inactive)
-                @HtmlHelpers.RenderNumberCell(s.ViewOnly)
-                @HtmlHelpers.RenderNumberCell(s.Suspened)
+                @HtmlHelpers.RenderNumberCell(s.Active, "text-center status-active")
+                @HtmlHelpers.RenderNumberCell(s.Inactive, "text-center status-inactive")
+                @HtmlHelpers.RenderNumberCell(s.ViewOnly, "text-center status-view")
+                @HtmlHelpers.RenderNumberCell(s.Suspened, "text-center status-suspended")
             </tr>
         }
     </tbody>
-    <tfoot>
+    <tfoot class="tfoot-bg">
         <tr>
-            <td>@Resources.Total</td>
-            @HtmlHelpers.RenderNumberCell(Model.Total.Active)
-            @HtmlHelpers.RenderNumberCell(Model.Total.Inactive)
-            @HtmlHelpers.RenderNumberCell(Model.Total.ViewOnly)
-            @HtmlHelpers.RenderNumberCell(Model.Total.Suspened)
+            <td class="text-uppercase">@Resources.Total</td>
+            @HtmlHelpers.RenderNumberCell(Model.Total.Active, "text-center status-active")
+            @HtmlHelpers.RenderNumberCell(Model.Total.Inactive, "text-center status-inactive")
+            @HtmlHelpers.RenderNumberCell(Model.Total.ViewOnly, "text-center status-view")
+            @HtmlHelpers.RenderNumberCell(Model.Total.Suspened, "text-center status-suspended")
         </tr>
     </tfoot>
 </table>

@@ -1,6 +1,6 @@
 ﻿@using Alpha.CN88.Site.ViewModels.Home
 @model AccountOverviewViewModel
-<table>
+<table class="tbl-style2">
     <thead>
         <tr>
             <th colspan="2">@Resources.AccountOverview</th>
@@ -9,23 +9,23 @@
     <tbody>
         <tr>
             <td>@Resources.Credits</td>
-            <td>@Model.Credits</td>
+            <td class="text-right">@Model.Credits</td>
         </tr>
         <tr>
             <td>@Resources.CreditBalance</td>
-            <td>@Model.CreditBalance</td>
+            <td class="text-right">@Model.CreditBalance</td>
         </tr>
         <tr>
             <td>@Resources.NewMemberForThisPeriod</td>
-            <td>@Model.NewMembers</td>
+            <td class="text-right">@Model.NewMembers</td>
         </tr>
         <tr>
             <td>@Resources.YourLastLogin</td>
-            <td>@Model.LastLoginDateStr</td>
+            <td class="text-right">@Model.LastLoginDateStr</td>
         </tr>
         <tr>
             <td>@Resources.PasswordLastChangedOn</td>
-            <td>@Model.LastPasswordChangedDateStr</td>
+            <td class="text-right">@Model.LastPasswordChangedDateStr</td>
         </tr>
     </tbody>
 </table>

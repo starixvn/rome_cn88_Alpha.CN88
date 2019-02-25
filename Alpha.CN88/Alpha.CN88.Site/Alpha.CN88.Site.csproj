@@ -393,6 +393,12 @@
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tablesorter.js" />
     <Content Include="assets\scripts\tests\libs\tiny-draggable.js" />
+    <Content Include="assets\styles\home.css">
+      <DependentUpon>home.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\home.min.css">
+      <DependentUpon>home.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\images\1F.gif" />
     <Content Include="assets\styles\images\1L.gif" />
     <Content Include="assets\styles\images\firstGoal.gif" />
@@ -502,9 +508,9 @@
     <Content Include="assets\styles\_variables.scss" />
     <Content Include="bundleconfig.json" />
     <Content Include="compilerconfig.json" />
-    <Content Include="compilerconfig.json.defaults">
+    <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
-    </Content>
+    </None>
     <Content Include="Web.AppSettings.config">
       <SubType>Designer</SubType>
     </Content>
@@ -652,6 +658,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Default\UnsupportedBrowsers.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\styles\home.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
