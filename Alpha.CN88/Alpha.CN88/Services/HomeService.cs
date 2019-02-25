@@ -8,7 +8,7 @@
     {
         AccountOverview GetAccountOverview(int custId);
 
-        StatusSummaryReport GetStatusSummary(int custId);
+        StatusSummaryReport GetStatusSummary(int custId, UserLevel userLevel);
 
         IList<AnnouncementModel> GetImportantAnnouncement(int custId, string language);
 

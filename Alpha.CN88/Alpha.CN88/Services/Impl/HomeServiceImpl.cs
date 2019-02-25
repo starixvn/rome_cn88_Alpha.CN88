@@ -15,9 +15,9 @@
             return HomeDataAccess.GetAccountOverview(criteria);
         }
 
-        public StatusSummaryReport GetStatusSummary(int custId)
+        public StatusSummaryReport GetStatusSummary(int custId, UserLevel userLevel)
         {
-            var criteria = new GetStatusSummaryCriteria(custId);
+            var criteria = new GetStatusSummaryCriteria(custId, userLevel);
 
             return HomeDataAccess.GetStatusSummary(criteria);
         }

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using CN88.Models;
+    using Constants;
     using Web.Helpers;
 
     public class GeneralAnnouncementViewModel
@@ -13,6 +14,7 @@
 
         public IList<AnnouncementModel> Announcements { get; }
 
-        public string GeneralAnnouncementPath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=0");
+        public string GeneralAnnouncementPath
+            => MicroSites.MessageUrl($"~/MessageHistory/Index?messageType={MessageType.Normal}");
     }
 }

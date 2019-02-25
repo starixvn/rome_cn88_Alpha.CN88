@@ -28,7 +28,7 @@
 
         public StatusSummaryReport Handle(StatusSummaryQuery message)
         {
-            var model = homeService.GetStatusSummary(message.CustId);
+            var model = homeService.GetStatusSummary(message.CustId, message.ActorLevel);
 
             return model;
         }

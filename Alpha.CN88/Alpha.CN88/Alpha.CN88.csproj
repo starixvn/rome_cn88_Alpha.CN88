@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\Language.cs" />
+    <Compile Include="Constants\MessageType.cs" />
     <Compile Include="Criteria\Home\GetAccountOverviewCriteria.cs" />
     <Compile Include="Criteria\Home\GetGeneralAnnouncementCriteria.cs" />
     <Compile Include="Criteria\Home\GetImportantAnnouncementCriteria.cs" />
