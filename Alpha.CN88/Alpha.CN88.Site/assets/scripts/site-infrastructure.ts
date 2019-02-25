@@ -1,31 +1,16 @@
 ﻿declare var numeral: any;
+
 interface JQuery {
-    stickyTableHeaders(): void;
+	stickyTableHeaders(): void;
+}
+
+interface Window {
+	cn88SuccessfulUpdatingCallback(): void;
+	cn88CancelCallback(): void;
+	$: JQueryStatic;
 }
 
 class SiteInfrastructure {
-    pageList = [50, 100, 200, 500];
-
-    customerStatus = {
-        all: 0,
-        open: 1,
-        closed: 3,
-        suspended: 2
-    };
-
-    closeReasonConstant = {
-        LogInFailedOrExpired: 0,
-        SecurityCode: 3,
-        Upline: 2,
-        Admin: 1
-    };
-
-    roleId = {
-        master: 3,
-        agent: 2,
-        member: 1
-    };
-
     localStorage = {
         get: (key: string) => {
             var result = store.enabled ? store.get(key) : $.cookie(key);
@@ -74,3 +59,23 @@ class SiteInfrastructure {
 }
 
 const siteInfrastructure = new SiteInfrastructure();
+
+window.top.cn88SuccessfulUpdatingCallback = function () {
+	var $currentPage = top.$("body #reloadCN88CustomerListCallBackUrl");
+
+	if ($currentPage.length == 0 || $currentPage.val() == "") {
+		return;
+	}
+
+	top.$("#main").attr("src", $currentPage.val());
+}
+
+//window.top.cn88CancelCallback = function () {
+//	var $currentPage = window.top.$("body #reloadCN88CustomerListCallBackUrl");
+
+//	if ($currentPage.length == 0 || $currentPage.val() == "") {
+//		return;
+//	}
+
+//	top.$("#main").attr("src", $currentPage.val());
+//}
