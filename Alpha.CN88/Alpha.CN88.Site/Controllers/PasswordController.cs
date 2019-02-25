@@ -1,15 +1,21 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
-    using System.Threading.Tasks;
+    using System.Net;
     using System.Web.Mvc;
-    using CN88.Models;
+    using AppResources;
+    using global::CN88.Auth.Models;
     using MediatR;
     using Requests.Password;
+    using Sunplus.Agent.Model.Entities;
+    using Web.Filters;
 
     public class PasswordController : SiteBaseController
     {
-        public PasswordController(IMediator mediator)
-            : base(mediator)
+        private readonly IUserSession userSession;
+
+        public PasswordController(
+            IMediator mediator,
+            IUserSession userSession) : base(mediator)
         {
         }
 
@@ -21,7 +27,10 @@
         {
             if (!message.IsValid())
             {
-                return View(Result.CreateForbiddenResult());
+                return View(new ForceChangePasswordQuery(message.Viewer)
+                {
+                    Result = SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden)
+                });
             }
             else
             {
@@ -29,16 +38,21 @@
 
                 if (result.IsFail)
                 {
-                    return View(result);
+                    return View(new ForceChangePasswordQuery(message.Viewer) { Result = result });
                 }
+
+                userSession.IsLogged = true;
+                userSession.IsPasswordExpired = true;
 
                 return RedirectToAction("Index", "Default");
             }
         }
 
         //[HttpPost, AntiXsrfFilter]
-        //public async Task<ActionResult> ChangePassword(ChangePasswordCommand command)
-        //    => Json(await mediator.SendAsync(command), JsonRequestBehavior.DenyGet);
+        //public ActionResult ChangePassword(ChangePasswordCommand command)
+        //    => Json(command.IsValid()
+        //        ? mediator.Send(command)
+        //        : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden), JsonRequestBehavior.DenyGet);
 
         //[HttpPost, AntiXsrfFilter]
         //public async Task<ActionResult> ResetMainAccountPassword(ResetMainAccountPasswordCommand command)

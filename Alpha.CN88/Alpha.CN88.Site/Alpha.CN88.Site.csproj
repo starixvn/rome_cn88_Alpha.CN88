@@ -358,7 +358,11 @@
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\home-index.css" />
     <Content Include="assets\bundles\home-index.js" />
+    <Content Include="assets\bundles\home-index.min.css">
+      <DependentUpon>home-index.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\home-index.min.js">
       <DependentUpon>home-index.js</DependentUpon>
     </Content>

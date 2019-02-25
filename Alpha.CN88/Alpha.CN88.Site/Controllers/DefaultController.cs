@@ -38,10 +38,10 @@
             //    return RedirectToAction("Index", "NickName");
             //}
 
-            //if (!user.IsLogged || user.IsPasswordExpired)
-            //{
-            //    return RedirectToAction("ForceChangePassword", "Password");
-            //}
+            if (!user.IsLogged || user.IsPasswordExpired)
+            {
+                return RedirectToAction("ForceChangePassword", "Password");
+            }
 
             //if (securityCodeChecker.IsForcedChangeSecurityCode())
             //{

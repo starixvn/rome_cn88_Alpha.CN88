@@ -4,7 +4,7 @@
 
     public class BaseQuery
     {
-        private readonly IUser viewer;
+        protected readonly IUser viewer;
 
         protected BaseQuery(IUser viewer)
         {

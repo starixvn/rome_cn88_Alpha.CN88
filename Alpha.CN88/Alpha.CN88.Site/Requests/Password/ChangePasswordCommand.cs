@@ -46,6 +46,8 @@
             }
         }
 
+        public IUser Viewer => viewer;
+
         public override bool IsValid()
             => base.IsValid()
             && !string.IsNullOrWhiteSpace(CurrentPassword)

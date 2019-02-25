@@ -1,6 +1,7 @@
 ﻿namespace Alpha.CN88.Site.Requests.Password
 {
     using CN88.Models;
+    using global::CN88.Auth.Models;
     using MediatR;
     using ViewModels.Password;
 
@@ -9,15 +10,11 @@
         public ForceChangePasswordQuery(IUser viewer)
             : base(viewer)
         {
-            //NickName = viewer.NickName;
             IsSubAccount = viewer.IsSubAcc;
-            //SubUserName = viewer.SubUserName;
         }
-
-        //public string NickName { get; }
 
         public bool IsSubAccount { get; }
 
-        //public string SubUserName { get; }
+        public SecurityResult Result { get; set; }
     }
 }

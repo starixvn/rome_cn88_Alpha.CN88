@@ -1,5 +1,4 @@
-﻿'use strict';
-
+﻿"use strict";
 var passwordResources = {
     rules: "<i class='icon-information-outline icon-rules' data-toggle='modal' data-target='#pwd'></i>",
     pleaseEnterOldPassword: (<HTMLInputElement>document.getElementById('please-enter-oldPassword')).value,

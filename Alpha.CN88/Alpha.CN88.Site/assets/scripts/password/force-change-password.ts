@@ -1,23 +1,44 @@
-﻿'use strict'; 
+﻿"use strict";
 
 var forceChangePassword = {
+    elements: {
+        currentPassword: null,
+        newPassword: null,
+        confirmPassword: null,
+        hashKey: null
+    },
     initialize: function () {
-        $('#pwdForm').submit(function (e) {
-            e.preventDefault();
-            forceChangePassword.changePassword();
+        forceChangePassword.cacheElements();
+
+        $("#frmForceChangePassword").submit(function (e) {
+            $.blockUI();
+            if (!forceChangePassword.validatePasswords()) {
+                $.unblockUI();
+                return false;
+            }
+
+            const hashKey = forceChangePassword.elements.hashKey;
+            const currentPwd = forceChangePassword.elements.currentPassword.val().ec(hashKey).hc();
+            const newPWd = forceChangePassword.elements.newPassword.val().ec(hashKey).hc();
+
+            forceChangePassword.elements.currentPassword.val(currentPwd);
+            forceChangePassword.elements.newPassword.val(newPWd);
+            forceChangePassword.elements.confirmPassword.val(newPWd);
+
+            return true;
         });
 
         $("#btn-back").bind("click", function () {
             //securityHelper.signOut();
         });
 
-        $('#txtOldPwd').focus();
+        forceChangePassword.elements.currentPassword.focus();
 
-        $("#txtNewPwd").keyup(function () {
+        forceChangePassword.elements.newPassword.keyup(function () {
             securityHelper.validatePassword(this);
         });
 
-        $("#txtConfirmPwd").keyup(function () {
+        forceChangePassword.elements.confirmPassword.keyup(function () {
             securityHelper.validatePassword(this);
         });
 
@@ -26,97 +47,57 @@ var forceChangePassword = {
             isChecked ? securityHelper.showHint() : securityHelper.hideHint();
         });
     },
-    changePassword: function () {
-        $.blockUI();
-        var $txtOldPassword = $('#txtOldPwd');
-        var $txtPassword = $('#txtNewPwd');
-        var $txtConfirmPassword = $('#txtConfirmPwd');
-        if (!forceChangePassword.validateInputSecurityCode($txtOldPassword, $txtPassword, $txtConfirmPassword)) {
-            $.unblockUI();
-            return;
-        }
-
-        var hashKey = $('#hashkey').val();
-        var oldPassword = $txtOldPassword.val().ec(hashKey).hc();
-        var password = $txtPassword.val().ec(hashKey).hc();
-        $.ajax({
-            type: 'POST',
-            url: 'ForceChangePassword',
-            data: { currentPassword: oldPassword, newPassword: password },
-            dataType: 'json',
-            success: function (data, textStatus, jqXHR) {
-                if (data.Code === 0) { // OK
-                    securityHelper.redirectToHomePage(2000);
-                }
-                else if (data.Code === 2) { // account is closed
-                    alert(data.Message);
-                    securityHelper.signOut();
-                }
-                else if (data.Code === 101) {
-                    $txtOldPassword.addClass('error').focus();
-                    $("#txtOldPwd-error").empty().html(data.Message);
-                }
-                else {
-                    $txtPassword.addClass('error').focus();
-                    $("#txtNewPwd-error").empty().html(data.Message);
-                }
-            },
-            complete: function (jqXHR, textStatus) {
-                $.unblockUI();
-            }
-        })
+    cacheElements: function () {
+        forceChangePassword.elements.currentPassword = $("#txtOldPwd");
+        forceChangePassword.elements.newPassword = $("#txtNewPwd");
+        forceChangePassword.elements.confirmPassword = $("#txtConfirmPwd");
+        forceChangePassword.elements.hashKey = $("#HashKey").val();
     },
-    validateInputSecurityCode: function ($txtOldPassword, $txtPassword, $txtConfirmPassword) {
-        forceChangePassword.resetOriginalInputStatus();
-        var oldPassword = $txtOldPassword.val();
-        var password = $txtPassword.val();
-        var confirmPassword = $txtConfirmPassword.val();
-        var oldPasswordError = $("#txtOldPwd-error");
-        var newPasswordError = $("#txtNewPwd-error");
-        var confirmPasswordError = $("#txtConfirmPwd-error");
-        if (oldPassword.length === 0) {
-            $txtOldPassword.addClass('error');
-            oldPasswordError.html(passwordResources.pleaseEnterOldPassword);
-            $txtOldPassword.focus();
+    validatePasswords: function () {
+        const $currentPassword = forceChangePassword.elements.currentPassword.removeClass("error");
+        const $newPassword = forceChangePassword.elements.newPassword.removeClass("error");
+        const $confirmPassword = forceChangePassword.elements.confirmPassword.removeClass("error");
+
+        const currentPasswordValue = $currentPassword.val();
+        const newPasswordValue = $newPassword.val();
+        const confirmPasswordValue = $confirmPassword.val();
+
+        if (currentPasswordValue.length === 0) {
+            $currentPassword.addClass("error").focus();
+            //passwordResources.pleaseEnterOldPassword
             return false;
         }
 
-        if (password.length === 0) {
-            $txtPassword.addClass('error');
-            newPasswordError.html(passwordResources.passwordCannotEmpty).append(passwordResources.rules);
-            $txtPassword.focus();
+        if (newPasswordValue.length === 0) {
+            $newPassword.addClass("error").focus();
+            //passwordResources.rules
             return false;
         }
 
-        if (!securityHelper.isValidPassword(password)) {
-            $txtPassword.focus();
-            newPasswordError.html(passwordResources.passwordDoesNotMeetMinimunRequirement).append(passwordResources.rules);
+        if (!securityHelper.isValidPassword(newPasswordValue)) {
+            $newPassword.addClass("error").focus();
+            //passwordResources.rules
             return false;
         }
 
-        if (password != confirmPassword) {
-            $txtConfirmPassword.addClass('error');
-            confirmPasswordError.html(passwordResources.confirmPasswordNotCorret);
-            $txtConfirmPassword.focus();
+        if (newPasswordValue !== confirmPasswordValue) {
+            $confirmPassword.addClass("error").focus();
+            //passwordResources.confirmPasswordNotCorret
             return false;
         }
 
-        if (oldPassword === password) {
-            $txtConfirmPassword.addClass('error');
-            confirmPasswordError.html(passwordResources.newPassMustbeDiffOldPass);
-            $txtPassword.focus();
+        if (newPasswordValue === currentPasswordValue) {
+            $newPassword.addClass("error").focus();
+            //passwordResources.newPassMustbeDiffOldPass
             return false;
         }
 
         return true;
     },
     resetOriginalInputStatus: function () {
-        $("#txtOldPwd").removeClass('error');
-        $("#txtOldPwd-error").empty();
-        $("#txtNewPwd").removeClass('error');
-        $("#txtNewPwd-error").empty();
-        $("#txtConfirmPwd").removeClass('error');
-        $("#txtConfirmPwd-error").empty();
+        forceChangePassword.elements.currentPassword.removeClass("error");
+        forceChangePassword.elements.newPassword.removeClass("error");
+        forceChangePassword.elements.confirmPassword.removeClass("error");
     }
 }
 
