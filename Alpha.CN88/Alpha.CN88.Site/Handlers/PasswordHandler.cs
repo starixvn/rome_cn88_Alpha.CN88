@@ -66,7 +66,12 @@
                 message.InvalidPasswords));
 
         public ForceChangePasswordViewModel Handle(ForceChangePasswordQuery message)
-            => new ForceChangePasswordViewModel(message.ViewerId, message.SubAccountId, message.ActorLevel.Value, GetHasKey());
+            => new ForceChangePasswordViewModel(
+                message.ViewerId,
+                message.SubAccountId,
+                message.ActorLevel.Value,
+                GetHasKey(),
+                message.Result);
 
         private string GetHasKey()
         {

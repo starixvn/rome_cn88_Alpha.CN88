@@ -17,6 +17,7 @@
             IMediator mediator,
             IUserSession userSession) : base(mediator)
         {
+            this.userSession = userSession;
         }
 
         public ActionResult ForceChangePassword(ForceChangePasswordQuery message)
@@ -42,7 +43,7 @@
                 }
 
                 userSession.IsLogged = true;
-                userSession.IsPasswordExpired = true;
+                userSession.IsPasswordExpired = false;
 
                 return RedirectToAction("Index", "Default");
             }
