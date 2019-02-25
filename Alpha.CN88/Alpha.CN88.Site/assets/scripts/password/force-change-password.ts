@@ -5,7 +5,8 @@ var forceChangePassword = {
         currentPassword: null,
         newPassword: null,
         confirmPassword: null,
-        hashKey: null
+        hashKey: null,
+        messsageContainer: null
     },
     initialize: function () {
         forceChangePassword.cacheElements();
@@ -48,10 +49,11 @@ var forceChangePassword = {
         });
     },
     cacheElements: function () {
-        forceChangePassword.elements.currentPassword = $("#txtOldPwd");
-        forceChangePassword.elements.newPassword = $("#txtNewPwd");
-        forceChangePassword.elements.confirmPassword = $("#txtConfirmPwd");
+        forceChangePassword.elements.currentPassword = $("#currentPassword");
+        forceChangePassword.elements.newPassword = $("#newPassword");
+        forceChangePassword.elements.confirmPassword = $("#confirmPassword");
         forceChangePassword.elements.hashKey = $("#HashKey").val();
+        forceChangePassword.elements.messsageContainer = $("#message-container");
     },
     validatePasswords: function () {
         const $currentPassword = forceChangePassword.elements.currentPassword.removeClass("error");
@@ -63,41 +65,51 @@ var forceChangePassword = {
         const confirmPasswordValue = $confirmPassword.val();
 
         if (currentPasswordValue.length === 0) {
-            $currentPassword.addClass("error").focus();
-            //passwordResources.pleaseEnterOldPassword
+            siteInfrastructure.showError(
+                forceChangePassword.elements.messsageContainer,
+                passwordResources.pleaseEnterOldPassword);
+            $currentPassword.focus();
+
             return false;
         }
 
         if (newPasswordValue.length === 0) {
-            $newPassword.addClass("error").focus();
-            //passwordResources.rules
+            siteInfrastructure.showError(
+                forceChangePassword.elements.messsageContainer,
+                passwordResources.passwordCannotEmpty);
+            $newPassword.focus();
+
             return false;
         }
 
         if (!securityHelper.isValidPassword(newPasswordValue)) {
-            $newPassword.addClass("error").focus();
-            //passwordResources.rules
+            siteInfrastructure.showError(
+                forceChangePassword.elements.messsageContainer,
+                passwordResources.passwordDoesNotMeetMinimunRequirement);
+            $newPassword.focus();
+
             return false;
         }
 
         if (newPasswordValue !== confirmPasswordValue) {
-            $confirmPassword.addClass("error").focus();
-            //passwordResources.confirmPasswordNotCorret
+            siteInfrastructure.showError(
+                forceChangePassword.elements.messsageContainer,
+                passwordResources.confirmPasswordNotCorret);
+            $confirmPassword.focus();
+
             return false;
         }
 
         if (newPasswordValue === currentPasswordValue) {
-            $newPassword.addClass("error").focus();
-            //passwordResources.newPassMustbeDiffOldPass
+            siteInfrastructure.showError(
+                forceChangePassword.elements.messsageContainer,
+                passwordResources.newPassMustbeDiffOldPass);
+            $newPassword.focus();
+
             return false;
         }
 
         return true;
-    },
-    resetOriginalInputStatus: function () {
-        forceChangePassword.elements.currentPassword.removeClass("error");
-        forceChangePassword.elements.newPassword.removeClass("error");
-        forceChangePassword.elements.confirmPassword.removeClass("error");
     }
 }
 

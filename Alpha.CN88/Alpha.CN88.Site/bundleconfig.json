@@ -27,6 +27,7 @@
   {
     "outputFileName": "assets/bundles/password/force-change-password.js",
     "inputFiles": [
+      "assets/scripts/site-infrastructure.js",
       "assets/scripts/password/password-resources.js",
       "assets/scripts/security-helper.js",
       "assets/scripts/password/force-change-password.js"

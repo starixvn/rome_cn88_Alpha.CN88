@@ -1,13 +1,31 @@
 ﻿declare var numeral: any;
 
 interface JQuery {
-	stickyTableHeaders(): void;
+    stickyTableHeaders(): void;
 }
 
 interface Window {
-	cn88SuccessfulUpdatingCallback(): void;
-	cn88CancelCallback(): void;
-	$: JQueryStatic;
+    cn88SuccessfulUpdatingCallback(): void;
+    cn88CancelCallback(): void;
+    $: JQueryStatic;
+}
+
+class Result {
+    static warningCode: number = -1000;
+
+    Code: number;
+    Message: string;
+    IsSuccessful: boolean;
+    IsFailed: boolean;
+    IsWarning: boolean;
+
+    constructor(data?: any) {
+        this.Code = data.Code;
+        this.Message = data.Message || "";
+        this.IsSuccessful = this.Code === 0;
+        this.IsFailed = !this.IsSuccessful;
+        this.IsWarning = data.Code === Result.warningCode;
+    }
 }
 
 class SiteInfrastructure {
@@ -55,19 +73,43 @@ class SiteInfrastructure {
                 handleOnSuccessLoading();
             }
         });
-    }
+    };
+
+    showMessage = ($target: any, result: Result) => {
+        $target.empty();
+
+        if (result.IsSuccessful) {
+            this.showSuccess($target, result.Message);
+        } else if (result.IsFailed) {
+            this.showError($target, result.Message);
+        } else if (result.IsWarning) {
+            this.showWarn($target, result.Message);
+        }
+    };
+
+    showSuccess = ($target: any, message: string) => {
+        $target.html("<div class='msg msg-success'>" + message + "</div>");
+    };
+
+    showError = ($target: any, error: string) => {
+        $target.html("<div class='msg msg-error'>" + error + "</div>");
+    };
+
+    showWarn = ($target: any, warning: string) => {
+        $target.html("<div class='msg msg-warning'>" + warning + "</div>");
+    };
 }
 
 const siteInfrastructure = new SiteInfrastructure();
 
 window.top.cn88SuccessfulUpdatingCallback = function () {
-	var $currentPage = top.$("body #reloadCN88CustomerListCallBackUrl");
+    var $currentPage = top.$("body #reloadCN88CustomerListCallBackUrl");
 
-	if ($currentPage.length == 0 || $currentPage.val() == "") {
-		return;
-	}
+    if ($currentPage.length == 0 || $currentPage.val() == "") {
+        return;
+    }
 
-	top.$("#main").attr("src", $currentPage.val());
+    top.$("#main").attr("src", $currentPage.val());
 }
 
 //window.top.cn88CancelCallback = function () {
