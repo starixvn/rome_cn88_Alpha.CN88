@@ -120,4 +120,16 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>您没有使用此功能的权限.</value>
   </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>联络我们</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>活跃</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总和</value>
+  </data>
 </root>

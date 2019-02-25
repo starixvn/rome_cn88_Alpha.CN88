@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="announcement" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="totalBets" xml:space="preserve">
+    <value>Tổng Cược</value>
+  </data>
+  <data name="reports" xml:space="preserve">
+    <value>Báo cáo</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>Giúp đỡ</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="subAccount" xml:space="preserve">
+    <value>Tài khoản phụ</value>
+  </data>
+  <data name="parlay" xml:space="preserve">
+    <value>Cá cược tổng hợp</value>
+  </data>
+  <data name="outright" xml:space="preserve">
+    <value>Cược Thắng</value>
+  </data>
+  <data name="downlineList" xml:space="preserve">
+    <value>Thành viên</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này</value>
+  </data>
 </root>

@@ -120,4 +120,16 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>해당 기능에 대한 권한이 없습니다..</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>비밀번호 바꾸기</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>유효</value>
+  </data>
+  <data name="Suspended" xml:space="preserve">
+    <value>사용중지</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>총</value>
+  </data>
 </root>

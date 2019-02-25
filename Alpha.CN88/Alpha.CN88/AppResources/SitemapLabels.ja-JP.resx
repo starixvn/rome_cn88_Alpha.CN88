@@ -124,22 +124,22 @@
     <value />
   </data>
   <data name="totalBets" xml:space="preserve">
-    <value />
+    <value>合計ベット数</value>
   </data>
   <data name="accountManagement" xml:space="preserve">
     <value />
   </data>
   <data name="reports" xml:space="preserve">
-    <value />
+    <value>報告書</value>
   </data>
   <data name="help" xml:space="preserve">
     <value />
   </data>
   <data name="agent" xml:space="preserve">
-    <value />
+    <value>エージェント</value>
   </data>
   <data name="member" xml:space="preserve">
-    <value />
+    <value>メンバー</value>
   </data>
   <data name="subAccount" xml:space="preserve">
     <value />
@@ -175,10 +175,10 @@
     <value />
   </data>
   <data name="parlay" xml:space="preserve">
-    <value />
+    <value>ミックスパーレー</value>
   </data>
   <data name="outright" xml:space="preserve">
-    <value />
+    <value>即座</value>
   </data>
   <data name="results" xml:space="preserve">
     <value />

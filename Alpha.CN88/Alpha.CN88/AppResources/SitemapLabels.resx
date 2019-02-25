@@ -210,4 +210,7 @@
   <data name="downlineList" xml:space="preserve">
     <value>Downline List</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>You are not authorized on this function</value>
+  </data>
 </root>

@@ -118,69 +118,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessDeny" xml:space="preserve">
-    <value>Sorry, You don't have permission to access this page.</value>
+    <value>对不起,您不被允许进入此网页.</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
   <data name="BrowserIsOutOfDate" xml:space="preserve">
-    <value>Your browser is outdated and might not be working properly with our website. For a better support, we strongly recommend that you upgrade to a newer version. Please,</value>
+    <value>您的浏览器已属逾期版本故未能全面支援我们的网站。 为了得到更全面的支援， 强烈建议您升级浏览器至新版本。</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change Password</value>
   </data>
   <data name="ClickToUpdateBrowser" xml:space="preserve">
-    <value>click here to update your browser</value>
+    <value>点击此处升级浏览器</value>
   </data>
   <data name="ComfirmPasswordError" xml:space="preserve">
-    <value>The password was not correctly confirmed.</value>
+    <value>您的密码不能被确认</value>
   </data>
   <data name="ConfiguredNickNameSuccessfully" xml:space="preserve">
     <value>Your nickname was configured successfully</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>Confirm Password</value>
+    <value>确认密码</value>
   </data>
   <data name="CustomerClosed" xml:space="preserve">
-    <value>Your account was closed so you're forced to logout. Please contact your upline for the assistance.</value>
+    <value>您的帐户被关闭，你必须退出。请联系您上线的援助。</value>
   </data>
   <data name="HintPasswordRules" xml:space="preserve">
-    <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:
+    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：
 
-  • Uppercase letter [A-Z] 
-  • Lowercase letter [a-z] 
-  • Numeric [0-9] 
-  • Special character (!,@,#,etc..)
+• 大写字母 [A-Z]
+• 小写字母 [a-z]
+• 数字 [0-9]
+• 特殊字符 （!、 @、 # 等。。)
 
-For example: 59D7!4$h, 493abcDE
-Notes: your password is cAsE sEnSiTiVe</value>
+例如： 59D7!4$h, 493abcDE
+注意： 您的密码需有大小写</value>
   </data>
   <data name="InformSecCode" xml:space="preserve">
-    <value>Please input your security code before proceeding!</value>
+    <value>请输入您的保安码以继续执行!</value>
   </data>
   <data name="InputWrongSecCodeError" xml:space="preserve">
-    <value>Wrong Security Code. Please try again.</value>
+    <value>保安码不正确。请再重试。</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value>New Password</value>
+    <value>新密码</value>
   </data>
   <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
-    <value>Your password must not contain your username or nickname.</value>
+    <value>您的密码不能包含您的用户名或昵称。</value>
   </data>
   <data name="NewPwdSameOldOneError" xml:space="preserve">
-    <value>Your new password must be totally different from your current one.</value>
+    <value>您的新密码不能与旧密码相同。</value>
   </data>
   <data name="NickNameHint" xml:space="preserve">
     <value>Nickname must be unique, only alphabet or numeric and should have at least a minimum of 5 characters and maximum of 15 characters.</value>
   </data>
   <data name="OldPassword" xml:space="preserve">
-    <value>Old Password</value>
+    <value>旧密码</value>
   </data>
   <data name="OldSecCodeEmptyError" xml:space="preserve">
-    <value>Please enter old Security Code</value>
+    <value>请输入您的旧保安码。</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>密码</value>
   </data>
   <data name="PasswordChangedSuccessfully" xml:space="preserve">
     <value>Your password has been changed successfully.</value>
@@ -199,39 +199,39 @@ Notes: your password is cAsE sEnSiTiVe</value>
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: your password is cAsE sEnSiTiVe&lt;/p&gt;</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
-    <value>Password rules</value>
+    <value>密码条规</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
-    <value>Your password does not meet the minimum security requirement.</value>
+    <value>您的密码不符合最低安全要求</value>
   </data>
   <data name="RequiredInputOldPwdError" xml:space="preserve">
-    <value>Please Enter Old Password!!!</value>
+    <value>请输入旧密码</value>
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
-    <value>Sorry, password cannot be empty!!!</value>
+    <value>密码不能留空</value>
   </data>
   <data name="SecCodeEmptyError" xml:space="preserve">
-    <value>This field is required.</value>
+    <value>必填栏</value>
   </data>
   <data name="SecCodeWrongRuleError" xml:space="preserve">
-    <value>The Security Code does not meet the security requirements.</value>
+    <value>您所提供的保安码不符合要求。</value>
   </data>
   <data name="SessionKickedOut" xml:space="preserve">
     <value>You have been logged out because your account has logged into another session. Don't recognize this activity? Please contact your upline for assistance.</value>
   </data>
   <data name="ShowPassword" xml:space="preserve">
-    <value>Show password</value>
+    <value>顯示密碼</value>
   </data>
   <data name="SubAcc" xml:space="preserve">
-    <value>Sub-Acc</value>
+    <value>子账号</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>提交</value>
   </data>
   <data name="TitleUnsupportBrowser" xml:space="preserve">
     <value>Browser Update Required!</value>
   </data>
   <data name="UpdatedSuccessfully" xml:space="preserve">
-    <value>Successfully updated.</value>
+    <value>更新成功!</value>
   </data>
 </root>

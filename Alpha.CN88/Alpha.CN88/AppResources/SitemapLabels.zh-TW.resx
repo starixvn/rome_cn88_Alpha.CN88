@@ -117,4 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="announcement" xml:space="preserve">
+    <value>通告</value>
+  </data>
+  <data name="totalBets" xml:space="preserve">
+    <value>總投注</value>
+  </data>
+  <data name="reports" xml:space="preserve">
+    <value>报告</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>會員</value>
+  </data>
+  <data name="subAccount" xml:space="preserve">
+    <value>子帐号</value>
+  </data>
+  <data name="Beta" xml:space="preserve">
+    <value>Beta版</value>
+  </data>
+  <data name="parlay" xml:space="preserve">
+    <value>过关</value>
+  </data>
+  <data name="outright" xml:space="preserve">
+    <value>優勝冠軍</value>
+  </data>
+  <data name="downlineList" xml:space="preserve">
+    <value>下線名單</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>您沒有使用此功能的權限</value>
+  </data>
 </root>

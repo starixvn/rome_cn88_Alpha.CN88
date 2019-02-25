@@ -117,4 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="announcement" xml:space="preserve">
+    <value>ประกาศ</value>
+  </data>
+  <data name="totalBets" xml:space="preserve">
+    <value>จำนวนการวางเดิมพันทั้งหมด</value>
+  </data>
+  <data name="reports" xml:space="preserve">
+    <value>รายงาน</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>ตัวช่วย</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>ตัวแทน</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>สมาชิก</value>
+  </data>
+  <data name="subAccount" xml:space="preserve">
+    <value>บัญชีย่อย</value>
+  </data>
+  <data name="Beta" xml:space="preserve">
+    <value>เบต้า</value>
+  </data>
+  <data name="parlay" xml:space="preserve">
+    <value>บอลชุด</value>
+  </data>
+  <data name="outright" xml:space="preserve">
+    <value>ทายผลผู้ชนะ</value>
+  </data>
+  <data name="downlineList" xml:space="preserve">
+    <value>รายชื่อลูกค้า</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
+  </data>
 </root>

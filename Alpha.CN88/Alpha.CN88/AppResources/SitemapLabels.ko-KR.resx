@@ -120,4 +120,34 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>해당 기능에 대한 권한이 없습니다..</value>
   </data>
+  <data name="announcement" xml:space="preserve">
+    <value>공지사항</value>
+  </data>
+  <data name="totalBets" xml:space="preserve">
+    <value>총 배팅</value>
+  </data>
+  <data name="reports" xml:space="preserve">
+    <value>리포트</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>도움말</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>에이전트</value>
+  </data>
+  <data name="member" xml:space="preserve">
+    <value>회원</value>
+  </data>
+  <data name="subAccount" xml:space="preserve">
+    <value>보조계정</value>
+  </data>
+  <data name="parlay" xml:space="preserve">
+    <value>팔레이</value>
+  </data>
+  <data name="outright" xml:space="preserve">
+    <value>순위,승자 등</value>
+  </data>
+  <data name="downlineList" xml:space="preserve">
+    <value>하부라인 목록</value>
+  </data>
 </root>
