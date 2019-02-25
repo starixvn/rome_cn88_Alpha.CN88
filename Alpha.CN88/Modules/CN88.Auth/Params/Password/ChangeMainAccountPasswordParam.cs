@@ -22,7 +22,7 @@
 
         public bool IsCasinoDisabled { get; }
 
-        public override PasswordNonQueryCommand ToCriteria()
+        public override PasswordNonQueryCommand ToCommand()
             => new UpdateMainAccountPasswordCriteria(
                 CustId,
                 CurrentPassword,

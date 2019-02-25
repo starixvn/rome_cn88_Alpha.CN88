@@ -135,6 +135,9 @@
   <data name="ComfirmPasswordError" xml:space="preserve">
     <value>The password was not correctly confirmed.</value>
   </data>
+  <data name="ConfiguredNickNameSuccessfully" xml:space="preserve">
+    <value>Your nickname was configured successfully</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
   </data>
@@ -167,6 +170,9 @@ Notes: your password is cAsE sEnSiTiVe</value>
   <data name="NewPwdSameOldOneError" xml:space="preserve">
     <value>Your new password must be totally different from your current one.</value>
   </data>
+  <data name="NickNameHint" xml:space="preserve">
+    <value>Nickname must be unique, only alphabet or numeric and should have at least a minimum of 5 characters and maximum of 15 characters.</value>
+  </data>
   <data name="OldPassword" xml:space="preserve">
     <value>Old Password</value>
   </data>
@@ -194,9 +200,6 @@ Notes: your password is cAsE sEnSiTiVe</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
     <value>Password rules</value>
-  </data>
-  <data name="PasswordShower" xml:space="preserve">
-    <value>Hi {0}, please change your password.</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
     <value>Your password does not meet the minimum security requirement.</value>

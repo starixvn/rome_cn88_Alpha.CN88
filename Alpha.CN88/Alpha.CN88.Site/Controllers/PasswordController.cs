@@ -2,9 +2,9 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using CN88.Models;
     using MediatR;
     using Requests.Password;
-    using Web.Filters;
 
     public class PasswordController : SiteBaseController
     {
@@ -16,16 +16,36 @@
         public ActionResult ForceChangePassword(ForceChangePasswordQuery message)
             => View(message);
 
-        [HttpPost, AntiXsrfFilter]
-        public async Task<ActionResult> ChangePassword(ChangePasswordCommand command)
-            => Json(await mediator.SendAsync(command), JsonRequestBehavior.DenyGet);
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult ForceChangePassword(ChangePasswordCommand message)
+        {
+            if (!message.IsValid())
+            {
+                return View(Result.CreateForbiddenResult());
+            }
+            else
+            {
+                var result = mediator.Send(message);
 
-        [HttpPost, AntiXsrfFilter]
-        public async Task<ActionResult> ResetMainAccountPassword(ResetMainAccountPasswordCommand command)
-            => Json(await mediator.SendAsync(command), JsonRequestBehavior.DenyGet);
+                if (result.IsFail)
+                {
+                    return View(result);
+                }
 
-        [HttpPost, AntiXsrfFilter]
-        public async Task<ActionResult> ResetSubAccountPassword(ResetSubAccountPasswordCommand command)
-            => Json(await mediator.SendAsync(command), JsonRequestBehavior.DenyGet);
+                return RedirectToAction("Index", "Default");
+            }
+        }
+
+        //[HttpPost, AntiXsrfFilter]
+        //public async Task<ActionResult> ChangePassword(ChangePasswordCommand command)
+        //    => Json(await mediator.SendAsync(command), JsonRequestBehavior.DenyGet);
+
+        //[HttpPost, AntiXsrfFilter]
+        //public async Task<ActionResult> ResetMainAccountPassword(ResetMainAccountPasswordCommand command)
+        //    => Json(await mediator.SendAsync(command), JsonRequestBehavior.DenyGet);
+
+        //[HttpPost, AntiXsrfFilter]
+        //public async Task<ActionResult> ResetSubAccountPassword(ResetSubAccountPasswordCommand command)
+        //    => Json(await mediator.SendAsync(command), JsonRequestBehavior.DenyGet);
     }
 }

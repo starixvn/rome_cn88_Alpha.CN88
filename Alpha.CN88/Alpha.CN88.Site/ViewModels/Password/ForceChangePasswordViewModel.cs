@@ -1,15 +1,32 @@
 ﻿namespace Alpha.CN88.Site.ViewModels.Password
 {
-    public class ForceChangePasswordViewModel : PasswordViewModel
+    using CN88.Models;
+
+    public class ForceChangePasswordViewModel
     {
-        public bool IsDefaultAvatar { get; set; }
+        public ForceChangePasswordViewModel(
+            int custId,
+            int subAccId,
+            byte custRoleId,
+            string hashKey)
+        {
+            CustId = custId;
+            SubAccountId = subAccId;
+            CustRoleId = custRoleId;
+            CustRoleLevel = Enumeration.FromValue<UserLevel>(custRoleId);
+            HashKey = hashKey;
+        }
 
-        public string EmbedImage { get; set; }
+        public int CustId { get; }
 
-        public string Username { get; set; }
+        public int SubAccountId { get; }
 
-        public string AlternateUsername { get; set; }
+        public byte CustRoleId { get; }
 
-        public string UsernameShower { get; set; }
+        public UserLevel CustRoleLevel { get; }
+
+        public string HashKey { get; }
+
+        public bool IsChangeMemberPassword => CustRoleLevel.IsMemberLevel();
     }
 }

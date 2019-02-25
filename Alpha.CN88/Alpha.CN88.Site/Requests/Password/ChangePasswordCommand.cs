@@ -5,7 +5,7 @@
     using global::CN88.Auth.Models;
     using MediatR;
 
-    public class ChangePasswordCommand : BaseQuery, IAsyncRequest<SecurityResult>
+    public class ChangePasswordCommand : BaseQuery, IRequest<SecurityResult>
     {
         public ChangePasswordCommand(IUser viewer)
             : base(viewer)
@@ -45,5 +45,10 @@
                 }
             }
         }
+
+        public override bool IsValid()
+            => base.IsValid()
+            && !string.IsNullOrWhiteSpace(CurrentPassword)
+            && !string.IsNullOrWhiteSpace(NewPassword);
     }
 }

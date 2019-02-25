@@ -21,7 +21,7 @@
 
         public int SubAccountId { get; }
 
-        public override PasswordNonQueryCommand ToCriteria()
+        public override PasswordNonQueryCommand ToCommand()
             => new ResetSubAccountPasswordCriteria(
                 CustId,
                 SubAccountId,

@@ -362,7 +362,14 @@
     <Content Include="assets\bundles\home-index.min.js">
       <DependentUpon>home-index.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\nickname\create-nickname.js" />
+    <Content Include="assets\bundles\nickname\create-nickname.min.js">
+      <DependentUpon>create-nickname.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\password\force-change-password.js" />
+    <Content Include="assets\bundles\password\force-change-password.min.js">
+      <DependentUpon>force-change-password.js</DependentUpon>
+    </Content>
     <Content Include="assets\scripts\tests\libs\autocomplete.js" />
     <Content Include="assets\scripts\tests\libs\bootbox.js" />
     <Content Include="assets\scripts\tests\libs\bootstrap\button.js" />
@@ -441,8 +448,10 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Controllers\NickNameController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\SecurityCodeController.cs" />
+    <Compile Include="Handlers\NickNameHandler.cs" />
     <Compile Include="Handlers\PasswordHandler.cs" />
     <Compile Include="Controllers\ReCheckinController.cs" />
     <Compile Include="Controllers\SiteBaseController.cs" />
@@ -472,6 +481,7 @@
     <Compile Include="Requests\ChangeLanguageCommand.cs" />
     <Compile Include="Requests\Default\IndexQuery.cs" />
     <Compile Include="Requests\Default\MenuBarQuery.cs" />
+    <Compile Include="Requests\NickName\CreateNickNameCommand.cs" />
     <Compile Include="Requests\Home\GeneralAnnouncementQuery.cs" />
     <Compile Include="Requests\Home\ImportantAnnouncementQuery.cs" />
     <Compile Include="Requests\Home\StatusSummaryQuery.cs" />
@@ -547,6 +557,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\default\index-manager.ts" />
+    <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />
     <TypeScriptCompile Include="assets\scripts\home\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\password\force-change-password.ts" />
     <TypeScriptCompile Include="assets\scripts\password\password-resources.ts" />
@@ -649,6 +660,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\GeneralAnnouncement.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\NickName\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\AccountOverview.cshtml" />

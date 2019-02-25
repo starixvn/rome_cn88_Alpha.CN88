@@ -99,6 +99,8 @@
 
             container.RegisterPerWebRequest<PasswordValidator, PasswordValidatorImpl>();
             container.RegisterPerWebRequest<PasswordService, PasswordServiceImpl>();
+
+            container.RegisterPerWebRequest<NickNameService, NickNameServiceImpl>();
         }
     }
 }

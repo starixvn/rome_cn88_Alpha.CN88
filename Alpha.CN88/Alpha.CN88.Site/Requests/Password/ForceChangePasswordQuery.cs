@@ -9,15 +9,15 @@
         public ForceChangePasswordQuery(IUser viewer)
             : base(viewer)
         {
+            //NickName = viewer.NickName;
             IsSubAccount = viewer.IsSubAcc;
-            NickName = viewer.NickName;
-            SubUserName = viewer.SubUserName;
+            //SubUserName = viewer.SubUserName;
         }
+
+        //public string NickName { get; }
 
         public bool IsSubAccount { get; }
 
-        public string NickName { get; }
-
-        public string SubUserName { get; }
+        //public string SubUserName { get; }
     }
 }

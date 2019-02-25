@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using global::CN88.Auth.AppResources;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.Password;
     using global::CN88.Auth.Services;
@@ -13,13 +12,13 @@
     using Web.Helpers;
 
     public class PasswordHandler :
-        IAsyncRequestHandler<ChangePasswordCommand, SecurityResult>,
+        IRequestHandler<ChangePasswordCommand, SecurityResult>,
         IAsyncRequestHandler<ResetMainAccountPasswordCommand, SecurityResult>,
         IAsyncRequestHandler<ResetSubAccountPasswordCommand, SecurityResult>,
         IRequestHandler<ForceChangePasswordQuery, ForceChangePasswordViewModel>
     {
         private const bool IsDisableCasino = true;
-        private const string HashKeySessionKey = "Alpha.CN88.Site.PasswordHandler.PasswordHash";
+        private const string HashKeySessionKey = "Alpha.CN88.Site.Handlers.PasswordHandler.PasswordHash";
 
         private readonly Encryptor encryptor;
         private readonly SessionManager sessionManager;
@@ -35,10 +34,10 @@
             this.passwordService = passwordService;
         }
 
-        public async Task<SecurityResult> Handle(ChangePasswordCommand message)
+        public SecurityResult Handle(ChangePasswordCommand message)
             => message.IsSubAccount
-            ? await ChangeSubAccountPasswordAsync(message)
-            : await ChangeMainAccountPasswordAsync(message);
+            ? passwordService.ChangeSubAccountPassword(ToChangeSubAccountPasswordParam(message))
+            : passwordService.ChangeMainAccountPassword(ToChangeMainAccountPasswordParam(message));
 
         public async Task<SecurityResult> Handle(ResetMainAccountPasswordCommand message)
             => await passwordService.ResetMainAccountPasswordAsync(new ResetMainAccountPasswordParam(
@@ -67,15 +66,7 @@
                 message.InvalidPasswords));
 
         public ForceChangePasswordViewModel Handle(ForceChangePasswordQuery message)
-            => new ForceChangePasswordViewModel
-            {
-                HashKey = GetHasKey(),
-                IsDefaultAvatar = true,//profile.UseDefaultAvatar,
-                Username = message.ViewerName,
-                AlternateUsername = BuildAlternateUserName(message),
-                UsernameShower = BuildUsernameShower(message),
-                EmbedImage = string.Empty//GenerateImage(profile)
-            };
+            => new ForceChangePasswordViewModel(message.ViewerId, message.SubAccountId, message.ActorLevel.Value, GetHasKey());
 
         private string GetHasKey()
         {
@@ -85,40 +76,30 @@
             return hashKey;
         }
 
-        private string BuildAlternateUserName(ForceChangePasswordQuery message)
-            => message.IsSubAccount
-            ? $"({AuthResource.SubAcc.ToUpper()} {message.SubUserName})"
-            : string.IsNullOrEmpty(message.NickName) ? string.Empty : $"({message.NickName})";
+        private ChangeMainAccountPasswordParam ToChangeMainAccountPasswordParam(ChangePasswordCommand message)
+            => new ChangeMainAccountPasswordParam(
+                message.CustId,
+                message.CurrentPassword,
+                message.NewPassword,
+                sessionManager.Get<string>(HashKeySessionKey),
+                IsDisableCasino,
+                message.IP,
+                message.ViewerId,
+                message.ViewerName,
+                message.LanguageKey,
+                message.InvalidPasswords);
 
-        private string BuildUsernameShower(ForceChangePasswordQuery message)
-            => message.IsSubAccount
-            ? message.SubUserName
-            : string.IsNullOrEmpty(message.NickName) ? message.ViewerName : message.NickName;
-
-        private async Task<SecurityResult> ChangeMainAccountPasswordAsync(ChangePasswordCommand message)
-            => await passwordService.ChangeMainAccountPasswordAsync(new ChangeMainAccountPasswordParam(
-                    message.CustId,
-                    message.CurrentPassword,
-                    message.NewPassword,
-                    sessionManager.Get<string>(HashKeySessionKey),
-                    IsDisableCasino,
-                    message.IP,
-                    message.ViewerId,
-                    message.ViewerName,
-                    message.LanguageKey,
-                    message.InvalidPasswords));
-
-        private async Task<SecurityResult> ChangeSubAccountPasswordAsync(ChangePasswordCommand message)
-            => await passwordService.ChangeSubAccountPasswordAsync(new ChangeSubAccountPasswordParam(
-                    message.CustId,
-                    message.SubAccountId,
-                    message.CurrentPassword,
-                    message.NewPassword,
-                    sessionManager.Get<string>(HashKeySessionKey),
-                    message.IP,
-                    message.ViewerId,
-                    message.ViewerName,
-                    message.LanguageKey,
-                    message.InvalidPasswords));
+        private ChangeSubAccountPasswordParam ToChangeSubAccountPasswordParam(ChangePasswordCommand message)
+            => new ChangeSubAccountPasswordParam(
+                message.CustId,
+                message.SubAccountId,
+                message.CurrentPassword,
+                message.NewPassword,
+                sessionManager.Get<string>(HashKeySessionKey),
+                message.IP,
+                message.ViewerId,
+                message.ViewerName,
+                message.LanguageKey,
+                message.InvalidPasswords);
     }
 }

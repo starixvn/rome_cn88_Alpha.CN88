@@ -19,6 +19,12 @@
     ]
   },
   {
+    "outputFileName": "assets/bundles/nickname/create-nickname.js",
+    "inputFiles": [
+      "assets/scripts/nickname/create-nickname.js"
+    ]
+  },
+  {
     "outputFileName": "assets/bundles/password/force-change-password.js",
     "inputFiles": [
       "assets/scripts/password/password-resources.js",

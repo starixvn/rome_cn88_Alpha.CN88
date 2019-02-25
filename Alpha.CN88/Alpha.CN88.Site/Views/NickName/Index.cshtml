@@ -1,0 +1,34 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NickName</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/default")
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+</head>
+<body>
+    @using (Html.BeginForm("Create", "NickName", FormMethod.Post, new { id = "frmNickName" }))
+    {
+        @Html.AntiForgeryToken()
+        <label for="nickname">Login ID</label>
+        <input type="text" id="nickname" name="nickname" autocomplete="off" />
+        <button type="button">Cancel</button>
+        <button type="submit">Submit</button>
+    }
+    
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/site-cn88/default")
+    @StaticResources.RenderScripts("~/assets/bundles/nickname/create-nickname")
+</body>
+</html>

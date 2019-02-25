@@ -41,6 +41,6 @@
 
         public IEnumerable<string> InvalidPasswords { get; }
 
-        public abstract PasswordNonQueryCommand ToCriteria();
+        public abstract PasswordNonQueryCommand ToCommand();
     }
 }

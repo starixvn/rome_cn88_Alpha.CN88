@@ -26,7 +26,7 @@
 
         public bool IsResetMemberPassword { get; }
 
-        public override PasswordNonQueryCommand ToCriteria()
+        public override PasswordNonQueryCommand ToCommand()
             => new ResetMainAccountPasswordCriteria(
                 CustId,
                 SubAccountId,

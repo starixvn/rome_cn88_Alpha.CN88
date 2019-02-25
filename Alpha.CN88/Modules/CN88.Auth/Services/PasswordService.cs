@@ -9,9 +9,9 @@
 
     public interface PasswordService
     {
-        Task<SecurityResult> ChangeMainAccountPasswordAsync(ChangeMainAccountPasswordParam param);
+        SecurityResult ChangeMainAccountPassword(ChangeMainAccountPasswordParam param);
 
-        Task<SecurityResult> ChangeSubAccountPasswordAsync(ChangeSubAccountPasswordParam param);
+        SecurityResult ChangeSubAccountPassword(ChangeSubAccountPasswordParam param);
 
         Task<SecurityResult> ResetMainAccountPasswordAsync(ResetMainAccountPasswordParam param);
 
@@ -20,8 +20,6 @@
 
     public class PasswordServiceImpl : PasswordService
     {
-        private const int AgentSystem = 2;
-
         private readonly IDynamicRepository dynamicRepository;
         private readonly PasswordValidator passwordValidator;
 
@@ -33,10 +31,10 @@
             this.passwordValidator = passwordValidator;
         }
 
-        public async Task<SecurityResult> ChangeMainAccountPasswordAsync(ChangeMainAccountPasswordParam param)
-            => await ChangeSubAccountPasswordAsync(param);
+        public SecurityResult ChangeMainAccountPassword(ChangeMainAccountPasswordParam param)
+            => ChangeSubAccountPassword(param);
 
-        public async Task<SecurityResult> ChangeSubAccountPasswordAsync(ChangeSubAccountPasswordParam param)
+        public SecurityResult ChangeSubAccountPassword(ChangeSubAccountPasswordParam param)
         {
             var rawCurrentPassword = passwordValidator.Decrypt(param.CurrentPassword, param.HashKey);
             var rawNewPassword = passwordValidator.Decrypt(param.NewPassword, param.HashKey);
@@ -50,7 +48,7 @@
             param.CurrentPassword = passwordValidator.Encode(rawCurrentPassword);
             param.NewPassword = passwordValidator.Encode(rawNewPassword);
 
-            return await ExecuteAsync(param.ToCriteria());
+            return Execute(param.ToCommand());
         }
 
         public async Task<SecurityResult> ResetMainAccountPasswordAsync(ResetMainAccountPasswordParam param)
@@ -73,7 +71,16 @@
 
             param.NewPassword = passwordValidator.Encode(rawNewPassword);
 
-            return await ExecuteAsync(param.ToCriteria());
+            return await ExecuteAsync(param.ToCommand());
+        }
+
+        private SecurityResult Execute(PasswordNonQueryCommand command)
+        {
+            dynamicRepository.Execute(command);
+
+            return SecurityResult.CreateErrorResult(
+                command.ErrCode == 0 ? AuthResource.UpdatedSuccessfully : command.ErrMsg,
+                command.ErrCode);
         }
 
         private async Task<SecurityResult> ExecuteAsync(PasswordNonQueryCommand command)

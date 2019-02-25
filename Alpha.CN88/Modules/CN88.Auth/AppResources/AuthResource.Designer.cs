@@ -115,6 +115,15 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your nickname was configured successfully.
+        /// </summary>
+        public static string ConfiguredNickNameSuccessfully {
+            get {
+                return ResourceManager.GetString("ConfiguredNickNameSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPassword {
@@ -195,6 +204,15 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nickname must be unique, only alphabet or numeric and should have at least a minimum of 5 characters and maximum of 15 characters..
+        /// </summary>
+        public static string NickNameHint {
+            get {
+                return ResourceManager.GetString("NickNameHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Old Password.
         /// </summary>
         public static string OldPassword {
@@ -267,15 +285,6 @@ namespace CN88.Auth.AppResources {
         public static string PasswordRules {
             get {
                 return ResourceManager.GetString("PasswordRules", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hi {0}, please change your password..
-        /// </summary>
-        public static string PasswordShower {
-            get {
-                return ResourceManager.GetString("PasswordShower", resourceCulture);
             }
         }
         

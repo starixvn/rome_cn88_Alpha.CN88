@@ -2,7 +2,6 @@
 
 var forceChangePassword = {
     initialize: function () {
-        //securityHelper.initLanguage();
         $('#pwdForm').submit(function (e) {
             e.preventDefault();
             forceChangePassword.changePassword();
@@ -12,13 +11,13 @@ var forceChangePassword = {
             //securityHelper.signOut();
         });
 
-        $('#txtOldPwd').val("").focus();
+        $('#txtOldPwd').focus();
 
-        $("#txtNewPwd").val("").keyup(function () {
+        $("#txtNewPwd").keyup(function () {
             securityHelper.validatePassword(this);
         });
 
-        $("#txtConfirmPwd").val("").keyup(function () {
+        $("#txtConfirmPwd").keyup(function () {
             securityHelper.validatePassword(this);
         });
 

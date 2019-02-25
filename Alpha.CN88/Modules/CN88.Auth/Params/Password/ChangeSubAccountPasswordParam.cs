@@ -25,7 +25,7 @@
 
         public string CurrentPassword { get; set; }
 
-        public override PasswordNonQueryCommand ToCriteria()
+        public override PasswordNonQueryCommand ToCommand()
             => new UpdateSubAccountPasswordCriteria(
                 CustId,
                 SubAccountId,

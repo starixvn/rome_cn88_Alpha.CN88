@@ -135,6 +135,9 @@
   <data name="ComfirmPasswordError" xml:space="preserve">
     <value>您的密碼不能被確認</value>
   </data>
+  <data name="ConfiguredNickNameSuccessfully" xml:space="preserve">
+    <value>您的暱稱創建成功</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>確認密碼</value>
   </data>
@@ -167,6 +170,9 @@
   <data name="NewPwdSameOldOneError" xml:space="preserve">
     <value>您的新密码不能与旧密码相同。</value>
   </data>
+  <data name="NickNameHint" xml:space="preserve">
+    <value>昵稱必須是獨特的，只含有字母或數字，至少五個字符，最多十五個字符</value>
+  </data>
   <data name="OldPassword" xml:space="preserve">
     <value>舊密碼</value>
   </data>
@@ -194,9 +200,6 @@
   </data>
   <data name="PasswordRules" xml:space="preserve">
     <value>密碼條規</value>
-  </data>
-  <data name="PasswordShower" xml:space="preserve">
-    <value>嗨 {0} ，請更改您的密碼。</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
     <value>您的密码不符合最低安全要求</value>

@@ -6,6 +6,10 @@
   <Function Name="Bet Choice Limit">
     <Setting Key="Age_CustSetting_BetChoiceLimitCheck" SpName="Age_CustSetting_BetChoiceLimitCheck" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
   </Function>
+  <Function Name="Nick Name">
+    <Setting Key="Age_CustomerInsNickName" SpName="Age_CustomerInsNickName" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+    <Setting Key="Age_CustomerUpdNicknameLoginOnly" SpName="Age_CustomerUpdNicknameLoginOnly" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
   <Function Name="Password">
     <Setting Key="ResetMainAccountPassword" SpName="Age_CustomerUpdPwd" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
     <Setting Key="UpdateMainAccountPassword" SpName="Age_CustomerPwdUpd2" DbName="DBCust.CustDB.BODBDownlineNetView" Plain="0" />
