@@ -153,4 +153,13 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
   </data>
+  <data name="home" xml:space="preserve">
+    <value>ทีมเหย้า</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>วันนี้</value>
+  </data>
+  <data name="results" xml:space="preserve">
+    <value>ผล</value>
+  </data>
 </root>

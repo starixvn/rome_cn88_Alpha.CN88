@@ -132,4 +132,10 @@
   <data name="Total" xml:space="preserve">
     <value>总和</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>主</value>
+  </data>
 </root>

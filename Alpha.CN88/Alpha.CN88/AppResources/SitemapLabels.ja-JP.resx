@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="home" xml:space="preserve">
-    <value />
+    <value>ホーム</value>
   </data>
   <data name="announcement" xml:space="preserve">
     <value />
@@ -166,7 +166,7 @@
     <value />
   </data>
   <data name="today" xml:space="preserve">
-    <value />
+    <value>今日</value>
   </data>
   <data name="early" xml:space="preserve">
     <value />
@@ -181,7 +181,7 @@
     <value>即座</value>
   </data>
   <data name="results" xml:space="preserve">
-    <value />
+    <value>結果</value>
   </data>
   <data name="wagerMonitoringConsole" xml:space="preserve">
     <value />

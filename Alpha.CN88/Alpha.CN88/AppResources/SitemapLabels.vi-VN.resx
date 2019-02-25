@@ -150,4 +150,13 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>Bạn không được cho phép sử dụng chức năng này</value>
   </data>
+  <data name="home" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>Hôm nay</value>
+  </data>
+  <data name="results" xml:space="preserve">
+    <value>Kết quả</value>
+  </data>
 </root>

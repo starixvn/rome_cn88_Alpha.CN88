@@ -203,4 +203,13 @@
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>ปรับปรุงเรียบร้อยแล้ว!</value>
   </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>รหัสผ่านของคุณเปลี่ยนสำเร็จแล้ว</value>
+  </data>
+  <data name="PasswordHint01" xml:space="preserve">
+    <value>รหัสต้องมีอย่างน้อย 8 อักขระต้องไม่มีช่องเว้นวรรค และต้องมีอย่างน้อย 3 ข้อ ยังด้านล่าง</value>
+  </data>
+  <data name="NickNameHint" xml:space="preserve">
+    <value>ชื่อเล่นต้องไม่ซ้ำกัน ตัวอักษรหรือตัวเลขเท่านั้น ควรมีขั้นต่ำ 5 ตัวอักษร และสูงสุด 15 ตัวอักษร</value>
+  </data>
 </root>

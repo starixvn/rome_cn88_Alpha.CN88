@@ -135,4 +135,7 @@
   <data name="Total" xml:space="preserve">
     <value>ยอดรวม</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>ทีมเหย้า</value>
+  </data>
 </root>

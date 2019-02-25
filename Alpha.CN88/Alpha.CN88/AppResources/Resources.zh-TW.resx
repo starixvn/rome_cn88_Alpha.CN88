@@ -135,4 +135,7 @@
   <data name="Total" xml:space="preserve">
     <value>總和</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>主</value>
+  </data>
 </root>

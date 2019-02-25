@@ -132,4 +132,7 @@
   <data name="Total" xml:space="preserve">
     <value>총</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>홈</value>
+  </data>
 </root>

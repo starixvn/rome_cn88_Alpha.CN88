@@ -176,4 +176,13 @@
   <data name="Submit" xml:space="preserve">
     <value>확인</value>
   </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>비밀번호가 성공적으로 변경되었습니다.</value>
+  </data>
+  <data name="PasswordHint01" xml:space="preserve">
+    <value>비밀번호 공백없이 8 자 이상이어야하며 다음 중 적어도 3를 포함해야합니다.</value>
+  </data>
+  <data name="NickNameHint" xml:space="preserve">
+    <value>닉네임은 독특하고 알파벳이나 숫자이여야합니다. 최소5~최대15자리이여야 합니다.</value>
+  </data>
 </root>

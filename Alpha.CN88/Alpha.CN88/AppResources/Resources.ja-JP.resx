@@ -126,4 +126,7 @@
   <data name="Total" xml:space="preserve">
     <value>合計</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
 </root>

@@ -150,4 +150,13 @@
   <data name="downlineList" xml:space="preserve">
     <value>하부라인 목록</value>
   </data>
+  <data name="home" xml:space="preserve">
+    <value>홈</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>오늘</value>
+  </data>
+  <data name="results" xml:space="preserve">
+    <value>결과</value>
+  </data>
 </root>

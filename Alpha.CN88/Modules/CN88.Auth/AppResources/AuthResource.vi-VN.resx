@@ -203,4 +203,13 @@ Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>Cập nhật thành công.</value>
   </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Mật khẩu của bạn đã được thay đổi thành công.</value>
+  </data>
+  <data name="PasswordHint01" xml:space="preserve">
+    <value>Mật khẩu phải gồm ít nhất 8 ký tự, không có khoảng trắng và phải có ít nhất 3 ký tự sau đây:</value>
+  </data>
+  <data name="NickNameHint" xml:space="preserve">
+    <value>Biệt danh không được giống nhau và chỉ chứa ký tự chữ cái và số đếm .Phải có ít nhất từ 5 đến 15 ký tự</value>
+  </data>
 </root>

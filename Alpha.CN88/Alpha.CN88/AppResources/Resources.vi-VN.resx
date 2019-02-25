@@ -135,4 +135,7 @@
   <data name="Total" xml:space="preserve">
     <value>Tổng cộng</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
 </root>

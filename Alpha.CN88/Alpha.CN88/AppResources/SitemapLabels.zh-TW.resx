@@ -153,4 +153,13 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>您沒有使用此功能的權限</value>
   </data>
+  <data name="home" xml:space="preserve">
+    <value>主</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>今日賽事</value>
+  </data>
+  <data name="results" xml:space="preserve">
+    <value>成績</value>
+  </data>
 </root>
