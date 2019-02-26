@@ -6,5 +6,9 @@
   {
     "outputFile": "assets/styles/home.css",
     "inputFile": "assets/styles/home.scss"
+  },
+  {
+    "outputFile": "assets/styles/security.css",
+    "inputFile": "assets/styles/security.scss"
   }
 ]

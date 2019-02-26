@@ -376,6 +376,10 @@
     <Content Include="assets\bundles\password\force-change-password.min.js">
       <DependentUpon>force-change-password.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\security.css" />
+    <Content Include="assets\bundles\security.min.css">
+      <DependentUpon>security.css</DependentUpon>
+    </Content>
     <Content Include="assets\scripts\tests\libs\autocomplete.js" />
     <Content Include="assets\scripts\tests\libs\bootbox.js" />
     <Content Include="assets\scripts\tests\libs\bootstrap\button.js" />
@@ -418,6 +422,15 @@
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
+    <Content Include="assets\styles\security.css">
+      <DependentUpon>security.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\security.min.css">
+      <DependentUpon>security.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\site.css">
+      <DependentUpon>site.scss</DependentUpon>
+    </Content>
     <Content Include="favico.ico" />
     <Content Include="Global.asax" />
     <Content Include="deployment.ignore" />
@@ -524,6 +537,7 @@
     <Content Include="assets\styles\_variables.scss" />
     <Content Include="bundleconfig.json" />
     <Content Include="compilerconfig.json" />
+    <Content Include="assets\styles\security.scss" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

@@ -45,5 +45,11 @@
     "inputFiles": [
       "assets/styles/home.css"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/security.css",
+    "inputFiles": [
+      "assets/styles/security.css"
+    ]
   }
 ]

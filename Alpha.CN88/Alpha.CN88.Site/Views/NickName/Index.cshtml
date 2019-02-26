@@ -11,6 +11,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
     @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
     @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/default")
+    @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/security")
+    @StaticResources.RenderStyles("~/assets/bundles/security")
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,25 +20,33 @@
     <![endif]-->
 </head>
 <body>
-    @using (Html.BeginForm("Create", "NickName", FormMethod.Post, new { id = "frmNickName" }))
-    {
-        @Html.AntiForgeryToken()
-        <div>Please create a login ID that you can easily remember.</div>
-        <div class="rules">
-            <ul>
-                <li>Your login ID must be between 6 to 12 alphanumeric characters with at least 2 capital (A-Z) or lowercase letters (a-z) and at least 1 numeric character (0-9).</li>
-                <li>Your login ID must not contain any spaces.</li>
-            </ul>
-        </div>
-        <label for="nickname">Login ID</label>
-        <input type="text" id="nickname" name="nickname" autocomplete="off" />
-        <div class="note">
-            Note: Once successfully created, the login ID cannot be modified. Please use the newly created login ID on your next login. The original agent user code will only be used for identification purposes.
-        </div>
-        <button type="button">Cancel</button>
-        <button type="submit">Submit</button>
-    }
-    
+    <div class="block">
+        <div class="title-box">Create Login ID</div>
+        @using (Html.BeginForm("Create", "NickName", FormMethod.Post, new { id = "frmNickName", @class = "form-security form-create-login" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="note-txt">Please create a login ID that you can easily remember.</div>
+            <div class="rules">
+                <div class="note-txt">Rules:</div>
+                <ol class="list-rules">
+                    <li>Your login ID must be between 6 to 12 alphanumeric characters with at least 2 capital (A-Z) or lowercase letters (a-z) and at least 1 numeric character (0-9).</li>
+                    <li>Your login ID must not contain any spaces.</li>
+                </ol>
+            </div>
+            <div class="rowlg">
+                <label for="nickname" class="lb-title">Login ID</label>
+                <input type="text" class="txt" id="nickname" name="nickname" autocomplete="off" />
+                <div class="check"><span class="icon-check"></span>Check</div>
+            </div>
+            <div class="note note-txt">
+                <span>Note:</span> Once successfully created, the login ID cannot be modified. Please use the newly created login ID on your next login. The original agent user code will only be used for identification purposes.
+            </div>
+            <div  class="list-button">
+                <button type="button" class="btn-cancel">Cancel</button>
+                <button type="submit" class="btn-submit">Submit</button>
+            </div>
+        }
+    </div>
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-cn88/default")
     @StaticResources.RenderScripts("~/assets/bundles/nickname/create-nickname")
