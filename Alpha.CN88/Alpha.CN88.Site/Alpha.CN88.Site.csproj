@@ -504,10 +504,11 @@
     <Compile Include="Requests\Home\GeneralAnnouncementQuery.cs" />
     <Compile Include="Requests\Home\ImportantAnnouncementQuery.cs" />
     <Compile Include="Requests\Home\StatusSummaryQuery.cs" />
-    <Compile Include="Requests\Password\ChangePasswordCommand.cs" />
     <Compile Include="Requests\Home\AccountOverviewQuery.cs" />
-    <Compile Include="Requests\Password\ForceChangePasswordQuery.cs" />
+    <Compile Include="Requests\Password\ChangePasswordCommand.cs" />
+    <Compile Include="Requests\Password\ChangePasswordQuery.cs" />
     <Compile Include="Requests\Password\ResetMainAccountPasswordCommand.cs" />
+    <Compile Include="Requests\Password\ResetPasswordQuery.cs" />
     <Compile Include="Requests\Password\ResetSubAccountPasswordCommand.cs" />
     <Compile Include="Requests\SecurityCode\ForceChangeSecurityCodeQuery.cs" />
     <Compile Include="ViewModels\BrowserViewModel.cs" />
@@ -517,7 +518,7 @@
     <Compile Include="ViewModels\Home\GeneralAnnouncementViewModel.cs" />
     <Compile Include="ViewModels\Home\ImportantAnnouncementViewModel.cs" />
     <Compile Include="ViewModels\LanguageViewModel.cs" />
-    <Compile Include="ViewModels\Password\ForceChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Password\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Password\PasswordViewModel.cs" />
     <Compile Include="ViewModels\SecurityCode\ForceChangeSecurityCodeViewModel.cs" />
     <Compile Include="ViewModels\SecurityCode\SecurityCodeViewModel.cs" />
@@ -580,7 +581,7 @@
     <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />
     <TypeScriptCompile Include="assets\scripts\home\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\password\force-change-password.ts" />
-    <TypeScriptCompile Include="assets\scripts\password\password-resources.ts" />
+    <TypeScriptCompile Include="assets\scripts\password\password-helper.ts" />
     <TypeScriptCompile Include="assets\scripts\security-helper.ts" />
     <TypeScriptCompile Include="assets\scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />

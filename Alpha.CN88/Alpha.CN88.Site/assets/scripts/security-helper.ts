@@ -14,63 +14,7 @@ interface String {
 declare var Sha1: any;
 declare var Sha256: any;
 
-var securityHelper = {
-    validatePassword: function (container, isChangeMemberPassword = false) {
-        var $container = $(container)
-        var password = $container.val();
-        var validPassword = securityHelper.isValidPassword(password, isChangeMemberPassword);
-        validPassword ? securityHelper.showSuccessfullyIcon($container) : securityHelper.showFailIcon($container);
-    },
-    isValidPassword: function (password, isChangeMemberPassword = false) {
-        var whiteSpace = /^\S*$/;
-        var whiteSpaceCase = password.search(whiteSpace) != -1;
-
-        if (isChangeMemberPassword) {
-            var memberRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/;
-
-            return (password.search(memberRegex) != -1) && whiteSpaceCase;
-        }
-        else {
-            var regex1 = /^(?=.{8,100}$).*\d/i;
-            var regex2 = /^(?=.{8,100}$).*[a-z]/;
-            var regex3 = /^(?=.{8,100}$).*[A-Z]/;
-            var regex4 = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
-
-            var case1 = password.search(regex1) != -1 ? 1 : 0;
-            var case2 = password.search(regex2) != -1 ? 1 : 0;
-            var case3 = password.search(regex3) != -1 ? 1 : 0;
-            var case4 = password.search(regex4) != -1 ? 1 : 0;
-
-            return (case1 + case2 + case3 + case4 >= 3) && whiteSpaceCase;
-        }
-    },
-    signOut: function () {
-        window.location.href = $("#mainRootPath").val() + "Auth/Logout";
-    },
-    redirectToHomePage: function (timeout) {
-        setTimeout(securityHelper.gotoHomePage, timeout);
-    },
-    gotoHomePage: function () {
-        window.location.href = $("#mainRootPath").val();
-    },
-    showSuccessfullyIcon: function ($container) {
-        $container.removeClass('error');
-        $container.addClass('valid');
-    },
-    showFailIcon: function ($container) {
-        $container.removeClass('valid');
-        $container.addClass('error');
-    },
-    showHint: function () {
-        $('input[type=password]').each(function () {
-            $(this).removeAttr("type").prop('type', 'text');
-        })
-    },
-    hideHint: function () {
-        $('input[type=text]').each(function () {
-            $(this).removeAttr("type").prop('type', 'password');
-        })
-    },
+const securityHelper = {
 };
 
 String.prototype.ec = function (key) {

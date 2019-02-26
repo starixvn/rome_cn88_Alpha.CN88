@@ -32,10 +32,29 @@
         }
 
         public SecurityResult ChangeMainAccountPassword(ChangeMainAccountPasswordParam param)
-            => ChangeSubAccountPassword(param);
+            => ChangePassword(param);
 
         public SecurityResult ChangeSubAccountPassword(ChangeSubAccountPasswordParam param)
+            => ChangePassword(param);
+
+        public async Task<SecurityResult> ResetMainAccountPasswordAsync(ResetMainAccountPasswordParam param)
+            => await ResetPasswordAsync(param, param.IsResetMemberPassword);
+
+        public async Task<SecurityResult> ResetSubAccountPasswordAsync(ResetSubAccountPasswordParam param)
+            => await ResetPasswordAsync(param, false);
+
+        private SecurityResult ChangePassword(PasswordParamBase param)
         {
+            if (string.IsNullOrWhiteSpace(param.CurrentPassword))
+            {
+                return SecurityResult.CreateErrorResult(AuthResource.RequiredInputOldPwdError);
+            }
+
+            if (string.IsNullOrWhiteSpace(param.NewPassword))
+            {
+                return SecurityResult.CreateErrorResult(AuthResource.RequiredPasswordError);
+            }
+
             var rawCurrentPassword = passwordValidator.Decrypt(param.CurrentPassword, param.HashKey);
             var rawNewPassword = passwordValidator.Decrypt(param.NewPassword, param.HashKey);
             var validatorResult = passwordValidator.IsMatchSMAPasswordRule(rawNewPassword, param.InvalidPasswords, rawCurrentPassword);
@@ -51,14 +70,13 @@
             return Execute(param.ToCommand());
         }
 
-        public async Task<SecurityResult> ResetMainAccountPasswordAsync(ResetMainAccountPasswordParam param)
-            => await ResetPasswordAsync(param, param.IsResetMemberPassword);
-
-        public async Task<SecurityResult> ResetSubAccountPasswordAsync(ResetSubAccountPasswordParam param)
-            => await ResetPasswordAsync(param, false);
-
         private async Task<SecurityResult> ResetPasswordAsync(ResetSubAccountPasswordParam param, bool isResetMemberPassword)
         {
+            if (string.IsNullOrWhiteSpace(param.NewPassword))
+            {
+                return SecurityResult.CreateErrorResult(AuthResource.RequiredPasswordError);
+            }
+
             var rawNewPassword = passwordValidator.Decrypt(param.NewPassword, param.HashKey);
             var validatorResult = isResetMemberPassword
                 ? passwordValidator.IsMatchMemberPasswordRule(rawNewPassword, param.InvalidPasswords)

@@ -1,37 +1,19 @@
 ﻿namespace Alpha.CN88.Site.ViewModels.Password
 {
-    using CN88.Models;
+    using global::CN88.Auth.Models;
 
     public class PasswordViewModel
     {
-        public int CustId { get; set; }
-
-        public int SubAccountId { get; set; }
-
-        public byte CustRoleId { get; set; }
-
-        public string UserLevel
+        public PasswordViewModel(
+            string hashKey,
+            SecurityResult result)
         {
-            get
-            {
-                return Enumeration.FromValue<UserLevel>(CustRoleId).DisplayName.ToLower();
-            }
+            HashKey = hashKey;
+            Result = result;
         }
 
-        public string HashKey { get; set; }
+        public string HashKey { get; }
 
-        public bool IsCasinoSync { get; set; }
-
-        public bool EnableSecurityCode { get; set; }
-
-        public bool IsChangeMemberPassword
-        {
-            get
-            {
-                return Enumeration.FromValue<UserLevel>(CustRoleId).IsMemberLevel();
-            }
-        }
-
-        public string Title { get; set; }
+        public SecurityResult Result { get; }
     }
 }

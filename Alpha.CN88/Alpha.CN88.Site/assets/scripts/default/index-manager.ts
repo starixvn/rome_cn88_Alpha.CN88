@@ -15,8 +15,7 @@
         subMenuItems: null,
         mainFrame: null,
         menuBar: null,
-        onlineUserId: null,
-        isInternal: null
+        onlineUserId: null
     },
     currentState: {
         mainMenuId: null
@@ -45,7 +44,6 @@
         indexManager.elements.mainFrame = $("#main");
         indexManager.elements.menuBar = $(".menubar");
         indexManager.elements.onlineUserId = $("#OnlineUserId").val();
-        indexManager.elements.isInternal = $("#IsInternal").val().toString();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -99,7 +97,7 @@
         $("#lnk-change-password").on("click touchend", () => {
         });
         $("#lnk-logout").on("click touchend", () => {
-            indexManager.signOut();
+            siteInfrastructure.logout();
         });
 
         setTimeout(indexManager.reCheckin, 30000);
@@ -210,19 +208,6 @@
             $("#" + currentMenu.mainMenu + "> a")[0].click();
         }
     },
-    signOut: function () {
-        var index: any = window;
-        while (index != index.parent) {
-            index = index.parent;
-        }
-
-        index.location.href = indexManager.urls.mainRootPath + 'Auth/Logout';
-        siteInfrastructure.localStorage.clear();
-
-        if (indexManager.elements.isInternal == "1") {
-            index.close();
-        }
-    },
     reCheckin: function () {
         $.ajax({
             type: "POST",
@@ -238,20 +223,20 @@
                             alert("Oops... you are here because of a system error, please notify the administrators.");
                         }
 
-                        indexManager.signOut();
+                        siteInfrastructure.logout();
                     }
                 }
                 catch (e) {
                     if (typeof (result) === "string"
                         && result.indexOf("Oops... you are here because of a system error") > 0) {
-                        indexManager.signOut();
+                        siteInfrastructure.logout();
                         alert("Oops... you are here because of a system error, please notify the administrators.");
                     }
                 }
             },
             error: (xhr) => {
                 if (xhr.status === 500) {
-                    indexManager.signOut();
+                    siteInfrastructure.logout();
                     alert("Oops... you are here because of a system error, please notify the administrators.");
                 }
             },

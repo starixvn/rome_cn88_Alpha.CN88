@@ -12,9 +12,8 @@
             string hashKey,
             string ip,
             int actorId,
-            string actorName,
             string languageKey,
-            IEnumerable<string> invalidPasswords) : base(custId, newPassword, hashKey, ip, actorId, actorName, languageKey, invalidPasswords)
+            IEnumerable<string> invalidPasswords) : base(custId, newPassword, hashKey, ip, actorId, languageKey, invalidPasswords)
         {
             SubAccountId = subAccId;
         }

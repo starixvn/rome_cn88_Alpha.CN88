@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-var forceChangePassword = {
+const forceChangePassword = {
     elements: {
         currentPassword: null,
         newPassword: null,
@@ -29,23 +29,16 @@ var forceChangePassword = {
             return true;
         });
 
-        $("#btn-back").bind("click", function () {
-            //securityHelper.signOut();
-        });
+        $("#buttonBack").click(siteInfrastructure.logout);
 
         forceChangePassword.elements.currentPassword.focus();
 
         forceChangePassword.elements.newPassword.keyup(function () {
-            securityHelper.validatePassword(this);
+            passwordHelper.validatePassword(this);
         });
 
         forceChangePassword.elements.confirmPassword.keyup(function () {
-            securityHelper.validatePassword(this);
-        });
-
-        $("#showPasswordchk").click(function () {
-            var isChecked = $(this).is(":checked");
-            isChecked ? securityHelper.showHint() : securityHelper.hideHint();
+            passwordHelper.validatePassword(this);
         });
     },
     cacheElements: function () {
@@ -82,7 +75,7 @@ var forceChangePassword = {
             return false;
         }
 
-        if (!securityHelper.isValidPassword(newPasswordValue)) {
+        if (!passwordHelper.isValidPassword(newPasswordValue)) {
             siteInfrastructure.showError(
                 forceChangePassword.elements.messsageContainer,
                 passwordResources.passwordDoesNotMeetMinimunRequirement);

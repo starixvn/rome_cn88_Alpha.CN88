@@ -98,6 +98,23 @@ class SiteInfrastructure {
     showWarn = ($target: any, warning: string) => {
         $target.html("<div class='msg msg-warning'>" + warning + "</div>");
     };
+
+    logout = () => {
+        var index: any = window;
+        while (index != index.parent) {
+            index = index.parent;
+        }
+
+        const mainRootPath = (<HTMLInputElement>top.document.getElementById("mainRootPath")).value;
+        const isInternal = (<HTMLInputElement>top.document.getElementById("IsInternal")).value;
+
+        index.location.href = mainRootPath + "Auth/Logout";
+        siteInfrastructure.localStorage.clear();
+
+        if (isInternal === "1") {
+            index.close();
+        }
+    };
 }
 
 const siteInfrastructure = new SiteInfrastructure();

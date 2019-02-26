@@ -13,9 +13,8 @@
             bool isCasinoDisabled,
             string ip,
             int actorId,
-            string actorName,
             string languageKey,
-            IEnumerable<string> invalidPasswords) : base(custId, 0, currentPassword, newPassword, hashKey, ip, actorId, actorName, languageKey, invalidPasswords)
+            IEnumerable<string> invalidPasswords) : base(custId, 0, currentPassword, newPassword, hashKey, ip, actorId, languageKey, invalidPasswords)
         {
             IsCasinoDisabled = isCasinoDisabled;
         }

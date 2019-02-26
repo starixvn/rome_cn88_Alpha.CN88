@@ -11,21 +11,23 @@
             string hashKey,
             string ip,
             int actorId,
-            string actorName,
             string languageKey,
-            IEnumerable<string> invalidPasswords)
+            IEnumerable<string> invalidPasswords,
+            string currentPassword = null)
         {
             CustId = custId;
+            CurrentPassword = currentPassword;
             NewPassword = newPassword;
             HashKey = hashKey;
             IP = ip;
             ActorId = actorId;
-            ActorName = actorName;
             LanguageKey = languageKey;
             InvalidPasswords = invalidPasswords;
         }
 
         public int CustId { get; }
+
+        public string CurrentPassword { get; set; }
 
         public string NewPassword { get; set; }
 
@@ -34,8 +36,6 @@
         public string IP { get; }
 
         public int ActorId { get; }
-
-        public string ActorName { get; }
 
         public string LanguageKey { get; }
 

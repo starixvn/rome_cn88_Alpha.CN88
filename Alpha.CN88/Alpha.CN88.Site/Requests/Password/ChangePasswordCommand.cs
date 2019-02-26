@@ -10,9 +10,9 @@
         public ChangePasswordCommand(IUser viewer)
             : base(viewer)
         {
+            NickName = viewer.NickName;
             IsSubAccount = viewer.IsSubAcc;
             SubUserName = viewer.SubUserName;
-            NickName = viewer.NickName;
             LanguageKey = viewer.LanguageKey;
         }
 
@@ -20,11 +20,11 @@
 
         public string NewPassword { get; set; }
 
+        public string NickName { get; }
+
         public bool IsSubAccount { get; }
 
         public string SubUserName { get; }
-
-        public string NickName { get; }
 
         public string LanguageKey { get; }
 
@@ -33,11 +33,7 @@
             get
             {
                 yield return ViewerName;
-
-                if (!string.IsNullOrWhiteSpace(NickName))
-                {
-                    yield return NickName;
-                }
+                yield return NickName;
 
                 if (IsSubAccount)
                 {
@@ -45,12 +41,5 @@
                 }
             }
         }
-
-        public IUser Viewer => viewer;
-
-        public override bool IsValid()
-            => base.IsValid()
-            && !string.IsNullOrWhiteSpace(CurrentPassword)
-            && !string.IsNullOrWhiteSpace(NewPassword);
     }
 }
