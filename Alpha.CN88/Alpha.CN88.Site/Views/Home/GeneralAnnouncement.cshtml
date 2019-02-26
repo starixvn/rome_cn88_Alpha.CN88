@@ -7,14 +7,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var a in Model.Announcements)
+        @if (Model.Announcements.Any())
         {
-        <tr>
-            <td class="text-center col-date"><span class="date-box">@a.AffectedDateStr</span></td>
-            <td>@Html.Raw(a.Content)</td>
-        </tr>
+            foreach (var a in Model.Announcements)
+            {
+                <tr>
+                    <td class="text-center col-date"><span class="date-box">@a.AffectedDateStr</span></td>
+                    <td>@Html.Raw(a.Content)</td>
+                </tr>
+            }
         }
-        
+        else
+        {
+            <tr><td colspan="2"> @Resources.NoInformationIsAvailable </td></tr>
+        }
     </tbody>
     <tfoot>
         <tr>

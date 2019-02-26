@@ -138,4 +138,7 @@
   <data name="Home" xml:space="preserve">
     <value>Trang chủ</value>
   </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>Thông tin chưa được cập nhật</value>
+  </data>
 </root>

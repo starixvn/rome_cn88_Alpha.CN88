@@ -138,4 +138,7 @@
   <data name="Home" xml:space="preserve">
     <value>ทีมเหย้า</value>
   </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>ไม่มีข้อมูล</value>
+  </data>
 </root>

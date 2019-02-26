@@ -192,4 +192,7 @@
   <data name="Last5GeneralAnnouncement" xml:space="preserve">
     <value>Last 5 General Announcement</value>
   </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>No information is available</value>
+  </data>
 </root>

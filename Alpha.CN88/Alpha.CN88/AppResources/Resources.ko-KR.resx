@@ -135,4 +135,7 @@
   <data name="Home" xml:space="preserve">
     <value>홈</value>
   </data>
+  <data name="NoInformationIsAvailable" xml:space="preserve">
+    <value>가능한 정보가 없습니다</value>
+  </data>
 </root>
