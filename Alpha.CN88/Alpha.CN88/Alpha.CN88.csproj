@@ -232,26 +232,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources\Resources.ja-JP.resx" />
-    <EmbeddedResource Include="AppResources\Resources.ko-KR.resx" />
     <EmbeddedResource Include="AppResources\Resources.resx">
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\Resources.th-TH.resx" />
-    <EmbeddedResource Include="AppResources\Resources.vi-VN.resx" />
-    <EmbeddedResource Include="AppResources\Resources.zh-CN.resx" />
     <EmbeddedResource Include="AppResources\Resources.zh-Hans.resx" />
     <EmbeddedResource Include="AppResources\Resources.zh-TW.resx" />
-    <EmbeddedResource Include="AppResources\SitemapLabels.ja-JP.resx" />
-    <EmbeddedResource Include="AppResources\SitemapLabels.ko-KR.resx" />
     <EmbeddedResource Include="AppResources\SitemapLabels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SitemapLabels.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\SitemapLabels.th-TH.resx" />
-    <EmbeddedResource Include="AppResources\SitemapLabels.vi-VN.resx" />
-    <EmbeddedResource Include="AppResources\SitemapLabels.zh-CN.resx" />
     <EmbeddedResource Include="AppResources\SitemapLabels.zh-Hans.resx" />
     <EmbeddedResource Include="AppResources\SitemapLabels.zh-TW.resx" />
   </ItemGroup>
