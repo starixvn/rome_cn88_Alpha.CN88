@@ -63,7 +63,7 @@
         }
 
         public SecurityResult Handle(ResetDownlinePasswordCommand message)
-            => passwordService.ResetDownlinePassword(ToResetMainAccountPasswordParam(message));
+            => passwordService.ResetDownlinePassword(ToResetDownlinePasswordParam(message));
 
         public SecurityResult Handle(ResetSubAccountPasswordCommand message)
             => passwordService.ResetSubAccountPassword(new ResetSubAccountPasswordParam(
@@ -114,7 +114,7 @@
                 message.LanguageKey,
                 message.InvalidPasswords);
 
-        private ResetDownlinePasswordParam ToResetMainAccountPasswordParam(ResetDownlinePasswordCommand message)
+        private ResetDownlinePasswordParam ToResetDownlinePasswordParam(ResetDownlinePasswordCommand message)
             => new ResetDownlinePasswordParam(
                 message.CustId,
                 message.SubAccountId,
