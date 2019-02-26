@@ -241,15 +241,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AppResources\AuthResource.ja-JP.resx" />
-    <EmbeddedResource Include="AppResources\AuthResource.ko-KR.resx" />
     <EmbeddedResource Include="AppResources\AuthResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppResources\AuthResource.th-TH.resx" />
-    <EmbeddedResource Include="AppResources\AuthResource.vi-VN.resx" />
-    <EmbeddedResource Include="AppResources\AuthResource.zh-CN.resx" />
     <EmbeddedResource Include="AppResources\AuthResource.zh-Hans.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthResource.zh-Hans.Designer.cs</LastGenOutput>
