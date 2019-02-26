@@ -22,7 +22,7 @@
 
         public SecurityResult Handle(CreateNickNameCommand message)
         {
-            var nickName = message.NickName.Trim();
+            var nickName = message.NickName == null ? string.Empty : message.NickName.Trim();
 
             var result = nickNameService.CreateNickName(
                 new CreateNickNameParam(message.ViewerId, nickName, message.IP, message.LanguageKey));
@@ -34,7 +34,6 @@
 
                 if (result.IsSuccess)
                 {
-                    userSession.IsNickname = true;
                     userSession.IsNicknameLoginOnly = true;
                     userSession.NickName = nickName;
                 }

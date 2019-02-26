@@ -15,8 +15,5 @@
         public string NickName { get; set; }
 
         public string LanguageKey { get; }
-
-        public override bool IsValid()
-            => base.IsValid() && !string.IsNullOrWhiteSpace(NickName);
     }
 }

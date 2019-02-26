@@ -25,7 +25,7 @@
             SubAccId = subAccId;
             LoginTime = loginTime;
             NickName = nickName;
-            IsNickName = IsNickName;
+            IsNickName = isNickName;
             LanguageKey = languageKey;
             LoginIP = loginIP;
             LoginDomain = loginDomain;

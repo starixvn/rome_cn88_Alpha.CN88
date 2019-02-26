@@ -13,10 +13,12 @@
     <!--[if lt IE 9]>
       @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.Render("/bundles/site-cn88/security")
+    @StaticResources.RenderStyles("~/assets/bundles/security")
 </head>
 <body>
     @RenderBody()
-    @Html.AntiForgeryToken()
     @Html.Hidden("please-enter-oldPassword", AuthResource.RequiredInputOldPwdError)
     @Html.Hidden("password-cannot-empty", AuthResource.RequiredPasswordError)
     @Html.Hidden("not-correct-confirm-password", AuthResource.ComfirmPasswordError)
@@ -25,7 +27,7 @@
     @Html.Hidden("password-does-not-min-requirement", AuthResource.PasswordWrongRuleError)
     @Html.Hidden("newPassword-must-be-diff-old", AuthResource.NewPwdSameOldOneError)
     @Html.Hidden("password-not-contain-nickname-username", AuthResource.NewPwdContainsUserNameOrNickNameError)
-    @Html.Hidden("mainRootPath", Url.Content("~"))
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @RenderSection("Scripts", required: false)
 </body>
 </html>

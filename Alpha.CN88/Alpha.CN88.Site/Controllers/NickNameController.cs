@@ -1,9 +1,12 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
+    using System.Net;
     using System.Web.Mvc;
-    using CN88.Models;
+    using AppResources;
+    using global::CN88.Auth.Models;
     using MediatR;
     using Requests.NickName;
+    using ViewModels.NickName;
 
     public class NickNameController : SiteBaseController
     {
@@ -12,15 +15,16 @@
         {
         }
 
-        public ActionResult Index()
-            => View();
+        public ActionResult Index(CreateNickNameViewModel viewModel)
+            => View(viewModel);
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create(CreateNickNameCommand message)
+        public ActionResult Index(CreateNickNameCommand message)
         {
             if (!message.IsValid())
             {
-                return View(Result.CreateForbiddenResult());
+                return View(new CreateNickNameViewModel(
+                    SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden)));
             }
             else
             {
@@ -28,7 +32,7 @@
 
                 if (result.IsFail)
                 {
-                    return View(result);
+                    return View(new CreateNickNameViewModel(result));
                 }
 
                 return RedirectToAction("Index", "Default");

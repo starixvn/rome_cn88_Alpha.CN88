@@ -126,8 +126,14 @@
   <data name="BrowserIsOutOfDate" xml:space="preserve">
     <value>您的瀏覽器已屬逾期版本故未能全面支援我們的網站。 為了得到更全面的支援， 強烈建議您升級瀏覽器至新版本。</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>更改密碼</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Check</value>
   </data>
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>點擊此處升級瀏覽器</value>
@@ -170,8 +176,26 @@
   <data name="NewPwdSameOldOneError" xml:space="preserve">
     <value>您的新密码不能与旧密码相同。</value>
   </data>
-  <data name="NickNameHint" xml:space="preserve">
+  <data name="NickName" xml:space="preserve">
+    <value>暱稱</value>
+  </data>
+  <data name="NickNameNote" xml:space="preserve">
+    <value>Once successfully created, the Nickname cannot be modified. Please use the newly created Nickname on your next login. The original agent user code will only be used for identification purposes.</value>
+  </data>
+  <data name="NickNameRule1" xml:space="preserve">
     <value>昵稱必須是獨特的，只含有字母或數字，至少五個字符，最多十五個字符</value>
+  </data>
+  <data name="NickNameRule2" xml:space="preserve">
+    <value>Your Nickname must not contain any spaces.</value>
+  </data>
+  <data name="NickNameStatement" xml:space="preserve">
+    <value>Please create a Nickname that you can easily remember.</value>
+  </data>
+  <data name="NickNameTitle" xml:space="preserve">
+    <value>Create Nickname</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
   </data>
   <data name="OldPassword" xml:space="preserve">
     <value>舊密碼</value>
@@ -209,6 +233,12 @@
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
     <value>密碼不能留空</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>顯示密碼</value>
+  </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Rules</value>
   </data>
   <data name="SecCodeEmptyError" xml:space="preserve">
     <value>必填欄</value>

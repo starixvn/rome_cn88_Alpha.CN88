@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using CN88.Models;
 
-    public class ResetMainAccountPasswordCommand : ResetSubAccountPasswordCommand
+    public class ResetDownlinePasswordCommand : ResetSubAccountPasswordCommand
     {
-        public ResetMainAccountPasswordCommand(IUser viewer)
+        public ResetDownlinePasswordCommand(IUser viewer)
             : base(viewer)
         {
         }
@@ -17,9 +17,5 @@
                 yield return ViewerName;
             }
         }
-
-        public override bool IsValid()
-            => base.IsValid()
-            && CustId != ViewerId;
     }
 }

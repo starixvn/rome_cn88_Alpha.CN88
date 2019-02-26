@@ -11,7 +11,7 @@ const forceChangePassword = {
     initialize: function () {
         forceChangePassword.cacheElements();
 
-        $("#frmForceChangePassword").submit(function (e) {
+        $("#formPassword").submit(function (e) {
             $.blockUI();
             if (!forceChangePassword.validatePasswords()) {
                 $.unblockUI();
@@ -32,14 +32,6 @@ const forceChangePassword = {
         $("#buttonBack").click(siteInfrastructure.logout);
 
         forceChangePassword.elements.currentPassword.focus();
-
-        forceChangePassword.elements.newPassword.keyup(function () {
-            passwordHelper.validatePassword(this);
-        });
-
-        forceChangePassword.elements.confirmPassword.keyup(function () {
-            passwordHelper.validatePassword(this);
-        });
     },
     cacheElements: function () {
         forceChangePassword.elements.currentPassword = $("#currentPassword");

@@ -106,7 +106,8 @@ class SiteInfrastructure {
         }
 
         const mainRootPath = (<HTMLInputElement>top.document.getElementById("mainRootPath")).value;
-        const isInternal = (<HTMLInputElement>top.document.getElementById("IsInternal")).value;
+        const isInternalElement = (<HTMLInputElement>top.document.getElementById("IsInternal"));
+        const isInternal = isInternalElement ? isInternalElement.value : "0";
 
         index.location.href = mainRootPath + "Auth/Logout";
         siteInfrastructure.localStorage.clear();

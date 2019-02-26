@@ -21,6 +21,7 @@
   {
     "outputFileName": "assets/bundles/nickname/create-nickname.js",
     "inputFiles": [
+      "assets/scripts/site-infrastructure.js",
       "assets/scripts/nickname/create-nickname.js"
     ]
   },
@@ -31,6 +32,15 @@
       "assets/scripts/security-helper.js",
       "assets/scripts/password/password-helper.js",
       "assets/scripts/password/force-change-password.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/password/reset-password.js",
+    "inputFiles": [
+      "assets/scripts/site-infrastructure.js",
+      "assets/scripts/security-helper.js",
+      "assets/scripts/password/password-helper.js",
+      "assets/scripts/password/reset-password.js"
     ]
   },
   {

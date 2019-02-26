@@ -5,7 +5,7 @@
     using global::CN88.Auth.Models;
     using MediatR;
 
-    public class ResetSubAccountPasswordCommand : BaseQuery, IAsyncRequest<SecurityResult>
+    public class ResetSubAccountPasswordCommand : BaseQuery, IRequest<SecurityResult>
     {
         public ResetSubAccountPasswordCommand(IUser viewer)
             : base(viewer)

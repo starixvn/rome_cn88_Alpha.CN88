@@ -88,11 +88,29 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string ChangePassword {
             get {
                 return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check.
+        /// </summary>
+        public static string Check {
+            get {
+                return ResourceManager.GetString("Check", resourceCulture);
             }
         }
         
@@ -204,11 +222,65 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nickname.
+        /// </summary>
+        public static string NickName {
+            get {
+                return ResourceManager.GetString("NickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once successfully created, the Nickname cannot be modified. Please use the newly created Nickname on your next login. The original agent user code will only be used for identification purposes..
+        /// </summary>
+        public static string NickNameNote {
+            get {
+                return ResourceManager.GetString("NickNameNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nickname must be unique, only alphabet or numeric and should have at least a minimum of 5 characters and maximum of 15 characters..
         /// </summary>
-        public static string NickNameHint {
+        public static string NickNameRule1 {
             get {
-                return ResourceManager.GetString("NickNameHint", resourceCulture);
+                return ResourceManager.GetString("NickNameRule1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Nickname must not contain any spaces..
+        /// </summary>
+        public static string NickNameRule2 {
+            get {
+                return ResourceManager.GetString("NickNameRule2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please create a Nickname that you can easily remember..
+        /// </summary>
+        public static string NickNameStatement {
+            get {
+                return ResourceManager.GetString("NickNameStatement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Nickname.
+        /// </summary>
+        public static string NickNameTitle {
+            get {
+                return ResourceManager.GetString("NickNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
             }
         }
         
@@ -312,6 +384,24 @@ namespace CN88.Auth.AppResources {
         public static string RequiredPasswordError {
             get {
                 return ResourceManager.GetString("RequiredPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Password.
+        /// </summary>
+        public static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rules.
+        /// </summary>
+        public static string Rules {
+            get {
+                return ResourceManager.GetString("Rules", resourceCulture);
             }
         }
         

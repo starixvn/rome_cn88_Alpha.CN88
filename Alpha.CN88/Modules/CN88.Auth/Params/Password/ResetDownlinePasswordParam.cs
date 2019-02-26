@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using Criteria.Password;
 
-    public class ResetMainAccountPasswordParam : ResetSubAccountPasswordParam
+    public class ResetDownlinePasswordParam : ResetSubAccountPasswordParam
     {
-        public ResetMainAccountPasswordParam(
+        public ResetDownlinePasswordParam(
             int custId,
             int subAccId,
             string newPassword,

@@ -3,13 +3,19 @@
     using global::CN88.Auth.Models;
     using Helpers;
 
-    public class ChangePasswordViewModel : PasswordViewModel
+    public class ChangePasswordViewModel
     {
         public ChangePasswordViewModel(
             string hashKey,
-            SecurityResult result) : base(hashKey, result)
+            SecurityResult result)
         {
+            HashKey = hashKey;
+            Result = result;
         }
+
+        public string HashKey { get; }
+
+        public SecurityResult Result { get; }
 
         public string MainRootPath
             => UrlHelper.MapMainPath("~");

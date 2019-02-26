@@ -1,7 +1,6 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System.Net;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
     using AppResources;
     using global::CN88.Auth.Models;
@@ -40,12 +39,12 @@
         }
 
         //[CheckBelongingFilter]
-        public ActionResult ResetMainAccountPassword(ResetPasswordQuery message)
+        public ActionResult ResetDownlinePassword(ResetPasswordQuery message)
             => View(message);
 
         [HttpPost, ValidateAntiForgeryToken]
         //[CheckBelongingFilter]
-        public async Task<ActionResult> ResetMainAccountPassword(ResetMainAccountPasswordCommand message)
+        public ActionResult ResetDownlinePassword(ResetDownlinePasswordCommand message)
         {
             if (!message.IsValid())
             {
@@ -54,14 +53,13 @@
             }
             else
             {
-                var result = await mediator.SendAsync(message);
+                var result = mediator.Send(message);
 
-                if (result.IsFail)
+                return View(new ResetPasswordQuery(result)
                 {
-                    return View(new ResetPasswordQuery(result));
-                }
-
-                return RedirectToAction("Index", "Default");
+                    CustId = message.CustId,
+                    CustName = message.CustName
+                });
             }
         }
 
@@ -71,7 +69,7 @@
 
         [HttpPost, ValidateAntiForgeryToken]
         //[CheckBelongingFilter]
-        public async Task<ActionResult> ResetSubAccountPassword(ResetSubAccountPasswordCommand message)
+        public ActionResult ResetSubAccountPassword(ResetSubAccountPasswordCommand message)
         {
             if (!message.IsValid())
             {
@@ -80,7 +78,7 @@
             }
             else
             {
-                var result = await mediator.SendAsync(message);
+                var result = mediator.Send(message);
 
                 if (result.IsFail)
                 {

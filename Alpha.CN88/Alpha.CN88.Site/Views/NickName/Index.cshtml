@@ -1,4 +1,6 @@
-﻿@{
+﻿@using CN88.Auth.AppResources
+@model Alpha.CN88.Site.ViewModels.NickName.CreateNickNameViewModel
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -6,47 +8,56 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>NickName</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
-    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
-    @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/default")
-    @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/security")
-    @StaticResources.RenderStyles("~/assets/bundles/security")
+    <title>@AuthResource.NickName</title>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/default")
+    @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/security")
+    @StaticResources.RenderStyles("~/assets/bundles/security")
 </head>
 <body>
     <div class="block">
-        <div class="title-box">Create Login ID</div>
-        @using (Html.BeginForm("Create", "NickName", FormMethod.Post, new { id = "frmNickName", @class = "form-security form-create-login" }))
+        <div class="title-box">@AuthResource.NickNameTitle</div>
+        @using (Html.BeginForm("Index", "NickName", FormMethod.Post, new { id = "frmNickName", @class = "form-security form-create-login" }))
         {
             @Html.AntiForgeryToken()
-            <div class="note-txt">Please create a login ID that you can easily remember.</div>
+            <div class="note-txt">@AuthResource.NickNameStatement</div>
             <div class="rules">
-                <div class="note-txt">Rules:</div>
+                <div class="note-txt">@AuthResource.Rules:</div>
                 <ol class="list-rules">
-                    <li>Your login ID must be between 6 to 12 alphanumeric characters with at least 2 capital (A-Z) or lowercase letters (a-z) and at least 1 numeric character (0-9).</li>
-                    <li>Your login ID must not contain any spaces.</li>
+                    <li id="nickNameRule1">@AuthResource.NickNameRule1</li>
+                    <li>@AuthResource.NickNameRule2</li>
                 </ol>
             </div>
             <div class="rowlg">
-                <label for="nickname" class="lb-title">Login ID</label>
-                <input type="text" class="txt" id="nickname" name="nickname" autocomplete="off" />
-                <div class="check"><span class="icon-check"></span>Check</div>
+                <label for="nickName" class="lb-title">@AuthResource.NickName</label>
+                <input type="text" class="txt" id="nickName" name="NickName" autocomplete="off" maxlength="15" />
+                <div class="check"><span class="icon-check"></span>@AuthResource.Check</div>
             </div>
             <div class="note note-txt">
-                <span>Note:</span> Once successfully created, the login ID cannot be modified. Please use the newly created login ID on your next login. The original agent user code will only be used for identification purposes.
+                <span>@AuthResource.Note:</span> @AuthResource.NickNameNote
             </div>
+            if (Model.Result?.IsFail == true)
+            {
+                <div id="message-container" class="msg msg-error">@Model.Result.Message</div>
+            }
+            else
+            {
+                <div id="message-container"></div>
+            }
             <div  class="list-button">
-                <button type="button" class="btn-cancel">Cancel</button>
-                <button type="submit" class="btn-submit">Submit</button>
+                <button type="button" class="btn-cancel" id="buttonCancel">@AuthResource.Cancel</button>
+                <button type="submit" class="btn-submit">@AuthResource.Submit</button>
             </div>
         }
     </div>
+    @Html.Hidden("mainRootPath", Model.MainRootPath)
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-cn88/default")
     @StaticResources.RenderScripts("~/assets/bundles/nickname/create-nickname")

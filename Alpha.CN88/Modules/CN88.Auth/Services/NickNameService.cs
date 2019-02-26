@@ -28,7 +28,7 @@
         public SecurityResult CreateNickName(CreateNickNameParam param)
             => IsValidNickName(param.NickName)
             ? Execute(param.ToCommand())
-            : SecurityResult.CreateErrorResult(AuthResource.NickNameHint, 100);
+            : SecurityResult.CreateErrorResult(AuthResource.NickNameRule1, 100);
 
         public SecurityResult UpdateNickNameLoginOnly(UpdateNickNameLoginOnlyParam param)
             => Execute(param.ToCommand());

@@ -1,6 +1,5 @@
 ﻿namespace CN88.Auth.Services
 {
-    using System.Threading.Tasks;
     using AppResources;
     using Criteria.Password;
     using Fanex.Data.Repository;
@@ -13,9 +12,9 @@
 
         SecurityResult ChangeSubAccountPassword(ChangeSubAccountPasswordParam param);
 
-        Task<SecurityResult> ResetMainAccountPasswordAsync(ResetMainAccountPasswordParam param);
+        SecurityResult ResetDownlinePassword(ResetDownlinePasswordParam param);
 
-        Task<SecurityResult> ResetSubAccountPasswordAsync(ResetSubAccountPasswordParam param);
+        SecurityResult ResetSubAccountPassword(ResetSubAccountPasswordParam param);
     }
 
     public class PasswordServiceImpl : PasswordService
@@ -37,11 +36,11 @@
         public SecurityResult ChangeSubAccountPassword(ChangeSubAccountPasswordParam param)
             => ChangePassword(param);
 
-        public async Task<SecurityResult> ResetMainAccountPasswordAsync(ResetMainAccountPasswordParam param)
-            => await ResetPasswordAsync(param, param.IsResetMemberPassword);
+        public SecurityResult ResetDownlinePassword(ResetDownlinePasswordParam param)
+            => ResetPassword(param, param.IsResetMemberPassword);
 
-        public async Task<SecurityResult> ResetSubAccountPasswordAsync(ResetSubAccountPasswordParam param)
-            => await ResetPasswordAsync(param, false);
+        public SecurityResult ResetSubAccountPassword(ResetSubAccountPasswordParam param)
+            => ResetPassword(param, false);
 
         private SecurityResult ChangePassword(PasswordParamBase param)
         {
@@ -70,7 +69,7 @@
             return Execute(param.ToCommand());
         }
 
-        private async Task<SecurityResult> ResetPasswordAsync(ResetSubAccountPasswordParam param, bool isResetMemberPassword)
+        private SecurityResult ResetPassword(PasswordParamBase param, bool isResetMemberPassword)
         {
             if (string.IsNullOrWhiteSpace(param.NewPassword))
             {
@@ -89,7 +88,7 @@
 
             param.NewPassword = passwordValidator.Encode(rawNewPassword);
 
-            return await ExecuteAsync(param.ToCommand());
+            return Execute(param.ToCommand());
         }
 
         private SecurityResult Execute(PasswordNonQueryCommand command)
@@ -97,16 +96,7 @@
             dynamicRepository.Execute(command);
 
             return SecurityResult.CreateErrorResult(
-                command.ErrCode == 0 ? AuthResource.UpdatedSuccessfully : command.ErrMsg,
-                command.ErrCode);
-        }
-
-        private async Task<SecurityResult> ExecuteAsync(PasswordNonQueryCommand command)
-        {
-            await dynamicRepository.ExecuteAsync(command);
-
-            return SecurityResult.CreateErrorResult(
-                command.ErrCode == 0 ? AuthResource.UpdatedSuccessfully : command.ErrMsg,
+                command.ErrCode == 0 ? AuthResource.PasswordChangedSuccessfully : command.ErrMsg,
                 command.ErrCode);
         }
     }

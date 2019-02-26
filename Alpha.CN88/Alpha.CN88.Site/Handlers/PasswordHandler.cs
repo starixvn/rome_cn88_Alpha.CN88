@@ -14,8 +14,8 @@
 
     public class PasswordHandler :
         IRequestHandler<ChangePasswordCommand, SecurityResult>,
-        IAsyncRequestHandler<ResetMainAccountPasswordCommand, SecurityResult>,
-        IAsyncRequestHandler<ResetSubAccountPasswordCommand, SecurityResult>,
+        IRequestHandler<ResetDownlinePasswordCommand, SecurityResult>,
+        IRequestHandler<ResetSubAccountPasswordCommand, SecurityResult>,
         IRequestHandler<ChangePasswordQuery, ChangePasswordViewModel>,
         IRequestHandler<ResetPasswordQuery, PasswordViewModel>
     {
@@ -62,11 +62,11 @@
             return result;
         }
 
-        public async Task<SecurityResult> Handle(ResetMainAccountPasswordCommand message)
-            => await passwordService.ResetMainAccountPasswordAsync(ToResetMainAccountPasswordParam(message));
+        public SecurityResult Handle(ResetDownlinePasswordCommand message)
+            => passwordService.ResetDownlinePassword(ToResetMainAccountPasswordParam(message));
 
-        public async Task<SecurityResult> Handle(ResetSubAccountPasswordCommand message)
-            => await passwordService.ResetSubAccountPasswordAsync(new ResetSubAccountPasswordParam(
+        public SecurityResult Handle(ResetSubAccountPasswordCommand message)
+            => passwordService.ResetSubAccountPassword(new ResetSubAccountPasswordParam(
                 message.CustId,
                 message.SubAccountId,
                 message.NewPassword,
@@ -80,7 +80,7 @@
             => new ChangePasswordViewModel(GetHasKey(), message.Result);
 
         public PasswordViewModel Handle(ResetPasswordQuery message)
-            => new PasswordViewModel(GetHasKey(), message.Result);
+            => new PasswordViewModel(message.CustId, message.CustName, GetHasKey(), message.Result);
 
         private string GetHasKey()
         {
@@ -114,8 +114,8 @@
                 message.LanguageKey,
                 message.InvalidPasswords);
 
-        private ResetMainAccountPasswordParam ToResetMainAccountPasswordParam(ResetMainAccountPasswordCommand message)
-            => new ResetMainAccountPasswordParam(
+        private ResetDownlinePasswordParam ToResetMainAccountPasswordParam(ResetDownlinePasswordCommand message)
+            => new ResetDownlinePasswordParam(
                 message.CustId,
                 message.SubAccountId,
                 message.NewPassword,

@@ -9,11 +9,6 @@ const passwordResources = {
 };
 
 const passwordHelper = {
-    validatePassword: function (container, isChangeMemberPassword = false) {
-        var $container = $(container)
-        var password = $container.val();
-        var validPassword = passwordHelper.isValidPassword(password, isChangeMemberPassword);
-    },
     isValidPassword: function (password, isChangeMemberPassword = false) {
         var whiteSpace = /^\S*$/;
         var whiteSpaceCase = password.search(whiteSpace) != -1;

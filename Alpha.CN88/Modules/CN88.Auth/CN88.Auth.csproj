@@ -223,7 +223,7 @@
     <Compile Include="Params\Password\ChangeMainAccountPasswordParam.cs" />
     <Compile Include="Params\Password\ChangeSubAccountPasswordParam.cs" />
     <Compile Include="Params\Password\PasswordParamBase.cs" />
-    <Compile Include="Params\Password\ResetMainAccountPasswordParam.cs" />
+    <Compile Include="Params\Password\ResetDownlinePasswordParam.cs" />
     <Compile Include="Params\Password\ResetSubAccountPasswordParam.cs" />
     <Compile Include="Params\SecurityCode\ResetSecurityCodeParam.cs" />
     <Compile Include="Params\SecurityCode\VerifySecurityCodeParam.cs" />
