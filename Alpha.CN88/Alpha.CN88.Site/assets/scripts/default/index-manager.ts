@@ -5,7 +5,8 @@
         onlineList: null,
         liveChat: null,
         contactUs: null,
-        reCheckin: null
+        reCheckin: null,
+        onlineMembersPath: null
     },
     elements: {
         mainMenu: null,
@@ -32,7 +33,7 @@
             : "not found";
 
         indexManager.urls.changeLanguage = indexManager.urls.mainRootPath + "Language/Change";
-        indexManager.urls.onlineList = indexManager.urls.mainRootPath + "CustomerList/OnlineMember";
+        indexManager.urls.onlineList = $("#OnlineMembersPath").val();
         indexManager.urls.liveChat = indexManager.urls.mainRootPath + "CustomerList/LiveChat";
         indexManager.urls.contactUs = indexManager.urls.mainRootPath + "Help/ContactUs";
         indexManager.urls.reCheckin = indexManager.urls.mainRootPath + "ReCheckin";

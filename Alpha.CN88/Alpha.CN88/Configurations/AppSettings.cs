@@ -22,6 +22,8 @@
 
         public static string AssetAppPath => GetConfigValue("AssetAppPath");
 
+        public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

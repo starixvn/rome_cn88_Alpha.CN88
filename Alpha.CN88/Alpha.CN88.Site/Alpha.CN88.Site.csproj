@@ -322,7 +322,9 @@
     <Content Include="App_Data\SPNames\Internal\DB053_DB054.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.xml" />
     <Content Include="App_Data\SPNames\Local\DBACC.bodb02.xml" />
-    <Content Include="App_Data\SPNames\Local\DB053_DB054.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Local\DB053_DB054.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Pro\DB053_DB054.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBACC.bodb02.xml" />
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />

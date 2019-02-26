@@ -2,6 +2,7 @@
 {
     using System;
     using CN88.Helpers;
+    using Configurations;
     using Helpers;
     using Requests.Default;
     using Web.Helpers;
@@ -70,5 +71,7 @@
         public string CurrentURLCookieName => CookieHelper.GetCookieNameOfCurrentPage(CustId, SubAccId, encodeDataFunction);
 
         public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=0");
+
+        public string OnlineMembersPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/CustomerList/OnlineMembers");
     }
 }
