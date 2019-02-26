@@ -2,7 +2,7 @@
 {
     public static class MessageType
     {
-        public const int Special = 1;
+        public const int Special = 2;
         public const int Normal = 0;
     }
 }
