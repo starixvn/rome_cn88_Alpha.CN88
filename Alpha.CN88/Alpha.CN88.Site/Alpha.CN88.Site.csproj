@@ -372,6 +372,10 @@
     <Content Include="assets\bundles\nickname\create-nickname.min.js">
       <DependentUpon>create-nickname.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\password\change-password.js" />
+    <Content Include="assets\bundles\password\change-password.min.js">
+      <DependentUpon>change-password.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\password\force-change-password.js" />
     <Content Include="assets\bundles\password\force-change-password.min.js">
       <DependentUpon>force-change-password.js</DependentUpon>
@@ -570,6 +574,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Views\Password\ResetDownlinePassword.cshtml" />
+    <Content Include="Views\Password\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />
@@ -587,7 +592,7 @@
     <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />
     <TypeScriptCompile Include="assets\scripts\home\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\password\reset-password.ts" />
-    <TypeScriptCompile Include="assets\scripts\password\force-change-password.ts" />
+    <TypeScriptCompile Include="assets\scripts\password\change-password.ts" />
     <TypeScriptCompile Include="assets\scripts\password\password-helper.ts" />
     <TypeScriptCompile Include="assets\scripts\security-helper.ts" />
     <TypeScriptCompile Include="assets\scripts\site-infrastructure.ts" />

@@ -1,7 +1,6 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
     using System;
-    using System.Threading.Tasks;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.Password;
     using global::CN88.Auth.Services;
@@ -66,15 +65,7 @@
             => passwordService.ResetDownlinePassword(ToResetDownlinePasswordParam(message));
 
         public SecurityResult Handle(ResetSubAccountPasswordCommand message)
-            => passwordService.ResetSubAccountPassword(new ResetSubAccountPasswordParam(
-                message.CustId,
-                message.SubAccountId,
-                message.NewPassword,
-                sessionManager.Get<string>(HashKeySessionKey),
-                message.IP,
-                message.ViewerId,
-                message.LanguageKey,
-                message.InvalidPasswords));
+            => passwordService.ResetSubAccountPassword(ToResetSubAccountPasswordParam(message));
 
         public ChangePasswordViewModel Handle(ChangePasswordQuery message)
             => new ChangePasswordViewModel(GetHasKey(), message.Result);
@@ -122,6 +113,17 @@
                 sessionManager.Get<string>(HashKeySessionKey),
                 IsDisableCasino,
                 message.ActorLevel.IsAgentLevel(),
+                message.IP,
+                message.ViewerId,
+                message.LanguageKey,
+                message.InvalidPasswords);
+
+        private ResetSubAccountPasswordParam ToResetSubAccountPasswordParam(ResetSubAccountPasswordCommand message)
+            => new ResetSubAccountPasswordParam(
+                message.ViewerId,
+                message.CustId,
+                message.NewPassword,
+                sessionManager.Get<string>(HashKeySessionKey),
                 message.IP,
                 message.ViewerId,
                 message.LanguageKey,

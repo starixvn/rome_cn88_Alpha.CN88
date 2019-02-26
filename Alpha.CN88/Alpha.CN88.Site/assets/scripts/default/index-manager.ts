@@ -6,6 +6,7 @@
         liveChat: null,
         contactUs: null,
         reCheckin: null,
+        changePassword: null,
         onlineMembersPath: null
     },
     elements: {
@@ -36,6 +37,7 @@
         indexManager.urls.liveChat = indexManager.urls.mainRootPath + "CustomerList/LiveChat";
         indexManager.urls.contactUs = indexManager.urls.mainRootPath + "Help/ContactUs";
         indexManager.urls.reCheckin = indexManager.urls.mainRootPath + "ReCheckin";
+        indexManager.urls.changePassword = indexManager.urls.mainRootPath + "Password/ChangePassword";
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -95,6 +97,7 @@
         $("#lnk-password-recovery").on("click touchend", () => {
         });
         $("#lnk-change-password").on("click touchend", () => {
+            siteInfrastructure.openPopup("Change Password", indexManager.urls.changePassword);
         });
         $("#lnk-logout").on("click touchend", () => {
             siteInfrastructure.logout();

@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-const forceChangePassword = {
+const changePassword = {
     elements: {
         currentPassword: null,
         newPassword: null,
@@ -9,41 +9,48 @@ const forceChangePassword = {
         messsageContainer: null
     },
     initialize: function () {
-        forceChangePassword.cacheElements();
+        changePassword.cacheElements();
 
         $("#formPassword").submit(function (e) {
             $.blockUI();
-            if (!forceChangePassword.validatePasswords()) {
+            if (!changePassword.validatePasswords()) {
                 $.unblockUI();
                 return false;
             }
 
-            const hashKey = forceChangePassword.elements.hashKey;
-            const currentPwd = forceChangePassword.elements.currentPassword.val().ec(hashKey).hc();
-            const newPWd = forceChangePassword.elements.newPassword.val().ec(hashKey).hc();
+            const hashKey = changePassword.elements.hashKey;
+            const currentPwd = changePassword.elements.currentPassword.val().ec(hashKey).hc();
+            const newPWd = changePassword.elements.newPassword.val().ec(hashKey).hc();
 
-            forceChangePassword.elements.currentPassword.val(currentPwd);
-            forceChangePassword.elements.newPassword.val(newPWd);
-            forceChangePassword.elements.confirmPassword.val(newPWd);
+            changePassword.elements.currentPassword.val(currentPwd);
+            changePassword.elements.newPassword.val(newPWd);
+            changePassword.elements.confirmPassword.val(newPWd);
 
             return true;
         });
 
-        $("#buttonBack").click(siteInfrastructure.logout);
+        $("#buttonBack").click(function () {
+            const forceChangePasswordPage = $("#mainRootPath").length > 0;
+            if (forceChangePasswordPage) {
+                siteInfrastructure.logout();
+            } else {
+                siteInfrastructure.closePopup();
+            }
+        });
 
-        forceChangePassword.elements.currentPassword.focus();
+        changePassword.elements.currentPassword.focus();
     },
     cacheElements: function () {
-        forceChangePassword.elements.currentPassword = $("#currentPassword");
-        forceChangePassword.elements.newPassword = $("#newPassword");
-        forceChangePassword.elements.confirmPassword = $("#confirmPassword");
-        forceChangePassword.elements.hashKey = $("#HashKey").val();
-        forceChangePassword.elements.messsageContainer = $("#message-container");
+        changePassword.elements.currentPassword = $("#currentPassword");
+        changePassword.elements.newPassword = $("#newPassword");
+        changePassword.elements.confirmPassword = $("#confirmPassword");
+        changePassword.elements.hashKey = $("#HashKey").val();
+        changePassword.elements.messsageContainer = $("#message-container");
     },
     validatePasswords: function () {
-        const $currentPassword = forceChangePassword.elements.currentPassword.removeClass("error");
-        const $newPassword = forceChangePassword.elements.newPassword.removeClass("error");
-        const $confirmPassword = forceChangePassword.elements.confirmPassword.removeClass("error");
+        const $currentPassword = changePassword.elements.currentPassword.removeClass("error");
+        const $newPassword = changePassword.elements.newPassword.removeClass("error");
+        const $confirmPassword = changePassword.elements.confirmPassword.removeClass("error");
 
         const currentPasswordValue = $currentPassword.val();
         const newPasswordValue = $newPassword.val();
@@ -51,7 +58,7 @@ const forceChangePassword = {
 
         if (currentPasswordValue.length === 0) {
             siteInfrastructure.showError(
-                forceChangePassword.elements.messsageContainer,
+                changePassword.elements.messsageContainer,
                 passwordResources.pleaseEnterOldPassword);
             $currentPassword.focus();
 
@@ -60,7 +67,7 @@ const forceChangePassword = {
 
         if (newPasswordValue.length === 0) {
             siteInfrastructure.showError(
-                forceChangePassword.elements.messsageContainer,
+                changePassword.elements.messsageContainer,
                 passwordResources.passwordCannotEmpty);
             $newPassword.focus();
 
@@ -69,7 +76,7 @@ const forceChangePassword = {
 
         if (!passwordHelper.isValidPassword(newPasswordValue)) {
             siteInfrastructure.showError(
-                forceChangePassword.elements.messsageContainer,
+                changePassword.elements.messsageContainer,
                 passwordResources.passwordDoesNotMeetMinimunRequirement);
             $newPassword.focus();
 
@@ -78,7 +85,7 @@ const forceChangePassword = {
 
         if (newPasswordValue !== confirmPasswordValue) {
             siteInfrastructure.showError(
-                forceChangePassword.elements.messsageContainer,
+                changePassword.elements.messsageContainer,
                 passwordResources.confirmPasswordNotCorret);
             $confirmPassword.focus();
 
@@ -87,7 +94,7 @@ const forceChangePassword = {
 
         if (newPasswordValue === currentPasswordValue) {
             siteInfrastructure.showError(
-                forceChangePassword.elements.messsageContainer,
+                changePassword.elements.messsageContainer,
                 passwordResources.newPassMustbeDiffOldPass);
             $newPassword.focus();
 
@@ -99,5 +106,5 @@ const forceChangePassword = {
 }
 
 $(function () {
-    forceChangePassword.initialize();
+    changePassword.initialize();
 });

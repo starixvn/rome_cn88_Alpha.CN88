@@ -38,6 +38,25 @@
             }
         }
 
+        public ActionResult ChangePassword(ChangePasswordQuery message)
+            => View(message);
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordCommand message)
+        {
+            if (!message.IsValid())
+            {
+                return View(new ChangePasswordQuery(
+                    SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden)));
+            }
+            else
+            {
+                var result = mediator.Send(message);
+
+                return View(new ChangePasswordQuery(result));
+            }
+        }
+
         //[CheckBelongingFilter]
         public ActionResult ResetDownlinePassword(ResetPasswordQuery message)
             => View(message);
@@ -80,19 +99,12 @@
             {
                 var result = mediator.Send(message);
 
-                if (result.IsFail)
+                return View(new ResetPasswordQuery(result)
                 {
-                    return View(new ResetPasswordQuery(result));
-                }
-
-                return RedirectToAction("Index", "Default");
+                    CustId = message.CustId,
+                    CustName = message.CustName
+                });
             }
         }
-
-        //[HttpPost, AntiXsrfFilter]
-        //public ActionResult ChangePassword(ChangePasswordCommand command)
-        //    => Json(command.IsValid()
-        //        ? mediator.Send(command)
-        //        : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden), JsonRequestBehavior.DenyGet);
     }
 }

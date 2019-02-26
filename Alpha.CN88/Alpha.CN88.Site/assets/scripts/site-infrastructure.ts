@@ -116,6 +116,21 @@ class SiteInfrastructure {
             index.close();
         }
     };
+
+    openPopup = (popupTitle: string, url: string) => {
+        top.$("#mainPopup").on("show.bs.modal", function () {
+            const modal = top.$(this);
+            modal.find(".modal-title").text(popupTitle);
+            modal.find("iframe").attr("src", url);
+        }).on("hidden.bs.modal", function () {
+            const modal = top.$(this);
+            modal.find("iframe").attr("src", "about:blank");
+        }).modal("show");
+    };
+
+    closePopup = () => {
+        top.$("#mainPopup").modal("hide");
+    };
 }
 
 const siteInfrastructure = new SiteInfrastructure();

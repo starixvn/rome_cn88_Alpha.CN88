@@ -187,7 +187,6 @@
     </Compile>
     <Compile Include="Configurations\AuthAppSettings.cs" />
     <Compile Include="Criteria\Authentication\AdminLoginCommand.cs" />
-    <Compile Include="Criteria\CheckBetChoiceLimitCriteria.cs" />
     <Compile Include="Criteria\Authentication\CheckinCommand.cs" />
     <Compile Include="Criteria\CheckActiveCustomerCommand.cs" />
     <Compile Include="Criteria\GetCustomerStatusCriteria.cs" />

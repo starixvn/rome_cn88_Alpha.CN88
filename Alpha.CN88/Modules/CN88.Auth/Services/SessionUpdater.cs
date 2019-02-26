@@ -159,15 +159,6 @@
 
             try
             {
-                userSession.LastChangedPassword = (DateTime)outputParams["lastchangedpwddate"];
-            }
-            catch
-            {
-                userSession.LastChangedPassword = DateTime.MinValue;
-            }
-
-            try
-            {
                 DateTime pwdExpiry = (DateTime)outputParams["pwdexpiry"];
                 userSession.IsPasswordExpired = DateTime.Compare(DateTime.Now, pwdExpiry) >= 0;
             }
