@@ -117,10 +117,20 @@ class SiteInfrastructure {
         }
     };
 
-    openPopup = (popupTitle: string, url: string) => {
+    openPopup = (popupTitle: string, url: string, height: number = 360) => {
+        const calculatePopupHeight = function (height: number) {
+            const headerHeight = 40;
+            const contentBorder = 2;
+            let popupHeight = height || 360;
+            popupHeight += 50;
+
+            return popupHeight - headerHeight - contentBorder;
+        };
+
         top.$("#mainPopup").on("show.bs.modal", function () {
             const modal = top.$(this);
             modal.find(".modal-title").text(popupTitle);
+            modal.find(".modal-content .modal-body").css("height", calculatePopupHeight(height) + "px");
             modal.find("iframe").attr("src", url);
         }).on("hidden.bs.modal", function () {
             const modal = top.$(this);

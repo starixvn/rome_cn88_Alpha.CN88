@@ -376,10 +376,6 @@
     <Content Include="assets\bundles\password\change-password.min.js">
       <DependentUpon>change-password.js</DependentUpon>
     </Content>
-    <Content Include="assets\bundles\password\force-change-password.js" />
-    <Content Include="assets\bundles\password\force-change-password.min.js">
-      <DependentUpon>force-change-password.js</DependentUpon>
-    </Content>
     <Content Include="assets\bundles\password\reset-password.js" />
     <Content Include="assets\bundles\password\reset-password.min.js">
       <DependentUpon>reset-password.js</DependentUpon>
