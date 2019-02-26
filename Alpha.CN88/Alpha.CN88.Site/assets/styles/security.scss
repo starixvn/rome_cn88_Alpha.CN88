@@ -73,9 +73,18 @@ input, button {
     .rules {
         margin-bottom: 23px;
         .list-rules {
-            padding-left: 18px;
+            padding-left: 0;
+            list-style: none;
+            counter-reset: item;
             li {
                 margin-bottom: 15px;
+                counter-increment: item;
+                line-height: 22px;
+                &:before {
+                    font-weight: bold;
+                    content: counter(item)".";
+                    padding-right: 8px;
+                }
             }
         }
     }
@@ -151,7 +160,9 @@ input, button {
             text-align: center;
             text-shadow: 1px 1px #FAEFDC;
             cursor: pointer;
-
+             &:hover {
+                background: #a9a8a6;
+            }
         }
         .icon-check {
             padding-right: 8px;
@@ -160,5 +171,8 @@ input, button {
             text-shadow: none;
             font-size: 18px;
         }
+    }
+    .note.note-txt {
+        line-height: 22px;
     }
 }
