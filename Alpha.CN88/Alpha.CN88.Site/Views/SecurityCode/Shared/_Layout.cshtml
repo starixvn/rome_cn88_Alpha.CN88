@@ -1,0 +1,30 @@
+﻿@using CN88.Auth.AppResources
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    @RenderSection("Styles", required: false)
+    <title> @ViewBag.Title</title>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    <![endif]-->
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.Render("/bundles/site-cn88/security")
+    @StaticResources.RenderStyles("~/assets/bundles/security")
+</head>
+<body>
+    @RenderBody()
+    @Html.Hidden("alert-old-securitycode-empty", AuthResource.OldSecCodeEmptyError)
+    @Html.Hidden("alert-securitycode-empty", AuthResource.SecCodeEmptyError)
+    @Html.Hidden("alert-securitycode-wrong-rule", AuthResource.SecCodeWrongRuleError)
+    @Html.Hidden("alert-error-securitycode-confirm", AuthResource.ConfirmSecCodeError)
+    @Html.Hidden("alert-same-securitycode", AuthResource.SameSecCodeError)
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

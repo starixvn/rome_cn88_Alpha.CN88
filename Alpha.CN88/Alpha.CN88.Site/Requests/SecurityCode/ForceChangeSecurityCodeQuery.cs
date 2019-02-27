@@ -1,6 +1,7 @@
 ﻿namespace Alpha.CN88.Site.Requests.SecurityCode
 {
     using CN88.Models;
+    using global::CN88.Auth.Models;
     using MediatR;
     using ViewModels.SecurityCode;
 
@@ -9,15 +10,14 @@
         public ForceChangeSecurityCodeQuery(IUser viewer)
             : base(viewer)
         {
-            IsSubAccount = viewer.IsSubAcc;
-            SubUserName = viewer.SubUserName;
-            NickName = viewer.NickName;
+            IsForcedSecurityCode = viewer.IsForcedSecurityCode;
+            SecurityCode = viewer.SecurityCode;
         }
 
-        public bool IsSubAccount { get; }
+        public bool IsForcedSecurityCode { get; }
 
-        public string SubUserName { get; }
+        public string SecurityCode { get; }
 
-        public string NickName { get; }
+        public SecurityResult Result { get; set; }
     }
 }

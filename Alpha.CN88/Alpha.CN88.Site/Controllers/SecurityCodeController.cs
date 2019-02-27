@@ -1,45 +1,83 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
+    using System.Net;
     using System.Web.Mvc;
-    using CN88.Models;
+    using AppResources;
+    using global::CN88.Auth.Models;
     using MediatR;
     using Requests.SecurityCode;
 
     public class SecurityCodeController : SiteBaseController
     {
-        private readonly IUser user;
-
-        public SecurityCodeController(IMediator mediator, IUser user)
+        public SecurityCodeController(IMediator mediator)
             : base(mediator)
         {
-            this.user = user;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(IndexQuery message)
         {
-            if (user.IsForcedSecurityCode)
+            if (message.IsForcedSecurityCode)
             {
-                bool hasSC = !string.IsNullOrWhiteSpace(user.SecurityCode);
-
-                return hasSC
-                    ? RedirectToAction(nameof(ChangeSecurityCodeByForcing))
-                    : RedirectToAction(nameof(ChangeSecurityCodeFirstLogin));
+                return string.IsNullOrWhiteSpace(message.SecurityCode)
+                    ? RedirectToAction(nameof(ChangeSecurityCodeFirstLogin))
+                    : RedirectToAction(nameof(ForceChangeSecurityCode));
             }
 
             return RedirectToAction("Index", "Default");
         }
 
-        public ActionResult ChangeSecurityCodeByForcing(ForceChangeSecurityCodeQuery message)
-            => View(mediator.Send(message));
-
         public ActionResult ChangeSecurityCodeFirstLogin(ForceChangeSecurityCodeQuery message)
         {
-            if (!string.IsNullOrWhiteSpace(user.SecurityCode))
+            if (message.IsForcedSecurityCode && string.IsNullOrWhiteSpace(message.SecurityCode))
             {
-                return RedirectToAction("Index", "Default");
+                return View(mediator.Send(message));
             }
 
-            return View(mediator.Send(message));
+            return RedirectToAction("Index", "Default");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult ChangeSecurityCodeFirstLogin(ChangeSecurityCodeFirstLoginCommand message)
+        {
+            var result = message.IsValid()
+                && message.IsForcedSecurityCode
+                && string.IsNullOrWhiteSpace(message.SecurityCodeInSession)
+                ? mediator.Send(message)
+                : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
+
+            if (result.IsFail)
+            {
+                return View(new ForceChangeSecurityCodeQuery(message.GetViewer()) { Result = result });
+            }
+
+            return RedirectToAction("Index", "Default");
+        }
+
+        public ActionResult ForceChangeSecurityCode(ForceChangeSecurityCodeQuery message)
+        {
+            if (message.IsForcedSecurityCode && !string.IsNullOrWhiteSpace(message.SecurityCode))
+            {
+                return View(mediator.Send(message));
+            }
+
+            return RedirectToAction("Index", "Default");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult ForceChangeSecurityCode(ForceChangeSecurityCodeCommand message)
+        {
+            var result = message.IsValid()
+               && message.IsForcedSecurityCode
+               && !string.IsNullOrWhiteSpace(message.SecurityCodeInSession)
+               ? mediator.Send(message)
+               : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
+
+            if (result.IsFail)
+            {
+                return View(new ForceChangeSecurityCodeQuery(message.GetViewer()) { Result = result });
+            }
+
+            return RedirectToAction("Index", "Default");
         }
     }
 }

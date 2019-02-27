@@ -6,7 +6,6 @@
             int custId,
             int subAccId,
             string newSecurityCode,
-            bool isResetMember,
             int userId,
             string ip,
             string languageKey)
@@ -14,7 +13,6 @@
             CustId = custId;
             SubAccId = subAccId;
             NewSecurityCode = newSecurityCode;
-            IsResetMember = isResetMember;
             UserId = userId;
             IP = ip;
             LanguageKey = languageKey;
@@ -25,8 +23,6 @@
         public int SubAccId { get; }
 
         public string NewSecurityCode { get; }
-
-        public bool IsResetMember { get; }
 
         public int UserId { get; }
 

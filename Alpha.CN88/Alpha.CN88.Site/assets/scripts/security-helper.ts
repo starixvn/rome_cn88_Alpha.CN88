@@ -1,21 +1,7 @@
-﻿interface Window {
-    hasPopupOpen(): boolean;
-    securityCodePopup: any;
-    setSecurityCodePopupTitle(securityCodeTitle): void;
-    revertSecurityCodePopupTitle(): void;
-    ageWnd: any;
-}
-
-interface String {
+﻿interface String {
     hc(): void;
     ec(text: string): void;
 }
-
-declare var Sha1: any;
-declare var Sha256: any;
-
-const securityHelper = {
-};
 
 String.prototype.ec = function (key) {
     var pt = this;

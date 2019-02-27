@@ -25,6 +25,9 @@
             }
         }
 
+        public IUser GetViewer()
+            => viewer;
+
         public override bool IsValid()
             => base.IsValid()
             && CustId != ViewerId;

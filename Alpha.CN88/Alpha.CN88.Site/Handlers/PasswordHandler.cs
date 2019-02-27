@@ -16,7 +16,7 @@
         IRequestHandler<ResetDownlinePasswordCommand, SecurityResult>,
         IRequestHandler<ResetSubAccountPasswordCommand, SecurityResult>,
         IRequestHandler<ChangePasswordQuery, ChangePasswordViewModel>,
-        IRequestHandler<ResetPasswordQuery, PasswordViewModel>
+        IRequestHandler<ResetPasswordQuery, ResetPasswordViewModel>
     {
         private const bool IsDisableCasino = true;
         private const string HashKeySessionKey = "Alpha.CN88.Site.Handlers.PasswordHandler.PasswordHash";
@@ -70,8 +70,8 @@
         public ChangePasswordViewModel Handle(ChangePasswordQuery message)
             => new ChangePasswordViewModel(GetHasKey(), message.Result);
 
-        public PasswordViewModel Handle(ResetPasswordQuery message)
-            => new PasswordViewModel(message.CustId, message.CustName, GetHasKey(), message.Result);
+        public ResetPasswordViewModel Handle(ResetPasswordQuery message)
+            => new ResetPasswordViewModel(message.CustId, message.CustName, message.CustLevel, GetHasKey(), message.Result);
 
         private string GetHasKey()
         {
@@ -112,7 +112,7 @@
                 message.NewPassword,
                 sessionManager.Get<string>(HashKeySessionKey),
                 IsDisableCasino,
-                message.ActorLevel.IsAgentLevel(),
+                message.CustLevel.IsAgentLevel(),
                 message.IP,
                 message.ViewerId,
                 message.LanguageKey,

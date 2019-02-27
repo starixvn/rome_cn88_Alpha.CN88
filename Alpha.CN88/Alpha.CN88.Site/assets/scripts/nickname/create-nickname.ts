@@ -9,7 +9,7 @@ class NickName {
         this.$ = $;
     }
 
-    init = () => {
+    init(): void {
         let self: any = this;
 
         this.$nickName = this.$("#nickName");
@@ -17,8 +17,8 @@ class NickName {
         this.$messsageContainer = this.$("#message-container");
         this.nickNameRule1 = this.$("#nickNameRule1").html();
 
-        this.$("#frmNickName").submit(function () {
-            const nickNameRule = new RegExp(/^[a-zA-Z0-9]{5,15}$/i);
+        this.$("#frmNickName").submit(function (): boolean {
+            const nickNameRule: RegExp = new RegExp(/^[a-zA-Z0-9]{5,15}$/i);
             const isMatch: boolean = nickNameRule.test(self.$.trim(self.$nickName.val()));
 
             if (!isMatch) {
@@ -30,9 +30,9 @@ class NickName {
         });
 
         this.$("#buttonCancel").click(siteInfrastructure.logout);
-    };
+    }
 }
 
-$(function () {
+$(function (): void {
     new NickName($).init();
 });

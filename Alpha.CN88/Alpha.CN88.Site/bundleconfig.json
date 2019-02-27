@@ -30,17 +30,15 @@
     "inputFiles": [
       "assets/scripts/site-infrastructure.js",
       "assets/scripts/security-helper.js",
-      "assets/scripts/password/password-helper.js",
       "assets/scripts/password/change-password.js"
     ]
   },
   {
-    "outputFileName": "assets/bundles/password/reset-password.js",
+    "outputFileName": "assets/bundles/securitycode/change-securitycode.js",
     "inputFiles": [
       "assets/scripts/site-infrastructure.js",
       "assets/scripts/security-helper.js",
-      "assets/scripts/password/password-helper.js",
-      "assets/scripts/password/reset-password.js"
+      "assets/scripts/securitycode/change-securitycode.js"
     ]
   },
   {

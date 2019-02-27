@@ -20,22 +20,16 @@
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult ForceChangePassword(ChangePasswordCommand message)
         {
-            if (!message.IsValid())
-            {
-                return View(new ChangePasswordQuery(
-                    SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden)));
-            }
-            else
-            {
-                var result = mediator.Send(message);
+            var result = message.IsValid()
+                ? mediator.Send(message)
+                : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
-                if (result.IsFail)
-                {
-                    return View(new ChangePasswordQuery(result));
-                }
-
-                return RedirectToAction("Index", "Default");
+            if (result.IsFail)
+            {
+                return View(new ChangePasswordQuery(result));
             }
+
+            return RedirectToAction("Index", "Default");
         }
 
         public ActionResult ChangePassword(ChangePasswordQuery message)
@@ -44,17 +38,11 @@
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult ChangePassword(ChangePasswordCommand message)
         {
-            if (!message.IsValid())
-            {
-                return View(new ChangePasswordQuery(
-                    SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden)));
-            }
-            else
-            {
-                var result = mediator.Send(message);
+            var result = message.IsValid()
+                ? mediator.Send(message)
+                : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
-                return View(new ChangePasswordQuery(result));
-            }
+            return View(new ChangePasswordQuery(result));
         }
 
         //[CheckBelongingFilter]
@@ -65,21 +53,14 @@
         //[CheckBelongingFilter]
         public ActionResult ResetDownlinePassword(ResetDownlinePasswordCommand message)
         {
-            if (!message.IsValid())
-            {
-                return View(new ResetPasswordQuery(
-                    SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden)));
-            }
-            else
-            {
-                var result = mediator.Send(message);
+            var result = message.IsValid()
+                ? mediator.Send(message)
+                : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
-                return View(new ResetPasswordQuery(result)
-                {
-                    CustId = message.CustId,
-                    CustName = message.CustName
-                });
-            }
+            return View(new ResetPasswordQuery(message.GetViewer())
+            {
+                Result = result
+            });
         }
 
         //[CheckBelongingFilter]
@@ -90,21 +71,14 @@
         //[CheckBelongingFilter]
         public ActionResult ResetSubAccountPassword(ResetSubAccountPasswordCommand message)
         {
-            if (!message.IsValid())
-            {
-                return View(new ResetPasswordQuery(
-                    SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden)));
-            }
-            else
-            {
-                var result = mediator.Send(message);
+            var result = message.IsValid()
+                ? mediator.Send(message)
+                : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
-                return View(new ResetPasswordQuery(result)
-                {
-                    CustId = message.CustId,
-                    CustName = message.CustName
-                });
-            }
+            return View(new ResetPasswordQuery(message.GetViewer())
+            {
+                Result = result
+            });
         }
     }
 }

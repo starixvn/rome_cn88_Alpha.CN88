@@ -21,11 +21,8 @@
     @Html.Hidden("please-enter-oldPassword", AuthResource.RequiredInputOldPwdError)
     @Html.Hidden("password-cannot-empty", AuthResource.RequiredPasswordError)
     @Html.Hidden("not-correct-confirm-password", AuthResource.ComfirmPasswordError)
-    @Html.Hidden("password-at-least-8chars", AuthResource.PasswordRules)
-    @Html.Hidden("password-change-successfully", AuthResource.PasswordChangedSuccessfully)
     @Html.Hidden("password-does-not-min-requirement", AuthResource.PasswordWrongRuleError)
     @Html.Hidden("newPassword-must-be-diff-old", AuthResource.NewPwdSameOldOneError)
-    @Html.Hidden("password-not-contain-nickname-username", AuthResource.NewPwdContainsUserNameOrNickNameError)
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @RenderSection("Scripts", required: false)
 </body>

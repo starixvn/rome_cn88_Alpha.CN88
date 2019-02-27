@@ -14,7 +14,5 @@
 
         public string UserLevel
             => Enumeration.FromValue<UserLevel>(CustRoleId).DisplayName.ToLower();
-
-        public string Title { get; set; }
     }
 }

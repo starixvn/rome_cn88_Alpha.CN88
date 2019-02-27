@@ -147,6 +147,15 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
   </data>
+  <data name="ConfirmSecCodeError" xml:space="preserve">
+    <value>Security Codes do not match.</value>
+  </data>
+  <data name="ConfirmSecurityCode" xml:space="preserve">
+    <value>Confirm Security Code</value>
+  </data>
+  <data name="CreateSecurityCode" xml:space="preserve">
+    <value>Please create a Security Code which will be asked for any setting updates to make sure it is you.</value>
+  </data>
   <data name="CustomerClosed" xml:space="preserve">
     <value>Your account was closed so you're forced to logout. Please contact your upline for the assistance.</value>
   </data>
@@ -203,6 +212,9 @@ Notes: your password is cAsE sEnSiTiVe</value>
   <data name="OldSecCodeEmptyError" xml:space="preserve">
     <value>Please enter old Security Code</value>
   </data>
+  <data name="OldSecurityCode" xml:space="preserve">
+    <value>Old Security Code</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -240,11 +252,29 @@ Notes: your password is cAsE sEnSiTiVe</value>
   <data name="Rules" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="SameSecCodeError" xml:space="preserve">
+    <value>Your new Security Code must be different from the current one.</value>
+  </data>
+  <data name="SecCodeChangedSuccessfully" xml:space="preserve">
+    <value>Your Security Code has been changed.</value>
+  </data>
   <data name="SecCodeEmptyError" xml:space="preserve">
     <value>This field is required.</value>
   </data>
   <data name="SecCodeWrongRuleError" xml:space="preserve">
     <value>The Security Code does not meet the security requirements.</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>Security Code</value>
+  </data>
+  <data name="SecurityCodeRule1" xml:space="preserve">
+    <value>Security Code must be a 6-digit number, contains at least 2 different digits and must not be consecutive numbers.</value>
+  </data>
+  <data name="SecurityCodeRule2" xml:space="preserve">
+    <value>For example: 123456, 765432, 456789, etc. are NOT allowed.</value>
+  </data>
+  <data name="SecurityCodeShower" xml:space="preserve">
+    <value>Hi {0}, your security code has been reset. Please set up a new one.</value>
   </data>
   <data name="SessionKickedOut" xml:space="preserve">
     <value>You have been logged out because your account has logged into another session. Don't recognize this activity? Please contact your upline for assistance.</value>

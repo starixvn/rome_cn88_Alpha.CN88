@@ -43,14 +43,12 @@
             <div class="note note-txt">
                 <span>@AuthResource.Note:</span> @AuthResource.NickNameNote
             </div>
-            if (Model.Result?.IsFail == true)
-            {
-                <div id="message-container" class="msg msg-error">@Model.Result.Message</div>
-            }
-            else
-            {
-                <div id="message-container"></div>
-            }
+            <div id="message-container">
+                @if (Model.Result?.IsFail == true)
+                {
+                    <div class="msg msg-error">@Model.Result.Message</div>
+                }
+            </div>
             <div  class="list-button">
                 <button type="button" class="btn-cancel" id="buttonCancel">@AuthResource.Cancel</button>
                 <button type="submit" class="btn-submit">@AuthResource.Submit</button>

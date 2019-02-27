@@ -43,10 +43,10 @@
                 return RedirectToAction("ForceChangePassword", "Password");
             }
 
-            //if (securityCodeChecker.IsForcedChangeSecurityCode())
-            //{
-            //    return RedirectToAction("Index", "SecurityCode");
-            //}
+            if (securityCodeChecker.IsForcedChangeSecurityCode())
+            {
+                return RedirectToAction("Index", "SecurityCode");
+            }
 
             return View(mediator.Send(message));
         }

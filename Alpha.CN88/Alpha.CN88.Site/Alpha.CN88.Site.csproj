@@ -376,9 +376,9 @@
     <Content Include="assets\bundles\password\change-password.min.js">
       <DependentUpon>change-password.js</DependentUpon>
     </Content>
-    <Content Include="assets\bundles\password\reset-password.js" />
-    <Content Include="assets\bundles\password\reset-password.min.js">
-      <DependentUpon>reset-password.js</DependentUpon>
+    <Content Include="assets\bundles\password\change-securitycode.js" />
+    <Content Include="assets\bundles\password\change-securitycode.min.js">
+      <DependentUpon>change-securitycode.js</DependentUpon>
     </Content>
     <Content Include="assets\bundles\security\change-password.css" />
     <Content Include="assets\bundles\security\change-password.min.css">
@@ -391,6 +391,10 @@
     <Content Include="assets\bundles\security\force-change-pass.css" />
     <Content Include="assets\bundles\security\force-change-pass.min.css">
       <DependentUpon>force-change-pass.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\securitycode\change-securitycode.js" />
+    <Content Include="assets\bundles\securitycode\change-securitycode.min.js">
+      <DependentUpon>change-securitycode.js</DependentUpon>
     </Content>
     <Content Include="assets\scripts\tests\libs\autocomplete.js" />
     <Content Include="assets\scripts\tests\libs\bootbox.js" />
@@ -534,7 +538,10 @@
     <Compile Include="Requests\Password\ResetDownlinePasswordCommand.cs" />
     <Compile Include="Requests\Password\ResetPasswordQuery.cs" />
     <Compile Include="Requests\Password\ResetSubAccountPasswordCommand.cs" />
+    <Compile Include="Requests\SecurityCode\ChangeSecurityCodeFirstLoginCommand.cs" />
+    <Compile Include="Requests\SecurityCode\ForceChangeSecurityCodeCommand.cs" />
     <Compile Include="Requests\SecurityCode\ForceChangeSecurityCodeQuery.cs" />
+    <Compile Include="Requests\SecurityCode\IndexQuery.cs" />
     <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\Default\IndexViewModel.cs" />
     <Compile Include="ViewModels\Default\MenuBarViewModel.cs" />
@@ -544,7 +551,7 @@
     <Compile Include="ViewModels\LanguageViewModel.cs" />
     <Compile Include="ViewModels\NickName\CreateNickNameViewModel.cs" />
     <Compile Include="ViewModels\Password\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModels\Password\PasswordViewModel.cs" />
+    <Compile Include="ViewModels\Password\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\SecurityCode\ForceChangeSecurityCodeViewModel.cs" />
     <Compile Include="ViewModels\SecurityCode\SecurityCodeViewModel.cs" />
   </ItemGroup>
@@ -593,6 +600,9 @@
     </Content>
     <Content Include="Views\Password\ResetDownlinePassword.cshtml" />
     <Content Include="Views\Password\ChangePassword.cshtml" />
+    <Content Include="Views\SecurityCode\Shared\_Layout.cshtml" />
+    <Content Include="Views\SecurityCode\ChangeSecurityCodeFirstLogin.cshtml" />
+    <Content Include="Views\SecurityCode\ForceChangeSecurityCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />
@@ -609,10 +619,9 @@
     <TypeScriptCompile Include="assets\scripts\default\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />
     <TypeScriptCompile Include="assets\scripts\home\index-manager.ts" />
-    <TypeScriptCompile Include="assets\scripts\password\reset-password.ts" />
     <TypeScriptCompile Include="assets\scripts\password\change-password.ts" />
-    <TypeScriptCompile Include="assets\scripts\password\password-helper.ts" />
     <TypeScriptCompile Include="assets\scripts\security-helper.ts" />
+    <TypeScriptCompile Include="assets\scripts\securitycode\change-securitycode.ts" />
     <TypeScriptCompile Include="assets\scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jasmine-jquery\index.d.ts" />

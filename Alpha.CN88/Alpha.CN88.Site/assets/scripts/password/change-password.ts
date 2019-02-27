@@ -1,110 +1,145 @@
 ﻿"use strict";
+class ChangePassword {
+    $: JQueryStatic;
+    resources: any;
+    elements: any;
 
-const changePassword = {
-    elements: {
-        currentPassword: null,
-        newPassword: null,
-        confirmPassword: null,
-        hashKey: null,
-        messsageContainer: null
-    },
-    initialize: function () {
-        changePassword.cacheElements();
+    constructor($: JQueryStatic) {
+        this.$ = $;
+    }
 
-        $("#formPassword").submit(function (e) {
-            $.blockUI();
-            if (!changePassword.validatePasswords()) {
+    init(): void {
+        let self: any = this;
+        this.cacheElements();
+
+        this.$("#formPassword").submit(function () {
+            self.$.blockUI();
+            let $currentPassword: JQuery = self.elements.currentPassword;
+            let $newPassword: JQuery = self.elements.newPassword;
+            let $confirmPassword: JQuery = self.elements.confirmPassword;
+
+            if (!self.validatePasswords($currentPassword, $newPassword, $confirmPassword, self.elements.isResetMemberPassword)) {
                 $.unblockUI();
                 return false;
             }
 
-            const hashKey = changePassword.elements.hashKey;
-            const currentPwd = changePassword.elements.currentPassword.val().ec(hashKey).hc();
-            const newPWd = changePassword.elements.newPassword.val().ec(hashKey).hc();
+            let hashKey: string = self.elements.hashKey;
 
-            changePassword.elements.currentPassword.val(currentPwd);
-            changePassword.elements.newPassword.val(newPWd);
-            changePassword.elements.confirmPassword.val(newPWd);
+            if ($currentPassword.length > 0) {
+                let currentPwd: string = $currentPassword.val().ec(hashKey).hc();
+                $currentPassword.val(currentPwd);
+            }
+
+            let newPwd: string = $newPassword.val().ec(hashKey).hc();
+            $newPassword.val(newPwd);
+            $confirmPassword.val(newPwd);
 
             return true;
         });
 
-        $("#buttonBack").click(function () {
-            const forceChangePasswordPage = $("#mainRootPath").length > 0;
-            if (forceChangePasswordPage) {
+        this.$("#buttonCancel").click(function (): void {
+            if (self.$("#mainRootPath").length > 0) {
                 siteInfrastructure.logout();
             } else {
                 siteInfrastructure.closePopup();
             }
         });
 
-        changePassword.elements.currentPassword.focus();
-    },
-    cacheElements: function () {
-        changePassword.elements.currentPassword = $("#currentPassword");
-        changePassword.elements.newPassword = $("#newPassword");
-        changePassword.elements.confirmPassword = $("#confirmPassword");
-        changePassword.elements.hashKey = $("#HashKey").val();
-        changePassword.elements.messsageContainer = $("#message-container");
-    },
-    validatePasswords: function () {
-        const $currentPassword = changePassword.elements.currentPassword.removeClass("error");
-        const $newPassword = changePassword.elements.newPassword.removeClass("error");
-        const $confirmPassword = changePassword.elements.confirmPassword.removeClass("error");
+        let focusField: JQuery = this.elements.currentPassword.length > 0
+            ? this.elements.currentPassword
+            : this.elements.newPassword;
+        focusField.focus();
+    }
 
-        const currentPasswordValue = $currentPassword.val();
-        const newPasswordValue = $newPassword.val();
-        const confirmPasswordValue = $confirmPassword.val();
+    cacheElements(): void {
+        this.resources = {
+            pleaseEnterOldPassword: this.$("#please-enter-oldPassword").val(),
+            passwordCannotEmpty: this.$("#password-cannot-empty").val(),
+            confirmPasswordNotCorret: this.$("#not-correct-confirm-password").val(),
+            newPassMustbeDiffOldPass: this.$("#newPassword-must-be-diff-old").val(),
+            passwordDoesNotMeetMinimunRequirement: this.$("#password-does-not-min-requirement").val()
+        };
 
-        if (currentPasswordValue.length === 0) {
-            siteInfrastructure.showError(
-                changePassword.elements.messsageContainer,
-                passwordResources.pleaseEnterOldPassword);
-            $currentPassword.focus();
+        let $memberHiddenField: JQuery = this.$("#isResetMemberPassword");
+        this.elements = {
+            currentPassword: this.$("#currentPassword"),
+            newPassword: this.$("#newPassword"),
+            confirmPassword: this.$("#confirmPassword"),
+            messsageContainer: this.$("#message-container"),
+            hashKey: this.$("#hashKey").val(),
+            isResetMemberPassword: $memberHiddenField.length > 0 && $memberHiddenField.val() === "1"
+        };
+    }
+
+    validatePasswords(currentPassword: JQuery, newPassword: JQuery, confirmPassword: JQuery, isResetMemberPassword: boolean) {
+        let isChangePasswordPage: boolean = currentPassword.length > 0;
+        let currentPasswordValue: string = isChangePasswordPage ? currentPassword.val() : "";
+        let newPasswordValue: string = newPassword.val();
+        let confirmPasswordValue: string = confirmPassword.val();
+
+        if (isChangePasswordPage && currentPasswordValue.length === 0) {
+            siteInfrastructure.showError(this.elements.messsageContainer, this.resources.pleaseEnterOldPassword);
+            currentPassword.focus();
 
             return false;
         }
 
         if (newPasswordValue.length === 0) {
-            siteInfrastructure.showError(
-                changePassword.elements.messsageContainer,
-                passwordResources.passwordCannotEmpty);
-            $newPassword.focus();
+            siteInfrastructure.showError(this.elements.messsageContainer, this.resources.passwordCannotEmpty);
+            newPassword.focus();
 
             return false;
         }
 
-        if (!passwordHelper.isValidPassword(newPasswordValue)) {
-            siteInfrastructure.showError(
-                changePassword.elements.messsageContainer,
-                passwordResources.passwordDoesNotMeetMinimunRequirement);
-            $newPassword.focus();
+        if (!this.isValidPassword(newPasswordValue, isResetMemberPassword)) {
+            siteInfrastructure.showError(this.elements.messsageContainer, this.resources.passwordDoesNotMeetMinimunRequirement);
+            newPassword.focus();
 
             return false;
         }
 
         if (newPasswordValue !== confirmPasswordValue) {
-            siteInfrastructure.showError(
-                changePassword.elements.messsageContainer,
-                passwordResources.confirmPasswordNotCorret);
-            $confirmPassword.focus();
+            siteInfrastructure.showError(this.elements.messsageContainer, this.resources.confirmPasswordNotCorret);
+            confirmPassword.focus();
 
             return false;
         }
 
-        if (newPasswordValue === currentPasswordValue) {
-            siteInfrastructure.showError(
-                changePassword.elements.messsageContainer,
-                passwordResources.newPassMustbeDiffOldPass);
-            $newPassword.focus();
+        if (isChangePasswordPage && newPasswordValue === currentPasswordValue) {
+            siteInfrastructure.showError(this.elements.messsageContainer, this.resources.newPassMustbeDiffOldPass);
+            newPassword.focus();
 
             return false;
         }
 
         return true;
     }
+
+    isValidPassword(password: string, isResetMemberPassword: boolean) {
+        let whiteSpace: RegExp = /^\S*$/;
+        let whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
+
+        if (isResetMemberPassword) {
+            let memberRegex: RegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/;
+
+            return (password.search(memberRegex) !== -1) && whiteSpaceCase;
+        }
+
+        let regex1: RegExp = /^(?=.{8,100}$).*\d/i;
+        let regex2: RegExp = /^(?=.{8,100}$).*[a-z]/;
+        let regex3: RegExp = /^(?=.{8,100}$).*[A-Z]/;
+        let regex4: RegExp = /^(?=.{8,100}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
+
+        let case1: number = password.search(regex1) !== -1 ? 1 : 0;
+        let case2: number = password.search(regex2) !== -1 ? 1 : 0;
+        let case3: number = password.search(regex3) !== -1 ? 1 : 0;
+        let case4: number = password.search(regex4) !== -1 ? 1 : 0;
+
+        return (case1 + case2 + case3 + case4 >= 3) && whiteSpaceCase;
+    }
 }
 
-$(function () {
-    changePassword.initialize();
+$(function (): void {
+    const changePassword: ChangePassword = new ChangePassword($);
+    changePassword.init();
 });

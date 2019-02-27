@@ -147,6 +147,15 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>確認密碼</value>
   </data>
+  <data name="ConfirmSecCodeError" xml:space="preserve">
+    <value>保安碼不正確</value>
+  </data>
+  <data name="ConfirmSecurityCode" xml:space="preserve">
+    <value>確認保安碼</value>
+  </data>
+  <data name="CreateSecurityCode" xml:space="preserve">
+    <value>請創建一個保安碼它將需要輸入當有任何設置需要更新，以確保您是賬號持有人。</value>
+  </data>
   <data name="CustomerClosed" xml:space="preserve">
     <value>您的帳戶被關閉，你必須退出。請聯系您上線的援助。</value>
   </data>
@@ -203,6 +212,9 @@
   <data name="OldSecCodeEmptyError" xml:space="preserve">
     <value>請輸入您的舊保安碼。</value>
   </data>
+  <data name="OldSecurityCode" xml:space="preserve">
+    <value>舊保安碼</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>密碼</value>
   </data>
@@ -240,11 +252,29 @@
   <data name="Rules" xml:space="preserve">
     <value>Rules</value>
   </data>
+  <data name="SameSecCodeError" xml:space="preserve">
+    <value>您的新保安碼必須與當前的不相同。</value>
+  </data>
+  <data name="SecCodeChangedSuccessfully" xml:space="preserve">
+    <value>保安碼已更改。</value>
+  </data>
   <data name="SecCodeEmptyError" xml:space="preserve">
     <value>必填欄</value>
   </data>
   <data name="SecCodeWrongRuleError" xml:space="preserve">
     <value>您所提供的保安碼不符合要求。</value>
+  </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>保安碼</value>
+  </data>
+  <data name="SecurityCodeRule1" xml:space="preserve">
+    <value>保安碼必須是6位數字，包含至少2個不同的數字，必須是不連續的號碼。</value>
+  </data>
+  <data name="SecurityCodeRule2" xml:space="preserve">
+    <value>例如：123456，765432，456789 等都是不被允許的</value>
+  </data>
+  <data name="SecurityCodeShower" xml:space="preserve">
+    <value>嗨{0}，您的保安碼已被重置。請設置一個新的。</value>
   </data>
   <data name="SessionKickedOut" xml:space="preserve">
     <value>另一個相同帐号已登入介面,強制被登出. 如果此登入不是由您所進行, 請聯絡您的上線.</value>

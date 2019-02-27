@@ -3,20 +3,29 @@
     public class ChangeSecurityCodeParam : ResetSecurityCodeParam
     {
         public ChangeSecurityCodeParam(
+               int custId,
+               int subAccId,
+               string newSecurityCode,
+               int userId,
+               string ip,
+               string languageKey) : this(custId, subAccId, null, newSecurityCode, null, userId, ip, languageKey)
+        {
+            MustVerifyCurrentSecurityCode = false;
+        }
+
+        public ChangeSecurityCodeParam(
             int custId,
             int subAccId,
             string currentSecurityCode,
             string newSecurityCode,
             string salt,
-            bool isResetMember,
-            bool mustVerifyCurrentSecurityCode,
             int userId,
             string ip,
-            string languageKey) : base(custId, subAccId, newSecurityCode, isResetMember, userId, ip, languageKey)
+            string languageKey) : base(custId, subAccId, newSecurityCode, userId, ip, languageKey)
         {
             CurrentSecurityCode = currentSecurityCode;
             Salt = salt;
-            MustVerifyCurrentSecurityCode = mustVerifyCurrentSecurityCode;
+            MustVerifyCurrentSecurityCode = true;
         }
 
         public bool MustVerifyCurrentSecurityCode { get; }

@@ -151,6 +151,33 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Security Codes do not match..
+        /// </summary>
+        public static string ConfirmSecCodeError {
+            get {
+                return ResourceManager.GetString("ConfirmSecCodeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Security Code.
+        /// </summary>
+        public static string ConfirmSecurityCode {
+            get {
+                return ResourceManager.GetString("ConfirmSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please create a Security Code which will be asked for any setting updates to make sure it is you..
+        /// </summary>
+        public static string CreateSecurityCode {
+            get {
+                return ResourceManager.GetString("CreateSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account was closed so you&apos;re forced to logout. Please contact your upline for the assistance..
         /// </summary>
         public static string CustomerClosed {
@@ -303,6 +330,15 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Old Security Code.
+        /// </summary>
+        public static string OldSecurityCode {
+            get {
+                return ResourceManager.GetString("OldSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -406,6 +442,24 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your new Security Code must be different from the current one..
+        /// </summary>
+        public static string SameSecCodeError {
+            get {
+                return ResourceManager.GetString("SameSecCodeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Security Code has been changed..
+        /// </summary>
+        public static string SecCodeChangedSuccessfully {
+            get {
+                return ResourceManager.GetString("SecCodeChangedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This field is required..
         /// </summary>
         public static string SecCodeEmptyError {
@@ -420,6 +474,42 @@ namespace CN88.Auth.AppResources {
         public static string SecCodeWrongRuleError {
             get {
                 return ResourceManager.GetString("SecCodeWrongRuleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security Code.
+        /// </summary>
+        public static string SecurityCode {
+            get {
+                return ResourceManager.GetString("SecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security Code must be a 6-digit number, contains at least 2 different digits and must not be consecutive numbers..
+        /// </summary>
+        public static string SecurityCodeRule1 {
+            get {
+                return ResourceManager.GetString("SecurityCodeRule1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For example: 123456, 765432, 456789, etc. are NOT allowed..
+        /// </summary>
+        public static string SecurityCodeRule2 {
+            get {
+                return ResourceManager.GetString("SecurityCodeRule2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi {0}, your security code has been reset. Please set up a new one..
+        /// </summary>
+        public static string SecurityCodeShower {
+            get {
+                return ResourceManager.GetString("SecurityCodeShower", resourceCulture);
             }
         }
         

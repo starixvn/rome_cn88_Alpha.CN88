@@ -1,24 +1,17 @@
 ﻿namespace Alpha.CN88.Site.Requests.Password
 {
+    using CN88.Models;
     using global::CN88.Auth.Models;
     using MediatR;
     using ViewModels.Password;
 
-    public class ResetPasswordQuery : IRequest<PasswordViewModel>
+    public class ResetPasswordQuery : BaseQuery, IRequest<ResetPasswordViewModel>
     {
-        public ResetPasswordQuery()
+        public ResetPasswordQuery(IUser viewer)
+            : base(viewer)
         {
         }
 
-        public ResetPasswordQuery(SecurityResult result)
-        {
-            Result = result;
-        }
-
-        public int CustId { get; set; }
-
-        public string CustName { get; set; }
-
-        public SecurityResult Result { get; }
+        public SecurityResult Result { get; set; }
     }
 }
