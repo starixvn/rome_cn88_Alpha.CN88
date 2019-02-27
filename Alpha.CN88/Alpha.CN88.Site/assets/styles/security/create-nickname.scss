@@ -1,21 +1,23 @@
-﻿.form-create-login {
+﻿@import "../_variables.scss";
+
+.form-create-login {
     .rowlg {
         .lb-title {
              width: 75px;
         }
         .txt {
-            width: 270px;
+            width: 197px;
         }
         .check {
             background: #cacaca;
-            border: 1px solid #bdbdbd;
+            border: 1px solid #d2d2d2;
             border-left: none;
             display: inline-block;
-            height: 55px;
+            height: $height-normal;
             vertical-align: top;
-            line-height: 55px;
+            line-height: $height-normal;
             text-transform: uppercase;
-            width: 116px;
+            width: 90px;
             position: relative;
             left: -4px;
             text-align: center;
