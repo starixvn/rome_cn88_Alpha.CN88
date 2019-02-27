@@ -8,8 +8,8 @@
     "inputFile": "assets/styles/home.scss"
   },
   {
-    "outputFile": "assets/styles/security.css",
-    "inputFile": "assets/styles/security.scss"
+    "outputFile": "assets/styles/security/security.css",
+    "inputFile": "assets/styles/security/security.scss"
   },
   {
     "outputFile": "assets/styles/security/create-nickname.css",
