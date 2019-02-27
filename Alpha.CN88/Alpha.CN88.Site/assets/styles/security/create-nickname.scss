@@ -1,0 +1,39 @@
+﻿.form-create-login {
+    .rowlg {
+        .lb-title {
+             width: 75px;
+        }
+        .txt {
+            width: 270px;
+        }
+        .check {
+            background: #cacaca;
+            border: 1px solid #bdbdbd;
+            border-left: none;
+            display: inline-block;
+            height: 55px;
+            vertical-align: top;
+            line-height: 55px;
+            text-transform: uppercase;
+            width: 116px;
+            position: relative;
+            left: -4px;
+            text-align: center;
+            text-shadow: 1px 1px #FAEFDC;
+            cursor: pointer;
+             &:hover {
+                background: #a9a8a6;
+            }
+        }
+        .icon-check {
+            padding-right: 8px;
+            color: #686868;
+            font-weight: bold;
+            text-shadow: none;
+            font-size: 18px;
+        }
+    }
+    .note.note-txt {
+        line-height: 22px;
+    }
+}

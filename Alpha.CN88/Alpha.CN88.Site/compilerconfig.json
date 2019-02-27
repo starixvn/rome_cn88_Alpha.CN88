@@ -10,5 +10,13 @@
   {
     "outputFile": "assets/styles/security.css",
     "inputFile": "assets/styles/security.scss"
+  },
+  {
+    "outputFile": "assets/styles/security/create-nickname.css",
+    "inputFile": "assets/styles/security/create-nickname.scss"
+  },
+  {
+    "outputFile": "assets/styles/security/change-password.css",
+    "inputFile": "assets/styles/security/change-password.scss"
   }
 ]

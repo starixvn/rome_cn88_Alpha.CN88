@@ -33,10 +33,10 @@
                 return View(UnSupportedBrowsers, browser);
             }
 
-            if (!user.IsInternal && string.IsNullOrWhiteSpace(user.NickName))
-            {
-                return RedirectToAction("Index", "NickName");
-            }
+            //if (!user.IsInternal && string.IsNullOrWhiteSpace(user.NickName))
+            //{
+            //    return RedirectToAction("Index", "NickName");
+            //}
 
             if (!user.IsLogged || user.IsPasswordExpired)
             {

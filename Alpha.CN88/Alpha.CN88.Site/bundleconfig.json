@@ -57,9 +57,23 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/security.css",
+    "outputFileName": "assets/bundles/security/force-change-pass.css",
     "inputFiles": [
-      "assets/styles/security.css"
+      "assets/styles/security/security.css"
     ]
-  }
+  },
+  {
+    "outputFileName": "assets/bundles/security/create-nickname.css",
+    "inputFiles": [
+      "assets/styles/security/security.css",
+      "assets/styles/security/create-nickname.css"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/security/change-password.css",
+    "inputFiles": [
+      "assets/styles/security/security.css",
+      "assets/styles/security/change-password.css"
+    ]
+  },
 ]

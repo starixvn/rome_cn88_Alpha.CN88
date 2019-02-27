@@ -384,6 +384,18 @@
     <Content Include="assets\bundles\security.min.css">
       <DependentUpon>security.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\security\change-password.css" />
+    <Content Include="assets\bundles\security\change-password.min.css">
+      <DependentUpon>change-password.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\security\create-nickname.css" />
+    <Content Include="assets\bundles\security\create-nickname.min.css">
+      <DependentUpon>create-nickname.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\security\force-change-pass.css" />
+    <Content Include="assets\bundles\security\force-change-pass.min.css">
+      <DependentUpon>force-change-pass.css</DependentUpon>
+    </Content>
     <Content Include="assets\scripts\tests\libs\autocomplete.js" />
     <Content Include="assets\scripts\tests\libs\bootbox.js" />
     <Content Include="assets\scripts\tests\libs\bootstrap\button.js" />
@@ -426,10 +438,22 @@
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
-    <Content Include="assets\styles\security.css">
+    <Content Include="assets\styles\security\change-password.css">
+      <DependentUpon>change-password.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\security\change-password.min.css">
+      <DependentUpon>change-password.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\security\create-nickname.css">
+      <DependentUpon>create-nickname.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\security\create-nickname.min.css">
+      <DependentUpon>create-nickname.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\security\security.css">
       <DependentUpon>security.scss</DependentUpon>
     </Content>
-    <Content Include="assets\styles\security.min.css">
+    <Content Include="assets\styles\security\security.min.css">
       <DependentUpon>security.css</DependentUpon>
     </Content>
     <Content Include="assets\styles\site.css">
@@ -543,7 +567,9 @@
     <Content Include="assets\styles\_variables.scss" />
     <Content Include="bundleconfig.json" />
     <Content Include="compilerconfig.json" />
-    <Content Include="assets\styles\security.scss" />
+    <Content Include="assets\styles\security\security.scss" />
+    <Content Include="assets\styles\security\create-nickname.scss" />
+    <Content Include="assets\styles\security\change-password.scss" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
