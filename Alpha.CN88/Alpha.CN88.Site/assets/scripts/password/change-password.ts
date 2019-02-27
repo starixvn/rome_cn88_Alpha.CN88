@@ -41,7 +41,7 @@ class ChangePassword {
             if (self.$("#mainRootPath").length > 0) {
                 siteInfrastructure.logout();
             } else {
-                siteInfrastructure.closePopup();
+                popupManager.close();
             }
         });
 

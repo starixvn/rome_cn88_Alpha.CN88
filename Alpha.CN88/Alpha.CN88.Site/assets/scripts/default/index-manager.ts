@@ -97,7 +97,15 @@
         $("#lnk-password-recovery").on("click touchend", () => {
         });
         $("#lnk-change-password").on("click touchend", () => {
-            siteInfrastructure.openPopup("Change Password", indexManager.urls.changePassword, 460);
+            popupManager.init($, top);
+            popupManager.open({
+                handlerId: "mainPopup",
+                title: "Change Password",
+                url: indexManager.urls.changePassword,
+                width: 600,
+                height: 460,
+                resizable: true
+            });
         });
         $("#lnk-logout").on("click touchend", () => {
             siteInfrastructure.logout();
