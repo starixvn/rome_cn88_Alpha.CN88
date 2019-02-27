@@ -1,5 +1,6 @@
 ﻿declare var numeral: any;
 
+
 interface JQuery {
     stickyTableHeaders(): void;
 }
@@ -7,8 +8,11 @@ interface JQuery {
 interface Window {
     cn88SuccessfulUpdatingCallback(): void;
     cn88CancelCallback(): void;
+    showCN88CancelButton: boolean;
     $: JQueryStatic;
 }
+
+top.showCN88CancelButton = true;
 
 class Result {
     static warningCode: number = -1000;
@@ -155,12 +159,12 @@ window.top.cn88SuccessfulUpdatingCallback = function () {
     top.$("#main").attr("src", $currentPage.val());
 }
 
-//window.top.cn88CancelCallback = function () {
-//	var $currentPage = window.top.$("body #reloadCN88CustomerListCallBackUrl");
+window.top.cn88CancelCallback = function () {
+	var $currentPage = window.top.$("body #reloadCN88CustomerListCallBackUrl");
 
-//	if ($currentPage.length == 0 || $currentPage.val() == "") {
-//		return;
-//	}
+	if ($currentPage.length == 0 || $currentPage.val() == "") {
+		return;
+	}
 
-//	top.$("#main").attr("src", $currentPage.val());
-//}
+	top.$("#main").attr("src", $currentPage.val());
+}
