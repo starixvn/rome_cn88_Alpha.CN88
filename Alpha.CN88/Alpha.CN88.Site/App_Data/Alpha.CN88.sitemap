@@ -18,6 +18,7 @@
       <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles=""></siteMapNode>
       <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount/Index"></siteMapNode>
       <siteMapNode resourceKey="problemAccount" appPath="FeaturesAppPath" url="AccountManagement/ProblemAccount" roles="Super"></siteMapNode>
+      <siteMapNode resourceKey="viewLog" appPath="ViewLogAppPath" url="Setting"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]" roles="">
       <siteMapNode resourceKey="wagerReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=1"></siteMapNode>

@@ -162,4 +162,7 @@
   <data name="results" xml:space="preserve">
     <value>成绩</value>
   </data>
+  <data name="viewLog" xml:space="preserve">
+    <value>察看日志</value>
+  </data>
 </root>
