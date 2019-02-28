@@ -1,11 +1,13 @@
 ﻿"use strict";
 class ChangePassword {
     $: JQueryStatic;
+    protected topWindow: any;
     resources: any;
     elements: any;
 
-    constructor($: JQueryStatic) {
+    constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
+        this.topWindow = topWindow;
     }
 
     init(): void {
@@ -37,11 +39,11 @@ class ChangePassword {
             return true;
         });
 
-        this.$("#buttonCancel").click(function (): void {
+        this.$("#buttonCancel").click(() => {
             if (self.$("#mainRootPath").length > 0) {
                 siteInfrastructure.logout();
             } else {
-                popupManager.close();
+                this.topWindow.popupManager.close();
             }
         });
 
@@ -140,6 +142,6 @@ class ChangePassword {
 }
 
 $(function (): void {
-    const changePassword: ChangePassword = new ChangePassword($);
+    const changePassword: ChangePassword = new ChangePassword($, top);
     changePassword.init();
 });
