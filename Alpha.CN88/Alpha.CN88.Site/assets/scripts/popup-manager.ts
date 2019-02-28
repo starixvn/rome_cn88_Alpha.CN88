@@ -54,7 +54,7 @@ class PopupManager {
         }
     };
     setDefaultOptions = (options: any) => {
-        options.centerScreen = !!options.centerScreen;
+        options.centerScreen = options.centerScreen == undefined || options.centerScreen;
         options.left = options.left || this.leftPosition();
         options.top = options.top || this.topPosition();
 
