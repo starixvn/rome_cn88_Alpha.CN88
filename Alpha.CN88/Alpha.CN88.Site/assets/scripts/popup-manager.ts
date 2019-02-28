@@ -143,7 +143,8 @@ class PopupManager {
             // transform property make objectFlash not show (MacauGames Result)
             popUp.find('.modal-dialog').css({
                 transform: 'none',
-                margin: 0
+                margin: 0,
+                width: "100%"
             });
 
             // This will make popup isn't cut its height when its height larger than browser height
@@ -192,6 +193,7 @@ class PopupManager {
         }
 
         popUp.find(".icon-close").unbind("click").click(() => {
+            this.activePopups.pop();
             popUp.find('.modal-body #target').remove();
             popUp.modal("hide");
 
@@ -235,6 +237,7 @@ class PopupManager {
         var isAutoHeight = this.isiOS();
 
         var popupCss = {
+            position: "absolute",
             width: popupWidth,
             height: isAutoHeight ? 'auto' : popupHeight,
             left: options.left + scrollLeft,

@@ -103,8 +103,7 @@
                 title: "Change Password",
                 url: indexManager.urls.changePassword,
                 width: 600,
-                height: 460,
-                resizable: true
+                height: 460
             });
         });
         $("#lnk-logout").on("click touchend", () => {
