@@ -388,10 +388,6 @@
     <Content Include="assets\bundles\password\change-password.min.js">
       <DependentUpon>change-password.js</DependentUpon>
     </Content>
-    <Content Include="assets\bundles\password\change-securitycode.js" />
-    <Content Include="assets\bundles\password\change-securitycode.min.js">
-      <DependentUpon>change-securitycode.js</DependentUpon>
-    </Content>
     <Content Include="assets\bundles\security\change-password.css" />
     <Content Include="assets\bundles\security\change-password.min.css">
       <DependentUpon>change-password.css</DependentUpon>
