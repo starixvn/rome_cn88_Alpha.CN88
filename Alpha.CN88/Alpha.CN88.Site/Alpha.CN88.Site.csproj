@@ -603,6 +603,7 @@
     <Content Include="Views\SecurityCode\Shared\_Layout.cshtml" />
     <Content Include="Views\SecurityCode\ChangeSecurityCodeFirstLogin.cshtml" />
     <Content Include="Views\SecurityCode\ForceChangeSecurityCode.cshtml" />
+    <Content Include="Views\Shared\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />
