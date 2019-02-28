@@ -1,20 +1,21 @@
 ﻿namespace Alpha.CN88.Site.ViewModels.NickName
 {
+    using CN88.Models;
     using global::CN88.Auth.Models;
     using Helpers;
+    using Requests;
 
-    public class CreateNickNameViewModel
+    public class CreateNickNameViewModel : BaseQuery
     {
-        public CreateNickNameViewModel()
+        public CreateNickNameViewModel(IUser viewer)
+            : base(viewer)
         {
+            IsInternal = viewer.IsInternal;
         }
 
-        public CreateNickNameViewModel(SecurityResult result)
-        {
-            Result = result;
-        }
+        public bool IsInternal { get; }
 
-        public SecurityResult Result { get; }
+        public SecurityResult Result { get; set; }
 
         public string MainRootPath
             => UrlHelper.MapMainPath("~");

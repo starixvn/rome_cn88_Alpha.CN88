@@ -1,5 +1,8 @@
 ﻿namespace CN88.Auth.Models
 {
+    using System;
+
+    [Serializable]
     public class SecurityResult
     {
         private const int DefaultErrorCode = 1;

@@ -16,27 +16,18 @@
         }
 
         public ActionResult Index(CreateNickNameViewModel viewModel)
-            => View(viewModel);
+            => viewModel.IsInternal ? ToDefaultPage() : View(viewModel);
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Index(CreateNickNameCommand message)
         {
-            if (!message.IsValid())
-            {
-                return View(new CreateNickNameViewModel(
-                    SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden)));
-            }
-            else
-            {
-                var result = mediator.Send(message);
+            var result = message.IsValid()
+                ? mediator.Send(message)
+                : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
-                if (result.IsFail)
-                {
-                    return View(new CreateNickNameViewModel(result));
-                }
-
-                return RedirectToAction("Index", "Default");
-            }
+            return result.IsSuccess
+                ? ToDefaultPage()
+                : View(new CreateNickNameViewModel(message.GetViewer()) { Result = result });
         }
     }
 }

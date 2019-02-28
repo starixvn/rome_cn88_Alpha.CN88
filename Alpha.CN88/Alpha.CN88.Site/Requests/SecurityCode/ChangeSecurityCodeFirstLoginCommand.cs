@@ -9,14 +9,8 @@
         public ChangeSecurityCodeFirstLoginCommand(IUser viewer)
             : base(viewer)
         {
-            IsForcedSecurityCode = viewer.IsForcedSecurityCode;
-            SecurityCodeInSession = viewer.SecurityCode;
             LanguageKey = viewer.LanguageKey;
         }
-
-        public bool IsForcedSecurityCode { get; }
-
-        public string SecurityCodeInSession { get; }
 
         public string LanguageKey { get; }
 
@@ -24,5 +18,10 @@
 
         public IUser GetViewer()
             => viewer;
+
+        public override bool IsValid()
+            => base.IsValid()
+            && viewer.IsForcedSecurityCode
+            && string.IsNullOrWhiteSpace(viewer.SecurityCode);
     }
 }

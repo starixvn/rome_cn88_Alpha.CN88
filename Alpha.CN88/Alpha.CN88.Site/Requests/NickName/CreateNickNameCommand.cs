@@ -15,5 +15,12 @@
         public string NickName { get; set; }
 
         public string LanguageKey { get; }
+
+        public IUser GetViewer()
+            => viewer;
+
+        public override bool IsValid()
+            => base.IsValid()
+            && !viewer.IsInternal;
     }
 }

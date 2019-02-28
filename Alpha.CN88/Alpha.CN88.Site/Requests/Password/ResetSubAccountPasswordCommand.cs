@@ -30,6 +30,7 @@
 
         public override bool IsValid()
             => base.IsValid()
+            && !viewer.IsInternal
             && CustId != ViewerId;
     }
 }

@@ -29,7 +29,7 @@ class NickName {
             return isMatch;
         });
 
-        this.$("#buttonCancel").click(siteInfrastructure.logout);
+        this.$("#buttonBack").click(siteInfrastructure.logout);
     }
 }
 

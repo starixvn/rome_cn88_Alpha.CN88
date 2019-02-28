@@ -15,7 +15,7 @@
         }
 
         public ActionResult ForceChangePassword(ChangePasswordQuery message)
-            => View(message);
+            => message.IsInternal ? ToDefaultPage() : View(message);
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult ForceChangePassword(ChangePasswordCommand message)
@@ -24,12 +24,9 @@
                 ? mediator.Send(message)
                 : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
-            if (result.IsFail)
-            {
-                return View(new ChangePasswordQuery(result));
-            }
-
-            return RedirectToAction("Index", "Default");
+            return result.IsSuccess
+                ? ToDefaultPage()
+                : View(new ChangePasswordQuery(message.GetViewer()) { Result = result });
         }
 
         public ActionResult ChangePassword(ChangePasswordQuery message)
@@ -42,7 +39,7 @@
                 ? mediator.Send(message)
                 : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
-            return View(new ChangePasswordQuery(result));
+            return View(new ChangePasswordQuery(message.GetViewer()) { Result = result });
         }
 
         //[CheckBelongingFilter]

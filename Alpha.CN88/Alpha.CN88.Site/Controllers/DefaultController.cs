@@ -6,7 +6,6 @@
     using MediatR;
     using Requests;
     using Requests.Default;
-    using SecurityCode.Services;
 
     [SessionState(SessionStateBehavior.ReadOnly)]
     public class DefaultController : SiteBaseController
@@ -14,13 +13,11 @@
         private const string UnSupportedBrowsers = "UnsupportedBrowsers";
 
         private readonly IUser user;
-        private readonly SecurityCodeChecker securityCodeChecker;
 
-        public DefaultController(IMediator mediator, IUser user, SecurityCodeChecker securityCodeChecker)
+        public DefaultController(IMediator mediator, IUser user)
             : base(mediator)
         {
             this.user = user;
-            this.securityCodeChecker = securityCodeChecker;
         }
 
         [HttpGet]
@@ -35,17 +32,17 @@
 
             if (!user.IsInternal && string.IsNullOrWhiteSpace(user.NickName))
             {
-                return RedirectToAction("Index", "NickName");
+                return ToCreateNickNamePage();
             }
 
             if (!user.IsLogged || user.IsPasswordExpired)
             {
-                return RedirectToAction("ForceChangePassword", "Password");
+                return ToForceChangePasswordPage();
             }
 
-            if (securityCodeChecker.IsForcedChangeSecurityCode())
+            if (!user.IsInternal && user.IsForcedSecurityCode)
             {
-                return RedirectToAction("Index", "SecurityCode");
+                return ToSecurityCodePage(user.SecurityCode);
             }
 
             return View(mediator.Send(message));
@@ -57,5 +54,16 @@
 
             return PartialView(viewModel);
         }
+
+        private ActionResult ToCreateNickNamePage()
+            => RedirectToAction("Index", "NickName");
+
+        private ActionResult ToForceChangePasswordPage()
+            => RedirectToAction("ForceChangePassword", "Password");
+
+        private ActionResult ToSecurityCodePage(string securityCode)
+            => string.IsNullOrWhiteSpace(securityCode)
+            ? RedirectToAction("ChangeSecurityCodeFirstLogin", "SecurityCode")
+            : RedirectToAction("ForceChangeSecurityCode", "SecurityCode");
     }
 }

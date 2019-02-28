@@ -1,20 +1,20 @@
 ﻿"use strict";
 class ChangePassword {
     $: JQueryStatic;
-    protected topWindow: any;
+    top: Window;
     resources: any;
     elements: any;
 
-    constructor($: JQueryStatic, topWindow: any) {
+    constructor($: JQueryStatic, top: Window) {
         this.$ = $;
-        this.topWindow = topWindow;
+        this.top = top;
     }
 
     init(): void {
         let self: any = this;
         this.cacheElements();
 
-        this.$("#formPassword").submit(function () {
+        this.$("#formPassword").submit(function (): boolean {
             self.$.blockUI();
             let $currentPassword: JQuery = self.elements.currentPassword;
             let $newPassword: JQuery = self.elements.newPassword;
@@ -43,7 +43,7 @@ class ChangePassword {
             if (self.$("#mainRootPath").length > 0) {
                 siteInfrastructure.logout();
             } else {
-                this.topWindow.popupManager.close();
+                self.top.popupManager.close();
             }
         });
 
@@ -73,7 +73,7 @@ class ChangePassword {
         };
     }
 
-    validatePasswords(currentPassword: JQuery, newPassword: JQuery, confirmPassword: JQuery, isResetMemberPassword: boolean) {
+    validatePasswords(currentPassword: JQuery, newPassword: JQuery, confirmPassword: JQuery, isResetMemberPassword: boolean): boolean {
         let isChangePasswordPage: boolean = currentPassword.length > 0;
         let currentPasswordValue: string = isChangePasswordPage ? currentPassword.val() : "";
         let newPasswordValue: string = newPassword.val();

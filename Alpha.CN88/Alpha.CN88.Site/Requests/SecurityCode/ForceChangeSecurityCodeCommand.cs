@@ -10,5 +10,10 @@
         }
 
         public string OldSecurityCode { get; set; }
+
+        public override bool IsValid()
+            => base.IsValid()
+            && viewer.IsForcedSecurityCode
+            && !string.IsNullOrWhiteSpace(viewer.SecurityCode);
     }
 }

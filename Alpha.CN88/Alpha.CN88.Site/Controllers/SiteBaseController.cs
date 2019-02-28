@@ -31,5 +31,8 @@
 
             return Json(mediator.Send(message), jsonRequestBehavior);
         }
+
+        protected ActionResult ToDefaultPage()
+            => RedirectToAction("Index", "Default");
     }
 }
