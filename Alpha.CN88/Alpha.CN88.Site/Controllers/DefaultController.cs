@@ -30,19 +30,22 @@
                 return View(UnSupportedBrowsers, browser);
             }
 
-            if (!user.IsInternal && string.IsNullOrWhiteSpace(user.NickName))
+            if (!user.IsInternal)
             {
-                return ToCreateNickNamePage();
-            }
+                if (string.IsNullOrWhiteSpace(user.NickName))
+                {
+                    return ToCreateNickNamePage();
+                }
 
-            if (!user.IsLogged || user.IsPasswordExpired)
-            {
-                return ToForceChangePasswordPage();
-            }
+                if (!user.IsLogged || user.IsPasswordExpired)
+                {
+                    return ToForceChangePasswordPage();
+                }
 
-            if (!user.IsInternal && user.IsForcedSecurityCode)
-            {
-                return ToSecurityCodePage(user.SecurityCode);
+                if (user.IsForcedSecurityCode)
+                {
+                    return ToSecurityCodePage(user.SecurityCode);
+                }
             }
 
             return View(mediator.Send(message));

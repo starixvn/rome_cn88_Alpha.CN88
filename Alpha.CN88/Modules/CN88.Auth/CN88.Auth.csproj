@@ -186,6 +186,7 @@
       <DependentUpon>AuthResource.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AuthAppSettings.cs" />
+    <Compile Include="Constants\SessionKeys.cs" />
     <Compile Include="Criteria\Authentication\AdminLoginCommand.cs" />
     <Compile Include="Criteria\Authentication\CheckinCommand.cs" />
     <Compile Include="Criteria\CheckActiveCustomerCommand.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Services\PasswordService.cs" />
     <Compile Include="Services\PasswordValidator.cs" />
     <Compile Include="Services\SecurityCodeService.cs" />
+    <Compile Include="Services\SessionHelper.cs" />
     <Compile Include="Services\SessionUpdater.cs" />
   </ItemGroup>
   <ItemGroup>

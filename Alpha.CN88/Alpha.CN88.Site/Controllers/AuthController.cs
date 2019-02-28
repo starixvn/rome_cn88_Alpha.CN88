@@ -11,8 +11,6 @@
 
     public class AuthController : Controller
     {
-        private const string DeviceIdSessionKey = "ProcessAfterLogin_Handler.DeviceIdSessionKey";
-
         private readonly IMediator mediator;
 
         public AuthController(IMediator mediator)
@@ -70,8 +68,6 @@
 
             if (!isAdminLogin)
             {
-                Session[DeviceIdSessionKey] = result.DeviceId;
-
                 var cookie = new HttpCookie("detecas-username") { Value = userName };
                 Response.Cookies.Add(cookie);
 

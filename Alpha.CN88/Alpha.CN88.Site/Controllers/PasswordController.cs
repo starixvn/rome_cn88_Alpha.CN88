@@ -15,12 +15,12 @@
         }
 
         public ActionResult ForceChangePassword(ChangePasswordQuery message)
-            => message.IsInternal ? ToDefaultPage() : View(message);
+            => message.IsValid() ? View(message) : ToDefaultPage();
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult ForceChangePassword(ChangePasswordCommand message)
         {
-            var result = message.IsValid()
+            var result = message.IsValidForceChangePassword()
                 ? mediator.Send(message)
                 : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
@@ -35,7 +35,7 @@
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult ChangePassword(ChangePasswordCommand message)
         {
-            var result = message.IsValid()
+            var result = message.IsValidChangePassword()
                 ? mediator.Send(message)
                 : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 

@@ -45,7 +45,10 @@
         public IUser GetViewer()
             => viewer;
 
-        public override bool IsValid()
+        public bool IsValidForceChangePassword()
+            => IsValidChangePassword() && (!viewer.IsLogged || viewer.IsPasswordExpired);
+
+        public bool IsValidChangePassword()
             => base.IsValid() && !viewer.IsInternal;
     }
 }

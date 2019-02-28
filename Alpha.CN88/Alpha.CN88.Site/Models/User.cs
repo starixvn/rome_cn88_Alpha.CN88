@@ -1,6 +1,8 @@
 ﻿namespace Alpha.CN88.Site.Models
 {
     using CN88.Models;
+    using global::CN88.Auth.Constants;
+    using global::CN88.Auth.Services;
     using Sunplus.Agent.Model.Entities;
 
     public class User : IUser
@@ -52,5 +54,18 @@
         public bool IsForcedSecurityCode => userSession.IsForcedSecurityCode;
 
         public string SecurityCode => userSession.SecurityCode;
+
+        public bool ClearClientData
+        {
+            get
+            {
+                return SessionHelper.Get<bool>(SessionKeys.ClearClientData);
+            }
+
+            set
+            {
+                SessionHelper.Add(SessionKeys.ClearClientData, value);
+            }
+        }
     }
 }

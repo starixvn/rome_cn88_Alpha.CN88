@@ -10,11 +10,13 @@
         public ChangePasswordQuery(IUser viewer)
             : base(viewer)
         {
-            IsInternal = viewer.IsInternal;
         }
 
-        public bool IsInternal { get; }
-
         public SecurityResult Result { get; set; }
+
+        public override bool IsValid()
+            => base.IsValid()
+            && !viewer.IsInternal
+            && (!viewer.IsLogged || viewer.IsPasswordExpired);
     }
 }

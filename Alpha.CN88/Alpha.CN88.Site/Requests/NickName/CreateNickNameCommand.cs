@@ -21,6 +21,7 @@
 
         public override bool IsValid()
             => base.IsValid()
-            && !viewer.IsInternal;
+            && !viewer.IsInternal
+            && string.IsNullOrWhiteSpace(viewer.NickName);
     }
 }

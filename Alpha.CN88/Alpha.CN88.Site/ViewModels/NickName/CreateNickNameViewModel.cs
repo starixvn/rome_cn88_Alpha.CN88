@@ -10,14 +10,16 @@
         public CreateNickNameViewModel(IUser viewer)
             : base(viewer)
         {
-            IsInternal = viewer.IsInternal;
         }
-
-        public bool IsInternal { get; }
 
         public SecurityResult Result { get; set; }
 
         public string MainRootPath
             => UrlHelper.MapMainPath("~");
+
+        public override bool IsValid()
+            => base.IsValid()
+            && !viewer.IsInternal
+            && string.IsNullOrWhiteSpace(viewer.NickName);
     }
 }

@@ -16,7 +16,7 @@
         }
 
         public ActionResult Index(CreateNickNameViewModel viewModel)
-            => viewModel.IsInternal ? ToDefaultPage() : View(viewModel);
+            => viewModel.IsValid() ? View(viewModel) : ToDefaultPage();
 
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Index(CreateNickNameCommand message)

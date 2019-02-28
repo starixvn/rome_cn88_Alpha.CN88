@@ -39,5 +39,7 @@
         bool IsForcedSecurityCode { get; }
 
         string SecurityCode { get; }
+
+        bool ClearClientData { get; set; }
     }
 }

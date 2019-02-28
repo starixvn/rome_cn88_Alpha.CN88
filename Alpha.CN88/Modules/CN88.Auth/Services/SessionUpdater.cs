@@ -4,7 +4,7 @@
     using System.Collections;
     using System.Data;
     using System.Text.RegularExpressions;
-    using System.Web;
+    using Constants;
     using Criteria;
     using Criteria.Authentication;
     using DataAccesses;
@@ -28,8 +28,6 @@
 
     public class SessionUpdaterImpl : SessionUpdater
     {
-        private const string CustomerClosedStatusSessionKey = "CN88.Auth.Services.SessionUpdaterImpl.CheckClosedStatus";
-
         private readonly IDynamicRepository dynamicRepository;
         private readonly AuthenticationDataAccess authenticationDataAccess;
 
@@ -95,16 +93,12 @@
         {
             get
             {
-                var session = HttpContext.Current.Session;
-
-                return (string)session[$"{session.SessionID}_{CustomerClosedStatusSessionKey}"];
+                return SessionHelper.Get<string>(SessionKeys.CustomerClosedStatus);
             }
 
             set
             {
-                var session = HttpContext.Current.Session;
-
-                session[$"{session.SessionID}_{CustomerClosedStatusSessionKey}"] = value;
+                SessionHelper.Add(SessionKeys.CustomerClosedStatus, value);
             }
         }
 
@@ -189,6 +183,21 @@
                 && userSession.IsInternal;
 
             SetCustomerStatusToUserSession(userSession, custId, adminId, systemLogin);
+
+            AddCustomDataToSession();
+        }
+
+        private int GetOnlineUserId(
+            int custId,
+            int subAccId,
+            string netSessionId,
+            int serverId,
+            string ip)
+        {
+            var command = new CheckinCommand(custId, subAccId, netSessionId, serverId, ip);
+            dynamicRepository.Execute(command);
+
+            return command.OnlineUserId;
         }
 
         private void SetCustomerStatusToUserSession(
@@ -228,17 +237,9 @@
             }
         }
 
-        private int GetOnlineUserId(
-            int custId,
-            int subAccId,
-            string netSessionId,
-            int serverId,
-            string ip)
+        private void AddCustomDataToSession()
         {
-            var command = new CheckinCommand(custId, subAccId, netSessionId, serverId, ip);
-            dynamicRepository.Execute(command);
-
-            return command.OnlineUserId;
+            SessionHelper.Add(SessionKeys.ClearClientData, true);
         }
     }
 }
