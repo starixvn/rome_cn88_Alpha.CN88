@@ -16,7 +16,8 @@
         subMenuItems: null,
         mainFrame: null,
         menuBar: null,
-        onlineUserId: null
+        onlineUserId: null,
+        clearClientData: null
     },
     currentState: {
         mainMenuId: null
@@ -26,6 +27,9 @@
         indexManager.bindEvents();
 
         indexManager.restoreLastMenu();
+        if (indexManager.elements.clearClientData) {
+            siteInfrastructure.localStorage.clear();
+        }
     },
     cacheElements: function () {
         indexManager.urls.mainRootPath = top.document.getElementById('mainRootPath') != null
@@ -46,6 +50,7 @@
         indexManager.elements.mainFrame = $("#main");
         indexManager.elements.menuBar = $(".menubar");
         indexManager.elements.onlineUserId = $("#OnlineUserId").val();
+        indexManager.elements.clearClientData = $("#ClearClientData").val().toString();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -99,7 +104,6 @@
         $("#lnk-change-password").on("click touchend", () => {
             popupManager.init($, top);
             popupManager.open({
-                handlerId: "mainPopup",
                 title: "Change Password",
                 url: indexManager.urls.changePassword,
                 width: 600,

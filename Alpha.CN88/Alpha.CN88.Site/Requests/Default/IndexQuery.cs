@@ -11,10 +11,13 @@
         {
             OnlineUserId = viewer.OnlineUserId;
             IsInternal = viewer.IsInternal;
+            ClearClientData = viewer.ClearClientData;
         }
 
         public int OnlineUserId { get; }
 
         public bool IsInternal { get; }
+
+        public bool ClearClientData { get; }
     }
 }

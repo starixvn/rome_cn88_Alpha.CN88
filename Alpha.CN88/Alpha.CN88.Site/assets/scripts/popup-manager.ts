@@ -18,7 +18,9 @@ class PopupManager {
         width: 480,
         title: "",
         popupCss: "",
-        handlerId: null
+        handlerId: null,
+        backdrop: true,
+        centerScreen: true
     };
 
     init = ($: JQueryStatic, topWindow: any) => {
@@ -52,12 +54,16 @@ class PopupManager {
         }
     };
     setDefaultOptions = (options: any) => {
+        options.centerScreen = !!options.centerScreen;
         options.left = options.left || this.leftPosition();
         options.top = options.top || this.topPosition();
 
         options.width = options.width || this.defaultOptions.width;
         options.height = options.height || this.defaultOptions.height;
         options.title = options.title || this.defaultOptions.title;
+
+        options.backdrop = options.backdrop == undefined || options.backdrop;
+        options.handlerId = options.handlerId || "mainPopup";
     };
     calculateWidthHeight = (options) => {
         var realHeight = options.height;
@@ -127,7 +133,7 @@ class PopupManager {
     };
     copyTargetForm = (popUp) => {
         var oldTarget = this.topWindow.main.document.getElementById("target");
-        var newTarget = this.$.clone(oldTarget);
+        var newTarget = this.topWindow.$.clone(oldTarget);
 
         popUp.find("iframe").remove();
 
@@ -155,7 +161,7 @@ class PopupManager {
             popUp.find("iframe").attr("src", "about:blank");
         });
 
-        popUp.modal({ show: true, backdrop: false });
+        popUp.modal({ show: true, backdrop: options.backdrop });
 
         if (options.resizable) {
             var prevPosition = {};
@@ -220,7 +226,7 @@ class PopupManager {
         var popupHeight = height;
         var popupWidth = width;
 
-        var activePopup = this.$("#" + options.handlerId);
+        var activePopup = this.topWindow.$("#" + options.handlerId);
         var popupId = options.handlerId;
 
         if (options.popupCss) {
@@ -236,11 +242,12 @@ class PopupManager {
         // ON iOS: there is scroll issues with popup. We must show popup with auto height
         var isAutoHeight = this.isiOS();
 
+        var left = options.centerScreen ? this.$(window).width() / 2 - popupWidth / 2 : options.left + scrollLeft;
         var popupCss = {
             position: "absolute",
             width: popupWidth,
             height: isAutoHeight ? 'auto' : popupHeight,
-            left: options.left + scrollLeft,
+            left: left < 0 ? 0 : left,
             top: options.top + scrollTop,
             overflow: options.resizable ? "hidden" : undefined,
             "overflow-y": isAutoHeight ? "visible" : undefined,

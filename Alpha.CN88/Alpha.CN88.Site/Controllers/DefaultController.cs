@@ -48,6 +48,8 @@
                 }
             }
 
+            user.ClearClientData = false;
+
             return View(mediator.Send(message));
         }
 

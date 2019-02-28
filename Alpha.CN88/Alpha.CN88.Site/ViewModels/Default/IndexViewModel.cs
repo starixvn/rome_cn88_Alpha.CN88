@@ -26,6 +26,7 @@
             OnlineUserId = message.OnlineUserId;
             IsInternal = message.IsInternal;
             RoleId = message.CustLevelId;
+            ClearClientData = message.ClearClientData;
 
             this.browserHelper = browserHelper;
             OnlineMember = onlineMember;
@@ -73,5 +74,7 @@
         public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=0");
 
         public string OnlineMembersPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/CustomerList/OnlineMembers");
+
+        public bool ClearClientData { get; }
     }
 }
