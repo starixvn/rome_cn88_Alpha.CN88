@@ -121,22 +121,22 @@
     <value>通告</value>
   </data>
   <data name="totalBets" xml:space="preserve">
-    <value>總投注</value>
+    <value>即時注單</value>
   </data>
   <data name="reports" xml:space="preserve">
-    <value>报告</value>
+    <value>報表</value>
   </data>
   <data name="help" xml:space="preserve">
-    <value>帮助</value>
+    <value>幫助</value>
   </data>
   <data name="agent" xml:space="preserve">
-    <value>代理</value>
+    <value>代理商</value>
   </data>
   <data name="member" xml:space="preserve">
     <value>會員</value>
   </data>
   <data name="subAccount" xml:space="preserve">
-    <value>子帐号</value>
+    <value>子帳號</value>
   </data>
   <data name="Beta" xml:space="preserve">
     <value>Beta版</value>
@@ -145,7 +145,7 @@
     <value>过关</value>
   </data>
   <data name="outright" xml:space="preserve">
-    <value>優勝冠軍</value>
+    <value>冠军</value>
   </data>
   <data name="downlineList" xml:space="preserve">
     <value>下線名單</value>
@@ -154,15 +154,45 @@
     <value>您沒有使用此功能的權限</value>
   </data>
   <data name="home" xml:space="preserve">
-    <value>主</value>
+    <value>首頁</value>
   </data>
   <data name="today" xml:space="preserve">
-    <value>今日賽事</value>
+    <value>今日</value>
   </data>
   <data name="results" xml:space="preserve">
-    <value>成績</value>
+    <value>賽果</value>
   </data>
   <data name="viewLog" xml:space="preserve">
     <value>察看日志</value>
+  </data>
+  <data name="accountManagement" xml:space="preserve">
+    <value>帳號管理</value>
+  </data>
+  <data name="overview" xml:space="preserve">
+    <value>总览</value>
+  </data>
+  <data name="inplay" xml:space="preserve">
+    <value>滚球</value>
+  </data>
+  <data name="early" xml:space="preserve">
+    <value>早盘</value>
+  </data>
+  <data name="started" xml:space="preserve">
+    <value>已开赛</value>
+  </data>
+  <data name="wagerMonitoringConsole" xml:space="preserve">
+    <value>注单监视视窗</value>
+  </data>
+  <data name="wagerReport" xml:space="preserve">
+    <value>注單報表</value>
+  </data>
+  <data name="legacyReport" xml:space="preserve">
+    <value>傳統報表</value>
+  </data>
+  <data name="oldReport" xml:space="preserve">
+    <value>舊帳</value>
+  </data>
+  <data name="exchangeRate" xml:space="preserve">
+    <value>匯率</value>
   </data>
 </root>

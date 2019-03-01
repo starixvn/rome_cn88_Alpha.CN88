@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="announcement" xml:space="preserve">
-    <value>通告</value>
+    <value>公告内容</value>
   </data>
   <data name="totalBets" xml:space="preserve">
-    <value>总投注</value>
+    <value>即时注单</value>
   </data>
   <data name="reports" xml:space="preserve">
-    <value>报告</value>
+    <value>报表</value>
   </data>
   <data name="help" xml:space="preserve">
     <value>帮助</value>
   </data>
   <data name="agent" xml:space="preserve">
-    <value>代理</value>
+    <value>代理商</value>
   </data>
   <data name="member" xml:space="preserve">
     <value>会员</value>
   </data>
   <data name="subAccount" xml:space="preserve">
-    <value>子账号</value>
+    <value>子帐号</value>
   </data>
   <data name="Beta" xml:space="preserve">
     <value>Beta版</value>
@@ -145,7 +145,7 @@
     <value>过关</value>
   </data>
   <data name="outright" xml:space="preserve">
-    <value>优胜冠军</value>
+    <value>冠军</value>
   </data>
   <data name="downlineList" xml:space="preserve">
     <value>下线名单</value>
@@ -154,15 +154,45 @@
     <value>您没有使用此功能的权限</value>
   </data>
   <data name="home" xml:space="preserve">
-    <value>主</value>
+    <value>首页</value>
   </data>
   <data name="today" xml:space="preserve">
-    <value>今日赛事</value>
+    <value>今日</value>
   </data>
   <data name="results" xml:space="preserve">
-    <value>成绩</value>
+    <value>赛果</value>
   </data>
   <data name="viewLog" xml:space="preserve">
     <value>察看日志</value>
+  </data>
+  <data name="accountManagement" xml:space="preserve">
+    <value>帐号管理</value>
+  </data>
+  <data name="overview" xml:space="preserve">
+    <value>总览</value>
+  </data>
+  <data name="inplay" xml:space="preserve">
+    <value>滚球</value>
+  </data>
+  <data name="early" xml:space="preserve">
+    <value>早盘</value>
+  </data>
+  <data name="started" xml:space="preserve">
+    <value>已开赛</value>
+  </data>
+  <data name="wagerMonitoringConsole" xml:space="preserve">
+    <value>注单监视视窗</value>
+  </data>
+  <data name="wagerReport" xml:space="preserve">
+    <value>注单报表</value>
+  </data>
+  <data name="legacyReport" xml:space="preserve">
+    <value>传统报表</value>
+  </data>
+  <data name="oldReport" xml:space="preserve">
+    <value>旧帐</value>
+  </data>
+  <data name="exchangeRate" xml:space="preserve">
+    <value>汇率</value>
   </data>
 </root>

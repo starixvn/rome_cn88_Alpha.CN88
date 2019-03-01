@@ -126,23 +126,11 @@
   <data name="MySetting" xml:space="preserve">
     <value>My Setting</value>
   </data>
-  <data name="PasswordRecorvery" xml:space="preserve">
-    <value>Password Recorvery</value>
-  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change Password</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
-  </data>
-  <data name="NewURL" xml:space="preserve">
-    <value>New URL</value>
-  </data>
-  <data name="ContactUs" xml:space="preserve">
-    <value>Contact Us</value>
-  </data>
-  <data name="LiveChat" xml:space="preserve">
-    <value>Live Chat</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -174,9 +162,6 @@
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
   </data>
-  <data name="ViewOnly" xml:space="preserve">
-    <value>View Only</value>
-  </data>
   <data name="Suspended" xml:space="preserve">
     <value>Suspended</value>
   </data>
@@ -186,17 +171,17 @@
   <data name="ViewMore" xml:space="preserve">
     <value>View More</value>
   </data>
-  <data name="ImportantAnnouncement" xml:space="preserve">
-    <value>Important Announcement</value>
-  </data>
-  <data name="Last5GeneralAnnouncement" xml:space="preserve">
-    <value>Last 5 General Announcement</value>
-  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>Announcement</value>
+  </data>
+  <data name="Highlights" xml:space="preserve">
+    <value>HIGHLIGHTS</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
     <value>Security Code</value>

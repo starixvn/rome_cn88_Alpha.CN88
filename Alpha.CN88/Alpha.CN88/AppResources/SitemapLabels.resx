@@ -201,12 +201,6 @@
   <data name="exchangeRate" xml:space="preserve">
     <value>Exchange Rate</value>
   </data>
-  <data name="newUrl" xml:space="preserve">
-    <value>New URL</value>
-  </data>
-  <data name="troubleshooting" xml:space="preserve">
-    <value>Troubleshooting</value>
-  </data>
   <data name="downlineList" xml:space="preserve">
     <value>Downline List</value>
   </data>

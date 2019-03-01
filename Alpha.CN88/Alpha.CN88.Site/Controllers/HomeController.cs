@@ -25,7 +25,7 @@
             => PartialView(mediator.Send(message));
 
         [HttpGet]
-        public ActionResult ImportantAnnouncement(ImportantAnnouncementQuery message)
+        public ActionResult Announcement(AnnouncementQuery message)
             => PartialView(mediator.Send(message));
     }
 }

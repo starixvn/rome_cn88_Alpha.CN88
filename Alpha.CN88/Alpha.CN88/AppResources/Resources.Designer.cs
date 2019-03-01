@@ -79,6 +79,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Announcement.
+        /// </summary>
+        public static string Announcement {
+            get {
+                return ResourceManager.GetString("Announcement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
         public static string ChangePassword {
@@ -93,15 +102,6 @@ namespace Alpha.CN88.AppResources {
         public static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Contact Us.
-        /// </summary>
-        public static string ContactUs {
-            get {
-                return ResourceManager.GetString("ContactUs", resourceCulture);
             }
         }
         
@@ -124,6 +124,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HIGHLIGHTS.
+        /// </summary>
+        public static string Highlights {
+            get {
+                return ResourceManager.GetString("Highlights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -133,38 +142,11 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Important Announcement.
-        /// </summary>
-        public static string ImportantAnnouncement {
-            get {
-                return ResourceManager.GetString("ImportantAnnouncement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Inactive.
         /// </summary>
         public static string Inactive {
             get {
                 return ResourceManager.GetString("Inactive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last 5 General Announcement.
-        /// </summary>
-        public static string Last5GeneralAnnouncement {
-            get {
-                return ResourceManager.GetString("Last5GeneralAnnouncement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Live Chat.
-        /// </summary>
-        public static string LiveChat {
-            get {
-                return ResourceManager.GetString("LiveChat", resourceCulture);
             }
         }
         
@@ -192,15 +174,6 @@ namespace Alpha.CN88.AppResources {
         public static string NewMemberForThisPeriod {
             get {
                 return ResourceManager.GetString("NewMemberForThisPeriod", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New URL.
-        /// </summary>
-        public static string NewURL {
-            get {
-                return ResourceManager.GetString("NewURL", resourceCulture);
             }
         }
         
@@ -237,15 +210,6 @@ namespace Alpha.CN88.AppResources {
         public static string PasswordLastChangedOn {
             get {
                 return ResourceManager.GetString("PasswordLastChangedOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password Recorvery.
-        /// </summary>
-        public static string PasswordRecorvery {
-            get {
-                return ResourceManager.GetString("PasswordRecorvery", resourceCulture);
             }
         }
         
@@ -291,15 +255,6 @@ namespace Alpha.CN88.AppResources {
         public static string ViewMore {
             get {
                 return ResourceManager.GetString("ViewMore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View Only.
-        /// </summary>
-        public static string ViewOnly {
-            get {
-                return ResourceManager.GetString("ViewOnly", resourceCulture);
             }
         }
         

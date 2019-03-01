@@ -123,17 +123,14 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>更改密碼</value>
   </data>
-  <data name="ContactUs" xml:space="preserve">
-    <value>聯絡我們</value>
-  </data>
   <data name="Active" xml:space="preserve">
-    <value>活躍</value>
+    <value>啟用</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>暫停</value>
+    <value>禁止登入</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>總和</value>
+    <value>總計</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>主</value>
@@ -143,6 +140,45 @@
   </data>
   <data name="Close" xml:space="preserve">
     <value>關閉</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>公告內容</value>
+  </data>
+  <data name="OnlineMembers" xml:space="preserve">
+    <value>線上會員</value>
+  </data>
+  <data name="MySetting" xml:space="preserve">
+    <value>我的設定</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>信用額度</value>
+  </data>
+  <data name="CreditBalance" xml:space="preserve">
+    <value> 剩餘額度</value>
+  </data>
+  <data name="NewMemberForThisPeriod" xml:space="preserve">
+    <value> 本期新會員數</value>
+  </data>
+  <data name="YourLastLogin" xml:space="preserve">
+    <value> 最後登入日期</value>
+  </data>
+  <data name="PasswordLastChangedOn" xml:space="preserve">
+    <value> 密碼最後更新日期</value>
+  </data>
+  <data name="StatusSummary" xml:space="preserve">
+    <value>帳戶狀態</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>停用</value>
+  </data>
+  <data name="ViewMore" xml:space="preserve">
+    <value>查看更多</value>
+  </data>
+  <data name="AccountOverview" xml:space="preserve">
+    <value>帳戶摘要</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
     <value>保安碼</value>
