@@ -26,6 +26,12 @@
         @using (Html.BeginForm("Index", "NickName", FormMethod.Post, new { id = "frmNickName", @class = "form-security form-create-login" }))
         {
             @Html.AntiForgeryToken()
+            <div id="message-container">
+                @if (Model.Result?.IsFail == true)
+                {
+                    <div class="msg msg-error">@Model.Result.Message</div>
+                }
+            </div>
             <div class="note-txt">@AuthResource.NickNameStatement</div>
             <div class="rules">
                 <div class="note-txt">@AuthResource.Rules:</div>
@@ -42,12 +48,7 @@
             <div class="note note-txt">
                 <span>@AuthResource.Note:</span> @AuthResource.NickNameNote
             </div>
-            <div id="message-container">
-                @if (Model.Result?.IsFail == true)
-                {
-                    <div class="msg msg-error">@Model.Result.Message</div>
-                }
-            </div>
+            
             <div  class="list-button">
                 <button type="button" class="btn-cancel" id="buttonBack">@AuthResource.Back</button>
                 <button type="submit" class="btn-submit">@AuthResource.Submit</button>

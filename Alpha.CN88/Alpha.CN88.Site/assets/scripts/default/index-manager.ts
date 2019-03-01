@@ -106,8 +106,8 @@
             popupManager.open({
                 title: "Change Password",
                 url: indexManager.urls.changePassword,
-                width: 600,
-                height: 460
+                width: 400,
+                height: 500
             });
         });
         $("#lnk-logout").on("click touchend", () => {

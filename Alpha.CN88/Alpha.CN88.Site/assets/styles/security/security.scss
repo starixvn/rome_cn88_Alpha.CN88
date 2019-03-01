@@ -22,13 +22,6 @@ input, button {
     color: #323232;
     margin: auto;
 
-    .msg {
-        padding: 18px 8px 18px 30px;
-        &:before {
-            top: 15px;
-        }
-    }
-
     .title-box {
         background: #7B0F0F;
         height: 40px;
@@ -37,6 +30,10 @@ input, button {
         padding-left: 20px;
         text-transform: uppercase;
         letter-spacing: 1px;
+    }
+
+    .msg {
+        margin-top: 0;
     }
 
     .form-security {
