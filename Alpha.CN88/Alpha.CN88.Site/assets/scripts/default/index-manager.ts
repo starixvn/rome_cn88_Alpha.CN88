@@ -8,7 +8,8 @@
         reCheckin: null,
         changePassword: null,
         securityCode: null,
-        onlineMembersPath: null
+        onlineMembersPath: null,
+        oldReportsPath: null
     },
     elements: {
         mainMenu: null,
@@ -48,6 +49,7 @@
         indexManager.urls.reCheckin = indexManager.urls.mainRootPath + "ReCheckin";
         indexManager.urls.changePassword = indexManager.urls.mainRootPath + "Password/ChangePassword";
         indexManager.urls.securityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
+        indexManager.urls.oldReportsPath = $("#OldReportsPath").val();
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -131,6 +133,10 @@
             siteInfrastructure.logout();
         });
 
+        $("#sub-menu-OLDREPORT").on("click touched", () => {
+            indexManager.viewOldReport();
+        });
+
         setTimeout(indexManager.reCheckin, 30000);
     },
     changeLanguage: (lang) => {
@@ -165,6 +171,9 @@
     },
     viewOnlineList: () => {
         window.open(indexManager.urls.onlineList, "", "height=600,width=800");
+    },
+    viewOldReport: () => {
+        window.open(indexManager.urls.oldReportsPath, "", "height=600,width=800");
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
