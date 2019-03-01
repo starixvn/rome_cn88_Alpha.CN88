@@ -250,6 +250,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Security Code.
+        /// </summary>
+        public static string SecurityCode {
+            get {
+                return ResourceManager.GetString("SecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status Summary.
         /// </summary>
         public static string StatusSummary {

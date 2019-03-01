@@ -3,15 +3,9 @@
     using global::CN88.Auth.Models;
     using Helpers;
 
-    public class ForceChangeSecurityCodeViewModel
+    public class ChangeSecurityCodeViewModel
     {
-        public ForceChangeSecurityCodeViewModel(
-            string hashKey,
-            SecurityResult result) : this(null, null, null, hashKey, result)
-        {
-        }
-
-        public ForceChangeSecurityCodeViewModel(
+        public ChangeSecurityCodeViewModel(
             string custName,
             string securityCodeToken,
             string securitySalt,

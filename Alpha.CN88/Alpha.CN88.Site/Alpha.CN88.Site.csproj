@@ -548,10 +548,11 @@
     <Compile Include="Requests\Password\ResetDownlinePasswordCommand.cs" />
     <Compile Include="Requests\Password\ResetPasswordQuery.cs" />
     <Compile Include="Requests\Password\ResetSubAccountPasswordCommand.cs" />
-    <Compile Include="Requests\SecurityCode\ChangeSecurityCodeFirstLoginCommand.cs" />
-    <Compile Include="Requests\SecurityCode\ForceChangeSecurityCodeCommand.cs" />
-    <Compile Include="Requests\SecurityCode\ForceChangeSecurityCodeQuery.cs" />
-    <Compile Include="Requests\SecurityCode\IndexQuery.cs" />
+    <Compile Include="Requests\SecurityCode\ChangeSecurityCodeCommand.cs" />
+    <Compile Include="Requests\SecurityCode\ChangeSecurityCodeQuery.cs" />
+    <Compile Include="Requests\SecurityCode\ResetSecurityCodeCommand.cs" />
+    <Compile Include="Requests\SecurityCode\ResetSecurityCodeQuery.cs" />
+    <Compile Include="Requests\SecurityCode\VerifySecurityCodeQuery.cs" />
     <Compile Include="Requests\SuggestionCommand.cs" />
     <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\Default\IndexViewModel.cs" />
@@ -562,8 +563,8 @@
     <Compile Include="ViewModels\NickName\CreateNickNameViewModel.cs" />
     <Compile Include="ViewModels\Password\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Password\ResetPasswordViewModel.cs" />
-    <Compile Include="ViewModels\SecurityCode\ForceChangeSecurityCodeViewModel.cs" />
-    <Compile Include="ViewModels\SecurityCode\SecurityCodeViewModel.cs" />
+    <Compile Include="ViewModels\SecurityCode\ChangeSecurityCodeViewModel.cs" />
+    <Compile Include="ViewModels\SecurityCode\ResetSecurityCodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -613,6 +614,8 @@
     <Content Include="Views\SecurityCode\Shared\_Layout.cshtml" />
     <Content Include="Views\SecurityCode\ChangeSecurityCodeFirstLogin.cshtml" />
     <Content Include="Views\SecurityCode\ForceChangeSecurityCode.cshtml" />
+    <Content Include="Views\SecurityCode\ResetSecurityCode.cshtml" />
+    <Content Include="Views\SecurityCode\ChangeSecurityCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />

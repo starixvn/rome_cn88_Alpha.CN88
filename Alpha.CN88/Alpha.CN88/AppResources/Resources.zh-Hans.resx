@@ -144,4 +144,7 @@
   <data name="Close" xml:space="preserve">
     <value>关闭</value>
   </data>
+  <data name="SecurityCode" xml:space="preserve">
+    <value>Security Code</value>
+  </data>
 </root>

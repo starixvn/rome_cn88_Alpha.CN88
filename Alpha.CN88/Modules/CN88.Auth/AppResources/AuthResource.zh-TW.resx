@@ -249,6 +249,9 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>顯示密碼</value>
   </data>
+  <data name="ResetSecurityCode" xml:space="preserve">
+    <value>重置保安碼</value>
+  </data>
   <data name="Rules" xml:space="preserve">
     <value>Rules</value>
   </data>

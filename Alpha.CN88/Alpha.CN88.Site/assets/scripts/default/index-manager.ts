@@ -7,6 +7,7 @@
         contactUs: null,
         reCheckin: null,
         changePassword: null,
+        securityCode: null,
         onlineMembersPath: null
     },
     elements: {
@@ -21,6 +22,10 @@
     },
     currentState: {
         mainMenuId: null
+    },
+    resources: {
+        changePassword: null,
+        securityCode: null
     },
     init: function () {
         indexManager.cacheElements();
@@ -42,6 +47,7 @@
         indexManager.urls.contactUs = indexManager.urls.mainRootPath + "Help/ContactUs";
         indexManager.urls.reCheckin = indexManager.urls.mainRootPath + "ReCheckin";
         indexManager.urls.changePassword = indexManager.urls.mainRootPath + "Password/ChangePassword";
+        indexManager.urls.securityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -51,6 +57,8 @@
         indexManager.elements.menuBar = $(".menubar");
         indexManager.elements.onlineUserId = $("#OnlineUserId").val();
         indexManager.elements.clearClientData = $("#ClearClientData").val().toString();
+        indexManager.resources.changePassword = $("#ChangePassword").val();
+        indexManager.resources.securityCode = $("#SecurityCode").val();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -104,10 +112,18 @@
         $("#lnk-change-password").on("click touchend", () => {
             popupManager.init($, top);
             popupManager.open({
-                title: "Change Password",
+                title: indexManager.resources.changePassword,
                 url: indexManager.urls.changePassword,
                 width: 400,
                 height: 500
+            });
+        });
+        $("#lnk-security-code").on("click touchend", () => {
+            popupManager.init($, top);
+            popupManager.open({
+                handlerId: "mainPopup",
+                title: indexManager.resources.securityCode,
+                url: indexManager.urls.securityCode,
             });
         });
         $("#lnk-logout").on("click touchend", () => {

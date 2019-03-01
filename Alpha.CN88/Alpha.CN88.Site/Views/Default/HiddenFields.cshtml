@@ -7,3 +7,5 @@
 @Html.Hidden("IsInternal", Model.IsInternal ? 1 : 0)
 @Html.Hidden("OnlineMembersPath", Model.OnlineMembersPath)
 @Html.Hidden("ClearClientData", Model.ClearClientData ? 1 : 0)
+@Html.Hidden(nameof(Resources.ChangePassword), Resources.ChangePassword)
+@Html.Hidden(nameof(Resources.SecurityCode), Resources.SecurityCode)

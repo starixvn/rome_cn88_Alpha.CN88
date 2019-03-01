@@ -13,9 +13,10 @@
     using Web.Helpers;
 
     public class SecurityCodeHandler :
-        IRequestHandler<ChangeSecurityCodeFirstLoginCommand, SecurityResult>,
-        IRequestHandler<ForceChangeSecurityCodeCommand, SecurityResult>,
-        IRequestHandler<ForceChangeSecurityCodeQuery, ForceChangeSecurityCodeViewModel>
+        IRequestHandler<ChangeSecurityCodeCommand, SecurityResult>,
+        IRequestHandler<ResetSecurityCodeCommand, SecurityResult>,
+        IRequestHandler<ChangeSecurityCodeQuery, ChangeSecurityCodeViewModel>,
+        IRequestHandler<ResetSecurityCodeQuery, ResetSecurityCodeViewModel>
     {
         private const string HashKeySessionKey = "ph";
         private const string SecurityCodeTokenSessionKey = "SECURITYCODETOKEN";
@@ -37,37 +38,67 @@
             this.securityCodeService = securityCodeService;
         }
 
-        public SecurityResult Handle(ChangeSecurityCodeFirstLoginCommand message)
+        public SecurityResult Handle(ChangeSecurityCodeCommand message)
         {
             message.SecurityCode = Decrypt(message.SecurityCode);
 
-            return ChangeSecurityCode(ToChangeSecurityCodeParam(message));
-        }
+            var result = securityCodeService.ChangeMainAccountSecurityCode(
+                new ChangeSecurityCodeParam(
+                    message.ViewerId,
+                    message.SubAccountId,
+                    message.OldSecurityCode,
+                    message.SecurityCode,
+                    sessionManager.Get<string>(SecurityCodeTokenSessionKey),
+                    message.ViewerId,
+                    message.IP,
+                    message.LanguageKey));
 
-        public SecurityResult Handle(ForceChangeSecurityCodeCommand message)
-        {
-            message.SecurityCode = Decrypt(message.SecurityCode);
-
-            return ChangeSecurityCode(ToChangeSecurityCodeParam(message));
-        }
-
-        public ForceChangeSecurityCodeViewModel Handle(ForceChangeSecurityCodeQuery message)
-        {
-            if (string.IsNullOrWhiteSpace(message.SecurityCode))
+            if (result.IsSuccess && message.IsForceChangeSecurityCode)
             {
-                return new ForceChangeSecurityCodeViewModel(HashKey, message.Result);
+                userSession.SecurityCode = message.SecurityCode;
+                ResetToken();
             }
 
+            return result;
+        }
+
+        public SecurityResult Handle(ResetSecurityCodeCommand message)
+        {
+            message.SecurityCode = Decrypt(message.SecurityCode);
+
+            var result = securityCodeService.ChangeMainAccountSecurityCode(
+                new ChangeSecurityCodeParam(
+                    message.IsChangeSecurityCodeFirstLogin ? message.ViewerId : message.CustId,
+                    message.SubAccountId,
+                    message.SecurityCode,
+                    message.ViewerId,
+                    message.IP,
+                    message.LanguageKey));
+
+            if (result.IsSuccess && message.IsChangeSecurityCodeFirstLogin)
+            {
+                userSession.SecurityCode = message.SecurityCode;
+                ResetToken();
+            }
+
+            return result;
+        }
+
+        public ChangeSecurityCodeViewModel Handle(ChangeSecurityCodeQuery message)
+        {
             var securityCodeToken = securityCodeService.GenerateSecurityToken();
             sessionManager.Add(SecurityCodeTokenSessionKey, securityCodeToken);
 
-            return new ForceChangeSecurityCodeViewModel(
+            return new ChangeSecurityCodeViewModel(
                 message.ViewerName,
                 securityCodeToken,
                 GenerateSecuritySalt(message.ViewerId, message.SubAccountId),
                 HashKey,
                 message.Result);
         }
+
+        public ResetSecurityCodeViewModel Handle(ResetSecurityCodeQuery message)
+            => new ResetSecurityCodeViewModel(message.CustId, message.CustName, HashKey, message.Result);
 
         private string GenerateSecuritySalt(int custId, int subAccId)
             => securityCodeService.GenerateSalt(subAccId > 0 ? subAccId : custId);
@@ -100,40 +131,5 @@
             userSession.IsForcedSecurityCode = false;
             SecurityCodeSessionManager.SecurityCodeSession.IsAlreadyInputSecurityCode = true;
         }
-
-        private SecurityResult ChangeSecurityCode(ChangeSecurityCodeParam param)
-        {
-            var result = param.SubAccId == 0
-                ? securityCodeService.ChangeMainAccountSecurityCode(param)
-                : securityCodeService.ChangeSubAccountSecurityCode(param);
-
-            if (result.IsSuccess)
-            {
-                userSession.SecurityCode = param.NewSecurityCode;
-                ResetToken();
-            }
-
-            return result;
-        }
-
-        private ChangeSecurityCodeParam ToChangeSecurityCodeParam(ChangeSecurityCodeFirstLoginCommand message)
-            => new ChangeSecurityCodeParam(
-                message.ViewerId,
-                message.SubAccountId,
-                message.SecurityCode,
-                message.ViewerId,
-                message.IP,
-                message.LanguageKey);
-
-        private ChangeSecurityCodeParam ToChangeSecurityCodeParam(ForceChangeSecurityCodeCommand message)
-            => new ChangeSecurityCodeParam(
-                message.ViewerId,
-                message.SubAccountId,
-                message.OldSecurityCode,
-                message.SecurityCode,
-                sessionManager.Get<string>(SecurityCodeTokenSessionKey),
-                message.ViewerId,
-                message.IP,
-                message.LanguageKey);
     }
 }

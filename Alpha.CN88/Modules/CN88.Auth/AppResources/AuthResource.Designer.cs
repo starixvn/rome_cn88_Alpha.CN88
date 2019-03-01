@@ -433,6 +433,15 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset Security Code.
+        /// </summary>
+        public static string ResetSecurityCode {
+            get {
+                return ResourceManager.GetString("ResetSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rules.
         /// </summary>
         public static string Rules {

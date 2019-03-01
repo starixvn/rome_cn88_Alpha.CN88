@@ -14,38 +14,60 @@
         {
         }
 
-        public ActionResult ChangeSecurityCodeFirstLogin(ForceChangeSecurityCodeQuery message)
-            => message.IsForcedSecurityCode && string.IsNullOrWhiteSpace(message.SecurityCode)
-                ? View(message)
-                : ToDefaultPage();
+        public ActionResult ChangeSecurityCodeFirstLogin(ResetSecurityCodeQuery message)
+            => message.IsValidChangeSecurityCodeFirstLogin() ? View(message) : ToDefaultPage();
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult ChangeSecurityCodeFirstLogin(ChangeSecurityCodeFirstLoginCommand message)
+        public ActionResult ChangeSecurityCodeFirstLogin(ResetSecurityCodeCommand message)
         {
-            var result = message.IsValid()
+            var result = message.IsValidChangeSecurityCodeFirstLogin()
                 ? mediator.Send(message)
                 : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
             return result.IsSuccess
                 ? ToDefaultPage()
-                : View(new ForceChangeSecurityCodeQuery(message.GetViewer()) { Result = result });
+                : View(new ResetSecurityCodeQuery(message.GetViewer()) { Result = result });
         }
 
-        public ActionResult ForceChangeSecurityCode(ForceChangeSecurityCodeQuery message)
-            => message.IsForcedSecurityCode && !string.IsNullOrWhiteSpace(message.SecurityCode)
-                ? View(message)
-                : ToDefaultPage();
+        public ActionResult ForceChangeSecurityCode(ChangeSecurityCodeQuery message)
+            => message.IsValidForceChangeSecurityCode() ? View(message) : ToDefaultPage();
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult ForceChangeSecurityCode(ForceChangeSecurityCodeCommand message)
+        public ActionResult ForceChangeSecurityCode(ChangeSecurityCodeCommand message)
         {
-            var result = message.IsValid()
+            var result = message.IsValidForceChangeSecurityCode()
                ? mediator.Send(message)
                : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 
             return result.IsSuccess
                 ? ToDefaultPage()
-                : View(new ForceChangeSecurityCodeQuery(message.GetViewer()) { Result = result });
+                : View(new ChangeSecurityCodeQuery(message.GetViewer()) { Result = result });
+        }
+
+        public ActionResult ChangeSecurityCode(ChangeSecurityCodeQuery message)
+            => View(message);
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult ChangeSecurityCode(ChangeSecurityCodeCommand message)
+        {
+            var result = message.IsValidChangeSecurityCode()
+               ? mediator.Send(message)
+               : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
+
+            return View(new ChangeSecurityCodeQuery(message.GetViewer()) { Result = result });
+        }
+
+        public ActionResult ResetSecurityCode(ResetSecurityCodeQuery message)
+            => View(message);
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult ResetSecurityCode(ResetSecurityCodeCommand message)
+        {
+            var result = message.IsValidResetSecurityCode()
+               ? mediator.Send(message)
+               : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
+
+            return View(new ResetSecurityCodeQuery(message.GetViewer()) { Result = result });
         }
     }
 }

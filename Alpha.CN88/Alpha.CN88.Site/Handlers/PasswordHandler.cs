@@ -112,7 +112,7 @@
                 message.NewPassword,
                 sessionManager.Get<string>(HashKeySessionKey),
                 IsDisableCasino,
-                message.CustLevel.IsAgentLevel(),
+                message.CustLevel.IsMemberLevel(),
                 message.IP,
                 message.ViewerId,
                 message.LanguageKey,

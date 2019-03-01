@@ -246,6 +246,9 @@
   <data name="ResetPassword" xml:space="preserve">
     <value>Reset Password</value>
   </data>
+  <data name="ResetSecurityCode" xml:space="preserve">
+    <value>Reset Security Code</value>
+  </data>
   <data name="Rules" xml:space="preserve">
     <value>Rules</value>
   </data>
