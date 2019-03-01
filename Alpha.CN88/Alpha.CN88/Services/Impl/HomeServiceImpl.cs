@@ -1,6 +1,5 @@
 ﻿namespace Alpha.CN88.Services.Impl
 {
-    using System.Collections.Generic;
     using Criteria.Home;
     using DataAccesses;
     using Models;
@@ -20,13 +19,6 @@
             var criteria = new GetStatusSummaryCriteria(custId, userLevel);
 
             return HomeDataAccess.GetStatusSummary(criteria);
-        }
-
-        public IList<AnnouncementModel> GetAnnouncements(int custId, string language)
-        {
-            var criteria = new GetImportantAnnouncementCriteria(custId, language);
-
-            return HomeDataAccess.GetImportantAnnouncement(criteria);
         }
     }
 }

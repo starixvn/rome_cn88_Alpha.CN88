@@ -201,7 +201,6 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Models\AccountOverview.cs" />
-    <Compile Include="Models\AnnouncementModel.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\DeviceInfo.cs" />
     <Compile Include="Models\Enumeration.cs" />
@@ -253,7 +252,7 @@
     <EmbeddedResource Include="AppResources\SitemapLabels.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Params\Home\" />
+    <Folder Include="Params\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />

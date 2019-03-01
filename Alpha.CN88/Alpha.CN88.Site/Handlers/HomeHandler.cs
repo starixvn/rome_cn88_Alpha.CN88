@@ -8,8 +8,7 @@
 
     public class HomeHandler :
         IRequestHandler<AccountOverviewQuery, AccountOverviewViewModel>,
-        IRequestHandler<StatusSummaryQuery, StatusSummaryReport>,
-        IRequestHandler<AnnouncementsQuery, AnnouncementsViewModel>
+        IRequestHandler<StatusSummaryQuery, StatusSummaryReport>
     {
         private readonly HomeService homeService;
 
@@ -30,13 +29,6 @@
             var model = homeService.GetStatusSummary(message.CustId, message.ActorLevel);
 
             return model;
-        }
-
-        public AnnouncementsViewModel Handle(AnnouncementsQuery message)
-        {
-            var model = homeService.GetAnnouncements(message.CustId, message.Language);
-
-            return new AnnouncementsViewModel(model);
         }
     }
 }

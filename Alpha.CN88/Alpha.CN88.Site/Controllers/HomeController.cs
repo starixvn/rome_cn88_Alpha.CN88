@@ -23,9 +23,5 @@
         [ChildActionOnly]
         public ActionResult StatusSummary(StatusSummaryQuery message)
             => PartialView(mediator.Send(message));
-
-        [HttpGet]
-        public ActionResult Announcements(AnnouncementsQuery message)
-            => PartialView(mediator.Send(message));
     }
 }
