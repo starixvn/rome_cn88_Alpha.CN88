@@ -4,9 +4,9 @@
     using MediatR;
     using ViewModels.Home;
 
-    public class AnnouncementQuery : BaseQuery, IRequest<AnnouncementViewModel>
+    public class AnnouncementsQuery : BaseQuery, IRequest<AnnouncementsViewModel>
     {
-        public AnnouncementQuery(IUser viewer) : base(viewer)
+        public AnnouncementsQuery(IUser viewer) : base(viewer)
         {
         }
     }

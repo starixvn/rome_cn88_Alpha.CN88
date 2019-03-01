@@ -5,9 +5,9 @@
     using Constants;
     using Web.Helpers;
 
-    public class AnnouncementViewModel
+    public class AnnouncementsViewModel
     {
-        public AnnouncementViewModel(IList<AnnouncementModel> announcements)
+        public AnnouncementsViewModel(IList<AnnouncementModel> announcements)
         {
             Announcements = announcements;
         }

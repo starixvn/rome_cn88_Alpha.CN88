@@ -8,13 +8,13 @@
     }
 
     init = () => {
-        siteInfrastructure.loadInfo(this.$, '#announcement', this.initAnnouncements);
+        siteInfrastructure.loadInfo(this.$, '#announcements', this.initAnnouncements);
     };
 
     initAnnouncements = () => {
         var self = this;
 
-        this.$("#view-announcement").on("click touchend", function () {
+        this.$("#view-announcements").on("click touchend", function () {
             self.topWindow.indexManager.activeMainMenu("menu-ANNOUNCEMENT");
 
             var target = self.$(this).attr("data-target");

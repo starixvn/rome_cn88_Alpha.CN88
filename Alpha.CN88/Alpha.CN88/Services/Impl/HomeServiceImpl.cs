@@ -22,7 +22,7 @@
             return HomeDataAccess.GetStatusSummary(criteria);
         }
 
-        public IList<AnnouncementModel> GetImportantAnnouncement(int custId, string language)
+        public IList<AnnouncementModel> GetAnnouncements(int custId, string language)
         {
             var criteria = new GetImportantAnnouncementCriteria(custId, language);
 
