@@ -3,7 +3,7 @@
     using Alpha.CN88.Site.Requests;
     using MediatR;
     using Newtonsoft.Json;
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using ViewModels;
@@ -17,13 +17,7 @@
         public async Task<ActionResult> Index(SuggestionCommand command)
         {
             var result = await mediator.Send(command);
-            var suggestions = new List<string[]>();
-            foreach (var customer in result)
-            {
-                suggestions.Add(new string[] { customer.Username, customer.Firstname, customer.Lastname });
-            }
-
-            var viewModel = new SuggestionViewModel(command.Query, suggestions);
+            var viewModel = new SuggestionViewModel(command.Query, result.Select(customer => new string[] { customer.Username, customer.Firstname, customer.Lastname }));
 
             return Content(JsonConvert.SerializeObject(viewModel));
         }
