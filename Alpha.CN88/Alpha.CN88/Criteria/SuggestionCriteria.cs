@@ -25,7 +25,7 @@
 
         public override bool IsValid()
         {
-            return CustId >= 0 && !string.IsNullOrWhiteSpace(Username);
+            return CustId > 0 && !string.IsNullOrWhiteSpace(Username);
         }
     }
 }

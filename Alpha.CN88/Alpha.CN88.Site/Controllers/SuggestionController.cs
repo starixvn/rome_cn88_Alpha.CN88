@@ -12,10 +12,6 @@
         }
 
         public async Task<ActionResult> Index(SuggestionCommand query)
-        {
-            var result = await mediator.Send(query);
-
-            return Json(result);
-        }
+            => Json(await mediator.Send(query));
     }
 }

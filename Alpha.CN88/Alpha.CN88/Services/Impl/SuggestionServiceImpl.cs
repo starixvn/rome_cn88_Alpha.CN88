@@ -1,7 +1,9 @@
 ﻿namespace Alpha.CN88.Services.Impl
 {
     using Alpha.CN88.Models;
+    using Criteria;
     using Fanex.Data.Repository;
+    using Params;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -11,10 +13,23 @@
 
         public SuggestionServiceImpl(IDynamicRepository repository)
         {
-            this.repository = repository;    
+            this.repository = repository;
         }
 
-        public async Task<IEnumerable<SuggestionModel>> SearchUser(ICriteria criteria)
-            => await repository.FetchAsync<SuggestionModel>(criteria);
+        public Task<IEnumerable<SuggestionModel>> SearchUser(SuggestionParam param)
+        {
+            var criteria = new SuggestionCriteria
+            {
+                CustId = param.CustId,
+                DirectDownline = param.DirectDownline,
+                ExcludeMember = param.ExcludeMember,
+                IsAccInfo = param.IsAccInfo,
+                IsInternal = param.IsInternal,
+                IsSubAccount = param.IsSubAccount,
+                Username = param.Username
+            };
+
+            return repository.FetchAsync<SuggestionModel>(criteria);
+        }
     }
 }

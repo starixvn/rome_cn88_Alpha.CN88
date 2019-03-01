@@ -1,9 +1,5 @@
 ﻿namespace Alpha.CN88.Site.App_Start
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using CN88.Models;
     using Controllers;
     using Fanex.Data.Repository;
@@ -12,7 +8,6 @@
     using Helpers;
     using MediatR;
     using Models;
-    using SecurityCode.Services;
     using Services;
     using Services.Impl;
     using SimpleInjector;
@@ -21,6 +16,10 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using Web.Helpers;
     using Web.Helpers.Impl;
 
