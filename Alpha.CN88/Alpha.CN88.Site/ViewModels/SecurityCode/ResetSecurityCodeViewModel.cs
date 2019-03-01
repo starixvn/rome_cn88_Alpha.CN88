@@ -1,6 +1,7 @@
 ﻿namespace Alpha.CN88.Site.ViewModels.SecurityCode
 {
     using global::CN88.Auth.Models;
+    using Helpers;
 
     public class ResetSecurityCodeViewModel
     {
@@ -23,5 +24,8 @@
         public string HashKey { get; }
 
         public SecurityResult Result { get; }
+
+        public string MainRootPath
+            => UrlHelper.MapMainPath("~");
     }
 }

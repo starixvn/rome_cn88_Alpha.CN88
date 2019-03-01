@@ -121,9 +121,10 @@
         $("#lnk-security-code").on("click touchend", () => {
             popupManager.init($, top);
             popupManager.open({
-                handlerId: "mainPopup",
                 title: indexManager.resources.securityCode,
                 url: indexManager.urls.securityCode,
+                width: 400,
+                height: 420
             });
         });
         $("#lnk-logout").on("click touchend", () => {

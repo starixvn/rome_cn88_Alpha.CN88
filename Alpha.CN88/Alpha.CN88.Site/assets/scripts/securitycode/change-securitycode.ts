@@ -4,11 +4,13 @@ declare const Sha256: any;
 
 class ChangeSecurityCode {
     $: JQueryStatic;
+    top: Window;
     resources: any;
     elements: any;
 
-    constructor($: JQueryStatic) {
+    constructor($: JQueryStatic, top: Window) {
         this.$ = $;
+        this.top = top;
     }
 
     init(): void {
@@ -44,7 +46,7 @@ class ChangeSecurityCode {
             if (self.$("#mainRootPath").length > 0) {
                 siteInfrastructure.logout();
             } else {
-                popupManager.close();
+                self.top.popupManager.close();
             }
         });
 
@@ -166,6 +168,6 @@ class ChangeSecurityCode {
 }
 
 $(function (): void {
-    const changeSecurityCode: ChangeSecurityCode = new ChangeSecurityCode($);
+    const changeSecurityCode: ChangeSecurityCode = new ChangeSecurityCode($, top);
     changeSecurityCode.init();
 });

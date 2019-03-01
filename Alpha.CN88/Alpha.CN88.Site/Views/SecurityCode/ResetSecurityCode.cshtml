@@ -2,16 +2,31 @@
 @model Alpha.CN88.Site.ViewModels.SecurityCode.ResetSecurityCodeViewModel
 @{
     Layout = "~/Views/SecurityCode/Shared/_Layout.cshtml";
-    ViewBag.Title = AuthResource.ResetSecurityCode;
+    ViewBag.Title = AuthResource.SecurityCode;
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/assets/bundles/security/force-change-pass")
 }
 @section Scripts {
     @StaticResources.RenderScripts("~/assets/bundles/securitycode/change-securitycode")
 }
 <div class="block">
+    <div class="title-box">@AuthResource.SecurityCode</div>
     @using (Html.BeginForm("ResetSecurityCode", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
-        @Html.Hidden("custId", Model.CustId.ToString())
+        <div id="message-container">
+            @if (Model.Result != null)
+            {
+                <div class="msg @(Model.Result.IsSuccess ? "msg-success" : "msg-error")">@Model.Result.Message</div>
+            }
+        </div>
+        <div class="rules">
+            <p>@AuthResource.SecurityCodeRule1</p>
+            <ul>
+                <li>@AuthResource.SecurityCodeRule2</li>
+            </ul>
+        </div>
         <div class="rowlg">
             <label class="lb-title" for="securityCode">@AuthResource.SecurityCode</label>
             <input type="password" autocomplete="off" class="txt" name="SecurityCode" id="securityCode" maxlength="6" />
@@ -20,14 +35,8 @@
             <label class="lb-title" for="confirmSecurityCode">@AuthResource.ConfirmSecurityCode</label>
             <input type="password" autocomplete="off" class="txt" name="ConfirmSecurityCode" id="confirmSecurityCode" maxlength="6" />
         </div>
-        <div id="message-container">
-            @if (Model.Result != null)
-            {
-                <div class="msg @(Model.Result.IsSuccess ? "msg-success" : "msg-error")">@Model.Result.Message</div>
-            }
-        </div>
         <div class="list-button">
-            <input type="button" class="btn-cancel" id="buttonCancel" value="@AuthResource.Cancel" />
+            <input type="button" class="btn-cancel" id="buttonCancel" value="@AuthResource.Back" />
             <input type="submit" class="btn-submit" value="@AuthResource.Submit" />
         </div>
     }
