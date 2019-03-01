@@ -124,15 +124,6 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HIGHLIGHTS.
-        /// </summary>
-        public static string Highlights {
-            get {
-                return ResourceManager.GetString("Highlights", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -246,15 +237,6 @@ namespace Alpha.CN88.AppResources {
         public static string Total {
             get {
                 return ResourceManager.GetString("Total", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View More.
-        /// </summary>
-        public static string ViewMore {
-            get {
-                return ResourceManager.GetString("ViewMore", resourceCulture);
             }
         }
         

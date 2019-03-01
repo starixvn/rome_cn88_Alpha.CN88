@@ -174,9 +174,6 @@
   <data name="Inactive" xml:space="preserve">
     <value>停用</value>
   </data>
-  <data name="ViewMore" xml:space="preserve">
-    <value>查看更多</value>
-  </data>
   <data name="AccountOverview" xml:space="preserve">
     <value>帳戶摘要</value>
   </data>

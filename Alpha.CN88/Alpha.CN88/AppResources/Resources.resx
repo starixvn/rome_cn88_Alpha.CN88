@@ -168,9 +168,6 @@
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
-  <data name="ViewMore" xml:space="preserve">
-    <value>View More</value>
-  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>No information is available</value>
   </data>
@@ -179,9 +176,6 @@
   </data>
   <data name="Announcement" xml:space="preserve">
     <value>Announcement</value>
-  </data>
-  <data name="Highlights" xml:space="preserve">
-    <value>HIGHLIGHTS</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
     <value>Security Code</value>
