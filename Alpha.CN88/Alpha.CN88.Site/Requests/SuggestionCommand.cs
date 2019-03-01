@@ -7,20 +7,12 @@
 
     public class SuggestionCommand : IRequest<Task<IEnumerable<SuggestionModel>>>
     {
-        public SuggestionCommand(string query, bool excludeMember, bool directDownline, bool isAccInfo)
-        {
-            Query = query;
-            ExcludeMember = excludeMember;
-            DirectDownline = directDownline;
-            IsAccInfo = isAccInfo;
-        }
-
-        public string Query { get; }
+        public string Query { get; set; }
         
-        public bool ExcludeMember { get; }
+        public bool ExcludeMember { get; set; }
 
-        public bool DirectDownline { get; }
+        public bool DirectDownline { get; set; }
 
-        public bool IsAccInfo { get; }
+        public bool IsAccInfo { get; set; }
     }
 }

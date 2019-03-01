@@ -6,7 +6,7 @@
     {
         public int CustId { get; set; }
 
-        public bool IsInternal { get; set; }
+        public bool IsInternalAgent { get; set; }
 
         public string Username { get; set; }
 

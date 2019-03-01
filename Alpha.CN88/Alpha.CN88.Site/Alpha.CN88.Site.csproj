@@ -563,6 +563,7 @@
     <Compile Include="ViewModels\Password\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\SecurityCode\ChangeSecurityCodeViewModel.cs" />
     <Compile Include="ViewModels\SecurityCode\ResetSecurityCodeViewModel.cs" />
+    <Compile Include="ViewModels\SuggestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

@@ -24,7 +24,7 @@
                 DirectDownline = param.DirectDownline,
                 ExcludeMember = param.ExcludeMember,
                 IsAccInfo = param.IsAccInfo,
-                IsInternal = param.IsInternal,
+                IsInternalAgent = param.IsInternal,
                 IsSubAccount = param.IsSubAccount,
                 Username = param.Username
             };
