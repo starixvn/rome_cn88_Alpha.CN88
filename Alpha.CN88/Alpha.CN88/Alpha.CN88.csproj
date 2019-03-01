@@ -223,9 +223,11 @@
     <Compile Include="Services\Impl\MenuItemBuilderImpl.cs" />
     <Compile Include="Services\Impl\SiteMapReaderImpl.cs" />
     <Compile Include="Services\Impl\SiteMenuServiceImpl.cs" />
+    <Compile Include="Services\Impl\SuggestionServiceImpl.cs" />
     <Compile Include="Services\MenuItemBuilder.cs" />
     <Compile Include="Services\SiteMapReader.cs" />
     <Compile Include="Services\SiteMenuService.cs" />
+    <Compile Include="Services\SuggestionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

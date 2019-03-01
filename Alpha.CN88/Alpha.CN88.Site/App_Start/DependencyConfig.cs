@@ -100,6 +100,8 @@
             container.RegisterPerWebRequest<PasswordService, PasswordServiceImpl>();
 
             container.RegisterPerWebRequest<NickNameService, NickNameServiceImpl>();
+
+            container.RegisterPerWebRequest<SuggestionService, SuggestionServiceImpl>();
         }
     }
 }

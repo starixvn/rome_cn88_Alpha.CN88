@@ -507,6 +507,7 @@
     <Compile Include="Controllers\NickNameController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\SecurityCodeController.cs" />
+    <Compile Include="Controllers\SuggestionController.cs" />
     <Compile Include="Handlers\NickNameHandler.cs" />
     <Compile Include="Handlers\PasswordHandler.cs" />
     <Compile Include="Controllers\ReCheckinController.cs" />
@@ -521,6 +522,7 @@
     <Compile Include="Handlers\LanguageHandler.cs" />
     <Compile Include="Handlers\MenuBarHandler.cs" />
     <Compile Include="Handlers\SecurityCodeHandler.cs" />
+    <Compile Include="Handlers\SuggestionHandler.cs" />
     <Compile Include="Helpers\BrowserHelper.cs" />
     <Compile Include="Helpers\BrowserHelperImpl.cs" />
     <Compile Include="Helpers\IPHelper.cs" />
@@ -550,6 +552,7 @@
     <Compile Include="Requests\SecurityCode\ForceChangeSecurityCodeCommand.cs" />
     <Compile Include="Requests\SecurityCode\ForceChangeSecurityCodeQuery.cs" />
     <Compile Include="Requests\SecurityCode\IndexQuery.cs" />
+    <Compile Include="Requests\SuggestionCommand.cs" />
     <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\Default\IndexViewModel.cs" />
     <Compile Include="ViewModels\Default\MenuBarViewModel.cs" />
