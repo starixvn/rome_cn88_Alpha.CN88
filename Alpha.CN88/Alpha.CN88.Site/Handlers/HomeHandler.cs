@@ -9,8 +9,7 @@
     public class HomeHandler :
         IRequestHandler<AccountOverviewQuery, AccountOverviewViewModel>,
         IRequestHandler<StatusSummaryQuery, StatusSummaryReport>,
-        IRequestHandler<ImportantAnnouncementQuery, ImportantAnnouncementViewModel>,
-        IRequestHandler<GeneralAnnouncementQuery, GeneralAnnouncementViewModel>
+        IRequestHandler<ImportantAnnouncementQuery, ImportantAnnouncementViewModel>
     {
         private readonly HomeService homeService;
 
@@ -38,13 +37,6 @@
             var model = homeService.GetImportantAnnouncement(message.CustId, message.Language);
 
             return new ImportantAnnouncementViewModel(model);
-        }
-
-        public GeneralAnnouncementViewModel Handle(GeneralAnnouncementQuery message)
-        {
-            var model = homeService.GetGeneralAnnouncement(message.CustId, message.Language);
-
-            return new GeneralAnnouncementViewModel(model);
         }
     }
 }

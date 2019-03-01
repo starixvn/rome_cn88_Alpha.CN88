@@ -27,9 +27,5 @@
         [HttpGet]
         public ActionResult ImportantAnnouncement(ImportantAnnouncementQuery message)
             => PartialView(mediator.Send(message));
-
-        [HttpGet]
-        public ActionResult GeneralAnnouncement(GeneralAnnouncementQuery message)
-            => PartialView(mediator.Send(message));
     }
 }

@@ -28,12 +28,5 @@
 
             return HomeDataAccess.GetImportantAnnouncement(criteria);
         }
-
-        public IList<AnnouncementModel> GetGeneralAnnouncement(int custId, string language)
-        {
-            var criteria = new GetGeneralAnnouncementCriteria(custId, language);
-
-            return HomeDataAccess.GetGeneralAnnouncement(criteria);
-        }
     }
 }

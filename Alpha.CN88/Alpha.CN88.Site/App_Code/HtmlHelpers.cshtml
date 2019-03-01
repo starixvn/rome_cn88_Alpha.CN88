@@ -6,6 +6,10 @@
 {
     @value.ToString("#,##0")
 }
+@helper FormatNumber(long value)
+{
+    @value.ToString("#,##0")
+}
 @helper RenderNumberCell(decimal cellValue, string cellClass = "")
 {
     <td class="@cellClass">

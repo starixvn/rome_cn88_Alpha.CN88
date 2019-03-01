@@ -13,7 +13,7 @@
     @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
     @StaticResources.AssetStyles.RenderCommon("/bundles/site-cn88/default")
     @StaticResources.RenderStyles("~/assets/bundles/home-index")
-    
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -21,7 +21,6 @@
     <![endif]-->
 </head>
 <body>
-    <div class="page-title">@Resources.Home</div>
     <div class="page">
         <div class="two-cols">
             <div class="col">
@@ -32,9 +31,8 @@
             </div>
         </div>
         <div id="important-announcement" class="important-announcement" action-url="@Url.Action("ImportantAnnouncement", "Home")"></div>
-        <div id="general-announcement" class="general-announcement" action-url="@Url.Action("GeneralAnnouncement", "Home")"></div>
     </div>
-    
+
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-cn88/default")
     @StaticResources.RenderScripts("~/assets/bundles/home-index")

@@ -1,22 +1,12 @@
 ﻿@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
 <section class="header-nav" id="header-nav">
-    <ul class="header-left">
+    <ul class="header-left"></ul>
+    <ul class="header-right">
         <li class="header-item dropdown language">
             @Html.Action("List", "Language")
         </li>
         <li class="header-item online-member">
-            <span>@Resources.OnlineMembers: @Model.OnlineMember</span>
-        </li>
-    </ul>
-    <ul class="header-right">
-        <li class="header-item" id="lnk-new-url">
-            @Resources.NewURL
-        </li>
-        <li class="header-item" id="lnk-live-chat">
-            <span class="icon-chat"></span>@Resources.LiveChat
-        </li>
-        <li class="header-item" id="lnk-contact-us">
-            @Resources.ContactUs
+            <span>@Resources.OnlineMembers: @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
         </li>
         <li class="header-item" id="lnk-personal-announcement"><a href="@Model.PersonalMessagePath" target="main"><span class="icon-bell"></span></a></li>
         <li class="header-item dropdown header-custname">
@@ -26,7 +16,6 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a id="lnk-my-setting">@Resources.MySetting</a></li>
-                <li><a id="lnk-password-recovery">@Resources.PasswordRecorvery</a></li>
                 <li><a id="lnk-change-password">@Resources.ChangePassword</a></li>
                 <li><a id="lnk-logout">@Resources.Logout</a></li>
             </ul>

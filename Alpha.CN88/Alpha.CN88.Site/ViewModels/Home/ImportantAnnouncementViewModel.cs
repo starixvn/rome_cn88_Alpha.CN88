@@ -15,6 +15,6 @@
         public IList<AnnouncementModel> Announcements { get; }
 
         public string ImportantAnnouncementPath
-            => MicroSites.MessageUrl($"~/MessageHistory/Index?messageType={MessageType.Special}");
+            => MicroSites.MessageUrl($"~/MessageHistory/Index?messageType={MessageType.Normal}");
     }
 }

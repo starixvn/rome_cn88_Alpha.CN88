@@ -6,7 +6,6 @@
             <th>@Resources.StatusSummary</th>
             <th class="text-center">@Resources.Active</th>
             <th class="text-center">@Resources.Inactive</th>
-            <th class="text-center">@Resources.ViewOnly</th>
             <th class="text-center">@Resources.Suspended</th>
         </tr>
     </thead>
@@ -17,7 +16,6 @@
                 <td>@s.Name</td>
                 @HtmlHelpers.RenderNumberCell(s.Active, "text-center status-active")
                 @HtmlHelpers.RenderNumberCell(s.Inactive, "text-center status-inactive")
-                @HtmlHelpers.RenderNumberCell(s.ViewOnly, "text-center status-view")
                 @HtmlHelpers.RenderNumberCell(s.Suspened, "text-center status-suspended")
             </tr>
         }
@@ -27,7 +25,6 @@
             <td class="text-uppercase">@Resources.Total</td>
             @HtmlHelpers.RenderNumberCell(Model.Total.Active, "text-center status-active")
             @HtmlHelpers.RenderNumberCell(Model.Total.Inactive, "text-center status-inactive")
-            @HtmlHelpers.RenderNumberCell(Model.Total.ViewOnly, "text-center status-view")
             @HtmlHelpers.RenderNumberCell(Model.Total.Suspened, "text-center status-suspended")
         </tr>
     </tfoot>

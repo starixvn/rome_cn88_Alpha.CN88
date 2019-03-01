@@ -538,7 +538,6 @@
     <Compile Include="Requests\Default\IndexQuery.cs" />
     <Compile Include="Requests\Default\MenuBarQuery.cs" />
     <Compile Include="Requests\NickName\CreateNickNameCommand.cs" />
-    <Compile Include="Requests\Home\GeneralAnnouncementQuery.cs" />
     <Compile Include="Requests\Home\ImportantAnnouncementQuery.cs" />
     <Compile Include="Requests\Home\StatusSummaryQuery.cs" />
     <Compile Include="Requests\Home\AccountOverviewQuery.cs" />
@@ -555,7 +554,6 @@
     <Compile Include="ViewModels\Default\IndexViewModel.cs" />
     <Compile Include="ViewModels\Default\MenuBarViewModel.cs" />
     <Compile Include="ViewModels\Home\AccountOverviewViewModel.cs" />
-    <Compile Include="ViewModels\Home\GeneralAnnouncementViewModel.cs" />
     <Compile Include="ViewModels\Home\ImportantAnnouncementViewModel.cs" />
     <Compile Include="ViewModels\LanguageViewModel.cs" />
     <Compile Include="ViewModels\NickName\CreateNickNameViewModel.cs" />
@@ -727,9 +725,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\ImportantAnnouncement.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\GeneralAnnouncement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\NickName\Index.cshtml" />

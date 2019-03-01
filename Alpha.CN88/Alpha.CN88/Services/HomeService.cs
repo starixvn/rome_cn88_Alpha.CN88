@@ -11,7 +11,5 @@
         StatusSummaryReport GetStatusSummary(int custId, UserLevel userLevel);
 
         IList<AnnouncementModel> GetImportantAnnouncement(int custId, string language);
-
-        IList<AnnouncementModel> GetGeneralAnnouncement(int custId, string language);
     }
 }
