@@ -194,6 +194,7 @@
     <Compile Include="Criteria\Home\GetGeneralAnnouncementCriteria.cs" />
     <Compile Include="Criteria\Home\GetImportantAnnouncementCriteria.cs" />
     <Compile Include="Criteria\Home\GetStatusSummaryCriteria.cs" />
+    <Compile Include="Criteria\SuggestionCriteria.cs" />
     <Compile Include="DataAccesses\HomeDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="FunctionRegistry.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Home\StatusSummary.cs" />
     <Compile Include="Models\Home\StatusSummaryReport.cs" />
+    <Compile Include="Models\SuggestionModel.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CachingManager.cs" />

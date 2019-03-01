@@ -1,15 +1,14 @@
-﻿using MediatR;
-using System.Data;
-using System.Threading.Tasks;
-
-namespace Alpha.CN88.Site.Requests
+﻿namespace Alpha.CN88.Site.Requests
 {
-    public class SuggestionCommand : IRequest<Task<DataSet>>
+    using CN88.Models;
+    using MediatR;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    public class SuggestionCommand : IRequest<Task<IEnumerable<SuggestionModel>>>
     {
         public string Query { get; set; }
-
-        public bool IsSubAccount { get; set; }
-
+        
         public bool ExcludeMember { get; set; }
 
         public bool DirectDownline { get; set; }
