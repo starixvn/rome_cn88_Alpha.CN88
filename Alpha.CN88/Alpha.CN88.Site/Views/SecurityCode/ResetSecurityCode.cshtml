@@ -5,13 +5,12 @@
     ViewBag.Title = AuthResource.SecurityCode;
 }
 @section Styles {
-    @StaticResources.RenderStyles("~/assets/bundles/security/force-change-pass")
+    @StaticResources.RenderStyles("~/assets/bundles/security/change-password")
 }
 @section Scripts {
     @StaticResources.RenderScripts("~/assets/bundles/securitycode/change-securitycode")
 }
 <div class="block">
-    <div class="title-box">@AuthResource.SecurityCode</div>
     @using (Html.BeginForm("ResetSecurityCode", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
