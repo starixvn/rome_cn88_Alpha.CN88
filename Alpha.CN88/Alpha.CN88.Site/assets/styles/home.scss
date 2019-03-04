@@ -1,4 +1,6 @@
-﻿body {
+﻿@import "variables";
+
+body {
     padding: 20px;
 }
 
@@ -12,6 +14,7 @@
     width: 100%;
     margin-bottom: 30px;
 }
+
 .col {
     float: left;
     width: 50%;
@@ -20,6 +23,10 @@
 
     &:first-child {
         padding-left: 0;
+    }
+
+    &:last-child {
+        padding-right: 0;
     }
 }
 
@@ -63,20 +70,6 @@
     font-size: 13px;
 }
 
-.view-more {
-    display: inline-block;
-    width: 100px;
-    line-height: 30px;
-    background-color: #a5a5a5;
-    text-align: center;
-    color: #fff;
-
-    &:hover {
-        background-color: darken(#a5a5a5, 10%);
-        cursor: pointer;
-    }
-}
-
 // Status colors
 .status-active {
     color: #27a67b;
@@ -92,4 +85,107 @@
 
 .status-suspended {
     color: #7e1414;
+}
+
+// Announcement
+
+.announcement-title {
+    padding-bottom: 12px;
+    font-size: 16px;
+}
+
+%group {
+    font-weight: bold;
+    line-height: 32px;
+    padding: 0 16px;
+    border-bottom: 1px solid #bfbfbf;
+}
+
+.group-highlight {
+    @extend %group;
+    background-color: #ffe3e2;
+}
+
+.group-date {
+    @extend %group;
+    background-color: #f4f1f1;
+}
+
+.msg-contents {
+    padding: 10px 12px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    [class^="icon"] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 14px;
+    }
+
+    .icon-add {
+        font-size: 14px;
+    }
+
+    .icon-minus {
+        font-size: 16px;
+    }
+
+    &.highlight .icon-add,
+    &.highlight .icon-minus {
+        top: 8px;
+    }
+}
+
+.msg-contents .message {
+    display: table;
+    width: 100%;
+
+    &.public,
+    &.public [class^="icon"] {
+        color: $msg-public;
+    }
+
+    &.private,
+    &.private [class^="icon"] {
+        color: $msg-private;
+    }
+
+    &.special,
+    &.special [class^="icon"] {
+        color: $msg-special;
+    }
+}
+
+.msg-contents .message .time,
+.msg-contents .message .msg-content {
+    display: table-cell;
+    line-height: 18px;
+}
+
+.msg-contents .message .time {
+    width: 120px;
+    text-align: left;
+    padding-left: 24px;
+    position: relative;
+}
+
+.msg-contents .message .full-content {
+    display: none;
+    line-height: 18px;
+}
+
+.view-more {
+    line-height: 30px;
+    background-color: #dedede;
+    text-align: center;
+    color: #333333;
+    font-weight: bold;
+
+    &:hover {
+        background-color: darken(#dedede, 5%);
+        cursor: pointer;
+    }
 }

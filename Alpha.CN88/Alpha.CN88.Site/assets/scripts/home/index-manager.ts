@@ -38,13 +38,13 @@
                 if (!shortContent.is(":hidden")) {
                     shortContent.hide();
                     fullContent.show();
-                    icon.toggleClass("icon-plus icon-minus");
+                    icon.toggleClass("icon-add icon-minus");
                     markMessageAsRead($this);
                 }
                 else {
                     shortContent.show();
                     fullContent.hide();
-                    icon.toggleClass("icon-minus icon-plus");
+                    icon.toggleClass("icon-minus icon-add");
                 }
             });
         });
