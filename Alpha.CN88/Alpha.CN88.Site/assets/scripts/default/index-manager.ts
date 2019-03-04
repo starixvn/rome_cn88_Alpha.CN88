@@ -116,7 +116,7 @@
             popupManager.open({
                 title: indexManager.resources.changePassword,
                 url: indexManager.urls.changePassword,
-                width: 420,
+                width: 476,
                 height: 500
             });
         });
@@ -125,7 +125,7 @@
             popupManager.open({
                 title: indexManager.resources.securityCode,
                 url: indexManager.urls.securityCode,
-                width: 420,
+                width: 476,
                 height: 420
             });
         });

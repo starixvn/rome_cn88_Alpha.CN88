@@ -15,17 +15,16 @@
     @using (Html.BeginForm("ResetSecurityCode", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
+
+        <div class="rules">
+            <p><span class="text-red">*</span>@AuthResource.SecurityCodeRule1</p>
+            <p class="note">@AuthResource.SecurityCodeRule2</p>
+        </div>
         <div id="message-container">
             @if (Model.Result != null)
             {
                 <div class="msg @(Model.Result.IsSuccess ? "msg-success" : "msg-error")">@Model.Result.Message</div>
             }
-        </div>
-        <div class="rules">
-            <p>@AuthResource.SecurityCodeRule1</p>
-            <ul>
-                <li>@AuthResource.SecurityCodeRule2</li>
-            </ul>
         </div>
         <div class="rowlg">
             <label class="lb-title" for="securityCode">@AuthResource.SecurityCode</label>

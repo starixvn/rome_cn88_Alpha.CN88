@@ -71,7 +71,6 @@
   {
     "outputFileName": "assets/bundles/security/change-password.css",
     "inputFiles": [
-      "assets/styles/security/security.css",
       "assets/styles/security/change-password.css"
     ]
   },
