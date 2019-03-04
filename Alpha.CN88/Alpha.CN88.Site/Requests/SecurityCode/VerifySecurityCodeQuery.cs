@@ -1,11 +1,16 @@
-﻿//namespace Alpha.CN88.Site.Requests.SecurityCode
-//{
-//    using global::CN88.Auth.Models;
+﻿namespace Alpha.CN88.Site.Requests.SecurityCode
+{
+    using CN88.Models;
+    using MediatR;
+    using ViewModels.SecurityCode;
 
-//    public class VerifySecurityCodeQuery : IRequest<VerifySecurityCodeViewModel>
-//    {
-//        public string SecurityCode { get; set; }
+    public class VerifySecurityCodeQuery : BaseQuery, IRequest<VerifySecurityCodeViewModel>
+    {
+        public VerifySecurityCodeQuery(IUser viewer)
+            : base(viewer)
+        {
+        }
 
-//        public SecurityResult Result { get; set; }
-//    }
-//}
+        public string SecurityCode { get; set; }
+    }
+}

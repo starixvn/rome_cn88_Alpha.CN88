@@ -1,0 +1,33 @@
+﻿@using CN88.Auth.AppResources
+@model Alpha.CN88.Site.ViewModels.SecurityCode.VerifySecurityCodeViewModel
+@{
+    Layout = "~/Views/SecurityCode/Shared/_Layout.cshtml";
+    ViewBag.Title = AuthResource.SecurityCodeValidation;
+}
+@section Styles {
+    @StaticResources.RenderStyles("~/assets/bundles/security/change-password")
+}
+@section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-cn88/security")
+    @StaticResources.RenderScripts("~/assets/bundles/securitycode/verify-securitycode")
+}
+<div class="block">
+    @using (Html.BeginForm("VerifySecurityCode", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="message-container">
+            <div class="msg msg-warning">@AuthResource.VerifySecurityCodeWarning</div>
+        </div>
+        <div class="rowlg">
+            <label class="lb-title" for="securityCode">@AuthResource.SecurityCode</label>
+            <input type="password" autocomplete="off" class="txt" name="SecurityCode" id="securityCode" maxlength="6" />
+        </div>
+        <div>
+            <input type="submit" class="btn-submit" id="btnSubmit" value="@AuthResource.Submit" />
+        </div>
+    }
+</div>
+@Html.Hidden("securitycodeToken", Model.SecurityCodeToken)
+@Html.Hidden("securitySalt", Model.SecuritySalt)
+@Html.Hidden("mainRootPath", Model.MainRootPath)
+@Html.Hidden("securityCodeTitle", AuthResource.SecurityCodeValidation)

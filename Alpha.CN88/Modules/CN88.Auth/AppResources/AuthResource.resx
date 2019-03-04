@@ -279,6 +279,9 @@ Notes: your password is cAsE sEnSiTiVe</value>
   <data name="SecurityCodeShower" xml:space="preserve">
     <value>Hi {0}, your security code has been reset. Please set up a new one.</value>
   </data>
+  <data name="SecurityCodeValidation" xml:space="preserve">
+    <value>Security Code Validation</value>
+  </data>
   <data name="SessionKickedOut" xml:space="preserve">
     <value>You have been logged out because your account has logged into another session. Don't recognize this activity? Please contact your upline for assistance.</value>
   </data>
@@ -296,5 +299,8 @@ Notes: your password is cAsE sEnSiTiVe</value>
   </data>
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>Successfully updated.</value>
+  </data>
+  <data name="VerifySecurityCodeWarning" xml:space="preserve">
+    <value>Please input your security code before proceeding!</value>
   </data>
 </root>

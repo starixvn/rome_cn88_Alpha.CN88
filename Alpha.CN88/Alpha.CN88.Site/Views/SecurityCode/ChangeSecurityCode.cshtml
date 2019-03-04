@@ -9,6 +9,15 @@
 }
 @section Scripts {
     @StaticResources.RenderScripts("~/assets/bundles/securitycode/change-securitycode")
+    @if (Model.Result?.IsCloseAccountSecurityCode == true)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert("@Model.Result.Message");
+                siteInfrastructure.logout();
+            });
+        </script>
+    }
 }
 <div class="block">
     @using (Html.BeginForm("ChangeSecurityCode", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))

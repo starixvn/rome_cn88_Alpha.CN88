@@ -21,7 +21,7 @@ class ChangePassword {
             let $confirmPassword: JQuery = self.elements.confirmPassword;
 
             if (!self.validatePasswords($currentPassword, $newPassword, $confirmPassword, self.elements.isResetMemberPassword)) {
-                $.unblockUI();
+                self.$.unblockUI();
                 return false;
             }
 

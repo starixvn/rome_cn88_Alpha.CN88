@@ -6,6 +6,7 @@
     using global::CN88.Auth.Models;
     using MediatR;
     using Requests.SecurityCode;
+    using Web.Filters;
 
     public class SecurityCodeController : SiteBaseController
     {
@@ -69,5 +70,12 @@
 
             return View(new ResetSecurityCodeQuery(message.GetViewer()) { Result = result });
         }
+
+        public ActionResult VerifySecurityCode(VerifySecurityCodeQuery message)
+            => View(message);
+
+        [HttpPost, AntiXsrfFilter]
+        public ActionResult VerifySecurityCode(VerifySecurityCodeCommand message)
+            => JsonData(message, JsonRequestBehavior.DenyGet);
     }
 }

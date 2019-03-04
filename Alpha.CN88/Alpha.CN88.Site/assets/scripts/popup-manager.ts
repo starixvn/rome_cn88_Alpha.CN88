@@ -34,12 +34,10 @@ class PopupManager {
         // top-left main frame
         return 74 + this.positionPadding;
     };
-
     closeAllPopup = () => {
         this.topWindow.$('.modal[id^="page-popup-"]').modal("hide");
         this.activePopups = [];
     };
-
     close = () => {
         var popUp = this.activePopups.pop();
         if (!popUp) {
@@ -215,7 +213,6 @@ class PopupManager {
 
         this.activePopups.push(popUp);
     };
-
     open = (options) => {
         this.setDefaultOptions(options);
 
@@ -284,6 +281,32 @@ class PopupManager {
         }
 
         this.openPopUpAfterSetIframeSrc(activePopup, isAutoHeight, options);
+    };
+    hasPopupOpen = (): boolean => this.activePopups.length > 0;
+    revertLatestPopupTitle = (): void => {
+        if (this.hasPopupOpen()) {
+            let latestActivePopup: JQuery = this.$(this.activePopups[this.activePopups.length - 1]);
+            let popupTitle: JQuery = latestActivePopup.find(".modal-title");
+
+            if (popupTitle.length) {
+                let previousTitle: string = popupTitle.attr("data-previous-title");
+                let currentTitle: string = popupTitle.text();
+                popupTitle.text(previousTitle !== currentTitle ? previousTitle : "");
+            }
+        }
+    };
+    setLatestPopupTitle = (title: string): void => {
+        if (this.hasPopupOpen()) {
+            let latestActivePopup: JQuery = this.$(this.activePopups[this.activePopups.length - 1]);
+            let popupTitle: JQuery = latestActivePopup.find(".modal-title");
+
+            if (popupTitle.length) {
+                let previousTitle = popupTitle.text();
+                popupTitle
+                    .attr("data-previous-title", previousTitle)
+                    .text(title);
+            }
+        }
     };
 }
 

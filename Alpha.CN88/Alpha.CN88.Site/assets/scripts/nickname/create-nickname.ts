@@ -18,10 +18,12 @@ class NickName {
         this.nickNameRule1 = this.$("#nickNameRule1").html();
 
         this.$("#frmNickName").submit(function (): boolean {
+            self.$.blockUI();
             const nickNameRule: RegExp = new RegExp(/^[a-zA-Z0-9]{5,15}$/i);
             const isMatch: boolean = nickNameRule.test(self.$.trim(self.$nickName.val()));
 
             if (!isMatch) {
+                self.$.unblockUI();
                 siteInfrastructure.showError(self.$messsageContainer, self.nickNameRule1);
                 self.$nickName.focus();
             }

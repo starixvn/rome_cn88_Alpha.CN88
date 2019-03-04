@@ -388,6 +388,10 @@
     <Content Include="assets\bundles\password\change-password.min.js">
       <DependentUpon>change-password.js</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\securitycode\verify-securitycode.js" />
+    <Content Include="assets\bundles\securitycode\verify-securitycode.min.js">
+      <DependentUpon>verify-securitycode.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\security\change-password.css" />
     <Content Include="assets\bundles\security\change-password.min.css">
       <DependentUpon>change-password.css</DependentUpon>
@@ -551,6 +555,7 @@
     <Compile Include="Requests\SecurityCode\ChangeSecurityCodeQuery.cs" />
     <Compile Include="Requests\SecurityCode\ResetSecurityCodeCommand.cs" />
     <Compile Include="Requests\SecurityCode\ResetSecurityCodeQuery.cs" />
+    <Compile Include="Requests\SecurityCode\VerifySecurityCodeCommand.cs" />
     <Compile Include="Requests\SecurityCode\VerifySecurityCodeQuery.cs" />
     <Compile Include="Requests\SuggestionCommand.cs" />
     <Compile Include="ViewModels\BrowserViewModel.cs" />
@@ -563,6 +568,7 @@
     <Compile Include="ViewModels\Password\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\SecurityCode\ChangeSecurityCodeViewModel.cs" />
     <Compile Include="ViewModels\SecurityCode\ResetSecurityCodeViewModel.cs" />
+    <Compile Include="ViewModels\SecurityCode\VerifySecurityCodeViewModel.cs" />
     <Compile Include="ViewModels\SuggestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -615,6 +621,7 @@
     <Content Include="Views\SecurityCode\ForceChangeSecurityCode.cshtml" />
     <Content Include="Views\SecurityCode\ResetSecurityCode.cshtml" />
     <Content Include="Views\SecurityCode\ChangeSecurityCode.cshtml" />
+    <Content Include="Views\SecurityCode\VerifySecurityCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />
@@ -634,6 +641,7 @@
     <TypeScriptCompile Include="assets\scripts\password\change-password.ts" />
     <TypeScriptCompile Include="assets\scripts\popup-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\security-helper.ts" />
+    <TypeScriptCompile Include="assets\scripts\securitycode\verify-securitycode.ts" />
     <TypeScriptCompile Include="assets\scripts\securitycode\change-securitycode.ts" />
     <TypeScriptCompile Include="assets\scripts\site-infrastructure.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />
@@ -685,6 +693,10 @@
     <ProjectReference Include="..\Modules\CN88.Auth\CN88.Auth.csproj">
       <Project>{382efae7-d5be-4344-92f1-1f95e8e35903}</Project>
       <Name>CN88.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\CN88.Web\CN88.Web.csproj">
+      <Project>{b9e4bda2-5b82-4e85-8a80-9b470d8b1f2d}</Project>
+      <Name>CN88.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

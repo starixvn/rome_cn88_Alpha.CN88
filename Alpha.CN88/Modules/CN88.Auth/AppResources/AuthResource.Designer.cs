@@ -523,6 +523,15 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Security Code Validation.
+        /// </summary>
+        public static string SecurityCodeValidation {
+            get {
+                return ResourceManager.GetString("SecurityCodeValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have been logged out because your account has logged into another session. Don&apos;t recognize this activity? Please contact your upline for assistance..
         /// </summary>
         public static string SessionKickedOut {
@@ -573,6 +582,15 @@ namespace CN88.Auth.AppResources {
         public static string UpdatedSuccessfully {
             get {
                 return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please input your security code before proceeding!.
+        /// </summary>
+        public static string VerifySecurityCodeWarning {
+            get {
+                return ResourceManager.GetString("VerifySecurityCodeWarning", resourceCulture);
             }
         }
     }

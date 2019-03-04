@@ -1,12 +1,15 @@
 {
-  "isActive": false,
-  "siteMainApp": "/site-main",
+  "isActive": true,
+  "isSiteMain": true,
   "paths": [
-    "relative-path"
+    "SecurityCode/ResetSecurityCode",
+    "SecurityCode/ChangeSecurityCode",
+    "Password/ChangePassword",
+    "Password/ResetDownlinePassword",
+    "Password/ResetSubAccountPassword"
   ],
   "sites": [
-    "site-name"
   ],
   "verifyingSecurityCodePath": "SecurityCode/VerifySecurityCode",
-  "resetSecurityCodePath": "SecurityCode/resetSecurityCodePath"
+  "resetSecurityCodePath": "SecurityCode/ChangeSecurityCode"
 }

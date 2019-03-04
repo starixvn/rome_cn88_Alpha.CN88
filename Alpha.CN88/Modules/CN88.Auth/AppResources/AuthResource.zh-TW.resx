@@ -279,6 +279,9 @@
   <data name="SecurityCodeShower" xml:space="preserve">
     <value>嗨{0}，您的保安碼已被重置。請設置一個新的。</value>
   </data>
+  <data name="SecurityCodeValidation" xml:space="preserve">
+    <value>保安碼驗證</value>
+  </data>
   <data name="SessionKickedOut" xml:space="preserve">
     <value>另一個相同帐号已登入介面,強制被登出. 如果此登入不是由您所進行, 請聯絡您的上線.</value>
   </data>
@@ -296,5 +299,8 @@
   </data>
   <data name="UpdatedSuccessfully" xml:space="preserve">
     <value>更新成功!</value>
+  </data>
+  <data name="VerifySecurityCodeWarning" xml:space="preserve">
+    <value>請輸入您的保安碼以繼續執行!</value>
   </data>
 </root>

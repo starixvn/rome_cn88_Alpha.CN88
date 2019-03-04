@@ -1,6 +1,6 @@
-﻿"use strict";
-declare const Sha1: any;
-declare const Sha256: any;
+﻿//"use strict";
+declare var Sha1: any;
+declare var Sha256: any;
 
 class ChangeSecurityCode {
     $: JQueryStatic;
@@ -24,7 +24,7 @@ class ChangeSecurityCode {
             let $confirmSecurityCode: JQuery = self.elements.confirmSecurityCode;
 
             if (!self.validateSecurityCodes($oldSecurityCode, $securityCode, $confirmSecurityCode)) {
-                $.unblockUI();
+                self.$.unblockUI();
                 return false;
             }
 

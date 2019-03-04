@@ -43,6 +43,14 @@
     ]
   },
   {
+    "outputFileName": "assets/bundles/securitycode/verify-securitycode.js",
+    "inputFiles": [
+      "assets/scripts/site-infrastructure.js",
+      "assets/scripts/security-helper.js",
+      "assets/scripts/securitycode/verify-securitycode.js"
+    ]
+  },
+  {
     "outputFileName": "Assets/bundles/home-index.js",
     "inputFiles": [
       "Assets/scripts/site-infrastructure.js",
@@ -73,5 +81,5 @@
     "inputFiles": [
       "assets/styles/security/change-password.css"
     ]
-  },
+  }
 ]

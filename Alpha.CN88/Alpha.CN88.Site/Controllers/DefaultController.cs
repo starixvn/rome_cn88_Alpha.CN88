@@ -30,24 +30,6 @@
                 return View(UnSupportedBrowsers, browser);
             }
 
-            if (!user.IsInternal)
-            {
-                if (string.IsNullOrWhiteSpace(user.NickName))
-                {
-                    return ToCreateNickNamePage();
-                }
-
-                if (!user.IsLogged || user.IsPasswordExpired)
-                {
-                    return ToForceChangePasswordPage();
-                }
-
-                if (user.IsForcedSecurityCode)
-                {
-                    return ToSecurityCodePage(user.SecurityCode);
-                }
-            }
-
             user.ClearClientData = false;
 
             return View(mediator.Send(message));
@@ -59,16 +41,5 @@
 
             return PartialView(viewModel);
         }
-
-        private ActionResult ToCreateNickNamePage()
-            => RedirectToAction("Index", "NickName");
-
-        private ActionResult ToForceChangePasswordPage()
-            => RedirectToAction("ForceChangePassword", "Password");
-
-        private ActionResult ToSecurityCodePage(string securityCode)
-            => string.IsNullOrWhiteSpace(securityCode)
-            ? RedirectToAction("ChangeSecurityCodeFirstLogin", "SecurityCode")
-            : RedirectToAction("ForceChangeSecurityCode", "SecurityCode");
     }
 }

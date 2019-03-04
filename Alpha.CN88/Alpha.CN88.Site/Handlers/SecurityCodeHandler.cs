@@ -15,8 +15,10 @@
     public class SecurityCodeHandler :
         IRequestHandler<ChangeSecurityCodeCommand, SecurityResult>,
         IRequestHandler<ResetSecurityCodeCommand, SecurityResult>,
+        IRequestHandler<VerifySecurityCodeCommand, SecurityResult>,
         IRequestHandler<ChangeSecurityCodeQuery, ChangeSecurityCodeViewModel>,
-        IRequestHandler<ResetSecurityCodeQuery, ResetSecurityCodeViewModel>
+        IRequestHandler<ResetSecurityCodeQuery, ResetSecurityCodeViewModel>,
+        IRequestHandler<VerifySecurityCodeQuery, VerifySecurityCodeViewModel>
     {
         private const string HashKeySessionKey = "ph";
         private const string SecurityCodeTokenSessionKey = "SECURITYCODETOKEN";
@@ -84,6 +86,24 @@
             return result;
         }
 
+        public SecurityResult Handle(VerifySecurityCodeCommand message)
+        {
+            var result = securityCodeService.VerifySecurityCode(new VerifySecurityCodeParam(
+                message.ViewerId,
+                message.SubAccountId,
+                message.SecurityCode,
+                sessionManager.Get<string>(SecurityCodeTokenSessionKey),
+                message.IP,
+                message.LanguageKey));
+
+            if (result.IsSuccess)
+            {
+                ResetToken();
+            }
+
+            return result;
+        }
+
         public ChangeSecurityCodeViewModel Handle(ChangeSecurityCodeQuery message)
         {
             var securityCodeToken = securityCodeService.GenerateSecurityToken();
@@ -99,6 +119,16 @@
 
         public ResetSecurityCodeViewModel Handle(ResetSecurityCodeQuery message)
             => new ResetSecurityCodeViewModel(message.CustId, message.CustName, HashKey, message.Result);
+
+        public VerifySecurityCodeViewModel Handle(VerifySecurityCodeQuery message)
+        {
+            var securityCodeToken = securityCodeService.GenerateSecurityToken();
+            sessionManager.Add(SecurityCodeTokenSessionKey, securityCodeToken);
+
+            return new VerifySecurityCodeViewModel(
+                securityCodeToken,
+                GenerateSecuritySalt(message.ViewerId, message.SubAccountId));
+        }
 
         private string GenerateSecuritySalt(int custId, int subAccId)
             => securityCodeService.GenerateSalt(subAccId > 0 ? subAccId : custId);
