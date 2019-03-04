@@ -10,7 +10,7 @@
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-cn88/security")
     @StaticResources.RenderScripts("~/assets/bundles/securitycode/change-securitycode")
-    @if (Model.Result?.IsCloseAccountSecurityCode == true)
+    @if (Model.Result?.Code == 2)
     {
         <script type="text/javascript">
             $(function () {

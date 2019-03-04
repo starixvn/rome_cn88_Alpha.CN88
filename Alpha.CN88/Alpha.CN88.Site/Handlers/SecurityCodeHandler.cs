@@ -70,14 +70,14 @@
 
             var result = securityCodeService.ChangeMainAccountSecurityCode(
                 new ChangeSecurityCodeParam(
-                    message.IsChangeSecurityCodeFirstLogin ? message.ViewerId : message.CustId,
+                    message.IsForceChangeFirstLogin ? message.ViewerId : message.CustId,
                     message.SubAccountId,
                     message.SecurityCode,
                     message.ViewerId,
                     message.IP,
                     message.LanguageKey));
 
-            if (result.IsSuccess && message.IsChangeSecurityCodeFirstLogin)
+            if (result.IsSuccess && message.IsForceChangeFirstLogin)
             {
                 userSession.SecurityCode = message.SecurityCode;
                 ResetToken();

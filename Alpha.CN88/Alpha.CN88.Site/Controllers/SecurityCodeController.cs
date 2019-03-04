@@ -15,13 +15,13 @@
         {
         }
 
-        public ActionResult ChangeSecurityCodeFirstLogin(ResetSecurityCodeQuery message)
-            => message.IsValidChangeSecurityCodeFirstLogin() ? View(message) : ToDefaultPage();
+        public ActionResult ForceChangeFirstLogin(ResetSecurityCodeQuery message)
+            => message.IsValidForceChangeFirstLogin() ? View(message) : ToDefaultPage();
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult ChangeSecurityCodeFirstLogin(ResetSecurityCodeCommand message)
+        public ActionResult ForceChangeFirstLogin(ResetSecurityCodeCommand message)
         {
-            var result = message.IsValidChangeSecurityCodeFirstLogin()
+            var result = message.IsValidForceChangeFirstLogin()
                 ? mediator.Send(message)
                 : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
 

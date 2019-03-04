@@ -10,22 +10,22 @@
             : base(viewer)
         {
             LanguageKey = viewer.LanguageKey;
-            IsChangeSecurityCodeFirstLogin = !viewer.IsInternal
+            IsForceChangeFirstLogin = !viewer.IsInternal
                 && viewer.IsForcedSecurityCode
                 && string.IsNullOrWhiteSpace(viewer.SecurityCode);
         }
 
         public string LanguageKey { get; }
 
-        public bool IsChangeSecurityCodeFirstLogin { get; }
+        public bool IsForceChangeFirstLogin { get; }
 
         public string SecurityCode { get; set; }
 
         public IUser GetViewer()
             => viewer;
 
-        public bool IsValidChangeSecurityCodeFirstLogin()
-            => base.IsValid() && IsChangeSecurityCodeFirstLogin;
+        public bool IsValidForceChangeFirstLogin()
+            => base.IsValid() && IsForceChangeFirstLogin;
 
         public bool IsValidResetSecurityCode()
             => base.IsValid() && !viewer.IsInternal && CustId != ViewerId;

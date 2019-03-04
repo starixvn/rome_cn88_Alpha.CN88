@@ -14,7 +14,7 @@
 
         public SecurityResult Result { get; set; }
 
-        public bool IsValidChangeSecurityCodeFirstLogin()
+        public bool IsValidForceChangeFirstLogin()
             => base.IsValid()
             && !viewer.IsInternal
             && viewer.IsForcedSecurityCode

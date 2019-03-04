@@ -45,9 +45,13 @@
         private static Dictionary<string, bool> IgnoreURLs
             => new Dictionary<string, bool>
             {
+                ["auth/index"] = true,
+                ["auth/login"] = true,
+                ["auth/adminlogin"] = true,
+                ["auth/logout"] = true,
                 ["nickname/index"] = true,
                 ["password/forcechangepassword"] = true,
-                ["securitycode/changesecuritycodefirstlogin"] = true,
+                ["securitycode/forcechangefirstlogin"] = true,
                 ["securitycode/forcechangesecuritycode"] = true
             };
 
@@ -66,7 +70,7 @@
             if (userSession.IsForcedSecurityCode)
             {
                 return string.IsNullOrWhiteSpace(userSession.SecurityCode)
-                    ? "SecurityCode/ChangeSecurityCodeFirstLogin"
+                    ? "SecurityCode/ForceChangeFirstLogin"
                     : "SecurityCode/ForceChangeSecurityCode";
             }
 

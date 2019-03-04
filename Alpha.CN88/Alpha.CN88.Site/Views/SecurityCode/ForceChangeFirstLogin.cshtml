@@ -12,7 +12,7 @@
 }
 <div class="block">
     <div class="title-box">@AuthResource.SecurityCode</div>
-    @using (Html.BeginForm("ChangeSecurityCodeFirstLogin", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
+    @using (Html.BeginForm("ForceChangeFirstLogin", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
         <div id="message-container">

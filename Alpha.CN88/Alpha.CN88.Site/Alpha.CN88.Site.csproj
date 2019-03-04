@@ -617,7 +617,7 @@
     <Content Include="Views\Password\ResetDownlinePassword.cshtml" />
     <Content Include="Views\Password\ChangePassword.cshtml" />
     <Content Include="Views\SecurityCode\Shared\_Layout.cshtml" />
-    <Content Include="Views\SecurityCode\ChangeSecurityCodeFirstLogin.cshtml" />
+    <Content Include="Views\SecurityCode\ForceChangeFirstLogin.cshtml" />
     <Content Include="Views\SecurityCode\ForceChangeSecurityCode.cshtml" />
     <Content Include="Views\SecurityCode\ResetSecurityCode.cshtml" />
     <Content Include="Views\SecurityCode\ChangeSecurityCode.cshtml" />
