@@ -2,6 +2,6 @@
 {
     public interface DefaultService
     {
-        long GetOnlineMember();
+        long GetOnlineMember(int viewerId);
     }
 }

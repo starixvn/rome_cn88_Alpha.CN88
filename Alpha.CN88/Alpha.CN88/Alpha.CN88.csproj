@@ -194,6 +194,7 @@
     <Compile Include="Criteria\Home\GetGeneralAnnouncementCriteria.cs" />
     <Compile Include="Criteria\Home\GetImportantAnnouncementCriteria.cs" />
     <Compile Include="Criteria\Home\GetStatusSummaryCriteria.cs" />
+    <Compile Include="Criteria\GetTotalMemberOnlineCriteria.cs" />
     <Compile Include="Criteria\SuggestionCriteria.cs" />
     <Compile Include="DataAccesses\HomeDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />

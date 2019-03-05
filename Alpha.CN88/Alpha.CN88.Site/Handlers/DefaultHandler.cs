@@ -63,7 +63,7 @@
 
         public IndexViewModel Handle(IndexQuery message)
         {
-            var onlineMember = defaultService.GetOnlineMember();
+            var onlineMember = defaultService.GetOnlineMember(message.ViewerId);
 
             return new IndexViewModel(message, browserHelper, onlineMember, getDefaultUrl, encodeDataFunction);
         }
