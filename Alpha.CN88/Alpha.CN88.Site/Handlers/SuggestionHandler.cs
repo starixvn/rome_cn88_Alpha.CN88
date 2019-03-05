@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using ViewModels;
 
-    public class SuggestionHandler : IRequestHandler<SuggestionCommand, Task<SuggestionViewModel>>
+    public class SuggestionHandler : IAsyncRequestHandler<SuggestionCommand, SuggestionViewModel>
     {
         private readonly IUserSession userSession;
         private readonly SuggestionService suggestionService;

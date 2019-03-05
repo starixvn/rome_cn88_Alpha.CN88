@@ -13,6 +13,6 @@
         }
 
         public async Task<ActionResult> Index(SuggestionCommand command)
-            => Content(JsonConvert.SerializeObject(await mediator.Send(command)));
+            => Content(JsonConvert.SerializeObject(await mediator.SendAsync(command)));
     }
 }

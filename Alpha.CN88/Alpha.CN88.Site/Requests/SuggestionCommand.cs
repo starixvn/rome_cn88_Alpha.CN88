@@ -1,10 +1,9 @@
 ﻿namespace Alpha.CN88.Site.Requests
 {
     using MediatR;
-    using System.Threading.Tasks;
     using ViewModels;
 
-    public class SuggestionCommand : IRequest<Task<SuggestionViewModel>>
+    public class SuggestionCommand : IAsyncRequest<SuggestionViewModel>
     {
         public string Query { get; set; }
         
