@@ -1,45 +1,38 @@
-﻿interface String {
-    hc(): void;
-    ec(text: string): void;
+﻿"use strict";
+
+interface String {
+    encrypt(secretKey: string): string;
+    hash(salt: string, token: string): string;
 }
 
-String.prototype.ec = function (key) {
-    var pt = this;
-    var s = new Array();
-    for (var i = 0; i < 256; i++) {
-        s[i] = i;
-    }
-    var j = 0;
-    var x;
-    for (i = 0; i < 256; i++) {
-        j = (j + s[i] + key.charCodeAt(i % key.length)) % 256;
-        x = s[i];
-        s[i] = s[j];
-        s[j] = x;
-    }
-    i = 0;
-    j = 0;
-    var ct = '';
-    for (var y = 0; y < pt.length; y++) {
-        i = (i + 1) % 256;
-        j = (j + s[i]) % 256;
-        x = s[i];
-        s[i] = s[j];
-        s[j] = x;
-        ct += String.fromCharCode(pt.charCodeAt(y) ^ s[(s[i] + s[j]) % 256]);
-    }
-    return ct;
+declare var Sha1: any;
+declare var Sha256: any;
+declare var CryptoJS: any;
+
+String.prototype.encrypt = function (secretKey: string): string {
+    let plainText: string = this.toString();
+    const passPhrase = "a5s8d2e9c172";
+    let key = CryptoJS.enc.Utf8.parse(passPhrase + secretKey);
+    let iv = key;
+
+    let pwd = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(plainText), key,
+        {
+            keySize: 128 / 8,
+            iv: iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        });
+
+    return pwd.toString();
 };
 
-String.prototype.hc = function () {
-    var b16_digits = '0123456789abcdef';
-    var b16_map = new Array();
-    for (var i = 0; i < 256; i++) {
-        b16_map[i] = b16_digits.charAt(i >> 4) + b16_digits.charAt(i & 15);
+String.prototype.hash = function (salt: string, token: string): string {
+    if (!salt || !token) {
+        return "";
     }
-    var result = new Array();
-    for (var i = 0; i < this.length; i++) {
-        result[i] = b16_map[this.charCodeAt(i)];
-    }
-    return result.join('');
+
+    let plainText: string = this.toString();
+    let sha1SC = Sha1.hash(plainText + salt);
+
+    return Sha256.hash(sha1SC + token);
 };

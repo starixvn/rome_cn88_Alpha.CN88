@@ -44,23 +44,20 @@
 
         private SecurityResult ChangePassword(PasswordParamBase param)
         {
-            if (string.IsNullOrWhiteSpace(param.CurrentPassword))
-            {
-                return SecurityResult.CreateErrorResult(AuthResource.RequiredInputOldPwdError);
-            }
+            var result = passwordValidator.ValidateEmpty(param.CurrentPassword, param.NewPassword);
 
-            if (string.IsNullOrWhiteSpace(param.NewPassword))
+            if (result.IsFail)
             {
-                return SecurityResult.CreateErrorResult(AuthResource.RequiredPasswordError);
+                return result;
             }
 
             var rawCurrentPassword = passwordValidator.Decrypt(param.CurrentPassword, param.HashKey);
             var rawNewPassword = passwordValidator.Decrypt(param.NewPassword, param.HashKey);
-            var validatorResult = passwordValidator.IsMatchSMAPasswordRule(rawNewPassword, param.InvalidPasswords, rawCurrentPassword);
+            result = passwordValidator.IsMatchSMAPasswordRule(rawNewPassword, param.InvalidPasswords, rawCurrentPassword);
 
-            if (validatorResult.IsFail)
+            if (result.IsFail)
             {
-                return validatorResult;
+                return result;
             }
 
             param.CurrentPassword = passwordValidator.Encode(rawCurrentPassword);
@@ -71,19 +68,21 @@
 
         private SecurityResult ResetPassword(PasswordParamBase param, bool isResetMemberPassword)
         {
-            if (string.IsNullOrWhiteSpace(param.NewPassword))
+            var result = passwordValidator.ValidateEmpty(param.NewPassword);
+
+            if (result.IsFail)
             {
-                return SecurityResult.CreateErrorResult(AuthResource.RequiredPasswordError);
+                return result;
             }
 
             var rawNewPassword = passwordValidator.Decrypt(param.NewPassword, param.HashKey);
-            var validatorResult = isResetMemberPassword
+            result = isResetMemberPassword
                 ? passwordValidator.IsMatchMemberPasswordRule(rawNewPassword, param.InvalidPasswords)
                 : passwordValidator.IsMatchSMAPasswordRule(rawNewPassword, param.InvalidPasswords);
 
-            if (validatorResult.IsFail)
+            if (result.IsFail)
             {
-                return validatorResult;
+                return result;
             }
 
             param.NewPassword = passwordValidator.Encode(rawNewPassword);

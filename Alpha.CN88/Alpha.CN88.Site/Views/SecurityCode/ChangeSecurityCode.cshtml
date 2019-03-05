@@ -8,6 +8,7 @@
     @StaticResources.RenderStyles("~/assets/bundles/security/change-password")
 }
 @section Scripts {
+    @StaticResources.AssetScripts.Render("/bundles/site-cn88/security")
     @StaticResources.RenderScripts("~/assets/bundles/securitycode/change-securitycode")
     @if (Model.Result?.Code == 2)
     {
@@ -23,7 +24,6 @@
     @using (Html.BeginForm("ChangeSecurityCode", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
-
         <div class="rules">
             <p><span class="text-red">*</span>@AuthResource.SecurityCodeRule1</p>
             <p class="note">@AuthResource.SecurityCodeRule2</p>

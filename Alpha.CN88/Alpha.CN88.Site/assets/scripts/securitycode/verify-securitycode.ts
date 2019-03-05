@@ -53,18 +53,8 @@ class VerifySecurityCode {
             return;
         }
 
-        securityCodeValue = this.hashSecurityCode(securityCodeValue, this.elements.salt, this.elements.token);
+        securityCodeValue = securityCodeValue.hash(this.elements.salt, this.elements.token);
         this.submitForm(form.attr("method"), form.attr("action"), securityCodeValue);
-    }
-
-    hashSecurityCode(securityCode: string, salt: string, token: string): string {
-        if (!salt || !token) {
-            return "";
-        }
-
-        let sha1SC: string = Sha1.hash(securityCode + salt);
-
-        return Sha256.hash(sha1SC + token);
     }
 
     submitForm(method, url, securityCode: string): void {

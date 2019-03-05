@@ -28,11 +28,11 @@ class ChangePassword {
             let hashKey: string = self.elements.hashKey;
 
             if ($currentPassword.length > 0) {
-                let currentPwd: string = $currentPassword.val().ec(hashKey).hc();
+                let currentPwd: string = $currentPassword.val().encrypt(hashKey);
                 $currentPassword.val(currentPwd);
             }
 
-            let newPwd: string = $newPassword.val().ec(hashKey).hc();
+            let newPwd: string = $newPassword.val().encrypt(hashKey);
             $newPassword.val(newPwd);
             $confirmPassword.val(newPwd);
 

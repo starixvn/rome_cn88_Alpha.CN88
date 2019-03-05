@@ -30,6 +30,7 @@
     "outputFileName": "assets/bundles/password/change-password.js",
     "inputFiles": [
       "assets/scripts/site-infrastructure.js",
+      "assets/scripts/aes.js",
       "assets/scripts/security-helper.js",
       "assets/scripts/password/change-password.js"
     ]
@@ -38,6 +39,7 @@
     "outputFileName": "assets/bundles/securitycode/change-securitycode.js",
     "inputFiles": [
       "assets/scripts/site-infrastructure.js",
+      "assets/scripts/aes.js",
       "assets/scripts/security-helper.js",
       "assets/scripts/securitycode/change-securitycode.js"
     ]
@@ -46,6 +48,7 @@
     "outputFileName": "assets/bundles/securitycode/verify-securitycode.js",
     "inputFiles": [
       "assets/scripts/site-infrastructure.js",
+      "assets/scripts/aes.js",
       "assets/scripts/security-helper.js",
       "assets/scripts/securitycode/verify-securitycode.js"
     ]

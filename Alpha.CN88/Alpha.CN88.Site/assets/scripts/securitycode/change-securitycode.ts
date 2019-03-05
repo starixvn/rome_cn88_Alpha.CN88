@@ -1,7 +1,4 @@
-﻿//"use strict";
-declare var Sha1: any;
-declare var Sha256: any;
-
+﻿"use strict";
 class ChangeSecurityCode {
     $: JQueryStatic;
     top: Window;
@@ -31,11 +28,11 @@ class ChangeSecurityCode {
             let hashKey: string = self.elements.hashKey;
 
             if ($oldSecurityCode.length > 0) {
-                let oldSecCode: string = self.hashSecurityCode($oldSecurityCode.val());
+                let oldSecCode: string = $oldSecurityCode.val().hash(self.elements.salt, self.elements.token);
                 $oldSecurityCode.val(oldSecCode);
             }
 
-            let secCode: string = $securityCode.val().ec(hashKey).hc();
+            let secCode: string = $securityCode.val().encrypt(hashKey);
             $securityCode.val(secCode);
             $confirmSecurityCode.val(secCode);
 
@@ -70,7 +67,9 @@ class ChangeSecurityCode {
             securityCode: this.$("#securityCode"),
             confirmSecurityCode: this.$("#confirmSecurityCode"),
             messsageContainer: this.$("#message-container"),
-            hashKey: this.$("#hashKey").val()
+            hashKey: this.$("#hashKey").val(),
+            salt: this.$("#securitySalt").val(),
+            token: this.$("#securitycodeToken").val()
         };
     }
 
@@ -151,19 +150,6 @@ class ChangeSecurityCode {
         }
 
         return result;
-    }
-
-    hashSecurityCode(securityCode: string): string {
-        let salt = this.$("#securitySalt").val();
-        let token = this.$("#securitycodeToken").val();
-
-        if (!salt || !token) {
-            return "";
-        }
-
-        let sha1SC = Sha1.hash(securityCode + salt);
-
-        return Sha256.hash(sha1SC + token);
     }
 }
 

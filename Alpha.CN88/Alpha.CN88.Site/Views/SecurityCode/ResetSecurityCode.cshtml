@@ -14,7 +14,7 @@
     @using (Html.BeginForm("ResetSecurityCode", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
-
+        @Html.Hidden("custId", Model.CustId)
         <div class="rules">
             <p><span class="text-red">*</span>@AuthResource.SecurityCodeRule1</p>
             <p class="note">@AuthResource.SecurityCodeRule2</p>

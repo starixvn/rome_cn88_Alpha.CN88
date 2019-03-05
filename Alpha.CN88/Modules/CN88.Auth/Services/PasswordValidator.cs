@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using AppResources;
+    using Fanex.Cryptography.Aes;
     using Models;
     using Sunplus.Agent.Utilities;
 
@@ -13,6 +14,10 @@
         string Encode(string password);
 
         string Decrypt(string password, string encryptKey);
+
+        SecurityResult ValidateEmpty(string currentPassword, string newPassword);
+
+        SecurityResult ValidateEmpty(string newPassword);
 
         SecurityResult IsMatchSMAPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null);
 
@@ -39,7 +44,17 @@
             => encryptor.CfsEnCode(password);
 
         public string Decrypt(string password, string encryptKey)
-            => encryptor.RC4(encryptKey, encryptor.HexDecode(password));
+            => AesExtension.Decrypt(password, encryptKey);
+
+        public SecurityResult ValidateEmpty(string currentPassword, string newPassword)
+            => string.IsNullOrWhiteSpace(currentPassword)
+            ? SecurityResult.CreateErrorResult(AuthResource.RequiredInputOldPwdError)
+            : ValidateEmpty(newPassword);
+
+        public SecurityResult ValidateEmpty(string newPassword)
+            => string.IsNullOrWhiteSpace(newPassword)
+            ? SecurityResult.CreateErrorResult(AuthResource.RequiredPasswordError)
+            : new SecurityResult();
 
         public SecurityResult IsMatchSMAPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null)
         {
@@ -90,6 +105,6 @@
             password.Equals("493abcDE", StringComparison.OrdinalIgnoreCase);
 
         private static bool IsContainsInvalidChars(string password, IEnumerable<string> invalidPasswords)
-            => invalidPasswords.Any(item => password.ToUpperInvariant().Contains(item.ToUpperInvariant()));
+            => invalidPasswords.Any(item => password.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
     }
 }

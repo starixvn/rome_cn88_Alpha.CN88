@@ -1,6 +1,5 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
-    using System;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.Password;
     using global::CN88.Auth.Services;
@@ -75,7 +74,7 @@
 
         private string GetHasKey()
         {
-            var hashKey = encryptor.RandomString(new Random().Next(4, 8));
+            var hashKey = encryptor.RandomString(4);
             sessionManager.Add(HashKeySessionKey, hashKey);
 
             return hashKey;

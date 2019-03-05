@@ -1,6 +1,6 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
-    using System;
+    using Fanex.Cryptography.Aes;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.SecurityCode;
     using global::CN88.Auth.Services;
@@ -141,8 +141,7 @@
 
                 if (string.IsNullOrWhiteSpace(hashKey))
                 {
-                    hashKey = encryptor.RandomString(new Random().Next(4, 8));
-
+                    hashKey = encryptor.RandomString(4);
                     sessionManager.Add(HashKeySessionKey, hashKey);
                 }
 
@@ -153,7 +152,7 @@
         private string Decrypt(string encryptedText)
             => string.IsNullOrWhiteSpace(encryptedText)
             ? string.Empty
-            : encryptor.RC4(HashKey, encryptor.HexDecode(encryptedText));
+            : AesExtension.Decrypt(encryptedText, HashKey);
 
         private void ResetToken()
         {
