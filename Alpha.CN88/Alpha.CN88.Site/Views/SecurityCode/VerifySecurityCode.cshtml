@@ -11,7 +11,7 @@
     @StaticResources.AssetScripts.Render("/bundles/site-cn88/security")
     @StaticResources.RenderScripts("~/assets/bundles/securitycode/verify-securitycode")
 }
-<div class="block">
+<div class="block verify-security-code">
     @using (Html.BeginForm("VerifySecurityCode", "SecurityCode", FormMethod.Post, new { id = "formSecurityCode", @class = "form-security form-validation", novalidate = "novalidate" }))
     {
         @Html.AntiForgeryToken()
@@ -22,7 +22,7 @@
             <label class="lb-title" for="securityCode">@AuthResource.SecurityCode</label>
             <input type="password" autocomplete="off" class="txt" name="SecurityCode" id="securityCode" maxlength="6" />
         </div>
-        <div>
+        <div class="list-button">
             <input type="submit" class="btn-submit" id="btnSubmit" value="@AuthResource.Submit" />
         </div>
     }
