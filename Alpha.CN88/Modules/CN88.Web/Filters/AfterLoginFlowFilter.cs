@@ -1,7 +1,6 @@
 ﻿namespace CN88.Web.Filters
 {
     using System;
-    using System.Collections.Generic;
     using System.Web.Mvc;
     using Helpers;
     using Sunplus.Agent.Model.Base;
@@ -16,9 +15,9 @@
         {
             base.OnActionExecuting(filterContext);
 
-            if (IsValidSessionAndUrl(filterContext))
+            if (IsValidSession(filterContext))
             {
-                var redirectUrl = GetAfterLoginFlowUrl();
+                var redirectUrl = GetAfterLoginFlowUrl(filterContext);
 
                 if (redirectUrl != null)
                 {
@@ -27,54 +26,61 @@
             }
         }
 
-        private bool IsValidSessionAndUrl(ActionExecutingContext filterContext)
+        private bool IsValidSession(ActionExecutingContext filterContext)
             => filterContext.HttpContext?.Session != null
             && userSession.UserId > 0
-            && !userSession.IsInternal
-            && !IsIgnoreUrl(filterContext);
+            && !userSession.IsInternal;
 
-        private static bool IsIgnoreUrl(ActionExecutingContext filterContext)
+        private string GetAfterLoginFlowUrl(ActionExecutingContext filterContext)
         {
             var actionDescriptor = filterContext.ActionDescriptor;
             var controllerName = actionDescriptor.ControllerDescriptor.ControllerName;
-            var actionName = actionDescriptor.ActionName;
 
-            return IgnoreURLs.ContainsKey($"{controllerName.ToLowerInvariant()}/{actionName.ToLowerInvariant()}");
-        }
-
-        private static Dictionary<string, bool> IgnoreURLs
-            => new Dictionary<string, bool>
+            if (!controllerName.Equals("auth", StringComparison.OrdinalIgnoreCase))
             {
-                ["auth/index"] = true,
-                ["auth/login"] = true,
-                ["auth/adminlogin"] = true,
-                ["auth/logout"] = true,
-                ["nickname/index"] = true,
-                ["password/forcechangepassword"] = true,
-                ["securitycode/forcechangefirstlogin"] = true,
-                ["securitycode/forcechangesecuritycode"] = true
-            };
+                var currentUrl = $"{controllerName}/{actionDescriptor.ActionName}";
 
-        private string GetAfterLoginFlowUrl()
-        {
-            if (string.IsNullOrWhiteSpace(userSession.NickName))
-            {
-                return "NickName/Index";
-            }
+                if (string.IsNullOrWhiteSpace(userSession.NickName))
+                {
+                    return CreateNickNameUrl(currentUrl);
+                }
 
-            if (!userSession.IsLogged || userSession.IsPasswordExpired)
-            {
-                return "Password/ForceChangePassword";
-            }
+                if (!userSession.IsLogged || userSession.IsPasswordExpired)
+                {
+                    return ForceChangePasswordUrl(currentUrl);
+                }
 
-            if (userSession.IsForcedSecurityCode)
-            {
-                return string.IsNullOrWhiteSpace(userSession.SecurityCode)
-                    ? "SecurityCode/ForceChangeFirstLogin"
-                    : "SecurityCode/ForceChangeSecurityCode";
+                if (userSession.IsForcedSecurityCode)
+                {
+                    return ForceChangeSecurityCodeUrl(currentUrl, userSession.SecurityCode);
+                }
             }
 
             return null;
+        }
+
+        private static string CreateNickNameUrl(string currentUrl)
+            => currentUrl.Equals("NickName/Index", StringComparison.OrdinalIgnoreCase)
+            ? null
+            : "~/NickName/Index";
+
+        private static string ForceChangePasswordUrl(string currentUrl)
+            => currentUrl.Equals("Password/ForceChangePassword", StringComparison.OrdinalIgnoreCase)
+            ? null
+            : "~/Password/ForceChangePassword";
+
+        private static string ForceChangeSecurityCodeUrl(string currentUrl, string securityCode)
+        {
+            if (string.IsNullOrWhiteSpace(securityCode))
+            {
+                return currentUrl.Equals("SecurityCode/ForceChangeFirstLogin", StringComparison.OrdinalIgnoreCase)
+                    ? null
+                    : "~/SecurityCode/ForceChangeFirstLogin";
+            }
+
+            return currentUrl.Equals("SecurityCode/ForceChangeSecurityCode", StringComparison.OrdinalIgnoreCase)
+                ? null
+                : "~/SecurityCode/ForceChangeSecurityCode";
         }
     }
 }
