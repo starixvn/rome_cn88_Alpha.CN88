@@ -1,11 +1,10 @@
 ﻿namespace Alpha.CN88.Site.Requests
 {
-    using CN88.Models;
     using MediatR;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using ViewModels;
 
-    public class SuggestionCommand : IRequest<Task<IEnumerable<SuggestionModel>>>
+    public class SuggestionCommand : IRequest<Task<SuggestionViewModel>>
     {
         public string Query { get; set; }
         
