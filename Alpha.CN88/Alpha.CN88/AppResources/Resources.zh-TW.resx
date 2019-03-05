@@ -177,7 +177,7 @@
   <data name="AccountOverview" xml:space="preserve">
     <value>帳戶摘要</value>
   </data>
-  <data name="SecurityCode" xml:space="preserve">
-    <value>保安碼</value>
+  <data name="ChangeSecurityCode" xml:space="preserve">
+    <value>Change Security Code</value>
   </data>
 </root>

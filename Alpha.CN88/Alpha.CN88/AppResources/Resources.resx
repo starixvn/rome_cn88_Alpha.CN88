@@ -177,7 +177,7 @@
   <data name="Announcement" xml:space="preserve">
     <value>Announcement</value>
   </data>
-  <data name="SecurityCode" xml:space="preserve">
-    <value>Security Code</value>
+  <data name="ChangeSecurityCode" xml:space="preserve">
+    <value>Change Security Code</value>
   </data>
 </root>

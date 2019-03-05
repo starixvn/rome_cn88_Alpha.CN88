@@ -97,6 +97,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Security Code.
+        /// </summary>
+        public static string ChangeSecurityCode {
+            get {
+                return ResourceManager.GetString("ChangeSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
@@ -201,15 +210,6 @@ namespace Alpha.CN88.AppResources {
         public static string PasswordLastChangedOn {
             get {
                 return ResourceManager.GetString("PasswordLastChangedOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Security Code.
-        /// </summary>
-        public static string SecurityCode {
-            get {
-                return ResourceManager.GetString("SecurityCode", resourceCulture);
             }
         }
         

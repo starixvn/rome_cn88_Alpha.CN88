@@ -7,7 +7,7 @@
         contactUs: null,
         reCheckin: null,
         changePassword: null,
-        securityCode: null,
+        changeSecurityCode: null,
         onlineMembersPath: null,
         oldReportsPath: null
     },
@@ -26,7 +26,7 @@
     },
     resources: {
         changePassword: null,
-        securityCode: null
+        changeSecurityCode: null
     },
     init: function () {
         indexManager.cacheElements();
@@ -48,7 +48,7 @@
         indexManager.urls.contactUs = indexManager.urls.mainRootPath + "Help/ContactUs";
         indexManager.urls.reCheckin = indexManager.urls.mainRootPath + "ReCheckin";
         indexManager.urls.changePassword = indexManager.urls.mainRootPath + "Password/ChangePassword";
-        indexManager.urls.securityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
+        indexManager.urls.changeSecurityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
         indexManager.urls.oldReportsPath = $("#OldReportsPath").val();
 
         indexManager.elements.mainMenu = $(".menu-item");
@@ -60,7 +60,7 @@
         indexManager.elements.onlineUserId = $("#OnlineUserId").val();
         indexManager.elements.clearClientData = $("#ClearClientData").val().toString();
         indexManager.resources.changePassword = $("#ChangePassword").val();
-        indexManager.resources.securityCode = $("#SecurityCode").val();
+        indexManager.resources.changeSecurityCode = $("#ChangeSecurityCode").val();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -123,8 +123,8 @@
         $("#lnk-security-code").on("click touchend", () => {
             popupManager.init($, top);
             popupManager.open({
-                title: indexManager.resources.securityCode,
-                url: indexManager.urls.securityCode,
+                title: indexManager.resources.changeSecurityCode,
+                url: indexManager.urls.changeSecurityCode,
                 width: 490,
                 height: 420
             });

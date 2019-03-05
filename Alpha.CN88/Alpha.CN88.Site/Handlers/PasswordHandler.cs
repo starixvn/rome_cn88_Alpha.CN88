@@ -67,12 +67,12 @@
             => passwordService.ResetSubAccountPassword(ToResetSubAccountPasswordParam(message));
 
         public ChangePasswordViewModel Handle(ChangePasswordQuery message)
-            => new ChangePasswordViewModel(GetHasKey(), message.Result);
+            => new ChangePasswordViewModel(GetHashKey(), message.Result);
 
         public ResetPasswordViewModel Handle(ResetPasswordQuery message)
-            => new ResetPasswordViewModel(message.CustId, message.CustName, message.CustLevel, GetHasKey(), message.Result);
+            => new ResetPasswordViewModel(message.CustId, message.CustName, message.CustLevel, GetHashKey(), message.Result);
 
-        private string GetHasKey()
+        private string GetHashKey()
         {
             var hashKey = encryptor.RandomString(4);
             sessionManager.Add(HashKeySessionKey, hashKey);
