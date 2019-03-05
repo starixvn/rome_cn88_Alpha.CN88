@@ -75,7 +75,7 @@
 
         public string OnlineMembersPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/CustomerList/OnlineMembers");
 
-        public string OldReportsPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/OldReports/Index?DisplayMode=1");
+        public string OldReportsPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/OldReports/VerifyPassword");
 
         public bool ClearClientData { get; }
     }
