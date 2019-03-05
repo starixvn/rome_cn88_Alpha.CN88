@@ -96,7 +96,7 @@ body {
 
 %group {
     font-weight: bold;
-    line-height: 32px;
+    line-height: 30px;
     padding: 0 16px;
     border-bottom: 1px solid #bfbfbf;
 }
@@ -112,7 +112,8 @@ body {
 }
 
 .msg-contents {
-    padding: 10px 12px;
+    padding: 7px 10px;
+    border-bottom: 1px solid #e5e5e5;
 
     &:hover {
         cursor: pointer;
@@ -121,7 +122,7 @@ body {
     [class^="icon"] {
         position: absolute;
         left: 0;
-        top: 0;
+        top: 1px;
         font-size: 14px;
     }
 
@@ -135,46 +136,45 @@ body {
 
     &.highlight .icon-add,
     &.highlight .icon-minus {
-        top: 8px;
-    }
-}
-
-.msg-contents .message {
-    display: table;
-    width: 100%;
-
-    &.public,
-    &.public [class^="icon"] {
-        color: $msg-public;
+        top: 9px;
     }
 
-    &.private,
-    &.private [class^="icon"] {
-        color: $msg-private;
+    .message {
+        display: table;
+        width: 100%;
+
+        &.public,
+        &.public [class^="icon"] {
+            color: $msg-public;
+        }
+
+        &.private,
+        &.private [class^="icon"] {
+            color: $msg-private;
+        }
+
+        &.special,
+        &.special [class^="icon"] {
+            color: $msg-special;
+        }
+
+        .time,
+        .msg-content {
+            display: table-cell;
+            line-height: 18px;
+        }
+
+        .time {
+            position: relative;
+            width: 132px;
+            padding-left: 24px;
+        }
+
+        .full-content {
+            display: none;
+            line-height: 18px;
+        }
     }
-
-    &.special,
-    &.special [class^="icon"] {
-        color: $msg-special;
-    }
-}
-
-.msg-contents .message .time,
-.msg-contents .message .msg-content {
-    display: table-cell;
-    line-height: 18px;
-}
-
-.msg-contents .message .time {
-    width: 120px;
-    text-align: left;
-    padding-left: 24px;
-    position: relative;
-}
-
-.msg-contents .message .full-content {
-    display: none;
-    line-height: 18px;
 }
 
 .view-more {
@@ -187,5 +187,13 @@ body {
     &:hover {
         background-color: darken(#dedede, 5%);
         cursor: pointer;
+    }
+
+    .icon-chevron-down {
+        position: relative;
+        top: 2px;
+        margin-left: -2px;
+        font-size: 16px;
+        font-weight: bold;
     }
 }
