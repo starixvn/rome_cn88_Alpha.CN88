@@ -1,24 +1,39 @@
 ﻿namespace Alpha.CN88.Services.Impl
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Criteria.Home;
-    using DataAccesses;
-    using Models;
+    using Fanex.Caching;
+    using Fanex.Data.Repository;
     using Models.Home;
 
     public class HomeServiceImpl : HomeService
     {
-        public AccountOverview GetAccountOverview(int custId)
-        {
-            var criteria = new GetAccountOverviewCriteria(custId);
+        private const string AccountingPeriodsCacheKey = "CN88.Features.Reports.Services.AccountingPeriodServiceImpl.AccountingPeriods";
 
-            return HomeDataAccess.GetAccountOverview(criteria);
+        private readonly IDynamicRepository dynamicRepository;
+
+        public HomeServiceImpl(IDynamicRepository dynamicRepository)
+        {
+            this.dynamicRepository = dynamicRepository;
         }
 
-        public StatusSummaryReport GetStatusSummary(int custId, UserLevel userLevel)
+        public Tuple<IEnumerable<AccountOverview>, IEnumerable<StatusSummary>> GetGeneralInformation(int custId)
         {
-            var criteria = new GetStatusSummaryCriteria(custId, userLevel);
+            var currentPeriod = GetCurrentPeriod();
+            var criteria = new GetHomeInformationCriteria(custId, currentPeriod.FromDate, currentPeriod.ToDate);
 
-            return HomeDataAccess.GetStatusSummary(criteria);
-        }
+            return dynamicRepository.FetchMultiple<AccountOverview, StatusSummary>(criteria);
+        }       
+
+        public AccountingPeriod GetCurrentPeriod()
+            => GetAccountingPeriods().FirstOrDefault(p => p.IsCurrentPeriod);
+
+        public IEnumerable<AccountingPeriod> GetAccountingPeriods()
+            => ConfiguredCacheService.GetOrSet(
+                AccountingPeriodsCacheKey,
+                () => dynamicRepository.Fetch<AccountingPeriod>(new GetAccountingPeriodsCriteria()),
+                new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1)));
     }
 }

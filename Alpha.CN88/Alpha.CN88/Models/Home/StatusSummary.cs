@@ -6,22 +6,13 @@
         {
         }
 
-        public StatusSummary(string name, int active, int inactive, int viewOnly, int suspened)
-        {
-            Name = name;
-            Active = active;
-            Inactive = inactive;
-            ViewOnly = viewOnly;
-            Suspened = suspened;
-        }
+        public byte RoleId { get; }
 
-        public string Name { get; }
+        public string Name => UserLevel.FromValue<UserLevel>(RoleId).DisplayName;
 
         public int Active { get; private set; }
 
         public int Inactive { get; private set; }
-
-        public int ViewOnly { get; private set; }
 
         public int Suspened { get; private set; }
 
@@ -29,7 +20,6 @@
         {
             Active += s.Active;
             Inactive += s.Inactive;
-            ViewOnly += s.ViewOnly;
             Suspened += s.Suspened;
         }
     }

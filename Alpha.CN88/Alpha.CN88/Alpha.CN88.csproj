@@ -62,6 +62,10 @@
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.7\lib\net40\Enyim.Caching.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Caching, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Caching.2.1.0\lib\net461\Fanex.Caching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Common.1.1.0.1\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
@@ -190,28 +194,28 @@
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Constants\Language.cs" />
-    <Compile Include="Criteria\Home\GetAccountOverviewCriteria.cs" />
+    <Compile Include="Criteria\Home\GetAccountingPeriodsCriteria.cs" />
+    <Compile Include="Criteria\Home\GetHomeInformationCriteria.cs" />
     <Compile Include="Criteria\Home\GetGeneralAnnouncementCriteria.cs" />
     <Compile Include="Criteria\Home\GetImportantAnnouncementCriteria.cs" />
-    <Compile Include="Criteria\Home\GetStatusSummaryCriteria.cs" />
     <Compile Include="Criteria\GetTotalMemberOnlineCriteria.cs" />
     <Compile Include="Criteria\SuggestionCriteria.cs" />
-    <Compile Include="DataAccesses\HomeDataAccess.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="FunctionRegistry.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
-    <Compile Include="Models\AccountOverview.cs" />
+    <Compile Include="Helpers\SystemTime.cs" />
+    <Compile Include="Models\Home\AccountOverview.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\DeviceInfo.cs" />
     <Compile Include="Models\Enumeration.cs" />
+    <Compile Include="Models\Home\AccountingPeriod.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\Menus\IMenuItem.cs" />
     <Compile Include="Models\Menus\MenuItem.cs" />
     <Compile Include="Models\Menus\MenuStatus.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Home\StatusSummary.cs" />
-    <Compile Include="Models\Home\StatusSummaryReport.cs" />
     <Compile Include="Models\SuggestionModel.cs" />
     <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Params\SuggestionParam.cs" />

@@ -11,17 +11,11 @@
         {
         }
 
-        [HttpGet]
         public ActionResult Index() => View();
 
         [HttpGet]
         [ChildActionOnly]
-        public ActionResult AccountOverview(AccountOverviewQuery message)
-            => PartialView(mediator.Send(message));
-
-        [HttpGet]
-        [ChildActionOnly]
-        public ActionResult StatusSummary(StatusSummaryQuery message)
+        public ActionResult GeneralInformation(HomeQuery message)
             => PartialView(mediator.Send(message));
     }
 }

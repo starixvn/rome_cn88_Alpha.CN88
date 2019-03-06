@@ -1,4 +1,13 @@
 ﻿<Functions SiteId="115" SiteName="CN88">
+  <Function Name="Home">
+    <Setting Key="CS_Customer_Homepage_Sel" SpName ="CS_Customer_Homepage_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" >
+      <Mapping DataField="cntActive" ObjectProperty="Active"></Mapping>
+      <Mapping DataField="cntClosed" ObjectProperty="Inactive"></Mapping>
+      <Mapping DataField="cntSuspend" ObjectProperty="Suspened"></Mapping>
+      <Mapping DataField="cntNewMember" ObjectProperty="NewMembers"></Mapping>
+      <Mapping DataField="LastChangePwd" ObjectProperty="LastPasswordChangedDate"></Mapping>
+    </Setting>
+  </Function>
   <Function Name="Login">
     <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline_uat4" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin_uat4" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />

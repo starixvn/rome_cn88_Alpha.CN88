@@ -1,12 +1,14 @@
 ﻿namespace Alpha.CN88.Services
 {
+    using System;
+    using System.Collections.Generic;
     using Models;
     using Models.Home;
 
     public interface HomeService
     {
-        AccountOverview GetAccountOverview(int custId);
+        Tuple<IEnumerable<AccountOverview>, IEnumerable<StatusSummary>> GetGeneralInformation(int custId);
 
-        StatusSummaryReport GetStatusSummary(int custId, UserLevel userLevel);
+        IEnumerable<AccountingPeriod> GetAccountingPeriods();
     }
 }

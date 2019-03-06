@@ -1,0 +1,64 @@
+﻿@using Alpha.CN88.Site.ViewModels.Home
+@model HomeViewModel
+<div class="col">
+    <table class="tbl-style2">
+        <thead>
+            <tr>
+                <th colspan="2">@Resources.AccountOverview</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Resources.Credits</td>
+                <td class="text-right">@HtmlHelpers.FormatNumber(Model.OverView.Credits)</td>
+            </tr>
+            <tr>
+                <td>@Resources.CreditBalance</td>
+                <td class="text-right">@HtmlHelpers.FormatNumber(Model.OverView.CreditBalance)</td>
+            </tr>
+            <tr>
+                <td>@Resources.NewMemberForThisPeriod</td>
+                <td class="text-right">@HtmlHelpers.FormatNumber(Model.OverView.NewMembers)</td>
+            </tr>
+            <tr>
+                <td>@Resources.YourLastLogin</td>
+                <td class="text-right">@Model.OverView.LastLoginDateStr</td>
+            </tr>
+            <tr>
+                <td>@Resources.PasswordLastChangedOn</td>
+                <td class="text-right">@Model.OverView.LastPasswordChangedDateStr</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col">
+    <table class="tbl-style2 status-summary">
+        <thead>
+            <tr>
+                <th>@Resources.StatusSummary</th>
+                <th class="text-center">@Resources.Active</th>
+                <th class="text-center">@Resources.Closed</th>
+                <th class="text-center">@Resources.Suspended</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model.StatusSummaries)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    @HtmlHelpers.RenderNumberCell(s.Active, "text-center status-active")
+                    @HtmlHelpers.RenderNumberCell(s.Inactive, "text-center status-inactive")
+                    @HtmlHelpers.RenderNumberCell(s.Suspened, "text-center status-suspended")
+                </tr>
+            }
+        </tbody>
+        <tfoot class="tfoot-bg">
+            <tr>
+                <td class="text-uppercase">@Resources.Total</td>
+                @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Active, "text-center status-active")
+                @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Inactive, "text-center status-inactive")
+                @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Suspened, "text-center status-suspended")
+            </tr>
+        </tfoot>
+    </table>
+</div>

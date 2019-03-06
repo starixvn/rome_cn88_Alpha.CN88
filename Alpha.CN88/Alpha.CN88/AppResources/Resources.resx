@@ -196,4 +196,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="city" xml:space="preserve">
     <value>City</value>
   </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
 </root>

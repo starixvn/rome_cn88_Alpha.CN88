@@ -10,7 +10,7 @@
         public static readonly UserLevel Super = new UserLevel(4, "Super");
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
-        public static readonly UserLevel Master = new UserLevel(3, "Master");
+        public static readonly UserLevel Master = new UserLevel(3, "Master Agent");
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "Reviewed!")]
         public static readonly UserLevel Agent = new UserLevel(2, "Agent");

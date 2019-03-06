@@ -345,8 +345,14 @@
   <ItemGroup>
     <Content Include="App_Data\SPNames\Internal\DB053_DB054.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Internal\DBACC.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBPRO.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Local\DBACC.bodb02.xml" />
     <Content Include="App_Data\SPNames\Local\DB053_DB054.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\Local\DBPRO.bodb02.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\Pro\DB053_DB054.bodb02.BODBDownlineNet.xml" />
@@ -354,11 +360,17 @@
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.xml" />
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBPRO.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\SIT\DB053_DB054.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBACC.bodb02.xml" />
     <Content Include="App_Data\SPNames\SIT\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\SIT\DBCust.CustDB.xml" />
     <Content Include="App_Data\SPNames\SIT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\SIT\DBPRO.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\UAT\DB053_DB054.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\UAT\DBACC.bodb02.xml" />
     <Content Include="App_Data\SPNames\UAT\DBAGE.bodb02.BODBDownlineNet.xml" />
@@ -372,6 +384,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\UAT\DBPRO.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Themes\Apo\IpInfo\IPInfo.min.css" />
     <Content Include="assets\bundles\default-index.css" />
     <Content Include="assets\bundles\default-index.js" />
@@ -813,8 +828,7 @@
     <Compile Include="Requests\Default\IndexQuery.cs" />
     <Compile Include="Requests\Default\MenuBarQuery.cs" />
     <Compile Include="Requests\NickName\CreateNickNameCommand.cs" />
-    <Compile Include="Requests\Home\StatusSummaryQuery.cs" />
-    <Compile Include="Requests\Home\AccountOverviewQuery.cs" />
+    <Compile Include="Requests\Home\HomeQuery.cs" />
     <Compile Include="Requests\Password\ChangePasswordCommand.cs" />
     <Compile Include="Requests\Password\ChangePasswordQuery.cs" />
     <Compile Include="Requests\Password\ResetDownlinePasswordCommand.cs" />
@@ -830,7 +844,7 @@
     <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\Default\IndexViewModel.cs" />
     <Compile Include="ViewModels\Default\MenuBarViewModel.cs" />
-    <Compile Include="ViewModels\Home\AccountOverviewViewModel.cs" />
+    <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\LanguageViewModel.cs" />
     <Compile Include="ViewModels\NickName\CreateNickNameViewModel.cs" />
     <Compile Include="ViewModels\Password\ChangePasswordViewModel.cs" />
@@ -1003,13 +1017,10 @@
     <Content Include="App_Data\securitycode.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\StatusSummary.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\NickName\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\AccountOverview.cshtml" />
+    <Content Include="Views\Home\GeneralInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\HtmlHelpers.cshtml" />
