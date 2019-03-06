@@ -6,6 +6,7 @@
     using MediatR;
     using Requests;
     using Web;
+    using System.Threading.Tasks;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     public abstract class SiteBaseController : BaseController
@@ -20,6 +21,9 @@
         protected ActionResult View<TResponse>(IRequest<TResponse> message)
             => View(mediator.Send(message));
 
+        protected async Task<ActionResult> ViewAsync<TResponse>(IAsyncRequest<TResponse> message)
+            => View(await mediator.SendAsync(message));
+
         protected ActionResult JsonData<TResponse>(
             IRequest<TResponse> message,
             JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
@@ -30,6 +34,18 @@
             }
 
             return Json(mediator.Send(message), jsonRequestBehavior);
+        }
+
+        protected async Task<ActionResult> JsonDataAsync<TResponse>(
+            IAsyncRequest<TResponse> message,
+            JsonRequestBehavior jsonRequestBehavior = JsonRequestBehavior.AllowGet)
+        {
+            if (!(message as BaseQuery).IsValid())
+            {
+                return Json(Result.CreateForbiddenResult());
+            }
+
+            return Json(await mediator.SendAsync(message), jsonRequestBehavior);
         }
 
         protected ActionResult ToDefaultPage()
