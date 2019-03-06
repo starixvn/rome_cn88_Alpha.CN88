@@ -180,4 +180,17 @@
   <data name="ChangeSecurityCode" xml:space="preserve">
     <value>Change Security Code</value>
   </data>
+  <data name="ipnote" xml:space="preserve">
+    <value>附加信息于DNSstuff: &lt;a href="{0}" target="_blank"&gt;点击这里&lt;/a&gt;.
+注意: 由IP2Location™ 和 DNSstuff提供的国家与城市的信息只供参考, 并无保证. 如有需要, 请咨询其他可靠来源以获得最新的及准确的信息.</value>
+  </data>
+  <data name="city" xml:space="preserve">
+    <value>城市</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>国家</value>
+  </data>
+  <data name="ipinfo" xml:space="preserve">
+    <value>网及信息</value>
+  </data>
 </root>

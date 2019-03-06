@@ -372,6 +372,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\Local\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Themes\Apo\IpInfo\IPInfo.min.css" />
     <Content Include="assets\bundles\default-index.css" />
     <Content Include="assets\bundles\default-index.js" />
     <Content Include="assets\bundles\default-index.min.css">
@@ -766,6 +767,7 @@
     <Content Include="_GlobalResources\Images\emsg_3_3.gif" />
     <Content Include="_GlobalResources\Images\error-icon.gif" />
     <Content Include="_GlobalResources\Images\error2.png" />
+    <Content Include="_IPInfo\IPInfo.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DependencyConfig.cs" />
