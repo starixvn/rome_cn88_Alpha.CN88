@@ -2,6 +2,8 @@
     clone: any
 }
 
+declare var bootbox: any;
+
 class PopupManager {
     protected $: JQueryStatic;
     protected topWindow: any;
@@ -281,6 +283,46 @@ class PopupManager {
         }
 
         this.openPopUpAfterSetIframeSrc(activePopup, isAutoHeight, options);
+    };
+    bootboxDialog = (options: any) => {
+        let dialog = bootbox.dialog({
+            title: "A custom dialog with init",
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>',
+            buttons: {
+                cancel: {
+                    label: "Cancel",
+                    className: "btn-cancel",
+                    callback: function () {
+
+                    }
+                },
+                submit: {
+                    label: "Submit",
+                    className: "btn-submit",
+                    callback: function () {
+
+                    }
+                }
+            }
+        });
+
+        //dialog.init(function () {
+        //    setTimeout(function () {
+        //        dialog.find(".bootbox-body").html("I was loaded after the dialog was shown!");
+        //    }, 3000);
+        //});
+    };
+    openConfirm = (title: string, message: string) => {
+        bootbox.confirm("Are you sure?", function (result) {
+            /* your callback code */
+        }).find(".modal-content").css({
+            "top": "100px",
+            "left": function () {
+                let left = $(window).width() / 2 - $(".modal-dialog").width() / 2;
+
+                return left + "px";
+            }
+        });
     };
     hasPopupOpen = (): boolean => this.activePopups.length > 0;
     revertLatestPopupTitle = (): void => {
