@@ -85,9 +85,6 @@
         $("#lnk-live-chat").on("click touchend", () => {
             window.open(indexManager.urls.liveChat, "", "height=600,width=800");
         });
-        $("#lnk-personal-announcement").on("click touchend", () => {
-            indexManager.activeMainMenu("menu-ANNOUNCEMENT");
-        });
         $("#lnk-contact-us").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
             indexManager.elements.subMenu.addClass("display-none");
