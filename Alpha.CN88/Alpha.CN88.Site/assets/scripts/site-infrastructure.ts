@@ -72,6 +72,9 @@ class SiteInfrastructure {
             method: 'GET',
             url: url,
             cache: false,
+            beforeSend: () => {
+                $component.append("<div class='block-icon-small'></div>");
+            },
             success: (responseHtml) => {
                 $component.html(responseHtml);
                 handleOnSuccessLoading();
