@@ -2,12 +2,16 @@
 <%@ Import Namespace="Sunplus.Core.Common.IPs" %>
 <%@ Import Namespace="Sunplus.Agent.Model.Common" %>
 <%@ Import Namespace="Alpha.CN88.AppResources" %>
+<%@ Import Namespace="System.Threading" %>
+<%@ Import Namespace="Sunplus.Agent.Model.Entities" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
     <link href="../App_Themes/Apo/IpInfo/IpInfo.min.css" rel="stylesheet" type="text/css" />
     <%
+        Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(UserSession.Current.Language);
+        Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
         var ip = Request.QueryString["ip"];
         if (string.IsNullOrEmpty(ip)) ip = AgentIPFormat.GetClientIP();
         ip = string.Equals(ip, "::1", StringComparison.OrdinalIgnoreCase) ? "127.0.0.1" : ip;
