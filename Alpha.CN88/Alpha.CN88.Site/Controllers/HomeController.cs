@@ -3,7 +3,9 @@
     using System.Web.Mvc;
     using MediatR;
     using Requests.Home;
+    using System.Web.SessionState;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class HomeController : SiteBaseController
     {
         public HomeController(IMediator mediator)

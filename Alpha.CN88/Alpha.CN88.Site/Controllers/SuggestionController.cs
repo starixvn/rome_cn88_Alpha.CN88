@@ -6,7 +6,9 @@
     using Newtonsoft.Json;
     using System.Threading.Tasks;
     using System.Web.Mvc;
+    using System.Web.SessionState;
 
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class SuggestionController : SiteBaseController
     {
         private readonly IUser user;
