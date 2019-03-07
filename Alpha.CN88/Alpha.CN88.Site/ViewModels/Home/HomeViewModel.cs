@@ -1,13 +1,14 @@
 ﻿namespace Alpha.CN88.Site.ViewModels.Home
 {
     using System.Collections.Generic;
+    using System.Linq;
     using CN88.Models.Home;
     public class HomeViewModel
     {
         public HomeViewModel(AccountOverview overView, IEnumerable<StatusSummary> statusSummaries)
         {
             OverView = overView;
-            StatusSummaries = statusSummaries;
+            StatusSummaries = statusSummaries.OrderByDescending(i => i.RoleId);
             TotalStatus = GetTotal();
         }
 
