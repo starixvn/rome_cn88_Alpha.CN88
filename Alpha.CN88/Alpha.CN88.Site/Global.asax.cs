@@ -10,6 +10,7 @@
     using App_Start;
     using Configurations;
     using Fanex.Data;
+    using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
     using Helpers;
     using ONEbook.UM.Filters;
@@ -36,9 +37,8 @@
             DbSettingProviderManager
                 .StartNewSession()
                 .Use(new OldConnectionStringProvider())
-                .UseDefaultDbSettingProvider(
-                    resourcePath: AppSettings.StoreProcedurePath,
-                    enableWatching: true)
+                .UseDefaultDbSettingProvider(AppSettings.StoreProcedurePath)
+                .Use((settingKey, commandTimeout) => new WrappingExceptionObjectDb(settingKey, commandTimeout))
                 .Run();
 
             ShareSession.Init();
