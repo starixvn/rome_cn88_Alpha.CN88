@@ -58,6 +58,9 @@ class SiteInfrastructure {
             if (store.enabled) {
                 store.clear();
             }
+        },
+        remove: (key: string) => {
+            store.enabled ? store.remove(key) : $.cookie(key, undefined, this.localStorage.getCookieExpireOptions());
         }
     };
 

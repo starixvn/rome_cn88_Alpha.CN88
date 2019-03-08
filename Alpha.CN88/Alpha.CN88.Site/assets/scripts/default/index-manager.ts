@@ -94,12 +94,18 @@
         });
         $("#menu-back").on("click touchend", () => {
             var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
-            if (!history || history.length == 0) {
+            var historyIndex = history ? parseInt(history, 0) : 0;
+
+            if (historyIndex == 0) {
                 return;
             }
 
-            history.pop();
-            siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
+            var key = indexManager.elements.currentURLCookieName + "_" + historyIndex;
+            historyIndex--;
+
+            siteInfrastructure.localStorage.remove(key);
+            siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, historyIndex);
+
             indexManager.restoreUrl();
         });
 
@@ -140,6 +146,7 @@
 
             var activeSubmenu = activeMainMenuId != null ?
                 $(".sub-menu[data-main-menu='" + activeMainMenuId + "'] .sub-menu-item.active > a") : null;
+
             indexManager.addHistory({
                 mainMenu: activeMainMenuId,
                 subMenu: activeSubmenu.length ? activeSubmenu.attr("id") : null,
@@ -214,22 +221,27 @@
     },
     addHistory: (newEvent) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
-        if (!history) {
-            history = [];
-        }
+        var historyIndex = history ? parseInt(history, 0) : 0;
+        historyIndex++;
 
-        history.push(newEvent);
-        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
+        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, historyIndex);
+        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName + "_" + historyIndex, newEvent);
     },
     restoreUrl: () => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
-        if (!history || history.length == 0) {
+        var historyIndex = history ? parseInt(history, 0) : 0;
+
+        if (historyIndex == 0) {
             indexManager.elements.mainMenu.find("a")[1].click();
             return;
         }
 
-        var currentPage = history.pop();
-        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
+        var key = indexManager.elements.currentURLCookieName + "_" + historyIndex;
+        var currentPage = siteInfrastructure.localStorage.get(key);
+        historyIndex--;
+
+        siteInfrastructure.localStorage.remove(key);
+        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, historyIndex);
 
         if (currentPage.mainMenu == null) {
             indexManager.elements.mainMenu.find("a")[1].click();
