@@ -128,13 +128,13 @@ class SiteInfrastructure {
 const siteInfrastructure = new SiteInfrastructure();
 
 window.top.cn88SuccessfulUpdatingCallback = function () {
-    var $currentPage = top.$("body #reloadCN88CustomerListCallBackUrl");
+    var $currentPage = window.top.$("body #reloadCN88CustomerListCallBackUrl");
 
     if ($currentPage.length == 0 || $currentPage.val() == "") {
         return;
     }
 
-    top.$("#main").attr("src", $currentPage.val());
+    window.top.$("#main").attr("src", $currentPage.val());
 }
 
 window.top.cn88CancelCallback = function () {
@@ -144,5 +144,5 @@ window.top.cn88CancelCallback = function () {
 		return;
 	}
 
-	top.$("#main").attr("src", $currentPage.val());
+    window.top.$("#main").attr("src", $currentPage.val());
 }
