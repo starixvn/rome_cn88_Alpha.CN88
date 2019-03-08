@@ -20,6 +20,12 @@
 
         public static string MainAppPath => GetConfigValue("MainAppPath");
 
+        public static bool DisabledCheckDuplicationLogin
+            => GetBoolConfigValue("DisabledCheckDuplicationLogin");
+
+        private static bool GetBoolConfigValue(string configName)
+            => GetConfigValue(configName) == "1";
+
         private static string GetConfigValue(string configName)
             => AppSettingValues[configName];
     }

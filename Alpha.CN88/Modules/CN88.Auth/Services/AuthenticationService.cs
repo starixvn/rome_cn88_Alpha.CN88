@@ -19,7 +19,7 @@
 
         bool IsDisabledCheckDuplicationLogin { get; }
 
-        bool IsKickedOut(int custId, int onlineUserId);
+        bool IsKickedOut(int onlineUserId);
 
         bool IsActiveCustomer(int custId, int subAccId);
     }
@@ -111,7 +111,7 @@
         public bool IsDisabledCheckDuplicationLogin
             => AuthAppSettings.DisabledCheckDuplicationLogin;
 
-        public bool IsKickedOut(int custId, int onlineUserId)
+        public bool IsKickedOut(int onlineUserId)
         {
             var command = new ReCheckinCommand(onlineUserId);
             dynamicRepository.Execute(command);

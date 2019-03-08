@@ -11,7 +11,6 @@
     using Configurations;
     using Fanex.Data;
     using Fanex.Data.OldConnectionStringProvider;
-    using global::CN88.Web.Filters;
     using Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
@@ -46,7 +45,6 @@
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
-            GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
 
             StaticResources.Init(GetBuildVersion());
         }

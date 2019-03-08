@@ -84,5 +84,12 @@
     "inputFiles": [
       "assets/styles/security/change-password.css"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/auth/kickout.js",
+    "inputFiles": [
+      "assets/scripts/site-infrastructure.js",
+      "assets/scripts/auth/kickout.js"
+    ]
   }
 ]

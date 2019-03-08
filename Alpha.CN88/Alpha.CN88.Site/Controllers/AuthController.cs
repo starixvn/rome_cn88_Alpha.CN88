@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using CN88.Helpers;
+    using global::CN88.Auth.AppResources;
     using MediatR;
     using Requests.Authentication;
     using Sunplus.Agent.Utilities;
@@ -44,6 +45,25 @@
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public ActionResult Kickout(string reason)
+        {
+            string message = AuthResource.AccessDeny;
+
+            if (!string.IsNullOrEmpty(reason))
+            {
+                if (reason.Equals("DuplicationLogin", StringComparison.OrdinalIgnoreCase))
+                {
+                    message = AuthResource.SessionKickedOut;
+                }
+                else if (reason.Equals("AccountClosed", StringComparison.OrdinalIgnoreCase))
+                {
+                    message = AuthResource.CustomerClosed;
+                }
+            }
+
+            return View(message as object);
         }
 
         private ActionResult ProcessLogin(LoginQuery message)

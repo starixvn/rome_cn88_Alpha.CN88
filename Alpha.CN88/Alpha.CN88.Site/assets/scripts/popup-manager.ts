@@ -284,33 +284,28 @@ class PopupManager {
 
         this.openPopUpAfterSetIframeSrc(activePopup, isAutoHeight, options);
     };
-    bootboxDialog = (options: any) => {
+    bootboxDialog = (title: string, htmlContent: Function) => {
         let dialog = bootbox.dialog({
-            title: "A custom dialog with init",
-            message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>',
+            title: title,
+            message: "<p>Loading...</p>",
             buttons: {
                 cancel: {
                     label: "Cancel",
-                    className: "btn-cancel",
-                    callback: function () {
-
-                    }
+                    className: "btn-cancel"
                 },
                 submit: {
                     label: "Submit",
                     className: "btn-submit",
                     callback: function () {
-
+                        return false;
                     }
                 }
             }
         });
 
-        //dialog.init(function () {
-        //    setTimeout(function () {
-        //        dialog.find(".bootbox-body").html("I was loaded after the dialog was shown!");
-        //    }, 3000);
-        //});
+        dialog.init(function () {
+            dialog.find(".bootbox-body").html(htmlContent);
+        });
     };
     openConfirm = (title: string, message: string) => {
         bootbox.confirm("Are you sure?", function (result) {

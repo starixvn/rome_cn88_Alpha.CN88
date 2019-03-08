@@ -1,14 +1,16 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
     using System.Web.Mvc;
     using CN88.Models;
+    using global::CN88.Web.Filters;
     using MediatR;
     using Requests;
     using Web;
-    using System.Threading.Tasks;
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
+    [AfterLoginFlowFilter, CheckBelongingFilter]
     public abstract class SiteBaseController : BaseController
     {
         protected readonly IMediator mediator;

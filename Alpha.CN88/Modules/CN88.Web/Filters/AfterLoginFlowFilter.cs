@@ -35,25 +35,21 @@
         {
             var actionDescriptor = filterContext.ActionDescriptor;
             var controllerName = actionDescriptor.ControllerDescriptor.ControllerName;
+            var currentUrl = $"{controllerName}/{actionDescriptor.ActionName}";
 
-            if (!controllerName.Equals("auth", StringComparison.OrdinalIgnoreCase))
+            if (string.IsNullOrWhiteSpace(userSession.NickName))
             {
-                var currentUrl = $"{controllerName}/{actionDescriptor.ActionName}";
+                return CreateNickNameUrl(currentUrl);
+            }
 
-                if (string.IsNullOrWhiteSpace(userSession.NickName))
-                {
-                    return CreateNickNameUrl(currentUrl);
-                }
+            if (!userSession.IsLogged || userSession.IsPasswordExpired)
+            {
+                return ForceChangePasswordUrl(currentUrl);
+            }
 
-                if (!userSession.IsLogged || userSession.IsPasswordExpired)
-                {
-                    return ForceChangePasswordUrl(currentUrl);
-                }
-
-                if (userSession.IsForcedSecurityCode)
-                {
-                    return ForceChangeSecurityCodeUrl(currentUrl, userSession.SecurityCode);
-                }
+            if (userSession.IsForcedSecurityCode)
+            {
+                return ForceChangeSecurityCodeUrl(currentUrl, userSession.SecurityCode);
             }
 
             return null;

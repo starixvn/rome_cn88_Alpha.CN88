@@ -74,7 +74,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="CN88.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.0.0-beta01\lib\net461\CN88.Web.dll</HintPath>
+      <HintPath>..\..\packages\CN88.Web.1.0.0.0-beta02\lib\net461\CN88.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.7.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
@@ -388,6 +388,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Themes\Apo\IpInfo\IPInfo.min.css" />
+    <Content Include="assets\bundles\auth\kickout.js" />
+    <Content Include="assets\bundles\auth\kickout.min.js">
+      <DependentUpon>kickout.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\default-index.css" />
     <Content Include="assets\bundles\default-index.js" />
     <Content Include="assets\bundles\default-index.min.css">
@@ -905,6 +909,7 @@
     <Content Include="Views\SecurityCode\ResetSecurityCode.cshtml" />
     <Content Include="Views\SecurityCode\ChangeSecurityCode.cshtml" />
     <Content Include="Views\SecurityCode\VerifySecurityCode.cshtml" />
+    <Content Include="Views\Auth\Kickout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />
@@ -918,6 +923,7 @@
     <Content Include="typings\globals\storejs\typings.json" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="assets\scripts\auth\kickout.ts" />
     <TypeScriptCompile Include="assets\scripts\default\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />
     <TypeScriptCompile Include="assets\scripts\home\index-manager.ts" />

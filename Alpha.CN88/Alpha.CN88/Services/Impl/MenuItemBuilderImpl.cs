@@ -3,14 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Web;
-    using Auth.Services;
-    using Auth.Services.Impl;
     using Fanex.Common.Helper;
+    using global::CN88.Web.Services;
     using Models.Menus;
 
     public class MenuItemBuilderImpl : MenuItemBuilder
     {
-        private readonly IAuthorizationService authorizationService;
+        private readonly AuthorizationService authorizationService;
         private readonly IDictionary<string, Func<MenuStatus>> menuItemTypeConfiguration;
         private readonly IDictionary<string, Func<string>> menuItemDisplayName;
 
@@ -19,11 +18,11 @@
         }
 
         internal MenuItemBuilderImpl(
-            IAuthorizationService authorizationService,
+            AuthorizationService authorizationService,
             IDictionary<string, Func<MenuStatus>> menuItemTypeConfiguration,
             IDictionary<string, Func<string>> menuItemDisplayName)
         {
-            this.authorizationService = authorizationService ?? new AuthorizationService();
+            this.authorizationService = authorizationService ?? new AuthorizationServiceImpl();
             this.menuItemTypeConfiguration = menuItemTypeConfiguration ?? FunctionRegistry.MenuItemTypeStatusRules;
             this.menuItemDisplayName = menuItemDisplayName ?? FunctionRegistry.MenuItemDisplayNameRules;
         }

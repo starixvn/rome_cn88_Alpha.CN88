@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+@model string
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Kickout</title>
+</head>
+<body>
+    @Html.Hidden("message", Model)
+    @Html.Hidden("mainRootPath", Alpha.CN88.Site.Helpers.UrlHelper.MapMainPath("~"))
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.RenderScripts("~/assets/bundles/auth/kickout")
+</body>
+</html>

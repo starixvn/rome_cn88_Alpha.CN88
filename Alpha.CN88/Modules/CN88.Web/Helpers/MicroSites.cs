@@ -2,7 +2,7 @@
 {
     using Configurations;
 
-    public static class MicroSites
+    internal static class MicroSites
     {
         public static string MainUrl(string virtualPath = "~/")
             => AppPathHelper.GetAppPath(AppSettings.MainAppPath, virtualPath);

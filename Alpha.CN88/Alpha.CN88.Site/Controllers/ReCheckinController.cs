@@ -43,7 +43,7 @@
                 return SecurityResult.CreateErrorResult(AuthResource.AccessDeny, 1);
             }
 
-            if (authenticationService.IsKickedOut(user.Id, onlineUserId))
+            if (authenticationService.IsKickedOut(onlineUserId))
             {
                 return SecurityResult.CreateErrorResult(AuthResource.SessionKickedOut, 3);
             }
