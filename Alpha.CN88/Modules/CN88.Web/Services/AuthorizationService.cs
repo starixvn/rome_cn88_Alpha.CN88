@@ -33,24 +33,19 @@
 
         public bool IsBelonging(BelongingContext belongingContext)
         {
-            foreach (var groupPageAccess in belongingContext.GroupPageAccessList)
+            var pageAccess = GetMatchCurrentUrl(belongingContext);
+
+            if (pageAccess != null && pageAccess.IsCheckBelonging)
             {
-                if (groupPageAccess.RoleId <= belongingContext.ActorRoleId)
+                var custId = requestContext.GetCustId(
+                    belongingContext.HttpRequest,
+                    belongingContext.CustIdQueryStringParamNames,
+                    belongingContext.CustIdJsonParamNames);
+                var transId = requestContext.GetTransId(belongingContext.HttpRequest);
+
+                if (custId > 0 || transId > 0)
                 {
-                    var pageAccess = groupPageAccess.PageAccesses
-                        .Cast<PageAccessElement>()
-                        .FirstOrDefault(item => item.IsCheckBelonging && belongingContext.IsCurrentUrlContains(item.Url));
-
-                    if (pageAccess != null)
-                    {
-                        var custId = requestContext.GetCustId(
-                            belongingContext.HttpRequest,
-                            belongingContext.CustIdQueryStringParamNames,
-                            belongingContext.CustIdJsonParamNames);
-                        var transId = requestContext.GetTransId(belongingContext.HttpRequest);
-
-                        return IsBelongingOnPage(custId, transId, pageAccess, belongingContext);
-                    }
+                    return IsBelongingOnPage(custId, transId, pageAccess, belongingContext);
                 }
             }
 
@@ -88,39 +83,49 @@
                 ? true
                 : CheckSubAccHasPermissionToViewUrl(belongingContext);
 
-            return HasPermissionToViewUrl(belongingContext) && subAccHasPermissionToViewUrl;
+            if (subAccHasPermissionToViewUrl)
+            {
+                var deniedpages = DeniedPageHelper.GetDeniedPages(belongingContext.ActorRoleId);
+
+                return !deniedpages.Any(item => belongingContext.IsCurrentUrlContains(item.Url));
+            }
+
+            return false;
         }
 
-        private bool CheckSubAccHasPermissionToViewUrl(BelongingContext belongingContext)
+        private static PageAccessElement GetMatchCurrentUrl(BelongingContext belongingContext)
         {
             foreach (var groupPageAccess in belongingContext.GroupPageAccessList)
             {
                 if (groupPageAccess.RoleId <= belongingContext.ActorRoleId)
                 {
-                    var pageAccess = groupPageAccess.PageAccesses
-                        .Cast<PageAccessElement>()
-                        .FirstOrDefault(item => belongingContext.IsCurrentUrlContains(item.Url));
-
-                    if (pageAccess != null)
+                    foreach (PageAccessElement pageAccess in groupPageAccess.PageAccesses)
                     {
-                        return IsAuthorizedOnPage(belongingContext.SubPageAccess, pageAccess);
+                        if (belongingContext.IsCurrentUrlContains(pageAccess.Url))
+                        {
+                            return pageAccess;
+                        }
                     }
                 }
             }
 
-            return true;
+            return null;
         }
 
-        private static bool IsAuthorizedOnPage(string permissions, PageAccessElement pageElement)
-            => pageElement.Permission
-            .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-            .Any(item => permissions.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
-
-        private bool HasPermissionToViewUrl(BelongingContext belongingContext)
+        private static bool CheckSubAccHasPermissionToViewUrl(BelongingContext belongingContext)
         {
-            var deniedpages = DeniedPageHelper.GetDeniedPages(belongingContext.ActorRoleId);
+            var pageAccess = GetMatchCurrentUrl(belongingContext);
 
-            return !deniedpages.Any(i => belongingContext.IsCurrentUrlContains(i.Url));
+            if (pageAccess != null)
+            {
+                string permissions = belongingContext.SubPageAccess;
+
+                return pageAccess.Permission
+                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Any(item => permissions.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+            return true;
         }
 
         public bool IsCustomerActive(BelongingContext belongingContext)

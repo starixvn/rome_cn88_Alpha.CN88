@@ -35,15 +35,6 @@
             string[] custIdQueryStringParamNames,
             string[] custIdJsonParamNames)
         {
-            var custId = GetCustomerIdValueFromHttpRequest(httpRequest, custIdQueryStringParamNames);
-
-            return custId > 0
-                ? custId
-                : GetCustomerIdValueFromJSON(httpRequest, custIdJsonParamNames);
-        }
-
-        private static int GetCustomerIdValueFromHttpRequest(HttpRequestBase httpRequest, string[] custIdQueryStringParamNames)
-        {
             var custId = 0;
 
             foreach (var item in custIdQueryStringParamNames)
@@ -54,7 +45,7 @@
                 }
             }
 
-            return custId;
+            return GetCustomerIdValueFromJSON(httpRequest, custIdJsonParamNames);
         }
 
         private static int GetCustomerIdValueFromJSON(HttpRequestBase httpRequest, string[] custIdJsonParamNames)

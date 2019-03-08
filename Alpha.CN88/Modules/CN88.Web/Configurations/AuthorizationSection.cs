@@ -32,7 +32,7 @@
 
         [ConfigurationProperty(
             "custIdQueryStringParamNameMapping",
-            DefaultValue = "custid,CustId,custId,targetCustId,id,cid,recommend,mrecommend,idagent,masterId,agentId,idAgent,idMaster,ibccustid,ACustID")]
+            DefaultValue = "custid,customerid")]
         public string CustIdQueryStringParamNameMapping
             => (string)this["custIdQueryStringParamNameMapping"];
 
