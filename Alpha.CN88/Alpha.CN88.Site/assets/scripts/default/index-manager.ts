@@ -32,7 +32,7 @@
         indexManager.cacheElements();
         indexManager.bindEvents();
 
-        indexManager.restoreLastMenu();
+        indexManager.restoreUrl();
         if (indexManager.elements.clearClientData) {
             siteInfrastructure.localStorage.clear();
         }
@@ -90,7 +90,6 @@
             indexManager.elements.subMenu.addClass("display-none");
 
             indexManager.elements.menuBar.removeClass("has-submenu");
-            indexManager.addHistory({ mainMenu: null, subMenu: null });
             indexManager.elements.mainFrame.attr("src", indexManager.urls.contactUs);
         });
         $("#menu-back").on("click touchend", () => {
@@ -101,7 +100,7 @@
 
             history.pop();
             siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
-            indexManager.restoreLastMenu();
+            indexManager.restoreUrl();
         });
 
         $("#lnk-my-setting").on("click touchend", () => {
@@ -132,6 +131,20 @@
 
         $("#sub-menu-OLDREPORT").on("click touched", () => {
             indexManager.viewOldReport();
+        });
+
+        $("#main").on("load", () => {
+            var currentUrl = top.main.location.href;
+            var activeMainMenu = $("#main-menu-items .menu-item.active");
+            var activeMainMenuId = activeMainMenu.length ? activeMainMenu.attr("id") : null;
+
+            var activeSubmenu = activeMainMenuId != null ?
+                $(".sub-menu[data-main-menu='" + activeMainMenuId + "'] .sub-menu-item.active > a") : null;
+            indexManager.addHistory({
+                mainMenu: activeMainMenuId,
+                subMenu: activeSubmenu.length ? activeSubmenu.attr("id") : null,
+                url: currentUrl
+            });
         });
 
         setTimeout(indexManager.reCheckin, 30000);
@@ -191,8 +204,6 @@
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
-        } else {
-            indexManager.addHistory({ mainMenu: indexManager.currentState.mainMenuId, subMenu: null });
         }
     },
     subMenuClick: (id) => {
@@ -200,8 +211,6 @@
         var $this = $("#" + id);
 
         $this.parent().addClass("active");
-
-        indexManager.addHistory({ mainMenu: indexManager.currentState.mainMenuId, subMenu: id });
     },
     addHistory: (newEvent) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
@@ -212,38 +221,40 @@
         history.push(newEvent);
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
     },
-    restoreLastMenu: () => {
+    restoreUrl: () => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
         if (!history || history.length == 0) {
             indexManager.elements.mainMenu.find("a")[1].click();
             return;
         }
 
-        var currentMenu = history.pop();
+        var currentPage = history.pop();
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, history);
 
-        if (currentMenu.mainMenu == null) {
-            indexManager.elements.mainMenu.removeClass("active");
-            indexManager.elements.subMenu.addClass("display-none");
+        if (currentPage.mainMenu == null) {
+            indexManager.elements.mainMenu.find("a")[1].click();
             return;
         }
 
         indexManager.elements.mainMenu.removeClass("active");
-        $("#" + currentMenu.mainMenu).addClass("active");
+        $("#" + currentPage.mainMenu).addClass("active");
 
         indexManager.elements.subMenu.addClass("display-none");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
-        indexManager.currentState.mainMenuId = currentMenu.mainMenu;
-        var subMenu = $(".sub-menu[data-main-menu='" + currentMenu.mainMenu + "']");
+        indexManager.elements.subMenuItems.removeClass("active");
+
+        var subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
-
             indexManager.elements.menuBar.addClass("has-submenu");
-            subMenu.find("#" + currentMenu.subMenu)[0].click();
-        } else {
-            $("#" + currentMenu.mainMenu + "> a")[0].click();
         }
+
+        if (currentPage.subMenu != null) {
+            $("#" + currentPage.subMenu).parent().addClass("active");
+        }
+
+        $("#main").attr("src", currentPage.url);
     },
     reCheckin: function () {
         $.ajax({
@@ -289,7 +300,6 @@
 
         indexManager.currentState.mainMenuId = id;
         $("#" + id).addClass("active");
-        indexManager.addHistory({ mainMenu: id, subMenu: null });
     }
 };
 

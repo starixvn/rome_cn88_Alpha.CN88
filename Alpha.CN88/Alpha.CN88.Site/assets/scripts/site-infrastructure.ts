@@ -10,6 +10,7 @@ interface Window {
     cn88CancelCallback(): void;
     showCN88CancelButton: boolean;
     $: JQueryStatic;
+    main: any;
 }
 
 top.showCN88CancelButton = true;
@@ -138,11 +139,11 @@ window.top.cn88SuccessfulUpdatingCallback = function () {
 }
 
 window.top.cn88CancelCallback = function () {
-	var $currentPage = window.top.$("body #reloadCN88CustomerListCallBackUrl");
+    var $currentPage = window.top.$("body #reloadCN88CustomerListCallBackUrl");
 
-	if ($currentPage.length == 0 || $currentPage.val() == "") {
-		return;
-	}
+    if ($currentPage.length == 0 || $currentPage.val() == "") {
+        return;
+    }
 
     window.top.$("#main").attr("src", $currentPage.val());
 }
