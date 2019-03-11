@@ -24,6 +24,8 @@
 
         public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
 
+        public static string TotalBetAppPath => GetConfigValue("TotalBetAppPath");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

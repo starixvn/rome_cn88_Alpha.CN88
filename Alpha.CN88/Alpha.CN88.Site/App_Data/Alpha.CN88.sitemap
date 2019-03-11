@@ -4,7 +4,7 @@
     <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles="4,3,2"></siteMapNode>
     <siteMapNode resourceKey="announcement" appPath="MessageAppPath" url="MessageHistory/Index?messageType=0"></siteMapNode>
     <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="4,3,2">
-      <siteMapNode resourceKey="overview" appPath="TotalBetAppPath" url="TotalBets/Overview"></siteMapNode>
+      <siteMapNode resourceKey="overview" appPath="TotalBetAppPath" url="Overview/Index"></siteMapNode>
       <siteMapNode resourceKey="inplay" appPath="TotalBetAppPath" url="TotalBets/InPlay"></siteMapNode>
       <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="TotalBets/Today"></siteMapNode>
       <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="TotalBets/Early"></siteMapNode>
