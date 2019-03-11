@@ -5,9 +5,12 @@
         <li class="header-item dropdown language">
             @Html.Action("List", "Language")
         </li>
-        <li class="header-item online-member">
-            <span>@Resources.OnlineMembers: @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
-        </li>        
+        @if( Model.IsNotHeadline  )
+        {
+            <li class="header-item online-member">
+                <span>@Resources.OnlineMembers: @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
+            </li> 
+        }       
         <li class="header-item dropdown header-custname">
             <a href="javascript:;" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
                 @Model.CustName

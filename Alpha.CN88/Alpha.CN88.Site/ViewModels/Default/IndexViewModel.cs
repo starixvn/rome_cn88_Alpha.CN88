@@ -32,6 +32,7 @@
             OnlineMember = onlineMember;
             this.getDefaultUrl = getDefaultUrl ?? FunctionRegistry.GetDefaultUrl;
             this.encodeDataFunction = encodeDataFunction;
+            IsNotHeadline = message.ActorLevel.IsNotHeadlineLevel();
         }
 
         public double InitialScaleViewPort
@@ -64,6 +65,8 @@
         public int SubAccId { get; }
 
         public int OnlineUserId { get; }
+
+        public bool IsNotHeadline { get; }
 
         public string MainRootPath => UrlHelper.MapMainPath("~/");
 

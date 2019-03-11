@@ -48,6 +48,8 @@
 
         public bool IsHeadlineLevel() => this == Headline;
 
+        public bool IsNotHeadlineLevel() => !IsHeadlineLevel();
+
         public bool IsDirectUplineOf(byte downlineLevelValue)
             => GapBetweenTwoLevels(Value, downlineLevelValue) == 1;
 

@@ -3,16 +3,16 @@
   <siteMapNode title="Alpha CN88 Site">
     <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles="Agent,Master,Super"></siteMapNode>
     <siteMapNode resourceKey="announcement" appPath="MessageAppPath" url="MessageHistory/Index?messageType=0"></siteMapNode>
-    <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="None">
-      <siteMapNode resourceKey="overview" appPath="CN88AppPath" url="TotalBets/Overview"></siteMapNode>
-      <siteMapNode resourceKey="inplay" appPath="CN88AppPath" url="TotalBets/InPlay"></siteMapNode>
-      <siteMapNode resourceKey="today" appPath="CN88AppPath" url="TotalBets/Today"></siteMapNode>
-      <siteMapNode resourceKey="early" appPath="CN88AppPath" url="TotalBets/Early"></siteMapNode>
-      <siteMapNode resourceKey="started" appPath="CN88AppPath" url="TotalBets/Started"></siteMapNode>
-      <siteMapNode resourceKey="parlay" appPath="CN88AppPath" url="TotalBets/Parlay"></siteMapNode>
-      <siteMapNode resourceKey="outright" appPath="CN88AppPath" url="TotalBets/Outright"></siteMapNode>
-      <siteMapNode resourceKey="results" appPath="CN88AppPath" url="TotalBets/Results"></siteMapNode>
-      <siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>
+    <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="Agent,Master,Super">
+      <siteMapNode resourceKey="overview" appPath="TotalBetAppPath" url="TotalBets/Overview"></siteMapNode>
+      <siteMapNode resourceKey="inplay" appPath="TotalBetAppPath" url="TotalBets/InPlay"></siteMapNode>
+      <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="TotalBets/Today"></siteMapNode>
+      <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="TotalBets/Early"></siteMapNode>
+      <siteMapNode resourceKey="started" appPath="TotalBetAppPath" url="TotalBets/Started"></siteMapNode>
+      <siteMapNode resourceKey="parlay" appPath="TotalBetAppPath" url="TotalBets/Parlay"></siteMapNode>
+      <siteMapNode resourceKey="outright" appPath="TotalBetAppPath" url="TotalBets/Outright"></siteMapNode>
+      <siteMapNode resourceKey="results" appPath="ResultSiteVirtualPath" url="TotalBets/Results"></siteMapNode>
+      <!--<siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>-->
     </siteMapNode>
     <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="Agent,Master,Super">
       <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles=""></siteMapNode>
@@ -24,7 +24,6 @@
       <siteMapNode resourceKey="wagerReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=1"></siteMapNode>
       <siteMapNode resourceKey="legacyReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=2"></siteMapNode>
       <siteMapNode resourceKey="oldReport" appPath="FeaturesAppPath" url="javascript:void(0);"></siteMapNode>
-      <siteMapNode resourceKey="exchangeRate" appPath="FeaturesAppPath" url="Reports/ExchangeRate"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="help" roles="None">
       <siteMapNode resourceKey="newUrl" appPath="CN88AppPath" url="Help/NewUrl"></siteMapNode>
