@@ -23,7 +23,7 @@
     <Setting Key="UpdateSubAccountPassword" SpName="Age_CustSubPwdUpd2" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Security Code">
-    <Setting Key="Age_UpdateMainAccountSecurityCode" SpName="Age_CustomerUpdSecurityCode" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_UpdateMainAccountSecurityCode" SpName="Age_CustomerUpdSecurityCode_UAT3" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_UpdateSubAccountSecurityCode" SpName="Age_CustomerUpdSecurityCode_Sub" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_ResetSubAccountSecurityCode" SpName="Age_CustomerUpdSecurityCode_Sub2" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_UpdateMainAccountSecurityCodeCounter" SpName="Age_CustomerUpdSecurityCodeStatus" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />

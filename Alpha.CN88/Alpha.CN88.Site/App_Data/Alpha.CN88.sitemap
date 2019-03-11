@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" enableLocalization="true">
   <siteMapNode title="Alpha CN88 Site">
-    <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles="Agent,Master,Super"></siteMapNode>
+    <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles="4,3,2"></siteMapNode>
     <siteMapNode resourceKey="announcement" appPath="MessageAppPath" url="MessageHistory/Index?messageType=0"></siteMapNode>
-    <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="Agent,Master,Super">
+    <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="4,3,2">
       <siteMapNode resourceKey="overview" appPath="TotalBetAppPath" url="TotalBets/Overview"></siteMapNode>
       <siteMapNode resourceKey="inplay" appPath="TotalBetAppPath" url="TotalBets/InPlay"></siteMapNode>
       <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="TotalBets/Today"></siteMapNode>
@@ -14,7 +14,7 @@
       <siteMapNode resourceKey="results" appPath="ResultSiteVirtualPath" url="TotalBets/Results"></siteMapNode>
       <!--<siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>-->
     </siteMapNode>
-    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="Agent,Master,Super">
+    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="4,3,2">
       <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles=""></siteMapNode>
       <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount/Index" roles="None"></siteMapNode>
       <siteMapNode resourceKey="problemAccount" appPath="FeaturesAppPath" url="AccountManagement/ProblemAccount" roles="None"></siteMapNode>
