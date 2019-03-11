@@ -5,7 +5,7 @@
 
     internal class ReCheckinCommand : NonQueryCommand
     {
-        public ReCheckinCommand(int onlineUserId)
+        internal ReCheckinCommand(int onlineUserId)
         {
             OnlineUserId = onlineUserId;
         }

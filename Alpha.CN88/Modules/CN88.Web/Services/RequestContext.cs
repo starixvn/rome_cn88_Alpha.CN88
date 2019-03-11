@@ -14,7 +14,7 @@
             string[] custIdJsonParamNames);
     }
 
-    public class RequestContextImpl : RequestContext
+    internal class RequestContextImpl : RequestContext
     {
         public long GetTransId(HttpRequestBase httpRequest)
         {

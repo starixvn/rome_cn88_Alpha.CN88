@@ -911,6 +911,7 @@
     <Content Include="Views\SecurityCode\ChangeSecurityCode.cshtml" />
     <Content Include="Views\SecurityCode\VerifySecurityCode.cshtml" />
     <Content Include="Views\Auth\Kickout.cshtml" />
+    <Content Include="Views\Password\ResetSubAccountPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />

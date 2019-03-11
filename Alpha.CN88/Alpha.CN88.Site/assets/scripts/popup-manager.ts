@@ -284,10 +284,11 @@ class PopupManager {
 
         this.openPopUpAfterSetIframeSrc(activePopup, isAutoHeight, options);
     };
-    bootboxDialog = (title: string, htmlContent: Function) => {
-        let dialog = bootbox.dialog({
+    bootboxDialog = (title: string, htmlContent: string, submitCallback: Function) => {
+        let dialog: any = bootbox.dialog({
             title: title,
-            message: "<p>Loading...</p>",
+            message: htmlContent,
+            animate: false,
             buttons: {
                 cancel: {
                     label: "Cancel",
@@ -297,15 +298,19 @@ class PopupManager {
                     label: "Submit",
                     className: "btn-submit",
                     callback: function () {
+                        submitCallback();
                         return false;
                     }
                 }
             }
         });
 
-        dialog.init(function () {
-            dialog.find(".bootbox-body").html(htmlContent);
-        });
+        /*dialog.init(function (): void {
+            dialog.find(".modal-dialog").tinyDraggable({
+                handle: ".modal-header",
+                exclude: ".bootbox-close-button"
+            });
+        });*/
     };
     openConfirm = (title: string, message: string) => {
         bootbox.confirm("Are you sure?", function (result) {

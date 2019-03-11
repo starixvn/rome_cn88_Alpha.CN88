@@ -42,12 +42,10 @@
             return View(new ChangePasswordQuery(message.GetViewer()) { Result = result });
         }
 
-        //[CheckBelongingFilter]
         public ActionResult ResetDownlinePassword(ResetPasswordQuery message)
             => View(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        //[CheckBelongingFilter]
         public ActionResult ResetDownlinePassword(ResetDownlinePasswordCommand message)
         {
             var result = message.IsValid()
@@ -60,12 +58,10 @@
             });
         }
 
-        //[CheckBelongingFilter]
         public ActionResult ResetSubAccountPassword(ResetPasswordQuery message)
             => View(message);
 
         [HttpPost, ValidateAntiForgeryToken]
-        //[CheckBelongingFilter]
         public ActionResult ResetSubAccountPassword(ResetSubAccountPasswordCommand message)
         {
             var result = message.IsValid()

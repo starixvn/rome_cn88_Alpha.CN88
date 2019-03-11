@@ -18,9 +18,9 @@
             set { appSettingValues = value; }
         }
 
-        public static string MainAppPath => GetConfigValue("MainAppPath");
+        internal static string MainAppPath => GetConfigValue("MainAppPath");
 
-        public static bool DisabledCheckDuplicationLogin
+        internal static bool DisabledCheckDuplicationLogin
             => GetBoolConfigValue("DisabledCheckDuplicationLogin");
 
         private static bool GetBoolConfigValue(string configName)

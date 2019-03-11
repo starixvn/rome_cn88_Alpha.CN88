@@ -4,7 +4,7 @@
 
     internal class CheckCustomerActiveCommand : NonQueryCommand
     {
-        public CheckCustomerActiveCommand(int custId, int subAccId)
+        internal CheckCustomerActiveCommand(int custId, int subAccId)
         {
             CustId = custId;
             SubAccId = subAccId;

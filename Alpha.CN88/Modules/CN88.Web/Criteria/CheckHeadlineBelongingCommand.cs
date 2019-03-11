@@ -4,7 +4,7 @@
 
     internal class CheckHeadlineBelongingCommand : NonQueryCommand
     {
-        public CheckHeadlineBelongingCommand(
+        internal CheckHeadlineBelongingCommand(
             int sessionCustId,
             int custId)
         {

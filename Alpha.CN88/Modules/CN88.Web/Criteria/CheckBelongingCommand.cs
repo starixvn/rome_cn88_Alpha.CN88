@@ -4,14 +4,14 @@
 
     internal class CheckBelongingCommand : NonQueryCommand
     {
-        public CheckBelongingCommand(
+        internal CheckBelongingCommand(
             int sessionCustId,
             int subAccountId,
             long transId) : this(sessionCustId, null, subAccountId, transId)
         {
         }
 
-        public CheckBelongingCommand(
+        internal CheckBelongingCommand(
             int sessionCustId,
             int? custId,
             int subAccountId,
