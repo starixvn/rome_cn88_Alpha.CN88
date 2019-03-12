@@ -10,7 +10,7 @@
       <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="TotalBets/Early"></siteMapNode>
       <siteMapNode resourceKey="started" appPath="TotalBetAppPath" url="TotalBets/Started"></siteMapNode>
       <siteMapNode resourceKey="parlay" appPath="TotalBetAppPath" url="TotalBets/Parlay"></siteMapNode>
-      <siteMapNode resourceKey="outright" appPath="TotalBetAppPath" url="TotalBets/Outright"></siteMapNode>
+      <siteMapNode resourceKey="outright" appPath="TotalBetAppPath" url="Outright/Index"></siteMapNode>
       <siteMapNode resourceKey="results" appPath="ResultSiteVirtualPath" url="TotalBets/Results"></siteMapNode>
       <!--<siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>-->
     </siteMapNode>
