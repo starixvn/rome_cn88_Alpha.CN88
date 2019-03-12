@@ -23,6 +23,9 @@
         internal static bool DisabledCheckDuplicationLogin
             => GetBoolConfigValue("DisabledCheckDuplicationLogin");
 
+        internal static bool IsIntegrationTest
+            => GetBoolConfigValue("IsIntegrationTest");
+
         private static bool GetBoolConfigValue(string configName)
             => GetConfigValue(configName) == "1";
 

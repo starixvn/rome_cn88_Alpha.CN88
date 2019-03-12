@@ -34,13 +34,13 @@
                 {
                     if (!authorizationService.IsBelonging(belongingContext))
                     {
-                        KickoutUser(filterContext, WebResource.AccessDeny);
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.AccessDeny);
                         return;
                     }
 
-                    if (!authorizationService.IsAuthorized(belongingContext))
+                    else if (!authorizationService.IsAuthorized(belongingContext))
                     {
-                        KickoutUser(filterContext, WebResource.AccessDeny);
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.AccessDeny);
                         return;
                     }
                 }
@@ -49,14 +49,14 @@
                 {
                     if (!authorizationService.IsCustomerActive(belongingContext))
                     {
-                        KickoutUser(filterContext, WebResource.CustomerClosed);
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.CustomerClosed);
                         return;
                     }
 
                     if (!AppSettings.DisabledCheckDuplicationLogin
                         && authorizationService.IsKickedOut(belongingContext))
                     {
-                        KickoutUser(filterContext, WebResource.SessionKickedOut);
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.SessionKickedOut);
                     }
                 }
             }
@@ -67,34 +67,6 @@
             var actionDescriptor = filterContext.ActionDescriptor;
 
             return $"{actionDescriptor.ControllerDescriptor.ControllerName}/{actionDescriptor.ActionName}";
-        }
-
-        private static void KickoutUser(AuthorizationContext filterContext, string message)
-        {
-            var httpContext = filterContext.HttpContext;
-
-            var kickoutPageAbsoluteUrl = VirtualPathUtility.ToAbsolute(AuthorizationSection.Instance.KickoutUrl);
-            var currentPageAbsoluteUrl = httpContext.Request.Url.AbsolutePath;
-
-            if (kickoutPageAbsoluteUrl.Equals(currentPageAbsoluteUrl, StringComparison.OrdinalIgnoreCase))
-            {
-                return;
-            }
-
-            if (httpContext.Request.IsAjaxRequest())
-            {
-                var response = httpContext.Response;
-                response.Clear();
-                response.Write("{ \"message\": \"" + message + "\" }");
-                filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-                filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
-                response.TrySkipIisCustomErrors = true;
-                response.End();
-            }
-            else
-            {
-                filterContext.Result = new RedirectResult(MicroSites.MainUrl($"{AuthorizationSection.Instance.KickoutUrl}?reason={message}"));
-            }
         }
     }
 }
