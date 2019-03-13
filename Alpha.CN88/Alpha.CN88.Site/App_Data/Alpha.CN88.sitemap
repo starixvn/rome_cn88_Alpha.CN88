@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>  
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" enableLocalization="true">
   <siteMapNode title="Alpha CN88 Site">
     <siteMapNode resourceKey="home" appPath="CN88AppPath" url="Home/Index" roles="4,3,2"></siteMapNode>
@@ -9,7 +9,7 @@
       <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="TotalBets/Today"></siteMapNode>
       <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="TotalBets/Early"></siteMapNode>
       <siteMapNode resourceKey="started" appPath="TotalBetAppPath" url="TotalBets/Started"></siteMapNode>
-      <siteMapNode resourceKey="parlay" appPath="TotalBetAppPath" url="BetLists/TotalBetParlay"></siteMapNode>
+      <siteMapNode resourceKey="parlay" appPath="FeaturesAppPath" url="BetLists/TotalBetParlay"></siteMapNode>
       <siteMapNode resourceKey="outright" appPath="TotalBetAppPath" url="Outright/Index"></siteMapNode>
       <siteMapNode resourceKey="results" appPath="ResultSiteVirtualPath" url="~/Normal"></siteMapNode>
       <!--<siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>-->
