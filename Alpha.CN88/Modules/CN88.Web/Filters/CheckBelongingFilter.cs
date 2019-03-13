@@ -38,7 +38,7 @@
                         return;
                     }
 
-                    else if (!authorizationService.IsAuthorized(belongingContext))
+                    if (!authorizationService.IsAuthorized(belongingContext))
                     {
                         UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.AccessDeny);
                         return;
