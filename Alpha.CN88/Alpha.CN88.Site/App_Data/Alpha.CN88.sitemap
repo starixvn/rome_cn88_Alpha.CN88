@@ -5,10 +5,10 @@
     <siteMapNode resourceKey="announcement" appPath="MessageAppPath" url="MessageHistory/Index?messageType=0"></siteMapNode>
     <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="4,3,2">
       <siteMapNode resourceKey="overview" appPath="TotalBetAppPath" url="Overview/Index"></siteMapNode>
-      <siteMapNode resourceKey="inplay" appPath="TotalBetAppPath" url="InPlay/Index"></siteMapNode>
-      <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="TotalBets/Today"></siteMapNode>
-      <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="TotalBets/Early"></siteMapNode>
-      <siteMapNode resourceKey="started" appPath="TotalBetAppPath" url="TotalBets/Started"></siteMapNode>
+      <siteMapNode resourceKey="inplay" appPath="TotalBetAppPath" url="Event/InPlay"></siteMapNode>
+      <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="Event/Today"></siteMapNode>
+      <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="Event/Early"></siteMapNode>
+      <siteMapNode resourceKey="started" appPath="TotalBetAppPath" url="Event/Started"></siteMapNode>
       <siteMapNode resourceKey="parlay" appPath="FeaturesAppPath" url="BetLists/TotalBetParlay"></siteMapNode>
       <siteMapNode resourceKey="outright" appPath="TotalBetAppPath" url="Outright/Index"></siteMapNode>
       <siteMapNode resourceKey="results" appPath="ResultSiteVirtualPath" url="~/Normal"></siteMapNode>
