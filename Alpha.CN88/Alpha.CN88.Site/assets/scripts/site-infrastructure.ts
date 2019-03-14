@@ -61,6 +61,15 @@ class SiteInfrastructure {
         },
         remove: (key: string) => {
             store.enabled ? store.remove(key) : $.cookie(key, undefined, this.localStorage.getCookieExpireOptions());
+        },
+
+        shiftStorage: (prefixKey: string, value: any, maxIndex: number) => {
+            for (var i = 1; i < maxIndex - 1; i++) {
+                var oldValue = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName + "_" + (i + 1));
+                siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName + "_" + i, oldValue);
+            }
+
+            siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName + "_" + (maxIndex - 1), value);
         }
     };
 

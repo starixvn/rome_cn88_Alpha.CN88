@@ -223,6 +223,10 @@
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
         var historyIndex = history ? parseInt(history, 0) : 0;
         historyIndex++;
+        if (historyIndex == 21) {
+            siteInfrastructure.localStorage.shiftStorage(indexManager.elements.currentURLCookieName, newEvent, historyIndex);
+            return;
+        }
 
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, historyIndex);
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName + "_" + historyIndex, newEvent);
