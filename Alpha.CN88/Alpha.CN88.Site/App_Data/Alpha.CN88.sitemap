@@ -5,9 +5,9 @@
     <siteMapNode resourceKey="announcement" appPath="MessageAppPath" url="MessageHistory/Index?messageType=0"></siteMapNode>
     <siteMapNode resourceKey="totalBets" menuItemType="TotalBetsMenuItem" functionType="[D]" roles="4,3,2">
       <siteMapNode resourceKey="overview" appPath="TotalBetAppPath" url="Overview/Index"></siteMapNode>
-      <siteMapNode resourceKey="inplay" appPath="TotalBetAppPath" url="Event/InPlay"></siteMapNode>
-      <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="Event/Today"></siteMapNode>
-      <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="Event/Early"></siteMapNode>
+      <siteMapNode resourceKey="inplay" appPath="TotalBetAppPath" url="Event/Index?type=1"></siteMapNode>
+      <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="Event/Index?type=2"></siteMapNode>
+      <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="Event/Index?type=3"></siteMapNode>
       <siteMapNode resourceKey="started" appPath="TotalBetAppPath" url="Event/Started"></siteMapNode>
       <siteMapNode resourceKey="parlay" appPath="FeaturesAppPath" url="BetLists/TotalBetParlay"></siteMapNode>
       <siteMapNode resourceKey="outright" appPath="TotalBetAppPath" url="Outright/Index"></siteMapNode>
