@@ -18,7 +18,7 @@
             this.user = user;
         }
 
-        public async Task<ActionResult> Index(string query)
-            => Content(JsonConvert.SerializeObject(await mediator.SendAsync(new SuggestionCommand(user, query))));
+        public async Task<ActionResult> Index(string query, bool isDir = false, bool isMember = false)
+            => Content(JsonConvert.SerializeObject(await mediator.SendAsync(new SuggestionCommand(user, query, isDir, isMember))));
     }
 }

@@ -8,23 +8,25 @@
     {
         private readonly IUser user;
 
-        public SuggestionCommand(IUser user, string query)
+        public SuggestionCommand(IUser user, string query, bool isDir = false, bool isMember = false)
         {
             this.user = user;
             Query = query;
+            DirectDownline = isDir;
+            ExcludeMember = !isMember;
         }
 
         public int CustId => user.Id;
 
         public bool IsInternal => user.IsInternal;
 
-        public bool IsSubAcc => user.IsSubAcc;
+        public bool IsSubAcc => false;
 
         public string Query { get; set; }
 
-        public bool ExcludeMember => false;
+        public bool ExcludeMember { get; }
 
-        public bool DirectDownline => false;
+        public bool DirectDownline { get; }
 
         public bool IsAccInfo => false;
     }
