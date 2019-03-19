@@ -284,45 +284,35 @@ class PopupManager {
 
         this.openPopUpAfterSetIframeSrc(activePopup, isAutoHeight, options);
     };
-    bootboxDialog = (title: string, htmlContent: string, submitCallback: Function) => {
-        let dialog: any = bootbox.dialog({
+    bootboxConfirm = (title: string, message: string, callback: Function) => {
+        bootbox.confirm({
             title: title,
-            message: htmlContent,
+            message: message,
             animate: false,
             buttons: {
                 cancel: {
                     label: "Cancel",
                     className: "btn-cancel"
                 },
-                submit: {
+                confirm: {
                     label: "Submit",
-                    className: "btn-submit",
-                    callback: function () {
-                        submitCallback();
-                        return false;
-                    }
+                    className: "btn-submit"
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    callback();
+                    return false;
                 }
             }
-        });
-
-        /*dialog.init(function (): void {
-            dialog.find(".modal-dialog").tinyDraggable({
-                handle: ".modal-header",
-                exclude: ".bootbox-close-button"
-            });
-        });*/
-    };
-    openConfirm = (title: string, message: string) => {
-        bootbox.confirm("Are you sure?", function (result) {
-            /* your callback code */
-        }).find(".modal-content").css({
+        })/*.find(".modal-content").css({
             "top": "100px",
             "left": function () {
                 let left = $(window).width() / 2 - $(".modal-dialog").width() / 2;
 
                 return left + "px";
             }
-        });
+        })*/;
     };
     hasPopupOpen = (): boolean => this.activePopups.length > 0;
     revertLatestPopupTitle = (): void => {
