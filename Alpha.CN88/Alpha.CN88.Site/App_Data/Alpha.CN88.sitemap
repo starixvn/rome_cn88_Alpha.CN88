@@ -16,7 +16,7 @@
     </siteMapNode>
     <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="4,3,2">
       <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles=""></siteMapNode>
-      <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount/Index" roles="None"></siteMapNode>
+      <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount/Index" roles="4,3,2"></siteMapNode>
       <siteMapNode resourceKey="problemAccount" appPath="FeaturesAppPath" url="AccountManagement/ProblemAccount" roles="None"></siteMapNode>
       <siteMapNode resourceKey="viewLog" appPath="ViewLogAppPath" url="Setting"></siteMapNode>
     </siteMapNode>

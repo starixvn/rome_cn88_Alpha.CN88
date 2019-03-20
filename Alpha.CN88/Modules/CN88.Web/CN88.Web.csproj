@@ -124,7 +124,7 @@
     <Compile Include="Criteria\ReCheckinCommand.cs" />
     <Compile Include="Filters\AfterLoginFlowFilter.cs" />
     <Compile Include="Filters\CheckBelongingFilter.cs" />
-    <Compile Include="Filters\RestrictHeadlineAttribute.cs" />
+    <Compile Include="Filters\RestrictHeadlineFilter.cs" />
     <Compile Include="Helpers\AppPathHelper.cs" />
     <Compile Include="Helpers\MicroSites.cs" />
     <Compile Include="Helpers\UnAuthorizationHelper.cs" />

@@ -8,7 +8,7 @@
     using Sunplus.Agent.Model.Base;
 
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
-    public sealed class RestrictHeadlineAttribute: AuthorizeAttribute
+    public sealed class RestrictHeadlineFilter: AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
