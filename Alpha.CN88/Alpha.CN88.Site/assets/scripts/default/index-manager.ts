@@ -32,10 +32,11 @@
         indexManager.cacheElements();
         indexManager.bindEvents();
 
-        indexManager.restoreUrl();
         if (indexManager.elements.clearClientData) {
             siteInfrastructure.localStorage.clear();
         }
+
+        indexManager.restoreUrl();
     },
     cacheElements: function () {
         indexManager.urls.mainRootPath = top.document.getElementById('mainRootPath') != null
