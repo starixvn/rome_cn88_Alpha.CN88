@@ -258,6 +258,9 @@
   <data name="SameSecCodeError" xml:space="preserve">
     <value>您的新保安碼必須與當前的不相同。</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="SecCodeChangedSuccessfully" xml:space="preserve">
     <value>保安碼已更改。</value>
   </data>
