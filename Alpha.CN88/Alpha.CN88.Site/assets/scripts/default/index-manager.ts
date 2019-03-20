@@ -32,7 +32,7 @@
         indexManager.cacheElements();
         indexManager.bindEvents();
 
-        if (indexManager.elements.clearClientData) {
+        if (indexManager.elements.clearClientData == "1") {
             siteInfrastructure.localStorage.clear();
         }
 

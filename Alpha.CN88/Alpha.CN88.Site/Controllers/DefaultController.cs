@@ -7,7 +7,7 @@
     using Requests;
     using Requests.Default;
 
-    [SessionState(SessionStateBehavior.ReadOnly)]
+    [SessionState(SessionStateBehavior.Required)]
     public class DefaultController : SiteBaseController
     {
         private const string UnSupportedBrowsers = "UnsupportedBrowsers";
