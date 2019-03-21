@@ -36,12 +36,20 @@
             string[] custIdJsonParamNames)
         {
             var custId = 0;
+            string queryStringValue;
 
             foreach (var item in custIdQueryStringParamNames)
             {
-                if (int.TryParse(httpRequest[item], out custId))
+                queryStringValue = httpRequest[item];
+
+                if (!string.IsNullOrWhiteSpace(queryStringValue))
                 {
-                    return custId;
+                    custId = int.Parse(queryStringValue);
+
+                    if (custId > 0)
+                    {
+                        return custId;
+                    }
                 }
             }
 
@@ -67,18 +75,14 @@
 
         private static int GetCustomerId(HttpRequestBase httpRequest, string parameterName)
         {
-            var custId = 0;
             var jsonString = GetJsonDataInRequestBody(httpRequest.InputStream);
 
             var pattern = string.Format("(\"{0}\":)(?<paramValue>[^,}}]+)", parameterName);
             var regexMatch = Regex.Match(jsonString, pattern, RegexOptions.IgnoreCase);
 
-            if (regexMatch.Success)
-            {
-                int.TryParse(regexMatch.Groups["paramValue"].ToString().Replace("\"", string.Empty), out custId);
-            }
-
-            return custId;
+            return regexMatch.Success
+                ? int.Parse(regexMatch.Groups["paramValue"].ToString().Replace("\"", string.Empty))
+                : 0;
         }
 
         private static string GetJsonDataInRequestBody(Stream requestStream)
