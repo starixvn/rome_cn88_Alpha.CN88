@@ -68,23 +68,5 @@ namespace CN88.Web.AppResources {
                 return ResourceManager.GetString("AccessDeny", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your account was closed so you&apos;re forced to logout. Please contact your upline for the assistance..
-        /// </summary>
-        internal static string CustomerClosed {
-            get {
-                return ResourceManager.GetString("CustomerClosed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have been logged out because your account has logged into another session. Don&apos;t recognize this activity? Please contact your upline for assistance..
-        /// </summary>
-        internal static string SessionKickedOut {
-            get {
-                return ResourceManager.GetString("SessionKickedOut", resourceCulture);
-            }
-        }
     }
 }

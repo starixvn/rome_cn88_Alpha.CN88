@@ -2,7 +2,6 @@
 {
     using System;
     using System.Web.Mvc;
-    using AppResources;
     using Configurations;
     using Helpers;
     using Models;
@@ -32,13 +31,13 @@
                 {
                     if (!authorizationService.IsBelonging(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, nameof(WebResource.AccessDeny));
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "AccessDeny");
                         return;
                     }
 
                     if (!authorizationService.IsAuthorized(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, nameof(WebResource.AccessDeny));
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "AccessDeny");
                         return;
                     }
                 }
@@ -47,14 +46,14 @@
                 {
                     if (!authorizationService.IsCustomerActive(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, nameof(WebResource.CustomerClosed));
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "CustomerClosed");
                         return;
                     }
 
                     if (!AppSettings.DisabledCheckDuplicationLogin
                         && authorizationService.IsKickedOut(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, nameof(WebResource.SessionKickedOut));
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "SessionKickedOut");
                     }
                 }
             }

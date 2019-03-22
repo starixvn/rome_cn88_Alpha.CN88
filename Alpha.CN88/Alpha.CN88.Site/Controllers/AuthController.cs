@@ -66,6 +66,11 @@
             var resourceManager = new ResourceManager(typeof(AuthResource));
             var message = resourceManager.GetString(reason);
 
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                message = AuthResource.AccessDeny;
+            }
+
             return View(message as object);
         }
 

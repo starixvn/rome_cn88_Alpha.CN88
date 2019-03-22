@@ -120,10 +120,4 @@
   <data name="AccessDeny" xml:space="preserve">
     <value>Sorry, You don't have permission to access this page.</value>
   </data>
-  <data name="CustomerClosed" xml:space="preserve">
-    <value>Your account was closed so you're forced to logout. Please contact your upline for the assistance.</value>
-  </data>
-  <data name="SessionKickedOut" xml:space="preserve">
-    <value>You have been logged out because your account has logged into another session. Don't recognize this activity? Please contact your upline for assistance.</value>
-  </data>
 </root>
