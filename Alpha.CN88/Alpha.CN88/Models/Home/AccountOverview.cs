@@ -9,7 +9,7 @@
         {
         }        
 
-        public decimal Credits { get; }
+        public decimal Credit { get; }
 
         public decimal CreditBalance { get; }
 
