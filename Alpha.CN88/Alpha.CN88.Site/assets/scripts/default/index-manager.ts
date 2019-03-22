@@ -87,7 +87,7 @@
         });
 
         $("#lnk-live-chat").on("click touchend", () => {
-            window.open(indexManager.urls.liveChat, "", "height=600,width=800");
+            window.open(indexManager.urls.liveChat, "LiveChat", "height=600,width=800");
         });
         $("#lnk-contact-us").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
@@ -191,10 +191,10 @@
         return url.substr(0, i);
     },
     viewOnlineList: () => {
-        window.open(indexManager.urls.onlineList, "", "height=600,width=800");
+        window.open(indexManager.urls.onlineList, "OnlineList", "height=600,width=800");
     },
     viewOldReport: () => {
-        window.open(indexManager.urls.oldReportsPath, "", "height=600,width=800");
+        window.open(indexManager.urls.oldReportsPath, "OldReport", "height=600,width=800");
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
