@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessDeny" xml:space="preserve">
-    <value>對不起, 您不被允許進入此網頁.</value>
+    <value>抱歉，您無權訪問此頁面。</value>
   </data>
   <data name="CustomerClosed" xml:space="preserve">
-    <value>您的帳戶被關閉，你必須退出。請聯系您上線的援助。</value>
+    <value>您的帳戶已關閉，強制登出。請聯繫您的上線取得幫助。</value>
   </data>
   <data name="SessionKickedOut" xml:space="preserve">
-    <value>另一個相同帐号已登入介面,強制被登出. 如果此登入不是由您所進行, 請聯絡您的上線.</value>
+    <value>您已登出，您的帳戶已透過其他裝置登入。若對此登入活動沒有印象，請聯繫您的上線取得協助。</value>
   </data>
 </root>

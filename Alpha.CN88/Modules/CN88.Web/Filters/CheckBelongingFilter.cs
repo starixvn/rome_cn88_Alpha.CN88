@@ -1,8 +1,6 @@
 ﻿namespace CN88.Web.Filters
 {
     using System;
-    using System.Net;
-    using System.Web;
     using System.Web.Mvc;
     using AppResources;
     using Configurations;
@@ -34,13 +32,13 @@
                 {
                     if (!authorizationService.IsBelonging(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.AccessDeny);
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, nameof(WebResource.AccessDeny));
                         return;
                     }
 
                     if (!authorizationService.IsAuthorized(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.AccessDeny);
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, nameof(WebResource.AccessDeny));
                         return;
                     }
                 }
@@ -49,14 +47,14 @@
                 {
                     if (!authorizationService.IsCustomerActive(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.CustomerClosed);
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, nameof(WebResource.CustomerClosed));
                         return;
                     }
 
                     if (!AppSettings.DisabledCheckDuplicationLogin
                         && authorizationService.IsKickedOut(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, WebResource.SessionKickedOut);
+                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, nameof(WebResource.SessionKickedOut));
                     }
                 }
             }

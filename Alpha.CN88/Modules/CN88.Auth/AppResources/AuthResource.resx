@@ -132,9 +132,6 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>Change Password</value>
   </data>
-  <data name="Check" xml:space="preserve">
-    <value>Check</value>
-  </data>
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>click here to update your browser</value>
   </data>

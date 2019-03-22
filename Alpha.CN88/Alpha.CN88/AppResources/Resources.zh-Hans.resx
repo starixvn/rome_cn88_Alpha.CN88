@@ -178,7 +178,7 @@
     <value>停用</value>
   </data>
   <data name="ChangeSecurityCode" xml:space="preserve">
-    <value>Change Security Code</value>
+    <value>更改安全码</value>
   </data>
   <data name="ipnote" xml:space="preserve">
     <value>附加信息于DNSstuff: &lt;a href="{0}" target="_blank"&gt;点击这里&lt;/a&gt;.

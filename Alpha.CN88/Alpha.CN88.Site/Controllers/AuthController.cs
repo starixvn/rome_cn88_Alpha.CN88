@@ -1,13 +1,17 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System;
+    using System.Resources;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using CN88.Helpers;
+    using CN88.Models;
     using global::CN88.Auth.AppResources;
     using MediatR;
+    using Models;
     using Requests.Authentication;
+    using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Utilities;
 
     public class AuthController : Controller
@@ -49,19 +53,18 @@
 
         public ActionResult Kickout(string reason)
         {
-            string message = AuthResource.AccessDeny;
+            IUser user = new User(new UserSessionExt());
+            var query = new LogoutQuery(user);
+            mediator.Send(query);
+            Session.RemoveAll();
 
-            if (!string.IsNullOrEmpty(reason))
+            if (!Session.IsCookieless)
             {
-                if (reason.Equals("DuplicationLogin", StringComparison.OrdinalIgnoreCase))
-                {
-                    message = AuthResource.SessionKickedOut;
-                }
-                else if (reason.Equals("AccountClosed", StringComparison.OrdinalIgnoreCase))
-                {
-                    message = AuthResource.CustomerClosed;
-                }
+                FormsAuthentication.SignOut();
             }
+
+            var resourceManager = new ResourceManager(typeof(AuthResource));
+            var message = resourceManager.GetString(reason);
 
             return View(message as object);
         }

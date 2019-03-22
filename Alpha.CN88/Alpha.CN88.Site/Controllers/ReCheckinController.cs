@@ -2,7 +2,6 @@
 {
     using System.Web.Mvc;
     using System.Web.Security;
-    using System.Web.SessionState;
     using CN88.Models;
     using global::CN88.Auth.AppResources;
     using global::CN88.Auth.Models;

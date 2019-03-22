@@ -118,102 +118,99 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessDeny" xml:space="preserve">
-    <value>對不起, 您不被允許進入此網頁.</value>
+    <value>抱歉，您無權訪問此頁面。</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>退回</value>
+    <value>回上一頁</value>
   </data>
   <data name="BrowserIsOutOfDate" xml:space="preserve">
-    <value>您的瀏覽器已屬逾期版本故未能全面支援我們的網站。 為了得到更全面的支援， 強烈建議您升級瀏覽器至新版本。</value>
+    <value>您使用的瀏覽器版本過舊，可能無法正常瀏覽我們的網站。我們建議您將瀏覽器更新到最新版本。點擊此處下載更新瀏覽器。</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>更改密碼</value>
   </data>
-  <data name="Check" xml:space="preserve">
-    <value>Check</value>
-  </data>
   <data name="ClickToUpdateBrowser" xml:space="preserve">
-    <value>點擊此處升級瀏覽器</value>
+    <value>點擊此處更新您的瀏覽器</value>
   </data>
   <data name="ComfirmPasswordError" xml:space="preserve">
-    <value>您的密碼不能被確認</value>
+    <value>密碼未正確確認。</value>
   </data>
   <data name="ConfiguredNickNameSuccessfully" xml:space="preserve">
-    <value>您的暱稱創建成功</value>
+    <value>您的暱稱設定成功</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>確認密碼</value>
   </data>
   <data name="ConfirmSecCodeError" xml:space="preserve">
-    <value>保安碼不正確</value>
+    <value>安全碼不符合。</value>
   </data>
   <data name="ConfirmSecurityCode" xml:space="preserve">
-    <value>確認保安碼</value>
+    <value>確認安全代碼</value>
   </data>
   <data name="CreateSecurityCode" xml:space="preserve">
-    <value>請創建一個保安碼它將需要輸入當有任何設置需要更新，以確保您是賬號持有人。</value>
+    <value>請建立一組用於更新設定的安全碼。</value>
   </data>
   <data name="CustomerClosed" xml:space="preserve">
-    <value>您的帳戶被關閉，你必須退出。請聯系您上線的援助。</value>
+    <value>您的帳戶已關閉，強制登出。請聯繫您的上線取得幫助。</value>
   </data>
   <data name="HintPasswordRules" xml:space="preserve">
-    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：
+    <value>密碼必須至少為8個字元且沒有空格，並且至少包含以下3個條件：
 
-• 大写字母 [A-Z]
-• 小写字母 [a-z]
-• 数字 [0-9]
-• 特殊字符 （!、 @、 # 等。。)
+• 大寫字母[A-Z]
+• 小寫字母[a-z]
+• 數字[0-9]
+• 特殊字元（!,,#等...）
 
-例如： 59D7!4$h, 493abcDE
-注意： 您的密码需有大小写</value>
+例如：59D7!4$h，493abcDE
+注意：您的密碼輸入的時候要注意字母的大小寫</value>
   </data>
   <data name="InformSecCode" xml:space="preserve">
-    <value>請輸入您的保安碼以繼續執行!</value>
+    <value>輸入安全碼後才能繼續操作！</value>
   </data>
   <data name="InputWrongSecCodeError" xml:space="preserve">
-    <value>保安碼不正確。請再重試。</value>
+    <value>安全碼錯誤。請再試一次。</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>新密碼</value>
   </data>
   <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
-    <value>您的密码不能包含您的用户名或昵称。</value>
+    <value>您的密碼不得包含您的用戶名或暱稱。</value>
   </data>
   <data name="NewPwdSameOldOneError" xml:space="preserve">
-    <value>您的新密码不能与旧密码相同。</value>
+    <value>您的新密碼必須與當前密碼不同。</value>
   </data>
   <data name="NickName" xml:space="preserve">
     <value>暱稱</value>
   </data>
   <data name="NickNameNote" xml:space="preserve">
-    <value>Once successfully created, the Nickname cannot be modified. Please use the newly created Nickname on your next login. The original agent user code will only be used for identification purposes.</value>
+    <value>暱稱一旦創立後即無法變更。請在下次登錄時使用新創立的暱稱。原始的代理用戶代碼僅用於識別目的。</value>
   </data>
   <data name="NickNameRule1" xml:space="preserve">
-    <value>昵稱必須是獨特的，只含有字母或數字，至少五個字符，最多十五個字符</value>
+    <value>暱稱不可重複，且必須由5-15個字母或數字組成。</value>
   </data>
   <data name="NickNameRule2" xml:space="preserve">
-    <value>Your Nickname must not contain any spaces.</value>
+    <value>您的暱稱不得包含任何空格。</value>
   </data>
   <data name="NickNameStatement" xml:space="preserve">
-    <value>Please create a Nickname that you can easily remember.</value>
+    <value>請創立一個您可以輕鬆記住的暱稱。</value>
   </data>
   <data name="NickNameTitle" xml:space="preserve">
-    <value>Create Nickname</value>
+    <value>創建暱稱</value>
   </data>
   <data name="Note" xml:space="preserve">
-    <value>Note</value>
+    <value>注意</value>
   </data>
   <data name="OldPassword" xml:space="preserve">
     <value>舊密碼</value>
   </data>
   <data name="OldSecCodeEmptyError" xml:space="preserve">
-    <value>請輸入您的舊保安碼。</value>
+    <value>請輸入舊的安全碼</value>
   </data>
   <data name="OldSecurityCode" xml:space="preserve">
-    <value>舊保安碼</value>
+    <value>舊安全碼</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>密碼</value>
@@ -222,71 +219,71 @@
     <value>您已成功更改您的密码。</value>
   </data>
   <data name="PasswordHint01" xml:space="preserve">
-    <value>密码必须至少 8 个字符没有空格和包含至少 3个 以下：</value>
+    <value>密碼必須至少為8個字元且沒有空格，並且至少包含以下3個條件：</value>
   </data>
   <data name="PasswordHint02" xml:space="preserve">
-    <value>&lt;li&gt;大写字母 [A-Z]&lt;/li&gt;
-&lt;li&gt;小写字母 [a-z]&lt;/li&gt;
-&lt;li&gt;数字 [0-9]&lt;/li&gt;
-&lt;li&gt; 特殊字符 （!、 @、 # 等。。)&lt;/li&gt;</value>
+    <value>&lt;li&gt;大寫字母[A-Z]&lt;/li&gt;
+&lt;li&gt;小寫字母[a-z]&lt;/li&gt;
+&lt;li&gt;數字[0-9]&lt;/li&gt;
+&lt;li&gt;特殊字元（!,,#等...）&lt;/li&gt;</value>
   </data>
   <data name="PasswordHint03" xml:space="preserve">
     <value>&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;59D7!4$h, 493abcDE&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;您的密码需有大小写&lt;/p&gt;</value>
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;您的密碼輸入的時候要注意字母的大小寫&lt;/p&gt;</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
-    <value>密碼條規</value>
+    <value>密碼規則</value>
   </data>
   <data name="PasswordWrongRuleError" xml:space="preserve">
-    <value>您的密码不符合最低安全要求</value>
+    <value>您的密碼不符合最低安全要求。</value>
   </data>
   <data name="RequiredInputOldPwdError" xml:space="preserve">
-    <value>請輸入舊密碼</value>
+    <value>請輸入舊密碼！</value>
   </data>
   <data name="RequiredPasswordError" xml:space="preserve">
-    <value>密碼不能留空</value>
+    <value>對不起，密碼欄位不能為空！</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>顯示密碼</value>
+    <value>更改密碼</value>
   </data>
   <data name="ResetSecurityCode" xml:space="preserve">
-    <value>重置保安碼</value>
+    <value>重置安全代碼</value>
   </data>
   <data name="Rules" xml:space="preserve">
-    <value>Rules</value>
+    <value>說明</value>
   </data>
   <data name="SameSecCodeError" xml:space="preserve">
-    <value>您的新保安碼必須與當前的不相同。</value>
+    <value>您的新安全碼必須與當前安全碼不同。</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>保存</value>
   </data>
   <data name="SecCodeChangedSuccessfully" xml:space="preserve">
     <value>保安碼已更改。</value>
   </data>
   <data name="SecCodeEmptyError" xml:space="preserve">
-    <value>必填欄</value>
+    <value>必填欄位</value>
   </data>
   <data name="SecCodeWrongRuleError" xml:space="preserve">
-    <value>您所提供的保安碼不符合要求。</value>
+    <value>安全码不符合安全要求。</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
     <value>保安碼</value>
   </data>
   <data name="SecurityCodeRule1" xml:space="preserve">
-    <value>保安碼必須是6位數字，包含至少2個不同的數字，必須是不連續的號碼。</value>
+    <value>安全碼必須由6個數字組成，至少包含2個不同數字且不能為連號數字。</value>
   </data>
   <data name="SecurityCodeRule2" xml:space="preserve">
-    <value>例如：123456，765432，456789 等都是不被允許的</value>
+    <value>例如：123456,765432,456789等,不允許使用。</value>
   </data>
   <data name="SecurityCodeShower" xml:space="preserve">
-    <value>嗨{0}，您的保安碼已被重置。請設置一個新的。</value>
+    <value>嗨{0}，您的安全碼已重置。請設置一個新的。</value>
   </data>
   <data name="SecurityCodeValidation" xml:space="preserve">
-    <value>保安碼驗證</value>
+    <value>安全碼驗證</value>
   </data>
   <data name="SessionKickedOut" xml:space="preserve">
-    <value>另一個相同帐号已登入介面,強制被登出. 如果此登入不是由您所進行, 請聯絡您的上線.</value>
+    <value>您已登出，您的帳戶已透過其他裝置登入。若對此登入活動沒有印象，請聯繫您的上線取得協助。</value>
   </data>
   <data name="ShowPassword" xml:space="preserve">
     <value>顯示密碼</value>
@@ -295,15 +292,15 @@
     <value>Sub-Acc</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>提交</value>
+    <value>保存</value>
   </data>
   <data name="TitleUnsupportBrowser" xml:space="preserve">
-    <value>Browser Update Required!</value>
+    <value>瀏覽器需要更新！</value>
   </data>
   <data name="UpdatedSuccessfully" xml:space="preserve">
-    <value>更新成功!</value>
+    <value>成功更新</value>
   </data>
   <data name="VerifySecurityCodeWarning" xml:space="preserve">
-    <value>請輸入您的保安碼以繼續執行!</value>
+    <value>輸入安全碼後才能繼續操作！</value>
   </data>
 </root>

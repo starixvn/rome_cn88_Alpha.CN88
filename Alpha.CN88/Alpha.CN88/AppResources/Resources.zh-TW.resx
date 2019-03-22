@@ -178,7 +178,7 @@
     <value>帳戶摘要</value>
   </data>
   <data name="ChangeSecurityCode" xml:space="preserve">
-    <value>Change Security Code</value>
+    <value>更改安全碼</value>
   </data>
   <data name="ipnote" xml:space="preserve">
     <value>附加信息於DNSstuff: &lt;a href="{0}" target="_blank"&gt;點擊這裡&lt;/a&gt;.

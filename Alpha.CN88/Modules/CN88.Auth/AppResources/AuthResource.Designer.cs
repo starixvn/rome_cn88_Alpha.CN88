@@ -106,15 +106,6 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check.
-        /// </summary>
-        public static string Check {
-            get {
-                return ResourceManager.GetString("Check", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to click here to update your browser.
         /// </summary>
         public static string ClickToUpdateBrowser {
