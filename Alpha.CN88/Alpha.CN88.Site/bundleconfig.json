@@ -14,7 +14,6 @@
   {
     "outputFileName": "Assets/bundles/default-index.js",
     "inputFiles": [
-      "Assets/scripts/popup-manager.js",
       "Assets/scripts/site-infrastructure.js",
       "Assets/scripts/default/index-manager.js"
     ]

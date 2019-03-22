@@ -28,7 +28,10 @@
         changePassword: null,
         changeSecurityCode: null
     },
-    init: function () {
+    topWindow: null,
+    init: function (topWindow: any) {
+        indexManager.topWindow = topWindow;
+
         indexManager.cacheElements();
         indexManager.bindEvents();
 
@@ -115,8 +118,8 @@
         $("#lnk-password-recovery").on("click touchend", () => {
         });
         $("#lnk-change-password").on("click touchend", () => {
-            popupManager.init($, top);
-            popupManager.open({
+            indexManager.topWindow.popupManager.init($, top);
+            indexManager.topWindow.popupManager.open({
                 title: indexManager.resources.changePassword,
                 url: indexManager.urls.changePassword,
                 width: 490,
@@ -124,8 +127,8 @@
             });
         });
         $("#lnk-security-code").on("click touchend", () => {
-            popupManager.init($, top);
-            popupManager.open({
+            indexManager.topWindow.popupManager.init($, top);
+            indexManager.topWindow.popupManager.open({
                 title: indexManager.resources.changeSecurityCode,
                 url: indexManager.urls.changeSecurityCode,
                 width: 490,
@@ -321,5 +324,5 @@
 };
 
 $(function () {
-    indexManager.init();
+    indexManager.init(window.top);
 });

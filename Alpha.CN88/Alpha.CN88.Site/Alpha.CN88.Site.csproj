@@ -930,7 +930,6 @@
     <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />
     <TypeScriptCompile Include="assets\scripts\home\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\password\change-password.ts" />
-    <TypeScriptCompile Include="assets\scripts\popup-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\security-helper.ts" />
     <TypeScriptCompile Include="assets\scripts\securitycode\verify-securitycode.ts" />
     <TypeScriptCompile Include="assets\scripts\securitycode\change-securitycode.ts" />
