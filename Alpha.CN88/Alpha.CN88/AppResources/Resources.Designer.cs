@@ -224,7 +224,7 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Member for this Period.
+        ///   Looks up a localized string similar to New Members for this Period.
         /// </summary>
         public static string NewMemberForThisPeriod {
             get {
