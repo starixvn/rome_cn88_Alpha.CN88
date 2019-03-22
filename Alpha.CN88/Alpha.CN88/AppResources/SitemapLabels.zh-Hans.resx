@@ -195,4 +195,16 @@
   <data name="exchangeRate" xml:space="preserve">
     <value>汇率</value>
   </data>
+  <data name="generalAnnouncement" xml:space="preserve">
+    <value>一般公告</value>
+  </data>
+  <data name="importantAnnouncement" xml:space="preserve">
+    <value>重要公告</value>
+  </data>
+  <data name="personalAnnouncement" xml:space="preserve">
+    <value>个人公告</value>
+  </data>
+  <data name="masterAgent" xml:space="preserve">
+    <value>总代理</value>
+  </data>
 </root>

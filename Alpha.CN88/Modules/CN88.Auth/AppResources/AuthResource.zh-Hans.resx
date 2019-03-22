@@ -268,7 +268,7 @@
     <value>安全码不符合安全要求。</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
-    <value>Security Code</value>
+    <value>安全码</value>
   </data>
   <data name="SecurityCodeRule1" xml:space="preserve">
     <value>安全码必须由6个数字组成，至少包含2个不同数字且不能连号。</value>
