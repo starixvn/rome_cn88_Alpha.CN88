@@ -141,21 +141,21 @@ class SiteInfrastructure {
 const siteInfrastructure = new SiteInfrastructure();
 
 window.top.cn88SuccessfulUpdatingCallback = function () {
-    var $currentPage = window.top.$("body #reloadCN88CustomerListCallBackUrl");
+    var data = siteInfrastructure.localStorage.get("reloadCN88CustomerListCallBackUrl");
 
-    if ($currentPage.length == 0 || $currentPage.val() == "") {
+    if (data == undefined || !data.currentPage) {
         return;
     }
 
-    window.top.$("#main").attr("src", $currentPage.val());
+    window.top.$("#main").attr("src", data.currentPage);
 }
 
 window.top.cn88CancelCallback = function () {
-    var $currentPage = window.top.$("body #reloadCN88CustomerListCallBackUrl");
+    var data = siteInfrastructure.localStorage.get("reloadCN88CustomerListCallBackUrl");
 
-    if ($currentPage.length == 0 || $currentPage.val() == "") {
+    if (data == undefined || !data.currentPage) {
         return;
     }
 
-    window.top.$("#main").attr("src", $currentPage.val());
+    window.top.$("#main").attr("src", data.currentPage);
 }
