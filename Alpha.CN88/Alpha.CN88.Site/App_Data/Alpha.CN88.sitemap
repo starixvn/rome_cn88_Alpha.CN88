@@ -8,7 +8,7 @@
       <siteMapNode resourceKey="inplay" appPath="TotalBetAppPath" url="Event/Index?type=1"></siteMapNode>
       <siteMapNode resourceKey="today" appPath="TotalBetAppPath" url="Event/Index?type=2"></siteMapNode>
       <siteMapNode resourceKey="early" appPath="TotalBetAppPath" url="Event/Index?type=3"></siteMapNode>
-      <siteMapNode resourceKey="started" appPath="TotalBetAppPath" url="Event/Started"></siteMapNode>
+      <!--<siteMapNode resourceKey="started" appPath="TotalBetAppPath" url="Event/Started"></siteMapNode>-->
       <siteMapNode resourceKey="parlay" appPath="FeaturesAppPath" url="BetLists/TotalBetParlay"></siteMapNode>
       <siteMapNode resourceKey="outright" appPath="TotalBetAppPath" url="Outright/Index"></siteMapNode>
       <siteMapNode resourceKey="results" appPath="ResultSiteVirtualPath" url="~/Normal"></siteMapNode>
