@@ -193,4 +193,7 @@
   <data name="ipinfo" xml:space="preserve">
     <value>網及信息</value>
   </data>
+  <data name="Closed" xml:space="preserve">
+    <value>關閉</value>
+  </data>
 </root>
