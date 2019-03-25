@@ -11,6 +11,7 @@ interface Window {
     showCN88CancelButton: boolean;
     $: JQueryStatic;
     main: any;
+    siteInfrastructure: any;
 }
 
 top.showCN88CancelButton = true;
@@ -141,7 +142,7 @@ class SiteInfrastructure {
 const siteInfrastructure = new SiteInfrastructure();
 
 window.top.cn88SuccessfulUpdatingCallback = function () {
-    var data = siteInfrastructure.localStorage.get("reloadCN88CustomerListCallBackUrl");
+    var data = (window.top.siteInfrastructure.localStorage || siteInfrastructure.localStorage).get("reloadCN88CustomerListCallBackUrl");
 
     if (data == undefined || !data.currentPage) {
         return;
@@ -151,7 +152,7 @@ window.top.cn88SuccessfulUpdatingCallback = function () {
 }
 
 window.top.cn88CancelCallback = function () {
-    var data = siteInfrastructure.localStorage.get("reloadCN88CustomerListCallBackUrl");
+    var data = (window.top.siteInfrastructure.localStorage || siteInfrastructure.localStorage).get("reloadCN88CustomerListCallBackUrl");
 
     if (data == undefined || !data.currentPage) {
         return;
