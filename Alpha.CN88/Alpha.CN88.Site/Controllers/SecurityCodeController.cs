@@ -71,6 +71,19 @@
             return View(new ResetSecurityCodeQuery(message.GetViewer()) { Result = result });
         }
 
+        public ActionResult ResetSubAccountSecurityCode(ResetSecurityCodeQuery message)
+            => View(message);
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult ResetSubAccountSecurityCode(ResetSubAccountSecurityCodeCommand message)
+        {
+            var result = message.IsValid()
+               ? mediator.Send(message)
+               : SecurityResult.CreateErrorResult(Resources.NotAuthorized, (int)HttpStatusCode.Forbidden);
+
+            return View(new ResetSecurityCodeQuery(message.GetViewer()) { Result = result });
+        }
+
         public ActionResult VerifySecurityCode(VerifySecurityCodeQuery message)
             => View(message);
 

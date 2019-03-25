@@ -855,6 +855,7 @@
     <Compile Include="Requests\SecurityCode\ChangeSecurityCodeQuery.cs" />
     <Compile Include="Requests\SecurityCode\ResetSecurityCodeCommand.cs" />
     <Compile Include="Requests\SecurityCode\ResetSecurityCodeQuery.cs" />
+    <Compile Include="Requests\SecurityCode\ResetSubAccountSecurityCodeCommand.cs" />
     <Compile Include="Requests\SecurityCode\VerifySecurityCodeCommand.cs" />
     <Compile Include="Requests\SecurityCode\VerifySecurityCodeQuery.cs" />
     <Compile Include="Requests\SuggestionCommand.cs" />
@@ -925,6 +926,7 @@
     <Content Include="Views\SecurityCode\VerifySecurityCode.cshtml" />
     <Content Include="Views\Auth\Kickout.cshtml" />
     <Content Include="Views\Password\ResetSubAccountPassword.cshtml" />
+    <Content Include="Views\SecurityCode\ResetSubAccountSecurityCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />

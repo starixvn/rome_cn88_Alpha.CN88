@@ -21,7 +21,7 @@
         {
             get
             {
-                yield return CustName;
+                yield return ViewerName;
             }
         }
 
