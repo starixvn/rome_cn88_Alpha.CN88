@@ -18,7 +18,7 @@
         {
             var model = homeService.GetGeneralInformation(message.CustId);
 
-            return new HomeViewModel(model.Item1.FirstOrDefault(), model.Item2);
+            return new HomeViewModel(message, model.Item1.FirstOrDefault(), model.Item2);
         }
     }
 }

@@ -197,6 +197,7 @@
       <DependentUpon>SitemapLabels.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AppSettings.cs" />
+    <Compile Include="Constants\CustomerStatus.cs" />
     <Compile Include="Constants\Language.cs" />
     <Compile Include="Criteria\Home\GetAccountingPeriodsCriteria.cs" />
     <Compile Include="Criteria\Home\GetHomeInformationCriteria.cs" />

@@ -195,5 +195,8 @@
   </data>
   <data name="Closed" xml:space="preserve">
     <value>关闭</value>
+    </data>
+  <data name="Open" xml:space="preserve">
+    <value>开启</value>
   </data>
 </root>
