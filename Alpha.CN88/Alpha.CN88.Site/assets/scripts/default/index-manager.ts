@@ -306,6 +306,8 @@
                 if (xhr.status === 500) {
                     siteInfrastructure.logout();
                     alert("Oops... you are here because of a system error, please notify the administrators.");
+                } else if (xhr.status === 401) {
+                    siteInfrastructure.logout();
                 }
             },
             complete: () => {
