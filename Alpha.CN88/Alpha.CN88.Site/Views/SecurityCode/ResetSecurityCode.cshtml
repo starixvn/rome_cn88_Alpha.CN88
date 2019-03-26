@@ -27,7 +27,7 @@
         @Html.AntiForgeryToken()
         @Html.Hidden("custId", Model.CustId)
         <div class="rules">
-            <p><span class="text-red">*</span>@AuthResource.SecurityCodeRule1</p>
+            <p><span class="star">*</span>@AuthResource.SecurityCodeRule1</p>
             <p class="note">@AuthResource.SecurityCodeRule2</p>
         </div>
         <div id="message-container">
