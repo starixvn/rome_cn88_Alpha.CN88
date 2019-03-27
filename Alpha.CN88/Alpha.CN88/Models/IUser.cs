@@ -26,6 +26,8 @@
 
         bool HasAddNewPermission { get; }
 
+        bool ViewMemberInfo { get; }
+
         int OnlineUserId { get; }
 
         string NickName { get; }

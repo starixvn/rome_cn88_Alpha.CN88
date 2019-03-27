@@ -6,8 +6,12 @@
 
     public class HomeQuery : BaseQuery, IRequest<HomeViewModel>
     {
-        public HomeQuery(IUser viewer) : base(viewer)
+        public HomeQuery(IUser viewer)
+            : base(viewer)
         {
+            ViewMemberInfo = viewer.ViewMemberInfo;
         }
+
+        public bool ViewMemberInfo { get; }
     }
 }

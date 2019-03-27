@@ -41,6 +41,8 @@
 
         public bool HasAddNewPermission => !userSession.IsSubAcc || pageAccess.CreateAccount;
 
+        public bool ViewMemberInfo => !userSession.IsSubAcc || pageAccess.ViewMemberInfo;
+
         public int OnlineUserId => userSession.OnUserId;
 
         public string NickName => userSession.NickName;

@@ -14,7 +14,7 @@
       <siteMapNode resourceKey="results" appPath="ResultSiteVirtualPath" url="~/Normal"></siteMapNode>
       <!--<siteMapNode resourceKey="wagerMonitoringConsole" appPath="CN88AppPath" isBeta="true" url="TotalBets/WagerMonitoringConsole"></siteMapNode>-->
     </siteMapNode>
-    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[B][H]" roles="4,3,2">
+    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[H]" roles="4,3,2">
       <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles=""></siteMapNode>
       <!--<siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount/Index" roles="4,3,2"></siteMapNode>-->
       <siteMapNode resourceKey="problemAccount" appPath="FeaturesAppPath" url="AccountManagement/ProblemAccount" roles="None"></siteMapNode>
