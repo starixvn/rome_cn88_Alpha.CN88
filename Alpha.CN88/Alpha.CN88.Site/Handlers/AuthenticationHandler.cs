@@ -1,5 +1,7 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
+    using System;
+    using Fanex.Logging.Extensions.Web;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.Authentication;
     using global::CN88.Auth.Services;
@@ -26,13 +28,20 @@
 
         public bool Handle(LogoutQuery message)
         {
-            authenticationService.Logout(new LogoutParam(
-                message.OnlineUserId,
-                message.CustName,
-                message.SubUserName,
-                message.NickName ?? string.Empty,
-                message.CustLevelId,
-                message.ServerId));
+            try
+            {
+                authenticationService.Logout(new LogoutParam(
+                    message.OnlineUserId,
+                    message.CustName,
+                    message.SubUserName,
+                    message.NickName ?? string.Empty,
+                    message.CustLevelId,
+                    message.ServerId));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
 
             return true;
         }
