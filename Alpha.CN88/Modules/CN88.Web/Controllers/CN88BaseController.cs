@@ -29,7 +29,7 @@
         }
 
         protected void UnAuthentication(AuthorizationContext filterContext)
-            => UnAuthorizationHelper.ProcessUnAuthorization(filterContext);
+            => UnAuthorizationHelper.UnauthorizeOrLogin(filterContext);
 
         protected override JsonResult Json(
             object data,

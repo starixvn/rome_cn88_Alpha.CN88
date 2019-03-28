@@ -30,7 +30,11 @@
             get
             {
                 yield return ViewerName;
-                yield return NickName;
+
+                if (!string.IsNullOrWhiteSpace(NickName))
+                {
+                    yield return NickName;
+                }
             }
         }
 

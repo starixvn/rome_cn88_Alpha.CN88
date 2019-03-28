@@ -37,12 +37,12 @@
             var controllerName = actionDescriptor.ControllerDescriptor.ControllerName;
             var currentUrl = $"{controllerName}/{actionDescriptor.ActionName}";
 
-            if (string.IsNullOrWhiteSpace(userSession.NickName))
+            if (IsSetNickName)
             {
                 return CreateNickNameUrl(currentUrl);
             }
 
-            if (!userSession.IsLogged || userSession.IsPasswordExpired)
+            if (IsForceChangePassword)
             {
                 return ForceChangePasswordUrl(currentUrl);
             }
@@ -54,6 +54,12 @@
 
             return null;
         }
+
+        private bool IsSetNickName
+            => !userSession.IsSubAcc && string.IsNullOrWhiteSpace(userSession.NickName);
+
+        private bool IsForceChangePassword
+            => !userSession.IsLogged || userSession.IsPasswordExpired;
 
         private static string CreateNickNameUrl(string currentUrl)
             => currentUrl.Equals("NickName/Index", StringComparison.OrdinalIgnoreCase)

@@ -7,23 +7,35 @@
 
     internal static class UnAuthorizationHelper
     {
-        internal static void ProcessUnAuthorization(AuthorizationContext filterContext, string message = null)
+        internal static void UnauthorizeOrLogin(AuthorizationContext filterContext)
         {
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                UnAuthorizationAjaxResult(filterContext, message ?? WebResource.AccessDeny);
+                UnAuthorizationAjaxResult(filterContext);
             }
             else
             {
-                filterContext.Result = message == null ? Auth() : Kickout(message);
+                filterContext.Result = new RedirectResult(MicroSites.MainUrl("~/auth/index"));
             }
         }
 
-        private static void UnAuthorizationAjaxResult(AuthorizationContext filterContext, string message)
+        internal static void UnauthorizeOrKickout(AuthorizationContext filterContext, string message)
+        {
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                UnAuthorizationAjaxResult(filterContext);
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult(MicroSites.MainUrl($"{AuthorizationSection.Instance.KickoutUrl}?reason={message}"));
+            }
+        }
+
+        private static void UnAuthorizationAjaxResult(AuthorizationContext filterContext)
         {
             var response = filterContext.HttpContext.Response;
             response.Clear();
-            response.Write("{ \"message\": \"" + message + "\" }");
+            response.Write("{ \"message\": \"" + WebResource.AccessDeny + "\" }");
 
             filterContext.Result = new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
@@ -31,11 +43,5 @@
             response.TrySkipIisCustomErrors = true;
             response.End();
         }
-
-        private static RedirectResult Auth()
-            => new RedirectResult(MicroSites.MainUrl("~/auth/index"));
-
-        private static RedirectResult Kickout(string message)
-            => new RedirectResult(MicroSites.MainUrl($"{AuthorizationSection.Instance.KickoutUrl}?reason={message}"));
     }
 }

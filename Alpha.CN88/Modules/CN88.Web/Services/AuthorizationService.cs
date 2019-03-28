@@ -116,16 +116,10 @@
         {
             var pageAccess = GetMatchCurrentUrl(belongingContext);
 
-            if (pageAccess != null)
-            {
-                string permissions = belongingContext.SubPageAccess;
-
-                return pageAccess.Permission
+            return pageAccess == null
+                || pageAccess.Permission
                     .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Any(item => permissions.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);
-            }
-
-            return true;
+                    .Any(item => belongingContext.SubPageAccess.GetPermission(item));
         }
 
         public bool IsCustomerActive(BelongingContext belongingContext)
