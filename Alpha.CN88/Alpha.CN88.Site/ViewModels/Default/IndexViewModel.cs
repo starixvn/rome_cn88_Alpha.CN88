@@ -20,7 +20,7 @@
             Func<string> getDefaultUrl,
             Func<string, string> encodeDataFunction)
         {
-            CustName = message.CustName;
+            CustName = message.SubAccountId == 0 ? message.ViewerName : message.SubUserName;
             CustId = message.CustId;
             SubAccId = message.SubAccountId;
             OnlineUserId = message.OnlineUserId;

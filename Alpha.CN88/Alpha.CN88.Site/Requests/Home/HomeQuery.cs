@@ -9,9 +9,9 @@
         public HomeQuery(IUser viewer)
             : base(viewer)
         {
-            ViewMemberInfo = viewer.ViewMemberInfo;
+            HasAccountManagement = viewer.AccountManagementViewOnly || viewer.AccountManagementEditView;
         }
 
-        public bool ViewMemberInfo { get; }
+        public bool HasAccountManagement { get; }
     }
 }

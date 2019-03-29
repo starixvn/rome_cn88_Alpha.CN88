@@ -61,7 +61,7 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, You don&apos;t have permission to access this page..
+        ///   Looks up a localized string similar to You are not authorized on this function..
         /// </summary>
         public static string AccessDeny {
             get {

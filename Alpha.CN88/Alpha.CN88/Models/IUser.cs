@@ -22,11 +22,9 @@
 
         string IP { get; }
 
-        bool HasUpdatePermission { get; }
+        bool AccountManagementEditView { get; }
 
-        bool HasAddNewPermission { get; }
-
-        bool ViewMemberInfo { get; }
+        bool AccountManagementViewOnly { get; }
 
         int OnlineUserId { get; }
 

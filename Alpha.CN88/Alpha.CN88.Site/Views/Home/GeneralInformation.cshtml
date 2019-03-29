@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.ViewMemberInfo)
+            @if (Model.HasAccountManagement)
             {
                 <tr>
                     <td>@Resources.Credits</td>
@@ -34,7 +34,7 @@
         </tbody>
     </table>
 </div>
-@if (Model.ViewMemberInfo)
+@if (Model.HasAccountManagement)
 {
     <div class="col">
         <table class="tbl-style2 status-summary">

@@ -34,11 +34,9 @@
 
         public string IP => userSession.UserLoginIp;
 
-        public bool HasUpdatePermission => userSession.SubPageAccess.UpdateAccount;
+        public bool AccountManagementEditView => userSession.SubPageAccess.UpdateAccount;
 
-        public bool HasAddNewPermission => userSession.SubPageAccess.CreateAccount;
-
-        public bool ViewMemberInfo => userSession.SubPageAccess.ViewMemberInfo;
+        public bool AccountManagementViewOnly => userSession.SubPageAccess.ViewMemberInfo;
 
         public int OnlineUserId => userSession.OnUserId;
 

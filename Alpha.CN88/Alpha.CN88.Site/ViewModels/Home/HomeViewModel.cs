@@ -13,10 +13,10 @@
         public HomeViewModel(HomeQuery query, AccountOverview overView, IEnumerable<StatusSummary> statusSummaries)
         {
             Message = query;
-            ViewMemberInfo = query.ViewMemberInfo;
+            HasAccountManagement = query.HasAccountManagement;
             OverView = overView;
 
-            if (ViewMemberInfo)
+            if (HasAccountManagement)
             {
                 StatusSummaries = statusSummaries.OrderByDescending(i => i.RoleId);
                 TotalStatus = GetTotal();
@@ -25,7 +25,7 @@
 
         private HomeQuery Message { get; }
 
-        public bool ViewMemberInfo { get; }
+        public bool HasAccountManagement { get; }
 
         public AccountOverview OverView { get; }
 

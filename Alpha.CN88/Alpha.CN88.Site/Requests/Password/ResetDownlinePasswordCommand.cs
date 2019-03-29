@@ -19,6 +19,6 @@
         }
 
         public override bool IsValid()
-            => base.IsValid() && viewer.HasUpdatePermission;
+            => base.IsValid() && viewer.AccountManagementEditView;
     }
 }

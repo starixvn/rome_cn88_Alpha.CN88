@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessDeny" xml:space="preserve">
-    <value>抱歉，您無權訪問此頁面。</value>
+    <value>您沒有使用此功能的權限.</value>
   </data>
 </root>

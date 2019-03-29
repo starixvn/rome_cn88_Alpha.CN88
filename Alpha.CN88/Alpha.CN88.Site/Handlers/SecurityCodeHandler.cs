@@ -1,6 +1,5 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
-    using System;
     using Fanex.Cryptography.Aes;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.SecurityCode;
@@ -82,19 +81,24 @@
                 message.ViewerId,
                 message.IP,
                 message.LanguageKey);
+            SecurityResult result;
 
-            var result = message.SubAccountId == 0
-                ? securityCodeService.ChangeMainAccountSecurityCode(param)
-                : securityCodeService.ChangeSubAccountSecurityCode(param);
-
-            if (result.IsSuccess)
+            if (message.IsForceChangeFirstLogin)
             {
-                ResetToken();
+                result = message.SubAccountId == 0
+                    ? securityCodeService.ChangeMainAccountSecurityCode(param)
+                    : securityCodeService.ChangeSubAccountSecurityCode(param);
 
-                if (message.IsForceChangeFirstLogin)
+                if (result.IsSuccess)
                 {
+                    ResetToken();
                     userSession.SecurityCode = message.SecurityCode;
                 }
+            }
+            else
+            {
+                // Reset downline security code.
+                result = securityCodeService.ChangeMainAccountSecurityCode(param);
             }
 
             return result;

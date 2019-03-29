@@ -31,6 +31,6 @@
             => base.IsValid()
             && !viewer.IsInternal
             && CustId != ViewerId
-            && viewer.HasUpdatePermission;
+            && viewer.AccountManagementEditView;
     }
 }
