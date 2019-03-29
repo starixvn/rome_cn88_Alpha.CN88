@@ -1,14 +1,17 @@
-﻿@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
+﻿@using Alpha.CN88.Configurations;
+@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
 <section class="header-nav" id="header-nav">
+    <input type="hidden" id="IsNotHeadLine" value="@(Model.IsNotHeadline?1:0)" />
+    <input type="hidden" id="IntervalToGetTotalOnlineMember" value="@AppSettings.IntervalToGetTotalOnlineMember" />
     <ul class="header-left"></ul>
     <ul class="header-right">
-        
-        @if( Model.IsNotHeadline  )
+
+        @if (Model.IsNotHeadline)
         {
             <li class="header-item online-member">
-                <span>@Resources.OnlineMembers: @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
-            </li> 
-        }       
+                <span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
+            </li>
+        }
         <li class="header-item dropdown language">
             @Html.Action("List", "Language")
         </li>
@@ -17,7 +20,7 @@
                 @Model.CustName
                 <span class="icon-chevron-down"></span>
             </a>
-            <ul class="dropdown-menu">             
+            <ul class="dropdown-menu">
                 <li><a id="lnk-change-password">@Resources.ChangePassword</a></li>
                 <li><a id="lnk-security-code">@Resources.ChangeSecurityCode</a></li>
                 <li><a id="lnk-logout">@Resources.Logout</a></li>

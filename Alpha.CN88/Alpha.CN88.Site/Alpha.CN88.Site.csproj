@@ -830,6 +830,7 @@
     <Compile Include="Requests\BaseQuery.cs" />
     <Compile Include="Requests\BrowserQuery.cs" />
     <Compile Include="Requests\ChangeLanguageCommand.cs" />
+    <Compile Include="Requests\Default\TotalOnlineMember.cs" />
     <Compile Include="Requests\Default\IndexQuery.cs" />
     <Compile Include="Requests\Default\MenuBarQuery.cs" />
     <Compile Include="Requests\NickName\CreateNickNameCommand.cs" />

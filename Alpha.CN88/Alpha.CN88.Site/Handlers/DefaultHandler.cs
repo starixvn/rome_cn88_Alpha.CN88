@@ -14,7 +14,8 @@
 
     public class DefaultHandler :
         IRequestHandler<BrowserQuery, BrowserViewModel>,
-        IRequestHandler<IndexQuery, IndexViewModel>
+        IRequestHandler<IndexQuery, IndexViewModel>,
+        IRequestHandler<TotalOnlineMember, long>
     {
         private const string SawBrowserWarningPageSessionKey = "DefaultHandler.SawBrowserWarningPageSessionKey";
 
@@ -67,5 +68,8 @@
 
             return new IndexViewModel(message, browserHelper, onlineMember, getDefaultUrl, encodeDataFunction);
         }
+
+        public long Handle(TotalOnlineMember message)
+            => defaultService.GetOnlineMember(message.ViewerId);
     }
 }

@@ -26,6 +26,8 @@
 
         public static string TotalBetAppPath => GetConfigValue("TotalBetAppPath");
 
+        public static int IntervalToGetTotalOnlineMember => int.Parse(GetConfigValue("IntervalToGetTotalOnlineMember"));
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

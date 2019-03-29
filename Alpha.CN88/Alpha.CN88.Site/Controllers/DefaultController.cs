@@ -41,5 +41,8 @@
 
             return PartialView(viewModel);
         }
+
+        public ActionResult GetTotalOnlineMember()
+            => JsonData(new TotalOnlineMember(user), JsonRequestBehavior.AllowGet);
     }
 }

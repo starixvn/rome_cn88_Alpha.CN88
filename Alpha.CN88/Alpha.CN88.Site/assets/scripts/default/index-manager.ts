@@ -1,7 +1,9 @@
 ﻿var indexManager = {
+    
     urls: {
         mainRootPath: null,
         changeLanguage: null,
+        getTotalOnlineMemberUrl: null,
         onlineList: null,
         liveChat: null,
         contactUs: null,
@@ -19,7 +21,9 @@
         mainFrame: null,
         menuBar: null,
         onlineUserId: null,
-        clearClientData: null
+        clearClientData: null,
+        isNotHeadLine: 1,
+        intervalToGetTotalOnlineMember: 600000,
     },
     currentState: {
         mainMenuId: null
@@ -42,11 +46,14 @@
         indexManager.restoreUrl();
     },
     cacheElements: function () {
+        indexManager.elements.isNotHeadLine = parseInt($("#IsNotHeadLine").val());
+        indexManager.elements.intervalToGetTotalOnlineMember = parseInt($("#IntervalToGetTotalOnlineMember").val());
         indexManager.urls.mainRootPath = top.document.getElementById('mainRootPath') != null
             ? (<HTMLInputElement>top.document.getElementById('mainRootPath')).value
             : "not found";
 
         indexManager.urls.changeLanguage = indexManager.urls.mainRootPath + "Language/Change";
+        indexManager.urls.getTotalOnlineMemberUrl = indexManager.urls.mainRootPath + "Default/GetTotalOnlineMember";
         indexManager.urls.onlineList = $("#OnlineMembersPath").val();
         indexManager.urls.liveChat = indexManager.urls.mainRootPath + "CustomerList/LiveChat";
         indexManager.urls.contactUs = indexManager.urls.mainRootPath + "Help/ContactUs";
@@ -159,6 +166,10 @@
         });
 
         setTimeout(indexManager.reCheckin, 30000);
+        if (indexManager.elements.isNotHeadLine === 1) {
+            setTimeout(indexManager.GetTotalOnlineMember, indexManager.elements.intervalToGetTotalOnlineMember);
+        }
+
     },
     changeLanguage: (lang) => {
         $.ajax({
@@ -175,6 +186,20 @@
             }
         });
     },
+
+    GetTotalOnlineMember: function () {
+        $.ajax({
+            type: "GET",
+            url: indexManager.urls.getTotalOnlineMemberUrl,
+            success: function (result) {
+                $("#numberOnlineMember").html(result);
+            },
+            complete: function () {
+                setTimeout(indexManager.GetTotalOnlineMember, indexManager.elements.intervalToGetTotalOnlineMember);
+            }
+        });
+    },
+
     reloadPage: () => {
         top.location.href = indexManager.removeBookmarksInUrl(top.location.href);
     },
