@@ -105,3 +105,16 @@ body {
 #tbl-master, #tbl-agent, #tbl-member {
     width: 100%;
 }
+
+[data-submenu="wagermonitoringconsole"] {
+    float: right;
+    background-color: #c8ae7b;
+
+    &:hover {
+        background-color: darken(#c8ae7b, 5%);
+
+        &:after {
+            content: none;
+        }
+    }
+}

@@ -1,5 +1,4 @@
 ﻿@model Alpha.CN88.Site.ViewModels.Default.MenuBarViewModel
-
 <section id="main-menu-tab" class="mainmenu-container">
     <ul class="list-menu" id="main-menu-items">
         <li class="menu-item" id="menu-back">
@@ -28,16 +27,15 @@
             <ul class="sub-menu @(menuItem.ShowSubMenus ? "" : "display-none")" data-main-menu="menu-@(menuItem.ResourceKey.ToUpper())">
                 @foreach (var subMenuItem in menuItem.VisibileSubMenus)
                 {
-                    <li class="sub-menu-item @(subMenuItem.Status.Disabled?"disabled-menu":string.Empty)">
+                    <li class="sub-menu-item @(subMenuItem.Status.Disabled?"disabled-menu":string.Empty)" data-submenu="@(subMenuItem.ResourceKey.ToLower())">
                         <a href="@subMenuItem.Link" target="main" class="redirect-item" id="sub-menu-@(subMenuItem.ResourceKey.ToUpper())">
                             @subMenuItem.DisplayName
                             @Html.Raw(subMenuItem.IsBeta ? "<span class=\"beta-version\">" + SitemapLabels.Beta + "</span>" : string.Empty)
                         </a>
                     </li>
                 }
-                <li class="sub-menu-item pull-right btn-item"><button class="btn-secondary">Wager Monitoring Console</button></li>
             </ul>
-            
+
         }
     }
 </section>

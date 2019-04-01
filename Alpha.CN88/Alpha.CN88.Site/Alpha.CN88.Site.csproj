@@ -521,6 +521,9 @@
     </Content>
     <Content Include="AccessDenied.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="assets\styles\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
     <Content Include="favico.ico" />
     <Content Include="Flags\-.gif" />
     <Content Include="Flags\ad.gif" />

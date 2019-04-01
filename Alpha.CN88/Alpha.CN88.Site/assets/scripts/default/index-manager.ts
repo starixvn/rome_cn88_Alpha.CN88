@@ -10,7 +10,8 @@
         changePassword: null,
         changeSecurityCode: null,
         onlineMembersPath: null,
-        oldReportsPath: null
+        oldReportsPath: null,
+        wagerMonitoringConsolePath: null
     },
     elements: {
         mainMenu: null,
@@ -61,6 +62,7 @@
         indexManager.urls.changePassword = indexManager.urls.mainRootPath + "Password/ChangePassword";
         indexManager.urls.changeSecurityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
         indexManager.urls.oldReportsPath = $("#OldReportsPath").val();
+        indexManager.urls.wagerMonitoringConsolePath = $("#WagerMonitoringConsolePath").val();
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -160,6 +162,10 @@
             indexManager.viewOldReport();
         });
 
+        $("#sub-menu-WAGERMONITORINGCONSOLE").on("click touched", () => {
+            indexManager.viewWagerMonitoringConsole();
+        });
+
         $("#main").on("load", () => {
             top.$.unblockUI();
             var currentUrl = top.main.location.href;
@@ -231,6 +237,9 @@
     viewOldReport: () => {
         window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
         $.unblockUI();
+    },
+    viewWagerMonitoringConsole: () => {
+        window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=600,width=800");
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
