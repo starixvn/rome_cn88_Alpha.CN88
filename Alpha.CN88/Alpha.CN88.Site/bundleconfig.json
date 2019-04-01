@@ -91,6 +91,12 @@
     ]
   },
   {
+    "outputFileName": "assets/bundles/accessdenied.css",
+    "inputFiles": [
+      "assets/styles/accessdenied.css"
+    ]
+  },
+  {
     "outputFileName": "assets/bundles/auth/kickout.js",
     "inputFiles": [
       "assets/scripts/site-infrastructure.js",

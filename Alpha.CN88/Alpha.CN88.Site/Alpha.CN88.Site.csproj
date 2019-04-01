@@ -389,6 +389,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Themes\Apo\IpInfo\IPInfo.min.css" />
+    <Content Include="assets\bundles\accessdenied.css" />
+    <Content Include="assets\bundles\accessdenied.min.css">
+      <DependentUpon>accessdenied.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\auth\kickout.js" />
     <Content Include="assets\bundles\auth\kickout.min.js">
       <DependentUpon>kickout.js</DependentUpon>
