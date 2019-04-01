@@ -259,7 +259,7 @@
     <value>保存</value>
   </data>
   <data name="SecCodeChangedSuccessfully" xml:space="preserve">
-    <value>保安碼已更改。</value>
+    <value>您的安全代碼已完成變更</value>
   </data>
   <data name="SecCodeEmptyError" xml:space="preserve">
     <value>必填欄位</value>
