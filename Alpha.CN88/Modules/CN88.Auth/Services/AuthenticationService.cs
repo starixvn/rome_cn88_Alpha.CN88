@@ -103,7 +103,8 @@
                 string.IsNullOrWhiteSpace(logoutParam.SubUserName) ? logoutParam.CustName : logoutParam.SubUserName,
                 logoutParam.CustRoleId,
                 logoutParam.ServerId,
-                logoutParam.NickName));
+                logoutParam.NickName,
+                logoutParam.Reason));
 
             sessionUpdater.ClearUserSession();
         }

@@ -190,6 +190,7 @@
       <DependentUpon>AuthResource.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Configurations\AuthAppSettings.cs" />
+    <Compile Include="Constants\LogoutReason.cs" />
     <Compile Include="Constants\SessionKeys.cs" />
     <Compile Include="Criteria\Authentication\AdminLoginCommand.cs" />
     <Compile Include="Criteria\Authentication\CheckinCommand.cs" />

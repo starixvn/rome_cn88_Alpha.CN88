@@ -1,9 +1,12 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using System.Web.Security;
     using CN88.Models;
+    using Fanex.Logging.Extensions.Web;
     using global::CN88.Auth.AppResources;
+    using global::CN88.Auth.Constants;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.Authentication;
     using global::CN88.Auth.Services;
@@ -57,8 +60,21 @@
 
         private void LogoutAndClearSession()
         {
-            authenticationService.Logout(
-                new LogoutParam(user.OnlineUserId, user.Name, user.SubUserName, user.NickName, user.LevelId, user.ServerId));
+            try
+            {
+                authenticationService.Logout(new LogoutParam(
+                    user.OnlineUserId,
+                    user.Name,
+                    user.SubUserName,
+                    user.NickName,
+                    user.LevelId,
+                    user.ServerId,
+                    LogoutReason.Kickedout));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
 
             Session.RemoveAll();
             Session.Abandon();

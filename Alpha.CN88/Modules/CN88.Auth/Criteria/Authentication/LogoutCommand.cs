@@ -10,13 +10,15 @@
             string userName,
             byte roleId,
             int serverId,
-            string nickname)
+            string nickname,
+            string reason)
         {
             OnlineUserId = onlineUserId;
             UserName = userName;
             RoleId = roleId;
             ServerId = serverId;
             Nickname = nickname;
+            Reason = reason;
         }
 
         [SpParam(SqlParamName = "on_userid")]
@@ -29,6 +31,8 @@
         public int ServerId { get; }
 
         public string Nickname { get; }
+
+        public string Reason { get; }
 
         public override string GetSettingKey()
             => "Age_CheckOut";
