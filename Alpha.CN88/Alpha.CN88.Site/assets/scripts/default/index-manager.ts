@@ -377,6 +377,12 @@
         indexManager.currentState.mainMenuId = id;
         $("#" + id).addClass("active");
     },
+    closePopupAndReloadMainIframe: () => {
+        setTimeout(() => {
+            indexManager.topWindow.popupManager.close();
+            indexManager.elements.mainFrame[0].contentWindow.location.reload(true);
+        }, 1000 * 3);
+    }
     activeSubMenu: (id, mainMenuId) => {
         indexManager.elements.subMenu.addClass("display-none");
         indexManager.elements.menuBar.addClass("has-submenu");
