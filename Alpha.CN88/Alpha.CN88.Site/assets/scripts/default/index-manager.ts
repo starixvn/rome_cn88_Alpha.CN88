@@ -1,5 +1,5 @@
 ﻿var indexManager = {
-    
+
     urls: {
         mainRootPath: null,
         changeLanguage: null,
@@ -81,10 +81,12 @@
             indexManager.viewOnlineList();
         });
         indexManager.elements.mainMenu.on("click touchend", function () {
+            $.blockUI();
             var $this = $(this);
             indexManager.mainMenuClick($this.attr("id"));
         });
         indexManager.elements.subMenuItems.on("click touchend", function () {
+            $.blockUI();
             var $this = $(this);
             indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
         });
@@ -151,6 +153,7 @@
         });
 
         $("#main").on("load", () => {
+            top.$.unblockUI();
             var currentUrl = top.main.location.href;
             var activeMainMenu = $("#main-menu-items .menu-item.active");
             var activeMainMenuId = activeMainMenu.length ? activeMainMenu.attr("id") : null;
