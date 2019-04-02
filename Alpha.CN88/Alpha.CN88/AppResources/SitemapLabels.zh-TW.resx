@@ -142,10 +142,10 @@
     <value>Beta版</value>
   </data>
   <data name="parlay" xml:space="preserve">
-    <value>过关</value>
+    <value>綜合過關</value>
   </data>
   <data name="outright" xml:space="preserve">
-    <value>冠军</value>
+    <value>冠軍</value>
   </data>
   <data name="downlineList" xml:space="preserve">
     <value>下線名單</value>
@@ -169,13 +169,13 @@
     <value>帳號管理</value>
   </data>
   <data name="overview" xml:space="preserve">
-    <value>总览</value>
+    <value>總覽</value>
   </data>
   <data name="inplay" xml:space="preserve">
-    <value>滚球</value>
+    <value>滾球</value>
   </data>
   <data name="early" xml:space="preserve">
-    <value>早盘</value>
+    <value>早盤</value>
   </data>
   <data name="started" xml:space="preserve">
     <value>已开赛</value>
