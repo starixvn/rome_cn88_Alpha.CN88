@@ -1,5 +1,4 @@
 ﻿var indexManager = {
-
     urls: {
         mainRootPath: null,
         changeLanguage: null,
@@ -172,7 +171,6 @@
         if (indexManager.elements.isNotHeadLine === 1) {
             setTimeout(indexManager.GetTotalOnlineMember, indexManager.elements.intervalToGetTotalOnlineMember);
         }
-
     },
     changeLanguage: (lang) => {
         $.ajax({
@@ -223,6 +221,7 @@
     },
     viewOldReport: () => {
         window.open(indexManager.urls.oldReportsPath, "OldReport", "height=600,width=800");
+        $.unblockUI();
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
