@@ -162,7 +162,11 @@
             indexManager.viewOldReport();
         });
 
-        $("#sub-menu-WAGERMONITORINGCONSOLE").on("click touched", () => {
+        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touched").on("click touched", () => {
+            $.blockUI();
+            var $this = $(this);
+            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
+            $.unblockUI();
             indexManager.viewWagerMonitoringConsole();
         });
 
@@ -236,11 +240,10 @@
     },
     viewOldReport: () => {
         window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
-        $.unblockUI();
     },
     viewWagerMonitoringConsole: () => {
-        window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=600,width=1024");
         $.unblockUI();
+        window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=600,width=1024");
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
