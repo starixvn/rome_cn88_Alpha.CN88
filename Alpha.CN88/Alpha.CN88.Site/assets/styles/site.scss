@@ -106,13 +106,16 @@ body {
     width: 100%;
 }
 
-[data-submenu="wagermonitoringconsole"] {
+.sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
     float: right;
     background-color: #c8ae7b;
-
+    margin: 2px 16px 0 0;
+    a {
+        color: #fff !important;
+        padding: 7px 16px 8px;
+    }
     &:hover {
         background-color: darken(#c8ae7b, 5%);
-
         &:after {
             content: none;
         }
