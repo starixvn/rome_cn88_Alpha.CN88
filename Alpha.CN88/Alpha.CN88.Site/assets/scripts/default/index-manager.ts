@@ -147,7 +147,11 @@
             siteInfrastructure.logout();
         });
 
-        $("#sub-menu-OLDREPORT").on("click touched", () => {
+        $("#sub-menu-OLDREPORT").parent().off("click touched").on("click touched", () => {
+            $.blockUI();
+            var $this = $(this);
+            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
+            $.unblockUI();
             indexManager.viewOldReport();
         });
 
