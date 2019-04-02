@@ -12,7 +12,7 @@
       <siteMapNode resourceKey="parlay" appPath="FeaturesAppPath" url="BetLists/TotalBetParlay"></siteMapNode>
       <siteMapNode resourceKey="outright" appPath="TotalBetAppPath" url="Outright/Index"></siteMapNode>
       <siteMapNode resourceKey="results" appPath="ResultSiteVirtualPath" url="~/Normal"></siteMapNode>
-      <siteMapNode resourceKey="wagerMonitoringConsole" appPath="FeaturesAppPath" url="javascript:void(0); return 0;"></siteMapNode>
+      <siteMapNode resourceKey="wagerMonitoringConsole" appPath="FeaturesAppPath" url="javascript:void(0);"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[H]" roles="4,3,2">
       <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles=""></siteMapNode>
@@ -23,7 +23,7 @@
     <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]" roles="">
       <siteMapNode resourceKey="wagerReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=1"></siteMapNode>
       <siteMapNode resourceKey="legacyReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=2"></siteMapNode>
-      <siteMapNode resourceKey="oldReport" appPath="FeaturesAppPath" url="javascript:void(0); return 1;"></siteMapNode>
+      <siteMapNode resourceKey="oldReport" appPath="FeaturesAppPath" url="javascript:void(1);"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="help" roles="None">
       <siteMapNode resourceKey="newUrl" appPath="CN88AppPath" url="Help/NewUrl"></siteMapNode>

@@ -239,7 +239,8 @@
         $.unblockUI();
     },
     viewWagerMonitoringConsole: () => {
-        window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=600,width=800");
+        window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=600,width=1024");
+        $.unblockUI();
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
