@@ -202,4 +202,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="Open" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Oops... you are here because of a system error, please notify the administrators</value>
+  </data>
 </root>

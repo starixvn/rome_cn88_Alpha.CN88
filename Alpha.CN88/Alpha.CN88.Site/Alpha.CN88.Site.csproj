@@ -506,6 +506,7 @@
       <DependentUpon>site.scss</DependentUpon>
     </Content>
     <Content Include="AccessDenied.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="favico.ico" />
     <Content Include="Flags\-.gif" />
     <Content Include="Flags\ad.gif" />

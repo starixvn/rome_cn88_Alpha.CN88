@@ -199,4 +199,7 @@
   <data name="Open" xml:space="preserve">
     <value>開啟</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>哎喲..因為系統故障所以您會身在此處，請向管理層聯繫吧</value>
+  </data>
 </root>
