@@ -16,7 +16,7 @@
             if (UserSession.Current?.CustId == 0 ||
                 filterContext.Result is HttpUnauthorizedResult)
             {
-                UnAuthorizationHelper.ProcessUnAuthorization(filterContext);
+                UnAuthorizationHelper.UnauthorizeOrLogin(filterContext);
                 return;
             }
 
