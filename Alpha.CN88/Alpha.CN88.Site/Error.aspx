@@ -14,7 +14,7 @@
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
         %>
         <div class="page-content">
-            <span class="icon-error"></span>
+            <span class="icon-cancel-circular"></span>
             <div class="txt"><% Response.Write(Alpha.CN88.AppResources.Resources.Error); %></div>
         </div>
     </body>
