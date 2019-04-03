@@ -405,6 +405,10 @@
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\error-page.css" />
+    <Content Include="assets\bundles\error-page.min.css">
+      <DependentUpon>error-page.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\home-index.css" />
     <Content Include="assets\bundles\home-index.js" />
     <Content Include="assets\bundles\home-index.min.css">
@@ -472,6 +476,12 @@
     <Content Include="assets\scripts\tests\libs\store.js" />
     <Content Include="assets\scripts\tests\libs\tablesorter.js" />
     <Content Include="assets\scripts\tests\libs\tiny-draggable.js" />
+    <Content Include="assets\styles\error-page.css">
+      <DependentUpon>error-page.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\error-page.min.css">
+      <DependentUpon>error-page.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\home.css">
       <DependentUpon>home.scss</DependentUpon>
     </Content>
@@ -879,6 +889,7 @@
     <Content Include="assets\styles\security\security.scss" />
     <Content Include="assets\styles\security\create-nickname.scss" />
     <Content Include="assets\styles\security\change-password.scss" />
+    <Content Include="assets\styles\error-page.scss" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

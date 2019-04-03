@@ -18,5 +18,9 @@
   {
     "outputFile": "assets/styles/security/change-password.css",
     "inputFile": "assets/styles/security/change-password.scss"
+  },
+  {
+    "outputFile": "assets/styles/error-page.css",
+    "inputFile": "assets/styles/error-page.scss"
   }
 ]
