@@ -1,7 +1,6 @@
 ﻿namespace CN88.Web.Controllers
 {
     using System.Globalization;
-    using System.Net;
     using System.Text;
     using System.Threading;
     using System.Web.Mvc;

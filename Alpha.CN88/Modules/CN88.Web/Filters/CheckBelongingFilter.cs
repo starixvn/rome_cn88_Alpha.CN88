@@ -1,6 +1,4 @@
-﻿using Sunplus.Agent.Model.BL.Definitions;
-
-namespace CN88.Web.Filters
+﻿namespace CN88.Web.Filters
 {
     using System;
     using System.Web.Mvc;

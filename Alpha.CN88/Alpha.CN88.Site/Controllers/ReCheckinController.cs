@@ -10,9 +10,9 @@
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.Authentication;
     using global::CN88.Auth.Services;
-    using Web;
+    using global::CN88.Web.Controllers;
 
-    public class ReCheckinController : BaseController
+    public class ReCheckinController : CN88BaseController
     {
         private readonly IUser user;
         private readonly AuthenticationService authenticationService;
