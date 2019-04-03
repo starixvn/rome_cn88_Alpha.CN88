@@ -40,7 +40,7 @@
         public override bool IsValid()
             => OnlineUserId > 0
             && !string.IsNullOrWhiteSpace(UserName)
-            && RoleId > 0
+            && RoleId >= 0
             && ServerId > 0;
     }
 }
