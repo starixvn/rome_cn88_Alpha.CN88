@@ -15,7 +15,7 @@ namespace CN88.Web.Filters
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (UserSession.Current?.IsLogged == false ||
+            if (UserSession.Current?.CustId == 0 ||
                 filterContext.Result is HttpUnauthorizedResult)
             {
                 UnAuthorizationHelper.ProcessUnAuthorization(filterContext);
