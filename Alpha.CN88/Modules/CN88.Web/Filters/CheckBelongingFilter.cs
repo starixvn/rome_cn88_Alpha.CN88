@@ -1,4 +1,6 @@
-﻿namespace CN88.Web.Filters
+﻿using Sunplus.Agent.Model.BL.Definitions;
+
+namespace CN88.Web.Filters
 {
     using System;
     using System.Web.Mvc;
@@ -6,16 +8,17 @@
     using Helpers;
     using Models;
     using Services;
+    using Sunplus.Agent.Model.Entities;
 
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
     public sealed class CheckBelongingFilter : AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            base.OnAuthorization(filterContext);
-
-            if (filterContext.Result is HttpUnauthorizedResult)
+            if (UserSession.Current?.IsLogged == false ||
+                filterContext.Result is HttpUnauthorizedResult)
             {
+                UnAuthorizationHelper.ProcessUnAuthorization(filterContext);
                 return;
             }
 
@@ -54,6 +57,7 @@
                         && authorizationService.IsKickedOut(belongingContext))
                     {
                         UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "SessionKickedOut");
+                        return;
                     }
                 }
             }
