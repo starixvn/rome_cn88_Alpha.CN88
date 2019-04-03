@@ -18,6 +18,7 @@
     using Web;
     using Web.Helpers;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
+    using Web.Filters;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -45,6 +46,7 @@
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
+            GlobalFilters.Filters.Add(new NoCacheFilter());
 
             StaticResources.Init(GetBuildVersion());
         }
