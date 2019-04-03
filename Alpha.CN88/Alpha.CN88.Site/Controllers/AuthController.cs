@@ -81,9 +81,15 @@
 
         private ActionResult ProcessLogin(LoginQuery message)
         {          
+            var isAdminLogin = message is AdminLoginQuery;
 
             if (message.IsInvalid())
             {
+                if (isAdminLogin)
+                {
+                    return new EmptyResult();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -92,11 +98,15 @@
 
             if (!result.IsSuccess)
             {
+                if (isAdminLogin)
+                {
+                    return new EmptyResult();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 
             var userName = string.IsNullOrWhiteSpace(result.SubAccName) ? result.CustName : result.SubAccName;
-            var isAdminLogin = message is AdminLoginQuery;
 
             if (!isAdminLogin)
             {
