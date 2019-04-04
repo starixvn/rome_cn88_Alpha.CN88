@@ -337,7 +337,7 @@
                 if (xhr.status === 500) {
                     siteInfrastructure.logout();
                     alert("Oops... you are here because of a system error, please notify the administrators.");
-                } else if (xhr.status === 401) {
+                } else if (xhr.status === 401 || xhr.status === 403) {
                     siteInfrastructure.logout();
                 }
             },

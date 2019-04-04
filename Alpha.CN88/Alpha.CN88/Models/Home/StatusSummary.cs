@@ -8,7 +8,7 @@
 
         public byte RoleId { get; }
 
-        public string Name => UserLevel.FromValue<UserLevel>(RoleId).DisplayName;
+        public string Name => UserLevel.FromValue<UserLevel>(RoleId).DisplayNameInMultipleLanguage;
 
         public int Active { get; private set; }
 

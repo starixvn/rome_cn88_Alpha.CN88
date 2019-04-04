@@ -79,6 +79,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        public static string Agent {
+            get {
+                return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Announcement.
         /// </summary>
         public static string Announcement {
@@ -169,6 +178,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Headline.
+        /// </summary>
+        public static string Headline {
+            get {
+                return ResourceManager.GetString("Headline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -220,6 +238,24 @@ namespace Alpha.CN88.AppResources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master Agent.
+        /// </summary>
+        public static string MasterAgent {
+            get {
+                return ResourceManager.GetString("MasterAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        public static string Member {
+            get {
+                return ResourceManager.GetString("Member", resourceCulture);
             }
         }
         
@@ -292,6 +328,15 @@ namespace Alpha.CN88.AppResources {
         public static string StatusSummary {
             get {
                 return ResourceManager.GetString("StatusSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super.
+        /// </summary>
+        public static string Super {
+            get {
+                return ResourceManager.GetString("Super", resourceCulture);
             }
         }
         

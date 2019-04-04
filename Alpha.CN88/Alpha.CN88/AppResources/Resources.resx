@@ -205,4 +205,19 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="Error" xml:space="preserve">
     <value>Oops... you are here because of a system error, please notify the administrators</value>
   </data>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="Headline" xml:space="preserve">
+    <value>Headline</value>
+  </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>Master Agent</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>Super</value>
+  </data>
 </root>

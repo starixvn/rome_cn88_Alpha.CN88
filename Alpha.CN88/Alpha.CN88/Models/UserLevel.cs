@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using AppResources;
 
     [Serializable]
     public class UserLevel : Enumeration
@@ -79,5 +80,35 @@
 
         private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
             => uplineLevelValue - downlineLevelValue;
+
+        public string DisplayNameInMultipleLanguage
+        {
+            get
+            {
+                if (IsSuperLevel())
+                {
+                    return Resources.Super;
+                }
+
+                if (IsMasterLevel())
+                {
+                    return Resources.MasterAgent;
+                }
+
+                if (IsAgentLevel())
+                {
+                    return Resources.Agent;
+                }
+
+                if (IsMemberLevel())
+                {
+                    return Resources.Member;
+                }
+
+                return IsHeadlineLevel()
+                    ? Resources.Headline
+                    : "Unknown";
+            }
+        }
     }
 }
