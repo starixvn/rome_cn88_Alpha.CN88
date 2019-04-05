@@ -154,7 +154,7 @@
     <value>您没有使用此功能的权限</value>
   </data>
   <data name="home" xml:space="preserve">
-    <value>主</value>
+    <value>首页</value>
   </data>
   <data name="today" xml:space="preserve">
     <value>今日</value>
