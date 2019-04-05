@@ -127,10 +127,10 @@
     <value>啟用</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>禁止登入</value>
+    <value>暫停</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>總計</value>
+    <value>總和</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>主</value>

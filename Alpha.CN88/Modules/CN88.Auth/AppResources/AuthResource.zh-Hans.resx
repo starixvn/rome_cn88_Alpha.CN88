@@ -216,7 +216,7 @@
     <value>密码</value>
   </data>
   <data name="PasswordChangedSuccessfully" xml:space="preserve">
-    <value>您已成功更改您的密码。</value>
+    <value>您已经成功更改密码。</value>
   </data>
   <data name="PasswordHint01" xml:space="preserve">
     <value>密码必须至少为8个字符且没有空格，并且至少包含以下3个条件：</value>

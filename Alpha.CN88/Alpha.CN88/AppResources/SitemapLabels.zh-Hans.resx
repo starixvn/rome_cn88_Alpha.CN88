@@ -154,7 +154,7 @@
     <value>您没有使用此功能的权限</value>
   </data>
   <data name="home" xml:space="preserve">
-    <value>首页</value>
+    <value>主</value>
   </data>
   <data name="today" xml:space="preserve">
     <value>今日</value>
@@ -166,7 +166,7 @@
     <value>察看日志</value>
   </data>
   <data name="accountManagement" xml:space="preserve">
-    <value>帐号管理</value>
+    <value>账户管理</value>
   </data>
   <data name="overview" xml:space="preserve">
     <value>总览</value>

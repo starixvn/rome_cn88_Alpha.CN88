@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="announcement" xml:space="preserve">
-    <value>通告</value>
+    <value>公告內容</value>
   </data>
   <data name="totalBets" xml:space="preserve">
     <value>即時注單</value>
@@ -154,7 +154,7 @@
     <value>您沒有使用此功能的權限</value>
   </data>
   <data name="home" xml:space="preserve">
-    <value>首頁</value>
+    <value>主</value>
   </data>
   <data name="today" xml:space="preserve">
     <value>今日</value>
@@ -166,7 +166,7 @@
     <value>察看日志</value>
   </data>
   <data name="accountManagement" xml:space="preserve">
-    <value>帳號管理</value>
+    <value>帳戶管理</value>
   </data>
   <data name="overview" xml:space="preserve">
     <value>總覽</value>

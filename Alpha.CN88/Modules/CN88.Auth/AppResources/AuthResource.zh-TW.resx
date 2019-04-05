@@ -216,7 +216,7 @@
     <value>密碼</value>
   </data>
   <data name="PasswordChangedSuccessfully" xml:space="preserve">
-    <value>您已成功更改您的密码。</value>
+    <value>您已經成功更改密碼。</value>
   </data>
   <data name="PasswordHint01" xml:space="preserve">
     <value>密碼必須至少為8個字元且沒有空格，並且至少包含以下3個條件：</value>
@@ -228,8 +228,8 @@
 &lt;li&gt;特殊字元（!,,#等...）&lt;/li&gt;</value>
   </data>
   <data name="PasswordHint03" xml:space="preserve">
-    <value>&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;59D7!4$h, 493abcDE&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;您的密碼輸入的時候要注意字母的大小寫&lt;/p&gt;</value>
+    <value>&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;: 您的密碼輸入的時候要注意字母的大小寫&lt;/p&gt;</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
     <value>密碼規則</value>
@@ -268,7 +268,7 @@
     <value>安全码不符合安全要求。</value>
   </data>
   <data name="SecurityCode" xml:space="preserve">
-    <value>保安碼</value>
+    <value>安全碼</value>
   </data>
   <data name="SecurityCodeRule1" xml:space="preserve">
     <value>安全碼必須由6個數字組成，至少包含2個不同數字且不能為連號數字。</value>

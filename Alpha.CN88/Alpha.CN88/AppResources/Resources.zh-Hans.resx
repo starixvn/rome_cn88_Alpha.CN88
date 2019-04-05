@@ -124,10 +124,10 @@
     <value>启用</value>
   </data>
   <data name="Suspended" xml:space="preserve">
-    <value>禁止登入</value>
+    <value>暂停</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>总和</value>
+    <value>总计</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>更改密码</value>
@@ -145,7 +145,7 @@
     <value>公告内容</value>
   </data>
   <data name="OnlineMembers" xml:space="preserve">
-    <value>线上会员</value>
+    <value>在线会员</value>
   </data>
   <data name="MySetting" xml:space="preserve">
     <value>我的设定</value>
