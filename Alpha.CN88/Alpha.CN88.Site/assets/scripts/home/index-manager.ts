@@ -12,6 +12,10 @@
     init = () => {
         this.markMessageAsReadPath = this.$("#MarkMessageAsReadPath").val();
         siteInfrastructure.loadInfo(this.$, "#announcements", this.initAnnouncements);
+        var self = this;
+        this.$("#generalinformation a").click(function () {
+            self.topWindow.indexManager.activeMainMenu("menu-ACCOUNTMANAGEMENT");
+        })
     };
 
     initAnnouncements = () => {
