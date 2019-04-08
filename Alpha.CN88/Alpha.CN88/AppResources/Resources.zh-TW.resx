@@ -217,4 +217,7 @@
   <data name="Super" xml:space="preserve">
     <value>超級</value>
   </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>首頁</value>
+  </data>
 </root>

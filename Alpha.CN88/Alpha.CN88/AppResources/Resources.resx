@@ -220,4 +220,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="Super" xml:space="preserve">
     <value>Super</value>
   </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home</value>
+  </data>
 </root>
