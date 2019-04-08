@@ -148,7 +148,7 @@
             siteInfrastructure.logout();
         });
 
-        $("#sub-menu-OLDREPORT").parent().off("click touched").on("click touched", () => {
+        $("#sub-menu-OLDREPORT").parent().off("click touchend").on("click touchend", () => {
             $.blockUI();
             indexManager.currentState.isOpenPopup = true;
             var $this = $(this);
