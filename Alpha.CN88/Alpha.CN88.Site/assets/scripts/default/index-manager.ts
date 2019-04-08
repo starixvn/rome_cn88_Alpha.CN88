@@ -25,7 +25,8 @@
         intervalToGetTotalOnlineMember: 600000,
     },
     currentState: {
-        mainMenuId: null
+        mainMenuId: null,
+        isOpenPopup: false
     },
     resources: {
         changePassword: null,
@@ -149,9 +150,11 @@
 
         $("#sub-menu-OLDREPORT").parent().off("click touched").on("click touched", () => {
             $.blockUI();
+            indexManager.currentState.isOpenPopup = true;
             var $this = $(this);
             indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
             $.unblockUI();
+            indexManager.currentState.isOpenPopup = false;
             indexManager.viewOldReport();
         });
 
@@ -255,7 +258,9 @@
         var $this = $("#" + id);
 
         $this.parent().addClass("active");
-        (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0]).href;
+        if (!indexManager.currentState.isOpenPopup) {
+            (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0]).href;
+        }
     },
     addHistory: (newEvent) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
