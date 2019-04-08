@@ -173,6 +173,9 @@
   <data name="InputWrongSecCodeError" xml:space="preserve">
     <value>安全码错误。 请再试一次。</value>
   </data>
+  <data name="MemberPasswordRule" xml:space="preserve">
+    <value>“密码必须是6-10个字符，没有空格，并且包含至少1个大写字母，1个小写字母，1个数字。（例如493abcDE，59D7!4$h） 注意：您的密码输入的时候要注意字母的大小写</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>新密码</value>
   </data>
