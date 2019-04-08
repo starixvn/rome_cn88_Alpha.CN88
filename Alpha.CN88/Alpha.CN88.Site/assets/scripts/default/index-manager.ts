@@ -246,6 +246,8 @@
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
+        } else {
+            (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0].childNodes[1]).href;
         }
     },
     subMenuClick: (id) => {
@@ -253,6 +255,7 @@
         var $this = $("#" + id);
 
         $this.parent().addClass("active");
+        (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0]).href;
     },
     addHistory: (newEvent) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
