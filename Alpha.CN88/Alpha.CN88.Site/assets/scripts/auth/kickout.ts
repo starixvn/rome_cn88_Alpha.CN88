@@ -4,7 +4,7 @@ class Kickout {
         let messageElement: any = document.getElementById("message");
         let message: string = messageElement != null
             ? (<HTMLInputElement>messageElement).value
-            : "Oops... you are here because of a system error, please notify the administrators.";
+            : (<HTMLInputElement>document.getElementById("errorMessage")).value;
 
         alert(message);
         siteInfrastructure.logout();

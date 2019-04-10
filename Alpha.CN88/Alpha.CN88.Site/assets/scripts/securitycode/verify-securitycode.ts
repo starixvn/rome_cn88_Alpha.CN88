@@ -84,7 +84,7 @@ class VerifySecurityCode {
             },
             error: function (xhr: any) {
                 if (xhr.status === 401) {
-                    alert("Oops... you are here because of a system error, please notify the administrators.");
+                    alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
                     siteInfrastructure.logout();
                 }
             },

@@ -23,12 +23,13 @@
 <body>
     <div class="page">
         <div class="two-cols" id="generalinformation">
-            @Html.Action("GeneralInformation")            
+            @Html.Action("GeneralInformation")
         </div>
         <div id="announcements" class="announcements" action-url="@MicroSites.MessageUrl("~/PortalMessage/Index")"></div>
     </div>
 
     @Html.Hidden("MarkMessageAsReadPath", MicroSites.MessageUrl("~/PortalMessage/MarkMessageAsRead"))
+    @Html.Hidden("errorMessage", Resources.Error)
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-cn88/default")
     @StaticResources.RenderScripts("~/assets/bundles/home-index")

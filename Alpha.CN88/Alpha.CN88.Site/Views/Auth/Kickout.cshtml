@@ -12,6 +12,7 @@
 <body>
     @Html.Hidden("message", Model)
     @Html.Hidden("mainRootPath", Alpha.CN88.Site.Helpers.UrlHelper.MapMainPath("~"))
+    @Html.Hidden("errorMessage", Resources.Error)
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.RenderScripts("~/assets/bundles/auth/kickout")
 </body>

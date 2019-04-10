@@ -327,7 +327,7 @@
                         if (message) {
                             alert(message);
                         } else {
-                            alert("Oops... you are here because of a system error, please notify the administrators.");
+                            alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
                         }
 
                         siteInfrastructure.logout();
@@ -337,14 +337,14 @@
                     if (typeof (result) === "string"
                         && result.indexOf("Oops... you are here because of a system error") > 0) {
                         siteInfrastructure.logout();
-                        alert("Oops... you are here because of a system error, please notify the administrators.");
+                        alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
                     }
                 }
             },
             error: (xhr) => {
                 if (xhr.status === 500) {
                     siteInfrastructure.logout();
-                    alert("Oops... you are here because of a system error, please notify the administrators.");
+                    alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
                 } else if (xhr.status === 401 || xhr.status === 403) {
                     siteInfrastructure.logout();
                 }
