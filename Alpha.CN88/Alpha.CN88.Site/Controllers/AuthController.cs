@@ -81,8 +81,6 @@
 
         private ActionResult ProcessLogin(LoginQuery message)
         {
-            Session.RemoveAll();
-
             if (message.IsInvalid())
             {
                 return RedirectToAction(nameof(Index));

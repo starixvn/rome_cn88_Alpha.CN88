@@ -1,7 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="false" %>
 <%@ Import Namespace="System.Threading" %>
 <%@ Import Namespace="Sunplus.Agent.Model.Entities" %>
-
+<%
+    var um = new ONEbook.UM.Services.Impl.MaintenanceService();
+    if (!um.ByPassUM && um.IsUnderMaintenance())
+    {
+        Response.Redirect(Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl, true);
+    }
+%>
 <html>
     <head>
         <title>Error</title>
