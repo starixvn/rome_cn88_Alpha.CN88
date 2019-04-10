@@ -1,6 +1,10 @@
 ﻿@import "variables";
 @import "_mixins.scss";
 
+html {
+    height: 100%;
+}
+
 body {
     overflow: hidden;
 }
