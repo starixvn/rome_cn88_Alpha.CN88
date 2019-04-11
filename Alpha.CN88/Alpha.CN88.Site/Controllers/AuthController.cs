@@ -80,7 +80,8 @@
         }
 
         private ActionResult ProcessLogin(LoginQuery message)
-        {
+        {          
+
             if (message.IsInvalid())
             {
                 return RedirectToAction(nameof(Index));
