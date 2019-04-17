@@ -361,6 +361,13 @@
 
         indexManager.currentState.mainMenuId = id;
         $("#" + id).addClass("active");
+    },
+    activeSubMenu: (id, mainMenuId) => {
+        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.menuBar.addClass("has-submenu");
+        $(".sub-menu[data-main-menu='" + mainMenuId + "']").removeClass("display-none");
+
+        $("#" + id).parent().addClass("active");
     }
 };
 
