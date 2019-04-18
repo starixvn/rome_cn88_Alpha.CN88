@@ -15,6 +15,7 @@
         var self = this;
         this.$("#generalinformation a").click(function () {
             self.topWindow.indexManager.activeMainMenu("menu-ACCOUNTMANAGEMENT");
+            self.topWindow.indexManager.activeSubMenu("sub-menu-DOWNLINELIST", "menu-ACCOUNTMANAGEMENT");
         })
     };
 

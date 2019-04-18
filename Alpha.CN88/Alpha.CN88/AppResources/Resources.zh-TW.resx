@@ -200,7 +200,7 @@
     <value>開啟</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>哎喲..因為系統故障所以您會身在此處，請向管理層聯繫吧</value>
+    <value>不好意思…目前系統故障，請聯絡系統管理員。</value>
   </data>
   <data name="Agent" xml:space="preserve">
     <value>代理商</value>
