@@ -171,7 +171,7 @@
             }
             catch
             {
-                ExceptionHandler.Handle(new Exception("Cannot get country info"), TraceEventType.Information);
+                ExceptionHandler.Handle(new Exception("Cannot get country info (" + ip + ")"), TraceEventType.Information);
             }
 
             return country;
