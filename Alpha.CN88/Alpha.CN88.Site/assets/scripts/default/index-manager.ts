@@ -131,6 +131,7 @@
             indexManager.topWindow.popupManager.open({
                 title: indexManager.resources.changePassword,
                 url: indexManager.urls.changePassword,
+                top: 128,
                 width: 490,
                 height: 500
             });
@@ -140,6 +141,7 @@
             indexManager.topWindow.popupManager.open({
                 title: indexManager.resources.changeSecurityCode,
                 url: indexManager.urls.changeSecurityCode,
+                top: 128,
                 width: 490,
                 height: 420
             });
