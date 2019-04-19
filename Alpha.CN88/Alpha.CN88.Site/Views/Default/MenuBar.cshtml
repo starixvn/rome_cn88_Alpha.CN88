@@ -27,7 +27,7 @@
             <ul class="sub-menu @(menuItem.ShowSubMenus ? "" : "display-none")" data-main-menu="menu-@(menuItem.ResourceKey.ToUpper())">
                 @foreach (var subMenuItem in menuItem.VisibileSubMenus)
                 {
-                    <li class="sub-menu-item @(subMenuItem.Status.Disabled?"disabled-menu":string.Empty)" data-submenu="@(subMenuItem.ResourceKey.ToLower())">
+                    <li class="sub-menu-item @(subMenuItem.Status.Disabled?"disabled-menu":string.Empty)">
                         <a href="@subMenuItem.Link" target="main" class="redirect-item" id="sub-menu-@(subMenuItem.ResourceKey.ToUpper())">
                             @subMenuItem.DisplayName
                             @Html.Raw(subMenuItem.IsBeta ? "<span class=\"beta-version\">" + SitemapLabels.Beta + "</span>" : string.Empty)

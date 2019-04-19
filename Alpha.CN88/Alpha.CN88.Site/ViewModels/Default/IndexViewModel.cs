@@ -80,8 +80,6 @@
 
         public string OldReportsPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/OldReports/Index?DisplayMode=1");
 
-        public string WagerMonitoringConsolePath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring/Index");
-
         public bool ClearClientData { get; }
     }
 }

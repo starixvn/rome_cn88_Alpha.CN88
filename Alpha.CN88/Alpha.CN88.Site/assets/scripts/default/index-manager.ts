@@ -11,7 +11,6 @@
         changeSecurityCode: null,
         onlineMembersPath: null,
         oldReportsPath: null,
-        wagerMonitoringConsolePath: null
     },
     elements: {
         mainMenu: null,
@@ -62,7 +61,6 @@
         indexManager.urls.changePassword = indexManager.urls.mainRootPath + "Password/ChangePassword";
         indexManager.urls.changeSecurityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
         indexManager.urls.oldReportsPath = $("#OldReportsPath").val();
-        indexManager.urls.wagerMonitoringConsolePath = $("#WagerMonitoringConsolePath").val();
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -162,16 +160,6 @@
             indexManager.viewOldReport();
         });
 
-        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
-            $.blockUI();
-            indexManager.currentState.isOpenPopup = true;
-            var $this = $(this);
-            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
-            $.unblockUI();
-            indexManager.currentState.isOpenPopup = false;
-            indexManager.viewWagerMonitoringConsole();
-        });
-
         $("#main").on("load", () => {
             top.$.unblockUI();
             var currentUrl = top.main.location.href;
@@ -242,10 +230,6 @@
     },
     viewOldReport: () => {
         window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
-    },
-    viewWagerMonitoringConsole: () => {
-        $.unblockUI();
-        window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=800,width=1280");
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
