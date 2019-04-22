@@ -54,7 +54,7 @@
                         <td class="text-center status-active">
                             @if (Model.ShowCustomerListUrl(s.Active, s.RoleId))
                             {
-                                <a href="@Model.CustomerListUrl(s.Active, CustomerStatus.Open, s.RoleId)">
+                                <a data-url="@Model.CustomerListUrl(s.Active, CustomerStatus.Open, s.RoleId)" href="javascript:void(0);">
                                     @HtmlHelpers.FormatNumber(s.Active)
                                 </a>
                             }
@@ -79,7 +79,7 @@
                         </td>
 
                         <td class="text-center status-suspended">
-                        
+
                             @if (Model.ShowCustomerListUrl(s.Suspened, s.RoleId))
                             {
                                 <a href="@Model.CustomerListUrl(s.Suspened, CustomerStatus.Suspended, s.RoleId)">
