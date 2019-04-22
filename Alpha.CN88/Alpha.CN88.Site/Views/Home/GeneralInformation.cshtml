@@ -67,7 +67,7 @@
                         <td class="text-center status-inactive">
                             @if (Model.ShowCustomerListUrl(s.Inactive, s.RoleId))
                             {
-                                <a href="@Model.CustomerListUrl(s.Inactive, CustomerStatus.Closed, s.RoleId)">
+                                <a data-url="@Model.CustomerListUrl(s.Inactive, CustomerStatus.Closed, s.RoleId)" href="javascript:void(0);">
                                     @HtmlHelpers.FormatNumber(s.Inactive)
                                 </a>
                             }
@@ -82,7 +82,7 @@
 
                             @if (Model.ShowCustomerListUrl(s.Suspened, s.RoleId))
                             {
-                                <a href="@Model.CustomerListUrl(s.Suspened, CustomerStatus.Suspended, s.RoleId)">
+                                <a data-url="@Model.CustomerListUrl(s.Suspened, CustomerStatus.Suspended, s.RoleId)" href="javascript:void(0);">
                                     @HtmlHelpers.FormatNumber(s.Suspened)
                                 </a>
                             }
