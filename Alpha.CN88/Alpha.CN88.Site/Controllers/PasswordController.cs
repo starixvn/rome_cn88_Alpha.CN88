@@ -54,6 +54,9 @@
 
             return View(new ResetPasswordQuery(message.GetViewer())
             {
+                CustId = message.CustId,
+                CustName = message.CustName,
+                CustLevelId = message.CustLevelId,
                 Result = result
             });
         }
@@ -70,6 +73,7 @@
 
             return View(new ResetPasswordQuery(message.GetViewer())
             {
+                CustId = message.CustId,
                 Result = result
             });
         }

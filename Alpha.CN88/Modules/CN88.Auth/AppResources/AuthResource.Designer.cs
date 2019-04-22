@@ -213,7 +213,7 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password must be 6-10 characters without white-space and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric digit. (e.g. 493abcDE, 59D7!4$h) Notes: your password is cAsE sEnSiTiVe..
+        ///   Looks up a localized string similar to Password must be 6-10 characters without white-space and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric digit. (e.g. 493abcDE, 59D7!4$h) Note: your password is cAsE sEnSiTiVe..
         /// </summary>
         public static string MemberPasswordRule {
             get {
