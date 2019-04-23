@@ -23,6 +23,8 @@
         clearClientData: null,
         isNotHeadLine: 1,
         intervalToGetTotalOnlineMember: 600000,
+        header: null,
+        content: null
     },
     currentState: {
         mainMenuId: null,
@@ -72,6 +74,8 @@
         indexManager.elements.clearClientData = $("#ClearClientData").val().toString();
         indexManager.resources.changePassword = $("#ChangePassword").val();
         indexManager.resources.changeSecurityCode = $("#ChangeSecurityCode").val();
+        indexManager.elements.header = $("#header");
+        indexManager.elements.content = $("#content");
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -174,6 +178,8 @@
                 subMenu: activeSubmenu.length ? activeSubmenu.attr("id") : null,
                 url: currentUrl
             });
+
+            indexManager.calculateMainFrameHeight();
         });
 
         setTimeout(indexManager.reCheckin, 30000);
@@ -375,6 +381,12 @@
         $(".sub-menu[data-main-menu='" + mainMenuId + "']").removeClass("display-none");
 
         $("#" + id).parent().addClass("active");
+    },
+    calculateMainFrameHeight: () => {
+        var height = $(window).height()
+            - indexManager.elements.header.height()
+            - indexManager.elements.menuBar.height();
+        indexManager.elements.content.height(height);
     }
 };
 
