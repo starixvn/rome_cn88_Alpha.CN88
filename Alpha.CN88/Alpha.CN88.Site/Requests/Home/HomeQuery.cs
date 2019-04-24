@@ -6,8 +6,12 @@
 
     public class HomeQuery : BaseQuery, IRequest<HomeViewModel>
     {
-        public HomeQuery(IUser viewer) : base(viewer)
+        public HomeQuery(IUser viewer)
+            : base(viewer)
         {
+            HasAccountManagement = viewer.AccountManagementViewOnly || viewer.AccountManagementEditView;
         }
+
+        public bool HasAccountManagement { get; }
     }
 }

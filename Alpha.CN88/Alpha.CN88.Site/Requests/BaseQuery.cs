@@ -34,6 +34,8 @@
 
         public int SubAccountId => viewer.SubAccountId;
 
+        public string SubUserName => viewer.SubUserName;
+
         public string IP => viewer.IP;
 
         public string Language => viewer.Language;

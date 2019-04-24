@@ -8,13 +8,11 @@
             int custId,
             string userPwd,
             string loginIP,
-            int userId,
             string language)
         {
             CustId = custId;
             UserPwd = userPwd;
             LoginIP = loginIP;
-            UserId = userId;
             Language = language;
         }
 
@@ -24,7 +22,6 @@
 
         public string LoginIP { get; }
 
-        public int UserId { get; }
 
         public string Language { get; }
 
@@ -34,7 +31,6 @@
 
         public override bool IsValid()
             => CustId > 0
-            && !string.IsNullOrWhiteSpace(UserPwd)
-            && UserId > 0;
+            && !string.IsNullOrWhiteSpace(UserPwd);
     }
 }

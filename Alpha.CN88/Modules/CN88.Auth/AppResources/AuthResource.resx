@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccessDeny" xml:space="preserve">
-    <value>Sorry, You don't have permission to access this page.</value>
+    <value>You are not authorized on this function.</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
@@ -174,7 +174,7 @@ Notes: your password is cAsE sEnSiTiVe</value>
     <value>Wrong Security Code. Please try again.</value>
   </data>
   <data name="MemberPasswordRule" xml:space="preserve">
-    <value>Password must be 6-10 characters without white-space and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric digit. (e.g. 493abcDE, 59D7!4$h) Notes: your password is cAsE sEnSiTiVe.</value>
+    <value>Password must be 6-10 characters without white-space and contain at least 1 uppercase letter, 1 lowercase letter, 1 numeric digit. (e.g. 493abcDE, 59D7!4$h) Note: your password is cAsE sEnSiTiVe.</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New Password</value>

@@ -28,6 +28,9 @@
             => base.IsValid() && IsForceChangeFirstLogin;
 
         public bool IsValidResetSecurityCode()
-            => base.IsValid() && !viewer.IsInternal && CustId != ViewerId;
+            => base.IsValid()
+            && !viewer.IsInternal
+            && CustId != ViewerId
+            && viewer.AccountManagementEditView;
     }
 }

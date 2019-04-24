@@ -26,7 +26,6 @@
                 SubAccountId,
                 NewPassword,
                 IP,
-                ActorId,
                 LanguageKey);
     }
 }

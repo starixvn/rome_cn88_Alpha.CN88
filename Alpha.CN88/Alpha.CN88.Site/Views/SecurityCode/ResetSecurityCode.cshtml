@@ -27,7 +27,7 @@
         @Html.AntiForgeryToken()
         @Html.Hidden("custId", Model.CustId)
         <div class="rules">
-            <p><span class="text-red">*</span>@AuthResource.SecurityCodeRule1</p>
+            <p><span class="star">*</span>@AuthResource.SecurityCodeRule1</p>
             <p class="note">@AuthResource.SecurityCodeRule2</p>
         </div>
         <div id="message-container">
@@ -37,11 +37,11 @@
             }
         </div>
         <div class="rowlg">
-            <label class="lb-title" for="securityCode">@AuthResource.SecurityCode</label>
+            <label class="lb-title" for="securityCode">@AuthResource.SecurityCode <span class="star">*</span></label>
             <input type="password" autocomplete="off" class="txt" name="SecurityCode" id="securityCode" maxlength="6" />
         </div>
         <div class="rowlg">
-            <label class="lb-title" for="confirmSecurityCode">@AuthResource.ConfirmSecurityCode</label>
+            <label class="lb-title" for="confirmSecurityCode">@AuthResource.ConfirmSecurityCode <span class="star">*</span></label>
             <input type="password" autocomplete="off" class="txt" name="ConfirmSecurityCode" id="confirmSecurityCode" maxlength="6" />
         </div>
         <div class="list-button">

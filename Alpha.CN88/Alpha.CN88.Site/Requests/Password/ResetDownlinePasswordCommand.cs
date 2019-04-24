@@ -17,5 +17,8 @@
                 yield return ViewerName;
             }
         }
+
+        public override bool IsValid()
+            => base.IsValid() && viewer.AccountManagementEditView;
     }
 }

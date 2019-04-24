@@ -28,7 +28,6 @@
                 CurrentPassword,
                 NewPassword,
                 IP,
-                ActorId,
                 LanguageKey);
     }
 }

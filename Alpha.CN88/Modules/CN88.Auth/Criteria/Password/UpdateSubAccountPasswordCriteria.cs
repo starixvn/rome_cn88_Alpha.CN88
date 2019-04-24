@@ -8,8 +8,7 @@
             string oldPwd,
             string userPwd,
             string loginIP,
-            int userId,
-            string language) : base(custId, userPwd, loginIP, userId, language)
+            string language) : base(custId, userPwd, loginIP, language)
         {
             SubAccId = subAccId;
             OldPwd = oldPwd;

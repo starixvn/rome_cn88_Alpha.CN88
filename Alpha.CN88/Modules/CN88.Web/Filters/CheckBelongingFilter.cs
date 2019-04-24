@@ -16,7 +16,7 @@
             if (UserSession.Current?.CustId == 0 ||
                 filterContext.Result is HttpUnauthorizedResult)
             {
-                UnAuthorizationHelper.ProcessUnAuthorization(filterContext);
+                UnAuthorizationHelper.UnauthorizeOrLogin(filterContext);
                 return;
             }
 
@@ -32,13 +32,13 @@
                 {
                     if (!authorizationService.IsBelonging(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "AccessDeny");
+                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "AccessDeny");
                         return;
                     }
 
                     if (!authorizationService.IsAuthorized(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "AccessDeny");
+                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "AccessDeny");
                         return;
                     }
                 }
@@ -47,14 +47,14 @@
                 {
                     if (!authorizationService.IsCustomerActive(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "CustomerClosed");
+                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "CustomerClosed");
                         return;
                     }
 
                     if (!AppSettings.DisabledCheckDuplicationLogin
                         && authorizationService.IsKickedOut(belongingContext))
                     {
-                        UnAuthorizationHelper.ProcessUnAuthorization(filterContext, "SessionKickedOut");
+                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "SessionKickedOut");
                         return;
                     }
                 }

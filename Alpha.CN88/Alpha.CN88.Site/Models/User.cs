@@ -9,12 +9,9 @@
     {
         private readonly IUserSession userSession;
 
-        private readonly PageAccess pageAccess;
-
         public User(IUserSession userSession)
         {
             this.userSession = userSession;
-            pageAccess = new PageAccess();
         }
 
         public int Id => userSession.CustId;
@@ -37,9 +34,9 @@
 
         public string IP => userSession.UserLoginIp;
 
-        public bool HasUpdatePermission => !userSession.IsSubAcc || pageAccess.UpdateAccount;
+        public bool AccountManagementEditView => userSession.SubPageAccess.UpdateAccount;
 
-        public bool HasAddNewPermission => !userSession.IsSubAcc || pageAccess.CreateAccount;
+        public bool AccountManagementViewOnly => userSession.SubPageAccess.ViewMemberInfo;
 
         public int OnlineUserId => userSession.OnUserId;
 

@@ -7,8 +7,7 @@
             int subAccId,
             string userPwd,
             string loginIP,
-            int userId,
-            string language) : base(custId, userPwd, loginIP, userId, language)
+            string language) : base(custId, userPwd, loginIP, language)
         {
             SubAccId = subAccId;
         }
@@ -22,7 +21,6 @@
             => "ResetSubAccountPassword";
 
         public override bool IsValid()
-            => base.IsValid()
-            && SubAccId > 0;
+            => base.IsValid() && SubAccId > 0;
     }
 }

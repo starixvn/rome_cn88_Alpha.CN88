@@ -13,9 +13,12 @@
         this.markMessageAsReadPath = this.$("#MarkMessageAsReadPath").val();
         siteInfrastructure.loadInfo(this.$, "#announcements", this.initAnnouncements);
         var self = this;
-        this.$("#generalinformation a").click(function () {
+        this.$("#generalinformation a").on("click touchend", function () {
+            var url = self.$(this).attr("data-url");
+
             self.topWindow.indexManager.activeMainMenu("menu-ACCOUNTMANAGEMENT");
             self.topWindow.indexManager.activeSubMenu("sub-menu-DOWNLINELIST", "menu-ACCOUNTMANAGEMENT");
+            window.location.href = url;
         })
     };
 

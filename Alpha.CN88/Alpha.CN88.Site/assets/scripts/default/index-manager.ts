@@ -10,7 +10,7 @@
         changePassword: null,
         changeSecurityCode: null,
         onlineMembersPath: null,
-        oldReportsPath: null
+        oldReportsPath: null,
     },
     elements: {
         mainMenu: null,
@@ -23,6 +23,8 @@
         clearClientData: null,
         isNotHeadLine: 1,
         intervalToGetTotalOnlineMember: 600000,
+        header: null,
+        content: null
     },
     currentState: {
         mainMenuId: null,
@@ -72,6 +74,8 @@
         indexManager.elements.clearClientData = $("#ClearClientData").val().toString();
         indexManager.resources.changePassword = $("#ChangePassword").val();
         indexManager.resources.changeSecurityCode = $("#ChangeSecurityCode").val();
+        indexManager.elements.header = $("#header");
+        indexManager.elements.content = $("#content");
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -131,6 +135,7 @@
             indexManager.topWindow.popupManager.open({
                 title: indexManager.resources.changePassword,
                 url: indexManager.urls.changePassword,
+                top: 128,
                 width: 490,
                 height: 500
             });
@@ -140,6 +145,7 @@
             indexManager.topWindow.popupManager.open({
                 title: indexManager.resources.changeSecurityCode,
                 url: indexManager.urls.changeSecurityCode,
+                top: 128,
                 width: 490,
                 height: 420
             });
@@ -172,6 +178,8 @@
                 subMenu: activeSubmenu.length ? activeSubmenu.attr("id") : null,
                 url: currentUrl
             });
+
+            indexManager.calculateMainFrameHeight();
         });
 
         setTimeout(indexManager.reCheckin, 30000);
@@ -228,7 +236,6 @@
     },
     viewOldReport: () => {
         window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
-        $.unblockUI();
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
@@ -362,12 +369,24 @@
         indexManager.currentState.mainMenuId = id;
         $("#" + id).addClass("active");
     },
+    closePopupAndReloadMainIframe: () => {
+        setTimeout(() => {
+            indexManager.topWindow.popupManager.close();
+            indexManager.elements.mainFrame[0].contentWindow.location.reload(true);
+        }, 1000 * 3);
+    },
     activeSubMenu: (id, mainMenuId) => {
         indexManager.elements.subMenu.addClass("display-none");
         indexManager.elements.menuBar.addClass("has-submenu");
         $(".sub-menu[data-main-menu='" + mainMenuId + "']").removeClass("display-none");
 
         $("#" + id).parent().addClass("active");
+    },
+    calculateMainFrameHeight: () => {
+        var height = $(window).height()
+            - indexManager.elements.header.height()
+            - indexManager.elements.menuBar.height();
+        indexManager.elements.content.height(height);
     }
 };
 

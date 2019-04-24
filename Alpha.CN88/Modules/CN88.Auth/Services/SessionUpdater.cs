@@ -116,12 +116,15 @@
             if (subAccId != 0)
             {
                 userSession.SubUserName = outputParams["subusername"].ToString().ToUpperInvariant();
-                userSession.SubPageAccess = (PageAccess)(outputParams["subpageaccess"] as string);
+                userSession.SubPageAccess = outputParams["subpageaccess"] as string;
             }
             else
             {
                 userSession.SubUserName = string.Empty;
-                userSession.SubPageAccess.SetFullPermission();
+
+                var pageAccess = new PageAccess();
+                pageAccess.SetFullPermission();
+                userSession.SubPageAccess = pageAccess;
             }
 
             var roleId = Convert.ToByte(outputParams["roleid"]);

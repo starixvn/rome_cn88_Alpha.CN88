@@ -12,7 +12,6 @@
         {
             NickName = viewer.NickName;
             IsSubAccount = viewer.IsSubAcc;
-            SubUserName = viewer.SubUserName;
             LanguageKey = viewer.LanguageKey;
         }
 
@@ -24,8 +23,6 @@
 
         public bool IsSubAccount { get; }
 
-        public string SubUserName { get; }
-
         public string LanguageKey { get; }
 
         public IEnumerable<string> InvalidPasswords
@@ -33,11 +30,10 @@
             get
             {
                 yield return ViewerName;
-                yield return NickName;
 
-                if (IsSubAccount)
+                if (!string.IsNullOrWhiteSpace(NickName))
                 {
-                    yield return SubUserName;
+                    yield return NickName;
                 }
             }
         }

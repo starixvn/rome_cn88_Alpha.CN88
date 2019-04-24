@@ -15,6 +15,7 @@
     public class SecurityCodeHandler :
         IRequestHandler<ChangeSecurityCodeCommand, SecurityResult>,
         IRequestHandler<ResetSecurityCodeCommand, SecurityResult>,
+        IRequestHandler<ResetSubAccountSecurityCodeCommand, SecurityResult>,
         IRequestHandler<VerifySecurityCodeCommand, SecurityResult>,
         IRequestHandler<ChangeSecurityCodeQuery, ChangeSecurityCodeViewModel>,
         IRequestHandler<ResetSecurityCodeQuery, ResetSecurityCodeViewModel>,
@@ -43,9 +44,7 @@
         public SecurityResult Handle(ChangeSecurityCodeCommand message)
         {
             message.SecurityCode = Decrypt(message.SecurityCode);
-
-            var result = securityCodeService.ChangeMainAccountSecurityCode(
-                new ChangeSecurityCodeParam(
+            var param = new ChangeSecurityCodeParam(
                     message.ViewerId,
                     message.SubAccountId,
                     message.OldSecurityCode,
@@ -53,12 +52,20 @@
                     sessionManager.Get<string>(SecurityCodeTokenSessionKey),
                     message.ViewerId,
                     message.IP,
-                    message.LanguageKey));
+                    message.LanguageKey);
 
-            if (result.IsSuccess && message.IsForceChangeSecurityCode)
+            var result = message.SubAccountId == 0
+                ? securityCodeService.ChangeMainAccountSecurityCode(param)
+                : securityCodeService.ChangeSubAccountSecurityCode(param);
+
+            if (result.IsSuccess)
             {
-                userSession.SecurityCode = message.SecurityCode;
                 ResetToken();
+
+                if (message.IsForceChangeSecurityCode)
+                {
+                    userSession.SecurityCode = message.SecurityCode;
+                }
             }
 
             return result;
@@ -67,23 +74,48 @@
         public SecurityResult Handle(ResetSecurityCodeCommand message)
         {
             message.SecurityCode = Decrypt(message.SecurityCode);
+            var param = new ChangeSecurityCodeParam(
+                message.IsForceChangeFirstLogin ? message.ViewerId : message.CustId,
+                message.SubAccountId,
+                message.SecurityCode,
+                message.ViewerId,
+                message.IP,
+                message.LanguageKey);
+            SecurityResult result;
 
-            var result = securityCodeService.ChangeMainAccountSecurityCode(
-                new ChangeSecurityCodeParam(
-                    message.IsForceChangeFirstLogin ? message.ViewerId : message.CustId,
-                    message.SubAccountId,
+            if (message.IsForceChangeFirstLogin)
+            {
+                result = message.SubAccountId == 0
+                    ? securityCodeService.ChangeMainAccountSecurityCode(param)
+                    : securityCodeService.ChangeSubAccountSecurityCode(param);
+
+                if (result.IsSuccess)
+                {
+                    ResetToken();
+                    userSession.SecurityCode = message.SecurityCode;
+                }
+            }
+            else
+            {
+                // Reset downline security code.
+                result = securityCodeService.ChangeMainAccountSecurityCode(param);
+            }
+
+            return result;
+        }
+
+        public SecurityResult Handle(ResetSubAccountSecurityCodeCommand message)
+        {
+            message.SecurityCode = Decrypt(message.SecurityCode);
+
+            return securityCodeService.ResetSubAccountSecurityCode(
+                new ResetSecurityCodeParam(
+                    message.ViewerId,
+                    message.CustId,
                     message.SecurityCode,
                     message.ViewerId,
                     message.IP,
                     message.LanguageKey));
-
-            if (result.IsSuccess && message.IsForceChangeFirstLogin)
-            {
-                userSession.SecurityCode = message.SecurityCode;
-                ResetToken();
-            }
-
-            return result;
         }
 
         public SecurityResult Handle(VerifySecurityCodeCommand message)

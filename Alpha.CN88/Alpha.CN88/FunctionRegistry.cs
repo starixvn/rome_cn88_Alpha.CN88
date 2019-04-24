@@ -15,9 +15,9 @@
         public static readonly Dictionary<string, Func<MenuStatus>> MenuItemTypeStatusRules = new Dictionary<string, Func<MenuStatus>>
         {
             [string.Empty] = null,
-            ["TotalBetsMenuItem"] = () => new MenuStatus(!Current.IsSubAcc || Current.SubPageAccess.ViewTotalBets),
-            ["AccountManagementMenuItem"] = () => new MenuStatus(!Current.IsSubAcc || Current.SubPageAccess.ViewMemberInfo),
-            ["ReportMenuItem"] = () => new MenuStatus(() => !Current.IsSubAcc || Current.SubPageAccess.ViewReports, null),
+            ["TotalBetsMenuItem"] = () => new MenuStatus(Current.SubPageAccess.ViewTotalBets),
+            ["AccountManagementMenuItem"] = () => new MenuStatus(Current.SubPageAccess.ViewMemberInfo || Current.SubPageAccess.UpdateAccount),
+            ["ReportMenuItem"] = () => new MenuStatus(() => Current.SubPageAccess.ViewReports, null),
             ["SubAccountMenuItem"] = () => new MenuStatus(!Current.IsSubAcc)
         };
 
