@@ -105,3 +105,59 @@ body {
 #tbl-master, #tbl-agent, #tbl-member {
     width: 100%;
 }
+
+// Mobile friendly
+
+.menubar-mobile {    
+    position: relative;
+    height: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    color: #fff;
+
+    .page-title {
+        line-height: 40px;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .hamburger-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding: 14px 10px;
+    }
+
+    .icon-more {
+        position: absolute;
+        right: 0;
+        right: 0;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+
+}
+
+.username-mobile {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 12px;
+    background-color: #282525;
+    color: #fff;
+}
+
+@media (min-device-width: 768px) {
+    .menubar  {
+        .menubar-mobile {
+            display: none;
+        }
+
+        .username-mobile {
+            display: none;
+        }
+    }
+}

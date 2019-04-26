@@ -153,7 +153,7 @@ body {
 
         .time {
             position: relative;
-            width: 132px;
+            width: 90px;
             padding-left: 24px;
         }
 
@@ -188,4 +188,21 @@ body {
 .announcements .no-info {
     padding-bottom: 16px;
     text-align: center;
+}
+
+@media (max-device-width: 767px) {
+    .page {
+        width: 100%;
+    }
+
+    .col {
+        float: none; 
+        width: 100%; 
+        padding-left: 0;
+        padding-right: 0;
+
+        &:first-child {
+            padding-bottom: 20px;
+        }
+    }
 }

@@ -48,7 +48,7 @@
                     !browserHelper.IsAndroidNativeBrowser(userAgent) &&
                     !isTablet;
 
-                return isSmallScale ? 0.5 : 0.7;
+                return isSmallScale ? 0.5 : 0.8;
             }
         }
 

@@ -24,11 +24,14 @@
         isNotHeadLine: 1,
         intervalToGetTotalOnlineMember: 600000,
         header: null,
-        content: null
+        content: null,
+        listMenu: null,
+        hamburgerIcon: null
     },
     currentState: {
         mainMenuId: null,
-        isOpenPopup: false
+        isOpenPopup: false,
+        isMainMenuClick: false
     },
     resources: {
         changePassword: null,
@@ -76,6 +79,8 @@
         indexManager.resources.changeSecurityCode = $("#ChangeSecurityCode").val();
         indexManager.elements.header = $("#header");
         indexManager.elements.content = $("#content");
+        indexManager.elements.listMenu = $("#main-menu-items");
+        indexManager.elements.hamburgerIcon = $("#hamburger-container");
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -89,10 +94,12 @@
             var $this = $(this);
             indexManager.mainMenuClick($this.attr("id"));
         });
-        indexManager.elements.subMenuItems.on("click touchend", function () {
+        indexManager.elements.subMenuItems.on("click touchend", function (event ) {
             $.blockUI();
             var $this = $(this);
             indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
+
+            event.stopPropagation();
         });
 
         $("#lnk-new-url").on("click touchend", () => {
@@ -154,6 +161,23 @@
             siteInfrastructure.logout();
         });
 
+        indexManager.elements.hamburgerIcon.on("click touchend", function (event) {
+            
+            if (event.type == 'touchend') {
+                $(this).off('click');
+            }
+
+            var isCollapsed = indexManager.elements.listMenu.hasClass("collapsed");
+            if (isCollapsed) {
+                indexManager.elements.hamburgerIcon.children("#hamburgerIcon").addClass("active");
+                indexManager.elements.listMenu.removeClass("collapsed");                
+            } else {
+                indexManager.elements.listMenu.addClass("collapsed");
+                indexManager.elements.hamburgerIcon.children("#hamburgerIcon").removeClass("active");
+            }
+            
+        });
+
         $("#sub-menu-OLDREPORT").parent().off("click touchend").on("click touchend", () => {
             $.blockUI();
             indexManager.currentState.isOpenPopup = true;
@@ -180,6 +204,13 @@
             });
 
             indexManager.calculateMainFrameHeight();
+
+            var iframeWindow = indexManager.elements.mainFrame[0].contentWindow || indexManager.elements.mainFrame[0].contentDocument;
+            $(iframeWindow.document).on('click touchend', () => { indexManager.closeMenuBarOnMobile(); });
+        });
+
+        $(".username-mobile").on("click touchend", () => {
+            indexManager.closeMenuBarOnMobile();
         });
 
         setTimeout(indexManager.reCheckin, 30000);
@@ -238,6 +269,8 @@
         window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
     },
     mainMenuClick: (id) => {
+        indexManager.currentState.isMainMenuClick = true;
+
         if (id == "menu-back") {
             return;
         }
@@ -252,13 +285,30 @@
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
+         
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
+
+                      
             subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
         } else {
+
+            indexManager.currentState.isMainMenuClick = false;
+
             (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0].childNodes[1]).href;
+
+            indexManager.closeMenuBarOnMobile();
         }
+
+        var isMobile = indexManager.elements.listMenu.css("position") == "absolute";
+        if (!isMobile) {
+            var menuHeight = subMenu && subMenu.length
+                ? indexManager.elements.listMenu.height() + subMenu.height()
+                : indexManager.elements.listMenu.height();
+            indexManager.elements.menuBar.height(menuHeight);
+        }
+
     },
     subMenuClick: (id) => {
         indexManager.elements.subMenuItems.removeClass("active");
@@ -268,6 +318,12 @@
         if (!indexManager.currentState.isOpenPopup) {
             (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0]).href;
         }
+
+        if (!indexManager.currentState.isMainMenuClick) {
+            indexManager.closeMenuBarOnMobile();
+        }   
+
+        indexManager.currentState.isMainMenuClick = false;
     },
     addHistory: (newEvent) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
@@ -314,6 +370,12 @@
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
+            var isMobile = indexManager.elements.listMenu.css("position") == "absolute";
+            if (!isMobile) {
+                var menuBarHeight = indexManager.elements.listMenu.height();
+                menuBarHeight += subMenu.length ? subMenu.height() : 0;
+                indexManager.elements.menuBar.height(menuBarHeight);
+            }
         }
 
         if (currentPage.subMenu != null) {
@@ -387,6 +449,9 @@
             - indexManager.elements.header.height()
             - indexManager.elements.menuBar.height();
         indexManager.elements.content.height(height);
+    },
+    closeMenuBarOnMobile: () => {
+        indexManager.elements.listMenu.addClass("collapsed");
     }
 };
 
