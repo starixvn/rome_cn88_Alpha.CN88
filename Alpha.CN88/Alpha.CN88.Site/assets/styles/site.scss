@@ -110,15 +110,16 @@ body {
 
 .menubar-mobile {    
     position: relative;
-    height: 40px;
+    height: 36px;
     padding-left: 40px;
     padding-right: 40px;
     color: #fff;
 
     .page-title {
-        line-height: 40px;
+        line-height: 36px;
         color: #fff;
         font-size: 14px;
+        text-align: center;
     }
 
     .hamburger-container {
@@ -126,7 +127,7 @@ body {
         left: 0;
         right: 0;
         top: 0;
-        padding: 14px 10px;
+        padding: 12px 10px;
     }
 
     .icon-more {
@@ -135,16 +136,17 @@ body {
         right: 0;
         top: 0;
         width: 40px;
-        height: 40px;
-        line-height: 40px;
+        height: 36px;
         text-align: center;
+        padding: 11px 10px;
+        font-size: 17px;
     }
 
 }
 
 .username-mobile {
-    height: 40px;
-    line-height: 40px;
+    height: 32px;
+    line-height: 32px;
     padding-left: 12px;
     background-color: #282525;
     color: #fff;

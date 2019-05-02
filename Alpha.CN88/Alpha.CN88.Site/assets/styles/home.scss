@@ -191,6 +191,10 @@ body {
 }
 
 @media (max-device-width: 767px) {
+    body {
+        padding: 12px;
+    }
+
     .page {
         width: 100%;
     }
