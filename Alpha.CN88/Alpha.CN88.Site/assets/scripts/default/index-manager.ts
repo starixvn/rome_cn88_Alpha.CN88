@@ -285,8 +285,8 @@
 
         var $this = $("#" + id);
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
-
-        if (indexManager.elements.isDevice && $this.hasClass("active")) {
+        var isCurrentActive = $this.hasClass("active");
+        if (indexManager.elements.isDevice && isCurrentActive) {
             indexManager.elements.subMenu.slideUp("fast");
             indexManager.elements.menuBar.removeClass("has-submenu");
             $this.removeClass("active");
@@ -295,12 +295,13 @@
             return;
         }
 
-        indexManager.elements.mainMenu.removeClass("active");
-
-        $this.addClass("active");
+        if (!isCurrentActive) {
+            indexManager.elements.mainMenu.removeClass("active");
+            indexManager.elements.subMenu.slideUp("fast");
+            $this.addClass("active");
+        }
 
         indexManager.currentState.mainMenuId = id;
-        indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         if (subMenu && subMenu.length) {
