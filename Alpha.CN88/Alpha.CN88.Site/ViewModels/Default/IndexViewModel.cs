@@ -81,5 +81,7 @@
         public string OldReportsPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/OldReports/Index?DisplayMode=1");
 
         public bool ClearClientData { get; }
+
+        public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false);
     }
 }

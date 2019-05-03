@@ -26,7 +26,9 @@
         header: null,
         content: null,
         listMenu: null,
-        hamburgerIcon: null
+        hamburgerContainer: null,
+        hamburgerIcon: null,
+        isDevice: false
     },
     currentState: {
         mainMenuId: null,
@@ -80,7 +82,9 @@
         indexManager.elements.header = $("#header");
         indexManager.elements.content = $("#content");
         indexManager.elements.listMenu = $("#main-menu-items");
-        indexManager.elements.hamburgerIcon = $("#hamburger-container");
+        indexManager.elements.hamburgerContainer = $("#hamburger-container");
+        indexManager.elements.hamburgerIcon = indexManager.elements.hamburgerContainer.children("#hamburgerIcon");
+        indexManager.elements.isDevice = indexManager.elements.listMenu.css("position") == "absolute";
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -94,7 +98,7 @@
             var $this = $(this);
             indexManager.mainMenuClick($this.attr("id"));
         });
-        indexManager.elements.subMenuItems.on("click touchend", function (event ) {
+        indexManager.elements.subMenuItems.on("click touchend", function (event) {
             $.blockUI();
             var $this = $(this);
             indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
@@ -161,21 +165,21 @@
             siteInfrastructure.logout();
         });
 
-        indexManager.elements.hamburgerIcon.on("click touchend", function (event) {
-            
+        indexManager.elements.hamburgerContainer.on("click touchend", function (event) {
+
             if (event.type == 'touchend') {
                 $(this).off('click');
             }
 
             var isCollapsed = indexManager.elements.listMenu.hasClass("collapsed");
             if (isCollapsed) {
-                indexManager.elements.hamburgerIcon.children("#hamburgerIcon").addClass("active");
-                indexManager.elements.listMenu.removeClass("collapsed");                
+                indexManager.elements.hamburgerIcon.addClass("active");
+                indexManager.elements.listMenu.removeClass("collapsed");
             } else {
                 indexManager.elements.listMenu.addClass("collapsed");
-                indexManager.elements.hamburgerIcon.children("#hamburgerIcon").removeClass("active");
+                indexManager.elements.hamburgerIcon.removeClass("active");
             }
-            
+
         });
 
         $("#sub-menu-OLDREPORT").parent().off("click touchend").on("click touchend", () => {
@@ -285,13 +289,16 @@
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
-         
+
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
 
-                      
-            subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
+            if (indexManager.elements.isDevice) {
+                top.$.unblockUI();
+            } else {
+                subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
+            }
         } else {
 
             indexManager.currentState.isMainMenuClick = false;
@@ -301,14 +308,12 @@
             indexManager.closeMenuBarOnMobile();
         }
 
-        var isMobile = indexManager.elements.listMenu.css("position") == "absolute";
-        if (!isMobile) {
+        if (!indexManager.elements.isDevice) {
             var menuHeight = subMenu && subMenu.length
                 ? indexManager.elements.listMenu.height() + subMenu.height()
                 : indexManager.elements.listMenu.height();
             indexManager.elements.menuBar.height(menuHeight);
         }
-
     },
     subMenuClick: (id) => {
         indexManager.elements.subMenuItems.removeClass("active");
@@ -321,7 +326,7 @@
 
         if (!indexManager.currentState.isMainMenuClick) {
             indexManager.closeMenuBarOnMobile();
-        }   
+        }
 
         indexManager.currentState.isMainMenuClick = false;
     },
@@ -370,8 +375,7 @@
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
-            var isMobile = indexManager.elements.listMenu.css("position") == "absolute";
-            if (!isMobile) {
+            if (!indexManager.elements.isDevice) {
                 var menuBarHeight = indexManager.elements.listMenu.height();
                 menuBarHeight += subMenu.length ? subMenu.height() : 0;
                 indexManager.elements.menuBar.height(menuBarHeight);
@@ -452,6 +456,7 @@
     },
     closeMenuBarOnMobile: () => {
         indexManager.elements.listMenu.addClass("collapsed");
+        indexManager.elements.hamburgerIcon.removeClass("active");
     }
 };
 
