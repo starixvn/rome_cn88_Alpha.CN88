@@ -283,22 +283,32 @@
             return;
         }
 
-        indexManager.elements.mainMenu.removeClass("active");
         var $this = $("#" + id);
+        var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
+
+        if (indexManager.elements.isDevice && $this.hasClass("active")) {
+            indexManager.elements.subMenu.slideUp("fast");
+            indexManager.elements.menuBar.removeClass("has-submenu");
+            $this.removeClass("active");
+            indexManager.currentState.isMainMenuClick = false;
+            top.$.unblockUI();
+            return;
+        }
+
+        indexManager.elements.mainMenu.removeClass("active");
 
         $this.addClass("active");
 
         indexManager.currentState.mainMenuId = id;
-        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
-        var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
-
         if (subMenu && subMenu.length) {
-            subMenu.removeClass("display-none");
+            subMenu.slideDown("fast");
             indexManager.elements.menuBar.addClass("has-submenu");
 
             if (indexManager.elements.isDevice) {
+                indexManager.currentState.isMainMenuClick = false;
                 top.$.unblockUI();
             } else {
                 subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
