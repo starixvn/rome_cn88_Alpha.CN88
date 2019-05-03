@@ -221,6 +221,10 @@
         if (indexManager.elements.isNotHeadLine === 1) {
             setTimeout(indexManager.GetTotalOnlineMember, indexManager.elements.intervalToGetTotalOnlineMember);
         }
+
+        $(window).resize(() => {
+            indexManager.calculateMainFrameHeight();
+        });
     },
     changeLanguage: (lang) => {
         $.ajax({
