@@ -278,6 +278,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Settings.
+        /// </summary>
+        public static string MySettings {
+            get {
+                return ResourceManager.GetString("MySettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Members for this Period.
         /// </summary>
         public static string NewMemberForThisPeriod {

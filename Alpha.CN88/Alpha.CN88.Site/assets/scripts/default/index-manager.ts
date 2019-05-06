@@ -127,6 +127,7 @@
         });
 
         $("#lnk-my-setting").on("click touchend", () => {
+            indexManager.clearAllActiveMenu();
         });
         $("#lnk-password-recovery").on("click touchend", () => {
         });
@@ -387,6 +388,11 @@
             - indexManager.elements.header.height()
             - indexManager.elements.menuBar.height();
         indexManager.elements.content.height(height);
+    },
+    clearAllActiveMenu: () => {
+        indexManager.elements.mainMenu.removeClass("active");
+        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.menuBar.removeClass("has-submenu");
     }
 };
 

@@ -81,5 +81,12 @@
         public string OldReportsPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/OldReports/Index?DisplayMode=1");
 
         public bool ClearClientData { get; }
+
+        public string MySettingPath
+            => SubAccId != 0
+            ? string.Empty
+            : AppPathHelper.GetAppPath(
+                AppSettings.FeaturesAppPath, 
+                $"~/CN88CustomerSetting/ViewCN88CustomerSetting/MySetting?customerLevel={RoleId}&isCreateNew=false&productId=1");
     }
 }
