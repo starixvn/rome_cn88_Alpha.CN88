@@ -323,12 +323,10 @@
             indexManager.closeMenuBarOnMobile();
         }
 
-        if (!indexManager.elements.isDevice) {
-            var menuHeight = subMenu && subMenu.length
-                ? indexManager.elements.listMenu.height() + subMenu.height()
-                : indexManager.elements.listMenu.height();
-            indexManager.elements.menuBar.height(menuHeight);
-        }
+        var menuHeight = subMenu && subMenu.length
+            ? indexManager.elements.listMenu.height() + subMenu.height()
+            : indexManager.elements.listMenu.height();
+        indexManager.elements.menuBar.height(menuHeight);
     },
     subMenuClick: (id) => {
         indexManager.elements.subMenuItems.removeClass("active");
@@ -390,11 +388,10 @@
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
-            if (!indexManager.elements.isDevice) {
-                var menuBarHeight = indexManager.elements.listMenu.height();
-                menuBarHeight += subMenu.length ? subMenu.height() : 0;
-                indexManager.elements.menuBar.height(menuBarHeight);
-            }
+
+            var menuBarHeight = indexManager.elements.listMenu.height();
+            menuBarHeight += subMenu.length ? subMenu.height() : 0;
+            indexManager.elements.menuBar.height(menuBarHeight);
         }
 
         if (currentPage.subMenu != null) {
