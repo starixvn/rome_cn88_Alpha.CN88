@@ -305,8 +305,10 @@
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         if (subMenu && subMenu.length) {
-            subMenu.slideDown("fast");
             indexManager.elements.menuBar.addClass("has-submenu");
+            subMenu.slideDown("fast", () => {
+                indexManager.calculateMenuBarHeight(subMenu);
+            });
 
             if (indexManager.elements.isDevice) {
                 indexManager.currentState.isMainMenuClick = false;
@@ -321,12 +323,8 @@
             (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0].childNodes[1]).href;
 
             indexManager.closeMenuBarOnMobile();
+            indexManager.calculateMenuBarHeight(subMenu);
         }
-
-        var menuHeight = subMenu && subMenu.length
-            ? indexManager.elements.listMenu.height() + subMenu.height()
-            : indexManager.elements.listMenu.height();
-        indexManager.elements.menuBar.height(menuHeight);
     },
     subMenuClick: (id) => {
         indexManager.elements.subMenuItems.removeClass("active");
@@ -388,10 +386,7 @@
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
-
-            var menuBarHeight = indexManager.elements.listMenu.height();
-            menuBarHeight += subMenu.length ? subMenu.height() : 0;
-            indexManager.elements.menuBar.height(menuBarHeight);
+            indexManager.calculateMenuBarHeight(subMenu);
         }
 
         if (currentPage.subMenu != null) {
@@ -469,6 +464,12 @@
     closeMenuBarOnMobile: () => {
         indexManager.elements.listMenu.addClass("collapsed");
         indexManager.elements.hamburgerIcon.removeClass("active");
+    },
+    calculateMenuBarHeight: (subMenu) => {
+        var menuBarHeight = indexManager.elements.listMenu.height();
+        menuBarHeight += subMenu.length ? subMenu.height() : 0;
+
+        indexManager.elements.menuBar.height(menuBarHeight);
     }
 };
 
