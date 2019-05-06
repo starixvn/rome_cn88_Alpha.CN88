@@ -28,7 +28,8 @@
     },
     currentState: {
         mainMenuId: null,
-        isOpenPopup: false
+        isOpenPopup: false,
+        isClearActiveMenu: false
     },
     resources: {
         changePassword: null,
@@ -127,6 +128,7 @@
         });
 
         $("#lnk-my-setting").on("click touchend", () => {
+            indexManager.currentState.isClearActiveMenu = true;
             indexManager.clearAllActiveMenu();
         });
         $("#lnk-password-recovery").on("click touchend", () => {
@@ -176,10 +178,12 @@
 
             indexManager.addHistory({
                 mainMenu: activeMainMenuId,
-                subMenu: activeSubmenu.length ? activeSubmenu.attr("id") : null,
-                url: currentUrl
+                subMenu: activeSubmenu && activeSubmenu.length ? activeSubmenu.attr("id") : null,
+                url: currentUrl,
+                isClearActiveMenu: indexManager.currentState.isClearActiveMenu
             });
 
+            indexManager.currentState.isClearActiveMenu = false;
             indexManager.calculateMainFrameHeight();
         });
 
@@ -297,6 +301,10 @@
 
         siteInfrastructure.localStorage.remove(key);
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, historyIndex);
+        if (currentPage.isClearActiveMenu) {
+            $("#main").attr("src", currentPage.url);
+            return;
+        }
 
         if (currentPage.mainMenu == null) {
             indexManager.elements.mainMenu.find("a")[1].click();
