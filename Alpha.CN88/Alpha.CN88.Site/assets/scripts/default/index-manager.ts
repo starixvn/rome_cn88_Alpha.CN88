@@ -128,6 +128,7 @@
         });
 
         $("#lnk-my-setting").on("click touchend", () => {
+            indexManager.topWindow.showCN88CancelButton = false;
             indexManager.currentState.isClearActiveMenu = true;
             indexManager.clearAllActiveMenu();
         });

@@ -82,11 +82,14 @@
 
         public bool ClearClientData { get; }
 
+        public bool IsShowMySettingPath
+            => SubAccId == 0 && IsNotHeadline;
+
         public string MySettingPath
-            => SubAccId != 0
-            ? string.Empty
-            : AppPathHelper.GetAppPath(
-                AppSettings.FeaturesAppPath, 
-                $"~/CN88CustomerSetting/ViewCN88CustomerSetting/MySetting?customerLevel={RoleId}&isCreateNew=false&productId=1");
+            => IsShowMySettingPath
+            ? AppPathHelper.GetAppPath(
+                AppSettings.FeaturesAppPath,
+                $"~/CN88CustomerSetting/ViewCN88CustomerSetting/MySetting?customerLevel={RoleId}&isCreateNew=false&productId=1")
+            : string.Empty;
     }
 }
