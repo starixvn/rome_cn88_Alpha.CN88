@@ -129,6 +129,24 @@ body {
     }
 }
 
+.dropdown-menu {
+    li.lnk-nickname {
+        margin: 6px 0;
+
+        a {
+            padding: 0 15px;
+            &:hover {
+                background-color: #fff;
+                cursor: default;
+            }
+        }
+    }
+
+    .divider {
+        margin: 6px 0;
+    }
+}
+
 
 // Mobile friendly
 

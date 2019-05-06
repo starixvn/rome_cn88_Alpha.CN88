@@ -49,6 +49,11 @@ else
         </li>
             <li class="header-item dropdown header-custname">
                 @Html.Partial("UserPanel")                
+                @if (!string.IsNullOrWhiteSpace(Model.NickName))
+                {
+                    <li class="lnk-nickname"><a href="javascript:;"><strong>@CN88.Auth.AppResources.AuthResource.NickName: @Model.NickName</strong></a></li>
+                    <li role="separator" class="divider"></li>
+                }
             </li>
         </ul>
     </section>

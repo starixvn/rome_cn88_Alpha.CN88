@@ -21,7 +21,6 @@
 
         public override bool IsValid()
             => base.IsValid()
-            && !viewer.IsSubAcc
             && !viewer.IsInternal
             && string.IsNullOrWhiteSpace(viewer.NickName);
     }

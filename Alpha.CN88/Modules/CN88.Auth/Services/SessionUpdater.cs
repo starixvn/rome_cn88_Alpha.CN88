@@ -166,7 +166,7 @@
 
             if (outputParams.Contains("nickname"))
             {
-                userSession.NickName = (outputParams["nickname"] + string.Empty).ToUpperInvariant();
+                userSession.NickName = outputParams["nickname"] as string;
             }
 
             if (outputParams.Contains("nicknameloginonly"))

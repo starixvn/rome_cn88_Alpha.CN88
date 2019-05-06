@@ -19,7 +19,7 @@ class NickName {
 
         this.$("#frmNickName").submit(function (): boolean {
             self.$.blockUI();
-            const nickNameRule: RegExp = new RegExp(/^[a-zA-Z0-9]{5,15}$/i);
+            const nickNameRule: RegExp = new RegExp(/^[a-zA-Z0-9]{5,20}$/i);
             const isMatch: boolean = nickNameRule.test(self.$.trim(self.$nickName.val()));
 
             if (!isMatch) {

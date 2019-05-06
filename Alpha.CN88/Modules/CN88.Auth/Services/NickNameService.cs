@@ -10,14 +10,11 @@
     public interface NickNameService
     {
         SecurityResult CreateNickName(CreateNickNameParam param);
-
-        SecurityResult UpdateNickNameLoginOnly(UpdateNickNameLoginOnlyParam param);
     }
 
     public class NickNameServiceImpl : NickNameService
     {
-        private const int NickNameRule1ErrCode = 100;
-        private static readonly Regex NickNameRule = new Regex(@"^[a-zA-Z0-9]{5,15}$");
+        private static readonly Regex NickNameRule = new Regex(@"^[a-zA-Z0-9]{5,20}$");
 
         private readonly IDynamicRepository dynamicRepository;
 
@@ -27,15 +24,31 @@
         }
 
         public SecurityResult CreateNickName(CreateNickNameParam param)
-            => IsValidNickName(param.NickName)
-            ? Execute(param.ToCommand())
-            : SecurityResult.CreateErrorResult(AuthResource.NickNameRule1, NickNameRule1ErrCode);
+        {
+            if (!IsValidNickName(param.NickName))
+            {
+                return SecurityResult.CreateErrorResult(AuthResource.NickNameRule1, 100);
+            }
 
-        public SecurityResult UpdateNickNameLoginOnly(UpdateNickNameLoginOnlyParam param)
-            => Execute(param.ToCommand());
+            return param.IsSubAccount
+                ? CreateSubAccountNickName(param)
+                : CreateAndSetNickNameLoginOnly(param);
+        }
 
         private static bool IsValidNickName(string nickName)
             => NickNameRule.IsMatch(nickName);
+
+        private SecurityResult CreateSubAccountNickName(CreateNickNameParam param)
+            => Execute(new CreateSubAccountNickNameCommand(param));
+
+        private SecurityResult CreateAndSetNickNameLoginOnly(CreateNickNameParam param)
+        {
+            var result = Execute(new CreateNickNameCommand(param));
+
+            return result.IsFail
+                ? result
+                : Execute(new UpdateNickNameLoginOnlyCommand(param, true));
+        }
 
         private SecurityResult Execute(NickNameNonQueryCommand command)
         {

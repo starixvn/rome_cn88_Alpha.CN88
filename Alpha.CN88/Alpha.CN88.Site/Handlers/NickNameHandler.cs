@@ -23,19 +23,17 @@
         public SecurityResult Handle(CreateNickNameCommand message)
         {
             var nickName = message.NickName == null ? string.Empty : message.NickName.Trim();
+            var param = new CreateNickNameParam(message.ViewerId, message.SubAccountId, nickName, message.IP, message.LanguageKey);
 
-            var result = nickNameService.CreateNickName(
-                new CreateNickNameParam(message.ViewerId, nickName, message.IP, message.LanguageKey));
+            var result = nickNameService.CreateNickName(param);
 
             if (result.IsSuccess)
             {
-                result = nickNameService.UpdateNickNameLoginOnly(
-                    new UpdateNickNameLoginOnlyParam(message.ViewerId, true, message.IP, message.LanguageKey));
+                userSession.NickName = nickName;
 
-                if (result.IsSuccess)
+                if (param.IsSubAccount)
                 {
                     userSession.IsNicknameLoginOnly = true;
-                    userSession.NickName = nickName;
                 }
             }
 
