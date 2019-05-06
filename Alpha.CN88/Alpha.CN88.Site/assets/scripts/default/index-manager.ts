@@ -88,6 +88,9 @@
         $(".online-member").on("click touchend", () => {
             indexManager.viewOnlineList();
         });
+        $("#lnk-personal-announcement").on("click touchend", () => {
+            indexManager.activeMainMenu("menu-ANNOUNCEMENT");
+        });
         indexManager.elements.mainMenu.on("click touchend", function () {
             $.blockUI();
             var $this = $(this);

@@ -74,7 +74,7 @@
 
         public string CurrentURLCookieName => CookieHelper.GetCookieNameOfCurrentPage(CustId, SubAccId, encodeDataFunction);
 
-        public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=0");
+        public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=1");
 
         public string OnlineMembersPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/CustomerList/OnlineMembers");
 
