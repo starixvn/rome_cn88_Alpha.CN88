@@ -333,7 +333,9 @@
             (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0].childNodes[1]).href;
 
             indexManager.closeMenuBarOnMobile();
-            indexManager.calculateMenuBarHeight(subMenu);
+            if (!indexManager.elements.isDevice) {
+                indexManager.calculateMenuBarHeight(subMenu);
+            }
         }
     },
     subMenuClick: (id) => {
@@ -396,7 +398,9 @@
         if (subMenu && subMenu.length) {
             subMenu.removeClass("display-none");
             indexManager.elements.menuBar.addClass("has-submenu");
-            indexManager.calculateMenuBarHeight(subMenu);
+            if (!indexManager.elements.isDevice) {
+                indexManager.calculateMenuBarHeight(subMenu);
+            }
         }
 
         if (currentPage.subMenu != null) {
