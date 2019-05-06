@@ -317,7 +317,9 @@
         if (subMenu && subMenu.length) {
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.slideDown("fast", () => {
-                indexManager.calculateMenuBarHeight(subMenu);
+                if (!indexManager.elements.isDevice) {
+                    indexManager.calculateMenuBarHeight(subMenu);
+                }
             });
 
             if (indexManager.elements.isDevice) {
