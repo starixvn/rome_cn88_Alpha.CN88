@@ -28,9 +28,7 @@
         listMenu: null,
         hamburgerContainer: null,
         hamburgerIcon: null,
-        isDevice: false,
-        userPanel: null,
-        generalInformation: null
+        isDevice: false
     },
     currentState: {
         mainMenuId: null,
@@ -87,8 +85,6 @@
         indexManager.elements.hamburgerContainer = $("#hamburger-container");
         indexManager.elements.hamburgerIcon = indexManager.elements.hamburgerContainer.children("#hamburgerIcon");
         indexManager.elements.isDevice = indexManager.elements.listMenu.css("position") == "absolute";
-        indexManager.elements.userPanel = $("#user-panel");
-        indexManager.elements.generalInformation = $("#gerneral-information");
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -215,16 +211,6 @@
 
             var iframeWindow = indexManager.elements.mainFrame[0].contentWindow || indexManager.elements.mainFrame[0].contentDocument;
             $(iframeWindow.document).on('click touchend', () => { indexManager.closeMenuBarOnMobile(); });
-        });
-
-        $(".username-mobile").on("click touchend", () => {
-            indexManager.closeMenuBarOnMobile();
-            indexManager.elements.generalInformation.removeClass("display-none");
-        });
-
-        $(".icon-more").on("click touchend", () => {
-            indexManager.closeMenuBarOnMobile();
-            indexManager.elements.userPanel.removeClass("display-none");
         });
 
         setTimeout(indexManager.reCheckin, 30000);
