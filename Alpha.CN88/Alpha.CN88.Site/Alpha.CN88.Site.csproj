@@ -490,6 +490,7 @@
     <Content Include="assets\styles\images\green-star.gif" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
+    <Content Include="assets\styles\images\sprites.png" />
     <Content Include="assets\styles\security\change-password.css">
       <DependentUpon>change-password.scss</DependentUpon>
     </Content>
@@ -926,6 +927,7 @@
     <Content Include="Views\Auth\Kickout.cshtml" />
     <Content Include="Views\Password\ResetSubAccountPassword.cshtml" />
     <Content Include="Views\SecurityCode\ResetSubAccountSecurityCode.cshtml" />
+    <Content Include="Views\Default\UserPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />
