@@ -34,7 +34,8 @@
     currentState: {
         mainMenuId: null,
         isOpenPopup: false,
-        isMainMenuClick: false
+        isMainMenuClick: false,
+        isScrolling: false
     },
     resources: {
         changePassword: null,
@@ -96,11 +97,23 @@
             indexManager.viewOnlineList();
         });
         indexManager.elements.mainMenu.on("click touchend", function () {
+            if (indexManager.currentState.isScrolling) {
+                indexManager.currentState.isScrolling = false;
+                event.stopPropagation();
+                return false;
+            }
+
             $.blockUI();
             var $this = $(this);
             indexManager.mainMenuClick($this.attr("id"));
         });
         indexManager.elements.subMenuItems.on("click touchend", function (event) {
+            if (indexManager.currentState.isScrolling) {
+                indexManager.currentState.isScrolling = false;
+                event.stopPropagation();
+                return false;
+            }
+
             $.blockUI();
             var $this = $(this);
             indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
@@ -223,6 +236,10 @@
         $(window).resize(() => {
             indexManager.calculateMainFrameHeight();
         });
+
+        $(document).on("touchmove", () => { indexManager.currentState.isScrolling = true; });
+
+        $(document).on("touchend", () => { indexManager.currentState.isScrolling = false; });
     },
     changeLanguage: (lang) => {
         $.ajax({
