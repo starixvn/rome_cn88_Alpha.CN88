@@ -1,6 +1,6 @@
 ﻿@model Alpha.CN88.Site.ViewModels.Default.MenuBarViewModel
 <section id="main-menu-tab" class="mainmenu-container">    
-    
+
     <ul class="list-menu collapsed" id="main-menu-items">
         <li class="menu-item menu-back" id="menu-back">
             <a class="txt-item"><span class="icon-chevron-double-left"></span></a>
@@ -10,18 +10,10 @@
             if (menuItem.VisibileSubMenus.Any())
             {
                 <li class="menu-item has-submenu @(menuItem.ShowSubMenus ? "active" : string.Empty)" id="menu-@(menuItem.ResourceKey.ToUpper())">
-                    <a class="txt-item menu-opener parent-menu @(menuItem.ShowSubMenus ? "active" : string.Empty)" href="javascript:void(0);">@Html.Raw(menuItem.DisplayName)</a>
+                    <a class="txt-item menu-opener parent-menu @(menuItem.ShowSubMenus ? "active" : string.Empty)" href="javascript:void(0);">@Html.Raw(Model.GetDisplayName(menuItem))</a>
 
                     <ul class="sub-menu @(menuItem.ShowSubMenus ? "" : "display-none")" data-main-menu="menu-@(menuItem.ResourceKey.ToUpper())">
-                        @foreach (var subMenuItem in menuItem.VisibileSubMenus)
-                    {
-                            <li class="sub-menu-item @(subMenuItem.Status.Disabled?"disabled-menu":string.Empty)">
-                                <a href="@subMenuItem.Link" target="main" class="redirect-item" id="sub-menu-@(subMenuItem.ResourceKey.ToUpper())">
-                                    @subMenuItem.DisplayName
-                                    @Html.Raw(subMenuItem.IsBeta ? "<span class=\"beta-version\">" + SitemapLabels.Beta + "</span>" : string.Empty)
-                                </a>
-                            </li>
-                        }
+                        @RenderSubMenus(menuItem)
                     </ul>
                 </li>
 
@@ -29,9 +21,24 @@
             else
             {
                 <li class="menu-item" id="menu-@(menuItem.ResourceKey.ToUpper())">
-                    <a class="txt-item menu-opener parent-menu redirect-item" href="@menuItem.Link" target="main">@menuItem.DisplayName</a>
+                    <a class="txt-item menu-opener parent-menu redirect-item" href="@menuItem.Link" target="main">@Model.GetDisplayName(menuItem)</a>
                 </li>
             }
         }
     </ul>
 </section>
+
+@helper RenderSubMenus(IMenuItem menuItems)
+{
+    var subMenus = Model.GetSubMenus(menuItems);
+
+    foreach (var subMenuItem in subMenus)
+    {
+        <li class="sub-menu-item @(subMenuItem.Status.Disabled ? "disabled-menu" : string.Empty)">
+            <a href="@subMenuItem.Link" target="main" class="redirect-item" id="sub-menu-@(subMenuItem.ResourceKey.ToUpper())">
+                @Model.GetDisplayName(subMenuItem)
+                @Html.Raw(subMenuItem.IsBeta ? "<span class=\"beta-version\">" + SitemapLabels.Beta + "</span>" : string.Empty)
+            </a>
+        </li>
+    }
+}

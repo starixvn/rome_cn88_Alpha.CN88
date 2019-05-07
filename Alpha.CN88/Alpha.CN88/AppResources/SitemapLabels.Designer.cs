@@ -19,7 +19,7 @@ namespace Alpha.CN88.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class SitemapLabels {
@@ -61,6 +61,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accounting.
+        /// </summary>
+        public static string accounting {
+            get {
+                return ResourceManager.GetString("accounting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Management.
         /// </summary>
         public static string accountManagement {
@@ -93,6 +102,15 @@ namespace Alpha.CN88.AppResources {
         public static string Beta {
             get {
                 return ResourceManager.GetString("Beta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        public static string cancelled {
+            get {
+                return ResourceManager.GetString("cancelled", resourceCulture);
             }
         }
         
@@ -277,6 +295,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settlement.
+        /// </summary>
+        public static string settlement {
+            get {
+                return ResourceManager.GetString("settlement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Started.
         /// </summary>
         public static string started {
@@ -318,6 +345,15 @@ namespace Alpha.CN88.AppResources {
         public static string viewLog {
             get {
                 return ResourceManager.GetString("viewLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wager.
+        /// </summary>
+        public static string wager {
+            get {
+                return ResourceManager.GetString("wager", resourceCulture);
             }
         }
         

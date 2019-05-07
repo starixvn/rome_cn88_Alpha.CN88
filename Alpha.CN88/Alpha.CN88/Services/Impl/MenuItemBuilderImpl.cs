@@ -48,6 +48,9 @@
             menuItem.Link = node.Url;
             menuItem.AppPath = node["AppPath"];
             menuItem.IsBeta = node["isBeta"] != null && bool.Parse(node["isBeta"]);
+            menuItem.HideOnMobile = node["hideOnMobile"] != null && bool.Parse(node["hideOnMobile"]);
+            menuItem.MobileResourceKey = node["mobileResourceKey"];
+            menuItem.DisplayOnlyOnMobile = node["displayOnlyOnMobile"] != null && bool.Parse(node["displayOnlyOnMobile"]);
             menuItem.ByPassAuthorization = node["byPassAuthorization"] != null && bool.Parse(node["byPassAuthorization"]);
             menuItem.SubMenus = new List<IMenuItem>();
         }

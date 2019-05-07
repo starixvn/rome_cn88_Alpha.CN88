@@ -28,7 +28,8 @@
         listMenu: null,
         hamburgerContainer: null,
         hamburgerIcon: null,
-        isDevice: false
+        isDevice: false,
+        pageTitle: null
     },
     currentState: {
         mainMenuId: null,
@@ -85,6 +86,7 @@
         indexManager.elements.hamburgerContainer = $("#hamburger-container");
         indexManager.elements.hamburgerIcon = indexManager.elements.hamburgerContainer.children("#hamburgerIcon");
         indexManager.elements.isDevice = indexManager.elements.listMenu.css("position") == "absolute";
+        indexManager.elements.pageTitle = $("#page-title");
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -321,6 +323,7 @@
             (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0].childNodes[1]).href;
 
             indexManager.closeMenuBarOnMobile();
+            indexManager.elements.pageTitle.text($this.text().trim());
             if (!indexManager.elements.isDevice) {
                 indexManager.calculateMenuBarHeight(subMenu);
             }
@@ -340,6 +343,8 @@
         }
 
         indexManager.currentState.isMainMenuClick = false;
+
+        indexManager.elements.pageTitle.text($this.text().trim());
     },
     addHistory: (newEvent) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);

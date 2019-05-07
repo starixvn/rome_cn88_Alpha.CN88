@@ -6,11 +6,23 @@
 
     public class MenuBarViewModel
     {
-        public MenuBarViewModel(IEnumerable<IMenuItem> menuItems)
+        public MenuBarViewModel(
+            IEnumerable<IMenuItem> menuItems,
+            bool isMobile)
         {
-            MenuItems = menuItems.Where(menuItem => menuItem.Status.Visible);
+            MenuItems = menuItems
+                .Where(menuItem => menuItem.Status.Visible);
+            IsMobile = isMobile;
         }
 
         public IEnumerable<IMenuItem> MenuItems { get; }
+
+        public bool IsMobile { get; }
+
+        public IEnumerable<IMenuItem> GetSubMenus(IMenuItem menuItem)
+            => IsMobile ? menuItem.VisibileSubMenusOnMobile : menuItem.VisibileSubMenus; 
+
+        public string GetDisplayName(IMenuItem menuItem)
+            => IsMobile ? menuItem.MobileDisplayName : menuItem.DisplayName;
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
+    using Alpha.CN88.Site.Helpers;
     using MediatR;
     using Requests.Default;
     using Services;
@@ -9,17 +10,21 @@
         IRequestHandler<MenuBarQuery, MenuBarViewModel>
     {
         private readonly SiteMenuService siteMenuService;
+        private readonly BrowserHelper browserHelper;
 
-        public MenuBarHandler(SiteMenuService siteMenuService)
+        public MenuBarHandler(
+            SiteMenuService siteMenuService,
+            BrowserHelper browserHelper)
         {
             this.siteMenuService = siteMenuService;
+            this.browserHelper = browserHelper;
         }
 
         public MenuBarViewModel Handle(MenuBarQuery message)
         {
             var menuItems = siteMenuService.GetMenuByUserLevel(message.UserLevel, message.IsCookieLess);
 
-            return new MenuBarViewModel(menuItems);
+            return new MenuBarViewModel(menuItems, browserHelper.IsMobile(false));
         }
     }
 }
