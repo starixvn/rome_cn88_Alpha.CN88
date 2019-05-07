@@ -33,6 +33,7 @@
             this.getDefaultUrl = getDefaultUrl ?? FunctionRegistry.GetDefaultUrl;
             this.encodeDataFunction = encodeDataFunction;
             IsNotHeadline = message.ActorLevel.IsNotHeadlineLevel();
+            CurrentLanguage = message.Language;
         }
 
         public double InitialScaleViewPort
@@ -83,5 +84,9 @@
         public bool ClearClientData { get; }
 
         public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false);
+
+        public string CurrentLanguage { get; }
+
+        public bool IsSelectedLanguage(string code) => string.Equals(code, CurrentLanguage, StringComparison.OrdinalIgnoreCase);
     }
 }
