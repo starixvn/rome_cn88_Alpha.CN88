@@ -20,12 +20,12 @@
                 @if (Model.IsNotHeadline)
                 {
                     <li class="header-item online-member">
-                        <span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
+                        <a href="#"><span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span></a>
                     </li>
                 }
-                <li class="active changelanguage-link"><span class="flag flag-en" data-language-code="en-US"></span>English</li>
-                <li class="changelanguage-link"><span class="flag flag-cn" data-language-code="zh-Hans"></span>简体</li>
-                <li class="changelanguage-link"><span class="flag flag-tw" data-language-code="zh-TW"></span>繁體</li>
+                <li class="active en-US"><a class="changelanguage-link" data-value="en-US"><span class="flag flag-en" data-language-code="en-US"></span> English</a></li>
+                <li class="zh-Hans"><a class="changelanguage-link" data-value="zh-Hans"><span class="flag flag-cn" data-language-code="zh-Hans"></span> 简体</a></li>
+                <li class="zh-TW"><a class="changelanguage-link" data-value="zh-TW"><span class="flag flag-tw" data-language-code="zh-TW"></span> 繁體</a></li>
             </ul>
         </div>
     </div>

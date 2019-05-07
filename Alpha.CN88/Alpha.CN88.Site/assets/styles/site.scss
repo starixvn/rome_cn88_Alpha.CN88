@@ -173,12 +173,14 @@ body {
         right: 12px;
         left: 12px;
         border-radius: 0 0 1px 1px;
-        color: #3b3b3b;
+        
 
         li {
             position: relative;
-            padding: 14px 15px;
-            font-size: 14px;
+        }
+
+        li:not(:first-child) {
+            border-top: 1px solid #e5e5e5;
         }
 
         li.active:after {
@@ -191,8 +193,16 @@ body {
             font-size: 21px;
         }
 
-        li:not(:first-child) {
-            border-top: 1px solid #e5e5e5;
+        > li > a {
+            position: relative;
+            padding: 14px 15px;
+            font-size: 14px;
+            color: #3b3b3b;
+        }
+
+        .active > a {
+            background-color: #fff;
+            color: #3b3b3b;
         }
     }
 }
