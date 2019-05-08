@@ -11,28 +11,16 @@
             </div>
         </div>
         <div class="page-title" id="page-title">Home</div>
-
-        <div class="dropdown general-info">
-            <a href="javascript:;" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="icon-more"></span>
-            </a>
-            <ul class="dropdown-menu">
-                @if (Model.IsNotHeadline)
-                {
-                    <li class="header-item online-member">
-                        <a href="#"><span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span></a>
-                    </li>
-                }
-                <li class="@(Model.IsSelectedLanguage("en-US") ? "active":string.Empty) en-US"><a class="changelanguage-link" data-value="en-US"><span class="flag flag-en" data-language-code="en-US"></span> English</a></li>
-                <li class="@(Model.IsSelectedLanguage("zh-Hans") ? "active":string.Empty) zh-Hans"><a class="changelanguage-link" data-value="zh-Hans"><span class="flag flag-cn" data-language-code="zh-Hans"></span> 简体</a></li>
-                <li class="@(Model.IsSelectedLanguage("zh-TW") ? "active":string.Empty) zh-TW"><a class="changelanguage-link" data-value="zh-TW"><span class="flag flag-tw" data-language-code="zh-TW"></span> 繁體</a></li>
-            </ul>
-        </div>
+        <span class="icon-bell"></span>
     </div>
 
     <div class="username-mobile">
         <div class="dropdown">
             @Html.Partial("UserPanel")
+        </div>
+
+        <div class="online-area">
+            <span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
         </div>
     </div>
 }
