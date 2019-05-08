@@ -86,7 +86,7 @@
         indexManager.elements.listMenu = $("#main-menu-items");
         indexManager.elements.hamburgerContainer = $("#hamburger-container");
         indexManager.elements.hamburgerIcon = indexManager.elements.hamburgerContainer.children("#hamburgerIcon");
-        indexManager.elements.isDevice = indexManager.elements.listMenu.css("position") == "absolute";
+        indexManager.elements.isDevice = indexManager.elements.listMenu.css("position") == "fixed";
         indexManager.elements.pageTitle = $("#page-title");
     },
     bindEvents: function () {
@@ -96,7 +96,11 @@
         $(".online-member").on("click touchend", () => {
             indexManager.viewOnlineList();
         });
-        indexManager.elements.mainMenu.on("click touchend", function () {
+        indexManager.elements.mainMenu.on("click touchend", function (event) {
+            if (event.type == 'touchend') {
+                $(this).off('click');
+            }
+
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();

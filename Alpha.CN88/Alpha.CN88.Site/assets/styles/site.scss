@@ -245,3 +245,19 @@ body {
         display: none;
     }
 }
+
+@media (max-device-width: 767px) {
+    .header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 68px;
+        z-index: 999;
+    }
+
+    .main-page {
+        padding-top: 68px;
+        -webkit-overflow-scrolling: touch;
+    }
+}
