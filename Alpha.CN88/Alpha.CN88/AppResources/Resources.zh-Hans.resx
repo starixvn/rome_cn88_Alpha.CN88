@@ -223,4 +223,10 @@
   <data name="MySettings" xml:space="preserve">
     <value>我的设定</value>
   </data>
+  <data name="personalAnnouncement" xml:space="preserve">
+    <value>个人公告</value>
+  </data>
+  <data name="troubleshooting" xml:space="preserve">
+    <value>故障及疑难排解</value>
+  </data>
 </root>

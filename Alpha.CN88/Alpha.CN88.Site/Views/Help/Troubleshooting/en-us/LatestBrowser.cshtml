@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="big-title">@Resources.troubleshooting</div>
+<div class="help-page">
+    <div class="content-item">
+        <a class="btn btn-back" href="@Url.Action("Troubleshooting", "Help")"><span class="icon-chevron-down"></span> Back</a>
+        <div class="title">Download Latest Browser</div>
+        <p class="description">
+            To get the best possible experience using our website, we recommend that you upgrade to one of the modern browsers below:
+        </p>
+        <div class="lastest-browser">
+            <div class="browser-item chrome">
+                <span class="browser_recommend">Recommended</span>
+                <img src="~/assets/styles/images/help/browser_ChromeBTN.png" />
+                <p class="browser-name">Chrome</p>
+                <a target="_blank" href="http://www.google.cn/intl/en-us/chrome/browser/desktop/index.html">
+                    <span class="browser_downloadBTN">Download</span>
+                </a>
+            </div>
+            <div class="browser-item firefox">
+                <img src="~/assets/styles/images/help/browser_FirefoxBTN.png" />
+                <p class="browser-name">Firefox</p>
+                <a target="_blank" href="https://www.mozilla.org/en-us/firefox/new/#">
+                    <span class="browser_downloadBTN">Download</span>
+                </a>
+            </div>
+            <div class="browser-item safari">
+                <img src="~/assets/styles/images/help/browser_Safari.png" />
+                <p class="browser-name">Safari</p>
+                <a target="_blank" href="https://support.apple.com/en-us/HT204416">
+                    <span class="browser_downloadBTN">Download</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-item">
+        <div class="title">Why do I need an up-to-date browser?</div>
+        <div class="browser-description">
+            <div class="item">
+                <img class="item-img" src="~/assets/styles/images/help/browserWord_txt01.png" />
+                <p class="item-title">SECURITY <span class="important">Important</span></p>
+                <p class="item-decription">
+                    Newer browsers protect you better against scams, viruses, trojans, phishing and other threats. They also fix security holes in your current browser.
+                </p>
+            </div>
+            <div class="item">
+                <img class="item-img" src="~/assets/styles/images/help/browserWord_txt02.png" />
+                <p class="item-title">COMPATIBILITY</p>
+                <p class="item-decription">
+                    Websites using new technology will be displayed more correctly.
+                </p>
+            </div>
+            <div class="item">
+                <img class="item-img" src="~/assets/styles/images/help/browserWord_txt03.png" />
+                <p class="item-title">SPEED</p>
+                <p class="item-decription">
+                    Every new browser generation improves speed.
+                </p>
+            </div>
+            <div class="item">
+                <img class="item-img" src="~/assets/styles/images/help/browserWord_txt04.png" />
+                <p class="item-title">BETTER EXPERIENCE</p>
+                <p class="item-decription">
+                    With new features, extensions, you will have a more comfortable web-experience.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="back-to-top" class="back-to-top">
+    <span class="icon"></span>
+</div>
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/help/help")
+}

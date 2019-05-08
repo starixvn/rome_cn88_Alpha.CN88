@@ -195,4 +195,10 @@
   <data name="exchangeRate" xml:space="preserve">
     <value>匯率</value>
   </data>
+  <data name="newUrl" xml:space="preserve">
+    <value>最新網址</value>
+  </data>
+  <data name="troubleshooting" xml:space="preserve">
+    <value>故障及疑難排解</value>
+  </data>
 </root>

@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="big-title">@Resources.troubleshooting</div>
+<div class="help-page">
+    <div class="content-item">
+        <a class="btn btn-back" href="@Url.Action("Troubleshooting", "Help")"><span class="icon-chevron-down"></span> 返回</a>
+        <div class="title">升级浏览器</div>
+        <p class="description">
+            为了享有最佳体验，我们建议您升级到以下其中之一的最新浏览器。
+        </p>
+        <div class="lastest-browser">
+            <div class="browser-item chrome">
+                <span class="browser_recommend">推荐</span>
+                <img src="~/assets/styles/images/help/browser_ChromeBTN.png" />
+                <p class="browser-name">谷歌浏览器</p>
+                <a target="_blank" href="http://www.google.cn/intl/en-us/chrome/browser/desktop/index.html">
+                    <span class="browser_downloadBTN">下载</span>
+                </a>
+            </div>
+            <div class="browser-item firefox">
+                <img src="~/assets/styles/images/help/browser_FirefoxBTN.png" />
+                <p class="browser-name">火狐浏览器</p>
+                <a target="_blank" href="https://www.mozilla.org/en-us/firefox/new/#">
+                    <span class="browser_downloadBTN">下载</span>
+                </a>
+            </div>
+            <div class="browser-item safari">
+                <img src="~/assets/styles/images/help/browser_Safari.png" />
+                <p class="browser-name">苹果浏览器</p>
+                <a target="_blank" href="https://support.apple.com/en-us/HT204416">
+                    <span class="browser_downloadBTN">下载</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-item">
+        <div class="title">我为何必须升级浏览器?</div>
+        <div class="browser-description">
+            <div class="item">
+                <img class="item-img" src="~/assets/styles/images/help/browserWord_txt01.png" />
+                <p class="item-title">安全性 <span class="important">重要</span></p>
+                <p class="item-decription">
+                    新版浏览器可以更好地保护您免受诈骗，病毒，木马，网络钓鱼和其他威胁。而且也修正旧浏览器的安全漏洞。
+                </p>
+            </div>
+            <div class="item">
+                <img class="item-img" src="~/assets/styles/images/help/browserWord_txt02.png" />
+                <p class="item-title">兼容性</p>
+                <p class="item-decription">
+                    有使用新技术的网站会比较能把画面准确的显示出来。
+                </p>
+            </div>
+            <div class="item">
+                <img class="item-img" src="~/assets/styles/images/help/browserWord_txt03.png" />
+                <p class="item-title">速度</p>
+                <p class="item-decription">
+                    每一代的浏览器速度会提升。
+                </p>
+            </div>
+            <div class="item">
+                <img class="item-img" src="~/assets/styles/images/help/browserWord_txt04.png" />
+                <p class="item-title">更好的体验</p>
+                <p class="item-decription">
+                    随着新功能，扩展功能，你将有一个更舒适的网络体验。
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="back-to-top" class="back-to-top">
+    <span class="icon"></span>
+</div>
+
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/help/help")
+}

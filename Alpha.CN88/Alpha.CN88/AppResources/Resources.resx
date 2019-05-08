@@ -226,4 +226,10 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="MySettings" xml:space="preserve">
     <value>My Settings</value>
   </data>
+  <data name="personalAnnouncement" xml:space="preserve">
+    <value>Personal Announcement</value>
+  </data>
+  <data name="troubleshooting" xml:space="preserve">
+    <value>Troubleshooting</value>
+  </data>
 </root>

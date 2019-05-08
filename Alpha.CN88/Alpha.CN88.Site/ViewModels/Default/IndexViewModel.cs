@@ -84,6 +84,8 @@
 
         public bool ClearClientData { get; }
 
+        public string TroubleshootingPath => UrlHelper.MapMainPath("~/Help/Troubleshooting");
+        
         public bool IsShowMySettingPath
             => SubAccId == 0 && IsNotHeadline;
 

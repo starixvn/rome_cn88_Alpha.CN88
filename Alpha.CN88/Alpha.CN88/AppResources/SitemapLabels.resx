@@ -210,4 +210,10 @@
   <data name="viewLog" xml:space="preserve">
     <value>View Logs</value>
   </data>
+  <data name="newUrl" xml:space="preserve">
+    <value>New Url</value>
+  </data>
+  <data name="troubleshooting" xml:space="preserve">
+    <value>Troubleshooting</value>
+  </data>
 </root>

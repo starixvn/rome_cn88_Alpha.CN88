@@ -405,6 +405,10 @@
     <Content Include="assets\bundles\error-page.min.css">
       <DependentUpon>error-page.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\help\help.js" />
+    <Content Include="assets\bundles\help\help.min.js">
+      <DependentUpon>help.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\home-index.css" />
     <Content Include="assets\bundles\home-index.js" />
     <Content Include="assets\bundles\home-index.min.css">
@@ -488,6 +492,32 @@
     <Content Include="assets\styles\images\1L.gif" />
     <Content Include="assets\styles\images\firstGoal.gif" />
     <Content Include="assets\styles\images\green-star.gif" />
+    <Content Include="assets\styles\images\help\browserWord_txt01.png" />
+    <Content Include="assets\styles\images\help\browserWord_txt02.png" />
+    <Content Include="assets\styles\images\help\browserWord_txt03.png" />
+    <Content Include="assets\styles\images\help\browserWord_txt04.png" />
+    <Content Include="assets\styles\images\help\browser_ChromeBTN.png" />
+    <Content Include="assets\styles\images\help\browser_FirefoxBTN.png" />
+    <Content Include="assets\styles\images\help\browser_Safari.png" />
+    <Content Include="assets\styles\images\help\cache_edge01_cn.jpg" />
+    <Content Include="assets\styles\images\help\cache_edge01_en.jpg" />
+    <Content Include="assets\styles\images\help\cache_edge02_cn.jpg" />
+    <Content Include="assets\styles\images\help\cache_edge02_en.jpg" />
+    <Content Include="assets\styles\images\help\cache_edge03_cn.jpg" />
+    <Content Include="assets\styles\images\help\cache_edge03_en.jpg" />
+    <Content Include="assets\styles\images\help\cache_google01_cn.jpg" />
+    <Content Include="assets\styles\images\help\cache_google01_en.jpg" />
+    <Content Include="assets\styles\images\help\cache_google02_cn.jpg" />
+    <Content Include="assets\styles\images\help\cache_google02_en.jpg" />
+    <Content Include="assets\styles\images\help\cache_ie01_cn.jpg" />
+    <Content Include="assets\styles\images\help\cache_ie01_en.jpg" />
+    <Content Include="assets\styles\images\help\cache_ie02_cn.jpg" />
+    <Content Include="assets\styles\images\help\cache_ie02_en.jpg" />
+    <Content Include="assets\styles\images\help\cache_ie03_cn.jpg" />
+    <Content Include="assets\styles\images\help\cache_ie03_en.jpg" />
+    <Content Include="assets\styles\images\help\screen01_en.jpg" />
+    <Content Include="assets\styles\images\help\screen02_en.jpg" />
+    <Content Include="assets\styles\images\help\screen03_en.jpg" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
     <Content Include="assets\styles\security\change-password.css">
@@ -805,6 +835,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\NickNameController.cs" />
@@ -926,6 +957,16 @@
     <Content Include="Views\Auth\Kickout.cshtml" />
     <Content Include="Views\Password\ResetSubAccountPassword.cshtml" />
     <Content Include="Views\SecurityCode\ResetSubAccountSecurityCode.cshtml" />
+    <Content Include="Views\Help\NewUrl.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\zh-tw\Index.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\zh-tw\Cache.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\zh-tw\LatestBrowser.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\zh-hans\Cache.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\zh-hans\Index.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\zh-hans\LatestBrowser.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\en-us\Cache.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\en-us\Index.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\en-us\LatestBrowser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />
@@ -941,6 +982,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="assets\scripts\auth\kickout.ts" />
     <TypeScriptCompile Include="assets\scripts\default\index-manager.ts" />
+    <TypeScriptCompile Include="assets\scripts\help\help.ts" />
     <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />
     <TypeScriptCompile Include="assets\scripts\home\index-manager.ts" />
     <TypeScriptCompile Include="assets\scripts\password\change-password.ts" />

@@ -11,7 +11,8 @@
         changeSecurityCode: null,
         onlineMembersPath: null,
         oldReportsPath: null,
-        wagerMonitoringConsolePath: null
+        wagerMonitoringConsolePath: null,
+        troubleshootingPath: null
     },
     elements: {
         mainMenu: null,
@@ -67,6 +68,7 @@
         indexManager.urls.changeSecurityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
         indexManager.urls.oldReportsPath = $("#OldReportsPath").val();
         indexManager.urls.wagerMonitoringConsolePath = $("#WagerMonitoringConsolePath").val();
+        indexManager.urls.troubleshootingPath = $("#TroubleshootingPath").val();
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -89,6 +91,7 @@
             indexManager.viewOnlineList();
         });
         $("#lnk-personal-announcement").on("click touchend", () => {
+            $.blockUI();
             indexManager.activeMainMenu("menu-ANNOUNCEMENT");
         });
         indexManager.elements.mainMenu.on("click touchend", function () {
@@ -173,8 +176,8 @@
             indexManager.currentState.isOpenPopup = false;
             indexManager.viewOldReport();
         });
-
-        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
+        
+         $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
             $.blockUI();
             indexManager.currentState.isOpenPopup = true;
             var $this = $(this);
@@ -182,6 +185,16 @@
             $.unblockUI();
             indexManager.currentState.isOpenPopup = false;
             indexManager.viewWagerMonitoringConsole();
+        });
+
+        $("#sub-menu-TROUBLESHOOTING").parent().off("click touchend").on("click touchend", () => {
+            $.blockUI();
+            indexManager.currentState.isOpenPopup = true;
+            var $this = $(this);
+            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
+            $.unblockUI();
+            indexManager.currentState.isOpenPopup = false;
+            indexManager.viewTroubleshooting();
         });
 
         $("#main").on("load", () => {
@@ -258,6 +271,9 @@
     },
     viewOldReport: () => {
         window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
+    },
+    viewTroubleshooting: () => {
+        window.open(indexManager.urls.troubleshootingPath, "OnlineList", "height=700,width=900");
     },
     viewWagerMonitoringConsole: () => {
         $.unblockUI();
