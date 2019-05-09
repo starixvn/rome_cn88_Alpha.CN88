@@ -308,7 +308,12 @@
         window.open(indexManager.urls.onlineList, "OnlineList", "height=600,width=800");
     },
     viewOldReport: () => {
-        window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
+        if (indexManager.elements.isDevice) {
+            window.open(indexManager.urls.oldReportsPath, "_blank");
+        }
+        else {
+            window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
+        }
     },
     mainMenuClick: (id) => {
         indexManager.currentState.isMainMenuClick = true;
