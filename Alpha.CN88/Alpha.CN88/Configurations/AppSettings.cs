@@ -24,6 +24,8 @@
 
         public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
 
+        public static string MessageAppPath => GetConfigValue("MessageAppPath");
+
         public static string TotalBetAppPath => GetConfigValue("TotalBetAppPath");
 
         public static int IntervalToGetTotalOnlineMember => int.Parse(GetConfigValue("IntervalToGetTotalOnlineMember"));

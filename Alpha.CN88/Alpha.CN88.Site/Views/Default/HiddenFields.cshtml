@@ -1,4 +1,5 @@
-﻿@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
+﻿@using Alpha.CN88.Configurations
+@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
 @Html.Hidden("currentURLCookieName", Model.CurrentURLCookieName)
 @Html.Hidden("mainRootPath", Model.MainRootPath)
 @Html.Hidden("CustId", Model.CustId)
@@ -11,3 +12,4 @@
 @Html.Hidden("IsDevice", Model.IsDevice ? 1 : 0)
 @Html.Hidden(nameof(Resources.ChangePassword), Resources.ChangePassword)
 @Html.Hidden(nameof(Resources.ChangeSecurityCode), Resources.ChangeSecurityCode)
+@Html.Hidden("AnnouncementPath", AppPathHelper.GetAppPath(AppSettings.MessageAppPath, "~/MessageHistory/Index?messageType=0"))

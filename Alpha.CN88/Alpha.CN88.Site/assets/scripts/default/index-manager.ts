@@ -29,7 +29,8 @@
         hamburgerContainer: null,
         hamburgerIcon: null,
         isDevice: false,
-        pageTitle: null
+        pageTitle: null,
+        announcementPath: null
     },
     currentState: {
         mainMenuId: null,
@@ -88,6 +89,7 @@
         indexManager.elements.hamburgerIcon = indexManager.elements.hamburgerContainer.children("#hamburgerIcon");
         indexManager.elements.isDevice = indexManager.elements.listMenu.css("position") == "fixed";
         indexManager.elements.pageTitle = $("#page-title");
+        indexManager.elements.announcementPath = $("#AnnouncementPath").val();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
@@ -253,6 +255,9 @@
 
         $(".menubar-mobile").on("click touchend", () => {
             indexManager.closeMenuBarOnMobile();
+        });
+        $(".icon-bell").on("click touchend", () => {
+            indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
         });
     },
     changeLanguage: (lang) => {
