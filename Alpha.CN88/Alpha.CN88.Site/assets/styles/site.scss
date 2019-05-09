@@ -147,7 +147,6 @@ body {
     .hamburger-container {
         position: absolute;
         left: 0;
-        right: 0;
         top: 0;
         padding: 12px 10px;
     }
@@ -161,60 +160,6 @@ body {
         font-size: 18px;
     }
 }
-
-/*.general-info {
-    position: absolute;
-    right: 0;
-    right: 0;
-    top: 0;
-    width: 40px;
-    height: 36px;
-    text-align: center;
-    padding: 11px 10px;
-
-    .icon-more {        
-        font-size: 17px;
-    }
-
-    .dropdown-menu {
-        position: fixed;
-        top: 35px;
-        right: 12px;
-        left: 12px;
-        border-radius: 0 0 1px 1px;
-        
-
-        li {
-            position: relative;
-        }
-
-        li:not(:first-child) {
-            border-top: 1px solid #e5e5e5;
-        }
-
-        li.active:after {
-            position: absolute;
-            top: 14px;
-            right: 12px;
-            font-family: "CN88Icon";
-            content: "\e914";
-            color: #689A67;
-            font-size: 21px;
-        }
-
-        > li > a {
-            position: relative;
-            padding: 14px 15px;
-            font-size: 14px;
-            color: #3b3b3b;
-        }
-
-        .active > a {
-            background-color: #fff;
-            color: #3b3b3b;
-        }
-    }
-}*/
 
 .username-mobile {
     position: relative;

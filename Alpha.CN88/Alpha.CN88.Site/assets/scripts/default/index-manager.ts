@@ -199,6 +199,8 @@
                 indexManager.elements.hamburgerIcon.removeClass("active");
             }
 
+            event.stopPropagation();
+            return false;
         });
 
         $("#sub-menu-OLDREPORT").parent().off("click touchend").on("click touchend", () => {
@@ -244,6 +246,14 @@
         $(document).on("touchmove", () => { indexManager.currentState.isScrolling = true; });
 
         $(document).on("touchend", () => { indexManager.currentState.isScrolling = false; });
+
+        $(".username-mobile").on("click touchend", () => {
+            indexManager.closeMenuBarOnMobile();
+        });
+
+        $(".menubar-mobile").on("click touchend", () => {
+            indexManager.closeMenuBarOnMobile();
+        });
     },
     changeLanguage: (lang) => {
         $.ajax({
