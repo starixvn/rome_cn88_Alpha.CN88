@@ -40,7 +40,8 @@
     },
     resources: {
         changePassword: null,
-        changeSecurityCode: null
+        changeSecurityCode: null,
+        mobileHeaderName: "mobileHeaderName"
     },
     topWindow: null,
     init: function (topWindow: any) {
@@ -205,7 +206,10 @@
             return false;
         });
 
-        $("#sub-menu-OLDREPORT").parent().off("click touchend").on("click touchend", () => {
+        $("#sub-menu-OLDREPORT")
+            .parent()
+            .off("click touchend")
+            .on("click touchend", () => {
             $.blockUI();
             indexManager.currentState.isOpenPopup = true;
             var $this = $(this);
@@ -385,7 +389,11 @@
 
         indexManager.currentState.isMainMenuClick = false;
 
-        indexManager.elements.pageTitle.text($this.text().trim());
+        if (indexManager.elements.isDevice) {
+            var headerText = $this.text().trim();
+            
+            indexManager.setMobileHeaderName(headerText);
+        }
     },
     addHistory: (newEvent) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
@@ -442,6 +450,10 @@
         }
 
         $("#main").attr("src", currentPage.url);
+
+        if (indexManager.elements.isDevice) {
+            indexManager.initMobileHeaderName();
+        }
     },
     reCheckin: function () {
         $.ajax({
@@ -518,6 +530,20 @@
         menuBarHeight += subMenu.length ? subMenu.height() : 0;
 
         indexManager.elements.menuBar.height(menuBarHeight);
+    },
+    setMobileHeaderName: (text) => {
+        if (indexManager.elements.isDevice) {
+            indexManager.elements.pageTitle.text(text);
+            siteInfrastructure.localStorage.set(indexManager.resources.mobileHeaderName, text);
+        }
+    },
+    initMobileHeaderName: () => {
+        if (indexManager.elements.isDevice) {
+            var text = siteInfrastructure.localStorage.get(indexManager.resources.mobileHeaderName);
+            if (text) {
+                indexManager.elements.pageTitle.text(text);
+            }
+        }
     }
 };
 
