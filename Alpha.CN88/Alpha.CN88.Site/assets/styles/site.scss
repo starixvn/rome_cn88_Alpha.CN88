@@ -110,13 +110,14 @@ body {
 
 // icons
 .flag {
-    background: url(images/sprites.png) no-repeat;
+    float: right;    
     display: inline-block;
+    position: relative;
+    top: 10px;
     width: 23px;
     height: 16px;
-    position: relative;
-    top: 4px;
-    margin-right: 4px;
+    margin-right: 12px;
+    background: url(images/sprites.png) no-repeat;
 
     &.flag-en {
         background-position: 0 0px;
@@ -184,29 +185,11 @@ body {
         > li:not(:first-child) {
             border-top: 1px solid #e5e5e5;
         }
-        > li > a {
+
+        li > a {
             padding: 14px 15px;
             font-size: 14px;
-        }
-
-        > li {
-            position: relative;
-        }
-
-        > .active > a {
-            background-color: #fff;
-            color: #3b3b3b;
-        }
-
-        li.active:after {
-            position: absolute;
-            top: 14px;
-            right: 12px;
-            font-family: "CN88Icon";
-            content: "\e914";
-            color: #689A67;
-            font-size: 21px;
-        }
+        }       
     }
 
     .online-area {
@@ -214,6 +197,42 @@ body {
         right: 12px;
         top: 0;
         color: #fff;
+    }
+
+    .list-lang {        
+        padding-left: 0;
+        border-top: 1px solid #e5e5e5;
+        list-style: none;        
+
+        > li {
+            position: relative;
+        }
+
+        > li:not(:first-child) {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        li > a {
+            display: block;
+            padding: 8px 15px 8px 40px;
+            background-color: #F6F0F0;
+            color: #3b3b3b;
+        }
+
+        > .active > a {
+            background-color: #F6F0F0;
+            color: #3b3b3b;
+        }
+
+        li.active:before {
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            font-family: "CN88Icon";
+            content: "\e914";
+            color: #689A67;
+            font-size: 21px;
+        }
     }
 }
 
