@@ -83,7 +83,7 @@
 
         public bool ClearClientData { get; }
 
-        public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false);
+        public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
         public string CurrentLanguage { get; }
 
