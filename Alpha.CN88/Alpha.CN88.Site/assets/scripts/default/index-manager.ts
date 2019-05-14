@@ -88,7 +88,7 @@
         indexManager.elements.listMenu = $("#main-menu-items");
         indexManager.elements.hamburgerContainer = $("#hamburger-container");
         indexManager.elements.hamburgerIcon = indexManager.elements.hamburgerContainer.children("#hamburgerIcon");
-        indexManager.elements.isDevice = indexManager.elements.listMenu.css("position") == "fixed";
+        indexManager.elements.isDevice = $("#IsDevice").val() == "1";
         indexManager.elements.pageTitle = $("#page-title");
         indexManager.elements.announcementPath = $("#AnnouncementPath").val();
     },
@@ -249,20 +249,31 @@
             indexManager.calculateMainFrameHeight();
         });
 
-        $(document).on("touchmove", () => { indexManager.currentState.isScrolling = true; });
+        indexManager.initForMobile();
+    },
+    initForMobile: () => {
+        if (indexManager.elements.isDevice) {
+            $(document).on("touchmove", () => { indexManager.currentState.isScrolling = true; });
 
-        $(document).on("touchend", () => { indexManager.currentState.isScrolling = false; });
+            $(document).on("touchend", () => { indexManager.currentState.isScrolling = false; });
 
-        $(".username-mobile").on("click touchend", () => {
-            indexManager.closeMenuBarOnMobile();
-        });
+            $(".username-mobile").on("click touchend", () => {
+                indexManager.closeMenuBarOnMobile();
+            });
 
-        $(".menubar-mobile").on("click touchend", () => {
-            indexManager.closeMenuBarOnMobile();
-        });
-        $(".icon-bell").on("click touchend", () => {
-            indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
-        });
+            $(".menubar-mobile").on("click touchend", () => {
+                indexManager.closeMenuBarOnMobile();
+            });
+
+            $(".icon-bell").on("click touchend", () => {
+                indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
+            });
+
+            var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+            if (iOS) {
+                $('body').backtop();
+            }
+        }
     },
     changeLanguage: (lang) => {
         $.ajax({
