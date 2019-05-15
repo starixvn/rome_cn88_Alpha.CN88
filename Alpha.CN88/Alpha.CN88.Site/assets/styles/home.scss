@@ -190,7 +190,14 @@ body {
     text-align: center;
 }
 
-@media (max-device-width: 767px) {
+@media (min-device-width: 768px) and (max-device-width: 1280px) {
+    .page {
+        width: 100%;
+    }
+}
+
+@media (max-device-width: $screen-device-lower768),
+    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
     body {
         padding: 12px;
     }
@@ -215,8 +222,3 @@ body {
     }
 }
 
-@media (min-device-width: 768px) and (max-device-width: 1280px) {
-    .page {
-        width: 100%;
-    }
-}

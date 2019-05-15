@@ -250,7 +250,8 @@ body {
     }
 }
 
-@media (max-device-width: 767px) {
+@media (max-device-width: $screen-device-lower768),
+    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
     .header {
         position: fixed;
         left: 0;
@@ -263,5 +264,17 @@ body {
     .main-page {
         padding-top: 68px;
         -webkit-overflow-scrolling: touch;
+    }
+
+     .menubar-mobile {
+        display: block;
+    }
+
+    .username-mobile {
+        display: block;
+    }
+
+    .hide-desktop {
+        display: block;
     }
 }

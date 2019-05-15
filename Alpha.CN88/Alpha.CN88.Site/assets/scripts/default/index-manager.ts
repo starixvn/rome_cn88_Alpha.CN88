@@ -320,7 +320,13 @@
         return url.substr(0, i);
     },
     viewOnlineList: () => {
-        window.open(indexManager.urls.onlineList, "OnlineList", "height=600,width=800");
+        if (indexManager.elements.isDevice) {
+            window.open(indexManager.urls.onlineList, "_blank");
+        }
+        else {
+            window.open(indexManager.urls.onlineList, "OnlineList", "height=600,width=800");
+        }
+        
     },
     viewOldReport: () => {
         if (indexManager.elements.isDevice) {
