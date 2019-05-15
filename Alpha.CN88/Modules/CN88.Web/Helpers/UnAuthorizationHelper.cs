@@ -30,6 +30,14 @@
             {
                 filterContext.Result = new RedirectResult(MicroSites.MainUrl($"{AuthorizationSection.Instance.KickoutUrl}?reason={message}"));
             }
+
+            var session = filterContext.HttpContext.Session;
+            session.Clear();
+            session.Abandon();
+            if (!session.IsCookieless)
+            {
+                FormsAuthentication.SignOut();
+            }
         }
 
         private static void UnAuthorizationAjaxResult(AuthorizationContext filterContext)
@@ -42,15 +50,7 @@
             filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
 
             response.TrySkipIisCustomErrors = true;
-            response.End();
-
-            var session = filterContext.HttpContext.Session;
-            session.Clear();
-            session.Abandon();
-            if (!session.IsCookieless)
-            {
-                FormsAuthentication.SignOut();
-            }
+            response.End();            
         }
     }
 }
