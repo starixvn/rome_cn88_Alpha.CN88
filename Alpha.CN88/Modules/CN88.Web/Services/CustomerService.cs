@@ -1,6 +1,7 @@
 ﻿namespace CN88.Web.Services
 {
     using System;
+    using System.Linq;
     using Criteria;
     using Fanex.Caching;
     using Fanex.Data.Repository;
@@ -19,6 +20,8 @@
         bool IsKickedOut(int onlineUserId);
 
         bool IsKickedOut(int custId, int subAccId, int onlineUserId, int cacheInSeconds);
+
+        bool IsSubAccBelonging(int custId, int subAccId);
     }
 
     public class CustomerServiceImpl : CustomerService
@@ -38,6 +41,13 @@
         {
             this.cacheService = cacheService ?? new CacheServiceImpl();
             this.dynamicRepository = dynamicRepository ?? new DynamicRepository();
+        }
+
+        public bool IsSubAccBelonging(int custId, int subAccId)
+        {
+            var subAccounts = dynamicRepository.Fetch<int>(new GetSubAccountListCriteria(custId));
+
+            return subAccounts.Any(i => i == subAccId);
         }
 
         public BelongingInfo GetBelongingInfo(int actorId, int custId, int subAccountId, long transId)

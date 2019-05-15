@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using AppResources;
     using global::CN88.Auth.Models;
+    using global::CN88.Web.Filters;
     using MediatR;
     using Requests.Password;
 
@@ -64,7 +65,7 @@
         public ActionResult ResetSubAccountPassword(ResetPasswordQuery message)
             => View(message);
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, CheckSubAccBelongingFilter]
         public ActionResult ResetSubAccountPassword(ResetSubAccountPasswordCommand message)
         {
             var result = message.IsValid()

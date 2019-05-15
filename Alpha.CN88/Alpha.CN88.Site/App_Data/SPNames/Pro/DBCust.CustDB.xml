@@ -35,4 +35,7 @@
   <Function Name="Check belonging for Headline">
     <Setting Key="CS_Customer_CheckBelonging_Sel" SpName="CS_Customer_CheckBelonging_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
+  <Function Name="Check Belonging For Sub Acc">
+    <Setting Key="CS_CustSubSel" SpName="CS_CustSubSel" DbName="DBCUST.CustDB.BODBDownlineNetView" Plain="0" />
+  </Function>
 </Functions>
