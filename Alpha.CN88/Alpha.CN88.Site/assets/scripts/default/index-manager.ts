@@ -30,7 +30,8 @@
     currentState: {
         mainMenuId: null,
         isOpenPopup: false,
-        isClearActiveMenu: false
+        isClearActiveMenu: false,
+        wagerMonitoringWindow: null
     },
     resources: {
         changePassword: null,
@@ -257,7 +258,11 @@
     },
     viewWagerMonitoringConsole: () => {
         $.unblockUI();
-        window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=800,width=1280");
+        if (indexManager.currentState.wagerMonitoringWindow == null || indexManager.currentState.wagerMonitoringWindow.closed) {
+            indexManager.currentState.wagerMonitoringWindow = window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=800,width=1280");
+        } else {
+            indexManager.currentState.wagerMonitoringWindow.focus();
+        }
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
