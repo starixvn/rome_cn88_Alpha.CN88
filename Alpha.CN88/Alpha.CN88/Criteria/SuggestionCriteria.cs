@@ -4,6 +4,8 @@
 
     public class SuggestionCriteria : CriteriaBase
     {
+        public int UserId { get; set; }
+
         public int CustId { get; set; }
 
         public bool IsInternalAgent { get; set; }
