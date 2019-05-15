@@ -2,6 +2,7 @@
 {
     using System.Net;
     using System.Web.Mvc;
+    using System.Web.Security;
     using AppResources;
     using Configurations;
 
@@ -42,6 +43,14 @@
 
             response.TrySkipIisCustomErrors = true;
             response.End();
+
+            var session = filterContext.HttpContext.Session;
+            session.Clear();
+            session.Abandon();
+            if (!session.IsCookieless)
+            {
+                FormsAuthentication.SignOut();
+            }
         }
     }
 }
