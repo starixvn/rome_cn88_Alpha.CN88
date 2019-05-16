@@ -4,7 +4,7 @@
 
     public abstract class PasswordNonQueryCommand : NonQueryCommand
     {
-        public PasswordNonQueryCommand(
+        protected PasswordNonQueryCommand(
             int custId,
             string userPwd,
             string loginIP,

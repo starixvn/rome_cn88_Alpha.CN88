@@ -5,9 +5,13 @@ html {
     height: 100%;
 }
 
-/*body {
+body {
     overflow: hidden;
-}*/
+
+    &.scroll {
+        overflow: auto;
+    }
+}
 
 .form-group {
     padding-bottom: 0px;

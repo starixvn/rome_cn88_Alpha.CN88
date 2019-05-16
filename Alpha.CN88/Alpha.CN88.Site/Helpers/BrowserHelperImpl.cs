@@ -21,7 +21,7 @@
         {
             if (HttpContext.Current.Request != null && HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] != null)
             {
-                var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"].ToString();
+                var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
 
                 if (u.Length < 4)
                 {
@@ -117,7 +117,7 @@
             return userAgent;
         }
 
-        private string GetIP()
+        private static string GetIP()
         {
             var ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
             return ip.Equals("::1") ? "127.0.0.1" : (string.IsNullOrEmpty(ip) ? "127.0.0.1" : ip.Split(',')[0]);

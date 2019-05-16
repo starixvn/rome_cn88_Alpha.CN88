@@ -55,7 +55,6 @@
                         && authorizationService.IsKickedOut(belongingContext))
                     {
                         UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "SessionKickedOut");
-                        return;
                     }
                 }
             }

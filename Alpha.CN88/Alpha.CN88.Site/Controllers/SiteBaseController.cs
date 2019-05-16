@@ -11,11 +11,11 @@
 
     [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1304:NonPrivateReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed.")]
     [AfterLoginFlowFilter, CheckBelongingFilter]
-    public abstract class SiteBaseController : CN88BaseController
+    public class SiteBaseController : CN88BaseController
     {
         protected readonly IMediator mediator;
 
-        protected SiteBaseController(IMediator mediator)
+        public SiteBaseController(IMediator mediator)
         {
             this.mediator = mediator;
         }

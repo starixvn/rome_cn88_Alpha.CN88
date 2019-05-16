@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class DeniedPageHelper
+    public static class DeniedPageHelper
     {
         private const int AgentRoleId = 2;
         private const int MasterRoleId = 3;

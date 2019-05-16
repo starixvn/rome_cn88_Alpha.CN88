@@ -64,7 +64,8 @@
         public LoginParam ToObject(string[] keyValuePairs)
         {
             // LoginParams: custId, subAccId, loginTime, password, nickName, isNickName, __utms, language, no cross cookie.
-            int custId, subAccId;
+            int custId;
+            int subAccId;
             long timeTicks;
             var loginParamsLength = keyValuePairs.Length;
 

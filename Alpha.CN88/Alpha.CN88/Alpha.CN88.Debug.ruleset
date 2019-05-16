@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SonarQube - CN88 / Site Main Nexcel CSharp" ToolsVersion="14.0">
+  <Include Path="..\..\build\analysisrules\fanexrules.error.ruleset" Action="Default" />
+  <Include Path="..\..\sonarqube\cn88-sitemancsharp.ruleset" Action="Default" />
+</RuleSet>

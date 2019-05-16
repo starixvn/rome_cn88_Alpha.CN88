@@ -96,8 +96,7 @@
             return result;
         }
 
-        public string GenerateSecurityToken()
-            => encryptor.RandomString(6);
+        public string GenerateSecurityToken() => encryptor.RandomString(6);
 
         public string GenerateSalt(int custId)
         {

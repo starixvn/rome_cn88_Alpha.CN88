@@ -5,7 +5,7 @@
 
     public abstract class PasswordParamBase
     {
-        public PasswordParamBase(
+        protected PasswordParamBase(
             int custId,
             string newPassword,
             string hashKey,

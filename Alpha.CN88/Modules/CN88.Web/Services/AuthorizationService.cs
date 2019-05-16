@@ -74,14 +74,12 @@
             return belongingInfo.IsValid() && belongingInfo.RoleId < belongingContext.ActorRoleId;
         }
 
-        public bool IsAuthorized(string url = null)
+        public bool IsAuthorized(string url)
             => IsAuthorized(new BelongingContext());
 
         public bool IsAuthorized(BelongingContext belongingContext)
         {
-            var subAccHasPermissionToViewUrl = belongingContext.SubAccountId == 0
-                ? true
-                : CheckSubAccHasPermissionToViewUrl(belongingContext);
+            var subAccHasPermissionToViewUrl = belongingContext.SubAccountId == 0 || CheckSubAccHasPermissionToViewUrl(belongingContext);
 
             if (subAccHasPermissionToViewUrl)
             {

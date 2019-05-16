@@ -10,7 +10,7 @@
     /// <see cref="https://github.com/HeadspringLabs/Tarantino/blob/master/src/Tarantino.Core/Commons/Model/Enumerations/Enumeration.cs"/>
     /// </summary>
     [Serializable]
-    public abstract class Enumeration : IComparable
+    public class Enumeration : IComparable
     {
         private readonly string _displayName;
         private readonly byte _value;
@@ -83,28 +83,7 @@
 
         public static bool operator ==(Enumeration left, Enumeration right)
         {
-            if (ReferenceEquals(left, null))
-            {
-                if (ReferenceEquals(right, null))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (ReferenceEquals(right, null))
-                {
-                    return false;
-                }
-                else
-                {
-                    return left.Value == right.Value;
-                }
-            }
+            return ReferenceEquals(left, null) ? ReferenceEquals(right, null) : !ReferenceEquals(right, null) && left.Value == right.Value;
         }
 
         public static bool operator !=(Enumeration left, Enumeration right)
@@ -170,7 +149,7 @@
         {
             if (obj == null)
             {
-                throw new ArgumentNullException("obj");
+                throw new ArgumentNullException(nameof(obj));
             }
 
             return Value.CompareTo(((Enumeration)obj).Value);
@@ -180,12 +159,12 @@
         {
             if (ReferenceEquals(left, null))
             {
-                throw new ArgumentNullException("left");
+                throw new ArgumentNullException(nameof(left));
             }
 
             if (ReferenceEquals(right, null))
             {
-                throw new ArgumentNullException("right");
+                throw new ArgumentNullException(nameof(right));
             }
         }
 

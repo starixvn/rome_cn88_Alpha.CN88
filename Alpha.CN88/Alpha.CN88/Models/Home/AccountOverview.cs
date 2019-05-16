@@ -5,10 +5,6 @@
 
     public class AccountOverview
     {
-        public AccountOverview()
-        {
-        }        
-
         public decimal Credit { get; }
 
         public decimal CreditBalance { get; }
