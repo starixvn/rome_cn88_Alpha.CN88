@@ -3,6 +3,10 @@
     <span class="icon-chevron-down"></span>
 </a>
 <ul class="dropdown-menu">
+    @if (Model.MySettingPath.Length != 0)
+    {
+        <li><a id="lnk-my-setting" href="@Model.MySettingPath" target="main">@Resources.MySettings</a></li>
+    }
     <li><a id="lnk-change-password">@Resources.ChangePassword</a></li>
     <li><a id="lnk-security-code">@Resources.ChangeSecurityCode</a></li>
     <li class="language hide-desktop">

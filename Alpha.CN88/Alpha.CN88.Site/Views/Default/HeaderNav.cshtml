@@ -42,11 +42,7 @@ else
                 @Html.Action("List", "Language")
             </li>
             <li class="header-item dropdown header-custname">
-                @Html.Partial("UserPanel")
-                @if (Model.MySettingPath.Length != 0)
-                {
-                    <li><a id="lnk-my-setting" href="@Model.MySettingPath" target="main">@Resources.MySettings</a></li>
-                }
+                @Html.Partial("UserPanel")                
             </li>
         </ul>
     </section>
