@@ -293,4 +293,15 @@ body {
     .hide-desktop {
         display: block;
     }
+    
+    .menubar .list-menu  .sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
+        float: none;
+        background-color: transparent; 
+        margin: 0; 
+
+        a {
+            color: #000 !important;
+            padding: 10px 16px;
+        }
+    }
 }
