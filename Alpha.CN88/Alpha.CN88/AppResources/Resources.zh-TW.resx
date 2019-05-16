@@ -229,4 +229,16 @@
   <data name="troubleshooting" xml:space="preserve">
     <value>故障及疑難排解</value>
   </data>
+  <data name="newURL" xml:space="preserve">
+    <value>最新網址</value>
+  </data>
+  <data name="memberSite" xml:space="preserve">
+    <value>會員端</value>
+  </data>
+  <data name="memberSiteMobile" xml:space="preserve">
+    <value>手機會員端</value>
+  </data>
+  <data name="agentSiteLink" xml:space="preserve">
+    <value>新版管理端</value>
+  </data>
 </root>

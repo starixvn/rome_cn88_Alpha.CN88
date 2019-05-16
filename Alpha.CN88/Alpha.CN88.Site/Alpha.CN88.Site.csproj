@@ -516,8 +516,11 @@
     <Content Include="assets\styles\images\help\cache_ie02_en.jpg" />
     <Content Include="assets\styles\images\help\cache_ie03_cn.jpg" />
     <Content Include="assets\styles\images\help\cache_ie03_en.jpg" />
+    <Content Include="assets\styles\images\help\screen01_cn.jpg" />
     <Content Include="assets\styles\images\help\screen01_en.jpg" />
+    <Content Include="assets\styles\images\help\screen02_cn.jpg" />
     <Content Include="assets\styles\images\help\screen02_en.jpg" />
+    <Content Include="assets\styles\images\help\screen03_cn.jpg" />
     <Content Include="assets\styles\images\help\screen03_en.jpg" />
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
@@ -970,6 +973,7 @@
     <Content Include="Views\Help\Troubleshooting\en-us\Cache.cshtml" />
     <Content Include="Views\Help\Troubleshooting\en-us\Index.cshtml" />
     <Content Include="Views\Help\Troubleshooting\en-us\LatestBrowser.cshtml" />
+    <Content Include="Views\Help\Troubleshooting\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="typings\globals\bootstrap\typings.json" />

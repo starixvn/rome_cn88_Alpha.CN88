@@ -232,4 +232,16 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="troubleshooting" xml:space="preserve">
     <value>Troubleshooting</value>
   </data>
+  <data name="newURL" xml:space="preserve">
+    <value>New URL</value>
+  </data>
+  <data name="memberSite" xml:space="preserve">
+    <value>Member Site</value>
+  </data>
+  <data name="memberSiteMobile" xml:space="preserve">
+    <value>Mobile Member Site</value>
+  </data>
+  <data name="agentSiteLink" xml:space="preserve">
+    <value>New Manager Site</value>
+  </data>
 </root>

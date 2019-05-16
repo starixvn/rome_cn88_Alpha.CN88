@@ -1,41 +1,29 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Help/Troubleshooting/_Layout.cshtml";
 }
 
-<div class="big-title">@Resources.troubleshooting</div>
-<div class="help-page">
-    <div class="content-item">
-        <div class="title">網頁排版錯位或不整齊</div>
-        <p class="description">
-            瀏覽器的緩存是為了讓網頁速度更快且順暢. 但是，如果我們更新網頁後，瀏覽器的緩存還是會保留舊的資料. 因此必須清除瀏覽器的緩存 才可以讓網頁更新有效. 由於有些網頁的技術需要新的瀏覽器才可支援，因此，我們建議用戶更新新的瀏覽器.
-        </p>
-        <a class="link" href="@Url.Action("Cache","Help")">解決方法1：清除瀏覽器緩存</a>
+<div class="content-item">
+    <div class="title">網頁排版錯位或不整齊</div>
+    <p class="description">
+        瀏覽器的緩存是為了讓網頁速度更快且順暢. 但是，如果我們更新網頁後，瀏覽器的緩存還是會保留舊的資料. 因此必須清除瀏覽器的緩存 才可以讓網頁更新有效. 由於有些網頁的技術需要新的瀏覽器才可支援，因此，我們建議用戶更新新的瀏覽器.
+    </p>
+    <a class="link" href="@Url.Action("Cache","Help")">解決方法1：清除瀏覽器緩存</a>
 
-        <a class="link" href="@Url.Action("LatestBrowser","Help")">解決方法2：下載最新的瀏覽器</a>
-
-    </div>
-    <div class="content-item">
-        <div class="title">如何屏幕載圖</div>
-        <div class="step">
-            <img src="~/assets/styles/images/help/screen01_cn.jpg" alt="screenshot-01" />
-            <span><b>1.</b> 按 ‘PrtScn’.</span>
-        </div>
-        <div class="step">
-            <img src="~/assets/styles/images/help/screen02_cn.jpg" alt="screenshot-02" />
-            <span><b>2.</b> 打開‘畫圖’.</span>
-        </div>
-        <div class="step">
-            <img src="~/assets/styles/images/help/screen03_cn.jpg" alt="screenshot-03" />
-            <span><b>3.</b> 貼畫面然後保存.</span>
-        </div>
-    </div>
+    <a class="link" href="@Url.Action("LatestBrowser","Help")">解決方法2：下載最新的瀏覽器</a>
 
 </div>
-
-<div id="back-to-top" class="back-to-top">
-    <span class="icon"></span>
+<div class="content-item">
+    <div class="title">如何屏幕載圖</div>
+    <div class="step">
+        <img src="~/assets/styles/images/help/screen01_cn.jpg" alt="screenshot-01" />
+        <span><b>1.</b> 按 ‘PrtScn’.</span>
+    </div>
+    <div class="step">
+        <img src="~/assets/styles/images/help/screen02_cn.jpg" alt="screenshot-02" />
+        <span><b>2.</b> 打開‘畫圖’.</span>
+    </div>
+    <div class="step">
+        <img src="~/assets/styles/images/help/screen03_cn.jpg" alt="screenshot-03" />
+        <span><b>3.</b> 貼畫面然後保存.</span>
+    </div>
 </div>
-
-@section Scripts {
-    @StaticResources.RenderScripts("~/assets/bundles/help/help")
-}
