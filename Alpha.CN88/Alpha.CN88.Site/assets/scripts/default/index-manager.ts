@@ -492,7 +492,7 @@
 
         var subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
-            subMenu.removeClass("display-none");
+            subMenu.slideDown("fast");
             indexManager.elements.menuBar.addClass("has-submenu");
             if (!indexManager.elements.isDevice) {
                 indexManager.calculateMenuBarHeight(subMenu);
@@ -565,7 +565,7 @@
     activeSubMenu: (id, mainMenuId) => {
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.addClass("has-submenu");
-        $(".sub-menu[data-main-menu='" + mainMenuId + "']").removeClass("display-none");
+        $(".sub-menu[data-main-menu='" + mainMenuId + "']").slideDown("fast");
 
         $("#" + id).parent().addClass("active");
     },
