@@ -105,16 +105,20 @@ html {
 #tbl-master, #tbl-agent, #tbl-member {
     width: 100%;
 }
+
 .sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
     float: right;
     background-color: #ca9d48;
     margin: 2px 16px 0 0;
+
     a {
         color: #fff !important;
         padding: 7px 16px 8px;
     }
+
     &:hover {
         background-color: darken(#ca9d48, 5%);
+
         &:after {
             content: none;
         }
@@ -375,5 +379,39 @@ html {
     .help-page .step > span {
         padding: 0;
         margin-top: 5px;
+    }
+}
+
+.new-url {
+    padding: 50px 20px;
+
+    .top_title {
+        font-size: 16px;
+        color: #3B3B3B;
+        padding: 20px 0;
+    }
+
+    .qa_container {
+        color: #3B3B3B;
+        font-size: 14px;
+    }
+
+    .new_title {
+        width: 294px;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: #D2D2D2 1px solid;
+    }
+
+    .new_list_box {
+        margin: 8px 0 15px 0;
+    }
+
+    .new_list {
+        display: block;
+        width: 294px;
+        height: 25px;
+        line-height: 25px;
+        margin-bottom: 3px;
     }
 }
