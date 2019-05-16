@@ -96,9 +96,13 @@
         $(".changelanguage-link").on("click touchend", (event) => {
             indexManager.changeLanguage($(event.target).data("value"));
         });
-        $(".online-member").on("click touchend", () => {
+        $(".online-member").on("click touchend", function (event) {
+            if (event.type == 'touchend') {
+                $(this).off('click');
+            }
             indexManager.viewOnlineList();
         });
+
         indexManager.elements.mainMenu.on("click touchend", function (event) {
             if (event.type == 'touchend') {
                 $(this).off('click');
