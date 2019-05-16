@@ -145,7 +145,7 @@
         });
         $("#lnk-contact-us").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
-            indexManager.elements.subMenu.addClass("display-none");
+            indexManager.elements.subMenu.slideUp("fast");
 
             indexManager.elements.menuBar.removeClass("has-submenu");
             indexManager.elements.mainFrame.attr("src", indexManager.urls.contactUs);
@@ -221,14 +221,14 @@
             .parent()
             .off("click touchend")
             .on("click touchend", () => {
-            $.blockUI();
-            indexManager.currentState.isOpenPopup = true;
-            var $this = $(this);
-            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
-            $.unblockUI();
-            indexManager.currentState.isOpenPopup = false;
-            indexManager.viewOldReport();
-        });
+                $.blockUI();
+                indexManager.currentState.isOpenPopup = true;
+                var $this = $(this);
+                indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
+                $.unblockUI();
+                indexManager.currentState.isOpenPopup = false;
+                indexManager.viewOldReport();
+            });
 
         $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
             $.blockUI();
@@ -349,7 +349,7 @@
         else {
             window.open(indexManager.urls.onlineList, "OnlineList", "height=600,width=800");
         }
-        
+
     },
     viewOldReport: () => {
         if (indexManager.elements.isDevice) {
@@ -439,7 +439,7 @@
 
         if (indexManager.elements.isDevice) {
             var headerText = $this.text().trim();
-            
+
             indexManager.setMobileHeaderName(headerText);
         }
     },
@@ -485,7 +485,7 @@
         indexManager.elements.mainMenu.removeClass("active");
         $("#" + currentPage.mainMenu).addClass("active");
 
-        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         indexManager.elements.subMenuItems.removeClass("active");
@@ -550,7 +550,7 @@
     },
     activeMainMenu: (id) => {
         indexManager.elements.mainMenu.removeClass("active");
-        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         indexManager.currentState.mainMenuId = id;
@@ -563,7 +563,7 @@
         }, 1000 * 3);
     },
     activeSubMenu: (id, mainMenuId) => {
-        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.addClass("has-submenu");
         $(".sub-menu[data-main-menu='" + mainMenuId + "']").removeClass("display-none");
 
@@ -586,13 +586,17 @@
     },
     clearAllActiveMenu: () => {
         indexManager.elements.mainMenu.removeClass("active");
-        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
+
+        if (!indexManager.elements.isDevice) {
+            indexManager.calculateMenuBarHeight([]);
+        }
     },
     isMySettingsPage: (currentUrl) => {
         return currentUrl.toLowerCase().indexOf("cn88customersetting/viewcn88customersetting/mysetting") > -1;
 
-        
+
     },
     setMobileHeaderName: (text) => {
         if (indexManager.elements.isDevice) {
