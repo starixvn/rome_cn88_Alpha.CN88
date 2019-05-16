@@ -565,9 +565,10 @@
     activeSubMenu: (id, mainMenuId) => {
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.addClass("has-submenu");
-        $(".sub-menu[data-main-menu='" + mainMenuId + "']").slideDown("fast");
-
+        var subMenu = $(".sub-menu[data-main-menu='" + mainMenuId + "']");
+        subMenu.slideDown("fast");
         $("#" + id).parent().addClass("active");
+        indexManager.calculateMenuBarHeight(subMenu);
     },
     calculateMainFrameHeight: () => {
         var height = $(window).height()
