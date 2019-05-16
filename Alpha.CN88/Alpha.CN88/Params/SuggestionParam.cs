@@ -3,6 +3,7 @@
     public class SuggestionParam
     {
         public SuggestionParam(
+            int userId,
             int custId,
             bool isInternal,
             string username,
@@ -12,6 +13,7 @@
             bool isAccInfo
             )
         {
+            UserId = userId;
             CustId = custId;
             IsInternal = isInternal;
             Username = username;
@@ -20,6 +22,8 @@
             DirectDownline = directDownline;
             IsAccInfo = isAccInfo;
         }
+
+        public int UserId { get; }
 
         public int CustId { get; }
 

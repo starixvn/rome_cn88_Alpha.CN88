@@ -20,6 +20,7 @@
         {
             var criteria = new SuggestionCriteria
             {
+                UserId = param.UserId,
                 CustId = param.CustId,
                 DirectDownline = param.DirectDownline,
                 ExcludeMember = param.ExcludeMember,

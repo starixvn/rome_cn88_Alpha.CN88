@@ -220,4 +220,7 @@
   <data name="HomePage" xml:space="preserve">
     <value>首页</value>
   </data>
+  <data name="MySettings" xml:space="preserve">
+    <value>我的设定</value>
+  </data>
 </root>

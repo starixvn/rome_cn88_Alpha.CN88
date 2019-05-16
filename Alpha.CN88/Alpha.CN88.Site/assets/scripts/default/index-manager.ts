@@ -11,6 +11,7 @@
         changeSecurityCode: null,
         onlineMembersPath: null,
         oldReportsPath: null,
+        wagerMonitoringConsolePath: null
     },
     elements: {
         mainMenu: null,
@@ -28,7 +29,9 @@
     },
     currentState: {
         mainMenuId: null,
-        isOpenPopup: false
+        isOpenPopup: false,
+        isClearActiveMenu: false,
+        wagerMonitoringWindow: null
     },
     resources: {
         changePassword: null,
@@ -63,6 +66,7 @@
         indexManager.urls.changePassword = indexManager.urls.mainRootPath + "Password/ChangePassword";
         indexManager.urls.changeSecurityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
         indexManager.urls.oldReportsPath = $("#OldReportsPath").val();
+        indexManager.urls.wagerMonitoringConsolePath = $("#WagerMonitoringConsolePath").val();
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -127,6 +131,9 @@
         });
 
         $("#lnk-my-setting").on("click touchend", () => {
+            indexManager.topWindow.showCN88CancelButton = false;
+            indexManager.currentState.isClearActiveMenu = true;
+            indexManager.clearAllActiveMenu();
         });
         $("#lnk-password-recovery").on("click touchend", () => {
         });
@@ -164,6 +171,16 @@
             indexManager.viewOldReport();
         });
 
+        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
+            $.blockUI();
+            indexManager.currentState.isOpenPopup = true;
+            var $this = $(this);
+            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
+            $.unblockUI();
+            indexManager.currentState.isOpenPopup = false;
+            indexManager.viewWagerMonitoringConsole();
+        });
+
         $("#main").on("load", () => {
             top.$.unblockUI();
             var currentUrl = top.main.location.href;
@@ -175,10 +192,12 @@
 
             indexManager.addHistory({
                 mainMenu: activeMainMenuId,
-                subMenu: activeSubmenu.length ? activeSubmenu.attr("id") : null,
-                url: currentUrl
+                subMenu: activeSubmenu && activeSubmenu.length ? activeSubmenu.attr("id") : null,
+                url: currentUrl,
+                isClearActiveMenu: indexManager.currentState.isClearActiveMenu
             });
 
+            indexManager.currentState.isClearActiveMenu = false;
             indexManager.calculateMainFrameHeight();
         });
 
@@ -236,6 +255,14 @@
     },
     viewOldReport: () => {
         window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
+    },
+    viewWagerMonitoringConsole: () => {
+        $.unblockUI();
+        if (indexManager.currentState.wagerMonitoringWindow == null || indexManager.currentState.wagerMonitoringWindow.closed) {
+            indexManager.currentState.wagerMonitoringWindow = window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=800,width=1280");
+        } else {
+            indexManager.currentState.wagerMonitoringWindow.focus();
+        }
     },
     mainMenuClick: (id) => {
         if (id == "menu-back") {
@@ -296,6 +323,12 @@
 
         siteInfrastructure.localStorage.remove(key);
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, historyIndex);
+        if (currentPage.isClearActiveMenu) {
+            top.showCN88CancelButton = !indexManager.isMySettingsPage(currentPage.url);
+            indexManager.currentState.isClearActiveMenu = true;
+            $("#main").attr("src", currentPage.url);
+            return;
+        }
 
         if (currentPage.mainMenu == null) {
             indexManager.elements.mainMenu.find("a")[1].click();
@@ -387,6 +420,14 @@
             - indexManager.elements.header.height()
             - indexManager.elements.menuBar.height();
         indexManager.elements.content.height(height);
+    },
+    clearAllActiveMenu: () => {
+        indexManager.elements.mainMenu.removeClass("active");
+        indexManager.elements.subMenu.addClass("display-none");
+        indexManager.elements.menuBar.removeClass("has-submenu");
+    },
+    isMySettingsPage: (currentUrl) => {
+        return currentUrl.toLowerCase().indexOf("cn88customersetting/viewcn88customersetting/mysetting") > -1;
     }
 };
 

@@ -8,15 +8,18 @@
     {
         private readonly IUser user;
 
-        public SuggestionCommand(IUser user, string query, bool isDir = false, bool excludeMember = false)
+        public SuggestionCommand(IUser user, string query, bool isDir = false, bool excludeMember = false, int? custId = null)
         {
             this.user = user;
             Query = query;
             DirectDownline = isDir;
             ExcludeMember = excludeMember;
+            CustId = custId ?? user.Id;
         }
 
-        public int CustId => user.Id;
+        public int UserId => user.Id;
+
+        public int CustId { get; }
 
         public bool IsInternal => user.IsInternal;
 
