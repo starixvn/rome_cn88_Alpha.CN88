@@ -492,11 +492,12 @@
 
         var subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
-            subMenu.slideDown("fast");
             indexManager.elements.menuBar.addClass("has-submenu");
-            if (!indexManager.elements.isDevice) {
-                indexManager.calculateMenuBarHeight(subMenu);
-            }
+            subMenu.slideDown("fast", () => {
+                if (!indexManager.elements.isDevice) {
+                    indexManager.calculateMenuBarHeight(subMenu);
+                }
+            });
         }
 
         if (currentPage.subMenu != null) {
@@ -566,9 +567,11 @@
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.addClass("has-submenu");
         var subMenu = $(".sub-menu[data-main-menu='" + mainMenuId + "']");
-        subMenu.slideDown("fast");
         $("#" + id).parent().addClass("active");
-        indexManager.calculateMenuBarHeight(subMenu);
+
+        subMenu.slideDown("fast", () => {
+            indexManager.calculateMenuBarHeight(subMenu);
+        });
     },
     calculateMainFrameHeight: () => {
         var height = $(window).height()
