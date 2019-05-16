@@ -34,7 +34,7 @@
 
     foreach (var subMenuItem in subMenus)
     {
-        <li class="sub-menu-item @(subMenuItem.Status.Disabled ? "disabled-menu" : string.Empty)">
+        <li class="sub-menu-item @(subMenuItem.Status.Disabled ? "disabled-menu" : string.Empty)" data-submenu="@(subMenuItem.ResourceKey.ToLower())">
             <a href="@subMenuItem.Link" target="main" class="redirect-item" id="sub-menu-@(subMenuItem.ResourceKey.ToUpper())">
                 @Model.GetDisplayName(subMenuItem)
                 @Html.Raw(subMenuItem.IsBeta ? "<span class=\"beta-version\">" + SitemapLabels.Beta + "</span>" : string.Empty)

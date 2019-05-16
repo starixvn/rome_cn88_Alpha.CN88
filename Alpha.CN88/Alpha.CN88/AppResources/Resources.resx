@@ -223,4 +223,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="HomePage" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="MySettings" xml:space="preserve">
+    <value>My Settings</value>
+  </data>
 </root>

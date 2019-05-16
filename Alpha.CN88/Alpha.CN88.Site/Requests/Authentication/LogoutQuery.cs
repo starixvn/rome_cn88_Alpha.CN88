@@ -10,15 +10,12 @@
             : base(viewer)
         {
             OnlineUserId = viewer.OnlineUserId;
-            SubUserName = viewer.SubUserName;
             NickName = viewer.NickName;
             ServerId = viewer.ServerId;
             Reason= LogoutReason.Normal;
         }
 
         public int OnlineUserId { get; }
-
-        public string SubUserName { get; }
 
         public string NickName { get; }
 

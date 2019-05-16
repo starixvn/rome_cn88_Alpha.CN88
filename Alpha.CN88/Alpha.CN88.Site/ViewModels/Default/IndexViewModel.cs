@@ -81,6 +81,8 @@
 
         public string OldReportsPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/OldReports/Index?DisplayMode=1");
 
+        public string WagerMonitoringConsolePath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring/Index");
+
         public bool ClearClientData { get; }
 
         public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
@@ -88,5 +90,15 @@
         public string CurrentLanguage { get; }
 
         public bool IsSelectedLanguage(string code) => string.Equals(code, CurrentLanguage, StringComparison.OrdinalIgnoreCase);
+        
+        public bool IsShowMySettingPath
+            => SubAccId == 0 && IsNotHeadline;
+
+        public string MySettingPath
+            => IsShowMySettingPath
+            ? AppPathHelper.GetAppPath(
+                AppSettings.FeaturesAppPath,
+                $"~/CN88CustomerSetting/ViewCN88CustomerSetting/MySetting?customerLevel={RoleId}&isCreateNew=false&productId=1")
+            : string.Empty;
     }
 }

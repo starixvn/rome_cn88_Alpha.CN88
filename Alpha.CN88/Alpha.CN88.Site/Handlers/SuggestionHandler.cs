@@ -18,9 +18,10 @@
         }
 
         public async Task<SuggestionViewModel> Handle(SuggestionCommand message)
-        { 
+        {
             var result = await suggestionService.SearchUser(new SuggestionParam
             (
+                message.UserId,
                 message.CustId,
                 message.IsInternal,
                 message.Query,
@@ -28,9 +29,9 @@
                 message.ExcludeMember,
                 message.DirectDownline,
                 message.IsAccInfo
-            ));
+            )).ConfigureAwait(false);
 
-            return new SuggestionViewModel(message.Query, result.Select(i => new string[] { i.Username, i.Firstname, i.Lastname }));
-        }        
+            return new SuggestionViewModel(message.Query, result.Select(i => new string[] { i.Username, i.Firstname, i.Lastname, i.Username2 }));
+        }
     }
 }

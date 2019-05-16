@@ -181,7 +181,7 @@
     <value>已開賽</value>
   </data>
   <data name="wagerMonitoringConsole" xml:space="preserve">
-    <value>注单监视视窗</value>
+    <value>監視注單控制台</value>
   </data>
   <data name="wagerReport" xml:space="preserve">
     <value>注單報表</value>

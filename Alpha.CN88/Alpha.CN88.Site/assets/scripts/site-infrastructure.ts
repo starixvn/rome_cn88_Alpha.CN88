@@ -9,12 +9,15 @@ interface Window {
     cn88SuccessfulUpdatingCallback(): void;
     cn88CancelCallback(): void;
     showCN88CancelButton: boolean;
+    cn88SaveAndNewCallback(): void;
+    showCN88SaveAndNewButton: boolean,
     $: JQueryStatic;
     main: any;
     siteInfrastructure: any;
 }
 
 top.showCN88CancelButton = true;
+top.showCN88SaveAndNewButton = true;
 
 class Result {
     static warningCode: number = -1000;
@@ -159,4 +162,8 @@ window.top.cn88CancelCallback = function () {
     }
 
     window.top.$("#main").attr("src", data.currentPage);
+}
+
+window.top.cn88SaveAndNewCallback = function () {
+    location.reload(true);
 }
