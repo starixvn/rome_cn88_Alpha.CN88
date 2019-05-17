@@ -284,7 +284,11 @@
             indexManager.calculateMainFrameHeight();
 
             var iframeWindow = indexManager.elements.mainFrame[0].contentWindow || indexManager.elements.mainFrame[0].contentDocument;
-            $(iframeWindow.document).on('click touchend', () => { indexManager.closeMenuBarOnMobile(); });
+            $(iframeWindow.document)
+                .on('click touchend', () => { indexManager.closeMenuBarOnMobile(); });
+
+            var pageTitle = $(iframeWindow.document).find("title").text();
+            indexManager.setMobileHeaderName(pageTitle);
         });
 
         setTimeout(indexManager.reCheckin, 30000);
@@ -473,11 +477,6 @@
 
         indexManager.currentState.isMainMenuClick = false;
 
-        if (indexManager.elements.isDevice) {
-            var headerText = $this.text().trim();
-
-            indexManager.setMobileHeaderName(headerText);
-        }
     },
     addHistory: (newEvent) => {
         var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
@@ -541,10 +540,6 @@
         }
 
         $("#main").attr("src", currentPage.url);
-
-        if (indexManager.elements.isDevice) {
-            indexManager.initMobileHeaderName();
-        }
     },
     reCheckin: function () {
         $.ajax({
@@ -641,15 +636,6 @@
     setMobileHeaderName: (text) => {
         if (indexManager.elements.isDevice) {
             indexManager.elements.pageTitle.text(text);
-            siteInfrastructure.localStorage.set(indexManager.resources.mobileHeaderName, text);
-        }
-    },
-    initMobileHeaderName: () => {
-        if (indexManager.elements.isDevice) {
-            var text = siteInfrastructure.localStorage.get(indexManager.resources.mobileHeaderName);
-            if (text) {
-                indexManager.elements.pageTitle.text(text);
-            }
         }
     },
     calculateUserMobileHeight: () => {
