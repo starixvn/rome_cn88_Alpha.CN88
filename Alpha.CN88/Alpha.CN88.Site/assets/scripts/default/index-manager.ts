@@ -98,6 +98,12 @@
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event) => {
+            if (indexManager.currentState.isScrolling) {
+                indexManager.currentState.isScrolling = false;
+                event.stopPropagation();
+                return false;
+            }
+
             indexManager.changeLanguage($(event.target).data("value"));
         });
         $(".online-member").on("click touchend", function (event) {
@@ -168,6 +174,12 @@
         });
 
         $("#lnk-my-setting").on("click touchend", () => {
+            if (indexManager.currentState.isScrolling) {
+                indexManager.currentState.isScrolling = false;
+                event.stopPropagation();
+                return false;
+            }
+
             indexManager.topWindow.showCN88CancelButton = false;
             indexManager.currentState.isClearActiveMenu = true;
             indexManager.clearAllActiveMenu();
@@ -175,6 +187,12 @@
         $("#lnk-password-recovery").on("click touchend", () => {
         });
         $("#lnk-change-password").on("click touchend", () => {
+            if (indexManager.currentState.isScrolling) {
+                indexManager.currentState.isScrolling = false;
+                event.stopPropagation();
+                return false;
+            }
+
             indexManager.topWindow.popupManager.init($, top);
             indexManager.topWindow.popupManager.open({
                 title: indexManager.resources.changePassword,
@@ -185,6 +203,12 @@
             });
         });
         $("#lnk-security-code").on("click touchend", () => {
+            if (indexManager.currentState.isScrolling) {
+                indexManager.currentState.isScrolling = false;
+                event.stopPropagation();
+                return false;
+            }
+
             indexManager.topWindow.popupManager.init($, top);
             indexManager.topWindow.popupManager.open({
                 title: indexManager.resources.changeSecurityCode,
