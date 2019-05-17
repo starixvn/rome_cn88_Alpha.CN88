@@ -322,8 +322,10 @@
 
             $('.username-mobile .dropdown').on('show.bs.dropdown', function () {
                 indexManager.calculateUserMobileHeight();
+                $("body").addClass("modal-open");
             }).on('hide.bs.dropdown', function () {
                 indexManager.calculateUserMobileHeight();
+                $("body").removeClass("modal-open");
             });
 
             var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
