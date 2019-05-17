@@ -90,9 +90,10 @@
         $(".online-member").on("click touchend", () => {
             indexManager.viewOnlineList();
         });
-        $("#lnk-personal-announcement").on("click touchend", () => {
+        $("#lnk-personal-announcement").on("click touchend", function () {
             $.blockUI();
             indexManager.activeMainMenu("menu-ANNOUNCEMENT");
+            $("#main").attr("src", $(this).children("a").attr("href"));
         });
         indexManager.elements.mainMenu.on("click touchend", function () {
             $.blockUI();
@@ -176,8 +177,8 @@
             indexManager.currentState.isOpenPopup = false;
             indexManager.viewOldReport();
         });
-        
-         $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
+
+        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
             $.blockUI();
             indexManager.currentState.isOpenPopup = true;
             var $this = $(this);
