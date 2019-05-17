@@ -294,6 +294,9 @@
 
         $(window).resize(() => {
             indexManager.calculateMainFrameHeight();
+            if (indexManager.elements.isDevice) {
+                indexManager.calculateUserMobileHeight();
+            }
         });
 
         indexManager.initForMobile();
@@ -314,6 +317,13 @@
 
             $(".icon-bell").on("click touchend", () => {
                 indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
+            });      
+     
+
+            $('.username-mobile .dropdown').on('show.bs.dropdown', function () {
+                indexManager.calculateUserMobileHeight();
+            }).on('hide.bs.dropdown', function () {
+                indexManager.calculateUserMobileHeight();
             });
 
             var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
@@ -638,6 +648,17 @@
             if (text) {
                 indexManager.elements.pageTitle.text(text);
             }
+        }
+    },
+    calculateUserMobileHeight: () => {
+        var dropdownMenu = $(".username-mobile .dropdown-menu"),
+            mainHeight = $(window).height() - $("#header").height(),
+            dropdownMenuHeight = dropdownMenu.height();
+
+        if (dropdownMenuHeight > mainHeight) {
+            dropdownMenu.height(mainHeight);
+        } else {
+            dropdownMenu.css("height", "auto");
         }
     }
 };
