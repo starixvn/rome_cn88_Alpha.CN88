@@ -132,3 +132,45 @@ input, button {
         }
     }
 }
+
+@media (max-device-width: $screen-device-lower768),
+    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
+    body {
+        padding-top: 0;
+        font-size: $font-size-mobile;
+    }
+
+    .block {
+        width: 100%;
+        background: none;
+        .form-security {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+
+        .title-box {
+            height: 48px;
+            line-height: 48px;
+        }
+
+        .rowlg .lb-title {
+            width: 100%;
+        }
+
+        .form-security label {
+            text-transform: uppercase;
+        }
+
+        .txt {
+            width: 100%;
+            font-size: $font-size-mobile-input;
+        }
+
+        [class^="btn-"] {
+            height: 30px;
+            line-height: 28px;
+            font-size: $font-size-mobile;
+        }
+    }
+}
