@@ -1,0 +1,101 @@
+﻿@{
+    Layout = "~/Views/Help/Troubleshooting/_Layout.cshtml";
+}
+
+<div class="content-item">
+    <a class="btn btn-back" href="@Url.Action("Troubleshooting", "Help")"><span class="icon-chevron-down"></span> Back</a>
+    <div class="title">How to Clear Browser Cache.</div>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Chrome
+                    </a>
+                </h4>
+
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="step">
+                        <img src="~/assets/styles/images/help/cache_google01_en.jpg" alt="cache-gg-01" />
+                        <span>
+                            <b>1.</b> Click on top right selection. <br />
+                            <b>2.</b> Select ‘More Tools’ - ‘Clear browsing data’.
+                        </span>
+
+                    </div>
+                    <div class="step">
+                        <img src="~/assets/styles/images/help/cache_google02_en.jpg" alt="cache-gg-02" />
+                        <span><b>3.</b> Check all the checkbox and click on ‘Clear browsing data’.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Internet Explorer
+                    </a>
+                </h4>
+
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <div class="step">
+                        <img src="~/assets/styles/images/help/cache_ie01_en.jpg" alt="cache-ie-01" />
+                        <span>
+                            <b>1.</b> Click on ‘Internet Options’. <br />
+                        </span>
+
+                    </div>
+                    <div class="step">
+                        <img src="~/assets/styles/images/help/cache_ie02_en.jpg" alt="cache-ie-02" />
+                        <span><b>2.</b> Click on ‘Delete’.</span>
+                    </div>
+                    <div class="step">
+                        <img src="~/assets/styles/images/help/cache_ie03_en.jpg" alt="cache-ie-03" />
+                        <span>
+                            <b>3.</b> Check all the checkboxes. <br />
+                            <b>4.</b> Click on ‘Delete’.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Edge
+                    </a>
+                </h4>
+
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                    <div class="step">
+                        <img src="~/assets/styles/images/help/cache_edge01_en.jpg" alt="cache-ed-01" />
+                        <span>
+                            <b>1.</b> Click on ‘Settings’. <br />
+                        </span>
+
+                    </div>
+                    <div class="step">
+                        <img src="~/assets/styles/images/help/cache_edge02_en.jpg" alt="cache-ed-02" />
+                        <span><b>2.</b> Click on ‘Choose what to clear’.</span>
+                    </div>
+                    <div class="step">
+                        <img src="~/assets/styles/images/help/cache_edge03_en.jpg" alt="cache-ed-03" />
+                        <span>
+                            <b>3.</b> Check the ‘Cached data and files’. <br />
+                            <b>4.</b> Click on ‘Clear’.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

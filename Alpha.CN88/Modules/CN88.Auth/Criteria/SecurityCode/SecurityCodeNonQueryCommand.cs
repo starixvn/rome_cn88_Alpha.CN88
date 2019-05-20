@@ -4,7 +4,7 @@
 
     public abstract class SecurityCodeNonQueryCommand : NonQueryCommand
     {
-        public SecurityCodeNonQueryCommand(
+        protected SecurityCodeNonQueryCommand(
             int custId,
             string ip,
             string language)

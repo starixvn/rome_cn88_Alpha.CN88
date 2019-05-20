@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Help/Troubleshooting/_Layout.cshtml";
+}
+
+<div class="content-item">
+    <div class="title">Layout is broken or misaligned.</div>
+    <p class="description">
+        The purpose of browser cache is to let the website run smoother and faster. However, if we have updated the website, the cache will store the old data. Thus, there is a need to clear the cache. Because of our new website needs latest technolgy which is only available in modern browsers, we strongly recommend users to upgrade to latest browser.
+    </p>
+    <a class="link" href="@Url.Action("Cache","Help")">Option 1：Clear Browser Cache</a>
+
+    <a class="link" href="@Url.Action("LatestBrowser","Help")">Option 2：Download Latest Browser</a>
+
+</div>
+<div class="content-item">
+    <div class="title">How to capture a screenshot.</div>
+    <div class="step">
+        <img src="~/assets/styles/images/help/screen01_en.jpg" alt="screenshot-01" />
+        <span><b>1.</b> Press the ‘PrtScn’.</span>
+    </div>
+    <div class="step">
+        <img src="~/assets/styles/images/help/screen02_en.jpg" alt="screenshot-02" />
+        <span><b>2.</b> Open the ‘Paint’.</span>
+    </div>
+    <div class="step">
+        <img src="~/assets/styles/images/help/screen03_en.jpg" alt="screenshot-03" />
+        <span><b>3.</b> Paste the image and save.</span>
+    </div>
+</div>

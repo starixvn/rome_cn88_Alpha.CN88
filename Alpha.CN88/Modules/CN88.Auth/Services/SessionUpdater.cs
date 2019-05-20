@@ -240,7 +240,7 @@
             }
         }
 
-        private void AddCustomDataToSession()
+        private static void AddCustomDataToSession()
         {
             SessionHelper.Add(SessionKeys.ClearClientData, true);
         }

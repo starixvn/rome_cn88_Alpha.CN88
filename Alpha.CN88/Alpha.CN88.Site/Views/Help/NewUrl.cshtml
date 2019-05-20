@@ -1,0 +1,34 @@
+﻿@using Alpha.CN88.Configurations
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="new-url">
+    <div id="top_title" class="top_title"><span>@Resources.newURL</span></div>
+    <div id="div_show" class="qa_container">
+        <div class="new_title">@Resources.memberSite</div>
+        <div class="new_list_box">
+            @foreach (var link in AppSettings.MemberSiteLinks)
+            {
+                @RenderLink(link)
+            }
+        </div>
+        <div class="new_title">@Resources.memberSiteMobile</div>
+        <div class="new_list_box">
+            @foreach (var link in AppSettings.MemberSiteMobileLinks)
+            {
+                @RenderLink(link)
+            }
+        </div>
+        <div class="new_title">@Resources.agentSiteLink</div>
+        <div class="new_list_box">
+            @foreach (var link in AppSettings.AgentSiteLinks)
+            {
+                @RenderLink(link)
+            }
+        </div>
+    </div>
+</div>
+@helper RenderLink(string link)
+{
+    <span class="new_list"><a href="@link" target="_blank">@link</a></span>
+}

@@ -23,12 +23,12 @@
             return viewModel;
         }
 
-        private string Standardize(string languageCode)
+        private static string Standardize(string languageCode)
         {
             if (string.IsNullOrWhiteSpace(languageCode)
               || !Language.CodeNames.Keys.Contains(languageCode))
             {
-                languageCode = Language.Default;
+                return Language.Default;
             }
 
             return languageCode;

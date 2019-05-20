@@ -5,10 +5,6 @@
 
     public class AccountingPeriod
     {
-        public AccountingPeriod()
-        {
-        }        
-
         public int PeriodId { get; }
 
         public int Year { get; }

@@ -16,6 +16,7 @@
 
     public class NickNameServiceImpl : NickNameService
     {
+        private const int NickNameRule1ErrCode = 100;
         private static readonly Regex NickNameRule = new Regex(@"^[a-zA-Z0-9]{5,15}$");
 
         private readonly IDynamicRepository dynamicRepository;
@@ -28,12 +29,12 @@
         public SecurityResult CreateNickName(CreateNickNameParam param)
             => IsValidNickName(param.NickName)
             ? Execute(param.ToCommand())
-            : SecurityResult.CreateErrorResult(AuthResource.NickNameRule1, 100);
+            : SecurityResult.CreateErrorResult(AuthResource.NickNameRule1, NickNameRule1ErrCode);
 
         public SecurityResult UpdateNickNameLoginOnly(UpdateNickNameLoginOnlyParam param)
             => Execute(param.ToCommand());
 
-        private bool IsValidNickName(string nickName)
+        private static bool IsValidNickName(string nickName)
             => NickNameRule.IsMatch(nickName);
 
         private SecurityResult Execute(NickNameNonQueryCommand command)

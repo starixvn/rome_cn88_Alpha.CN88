@@ -4,7 +4,7 @@
 
     public abstract class NickNameNonQueryCommand : NonQueryCommand
     {
-        public NickNameNonQueryCommand(
+        protected NickNameNonQueryCommand(
             int custId,
             string ip,
             string language)

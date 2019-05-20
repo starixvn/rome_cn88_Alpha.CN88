@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CN88.Auth", "Alpha.CN88\Mod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CN88.Web", "Alpha.CN88\Modules\CN88.Web\CN88.Web.csproj", "{B9E4BDA2-5B82-4E85-8A80-9B470D8B1F2D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{9FEEACD9-4748-468C-9120-2162AB47D91C}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\CN88-SiteManCSharp.ruleset = SonarQube\CN88-SiteManCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
