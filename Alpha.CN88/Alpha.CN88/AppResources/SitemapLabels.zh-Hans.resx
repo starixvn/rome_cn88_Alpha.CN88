@@ -207,4 +207,10 @@
   <data name="masterAgent" xml:space="preserve">
     <value>总代理</value>
   </data>
+  <data name="newUrl" xml:space="preserve">
+    <value>最新网址</value>
+  </data>
+  <data name="troubleshooting" xml:space="preserve">
+    <value>故障及疑难排解</value>
+  </data>
 </root>

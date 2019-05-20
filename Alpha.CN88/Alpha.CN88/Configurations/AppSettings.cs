@@ -30,6 +30,12 @@
 
         public static int IntervalToGetTotalOnlineMember => int.Parse(GetConfigValue("IntervalToGetTotalOnlineMember"));
 
+        public static string[] MemberSiteLinks => GetConfigValue("URL:MemberSite").Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+        public static string[] MemberSiteMobileLinks => GetConfigValue("URL:MemberSiteMobile").Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+        public static string[] AgentSiteLinks => GetConfigValue("URL:AgentSiteLink").Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

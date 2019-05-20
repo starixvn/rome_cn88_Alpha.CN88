@@ -14,6 +14,10 @@
 
     public class ReCheckinController : CN88BaseController
     {
+        private const int AccessDenyErrCode = 1;
+        private const int CustomerClosedErrCode = 2;
+        private const int SessionKickedOutErrCode = 3;
+
         private readonly IUser user;
         private readonly AuthenticationService authenticationService;
 
@@ -42,17 +46,17 @@
         {
             if (onlineUserId == 0 || onlineUserId != user.OnlineUserId)
             {
-                return SecurityResult.CreateErrorResult(AuthResource.AccessDeny, 1);
+                return SecurityResult.CreateErrorResult(AuthResource.AccessDeny, AccessDenyErrCode);
             }
 
             if (authenticationService.IsKickedOut(onlineUserId))
             {
-                return SecurityResult.CreateErrorResult(AuthResource.SessionKickedOut, 3);
+                return SecurityResult.CreateErrorResult(AuthResource.SessionKickedOut, SessionKickedOutErrCode);
             }
 
             if (!user.IsInternal && !authenticationService.IsActiveCustomer(user.Id, user.SubAccountId))
             {
-                return SecurityResult.CreateErrorResult(AuthResource.CustomerClosed, 2);
+                return SecurityResult.CreateErrorResult(AuthResource.CustomerClosed, CustomerClosedErrCode);
             }
 
             return new SecurityResult();

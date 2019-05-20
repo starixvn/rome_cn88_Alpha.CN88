@@ -58,9 +58,9 @@
             return new BelongingInfo(command.IsActive, command.RoleId);
         }
 
-        public bool IsCustomerActive(int custId, int subAccountId)
+        public bool IsCustomerActive(int custId, int subAccId)
         {
-            var command = new CheckCustomerActiveCommand(custId, subAccountId);
+            var command = new CheckCustomerActiveCommand(custId, subAccId);
             dynamicRepository.Execute(command);
 
             return command.IsActive;

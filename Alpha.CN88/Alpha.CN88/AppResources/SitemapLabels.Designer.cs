@@ -214,6 +214,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Url.
+        /// </summary>
+        public static string newUrl {
+            get {
+                return ResourceManager.GetString("newUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are not authorized on this function.
         /// </summary>
         public static string NotAuthorized {
@@ -336,6 +345,15 @@ namespace Alpha.CN88.AppResources {
         public static string totalBets {
             get {
                 return ResourceManager.GetString("totalBets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Troubleshooting.
+        /// </summary>
+        public static string troubleshooting {
+            get {
+                return ResourceManager.GetString("troubleshooting", resourceCulture);
             }
         }
         

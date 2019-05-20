@@ -14,8 +14,7 @@
 
         public int SubAccId { get; }
 
-        // Hard-code because store procedured does nothing with this param.
-        public int LoginSubAccId { get; } = 0;
+        public int LoginSubAccId { get; }
 
         public override string GetSettingKey()
             => "ResetSubAccountPassword";

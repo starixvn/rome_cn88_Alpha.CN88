@@ -130,7 +130,7 @@
             cache.Remove(key);
         }
 
-        private void ValidateKey(string key)
+        private static void ValidateKey(string key)
         {
             if (key == null)
             {

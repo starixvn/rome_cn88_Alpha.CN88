@@ -1,4 +1,4 @@
-﻿var indexManager = {
+﻿let indexManager = {
     urls: {
         mainRootPath: null,
         changeLanguage: null,
@@ -11,7 +11,8 @@
         changeSecurityCode: null,
         onlineMembersPath: null,
         oldReportsPath: null,
-        wagerMonitoringConsolePath: null
+        wagerMonitoringConsolePath: null,
+        troubleshootingPath: null
     },
     elements: {
         mainMenu: null,
@@ -53,7 +54,7 @@
         indexManager.cacheElements();
         indexManager.bindEvents();
 
-        if (indexManager.elements.clearClientData == "1") {
+        if (indexManager.elements.clearClientData === "1") {
             siteInfrastructure.localStorage.clear();
         }
 
@@ -62,9 +63,7 @@
     cacheElements: function () {
         indexManager.elements.isNotHeadLine = parseInt($("#IsNotHeadLine").val());
         indexManager.elements.intervalToGetTotalOnlineMember = parseInt($("#IntervalToGetTotalOnlineMember").val());
-        indexManager.urls.mainRootPath = top.document.getElementById('mainRootPath') != null
-            ? (<HTMLInputElement>top.document.getElementById('mainRootPath')).value
-            : "not found";
+        indexManager.urls.mainRootPath = $("#mainRootPath").val();
 
         indexManager.urls.changeLanguage = indexManager.urls.mainRootPath + "Language/Change";
         indexManager.urls.getTotalOnlineMemberUrl = indexManager.urls.mainRootPath + "Default/GetTotalOnlineMember";
@@ -76,6 +75,7 @@
         indexManager.urls.changeSecurityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
         indexManager.urls.oldReportsPath = $("#OldReportsPath").val();
         indexManager.urls.wagerMonitoringConsolePath = $("#WagerMonitoringConsolePath").val();
+        indexManager.urls.troubleshootingPath = $("#TroubleshootingPath").val();
 
         indexManager.elements.mainMenu = $(".menu-item");
         indexManager.elements.subMenu = $(".sub-menu");
@@ -97,7 +97,7 @@
         indexManager.elements.announcementPath = $("#AnnouncementPath").val();
     },
     bindEvents: function () {
-        $(".changelanguage-link").on("click touchend", (event) => {
+        $(".changelanguage-link").on("click touchend", (event: JQueryEventObject) => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
@@ -117,6 +117,12 @@
             if (event.type == 'touchend') {
                 $(this).off('click');
             }
+            
+        $("#lnk-personal-announcement").on("click touchend", function () {
+            $.blockUI();
+            indexManager.activeMainMenu("menu-ANNOUNCEMENT");
+            $("#main").attr("src", $(this).children("a").attr("href"));
+        });
 
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
@@ -125,7 +131,7 @@
             }
 
             $.blockUI();
-            var $this = $(this);
+            const $this = $(this);
             indexManager.mainMenuClick($this.attr("id"));
         });
         indexManager.elements.subMenuItems.on("click touchend", function (event) {
@@ -136,7 +142,7 @@
             }
 
             $.blockUI();
-            var $this = $(this);
+            const $this = $(this);
             indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
 
             event.stopPropagation();
@@ -157,14 +163,14 @@
             indexManager.elements.mainFrame.attr("src", indexManager.urls.contactUs);
         });
         $("#menu-back").on("click touchend", () => {
-            var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
-            var historyIndex = history ? parseInt(history, 0) : 0;
+            const history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+            let historyIndex = history ? parseInt(history, 0) : 0;
 
-            if (historyIndex == 0) {
+            if (historyIndex === 0) {
                 return;
             }
 
-            var key = indexManager.elements.currentURLCookieName + "_" + historyIndex;
+            const key = indexManager.elements.currentURLCookieName + "_" + historyIndex;
             historyIndex--;
 
             siteInfrastructure.localStorage.remove(key);
@@ -184,8 +190,7 @@
             indexManager.currentState.isClearActiveMenu = true;
             indexManager.clearAllActiveMenu();
         });
-        $("#lnk-password-recovery").on("click touchend", () => {
-        });
+
         $("#lnk-change-password").on("click touchend", () => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
@@ -202,6 +207,7 @@
                 height: 500
             });
         });
+
         $("#lnk-security-code").on("click touchend", () => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
@@ -247,7 +253,7 @@
             .on("click touchend", () => {
                 $.blockUI();
                 indexManager.currentState.isOpenPopup = true;
-                var $this = $(this);
+                const $this = $(this);
                 indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
                 $.unblockUI();
                 indexManager.currentState.isOpenPopup = false;
@@ -257,20 +263,30 @@
         $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
             $.blockUI();
             indexManager.currentState.isOpenPopup = true;
-            var $this = $(this);
+            const $this = $(this);
             indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
             $.unblockUI();
             indexManager.currentState.isOpenPopup = false;
             indexManager.viewWagerMonitoringConsole();
         });
 
+        $("#sub-menu-TROUBLESHOOTING").parent().off("click touchend").on("click touchend", () => {
+            $.blockUI();
+            indexManager.currentState.isOpenPopup = true;
+            const $this = $(this);
+            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
+            $.unblockUI();
+            indexManager.currentState.isOpenPopup = false;
+            indexManager.viewTroubleshooting();
+        });
+
         $("#main").on("load", () => {
             top.$.unblockUI();
-            var currentUrl = top.main.location.href;
-            var activeMainMenu = $("#main-menu-items .menu-item.active");
-            var activeMainMenuId = activeMainMenu.length ? activeMainMenu.attr("id") : null;
+            const currentUrl = top.main.location.href;
+            const activeMainMenu = $("#main-menu-items .menu-item.active");
+            const activeMainMenuId = activeMainMenu.length ? activeMainMenu.attr("id") : null;
 
-            var activeSubmenu = activeMainMenuId != null ?
+            const activeSubmenu = activeMainMenuId != null ?
                 $(".sub-menu[data-main-menu='" + activeMainMenuId + "'] .sub-menu-item.active > a") : null;
 
             indexManager.addHistory({
@@ -339,15 +355,15 @@
             }
         }
     },
-    changeLanguage: (lang) => {
+    changeLanguage: (lang: string) => {
         $.ajax({
             type: "POST",
             url: indexManager.urls.changeLanguage,
             data: { languageCode: lang },
-            success: function (result) {
+            success: function (result: any) {
                 if (result !== undefined) {
-                    // Remove www so that subdomain can override LANGUAGE value
-                    var domain = window.location.hostname.replace(/([a-zA-Z0-9]+.)/, '').replace("www.", '');
+                    // remove www so that subdomain can override LANGUAGE value
+                    const domain = window.location.hostname.replace(/([a-zA-Z0-9]+.)/, "").replace("www.", "");
                     $.cookie("LANGUAGE", lang, { expires: 30, path: domain });
                     indexManager.reloadPage();
                 }
@@ -359,7 +375,7 @@
         $.ajax({
             type: "GET",
             url: indexManager.urls.getTotalOnlineMemberUrl,
-            success: function (result) {
+            success: function (result: string) {
                 $("#numberOnlineMember").html(result);
             },
             complete: function () {
@@ -371,12 +387,12 @@
     reloadPage: () => {
         top.location.href = indexManager.removeBookmarksInUrl(top.location.href);
     },
-    removeBookmarksInUrl: (url) => {
-        if (typeof url !== 'string') {
+    removeBookmarksInUrl: (url: any) => {
+        if (typeof url !== "string") {
             return null;
         }
 
-        var i = url.indexOf("#");
+        let i = url.indexOf("#");
         if (i === -1) {
             return url;
         }
@@ -400,22 +416,28 @@
             window.open(indexManager.urls.oldReportsPath, "OldReport", "height=750,width=960");
         }
     },
+    viewTroubleshooting: () => {
+        window.open(indexManager.urls.troubleshootingPath, "OnlineList", "height=700,width=900");
+    },
     viewWagerMonitoringConsole: () => {
         $.unblockUI();
         if (indexManager.currentState.wagerMonitoringWindow == null || indexManager.currentState.wagerMonitoringWindow.closed) {
-            indexManager.currentState.wagerMonitoringWindow = window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=800,width=1280");
+            indexManager.currentState.wagerMonitoringWindow = window.open(
+                indexManager.urls.wagerMonitoringConsolePath,
+                "WagerMonitoringConsole",
+                "height=800,width=1280");
         } else {
             indexManager.currentState.wagerMonitoringWindow.focus();
         }
     },
-    mainMenuClick: (id) => {
+    mainMenuClick: (id: string) => {
         indexManager.currentState.isMainMenuClick = true;
+        if (id === "menu-back") {
 
-        if (id == "menu-back") {
             return;
         }
 
-        var $this = $("#" + id);
+        let $this = $("#" + id);
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
         var isCurrentActive = $this.hasClass("active");
         if (indexManager.elements.isDevice && isCurrentActive) {
@@ -459,9 +481,9 @@
             indexManager.calculateMenuBarHeight(subMenu);
         }
     },
-    subMenuClick: (id) => {
+    subMenuClick: (id: string) => {
         indexManager.elements.subMenuItems.removeClass("active");
-        var $this = $("#" + id);
+        let $this = $("#" + id);
 
         $this.parent().addClass("active");
         if (!indexManager.currentState.isOpenPopup) {
@@ -475,11 +497,11 @@
         indexManager.currentState.isMainMenuClick = false;
 
     },
-    addHistory: (newEvent) => {
-        var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
-        var historyIndex = history ? parseInt(history, 0) : 0;
+    addHistory: (newEvent: any) => {
+        let history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+        let historyIndex = history ? parseInt(history, 0) : 0;
         historyIndex++;
-        if (historyIndex == 21) {
+        if (historyIndex === 21) {
             siteInfrastructure.localStorage.shiftStorage(indexManager.elements.currentURLCookieName, newEvent, historyIndex);
             return;
         }
@@ -488,16 +510,16 @@
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName + "_" + historyIndex, newEvent);
     },
     restoreUrl: () => {
-        var history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
-        var historyIndex = history ? parseInt(history, 0) : 0;
+        let history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+        let historyIndex = history ? parseInt(history, 0) : 0;
 
-        if (historyIndex == 0) {
+        if (historyIndex === 0) {
             indexManager.elements.mainMenu.find("a")[1].click();
             return;
         }
 
-        var key = indexManager.elements.currentURLCookieName + "_" + historyIndex;
-        var currentPage = siteInfrastructure.localStorage.get(key);
+        let key = indexManager.elements.currentURLCookieName + "_" + historyIndex;
+        let currentPage = siteInfrastructure.localStorage.get(key);
         historyIndex--;
 
         siteInfrastructure.localStorage.remove(key);
@@ -522,7 +544,7 @@
 
         indexManager.elements.subMenuItems.removeClass("active");
 
-        var subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
+        let subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.slideDown("fast", () => {
@@ -543,9 +565,9 @@
             type: "POST",
             url: indexManager.urls.reCheckin,
             data: { onid: indexManager.elements.onlineUserId },
-            success: (result) => {
+            success: (result: any) => {
                 try {
-                    var message = result.Message;
+                    const message = result.Message;
                     if (!result.IsSuccess) {
                         if (message) {
                             alert(message);
@@ -577,7 +599,7 @@
             }
         });
     },
-    activeMainMenu: (id) => {
+    activeMainMenu: (id: string) => {
         indexManager.elements.mainMenu.removeClass("active");
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
@@ -591,7 +613,7 @@
             indexManager.elements.mainFrame[0].contentWindow.location.reload(true);
         }, 1000 * 3);
     },
-    activeSubMenu: (id, mainMenuId) => {
+    activeSubMenu: (id: string, mainMenuId: string) => {
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.addClass("has-submenu");
         var subMenu = $(".sub-menu[data-main-menu='" + mainMenuId + "']");
@@ -602,7 +624,7 @@
         });
     },
     calculateMainFrameHeight: () => {
-        var height = $(window).height()
+        const height = $(window).height()
             - indexManager.elements.header.height()
             - indexManager.elements.menuBar.height();
         indexManager.elements.content.height(height);
@@ -626,7 +648,7 @@
         indexManager.elements.menuBar.removeClass("has-submenu");
         indexManager.calculateMenuBarHeight([]);
     },
-    isMySettingsPage: (currentUrl) => {
+    isMySettingsPage: (currentUrl: string) => {
         return currentUrl.toLowerCase().indexOf("cn88customersetting/viewcn88customersetting/mysetting") > -1;
 
 

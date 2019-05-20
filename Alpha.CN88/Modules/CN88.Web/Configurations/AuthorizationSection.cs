@@ -7,6 +7,8 @@
 
     public class AuthorizationSection : ConfigurationSection
     {
+        private const int DefaultCachedExpireTime = 30;
+
         private static AuthorizationSection instance
            = ConfigurationManager.GetSection("AuthorizationSection") as AuthorizationSection;
 
@@ -62,7 +64,7 @@
             }
         }
 
-        [ConfigurationProperty("cachedExpireTime", IsRequired = true, DefaultValue = 30)]
+        [ConfigurationProperty("cachedExpireTime", IsRequired = true, DefaultValue = DefaultCachedExpireTime)]
         public int CachedExpireTime
             => (int)this["cachedExpireTime"];
 

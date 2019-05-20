@@ -75,7 +75,7 @@
 
         public string CurrentURLCookieName => CookieHelper.GetCookieNameOfCurrentPage(CustId, SubAccId, encodeDataFunction);
 
-        public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=0");
+        public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=1");
 
         public string OnlineMembersPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/CustomerList/OnlineMembers");
 
@@ -87,6 +87,8 @@
 
         public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
+        public string TroubleshootingPath => UrlHelper.MapMainPath("~/Help/Troubleshooting");
+        
         public string CurrentLanguage { get; }
 
         public bool IsSelectedLanguage(string code) => string.Equals(code, CurrentLanguage, StringComparison.OrdinalIgnoreCase);

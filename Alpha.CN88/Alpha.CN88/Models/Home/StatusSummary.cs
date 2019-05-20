@@ -2,10 +2,6 @@
 {
     public class StatusSummary
     {
-        public StatusSummary()
-        {
-        }
-
         public byte RoleId { get; }
 
         public string Name => UserLevel.FromValue<UserLevel>(RoleId).DisplayNameInMultipleLanguage;

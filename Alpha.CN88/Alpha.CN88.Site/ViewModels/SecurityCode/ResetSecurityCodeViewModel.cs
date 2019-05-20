@@ -25,7 +25,6 @@
 
         public SecurityResult Result { get; }
 
-        public string MainRootPath
-            => UrlHelper.MapMainPath("~");
+        public string MainRootPath => UrlHelper.MapMainPath("~");
     }
 }

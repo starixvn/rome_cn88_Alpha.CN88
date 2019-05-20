@@ -22,4 +22,10 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Vulnerability", "S2386:Mutable fields should not be \"public static\"", Justification = "<Pending>", Scope = "member", Target = "~F:Alpha.CN88.Constants.Language.CodeKeys")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Bug", "S3887:Mutable, non-private fields should not be \"readonly\"", Justification = "<Pending>", Scope = "member", Target = "~F:Alpha.CN88.Constants.Language.CodeKeys")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S101:Types should be named in camel case", Justification = "<Pending>", Scope = "type", Target = "~T:Alpha.CN88.Services.HomeService")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.CN88.Params.SuggestionParam.#ctor(System.Int32,System.Int32,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S1067:Expressions should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~F:Alpha.CN88.FunctionRegistry.getDefaultUrl")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S2583:Conditionally executed blocks should be reachable", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.CN88.Services.Impl.CachingManagerImpl.ValidateKey(System.String)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Bug", "S2955:Generic parameters not constrained to reference types should not be compared to \"null\"", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.CN88.Services.Impl.CachingManagerImpl.Add``1(System.String,``0,System.Runtime.Caching.CacheItemPolicy)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>", Scope = "member", Target = "~M:Alpha.CN88.Services.Impl.CachingManagerImpl.#ctor")]
 

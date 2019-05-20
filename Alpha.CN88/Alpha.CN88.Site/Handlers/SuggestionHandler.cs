@@ -31,7 +31,7 @@
                 message.IsAccInfo
             )).ConfigureAwait(false);
 
-            return new SuggestionViewModel(message.Query, result.Select(i => new string[] { i.Username, i.Firstname, i.Lastname, i.Username2 }));
+            return new SuggestionViewModel(message.Query, result.Select(i => new[] { i.Username, i.Firstname, i.Lastname, i.Username2 }));
         }
     }
 }

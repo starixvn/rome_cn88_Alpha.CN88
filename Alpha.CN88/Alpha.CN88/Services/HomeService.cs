@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using Models;
     using Models.Home;
 
     public interface HomeService

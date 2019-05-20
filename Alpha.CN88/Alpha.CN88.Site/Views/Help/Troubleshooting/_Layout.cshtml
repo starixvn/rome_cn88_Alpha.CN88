@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@(ViewBag.Title ?? "Alpha - CN88")</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
+
+    @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetStyles.Render("/bundles/site-cn88/default")
+    @StaticResources.RenderStyles("~/assets/bundles/default")
+    @RenderSection("Styles", required: false)
+</head>
+<body class="scroll">
+    <div class="big-title">@Resources.troubleshooting</div>
+    <div class="help-page">
+        @RenderBody()
+    </div>
+    <div id="back-to-top" class="back-to-top">
+        <span class="icon"></span>
+    </div>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.AssetScripts.Render("/bundles/site-cn88/default")
+    @StaticResources.RenderScripts("~/assets/bundles/help/help")
+    @RenderSection("Scripts", required: false)
+    @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
+</body>
+</html>

@@ -84,7 +84,7 @@
       "assets/styles/security/change-password.css"
     ]
   },
-   {
+  {
     "outputFileName": "assets/bundles/error-page.css",
     "inputFiles": [
       "assets/styles/error-page.css"
@@ -95,6 +95,13 @@
     "inputFiles": [
       "assets/scripts/site-infrastructure.js",
       "assets/scripts/auth/kickout.js"
+    ]
+  },
+
+  {
+    "outputFileName": "assets/bundles/help/help.js",
+    "inputFiles": [
+      "assets/scripts/help/help.js"
     ]
   }
 ]

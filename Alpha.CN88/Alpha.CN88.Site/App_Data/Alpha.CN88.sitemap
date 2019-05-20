@@ -26,9 +26,9 @@
       <siteMapNode resourceKey="legacyReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=2" hideOnMobile="true"></siteMapNode>
       <siteMapNode resourceKey="oldReport" appPath="FeaturesAppPath" url="javascript:void(1);" ></siteMapNode>
     </siteMapNode>
-    <siteMapNode resourceKey="help" roles="None">
+    <siteMapNode resourceKey="help" roles="">
       <siteMapNode resourceKey="newUrl" appPath="CN88AppPath" url="Help/NewUrl"></siteMapNode>
-      <siteMapNode resourceKey="troubleshooting" appPath="CN88AppPath" url="Help/Troubleshooting"></siteMapNode>
+      <siteMapNode resourceKey="troubleshooting" appPath="CN88AppPath" url="javascript:void(2);"></siteMapNode>
     </siteMapNode>
   </siteMapNode>
 </siteMap>

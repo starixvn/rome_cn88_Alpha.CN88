@@ -16,7 +16,6 @@
 
         public string SecuritySalt { get; }
 
-        public string MainRootPath
-            => UrlHelper.MapMainPath("~");
+        public string MainRootPath => UrlHelper.MapMainPath("~");
     }
 }

@@ -12,8 +12,8 @@
 
         public MenuStatus(Func<bool> getVisibleFunc = null, Func<bool> getDisableFunc = null)
             : this(
-                getVisibleFunc != null ? getVisibleFunc.Invoke() : true,
-                getDisableFunc != null ? getDisableFunc.Invoke() : false)
+                  getVisibleFunc == null || getVisibleFunc.Invoke(),
+                  getDisableFunc != null && getDisableFunc.Invoke())
         {
         }
 
