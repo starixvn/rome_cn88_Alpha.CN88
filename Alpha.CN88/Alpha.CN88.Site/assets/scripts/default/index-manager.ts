@@ -321,8 +321,8 @@
 
             $(".icon-bell").on("click touchend", () => {
                 indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
-            });      
-     
+            });
+
 
             $('.username-mobile .dropdown').on('show.bs.dropdown', function () {
                 indexManager.calculateUserMobileHeight();
@@ -438,9 +438,7 @@
         if (subMenu && subMenu.length) {
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.slideDown("fast", () => {
-                if (!indexManager.elements.isDevice) {
-                    indexManager.calculateMenuBarHeight(subMenu);
-                }
+                indexManager.calculateMenuBarHeight(subMenu);
             });
 
             if (indexManager.elements.isDevice) {
@@ -457,9 +455,7 @@
 
             indexManager.closeMenuBarOnMobile();
             indexManager.elements.pageTitle.text($this.text().trim());
-            if (!indexManager.elements.isDevice) {
-                indexManager.calculateMenuBarHeight(subMenu);
-            }
+            indexManager.calculateMenuBarHeight(subMenu);
         }
     },
     subMenuClick: (id) => {
@@ -529,10 +525,10 @@
         if (subMenu && subMenu.length) {
             indexManager.elements.menuBar.addClass("has-submenu");
             subMenu.slideDown("fast", () => {
-                if (!indexManager.elements.isDevice) {
-                    indexManager.calculateMenuBarHeight(subMenu);
-                }
+                indexManager.calculateMenuBarHeight(subMenu);
             });
+        } else {
+            indexManager.calculateMenuBarHeight([]);
         }
 
         if (currentPage.subMenu != null) {
@@ -615,6 +611,10 @@
         indexManager.elements.hamburgerIcon.removeClass("active");
     },
     calculateMenuBarHeight: (subMenu) => {
+        if (indexManager.elements.isDevice) {
+            return;
+        }
+
         var menuBarHeight = indexManager.elements.listMenu.height();
         menuBarHeight += subMenu.length ? subMenu.height() : 0;
         indexManager.elements.menuBar.height(menuBarHeight);
@@ -623,10 +623,7 @@
         indexManager.elements.mainMenu.removeClass("active");
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
-
-        if (!indexManager.elements.isDevice) {
-            indexManager.calculateMenuBarHeight([]);
-        }
+        indexManager.calculateMenuBarHeight([]);
     },
     isMySettingsPage: (currentUrl) => {
         return currentUrl.toLowerCase().indexOf("cn88customersetting/viewcn88customersetting/mysetting") > -1;
