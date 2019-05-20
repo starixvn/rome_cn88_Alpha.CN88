@@ -19,7 +19,8 @@
 
         public bool IsMobile(bool isOnlyTablet = false)
         {
-            if (HttpContext.Current.Request != null && HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] != null)
+            if (HttpContext.Current.Request != null 
+                && HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] != null)
             {
                 var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
 
@@ -39,7 +40,7 @@
                 {
                     if (_mobileCheck.IsMatch(u) || _mobileVersionCheck.IsMatch(u.Substring(0, 4)))
                     {
-                        return true;
+                        return !_tabletCheck.IsMatch(u);
                     }
                 }
             }
