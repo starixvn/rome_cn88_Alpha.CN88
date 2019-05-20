@@ -117,12 +117,12 @@
             if (event.type == 'touchend') {
                 $(this).off('click');
             }
-            
-        $("#lnk-personal-announcement").on("click touchend", function () {
-            $.blockUI();
-            indexManager.activeMainMenu("menu-ANNOUNCEMENT");
-            $("#main").attr("src", $(this).children("a").attr("href"));
-        });
+
+            $("#lnk-personal-announcement").on("click touchend", function () {
+                $.blockUI();
+                indexManager.activeMainMenu("menu-ANNOUNCEMENT");
+                $("#main").attr("src", $(this).children("a").attr("href"));
+            });
 
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
@@ -668,6 +668,16 @@
         } else {
             dropdownMenu.css("height", "auto");
         }
+    },
+    hideUserMobileDropdown: () => {
+        if (!indexManager.elements.isDevice) {
+            return;
+        }
+
+        $('.username-mobile .dropdown-menu').hide();
+        $('.username-mobile .dropdown-backdrop').remove();
+        $('.username-mobile .dropdown').removeClass("open");
+        $('.username-mobile .dropdown-toggle').attr("aria-expanded", "false");
     }
 };
 
