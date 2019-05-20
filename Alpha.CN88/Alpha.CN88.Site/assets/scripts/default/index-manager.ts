@@ -323,11 +323,12 @@
                 indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
             });
 
-
             $('.username-mobile .dropdown').on('show.bs.dropdown', function () {
+                $('.username-mobile .dropdown-menu').show();
                 indexManager.calculateUserMobileHeight();
                 $("body").addClass("modal-open");
             }).on('hide.bs.dropdown', function () {
+                $('.username-mobile .dropdown-menu').hide();
                 indexManager.calculateUserMobileHeight();
                 $("body").removeClass("modal-open");
             });
