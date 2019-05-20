@@ -146,15 +146,17 @@ body {
     &.flag-en {
         background-position: 0 0px;
     }
+
     &.flag-cn {
         background-position: 0 -17px;
     }
+
     &.flag-tw {
         background-position: 0 -34px;
     }
 }
 
-.menubar-mobile {    
+.menubar-mobile {
     position: relative;
     height: 36px;
     padding-left: 40px;
@@ -192,7 +194,7 @@ body {
     line-height: 32px;
     padding-left: 12px;
     background-color: #282525;
-    
+
     .dropdown {
         width: 100%;
     }
@@ -214,7 +216,7 @@ body {
         li > a {
             padding: 14px 15px;
             font-size: 14px;
-        }       
+        }
     }
 
     .online-area {
@@ -224,10 +226,10 @@ body {
         color: #fff;
     }
 
-    .list-lang {        
+    .list-lang {
         padding-left: 0;
         border-top: 1px solid #e5e5e5;
-        list-style: none;        
+        list-style: none;
 
         > li {
             position: relative;
@@ -235,6 +237,85 @@ body {
 
         > li:not(:first-child) {
             border-top: 1px solid #e5e5e5;
+        }
+
+        li > a {
+            display: block;
+            padding: 8px 15px 8px 42px;
+            background-color: #F6F0F0;
+            color: #3b3b3b;
+        }
+
+        > .active > a {
+            background-color: #F6F0F0;
+            color: #3b3b3b;
+        }
+
+        li.active:after {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-family: "CN88Icon";
+            content: "\e914";
+            color: #689A67;
+            font-size: 21px;
+        }
+    }
+}
+
+@media (min-device-width: 768px) {
+    .menubar-mobile {
+        display: none;
+    }
+
+    .username-mobile {
+        display: none;
+    }
+
+    .hide-desktop {
+        display: none;
+    }
+}
+
+@media (max-device-width: $screen-device-lower768),
+    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
+    .header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 68px;
+        z-index: 999;
+    }
+
+    .main-page {
+        padding-top: 68px;
+    }
+
+     .menubar-mobile {
+        display: block;
+    }
+
+    .username-mobile {
+        display: block;
+    }
+
+    .hide-desktop {
+        display: block;
+    }
+    
+    .menubar .list-menu  .sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
+        float: none;
+        background-color: transparent; 
+        margin: 0; 
+
+        a {
+            color: #ca9d48 !important;
+            padding: 10px 16px;
+        }
+    }
+}
+
 // ---------------------- HELP PAGE --------------------- //
 .big-title {
     height: 56px;
@@ -343,62 +424,6 @@ body {
             border-bottom: 1px solid #bdc3c7;
         }
 
-        li > a {
-            display: block;
-            padding: 8px 15px 8px 42px;
-            background-color: #F6F0F0;
-            color: #3b3b3b;
-        }
-
-        > .active > a {
-            background-color: #F6F0F0;
-            color: #3b3b3b;
-        }
-
-        li.active:after {
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            font-family: "CN88Icon";
-            content: "\e914";
-            color: #689A67;
-            font-size: 21px;
-        }
-    }
-}
-
-@media (min-device-width: 768px) {
-     .menubar-mobile {
-        display: none;
-    }
-
-    .username-mobile {
-        display: none;
-    }
-
-    .hide-desktop {
-        display: none;
-    }
-}
-
-@media (max-device-width: $screen-device-lower768),
-    (min-device-width: $screen-device-greater768) and (max-device-width: $screen-device-lower1024) and (orientation: landscape) {
-    .header {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        height: 68px;
-        z-index: 999;
-    }
-
-    .main-page {
-        padding-top: 68px;
-    }
-
-     .menubar-mobile {
-        display: block;
-    }
         .panel-title {
             > a {
                 position: relative;
@@ -456,25 +481,6 @@ body {
             }
         }
 
-    .username-mobile {
-        display: block;
-    }
-
-    .hide-desktop {
-        display: block;
-    }
-    
-    .menubar .list-menu  .sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
-        float: none;
-        background-color: transparent; 
-        margin: 0; 
-
-        a {
-            color: #ca9d48 !important;
-            padding: 10px 16px;
-        }
-    }
-}
         .browser_recommend {
             display: block;
             position: absolute;
@@ -600,3 +606,4 @@ body {
         margin-bottom: 3px;
     }
 }
+
