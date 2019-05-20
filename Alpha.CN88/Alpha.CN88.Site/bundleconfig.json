@@ -103,5 +103,11 @@
     "inputFiles": [
       "assets/scripts/help/help.js"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/help/help.css",
+    "inputFiles": [
+      "assets/styles/help.css"
+    ]
   }
 ]
