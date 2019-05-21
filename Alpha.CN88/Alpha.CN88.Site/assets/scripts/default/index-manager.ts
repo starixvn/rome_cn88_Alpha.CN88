@@ -433,10 +433,10 @@
     mainMenuClick: (id: string) => {
         indexManager.currentState.isMainMenuClick = true;
         if (id === "menu-back") {
-
             return;
         }
 
+        indexManager.elements.subMenuItems.removeClass("active");
         let $this = $("#" + id);
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
         var isCurrentActive = $this.hasClass("active");
