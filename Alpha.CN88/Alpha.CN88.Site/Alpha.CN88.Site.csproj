@@ -406,7 +406,11 @@
     <Content Include="assets\bundles\error-page.min.css">
       <DependentUpon>error-page.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\help\help.css" />
     <Content Include="assets\bundles\help\help.js" />
+    <Content Include="assets\bundles\help\help.min.css">
+      <DependentUpon>help.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\help\help.min.js">
       <DependentUpon>help.js</DependentUpon>
     </Content>
@@ -482,6 +486,12 @@
     </Content>
     <Content Include="assets\styles\error-page.min.css">
       <DependentUpon>error-page.css</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\help.css">
+      <DependentUpon>help.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\help.min.css">
+      <DependentUpon>help.css</DependentUpon>
     </Content>
     <Content Include="assets\styles\home.css">
       <DependentUpon>home.scss</DependentUpon>
@@ -928,6 +938,7 @@
     <Content Include="assets\styles\error-page.scss" />
     <Content Include="Alpha.CN88.Site.Debug.ruleset" />
     <Content Include="Alpha.CN88.Site.ruleset" />
+    <Content Include="assets\styles\help.scss" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
