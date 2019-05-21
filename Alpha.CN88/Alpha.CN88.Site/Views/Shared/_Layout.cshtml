@@ -11,7 +11,7 @@
     @StaticResources.RenderStyles("~/assets/bundles/default")
     @RenderSection("Styles", required: false)
 </head>
-<body>
+<body @(Html.Raw(Alpha.CN88.Site.Helpers.BrowserManager.BuildMobileHtmlClass()))>
 	@RenderBody()
 	@StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
 	@StaticResources.AssetScripts.Render("/bundles/site-cn88/default")

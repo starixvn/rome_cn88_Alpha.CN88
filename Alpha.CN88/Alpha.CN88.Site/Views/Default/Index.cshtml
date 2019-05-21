@@ -19,7 +19,7 @@
       @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
 </head>
-<body>
+<body @(Html.Raw(Alpha.CN88.Site.Helpers.BrowserManager.BuildMobileHtmlClass()))>
     <div id="header" class="header">
         @Html.Partial("HeaderNav", Model)
     </div>
