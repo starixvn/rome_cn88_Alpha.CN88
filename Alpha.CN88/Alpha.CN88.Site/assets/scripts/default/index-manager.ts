@@ -303,6 +303,11 @@
                 .on('click touchend', () => { indexManager.closeMenuBarOnMobile(); });
 
             var pageTitle = $(iframeWindow.document).find("title").text();
+
+            if (currentUrl.indexOf("ViewCN88CustomerSetting/MySetting") > 0) {
+                pageTitle = $("#MySettings").val();
+            }
+
             indexManager.setMobileHeaderName(pageTitle);
         });
 

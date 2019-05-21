@@ -820,6 +820,7 @@
     </Content>
     <Content Include="Web.AppSettings.uat.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.backupMNL.config">
       <DependentUpon>Web.local.config</DependentUpon>
