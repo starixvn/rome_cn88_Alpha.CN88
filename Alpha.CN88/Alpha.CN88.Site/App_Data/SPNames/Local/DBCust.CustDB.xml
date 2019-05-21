@@ -9,7 +9,7 @@
     </Setting>
   </Function>
   <Function Name="Login">
-    <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_LoginClaimDownline" SpName="CS_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Nick Name">

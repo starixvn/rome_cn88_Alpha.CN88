@@ -4,11 +4,11 @@ declare var Sha256: any;
 
 class VerifySecurityCode {
     $: JQueryStatic;
-    top: Window;
+    top: any;
     resources: any;
     elements: any;
 
-    constructor($: JQueryStatic, top: Window) {
+    constructor($: JQueryStatic, top: any) {
         this.$ = $;
         this.top = top;
     }
@@ -73,7 +73,7 @@ class VerifySecurityCode {
                     self.top.popupManager.revertLatestPopupTitle();
                     self.afterVerifed();
                 }
-                else if (data.Code === 2) { // account is closed 
+                else if (data.Code === 2) { // account is closed
                     alert(data.Message);
                     siteInfrastructure.logout();
                 }
@@ -102,14 +102,22 @@ class VerifySecurityCode {
 
     afterVerifed(): void {
         let redirectUrl = this.getUrlVars()["redirectUrl"];
-
         if (redirectUrl) {
-            redirectUrl = decodeURIComponent(redirectUrl);
-        } else {
-            redirectUrl = this.$("#mainRootPath").val();
+            window.location.href = decodeURIComponent(redirectUrl);
+            return;
         }
 
-        window.location.href = redirectUrl;
+        if (this.top.popupManager
+            && this.top.popupManager.popupOptions
+            && this.top.popupManager.popupOptions[this.top.popupManager.popupOptions.length - 1]
+            && this.top.popupManager.popupOptions[this.top.popupManager.popupOptions.length - 1].preUrl) {
+            var preUrl = this.top.popupManager.popupOptions[this.top.popupManager.popupOptions.length - 1].preUrl as string;
+            this.top[preUrl]();
+            this.top.popupManager.close();
+            return;
+        }
+
+        window.location.href = this.$("#mainRootPath").val();
     }
 
     getUrlVars() {
