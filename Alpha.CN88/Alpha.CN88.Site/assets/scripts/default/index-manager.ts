@@ -229,7 +229,6 @@
         });
 
         indexManager.elements.hamburgerContainer.on("click touchend", function (event) {
-
             if (event.type == 'touchend') {
                 $(this).off('click');
             }
@@ -406,7 +405,6 @@
         else {
             window.open(indexManager.urls.onlineList, "OnlineList", "height=600,width=800");
         }
-
     },
     viewOldReport: () => {
         if (indexManager.elements.isDevice) {
@@ -422,10 +420,9 @@
     viewWagerMonitoringConsole: () => {
         $.unblockUI();
         if (indexManager.currentState.wagerMonitoringWindow == null || indexManager.currentState.wagerMonitoringWindow.closed) {
-            indexManager.currentState.wagerMonitoringWindow = window.open(
-                indexManager.urls.wagerMonitoringConsolePath,
-                "WagerMonitoringConsole",
-                "height=800,width=1280");
+            indexManager.currentState.wagerMonitoringWindow = indexManager.elements.isDevice
+                ? window.open(indexManager.urls.wagerMonitoringConsolePath, "_blank")
+                : window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=800,width=1280");
         } else {
             indexManager.currentState.wagerMonitoringWindow.focus();
         }
@@ -471,7 +468,6 @@
                 subMenu.find(".sub-menu-item >.redirect-item:first")[0].click();
             }
         } else {
-
             indexManager.currentState.isMainMenuClick = false;
 
             (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0].childNodes[1]).href;
@@ -495,7 +491,6 @@
         }
 
         indexManager.currentState.isMainMenuClick = false;
-
     },
     addHistory: (newEvent: any) => {
         let history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
@@ -650,8 +645,6 @@
     },
     isMySettingsPage: (currentUrl: string) => {
         return currentUrl.toLowerCase().indexOf("cn88customersetting/viewcn88customersetting/mysetting") > -1;
-
-
     },
     setMobileHeaderName: (text) => {
         if (indexManager.elements.isDevice) {
