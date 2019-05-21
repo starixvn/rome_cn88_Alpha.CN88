@@ -312,10 +312,9 @@
         }
 
         $(window).resize(() => {
+            
             indexManager.calculateMainFrameHeight();
-            if (indexManager.elements.isDevice) {
                 indexManager.calculateUserMobileHeight();
-            }
         });
 
         indexManager.initForMobile();
@@ -652,11 +651,15 @@
         }
     },
     calculateUserMobileHeight: () => {
+        if (!indexManager.elements.isDevice) {
+            return;
+        }
+
         var dropdownMenu = $(".username-mobile .dropdown-menu"),
             mainHeight = $(window).height() - $("#header").height(),
             dropdownMenuHeight = dropdownMenu.height();
-
-        if (dropdownMenuHeight > mainHeight) {
+        
+        if (dropdownMenuHeight >= mainHeight) {
             dropdownMenu.height(mainHeight);
         } else {
             dropdownMenu.css("height", "auto");
