@@ -535,6 +535,7 @@
     <Content Include="assets\styles\images\lastGoal.gif" />
     <Content Include="assets\styles\images\note_title.gif" />
     <Content Include="assets\styles\images\sprites.png" />
+    <Content Include="assets\styles\images\sprites.svg" />
     <Content Include="assets\styles\security\change-password.css">
       <DependentUpon>change-password.scss</DependentUpon>
     </Content>

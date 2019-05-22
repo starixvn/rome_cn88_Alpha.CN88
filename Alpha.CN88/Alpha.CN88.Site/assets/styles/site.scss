@@ -141,18 +141,18 @@ body {
     width: 23px;
     height: 16px;
     margin-right: 12px;
-    background: url(images/sprites.png) no-repeat;
+    background: url(images/sprites.svg) no-repeat;
 
     &.flag-en {
         background-position: 0 0px;
     }
 
     &.flag-cn {
-        background-position: 0 -17px;
+        background-position: 0 -15px;
     }
 
     &.flag-tw {
-        background-position: 0 -34px;
+        background-position: 0 -31px;
     }
 }
 
@@ -306,6 +306,7 @@ body.phone {
     }
     
     .menubar .list-menu  .sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
+        display: none;
         float: none;
         background-color: transparent; 
         margin: 0; 
