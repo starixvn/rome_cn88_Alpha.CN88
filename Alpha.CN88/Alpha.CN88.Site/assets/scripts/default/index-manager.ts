@@ -443,8 +443,14 @@
         if (indexManager.elements.isDevice && isCurrentActive) {
             indexManager.elements.subMenu.slideUp("fast");
             indexManager.elements.menuBar.removeClass("has-submenu");
-            $this.removeClass("active");
             indexManager.currentState.isMainMenuClick = false;
+
+            if (subMenu.length == 0) {
+                indexManager.closeMenuBarOnMobile();
+            } else {
+                $this.removeClass("active");
+            }
+
             top.$.unblockUI();
             return;
         }
