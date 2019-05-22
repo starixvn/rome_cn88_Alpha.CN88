@@ -12,8 +12,8 @@ namespace Alpha.CN88.Constants
 
         public static readonly Dictionary<string, string> CodeNames = new Dictionary<string, string>
         {
-            [ChineseSimplified] = "简体",
-            [ChineseTraditional] = "繁體",
+            [ChineseSimplified] = "简体版",
+            [ChineseTraditional] = "繁體版",
             [English] = "English"            
         };
 
