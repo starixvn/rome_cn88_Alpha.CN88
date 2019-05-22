@@ -317,9 +317,8 @@
         }
 
         $(window).resize(() => {
-            
             indexManager.calculateMainFrameHeight();
-                indexManager.calculateUserMobileHeight();
+            indexManager.calculateUserMobileHeight();
         });
 
         indexManager.initForMobile();
@@ -419,7 +418,7 @@
         }
     },
     viewTroubleshooting: () => {
-        window.open(indexManager.urls.troubleshootingPath, "OnlineList", "height=700,width=900");
+        window.open(indexManager.urls.troubleshootingPath, "Troubleshooting", "height=700,width=900");
     },
     viewWagerMonitoringConsole: () => {
         $.unblockUI();
@@ -663,7 +662,7 @@
         var dropdownMenu = $(".username-mobile .dropdown-menu"),
             mainHeight = $(window).height() - $("#header").height(),
             dropdownMenuHeight = dropdownMenu.height();
-        
+
         if (dropdownMenuHeight >= mainHeight) {
             dropdownMenu.height(mainHeight);
         } else {
