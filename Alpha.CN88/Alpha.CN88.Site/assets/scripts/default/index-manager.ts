@@ -157,7 +157,7 @@
         });
         $("#lnk-contact-us").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
-            indexManager.elements.mainMenu.focusout();
+            indexManager.elements.mainMenu.addClass("lost-focus");
 
             indexManager.elements.subMenu.slideUp("fast");
 
@@ -439,7 +439,7 @@
         }
 
         indexManager.elements.subMenuItems.removeClass("active");
-        indexManager.elements.subMenuItems.focusout();
+        indexManager.elements.subMenuItems.addClass("lost-focus");
 
         let $this = $("#" + id);
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
@@ -461,7 +461,7 @@
 
         if (!isCurrentActive) {
             indexManager.elements.mainMenu.removeClass("active");
-            indexManager.elements.mainMenu.focusout();
+            indexManager.elements.mainMenu.addClass("lost-focus");
 
             indexManager.elements.subMenu.slideUp("fast");
             $this.addClass("active");
@@ -494,7 +494,7 @@
     },
     subMenuClick: (id: string) => {
         indexManager.elements.subMenuItems.removeClass("active");
-        indexManager.elements.subMenuItems.focusout();
+        indexManager.elements.subMenuItems.addClass("lost-focus");
 
         let $this = $("#" + id);
 
@@ -549,7 +549,7 @@
         }
 
         indexManager.elements.mainMenu.removeClass("active");
-        indexManager.elements.mainMenu.focusout();
+        indexManager.elements.mainMenu.addClass("lost-focus");
 
         $("#" + currentPage.mainMenu).addClass("active");
 
@@ -557,7 +557,7 @@
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         indexManager.elements.subMenuItems.removeClass("active");
-        indexManager.elements.subMenuItems.focusout();
+        indexManager.elements.subMenuItems.addClass("lost-focus");
 
         let subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
@@ -616,7 +616,7 @@
     },
     activeMainMenu: (id: string) => {
         indexManager.elements.mainMenu.removeClass("active");
-        indexManager.elements.mainMenu.focusout();
+        indexManager.elements.mainMenu.addClass("lost-focus");
 
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
@@ -661,7 +661,7 @@
     },
     clearAllActiveMenu: () => {
         indexManager.elements.mainMenu.removeClass("active");
-        indexManager.elements.mainMenu.focusout();
+        indexManager.elements.mainMenu.addClass("lost-focus");
 
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
