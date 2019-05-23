@@ -244,4 +244,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="agentSiteLink" xml:space="preserve">
     <value>New Manager Site</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
 </root>
