@@ -198,7 +198,7 @@
     <Compile Include="Constants\SessionKeys.cs" />
     <Compile Include="Criteria\Authentication\AdminLoginCommand.cs" />
     <Compile Include="Criteria\Authentication\CheckinCommand.cs" />
-    <Compile Include="Criteria\CheckActiveCustomerCommand.cs" />
+    <Compile Include="Criteria\CheckCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\GetCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\Authentication\LoginCommand.cs" />
     <Compile Include="Criteria\Authentication\LogoutCommand.cs" />
@@ -222,6 +222,7 @@
     <Compile Include="Criteria\SecurityCode\UpdateSubAccountSecurityCodeCriteria.cs" />
     <Compile Include="DataAccesses\AuthenticationDataAccess.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\CustomerStatus.cs" />
     <Compile Include="Params\Authentication\AdminLoginParam.cs" />
     <Compile Include="Models\AuthResult.cs" />
     <Compile Include="Params\Authentication\LoginParam.cs" />

@@ -45,9 +45,11 @@
 
                 if (belongingContext.EnableKickout)
                 {
-                    if (!authorizationService.IsCustomerActive(belongingContext))
+                    var customerStatus = authorizationService.CheckCustomerStatus(belongingContext);
+
+                    if (customerStatus.IsKickedOut(belongingContext.CustomerStatus))
                     {
-                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "CustomerClosed");
+                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, customerStatus.GetErrorResourceKey());
                         return;
                     }
 

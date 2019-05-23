@@ -156,6 +156,15 @@
   <data name="CustomerClosed" xml:space="preserve">
     <value>您的帐户已关闭，因此您被迫退出。 请联系您的上线获取帮助。</value>
   </data>
+  <data name="CustomerInactive" xml:space="preserve">
+    <value>Your account is inactive. Please contact your upline for assistance.</value>
+  </data>
+  <data name="CustomerLocked" xml:space="preserve">
+    <value>Your account has been locked due to multiple failed login attempts. Please contact your upline to unlock.</value>
+  </data>
+  <data name="CustomerSuspended" xml:space="preserve">
+    <value>Your account was Suspended. Please contact your upline to active your account!</value>
+  </data>
   <data name="HintPasswordRules" xml:space="preserve">
     <value>密码必须至少为8个字符且没有空格，并且至少包含以下3个条件：
 

@@ -15,7 +15,7 @@
 
         bool IsAuthorized(BelongingContext belongingContext);
 
-        bool IsCustomerActive(BelongingContext belongingContext);
+        CustomerStatus CheckCustomerStatus(BelongingContext belongingContext);
 
         bool IsKickedOut(BelongingContext belongingContext);
     }
@@ -133,8 +133,8 @@
                     .Any(item => belongingContext.SubPageAccess.GetPermission(item));
         }
 
-        public bool IsCustomerActive(BelongingContext belongingContext)
-            => customerService.IsCustomerActive(
+        public CustomerStatus CheckCustomerStatus(BelongingContext belongingContext)
+            => customerService.CheckCustomerStatus(
                 belongingContext.ActorId,
                 belongingContext.SubAccountId,
                 belongingContext.CachedExpireTime);

@@ -187,6 +187,33 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account is inactive. Please contact your upline for assistance..
+        /// </summary>
+        public static string CustomerInactive {
+            get {
+                return ResourceManager.GetString("CustomerInactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account has been locked due to multiple failed login attempts. Please contact your upline to unlock..
+        /// </summary>
+        public static string CustomerLocked {
+            get {
+                return ResourceManager.GetString("CustomerLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account was Suspended. Please contact your upline to active your account!.
+        /// </summary>
+        public static string CustomerSuspended {
+            get {
+                return ResourceManager.GetString("CustomerSuspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following:
         ///
         ///  • Uppercase letter [A-Z] 

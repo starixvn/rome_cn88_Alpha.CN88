@@ -14,9 +14,8 @@
 
     public class ReCheckinController : CN88BaseController
     {
-        private const int AccessDenyErrCode = 1;
-        private const int CustomerClosedErrCode = 2;
-        private const int SessionKickedOutErrCode = 3;
+        private const int AccessDenyErrCode = 10;
+        private const int SessionKickedOutErrCode = 11;
 
         private readonly IUser user;
         private readonly AuthenticationService authenticationService;
@@ -54,9 +53,15 @@
                 return SecurityResult.CreateErrorResult(AuthResource.SessionKickedOut, SessionKickedOutErrCode);
             }
 
-            if (!user.IsInternal && !authenticationService.IsActiveCustomer(user.Id, user.SubAccountId))
+            if (!user.IsInternal)
             {
-                return SecurityResult.CreateErrorResult(AuthResource.CustomerClosed, CustomerClosedErrCode);
+                var currentStatus = user.CustomerStatus;
+                var customerStatus = authenticationService.CheckCustomerStatus(user.Id, user.SubAccountId, currentStatus);
+
+                if (customerStatus.IsKickedOut(currentStatus))
+                {
+                    return SecurityResult.CreateErrorResult(AuthResource.CustomerClosed, customerStatus.CustStatus);
+                }
             }
 
             return new SecurityResult();

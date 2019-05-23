@@ -9,6 +9,8 @@
 
     public class BelongingContext
     {
+        private const string CustomerStatusSessionKey = "CUSTOMERSTATUS";
+
         private readonly AuthorizationSection authorizationSection;
 
         public BelongingContext(
@@ -31,6 +33,7 @@
                 SubPageAccess = userSession.SubPageAccess;
                 OnlineUserId = userSession.OnUserId;
                 CurrentUrl = currentUrl ?? GetUrlFromHttpRequest();
+                CustomerStatus = userSession.GetProperty<int>(CustomerStatusSessionKey);
             }
         }
 
@@ -47,6 +50,8 @@
         public int OnlineUserId { get; }
 
         public PageAccess SubPageAccess { get; }
+
+        public int CustomerStatus { get; }
 
         public bool EnableCheckBelonging
             => authorizationSection.EnableCheckBelonging;

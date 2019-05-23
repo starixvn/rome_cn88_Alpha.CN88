@@ -21,7 +21,7 @@
 
         bool IsKickedOut(int onlineUserId);
 
-        bool IsActiveCustomer(int custId, int subAccId);
+        CustomerStatus CheckCustomerStatus(int custId, int subAccId, int currentStatus);
     }
 
     public class AuthenticationServiceImpl : AuthenticationService
@@ -120,7 +120,7 @@
             return command.IsKickedOut;
         }
 
-        public bool IsActiveCustomer(int custId, int subAccId)
+        public CustomerStatus CheckCustomerStatus(int custId, int subAccId, int currentStatus)
         {
             lock (lockStatus)
             {
@@ -135,19 +135,19 @@
                         && DateTime.TryParse(sessionInfo[1], out result)
                         && result >= DateTime.Now)
                     {
-                        return true;
+                        return new CustomerStatus(false, currentStatus);
                     }
                 }
 
-                var command = new CheckActiveCustomerCommand(custId, subAccId);
-                dynamicRepository.Execute(command);
+                var customerStatus = dynamicRepository.Get<CustomerStatus>(
+                    new CheckCustomerStatusCriteria(custId, subAccId));
 
-                if (command.IsActive)
+                if (customerStatus.IsOK(currentStatus))
                 {
                     sessionUpdater.CurrentCustomerStatus = $"True_{DateTime.Now.AddSeconds(AuthAppSettings.CustomerStatusExpireTime)}";
                 }
 
-                return command.IsActive;
+                return customerStatus;
             }
         }
     }

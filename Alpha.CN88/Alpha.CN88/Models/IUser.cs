@@ -42,6 +42,8 @@
 
         bool ClearClientData { get; set; }
 
+        int CustomerStatus { get; }
+        
         string AdminName { get; }
     }
 }

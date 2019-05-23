@@ -101,7 +101,7 @@
     <Compile Include="Configurations\PageAccessCollection.cs" />
     <Compile Include="Configurations\PageAccessElement.cs" />
     <Compile Include="Controllers\CN88BaseController.cs" />
-    <Compile Include="Criteria\CheckCustomerActiveCommand.cs" />
+    <Compile Include="Criteria\CheckCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\CheckBelongingCommand.cs" />
     <Compile Include="Criteria\CheckHeadlineBelongingCommand.cs" />
     <Compile Include="Criteria\GetSubAccountListCriteria.cs" />
@@ -117,6 +117,7 @@
     <Compile Include="Helpers\UnAuthorizationHelper.cs" />
     <Compile Include="Models\BelongingContext.cs" />
     <Compile Include="Models\BelongingInfo.cs" />
+    <Compile Include="Models\CustomerStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
