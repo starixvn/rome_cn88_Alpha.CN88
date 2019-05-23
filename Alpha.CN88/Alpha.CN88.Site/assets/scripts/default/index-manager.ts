@@ -157,6 +157,8 @@
         });
         $("#lnk-contact-us").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
+            indexManager.elements.mainMenu.focusout();
+
             indexManager.elements.subMenu.slideUp("fast");
 
             indexManager.elements.menuBar.removeClass("has-submenu");
@@ -437,6 +439,8 @@
         }
 
         indexManager.elements.subMenuItems.removeClass("active");
+        indexManager.elements.subMenuItems.focusout();
+
         let $this = $("#" + id);
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
         var isCurrentActive = $this.hasClass("active");
@@ -457,6 +461,8 @@
 
         if (!isCurrentActive) {
             indexManager.elements.mainMenu.removeClass("active");
+            indexManager.elements.mainMenu.focusout();
+
             indexManager.elements.subMenu.slideUp("fast");
             $this.addClass("active");
         }
@@ -488,6 +494,8 @@
     },
     subMenuClick: (id: string) => {
         indexManager.elements.subMenuItems.removeClass("active");
+        indexManager.elements.subMenuItems.focusout();
+
         let $this = $("#" + id);
 
         $this.parent().addClass("active");
@@ -541,12 +549,15 @@
         }
 
         indexManager.elements.mainMenu.removeClass("active");
+        indexManager.elements.mainMenu.focusout();
+
         $("#" + currentPage.mainMenu).addClass("active");
 
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         indexManager.elements.subMenuItems.removeClass("active");
+        indexManager.elements.subMenuItems.focusout();
 
         let subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
@@ -605,6 +616,8 @@
     },
     activeMainMenu: (id: string) => {
         indexManager.elements.mainMenu.removeClass("active");
+        indexManager.elements.mainMenu.focusout();
+
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
@@ -648,6 +661,8 @@
     },
     clearAllActiveMenu: () => {
         indexManager.elements.mainMenu.removeClass("active");
+        indexManager.elements.mainMenu.focusout();
+
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
         indexManager.calculateMenuBarHeight([]);
