@@ -465,6 +465,7 @@
 
             indexManager.elements.subMenu.slideUp("fast");
             $this.addClass("active");
+            $this.removeClass("lost-focus");
         }
 
         indexManager.currentState.mainMenuId = id;
@@ -499,6 +500,8 @@
         let $this = $("#" + id);
 
         $this.parent().addClass("active");
+        $this.parent().removeClass("lost-focus");
+
         if (!indexManager.currentState.isOpenPopup) {
             (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0]).href;
         }
@@ -552,6 +555,7 @@
         indexManager.elements.mainMenu.addClass("lost-focus");
 
         $("#" + currentPage.mainMenu).addClass("active");
+        $("#" + currentPage.mainMenu).removeClass("lost-focus");
 
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
@@ -571,6 +575,7 @@
 
         if (currentPage.subMenu != null) {
             $("#" + currentPage.subMenu).parent().addClass("active");
+            $("#" + currentPage.subMenu).parent().removeClass("lost-focus");
         }
 
         $("#main").attr("src", currentPage.url);
@@ -623,6 +628,7 @@
 
         indexManager.currentState.mainMenuId = id;
         $("#" + id).addClass("active");
+        $("#" + id).removeClass("lost-focus");
     },
     closePopupAndReloadMainIframe: () => {
         setTimeout(() => {
@@ -635,6 +641,7 @@
         indexManager.elements.menuBar.addClass("has-submenu");
         var subMenu = $(".sub-menu[data-main-menu='" + mainMenuId + "']");
         $("#" + id).parent().addClass("active");
+        $("#" + id).parent().remnoveClass("lost-focus");
 
         subMenu.slideDown("fast", () => {
             indexManager.calculateMenuBarHeight(subMenu);
