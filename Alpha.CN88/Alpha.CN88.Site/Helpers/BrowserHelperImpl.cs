@@ -19,7 +19,8 @@
 
         public bool IsMobile(bool isOnlyTablet = false)
         {
-            if (HttpContext.Current.Request != null && HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] != null)
+            if (HttpContext.Current.Request != null 
+                && HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] != null)
             {
                 var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
 
@@ -39,7 +40,7 @@
                 {
                     if (_mobileCheck.IsMatch(u) || _mobileVersionCheck.IsMatch(u.Substring(0, 4)))
                     {
-                        return true;
+                        return !_tabletCheck.IsMatch(u);
                     }
                 }
             }
@@ -124,5 +125,67 @@
         }
 
         public bool IsAndroidNativeBrowser(string userAgent) => _androidNativeBrowserCheck.IsMatch(userAgent);
+
+        private bool IsTablet()
+        {
+            if (HttpContext.Current.Request?.ServerVariables["HTTP_USER_AGENT"] != null)
+            {
+                var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
+
+                if (u.Length < 4)
+                {
+                    return false;
+                }
+
+                if (_tabletCheck.IsMatch(u))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public BrowserInfo GetBrowserInfo()
+            => new BrowserInfo(IsMobile(), IsTablet());
+    }
+
+    public static class BrowserManager
+    {
+        private static readonly BrowserHelper browserHelper = new BrowserHelperImpl();
+
+        public static BrowserInfo GetBrowserInfo()
+            => browserHelper.GetBrowserInfo();
+
+        public static string BuildMobileHtmlClass(bool isNoNeedClassAttr = false)
+        {
+            var browserInfo = GetBrowserInfo();
+
+            if (!browserInfo.IsMobile)
+            {
+                return string.Empty;
+            }
+
+            return string.Concat(
+                isNoNeedClassAttr ? string.Empty : "class=\"mobile",
+                browserInfo.IsPhone ? " phone" : string.Empty,
+                browserInfo.IsTablet ? " tablet" : string.Empty,
+                isNoNeedClassAttr ? string.Empty : "\"");
+        }
+    }
+
+    public class BrowserInfo
+    {
+        public BrowserInfo(bool isPhone, bool isTablet)
+        {
+            IsPhone = isPhone;
+            IsTablet = isTablet;
+        }
+
+        public bool IsMobile => IsPhone || IsTablet;
+
+        public bool IsPhone { get; }
+
+        public bool IsTablet { get; }
     }
 }

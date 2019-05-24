@@ -33,6 +33,7 @@
             this.getDefaultUrl = getDefaultUrl ?? FunctionRegistry.GetDefaultUrl;
             this.encodeDataFunction = encodeDataFunction;
             IsNotHeadline = message.ActorLevel.IsNotHeadlineLevel();
+            CurrentLanguage = message.Language;
         }
 
         public double InitialScaleViewPort
@@ -48,7 +49,7 @@
                     !browserHelper.IsAndroidNativeBrowser(userAgent) &&
                     !isTablet;
 
-                return isSmallScale ? 0.5 : 0.7;
+                return isSmallScale ? 0.5 : 0.8;
             }
         }
 
@@ -84,7 +85,13 @@
 
         public bool ClearClientData { get; }
 
+        public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
+
         public string TroubleshootingPath => UrlHelper.MapMainPath("~/Help/Troubleshooting");
+        
+        public string CurrentLanguage { get; }
+
+        public bool IsSelectedLanguage(string code) => string.Equals(code, CurrentLanguage, StringComparison.OrdinalIgnoreCase);
         
         public bool IsShowMySettingPath
             => SubAccId == 0 && IsNotHeadline;

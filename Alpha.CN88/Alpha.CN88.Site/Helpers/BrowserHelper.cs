@@ -16,5 +16,7 @@
         string GetUserAgent();
 
         bool IsAndroidNativeBrowser(string userAgent);
+
+        BrowserInfo GetBrowserInfo();
     }
 }

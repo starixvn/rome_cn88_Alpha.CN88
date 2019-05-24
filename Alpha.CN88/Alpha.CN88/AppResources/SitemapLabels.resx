@@ -210,10 +210,24 @@
   <data name="viewLog" xml:space="preserve">
     <value>View Logs</value>
   </data>
+  <data name="cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+    </data>
+
   <data name="newUrl" xml:space="preserve">
     <value>New Url</value>
   </data>
+  <data name="settlement" xml:space="preserve">
+    <value>Settlement</value>
+    </data>
+
   <data name="troubleshooting" xml:space="preserve">
     <value>Troubleshooting</value>
+  </data>
+  <data name="accounting" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
+  <data name="wager" xml:space="preserve">
+    <value>Wager</value>
   </data>
 </root>

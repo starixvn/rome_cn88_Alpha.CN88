@@ -18,6 +18,14 @@
 
         bool IsBeta { get; set; }
 
+        bool DisplayOnlyOnMobile { get; set; }
+
+        bool HideOnMobile { get; set; }
+
+        string MobileResourceKey { get; set; }
+
+        string MobileDisplayName { get; }
+
         MenuStatus Status { get; }
 
         bool ShowSubMenus { get; set; }
@@ -25,5 +33,7 @@
         List<IMenuItem> SubMenus { get; set; }
 
         IEnumerable<IMenuItem> VisibileSubMenus { get; }
+
+        IEnumerable<IMenuItem> VisibileSubMenusOnMobile { get; }
     }
 }

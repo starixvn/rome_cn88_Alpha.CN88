@@ -1,37 +1,53 @@
 ﻿@using Alpha.CN88.Configurations;
 @model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
-<section class="header-nav" id="header-nav">
-    <input type="hidden" id="IsNotHeadLine" value="@(Model.IsNotHeadline?1:0)" />
-    <input type="hidden" id="IntervalToGetTotalOnlineMember" value="@AppSettings.IntervalToGetTotalOnlineMember" />
-    <ul class="header-left"></ul>
-    <ul class="header-right">
+@if (Model.IsDevice)
+{
+    <div class="menubar-mobile">
+        <div id="hamburger-container" class="hamburger-container">
+            <div class="hamburger-icon" id="hamburgerIcon">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </div>
+        </div>
+        <div class="page-title" id="page-title"></div>
+        <span class="icon-bell"></span>
+    </div>
 
-        @if (Model.IsNotHeadline)
-        {
+    <div class="username-mobile">
+        <div class="dropdown">
+            @Html.Partial("UserPanel")
+        </div>
+
+        <div class="online-area online-member">
+            <span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
+        </div>
+    </div>
+}
+else
+{
+    <section class="header-nav" id="header-nav">
+        <input type="hidden" id="IsNotHeadLine" value="@(Model.IsNotHeadline?1:0)" />
+        <input type="hidden" id="IntervalToGetTotalOnlineMember" value="@AppSettings.IntervalToGetTotalOnlineMember" />
+        <ul class="header-left"></ul>
+        <ul class="header-right">
+
+            @if (Model.IsNotHeadline)
+            {
             <li class="header-item online-member">
                 <span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
             </li>
-        }
-        <li class="header-item dropdown language">
-            @Html.Action("List", "Language")
-        </li>
+            }
+            <li class="header-item dropdown language">
+                @Html.Action("List", "Language")
+            </li>
         <li class="header-item" id="lnk-personal-announcement">
             <a href="@Model.PersonalMessagePath" target="main" ><span class="icon-bell" data-toggle="tooltip" title="@Resources.personalAnnouncement"></span></a>
         </li>
-        <li class="header-item dropdown header-custname">
-            <a href="javascript:;" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
-                @Model.CustName
-                <span class="icon-chevron-down"></span>
-            </a>
-            <ul class="dropdown-menu">
-                @if (Model.MySettingPath.Length != 0)
-                {
-                    <li><a id="lnk-my-setting" href="@Model.MySettingPath" target="main">@Resources.MySettings</a></li>
-                }
-                <li><a id="lnk-change-password">@Resources.ChangePassword</a></li>
-                <li><a id="lnk-security-code">@Resources.ChangeSecurityCode</a></li>
-                <li><a id="lnk-logout">@Resources.Logout</a></li>
-            </ul>
-        </li>
-    </ul>
-</section>
+            <li class="header-item dropdown header-custname">
+                @Html.Partial("UserPanel")                
+            </li>
+        </ul>
+    </section>
+}
+

@@ -16,7 +16,7 @@
     @StaticResources.AssetStyles.Render("/bundles/site-cn88/security")
     @RenderSection("Styles", required: false)
 </head>
-<body>
+<body @(Html.Raw(Alpha.CN88.Site.Helpers.BrowserManager.BuildMobileHtmlClass()))>
     @RenderBody()
     @Html.Hidden("alert-old-securitycode-empty", AuthResource.OldSecCodeEmptyError)
     @Html.Hidden("alert-securitycode-empty", AuthResource.SecCodeEmptyError)

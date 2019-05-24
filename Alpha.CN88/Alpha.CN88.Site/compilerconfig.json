@@ -22,5 +22,9 @@
   {
     "outputFile": "assets/styles/error-page.css",
     "inputFile": "assets/styles/error-page.scss"
+  },
+  {
+    "outputFile": "assets/styles/help.css",
+    "inputFile": "assets/styles/help.scss"
   }
 ]

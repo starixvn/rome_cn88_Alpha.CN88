@@ -241,4 +241,7 @@
   <data name="agentSiteLink" xml:space="preserve">
     <value>新版管理端</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
 </root>

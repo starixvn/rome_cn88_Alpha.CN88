@@ -20,7 +20,7 @@
       @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
 </head>
-<body>
+<body @(Html.Raw(Alpha.CN88.Site.Helpers.BrowserManager.BuildMobileHtmlClass()))>
     <div class="page">
         <div class="two-cols" id="generalinformation">
             @Html.Action("GeneralInformation")

@@ -40,15 +40,14 @@
 
         public bool ByPassAuthorization { get; set; }
 
+        public bool DisplayOnlyOnMobile { get; set; }
+
+        public bool HideOnMobile { get; set; }
+
         public bool IsBeta { get; set; }
 
         public string DisplayName
-        {
-            get
-            {
-                return getDisplayName != null ? getDisplayName() : SitemapLabels.ResourceManager.GetString(ResourceKey);
-            }
-        }
+            => getDisplayName != null ? getDisplayName() : SitemapLabels.ResourceManager.GetString(ResourceKey);
 
         public virtual string Link
         {
@@ -87,11 +86,16 @@
         public List<IMenuItem> SubMenus { get; set; }
 
         public IEnumerable<IMenuItem> VisibileSubMenus
-        {
-            get
-            {
-                return SubMenus.Where(menuItem => menuItem.Status.Visible);
-            }
-        }
+            => SubMenus.Where(menuItem => menuItem.Status.Visible && !menuItem.DisplayOnlyOnMobile);
+
+        public IEnumerable<IMenuItem> VisibileSubMenusOnMobile
+            => SubMenus.Where(menuItem => menuItem.Status.Visible && !menuItem.HideOnMobile);
+
+        public string MobileResourceKey { get; set; }
+
+        public string MobileDisplayName
+            => MobileResourceKey == null
+                    ? DisplayName
+                    : SitemapLabels.ResourceManager.GetString(MobileResourceKey);
     }
 }

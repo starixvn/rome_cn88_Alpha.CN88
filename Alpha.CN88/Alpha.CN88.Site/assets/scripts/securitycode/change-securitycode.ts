@@ -43,6 +43,7 @@ class ChangeSecurityCode {
             if (self.$("#mainRootPath").length > 0) {
                 siteInfrastructure.logout();
             } else {
+                self.top.indexManager.hideUserMobileDropdown();
                 self.top.popupManager.close();
             }
         });
