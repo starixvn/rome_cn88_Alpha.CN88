@@ -544,7 +544,6 @@
         $("#" + currentPage.mainMenu).addClass("active");
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
-
         indexManager.elements.subMenuItems.removeClass("active");
         let subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
