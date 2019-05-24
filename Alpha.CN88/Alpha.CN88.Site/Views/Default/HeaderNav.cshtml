@@ -19,9 +19,12 @@
             @Html.Partial("UserPanel")
         </div>
 
-        <div class="online-area online-member">
-            <span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
-        </div>
+        @if (Model.IsNotHeadline)
+        {
+            <div class="online-area online-member">
+                <span>@Resources.OnlineMembers:</span><span id="numberOnlineMember"> @HtmlHelpers.FormatNumber(Model.OnlineMember)</span>
+            </div>
+        }
     </div>
 }
 else
