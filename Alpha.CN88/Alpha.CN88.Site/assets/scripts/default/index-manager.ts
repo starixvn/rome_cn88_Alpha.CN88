@@ -157,8 +157,6 @@
         });
         $("#lnk-contact-us").on("click touchend", () => {
             indexManager.elements.mainMenu.removeClass("active");
-            indexManager.elements.mainMenu.addClass("lost-focus");
-
             indexManager.elements.subMenu.slideUp("fast");
 
             indexManager.elements.menuBar.removeClass("has-submenu");
@@ -439,8 +437,6 @@
         }
 
         indexManager.elements.subMenuItems.removeClass("active");
-        indexManager.elements.subMenuItems.addClass("lost-focus");
-
         let $this = $("#" + id);
         var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
         var isCurrentActive = $this.hasClass("active");
@@ -461,11 +457,8 @@
 
         if (!isCurrentActive) {
             indexManager.elements.mainMenu.removeClass("active");
-            indexManager.elements.mainMenu.addClass("lost-focus");
-
             indexManager.elements.subMenu.slideUp("fast");
             $this.addClass("active");
-            $this.removeClass("lost-focus");
         }
 
         indexManager.currentState.mainMenuId = id;
@@ -495,13 +488,9 @@
     },
     subMenuClick: (id: string) => {
         indexManager.elements.subMenuItems.removeClass("active");
-        indexManager.elements.subMenuItems.addClass("lost-focus");
-
         let $this = $("#" + id);
 
         $this.parent().addClass("active");
-        $this.parent().removeClass("lost-focus");
-
         if (!indexManager.currentState.isOpenPopup) {
             (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0]).href;
         }
@@ -552,17 +541,11 @@
         }
 
         indexManager.elements.mainMenu.removeClass("active");
-        indexManager.elements.mainMenu.addClass("lost-focus");
-
         $("#" + currentPage.mainMenu).addClass("active");
-        $("#" + currentPage.mainMenu).removeClass("lost-focus");
-
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         indexManager.elements.subMenuItems.removeClass("active");
-        indexManager.elements.subMenuItems.addClass("lost-focus");
-
         let subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
             indexManager.elements.menuBar.addClass("has-submenu");
@@ -575,7 +558,6 @@
 
         if (currentPage.subMenu != null) {
             $("#" + currentPage.subMenu).parent().addClass("active");
-            $("#" + currentPage.subMenu).parent().removeClass("lost-focus");
         }
 
         $("#main").attr("src", currentPage.url);
@@ -621,14 +603,11 @@
     },
     activeMainMenu: (id: string) => {
         indexManager.elements.mainMenu.removeClass("active");
-        indexManager.elements.mainMenu.addClass("lost-focus");
-
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
 
         indexManager.currentState.mainMenuId = id;
         $("#" + id).addClass("active");
-        $("#" + id).removeClass("lost-focus");
     },
     closePopupAndReloadMainIframe: () => {
         setTimeout(() => {
@@ -641,8 +620,6 @@
         indexManager.elements.menuBar.addClass("has-submenu");
         var subMenu = $(".sub-menu[data-main-menu='" + mainMenuId + "']");
         $("#" + id).parent().addClass("active");
-        $("#" + id).parent().remnoveClass("lost-focus");
-
         subMenu.slideDown("fast", () => {
             indexManager.calculateMenuBarHeight(subMenu);
         });
@@ -668,8 +645,6 @@
     },
     clearAllActiveMenu: () => {
         indexManager.elements.mainMenu.removeClass("active");
-        indexManager.elements.mainMenu.addClass("lost-focus");
-
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
         indexManager.calculateMenuBarHeight([]);
