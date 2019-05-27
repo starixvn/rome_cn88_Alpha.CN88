@@ -103,6 +103,10 @@ class VerifySecurityCode {
     afterVerifed(): void {
         let redirectUrl = this.getUrlVars()["redirectUrl"];
         if (redirectUrl) {
+            if (this.detectDCSUrl(redirectUrl) && this.detectIE()) {
+                this.top.indexManager.elements.mainFrame.load(this.top.indexManager.locationReload);
+            }
+
             window.location.href = decodeURIComponent(redirectUrl);
             return;
         }
@@ -133,6 +137,15 @@ class VerifySecurityCode {
         }
 
         return vars;
+    }
+
+    detectDCSUrl(url: string): boolean {
+        return url.toLowerCase().indexOf("viewcn88customersetting") > -1;
+    }
+
+    detectIE(): boolean {
+        const ua = window.navigator.userAgent;
+        return ua.indexOf("MSIE ") > 0 || ua.indexOf("Trident/") > 0 || ua.indexOf("Edge/") > 0;
     }
 }
 
