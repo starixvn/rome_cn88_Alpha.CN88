@@ -41,58 +41,71 @@
             <thead>
                 <tr>
                     <th>@Resources.StatusSummary</th>
-                    <th class="text-center">@Resources.Open</th>
-                    <th class="text-center">@Resources.Closed</th>
+                    <th class="text-center">@Resources.Active</th>
+                    <th class="text-center">@Resources.Inactive</th>
+                    <th class="text-center">@Resources.ViewOnly</th>
                     <th class="text-center">@Resources.Suspended</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var s in Model.StatusSummaries)
                 {
-                    <tr>
-                        <td>@s.Name</td>
-                        <td class="text-center status-active">
-                            @if (Model.ShowCustomerListUrl(s.Active, s.RoleId))
-                            {
-                                <a data-url="@Model.CustomerListUrl(s.Active, CustomerStatus.Open, s.RoleId)" href="javascript:void(0);">
-                                    @HtmlHelpers.FormatNumber(s.Active)
-                                </a>
-                            }
-                            else
-                            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td class="text-center status-active">
+                        @if (Model.ShowCustomerListUrl(s.Active, s.RoleId))
+                        {
+                            <a data-url="@Model.CustomerListUrl(s.Active, CustomerStatus.Active, s.RoleId)" href="javascript:void(0);">
                                 @HtmlHelpers.FormatNumber(s.Active)
-                            }
+                            </a>
+                        }
+                        else
+                        {
+                            @HtmlHelpers.FormatNumber(s.Active)
+                        }
 
-                        </td>
-                        <td class="text-center status-inactive">
-                            @if (Model.ShowCustomerListUrl(s.Inactive, s.RoleId))
-                            {
-                                <a data-url="@Model.CustomerListUrl(s.Inactive, CustomerStatus.Closed, s.RoleId)" href="javascript:void(0);">
-                                    @HtmlHelpers.FormatNumber(s.Inactive)
-                                </a>
-                            }
-                            else
-                            {
+                    </td>
+                    <td class="text-center status-inactive">
+                        @if (Model.ShowCustomerListUrl(s.Inactive, s.RoleId))
+                        {
+                            <a data-url="@Model.CustomerListUrl(s.Inactive, CustomerStatus.Inactive, s.RoleId)" href="javascript:void(0);">
                                 @HtmlHelpers.FormatNumber(s.Inactive)
-                            }
+                            </a>
+                        }
+                        else
+                        {
+                            @HtmlHelpers.FormatNumber(s.Inactive)
+                        }
 
-                        </td>
+                    </td>
+                    <td class="text-center status-view">
+                        @if (Model.ShowCustomerListUrl(s.ViewOnly, s.RoleId))
+                        {
+                            <a data-url="@Model.CustomerListUrl(s.ViewOnly, CustomerStatus.ViewOnly, s.RoleId)" href="javascript:void(0);">
+                                @HtmlHelpers.FormatNumber(s.ViewOnly)
+                            </a>
+                        }
+                        else
+                        {
+                            @HtmlHelpers.FormatNumber(s.ViewOnly)
+                        }
 
-                        <td class="text-center status-suspended">
+                    </td>
+                    <td class="text-center status-suspended">
 
-                            @if (Model.ShowCustomerListUrl(s.Suspened, s.RoleId))
-                            {
-                                <a data-url="@Model.CustomerListUrl(s.Suspened, CustomerStatus.Suspended, s.RoleId)" href="javascript:void(0);">
-                                    @HtmlHelpers.FormatNumber(s.Suspened)
-                                </a>
-                            }
-                            else
-                            {
+                        @if (Model.ShowCustomerListUrl(s.Suspened, s.RoleId))
+                        {
+                            <a data-url="@Model.CustomerListUrl(s.Suspened, CustomerStatus.Suspended, s.RoleId)" href="javascript:void(0);">
                                 @HtmlHelpers.FormatNumber(s.Suspened)
-                            }
+                            </a>
+                        }
+                        else
+                        {
+                            @HtmlHelpers.FormatNumber(s.Suspened)
+                        }
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 }
             </tbody>
             <tfoot class="tfoot-bg">
@@ -100,6 +113,7 @@
                     <td class="text-uppercase">@Resources.Total</td>
                     @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Active, "text-center status-active")
                     @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Inactive, "text-center status-inactive")
+                    @HtmlHelpers.RenderNumberCell(Model.TotalStatus.ViewOnly, "text-center status-view")
                     @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Suspened, "text-center status-suspended")
                 </tr>
             </tfoot>

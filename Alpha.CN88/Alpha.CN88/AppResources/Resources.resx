@@ -247,4 +247,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="ViewOnly" xml:space="preserve">
+    <value>View Only</value>
+  </data>
 </root>
