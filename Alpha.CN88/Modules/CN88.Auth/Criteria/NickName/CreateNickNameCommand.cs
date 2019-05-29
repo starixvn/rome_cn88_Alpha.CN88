@@ -1,20 +1,19 @@
 ﻿namespace CN88.Auth.Criteria.NickName
 {
+    using Params.NickName;
+
     public class CreateNickNameCommand : NickNameNonQueryCommand
     {
-        public CreateNickNameCommand(
-            int custId,
-            string nickName,
-            string ip,
-            string language) : base(custId, ip, language)
+        public CreateNickNameCommand(CreateNickNameParam param)
+            : base(param.CustId, param.IP, param.LanguageKey)
         {
-            NickName = nickName;
+            NickName = param.NickName;
         }
 
         public string NickName { get; }
 
         public override string GetSettingKey()
-            => "Age_CustomerInsNickName";
+            => "CS_CustomerInsNickName";
 
         public override bool IsValid()
             => base.IsValid()

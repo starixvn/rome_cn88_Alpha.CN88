@@ -192,7 +192,7 @@
     <value>暱稱一旦創立後即無法變更。請在下次登錄時使用新創立的暱稱。原始的代理用戶代碼僅用於識別目的。</value>
   </data>
   <data name="NickNameRule1" xml:space="preserve">
-    <value>暱稱不可重複，且必須由5-15個字母或數字組成。</value>
+    <value>暱稱不可重複，且必須由5-20個字母或數字組成。</value>
   </data>
   <data name="NickNameRule2" xml:space="preserve">
     <value>您的暱稱不得包含任何空格。</value>

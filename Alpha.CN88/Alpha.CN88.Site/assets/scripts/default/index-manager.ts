@@ -681,6 +681,9 @@
         $('.username-mobile .dropdown-backdrop').remove();
         $('.username-mobile .dropdown').removeClass("open");
         $('.username-mobile .dropdown-toggle').attr("aria-expanded", "false");
+    },
+    locationReload: () => {
+        location.reload(true);
     }
 };
 

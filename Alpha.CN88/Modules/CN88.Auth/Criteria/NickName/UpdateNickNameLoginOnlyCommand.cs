@@ -1,12 +1,11 @@
 ﻿namespace CN88.Auth.Criteria.NickName
 {
+    using Params.NickName;
+
     public class UpdateNickNameLoginOnlyCommand : NickNameNonQueryCommand
     {
-        public UpdateNickNameLoginOnlyCommand(
-            int custId,
-            bool nickNameLoginOnly,
-            string ip,
-            string language) : base(custId, ip, language)
+        public UpdateNickNameLoginOnlyCommand(CreateNickNameParam param, bool nickNameLoginOnly)
+            : base(param.CustId, param.IP, param.LanguageKey)
         {
             NickNameLoginOnly = nickNameLoginOnly;
         }

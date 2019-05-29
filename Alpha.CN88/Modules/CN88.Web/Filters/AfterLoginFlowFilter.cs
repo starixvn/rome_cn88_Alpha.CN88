@@ -56,7 +56,7 @@
         }
 
         private bool IsSetNickName
-            => !userSession.IsSubAcc && string.IsNullOrWhiteSpace(userSession.NickName);
+            => string.IsNullOrWhiteSpace(userSession.NickName);
 
         private bool IsForceChangePassword
             => !userSession.IsLogged || userSession.IsPasswordExpired;

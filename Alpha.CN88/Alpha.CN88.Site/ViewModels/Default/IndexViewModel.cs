@@ -34,6 +34,7 @@
             this.encodeDataFunction = encodeDataFunction;
             IsNotHeadline = message.ActorLevel.IsNotHeadlineLevel();
             CurrentLanguage = message.Language;
+            NickName = message.NickName;
         }
 
         public double InitialScaleViewPort
@@ -102,5 +103,7 @@
                 AppSettings.FeaturesAppPath,
                 $"~/CN88CustomerSetting/ViewCN88CustomerSetting/MySetting?customerLevel={RoleId}&isCreateNew=false&productId=1")
             : string.Empty;
+            
+        public string NickName { get; }
     }
 }

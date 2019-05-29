@@ -4,6 +4,7 @@
   "paths": [
     "SecurityCode/ResetSecurityCode",
     "SecurityCode/ChangeSecurityCode",
+    "SecurityCode/ResetSubAccountSecurityCode",
     "Password/ChangePassword",
     "Password/ResetDownlinePassword",
     "Password/ResetSubAccountPassword"

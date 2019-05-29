@@ -203,6 +203,7 @@
     <Compile Include="Criteria\Authentication\LoginCommand.cs" />
     <Compile Include="Criteria\Authentication\LogoutCommand.cs" />
     <Compile Include="Criteria\NickName\CreateNickNameCommand.cs" />
+    <Compile Include="Criteria\NickName\CreateSubAccountNickNameCommand.cs" />
     <Compile Include="Criteria\NickName\NickNameNonQueryCommand.cs" />
     <Compile Include="Criteria\NickName\UpdateNickNameLoginOnlyCommand.cs" />
     <Compile Include="Criteria\Password\PasswordNonQueryCommand.cs" />
@@ -228,7 +229,6 @@
     <Compile Include="Params\Authentication\RequestInfo.cs" />
     <Compile Include="Models\SecurityResult.cs" />
     <Compile Include="Params\NickName\CreateNickNameParam.cs" />
-    <Compile Include="Params\NickName\UpdateNickNameLoginOnlyParam.cs" />
     <Compile Include="Params\SecurityCode\ChangeSecurityCodeParam.cs" />
     <Compile Include="Params\Password\ChangeMainAccountPasswordParam.cs" />
     <Compile Include="Params\Password\ChangeSubAccountPasswordParam.cs" />
