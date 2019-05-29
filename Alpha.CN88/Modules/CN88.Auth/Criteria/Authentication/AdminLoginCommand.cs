@@ -49,7 +49,7 @@
         public string CountryCode { get; }
 
         public override string GetSettingKey()
-            => "Age_LoginDownline_Admin";
+            => "CS_LoginDownline_Admin";
 
         public override bool IsValid()
             => string.IsNullOrWhiteSpace(UserName)

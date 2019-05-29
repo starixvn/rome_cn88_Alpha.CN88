@@ -373,7 +373,9 @@
     <Content Include="App_Data\SPNames\Pro\DB053_DB054.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBACC.bodb02.xml" />
     <Content Include="App_Data\SPNames\Pro\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\Pro\DBCust.CustDB.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Pro\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Pro\DBPRO.bodb02.xml">
       <SubType>Designer</SubType>
@@ -392,7 +394,9 @@
     <Content Include="App_Data\SPNames\UAT\DBCust.CustDB.xml" />
     <Content Include="App_Data\SPNames\UAT\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Internal\DBAGE.bodb02.BODBDownlineNet.xml" />
-    <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.xml" />
+    <Content Include="App_Data\SPNames\Internal\DBCust.CustDB.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Internal\DBONUSER.ON_USER.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBAGE.bodb02.BODBDownlineNet.xml" />
     <Content Include="App_Data\SPNames\Local\DBCust.CustDB.xml">

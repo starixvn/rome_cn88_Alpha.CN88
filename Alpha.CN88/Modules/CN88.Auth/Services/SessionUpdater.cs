@@ -243,7 +243,7 @@
         private static void AddCustomDataToSession(Hashtable outputParams)
         {
             SessionHelper.Add(SessionKeys.ClearClientData, true);
-            SessionHelper.Add(SessionKeys.CustomerStatus, 4/*outputParams["custstatus"]*/);
+            SessionHelper.Add(SessionKeys.CustomerStatus, outputParams["status"]);
         }
     }
 }
