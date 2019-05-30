@@ -346,6 +346,19 @@
     <Content Include="App_Data\SPNames\Internal\DBPRO.bodb02.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Data\SPNames\Dev\DB053_DB054.bodb02.BODBDownlineNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\Dev\DBACC.bodb02.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBAGE.bodb02.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBARC.bodb_Archive.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBCust.CustDB.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SPNames\Dev\DBONUSER.ON_USER.BODBDownlineNet.xml" />
+    <Content Include="App_Data\SPNames\Dev\DBPRO.bodb02.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\Local\DBACC.bodb02.xml" />
     <Content Include="App_Data\SPNames\Local\DB053_DB054.bodb02.BODBDownlineNet.xml">
       <SubType>Designer</SubType>
