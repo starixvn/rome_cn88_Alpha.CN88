@@ -2,14 +2,14 @@
 {
     public class CustomerStatus
     {
-        private const int Inactive = 1;
-        private const int Suspended = 2;
+        private const byte Inactive = 1;
+        private const byte Suspended = 2;
 
         public CustomerStatus()
         {
         }
 
-        public CustomerStatus(bool closed, int status)
+        public CustomerStatus(bool closed, byte status)
         {
             IsClosed = closed;
             CustStatus = status;
@@ -17,12 +17,12 @@
 
         public bool IsClosed { get; }
 
-        public int CustStatus { get; }
+        public byte CustStatus { get; }
 
-        public bool IsKickedOut(int currentStatus)
+        public bool IsKickedOut(byte currentStatus)
             => IsClosed || CustStatus != currentStatus;
 
-        public bool IsOK(int currentStatus)
+        public bool IsOK(byte currentStatus)
             => !IsKickedOut(currentStatus);
 
         public string GetErrorResourceKey()

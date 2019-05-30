@@ -1,6 +1,7 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System;
+    using System.Resources;
     using System.Web.Mvc;
     using System.Web.Security;
     using CN88.Models;
@@ -60,7 +61,11 @@
 
                 if (customerStatus.IsKickedOut(currentStatus))
                 {
-                    return SecurityResult.CreateErrorResult(AuthResource.CustomerClosed, customerStatus.CustStatus);
+                    var authResource = new ResourceManager(typeof(AuthResource));
+
+                    return SecurityResult.CreateErrorResult(
+                        authResource.GetString(customerStatus.GetErrorResourceKey()),
+                        customerStatus.CustStatus);
                 }
             }
 
