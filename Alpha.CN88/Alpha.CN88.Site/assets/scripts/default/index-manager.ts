@@ -351,9 +351,8 @@
                 $("body").removeClass("modal-open");
             });
 
-            var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-            if (iOS) {
-                $('body').backtop();
+            if (indexManager.elements.isDevice) {
+                $('body').backtop({ mainFrameId: 'main' });
             }
         }
     },
