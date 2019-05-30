@@ -21,7 +21,7 @@
 
         bool IsKickedOut(int onlineUserId);
 
-        CustomerStatus CheckCustomerStatus(int custId, int subAccId, int currentStatus);
+        CustomerStatus CheckCustomerStatus(int custId, int subAccId, byte currentStatus);
     }
 
     public class AuthenticationServiceImpl : AuthenticationService
@@ -120,7 +120,7 @@
             return command.IsKickedOut;
         }
 
-        public CustomerStatus CheckCustomerStatus(int custId, int subAccId, int currentStatus)
+        public CustomerStatus CheckCustomerStatus(int custId, int subAccId, byte currentStatus)
         {
             lock (lockStatus)
             {

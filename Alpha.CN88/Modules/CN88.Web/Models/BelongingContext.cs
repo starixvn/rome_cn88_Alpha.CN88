@@ -33,7 +33,7 @@
                 SubPageAccess = userSession.SubPageAccess;
                 OnlineUserId = userSession.OnUserId;
                 CurrentUrl = currentUrl ?? GetUrlFromHttpRequest();
-                CustomerStatus = userSession.GetProperty<int>(CustomerStatusSessionKey);
+                CustomerStatus = userSession.GetProperty<byte>(CustomerStatusSessionKey);
             }
         }
 
@@ -51,7 +51,7 @@
 
         public PageAccess SubPageAccess { get; }
 
-        public int CustomerStatus { get; }
+        public byte CustomerStatus { get; }
 
         public bool EnableCheckBelonging
             => authorizationSection.EnableCheckBelonging;

@@ -42,7 +42,7 @@
 
         bool ClearClientData { get; set; }
 
-        int CustomerStatus { get; }
+        byte CustomerStatus { get; }
         
         string AdminName { get; }
     }
