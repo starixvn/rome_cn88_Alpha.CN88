@@ -79,6 +79,15 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have been kicked out because your account status has been updated. Please log in again..
+        /// </summary>
+        public static string AccountStatusChangedMessage {
+            get {
+                return ResourceManager.GetString("AccountStatusChangedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string Back {

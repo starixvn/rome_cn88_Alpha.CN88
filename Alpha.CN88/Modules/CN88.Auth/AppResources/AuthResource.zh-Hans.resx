@@ -120,6 +120,9 @@
   <data name="AccessDeny" xml:space="preserve">
     <value>您没有使用此功能的权限.</value>
   </data>
+  <data name="AccountStatusChangedMessage" xml:space="preserve">
+    <value>You have been kicked out because your account status has been updated. Please log in again.</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>回上一页</value>
   </data>

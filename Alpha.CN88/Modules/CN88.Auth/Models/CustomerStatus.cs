@@ -42,7 +42,7 @@
                 return "CustomerSuspended";
             }
 
-            return "SessionKickedOut";
+            return "AccountStatusChangedMessage";
         }
     }
 }

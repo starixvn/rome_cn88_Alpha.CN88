@@ -120,6 +120,9 @@
   <data name="AccessDeny" xml:space="preserve">
     <value>You are not authorized on this function.</value>
   </data>
+  <data name="AccountStatusChangedMessage" xml:space="preserve">
+    <value>You have been kicked out because your account status has been updated. Please log in again.</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
