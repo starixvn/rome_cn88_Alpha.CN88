@@ -93,15 +93,15 @@
                     </td>
                     <td class="text-center status-suspended">
 
-                        @if (Model.ShowCustomerListUrl(s.Suspened, s.RoleId))
+                        @if (Model.ShowCustomerListUrl(s.Suspended, s.RoleId))
                         {
-                            <a data-url="@Model.CustomerListUrl(s.Suspened, CustomerStatus.Suspended, s.RoleId)" href="javascript:void(0);">
-                                @HtmlHelpers.FormatNumber(s.Suspened)
+                            <a data-url="@Model.CustomerListUrl(s.Suspended, CustomerStatus.Suspended, s.RoleId)" href="javascript:void(0);">
+                                @HtmlHelpers.FormatNumber(s.Suspended)
                             </a>
                         }
                         else
                         {
-                            @HtmlHelpers.FormatNumber(s.Suspened)
+                            @HtmlHelpers.FormatNumber(s.Suspended)
                         }
 
                     </td>
@@ -114,7 +114,7 @@
                     @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Active, "text-center status-active")
                     @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Inactive, "text-center status-inactive")
                     @HtmlHelpers.RenderNumberCell(Model.TotalStatus.ViewOnly, "text-center status-view")
-                    @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Suspened, "text-center status-suspended")
+                    @HtmlHelpers.RenderNumberCell(Model.TotalStatus.Suspended, "text-center status-suspended")
                 </tr>
             </tfoot>
         </table>
