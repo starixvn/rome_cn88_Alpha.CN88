@@ -13,9 +13,9 @@
     <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Nick Name">
-    <Setting Key="CS_CustomerInsNickName" SpName="CS_CustomerInsNickName_xtest" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustomerInsNickName" SpName="CS_CustomerInsNickName" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustomerUpdNicknameLoginOnly" SpName="Age_CustomerUpdNicknameLoginOnly" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
-    <Setting Key="CS_CustSubInsNickname" SpName="CS_CustSubInsNickname_xtest" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_CustSubInsNickname" SpName="CS_CustSubInsNickname" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Password">
     <Setting Key="ResetMainAccountPassword" SpName="CS_Age_CustomerUpdPwd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
@@ -24,7 +24,7 @@
     <Setting Key="UpdateSubAccountPassword" SpName="Age_CustSubPwdUpd2" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Security Code">
-    <Setting Key="Age_UpdateMainAccountSecurityCode" SpName="CS_Customer_SecurityCode_upd_uat3" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_UpdateMainAccountSecurityCode" SpName="CS_Customer_SecurityCode_upd" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_UpdateSubAccountSecurityCode" SpName="Age_CustomerUpdSecurityCode_Sub" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_ResetSubAccountSecurityCode" SpName="Age_CustomerUpdSecurityCode_Sub2" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_UpdateMainAccountSecurityCodeCounter" SpName="Age_CustomerUpdSecurityCodeStatus" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
