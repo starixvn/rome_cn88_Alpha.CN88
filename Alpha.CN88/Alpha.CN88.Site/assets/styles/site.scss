@@ -317,6 +317,15 @@ body.phone {
 
     .username-mobile {
         display: block;
+
+        .divider {
+            display: none;
+        }
+    }
+
+    .dropdown-menu li.lnk-nickname {
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .hide-desktop {
