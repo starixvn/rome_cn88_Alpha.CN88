@@ -41,5 +41,7 @@
         string SecurityCode { get; }
 
         bool ClearClientData { get; set; }
+
+        string AdminName { get; }
     }
 }

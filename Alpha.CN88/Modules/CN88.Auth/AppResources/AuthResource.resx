@@ -306,4 +306,7 @@ Notes: your password is cAsE sEnSiTiVe</value>
   <data name="VerifySecurityCodeWarning" xml:space="preserve">
     <value>Please input your security code before proceeding!</value>
   </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
 </root>

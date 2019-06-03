@@ -35,6 +35,7 @@
             IsNotHeadline = message.ActorLevel.IsNotHeadlineLevel();
             CurrentLanguage = message.Language;
             NickName = message.NickName;
+            AdminName = message.AdminName;
         }
 
         public double InitialScaleViewPort
@@ -105,5 +106,7 @@
             : string.Empty;
             
         public string NickName { get; }
+
+        public string AdminName { get; }
     }
 }

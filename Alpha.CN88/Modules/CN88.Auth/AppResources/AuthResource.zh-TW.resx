@@ -306,4 +306,7 @@
   <data name="VerifySecurityCodeWarning" xml:space="preserve">
     <value>輸入安全碼後才能繼續操作！</value>
   </data>
+  <data name="Admin" xml:space="preserve">
+    <value>管理</value>
+  </data>
 </root>

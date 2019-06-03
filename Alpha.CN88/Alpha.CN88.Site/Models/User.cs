@@ -64,5 +64,7 @@
                 SessionHelper.Add(SessionKeys.ClearClientData, value);
             }
         }
+
+        public string AdminName => userSession.AdminName;
     }
 }
