@@ -1,6 +1,5 @@
 ﻿namespace CN88.Web.Services
 {
-    using System;
     using System.Linq;
     using Configurations;
     using Models;
@@ -92,9 +91,10 @@
 
         public bool IsAuthorized(BelongingContext belongingContext)
         {
-            var subAccHasPermissionToViewUrl = belongingContext.SubAccountId == 0 || CheckSubAccHasPermissionToViewUrl(belongingContext);
+            var accountHasPermissionToAccessUrl = GetAccountPermissionInstance(belongingContext.SubAccountId)
+                .IsAuthorized(belongingContext, GetMatchCurrentUrl(belongingContext));
 
-            if (subAccHasPermissionToViewUrl)
+            if (accountHasPermissionToAccessUrl)
             {
                 var deniedpages = DeniedPageHelper.GetDeniedPages(belongingContext.ActorRoleId);
 
@@ -123,14 +123,14 @@
             return null;
         }
 
-        private static bool CheckSubAccHasPermissionToViewUrl(BelongingContext belongingContext)
+        private static AccountPermission GetAccountPermissionInstance(int subAccountId)
         {
-            var pageAccess = GetMatchCurrentUrl(belongingContext);
+            if (subAccountId == 0)
+            {
+                return new AccountStatusPermission();
+            }
 
-            return pageAccess == null
-                || pageAccess.Permission
-                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Any(item => belongingContext.SubPageAccess.GetPermission(item));
+            return new SubAccountPermission();
         }
 
         public CustomerStatus CheckCustomerStatus(BelongingContext belongingContext)

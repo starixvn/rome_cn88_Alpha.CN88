@@ -34,6 +34,7 @@
                 OnlineUserId = userSession.OnUserId;
                 CurrentUrl = currentUrl ?? GetUrlFromHttpRequest();
                 CustomerStatus = userSession.GetProperty<byte>(CustomerStatusSessionKey);
+                IsHttpPost = HttpRequest.HttpMethod.Equals("POST", StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -52,6 +53,8 @@
         public PageAccess SubPageAccess { get; }
 
         public byte CustomerStatus { get; }
+
+        public bool IsHttpPost { get; }
 
         public bool EnableCheckBelonging
             => authorizationSection.EnableCheckBelonging;
