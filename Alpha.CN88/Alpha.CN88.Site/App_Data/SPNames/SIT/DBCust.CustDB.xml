@@ -3,7 +3,7 @@
     <Setting Key="CS_Customer_Homepage_Sel" SpName ="CS_Customer_Homepage_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" >
       <Mapping DataField="cntActive" ObjectProperty="Active"></Mapping>
       <Mapping DataField="cntViewOnly" ObjectProperty="ViewOnly"></Mapping>
-      <Mapping DataField="cntSuspended" ObjectProperty="Suspened"></Mapping>
+      <Mapping DataField="cntSuspended" ObjectProperty="Suspended"></Mapping>
       <Mapping DataField="cntInactive" ObjectProperty="Inactive"></Mapping>
       <Mapping DataField="cntNewMember" ObjectProperty="NewMembers"></Mapping>
       <Mapping DataField="LastChangePwd" ObjectProperty="LastPasswordChangedDate"></Mapping>
