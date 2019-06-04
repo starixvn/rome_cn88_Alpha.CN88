@@ -13,6 +13,7 @@
             IsInternal = viewer.IsInternal;
             ClearClientData = viewer.ClearClientData;
             NickName = viewer.NickName;
+            AdminName = viewer.AdminName;
         }
 
         public int OnlineUserId { get; }
@@ -22,5 +23,7 @@
         public bool ClearClientData { get; }
 
         public string NickName { get; }
+
+        public string AdminName { get; }
     }
 }
