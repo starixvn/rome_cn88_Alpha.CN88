@@ -74,6 +74,9 @@
       <HintPath>..\..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CN88.Web, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.0.6-MobileFriendly-01\lib\net461\CN88.Web.dll</HintPath>
+    </Reference>
     <Reference Include="Couchbase, Version=1.2.7.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.7\lib\net40\Couchbase.dll</HintPath>
       <Private>True</Private>
@@ -1074,10 +1077,6 @@
     <ProjectReference Include="..\Modules\CN88.Auth\CN88.Auth.csproj">
       <Project>{382efae7-d5be-4344-92f1-1f95e8e35903}</Project>
       <Name>CN88.Auth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\CN88.Web\CN88.Web.csproj">
-      <Project>{b9e4bda2-5b82-4e85-8a80-9b470d8b1f2d}</Project>
-      <Name>CN88.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
