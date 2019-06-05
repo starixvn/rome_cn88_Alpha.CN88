@@ -1,6 +1,7 @@
 ﻿namespace Alpha.CN88.Site.ViewModels.Default
 {
     using System;
+    using System.Web;
     using CN88.Helpers;
     using Configurations;
     using Helpers;
@@ -90,11 +91,11 @@
         public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
 
         public string TroubleshootingPath => UrlHelper.MapMainPath("~/Help/Troubleshooting");
-        
+
         public string CurrentLanguage { get; }
 
         public bool IsSelectedLanguage(string code) => string.Equals(code, CurrentLanguage, StringComparison.OrdinalIgnoreCase);
-        
+
         public bool IsShowMySettingPath
             => SubAccId == 0 && IsNotHeadline;
 
@@ -104,9 +105,28 @@
                 AppSettings.FeaturesAppPath,
                 $"~/CN88CustomerSetting/ViewCN88CustomerSetting/MySetting?customerLevel={RoleId}&isCreateNew=false&productId=1")
             : string.Empty;
-            
+
         public string NickName { get; }
 
         public string AdminName { get; }
+
+        public string InitMainFrameLink
+        {
+            get
+            {
+                var result = HttpContext.Current.Request.Cookies.Get(CurrentURLCookieName)?.Value;
+
+                if (result == null)
+                {
+                    return string.Empty;
+                }
+
+                var cookie = HttpContext.Current.Request.Cookies[CurrentURLCookieName];
+                cookie.Expires = DateTime.Now.AddDays(-1);
+                HttpContext.Current.Response.Cookies.Add(cookie);
+
+                return result;
+            }
+        }
     }
 }

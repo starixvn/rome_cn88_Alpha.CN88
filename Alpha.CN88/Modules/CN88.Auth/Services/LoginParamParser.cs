@@ -128,6 +128,8 @@
                 timeTicks,
                 ValidLanguages[0],
                 ValidLanguageKeys[0],
+                loginParamsLength > 5 ? keyValuePairs[4] : string.Empty,
+                loginParamsLength > 5 ? keyValuePairs[5].Replace("|", "&") : string.Empty,
                 GetRequestInfo(GetRequest(), loginParamsLength >= 11 ? keyValuePairs[BrowserSizeIndex] : string.Empty));
         }
 
@@ -139,7 +141,7 @@
             var ip = AgentIPFormat.GetClientIP();
             var browserName = string.Empty;
             var platform = string.Empty;
-            
+
             try
             {
                 var userAgentParser = Parser.GetDefault();
