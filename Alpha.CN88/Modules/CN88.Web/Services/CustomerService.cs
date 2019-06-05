@@ -69,7 +69,12 @@
         }
 
         public CustomerStatus CheckCustomerStatus(int custId, int subAccId)
-            => dynamicRepository.Get<CustomerStatus>(new CheckCustomerStatusCriteria(custId, subAccId));
+        {
+            var customerStatus = dynamicRepository.Get<CustomerStatus>(new CheckCustomerStatusCriteria(custId, subAccId));
+            customerStatus.IsSubAccount = subAccId > 0;
+
+            return customerStatus;
+        }
 
         public CustomerStatus CheckCustomerStatus(int custId, int subAccId, int cacheInSeconds)
         {

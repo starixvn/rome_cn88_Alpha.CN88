@@ -135,12 +135,13 @@
                         && DateTime.TryParse(sessionInfo[1], out result)
                         && result >= DateTime.Now)
                     {
-                        return new CustomerStatus(false, currentStatus);
+                        return new CustomerStatus(false, currentStatus, subAccId > 0);
                     }
                 }
 
                 var customerStatus = dynamicRepository.Get<CustomerStatus>(
                     new CheckCustomerStatusCriteria(custId, subAccId));
+                customerStatus.IsSubAccount = subAccId > 0;
 
                 if (customerStatus.IsOK(currentStatus))
                 {
