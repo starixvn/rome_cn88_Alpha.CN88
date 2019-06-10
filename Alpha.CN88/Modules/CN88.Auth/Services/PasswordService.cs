@@ -37,10 +37,10 @@
             => ChangePassword(param);
 
         public SecurityResult ResetDownlinePassword(ResetDownlinePasswordParam param)
-            => ResetPassword(param, param.IsResetMemberPassword);
+            => ResetPassword(param);
 
         public SecurityResult ResetSubAccountPassword(ResetSubAccountPasswordParam param)
-            => ResetPassword(param, false);
+            => ResetPassword(param);
 
         private SecurityResult ChangePassword(PasswordParamBase param)
         {
@@ -53,7 +53,7 @@
 
             var rawCurrentPassword = passwordValidator.Decrypt(param.CurrentPassword, param.HashKey);
             var rawNewPassword = passwordValidator.Decrypt(param.NewPassword, param.HashKey);
-            result = passwordValidator.IsMatchSMAPasswordRule(rawNewPassword, param.InvalidPasswords, rawCurrentPassword);
+            result = passwordValidator.IsMatchPasswordRule(rawNewPassword, param.InvalidPasswords, rawCurrentPassword);
 
             if (result.IsFail)
             {
@@ -66,7 +66,7 @@
             return Execute(param.ToCommand());
         }
 
-        private SecurityResult ResetPassword(PasswordParamBase param, bool isResetMemberPassword)
+        private SecurityResult ResetPassword(PasswordParamBase param)
         {
             var result = passwordValidator.ValidateEmpty(param.NewPassword);
 
@@ -76,9 +76,7 @@
             }
 
             var rawNewPassword = passwordValidator.Decrypt(param.NewPassword, param.HashKey);
-            result = isResetMemberPassword
-                ? passwordValidator.IsMatchMemberPasswordRule(rawNewPassword, param.InvalidPasswords)
-                : passwordValidator.IsMatchSMAPasswordRule(rawNewPassword, param.InvalidPasswords);
+            result = passwordValidator.IsMatchPasswordRule(rawNewPassword, param.InvalidPasswords);
 
             if (result.IsFail)
             {

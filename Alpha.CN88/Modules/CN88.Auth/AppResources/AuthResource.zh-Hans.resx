@@ -222,7 +222,7 @@
     <value>您已经成功更改密码。</value>
   </data>
   <data name="PasswordHint01" xml:space="preserve">
-    <value>密码必须至少为8个字符且没有空格，并且至少包含以下3个条件：</value>
+    <value>Password must be between 6 to 12 characters without white-space and contain at least 2 of the following:</value>
   </data>
   <data name="PasswordHint02" xml:space="preserve">
     <value>&lt;li&gt;大写字母[A-Z]&lt;/li&gt;
@@ -231,7 +231,7 @@
 &lt;li&gt;特殊字符（!,,#等...）&lt;/li&gt;</value>
   </data>
   <data name="PasswordHint03" xml:space="preserve">
-    <value>&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;
+    <value>&lt;p&gt;&lt;strong&gt;例如&lt;/strong&gt;: BCD!$#H, 4593abcd&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;: 您的密码输入的时候要注意字母的大小写&lt;/p&gt;</value>
   </data>
   <data name="PasswordRules" xml:space="preserve">
@@ -308,5 +308,5 @@
   </data>
   <data name="Admin" xml:space="preserve">
     <value>管理</value>
-  </data>  
+  </data>
 </root>

@@ -19,18 +19,15 @@
 
         SecurityResult ValidateEmpty(string newPassword);
 
-        SecurityResult IsMatchSMAPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null);
-
-        SecurityResult IsMatchMemberPasswordRule(string password, IEnumerable<string> invalidPasswords);
+        SecurityResult IsMatchPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null);
     }
 
     public class PasswordValidatorImpl : PasswordValidator
     {
-        private static readonly Regex PasswordRule1 = new Regex(@"^(?=.*\d).{8,100}$");
-        private static readonly Regex PasswordRule2 = new Regex(@"^(?=.*[a-z]).{8,100}$");
-        private static readonly Regex PasswordRule3 = new Regex(@"^(?=.*[A-Z]).{8,100}$");
-        private static readonly Regex PasswordRule4 = new Regex(@"^(?=.*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]).{8,100}$");
-        private static readonly Regex MemberPasswordRule = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$");
+        private static readonly Regex PasswordRule1 = new Regex(@"^(?=.*\d).{6,12}$");
+        private static readonly Regex PasswordRule2 = new Regex(@"^(?=.*[a-z]).{6,12}$");
+        private static readonly Regex PasswordRule3 = new Regex(@"^(?=.*[A-Z]).{6,12}$");
+        private static readonly Regex PasswordRule4 = new Regex(@"^(?=.*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]).{6,12}$");
         private static readonly Regex NoWhiteSpace = new Regex(@"^\S*$");
 
         private readonly Encryptor encryptor;
@@ -56,7 +53,7 @@
             ? SecurityResult.CreateErrorResult(AuthResource.RequiredPasswordError)
             : new SecurityResult();
 
-        public SecurityResult IsMatchSMAPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null)
+        public SecurityResult IsMatchPasswordRule(string password, IEnumerable<string> invalidPasswords, string oldPassword = null)
         {
             if (oldPassword != null && oldPassword == password)
             {
@@ -78,31 +75,14 @@
             var rule3 = PasswordRule3.Match(password).Success ? 1 : 0;
             var rule4 = PasswordRule4.Match(password).Success ? 1 : 0;
 
-            return (rule1 + rule2 + rule3 + rule4 >= 3) && NoWhiteSpace.Match(password).Success
-                ? new SecurityResult()
-                : SecurityResult.CreateErrorResult(AuthResource.PasswordWrongRuleError);
-        }
-
-        public SecurityResult IsMatchMemberPasswordRule(string password, IEnumerable<string> invalidPasswords)
-        {
-            if (IsEqualsPasswordHint(password))
-            {
-                return SecurityResult.CreateErrorResult(AuthResource.PasswordWrongRuleError);
-            }
-
-            if (IsContainsInvalidChars(password, invalidPasswords))
-            {
-                return SecurityResult.CreateErrorResult(AuthResource.NewPwdContainsUserNameOrNickNameError);
-            }
-
-            return MemberPasswordRule.Match(password).Success && NoWhiteSpace.Match(password).Success
+            return (rule1 + rule2 + rule3 + rule4 >= 2) && NoWhiteSpace.Match(password).Success
                 ? new SecurityResult()
                 : SecurityResult.CreateErrorResult(AuthResource.PasswordWrongRuleError);
         }
 
         private static bool IsEqualsPasswordHint(string password)
-            => password.Equals("59D7!4$h", StringComparison.OrdinalIgnoreCase) ||
-            password.Equals("493abcDE", StringComparison.OrdinalIgnoreCase);
+            => password.Equals("BCD!$#H", StringComparison.OrdinalIgnoreCase) ||
+            password.Equals("4593abcd", StringComparison.OrdinalIgnoreCase);
 
         private static bool IsContainsInvalidChars(string password, IEnumerable<string> invalidPasswords)
             => invalidPasswords.Any(item => password.IndexOf(item, StringComparison.OrdinalIgnoreCase) >= 0);

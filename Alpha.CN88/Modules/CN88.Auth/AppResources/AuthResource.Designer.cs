@@ -366,7 +366,7 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password must be at least 8 characters without white-space and contain at least 3 of the following:.
+        ///   Looks up a localized string similar to Password must be between 6 to 12 characters without white-space and contain at least 2 of the following:.
         /// </summary>
         public static string PasswordHint01 {
             get {
@@ -387,7 +387,7 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;: 59D7!4$h, 493abcDE&lt;/p&gt;
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;strong&gt;For example&lt;/strong&gt;: BCD!$#H, 4593abcd&lt;/p&gt;
         ///&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: your password is cAsE sEnSiTiVe&lt;/p&gt;.
         /// </summary>
         public static string PasswordHint03 {
