@@ -222,7 +222,7 @@
     <value>您已經成功更改密碼。</value>
   </data>
   <data name="PasswordHint01" xml:space="preserve">
-    <value>Password must be between 6 to 12 characters without white-space and contain at least 2 of the following:</value>
+    <value>密碼必須是6-12個字符且沒有空格，並且至少包含以下2個條件：</value>
   </data>
   <data name="PasswordHint02" xml:space="preserve">
     <value>&lt;li&gt;大寫字母[A-Z]&lt;/li&gt;
