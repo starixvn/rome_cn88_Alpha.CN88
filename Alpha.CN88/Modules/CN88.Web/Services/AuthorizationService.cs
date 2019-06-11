@@ -7,6 +7,8 @@
 
     public interface AuthorizationService
     {
+        bool IsSubAccBelonging(BelongingContext belongingContext);
+
         bool IsBelonging(BelongingContext belongingContext);
 
         bool IsAuthorized(string url);
@@ -30,6 +32,17 @@
             this.requestContext = requestContext ?? new RequestContextImpl();
             this.customerService = customerService ?? new CustomerServiceImpl();
         }
+
+        public bool IsSubAccBelonging(BelongingContext belongingContext)
+        {
+            var subAccId = requestContext.GetCustId(
+                belongingContext.HttpRequest,
+                belongingContext.CustIdQueryStringParamNames,
+                belongingContext.CustIdJsonParamNames);
+
+            return customerService.IsSubAccBelonging(belongingContext.ActorId, subAccId);
+        }
+
 
         public bool IsBelonging(BelongingContext belongingContext)
         {

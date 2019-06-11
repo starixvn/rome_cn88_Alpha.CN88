@@ -2,6 +2,7 @@
 {
     using System.Net;
     using System.Web.Mvc;
+    using System.Web.Security;
     using AppResources;
     using Configurations;
 
@@ -29,6 +30,14 @@
             {
                 filterContext.Result = new RedirectResult(MicroSites.MainUrl($"{AuthorizationSection.Instance.KickoutUrl}?reason={message}"));
             }
+
+            var session = filterContext.HttpContext.Session;
+            session.Clear();
+            session.Abandon();
+            if (!session.IsCookieless)
+            {
+                FormsAuthentication.SignOut();
+            }
         }
 
         private static void UnAuthorizationAjaxResult(AuthorizationContext filterContext)
@@ -41,7 +50,7 @@
             filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
 
             response.TrySkipIisCustomErrors = true;
-            response.End();
+            response.End();            
         }
     }
 }

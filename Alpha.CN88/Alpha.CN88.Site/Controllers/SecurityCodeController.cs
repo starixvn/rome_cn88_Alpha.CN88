@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using AppResources;
     using global::CN88.Auth.Models;
+    using global::CN88.Web.Filters;
     using MediatR;
     using Requests.SecurityCode;
     using Web.Filters;
@@ -74,7 +75,7 @@
         public ActionResult ResetSubAccountSecurityCode(ResetSecurityCodeQuery message)
             => View(message);
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, CheckSubAccBelongingFilter]
         public ActionResult ResetSubAccountSecurityCode(ResetSubAccountSecurityCodeCommand message)
         {
             var result = message.IsValid()

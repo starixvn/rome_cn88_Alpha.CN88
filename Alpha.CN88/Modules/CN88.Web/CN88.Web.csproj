@@ -124,8 +124,10 @@
     <Compile Include="Criteria\CheckCustomerActiveCommand.cs" />
     <Compile Include="Criteria\CheckBelongingCommand.cs" />
     <Compile Include="Criteria\CheckHeadlineBelongingCommand.cs" />
+    <Compile Include="Criteria\GetSubAccountListCriteria.cs" />
     <Compile Include="Criteria\ReCheckinCommand.cs" />
     <Compile Include="Filters\AfterLoginFlowFilter.cs" />
+    <Compile Include="Filters\CheckSubAccBelongingFilter.cs" />
     <Compile Include="Filters\CheckBelongingFilter.cs" />
     <Compile Include="Filters\RestrictHeadlineFilter.cs" />
     <Compile Include="GlobalSuppressions.cs" />
