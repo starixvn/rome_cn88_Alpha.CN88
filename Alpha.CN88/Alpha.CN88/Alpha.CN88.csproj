@@ -51,8 +51,9 @@
       <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn88\lib\net461\Alpha.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CN88.Web, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CN88.Web.1.0.0.7-accountstatus\lib\net461\CN88.Web.dll</HintPath>
+    <Reference Include="CN88.Web, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CN88.Web.1.0.1.0-AccountStatus-01\lib\net461\CN88.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.7.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.7\lib\net40\Couchbase.dll</HintPath>
