@@ -15,6 +15,7 @@
     public class NickNameServiceImpl : NickNameService
     {
         private static readonly Regex NickNameRule = new Regex(@"^[a-zA-Z0-9]{5,20}$");
+        private const int InvalidNickNameErrorCode = 100;
 
         private readonly IDynamicRepository dynamicRepository;
 
@@ -27,7 +28,7 @@
         {
             if (!IsValidNickName(param.NickName))
             {
-                return SecurityResult.CreateErrorResult(AuthResource.NickNameRule1, 100);
+                return SecurityResult.CreateErrorResult(AuthResource.NickNameRule1, InvalidNickNameErrorCode);
             }
 
             return param.IsSubAccount

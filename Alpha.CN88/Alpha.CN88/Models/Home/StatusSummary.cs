@@ -1,5 +1,7 @@
 ﻿namespace Alpha.CN88.Models.Home
 {
+    using global::CN88.Web.Models;
+
     public class StatusSummary
     {
         public byte RoleId { get; }

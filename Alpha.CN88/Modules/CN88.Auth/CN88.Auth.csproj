@@ -201,7 +201,10 @@
     <Compile Include="Criteria\CheckCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\GetCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\Authentication\LoginCommand.cs" />
-    <Compile Include="Criteria\Authentication\LogoutCommand.cs" />
+    <Compile Include="Criteria\Authentication\LogoutCommand.cs">
+	  <!-- Exclude the file from analysis -->
+	  <SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Criteria\NickName\CreateNickNameCommand.cs" />
     <Compile Include="Criteria\NickName\CreateSubAccountNickNameCommand.cs" />
     <Compile Include="Criteria\NickName\NickNameNonQueryCommand.cs" />
@@ -222,7 +225,10 @@
     <Compile Include="Criteria\SecurityCode\UpdateSubAccountSecurityCodeCriteria.cs" />
     <Compile Include="DataAccesses\AuthenticationDataAccess.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\CustomerStatus.cs" />
+    <Compile Include="Models\CustomerStatus.cs">
+	  <!-- Exclude the file from analysis -->
+	  <SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
     <Compile Include="Params\Authentication\AdminLoginParam.cs" />
     <Compile Include="Models\AuthResult.cs" />
     <Compile Include="Params\Authentication\LoginParam.cs" />
@@ -273,12 +279,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
+    <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

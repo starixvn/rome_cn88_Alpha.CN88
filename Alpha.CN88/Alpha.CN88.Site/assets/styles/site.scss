@@ -17,6 +17,10 @@ body {
     padding-bottom: 0px;
 }
 
+.btn .multiselect-selected-text {
+    text-transform: none;
+}
+
 .filter .form-group label {
     font-weight: normal;
     font-size: 13px;
@@ -98,16 +102,104 @@ body {
     }
 }
 
-.btn .multiselect-selected-text {
-    text-transform: none;
-}
-
 .multiselect-container.dropdown-menu label.radio {
     display: block;
 }
 
 #tbl-master, #tbl-agent, #tbl-member {
     width: 100%;
+}
+
+.dropdown-menu {
+    right: 12px;
+    overflow: auto;
+    margin-top: 0;
+    border-radius: 0 0 1px 1px;
+
+    > li:not(:first-child) {
+        border-top: 1px solid #e5e5e5;
+    }
+
+    li > a {
+        padding: 14px 15px;
+        font-size: 14px;
+    }
+
+    li.lnk-nickname {
+        margin: 6px 0;
+
+        a {
+            padding: 0 15px;
+
+            &:hover {
+                background-color: #fff;
+                cursor: default;
+            }
+        }
+    }
+
+    .divider {
+        margin: 6px 0;
+    }
+}
+
+.username-mobile {
+    position: relative;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 12px;
+    background-color: #282525;
+
+    .dropdown {
+        width: 100%;
+    }
+
+    .dropdown-toggle {
+        color: #fff;
+    }
+
+    .list-lang {
+        padding-left: 0;
+        border-top: 1px solid #e5e5e5;
+        list-style: none;
+
+        > li {
+            position: relative;
+        }
+
+        > li:not(:first-child) {
+            border-top: 1px solid #e5e5e5;
+        }
+
+        li > a {
+            display: block;
+            padding: 8px 15px 8px 42px;
+            background-color: #F6F0F0;
+            color: #3b3b3b;
+        }
+
+        > .active > a {
+            background-color: #F6F0F0;
+            color: #3b3b3b;
+        }
+
+        li.active:after {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-family: "CN88Icon", sans-serif;
+            content: "\e914";
+            color: #689A67;
+            font-size: 21px;
+        }
+    }
+
+    .online-area {
+        position: absolute;
+        right: 12px;
+        top: 0;
+        color: #fff;
+    }
 }
 
 .sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
@@ -129,24 +221,7 @@ body {
     }
 }
 
-.dropdown-menu {
-    li.lnk-nickname {
-        margin: 6px 0;
 
-        a {
-            padding: 0 15px;
-
-            &:hover {
-                background-color: #fff;
-                cursor: default;
-            }
-        }
-    }
-
-    .divider {
-        margin: 6px 0;
-    }
-}
 
 // Mobile friendly
 
@@ -203,81 +278,6 @@ body {
         padding: 10px;
         top: 0;
         font-size: 18px;
-    }
-}
-
-.username-mobile {
-    position: relative;
-    height: 32px;
-    line-height: 32px;
-    padding-left: 12px;
-    background-color: #282525;
-
-    .dropdown {
-        width: 100%;
-    }
-
-    .dropdown-toggle {
-        color: #fff;
-    }
-
-    .dropdown-menu {
-        right: 12px;
-        overflow: auto;
-        margin-top: 0;
-        border-radius: 0 0 1px 1px;
-
-        > li:not(:first-child) {
-            border-top: 1px solid #e5e5e5;
-        }
-
-        li > a {
-            padding: 14px 15px;
-            font-size: 14px;
-        }
-    }
-
-    .online-area {
-        position: absolute;
-        right: 12px;
-        top: 0;
-        color: #fff;
-    }
-
-    .list-lang {
-        padding-left: 0;
-        border-top: 1px solid #e5e5e5;
-        list-style: none;
-
-        > li {
-            position: relative;
-        }
-
-        > li:not(:first-child) {
-            border-top: 1px solid #e5e5e5;
-        }
-
-        li > a {
-            display: block;
-            padding: 8px 15px 8px 42px;
-            background-color: #F6F0F0;
-            color: #3b3b3b;
-        }
-
-        > .active > a {
-            background-color: #F6F0F0;
-            color: #3b3b3b;
-        }
-
-        li.active:after {
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            font-family: "CN88Icon";
-            content: "\e914";
-            color: #689A67;
-            font-size: 21px;
-        }
     }
 }
 

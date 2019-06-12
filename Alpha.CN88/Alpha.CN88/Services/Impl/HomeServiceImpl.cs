@@ -25,7 +25,7 @@
             var criteria = new GetHomeInformationCriteria(custId, currentPeriod.FromDate, currentPeriod.ToDate);
 
             return dynamicRepository.FetchMultiple<AccountOverview, StatusSummary>(criteria);
-        }       
+        }
 
         public AccountingPeriod GetCurrentPeriod()
             => GetAccountingPeriods().FirstOrDefault(p => p.IsCurrentPeriod);

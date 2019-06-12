@@ -1,8 +1,8 @@
 ﻿namespace Alpha.CN88.Site.Requests
 {
     using CN88.Models;
+    using global::CN88.Web.ViewModel;
     using MediatR;
-    using ViewModels;
 
     public class BrowserQuery : IRequest<BrowserViewModel>
     {

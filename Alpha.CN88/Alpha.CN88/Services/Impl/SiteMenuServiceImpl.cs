@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-    using Models;
+    using global::CN88.Web.Models;
     using Models.Menus;
 
     public class SiteMenuServiceImpl : SiteMenuService
@@ -62,7 +62,7 @@
                     {
                         if (node.Roles.Count == 0
                             || node.Roles.Contains(userLevel.DisplayName)
-                            || node.Roles.Contains(userLevel.DisplayName.ToLower())
+                            || node.Roles.Contains(userLevel.DisplayName.ToLowerInvariant())
                             || node.Roles.Contains(userLevel.Value.ToString()))
                         {
                             var menuItem = menuItemBuilder.BuildMenuItem(node);

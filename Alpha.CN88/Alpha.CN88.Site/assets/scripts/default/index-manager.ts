@@ -1,4 +1,8 @@
-﻿let indexManager = {
+﻿const classHasSubMenu = "has-submenu";
+const recheckinTimeout = 30000;
+const maxHistoryIndex = 21;
+const reloadTimeout = 3000;
+let indexManager: IndexManager = {
     urls: {
         mainRootPath: null,
         changeLanguage: null,
@@ -49,7 +53,7 @@
         mobileHeaderName: "mobileHeaderName"
     },
     topWindow: null,
-    init: function (topWindow: any) {
+    init: function (topWindow: Window) {
         indexManager.topWindow = topWindow;
 
         indexManager.cacheElements();
@@ -59,26 +63,26 @@
             siteInfrastructure.localStorage.clear();
         }
 
-        if (indexManager.elements.initMainFrameLink == "") {
+        if (indexManager.elements.initMainFrameLink === "") {
             indexManager.restoreUrl();
         } else {
             $("#main").attr("src", indexManager.elements.initMainFrameLink);
         }
-        
+
     },
     cacheElements: function () {
         indexManager.elements.isNotHeadLine = parseInt($("#IsNotHeadLine").val());
         indexManager.elements.intervalToGetTotalOnlineMember = parseInt($("#IntervalToGetTotalOnlineMember").val());
         indexManager.urls.mainRootPath = $("#mainRootPath").val();
 
-        indexManager.urls.changeLanguage = indexManager.urls.mainRootPath + "Language/Change";
-        indexManager.urls.getTotalOnlineMemberUrl = indexManager.urls.mainRootPath + "Default/GetTotalOnlineMember";
+        indexManager.urls.changeLanguage = `${indexManager.urls.mainRootPath}Language/Change`;
+        indexManager.urls.getTotalOnlineMemberUrl = `${indexManager.urls.mainRootPath}Default/GetTotalOnlineMember`;
         indexManager.urls.onlineList = $("#OnlineMembersPath").val();
-        indexManager.urls.liveChat = indexManager.urls.mainRootPath + "CustomerList/LiveChat";
-        indexManager.urls.contactUs = indexManager.urls.mainRootPath + "Help/ContactUs";
-        indexManager.urls.reCheckin = indexManager.urls.mainRootPath + "ReCheckin";
-        indexManager.urls.changePassword = indexManager.urls.mainRootPath + "Password/ChangePassword";
-        indexManager.urls.changeSecurityCode = indexManager.urls.mainRootPath + "SecurityCode/ChangeSecurityCode";
+        indexManager.urls.liveChat = `${indexManager.urls.mainRootPath}CustomerList/LiveChat`;
+        indexManager.urls.contactUs = `${indexManager.urls.mainRootPath}Help/ContactUs`;
+        indexManager.urls.reCheckin = `${indexManager.urls.mainRootPath}ReCheckin`;
+        indexManager.urls.changePassword = `${indexManager.urls.mainRootPath}Password/ChangePassword`;
+        indexManager.urls.changeSecurityCode = `${indexManager.urls.mainRootPath}SecurityCode/ChangeSecurityCode`;
         indexManager.urls.oldReportsPath = $("#OldReportsPath").val();
         indexManager.urls.wagerMonitoringConsolePath = $("#WagerMonitoringConsolePath").val();
         indexManager.urls.troubleshootingPath = $("#TroubleshootingPath").val();
@@ -98,34 +102,30 @@
         indexManager.elements.listMenu = $("#main-menu-items");
         indexManager.elements.hamburgerContainer = $("#hamburger-container");
         indexManager.elements.hamburgerIcon = indexManager.elements.hamburgerContainer.children("#hamburgerIcon");
-        indexManager.elements.isDevice = $("#IsDevice").val() == "1";
+        indexManager.elements.isDevice = $("#IsDevice").val() === "1";
         indexManager.elements.pageTitle = $("#page-title");
         indexManager.elements.announcementPath = $("#AnnouncementPath").val();
         indexManager.elements.initMainFrameLink = $("#InitMainFrameLink").val();
     },
     bindEvents: function () {
-        $(".changelanguage-link").on("click touchend", (event: JQueryEventObject) => {
+        $(".changelanguage-link").on(siteInfrastructure.clickEvent, (event: JQueryEventObject) => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
-                return false;
+                return;
             }
-
             indexManager.changeLanguage($(event.target).data("value"));
         });
-        $(".online-member").on("click touchend", function (event) {
-            if (event.type == 'touchend') {
-                $(this).off('click');
-            }
+
+        $(".online-member").on(siteInfrastructure.clickEvent, function (event) {
+            event.type === 'touchend' && $(this).off('click');
             indexManager.viewOnlineList();
         });
 
-        indexManager.elements.mainMenu.on("click touchend", function (event) {
-            if (event.type == 'touchend') {
-                $(this).off('click');
-            }
+        indexManager.elements.mainMenu.on(siteInfrastructure.clickEvent, function (event) {
+            event.type === 'touchend' && $(this).off('click');
 
-            $("#lnk-personal-announcement").on("click touchend", function () {
+            $("#lnk-personal-announcement").on(siteInfrastructure.clickEvent, function () {
                 $.blockUI();
                 indexManager.activeMainMenu("menu-ANNOUNCEMENT");
                 $("#main").attr("src", $(this).children("a").attr("href"));
@@ -141,7 +141,7 @@
             const $this = $(this);
             indexManager.mainMenuClick($this.attr("id"));
         });
-        indexManager.elements.subMenuItems.on("click touchend", function (event) {
+        indexManager.elements.subMenuItems.on(siteInfrastructure.clickEvent, function (event) {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
@@ -150,26 +150,25 @@
 
             $.blockUI();
             const $this = $(this);
-            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
-
+            indexManager.subMenuClick($this.find(indexManager.selector.firstItemRedirect).attr("id"));
             event.stopPropagation();
         });
 
-        $("#lnk-new-url").on("click touchend", () => {
+        $("#lnk-new-url").on(siteInfrastructure.clickEvent, () => {
             $("#menu-HELP").click();
         });
 
-        $("#lnk-live-chat").on("click touchend", () => {
+        $("#lnk-live-chat").on(siteInfrastructure.clickEvent, () => {
             window.open(indexManager.urls.liveChat, "LiveChat", "height=600,width=800");
         });
-        $("#lnk-contact-us").on("click touchend", () => {
+
+        $("#lnk-contact-us").on(siteInfrastructure.clickEvent, () => {
             indexManager.elements.mainMenu.removeClass("active");
             indexManager.elements.subMenu.slideUp("fast");
-
-            indexManager.elements.menuBar.removeClass("has-submenu");
+            indexManager.elements.menuBar.removeClass(classHasSubMenu);
             indexManager.elements.mainFrame.attr("src", indexManager.urls.contactUs);
         });
-        $("#menu-back").on("click touchend", () => {
+        $("#menu-back").on(siteInfrastructure.clickEvent, () => {
             const history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
             let historyIndex = history ? parseInt(history, 0) : 0;
 
@@ -177,7 +176,7 @@
                 return;
             }
 
-            const key = indexManager.elements.currentURLCookieName + "_" + historyIndex;
+            const key = `${indexManager.elements.currentURLCookieName}_${historyIndex}`;
             historyIndex--;
 
             siteInfrastructure.localStorage.remove(key);
@@ -186,11 +185,11 @@
             indexManager.restoreUrl();
         });
 
-        $("#lnk-my-setting").on("click touchend", () => {
+        $("#lnk-my-setting").on(siteInfrastructure.clickEvent, () => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
-                return false;
+                return;
             }
 
             indexManager.topWindow.showCN88CancelButton = false;
@@ -198,11 +197,11 @@
             indexManager.clearAllActiveMenu();
         });
 
-        $("#lnk-change-password").on("click touchend", () => {
+        $("#lnk-change-password").on(siteInfrastructure.clickEvent, () => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
-                return false;
+                return;
             }
 
             indexManager.topWindow.popupManager.init($, top);
@@ -215,11 +214,11 @@
             });
         });
 
-        $("#lnk-security-code").on("click touchend", () => {
+        $("#lnk-security-code").on(siteInfrastructure.clickEvent, () => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
-                return false;
+                return;
             }
 
             indexManager.topWindow.popupManager.init($, top);
@@ -231,16 +230,13 @@
                 height: 420
             });
         });
-        $("#lnk-logout").on("click touchend", () => {
+        $("#lnk-logout").on(siteInfrastructure.clickEvent, () => {
             siteInfrastructure.logout();
         });
 
-        indexManager.elements.hamburgerContainer.on("click touchend", function (event) {
-            if (event.type == 'touchend') {
-                $(this).off('click');
-            }
-
-            var isCollapsed = indexManager.elements.listMenu.hasClass("collapsed");
+        indexManager.elements.hamburgerContainer.on(siteInfrastructure.clickEvent, function (event) {
+            event.type === 'touchend' && $(this).off('click');
+            const isCollapsed = indexManager.elements.listMenu.hasClass("collapsed");
             if (isCollapsed) {
                 indexManager.elements.hamburgerIcon.addClass("active");
                 indexManager.elements.listMenu.removeClass("collapsed");
@@ -255,20 +251,20 @@
 
         $("#sub-menu-OLDREPORT")
             .parent()
-            .off("click touchend")
-            .on("click touchend", (event) => {
+            .off(siteInfrastructure.clickEvent)
+            .on(siteInfrastructure.clickEvent, (event) => {
                 indexManager.viewOldReport();
                 event.stopPropagation();
                 return false;
             });
 
-        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", (event) => {
+        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off(siteInfrastructure.clickEvent).on(siteInfrastructure.clickEvent, (event) => {
             indexManager.viewWagerMonitoringConsole();
             event.stopPropagation();
             return false;
         });
 
-        $("#sub-menu-TROUBLESHOOTING").parent().off("click touchend").on("click touchend", (event) => {
+        $("#sub-menu-TROUBLESHOOTING").parent().off(siteInfrastructure.clickEvent).on(siteInfrastructure.clickEvent, (event) => {
             indexManager.viewTroubleshooting();
             event.stopPropagation();
             return false;
@@ -279,8 +275,7 @@
             const currentUrl = top.main.location.href;
             const activeMainMenu = $("#main-menu-items .menu-item.active");
             const activeMainMenuId = activeMainMenu.length ? activeMainMenu.attr("id") : null;
-
-            const activeSubmenu = activeMainMenuId != null ?
+            const activeSubmenu = activeMainMenuId !== null ?
                 $(".sub-menu[data-main-menu='" + activeMainMenuId + "'] .sub-menu-item.active > a") : null;
 
             indexManager.addHistory({
@@ -292,13 +287,10 @@
 
             indexManager.currentState.isClearActiveMenu = false;
             indexManager.calculateMainFrameHeight();
-
-            var iframeWindow = indexManager.elements.mainFrame[0].contentWindow || indexManager.elements.mainFrame[0].contentDocument;
-            $(iframeWindow.document)
-                .on('click touchend', () => { indexManager.closeMenuBarOnMobile(); });
-
-            var pageTitle = $(iframeWindow.document).find("title").text();
-
+            const iframeWindowFirstElement = indexManager.elements.mainFrame[0] as HTMLIFrameElement;
+            const iframeWindowDocument = iframeWindowFirstElement.contentWindow.document || iframeWindowFirstElement.contentDocument;
+            $(iframeWindowDocument).on(siteInfrastructure.clickEvent, () => { indexManager.closeMenuBarOnMobile(); });
+            let pageTitle = $(iframeWindowDocument).find("title").text();
             if (currentUrl.indexOf("ViewCN88CustomerSetting/MySetting") > 0) {
                 pageTitle = $("#MySettings").val();
             }
@@ -306,16 +298,12 @@
             indexManager.setMobileHeaderName(pageTitle);
         });
 
-        setTimeout(indexManager.reCheckin, 30000);
-        if (indexManager.elements.isNotHeadLine === 1) {
-            setTimeout(indexManager.GetTotalOnlineMember, indexManager.elements.intervalToGetTotalOnlineMember);
-        }
-
+        setTimeout(indexManager.reCheckin, recheckinTimeout);
+        indexManager.elements.isNotHeadLine === 1 && setTimeout(indexManager.GetTotalOnlineMember, indexManager.elements.intervalToGetTotalOnlineMember);
         $(window).resize(() => {
             indexManager.calculateMainFrameHeight();
             indexManager.calculateUserMobileHeight();
         });
-
         indexManager.initForMobile();
     },
     initForMobile: () => {
@@ -324,24 +312,24 @@
 
             $(document).on("touchend", () => { indexManager.currentState.isScrolling = false; });
 
-            $(".username-mobile").on("click touchend", () => {
+            $(".username-mobile").on(siteInfrastructure.clickEvent, () => {
                 indexManager.closeMenuBarOnMobile();
             });
 
-            $(".menubar-mobile").on("click touchend", () => {
+            $(".menubar-mobile").on(siteInfrastructure.clickEvent, () => {
                 indexManager.closeMenuBarOnMobile();
             });
 
-            $(".icon-bell").on("click touchend", () => {
+            $(".icon-bell").on(siteInfrastructure.clickEvent, () => {
                 indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
             });
 
             $('.username-mobile .dropdown').on('show.bs.dropdown', function () {
-                $('.username-mobile .dropdown-menu').show();
+                $(indexManager.selector.mobileMenuDropdown).show();
                 indexManager.calculateUserMobileHeight();
                 $("body").addClass("modal-open");
             }).on('hide.bs.dropdown', function () {
-                $('.username-mobile .dropdown-menu').hide();
+                $(indexManager.selector.mobileMenuDropdown).hide();
                 indexManager.calculateUserMobileHeight();
                 $("body").removeClass("modal-open");
             });
@@ -356,7 +344,7 @@
             type: "POST",
             url: indexManager.urls.changeLanguage,
             data: { languageCode: lang },
-            success: function (result: any) {
+            success: function (result: object) {
                 if (result !== undefined) {
                     // remove www so that subdomain can override LANGUAGE value
                     const domain = window.location.hostname.replace(/([a-zA-Z0-9]+.)/, "").replace("www.", "");
@@ -383,12 +371,12 @@
     reloadPage: () => {
         top.location.href = indexManager.removeBookmarksInUrl(top.location.href);
     },
-    removeBookmarksInUrl: (url: any) => {
+    removeBookmarksInUrl: (url: string) => {
         if (typeof url !== "string") {
             return null;
         }
 
-        let i = url.indexOf("#");
+        const i = url.indexOf("#");
         if (i === -1) {
             return url;
         }
@@ -416,7 +404,7 @@
     },
     viewWagerMonitoringConsole: () => {
         $.unblockUI();
-        if (indexManager.currentState.wagerMonitoringWindow == null || indexManager.currentState.wagerMonitoringWindow.closed) {
+        if (indexManager.currentState.wagerMonitoringWindow === null || indexManager.currentState.wagerMonitoringWindow.closed) {
             indexManager.currentState.wagerMonitoringWindow = indexManager.elements.isDevice
                 ? window.open(indexManager.urls.wagerMonitoringConsolePath, "_blank")
                 : window.open(indexManager.urls.wagerMonitoringConsolePath, "WagerMonitoringConsole", "height=800,width=1280");
@@ -431,15 +419,15 @@
         }
 
         indexManager.elements.subMenuItems.removeClass("active");
-        let $this = $("#" + id);
-        var subMenu = $(".sub-menu[data-main-menu='" + id + "']");
-        var isCurrentActive = $this.hasClass("active");
+        const $this = $("#" + id);
+        const subMenu = $(".sub-menu[data-main-menu='" + id + "']");
+        const isCurrentActive = $this.hasClass("active");
         if (indexManager.elements.isDevice && isCurrentActive) {
             indexManager.elements.subMenu.slideUp("fast");
-            indexManager.elements.menuBar.removeClass("has-submenu");
+            indexManager.elements.menuBar.removeClass(classHasSubMenu);
             indexManager.currentState.isMainMenuClick = false;
 
-            if (subMenu.length == 0) {
+            if (subMenu.length === 0) {
                 indexManager.closeMenuBarOnMobile();
             } else {
                 $this.removeClass("active");
@@ -456,10 +444,10 @@
         }
 
         indexManager.currentState.mainMenuId = id;
-        indexManager.elements.menuBar.removeClass("has-submenu");
+        indexManager.elements.menuBar.removeClass(classHasSubMenu);
 
         if (subMenu && subMenu.length) {
-            indexManager.elements.menuBar.addClass("has-submenu");
+            indexManager.elements.menuBar.addClass(classHasSubMenu);
             subMenu.slideDown("fast", () => {
                 indexManager.calculateMenuBarHeight(subMenu);
             });
@@ -473,7 +461,7 @@
         } else {
             indexManager.currentState.isMainMenuClick = false;
 
-            (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0].childNodes[1]).href;
+            ($("#main")[0] as HTMLIFrameElement).src = ($this[0].childNodes[1] as HTMLLinkElement).href;
 
             indexManager.closeMenuBarOnMobile();
             indexManager.elements.pageTitle.text($this.text().trim());
@@ -482,11 +470,11 @@
     },
     subMenuClick: (id: string) => {
         indexManager.elements.subMenuItems.removeClass("active");
-        let $this = $("#" + id);
+        const $this = $("#" + id);
 
         $this.parent().addClass("active");
         if (!indexManager.currentState.isOpenPopup) {
-            (<HTMLIFrameElement>$("#main")[0]).src = (<HTMLLinkElement>$this[0]).href;
+            ($("#main")[0] as HTMLIFrameElement).src = ($this[0] as HTMLLinkElement).href;
         }
 
         if (!indexManager.currentState.isMainMenuClick) {
@@ -495,20 +483,20 @@
 
         indexManager.currentState.isMainMenuClick = false;
     },
-    addHistory: (newEvent: any) => {
-        let history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+    addHistory: (newEvent: object) => {
+        const history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
         let historyIndex = history ? parseInt(history, 0) : 0;
         historyIndex++;
-        if (historyIndex === 21) {
+        if (historyIndex === maxHistoryIndex) {
             siteInfrastructure.localStorage.shiftStorage(indexManager.elements.currentURLCookieName, newEvent, historyIndex);
             return;
         }
 
         siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName, historyIndex);
-        siteInfrastructure.localStorage.set(indexManager.elements.currentURLCookieName + "_" + historyIndex, newEvent);
+        siteInfrastructure.localStorage.set(`${indexManager.elements.currentURLCookieName}_{historyIndex}`, newEvent);
     },
     restoreUrl: () => {
-        let history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
+        const history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
         let historyIndex = history ? parseInt(history, 0) : 0;
 
         if (historyIndex === 0) {
@@ -516,8 +504,8 @@
             return;
         }
 
-        let key = indexManager.elements.currentURLCookieName + "_" + historyIndex;
-        let currentPage = siteInfrastructure.localStorage.get(key);
+        const key = `${indexManager.elements.currentURLCookieName}_${historyIndex}`;
+        const currentPage = siteInfrastructure.localStorage.get(key);
         historyIndex--;
 
         siteInfrastructure.localStorage.remove(key);
@@ -529,19 +517,19 @@
             return;
         }
 
-        if (currentPage.mainMenu == null) {
+        if (currentPage.mainMenu === null) {
             indexManager.elements.mainMenu.find("a")[1].click();
             return;
         }
 
         indexManager.elements.mainMenu.removeClass("active");
-        $("#" + currentPage.mainMenu).addClass("active");
+        $(`#${currentPage.mainMenu}`).addClass("active");
         indexManager.elements.subMenu.slideUp("fast");
-        indexManager.elements.menuBar.removeClass("has-submenu");
+        indexManager.elements.menuBar.removeClass(classHasSubMenu);
         indexManager.elements.subMenuItems.removeClass("active");
-        let subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
+        const subMenu = $(`.sub-menu[data-main-menu='${currentPage.mainMenu}']`);
         if (subMenu && subMenu.length) {
-            indexManager.elements.menuBar.addClass("has-submenu");
+            indexManager.elements.menuBar.addClass(classHasSubMenu);
             subMenu.slideDown("fast", () => {
                 indexManager.calculateMenuBarHeight(subMenu);
             });
@@ -549,8 +537,8 @@
             indexManager.calculateMenuBarHeight([]);
         }
 
-        if (currentPage.subMenu != null) {
-            $("#" + currentPage.subMenu).parent().addClass("active");
+        if (currentPage.subMenu !== null) {
+            $(`#${currentPage.mainMenu}`).parent().addClass("active");
         }
 
         $("#main").attr("src", currentPage.url);
@@ -560,14 +548,14 @@
             type: "POST",
             url: indexManager.urls.reCheckin,
             data: { onid: indexManager.elements.onlineUserId },
-            success: (result: any) => {
+            success: (result) => {
                 try {
                     const message = result.Message;
                     if (!result.IsSuccess) {
                         if (message) {
                             alert(message);
                         } else {
-                            alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
+                            alert(siteInfrastructure.getInputElementvalue("errorMessage"));
                         }
 
                         siteInfrastructure.logout();
@@ -577,29 +565,29 @@
                     if (typeof (result) === "string"
                         && result.indexOf("Oops... you are here because of a system error") > 0) {
                         siteInfrastructure.logout();
-                        alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
+                        alert(siteInfrastructure.getInputElementvalue("errorMessage"));
                     }
                 }
             },
             error: (xhr) => {
-                if (xhr.status === 500) {
+                if (xhr.status === HttpStatusCode.INTERNAL_SERVER_ERROR) {
                     siteInfrastructure.logout();
-                    alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
-                } else if (xhr.status === 401 || xhr.status === 403) {
+                    alert(siteInfrastructure.getInputElementvalue("errorMessage"));
+                } else if (xhr.status === HttpStatusCode.UNAUTHORIZED || xhr.status === HttpStatusCode.FORBIDDEN) {
                     const message: string = xhr.responseText ? JSON.parse(xhr.responseText).message : "";
                     message && alert(message);
                     siteInfrastructure.logout();
                 }
             },
             complete: () => {
-                setTimeout(indexManager.reCheckin, 30000);
+                setTimeout(indexManager.reCheckin, recheckinTimeout);
             }
         });
     },
     activeMainMenu: (id: string) => {
         indexManager.elements.mainMenu.removeClass("active");
         indexManager.elements.subMenu.slideUp("fast");
-        indexManager.elements.menuBar.removeClass("has-submenu");
+        indexManager.elements.menuBar.removeClass(classHasSubMenu);
 
         indexManager.currentState.mainMenuId = id;
         $("#" + id).addClass("active");
@@ -607,13 +595,14 @@
     closePopupAndReloadMainIframe: () => {
         setTimeout(() => {
             indexManager.topWindow.popupManager.close();
-            indexManager.elements.mainFrame[0].contentWindow.location.reload(true);
-        }, 1000 * 3);
+            const iframeWindowFirstElement = indexManager.elements.mainFrame[0] as HTMLIFrameElement;
+            iframeWindowFirstElement.contentWindow.location.reload();
+        }, reloadTimeout);
     },
     activeSubMenu: (id: string, mainMenuId: string) => {
         indexManager.elements.subMenu.slideUp("fast");
-        indexManager.elements.menuBar.addClass("has-submenu");
-        var subMenu = $(".sub-menu[data-main-menu='" + mainMenuId + "']");
+        indexManager.elements.menuBar.addClass(classHasSubMenu);
+        const subMenu = $(`.sub-menu[data-main-menu='${mainMenuId}']`);
         $("#" + id).parent().addClass("active");
         subMenu.slideDown("fast", () => {
             indexManager.calculateMenuBarHeight(subMenu);
@@ -634,14 +623,14 @@
             return;
         }
 
-        var menuBarHeight = indexManager.elements.listMenu.height();
+        let menuBarHeight = indexManager.elements.listMenu.height();
         menuBarHeight += subMenu.length ? subMenu.height() : 0;
         indexManager.elements.menuBar.height(menuBarHeight);
     },
     clearAllActiveMenu: () => {
         indexManager.elements.mainMenu.removeClass("active");
         indexManager.elements.subMenu.slideUp("fast");
-        indexManager.elements.menuBar.removeClass("has-submenu");
+        indexManager.elements.menuBar.removeClass(classHasSubMenu);
         indexManager.calculateMenuBarHeight([]);
     },
     isMySettingsPage: (currentUrl: string) => {
@@ -657,7 +646,7 @@
             return;
         }
 
-        var dropdownMenu = $(".username-mobile .dropdown-menu"),
+        const dropdownMenu = $(".username-mobile .dropdown-menu"),
             mainHeight = $(window).height() - $("#header").height(),
             dropdownMenuHeight = dropdownMenu.height();
 
@@ -672,13 +661,17 @@
             return;
         }
 
-        $('.username-mobile .dropdown-menu').hide();
+        $(indexManager.selector.mobileMenuDropdown).hide();
         $('.username-mobile .dropdown-backdrop').remove();
         $('.username-mobile .dropdown').removeClass("open");
         $('.username-mobile .dropdown-toggle').attr("aria-expanded", "false");
     },
     locationReload: () => {
         location.reload(true);
+    },
+    selector: {
+        firstItemRedirect: ">.redirect-item:first",
+        mobileMenuDropdown: ".username-mobile .dropdown-menu"
     }
 };
 

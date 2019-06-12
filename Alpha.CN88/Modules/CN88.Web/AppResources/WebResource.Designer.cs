@@ -19,7 +19,7 @@ namespace CN88.Web.AppResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class WebResource {
@@ -66,6 +66,51 @@ namespace CN88.Web.AppResources {
         internal static string AccessDeny {
             get {
                 return ResourceManager.GetString("AccessDeny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        internal static string Agent {
+            get {
+                return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Headline.
+        /// </summary>
+        internal static string Headline {
+            get {
+                return ResourceManager.GetString("Headline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MasterAgent.
+        /// </summary>
+        internal static string MasterAgent {
+            get {
+                return ResourceManager.GetString("MasterAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        internal static string Member {
+            get {
+                return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Super.
+        /// </summary>
+        internal static string Super {
+            get {
+                return ResourceManager.GetString("Super", resourceCulture);
             }
         }
     }

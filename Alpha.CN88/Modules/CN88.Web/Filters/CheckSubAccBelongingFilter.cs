@@ -2,14 +2,13 @@
 {
     using System;
     using System.Web.Mvc;
-    using Configurations;
     using Helpers;
     using Models;
     using Services;
     using Sunplus.Agent.Model.Entities;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public sealed class CheckSubAccBelongingFilter : AuthorizeAttribute
+    public sealed class CheckSubAccBelongingFilterAttribute : AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -22,7 +21,7 @@
 
             var belongingContext = new BelongingContext(
                 httpRequest: filterContext.HttpContext.Request,
-                currentUrl: GetCurrentUrl(filterContext));
+                currentUrl: GetCurrentPath(filterContext));
 
             if (belongingContext.IsValid)
             {
@@ -31,12 +30,11 @@
                 if (!authorizationService.IsSubAccBelonging(belongingContext))
                 {
                     UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "AccessDeny");
-                    return;
                 }
             }
         }
 
-        private static string GetCurrentUrl(AuthorizationContext filterContext)
+        private static string GetCurrentPath(AuthorizationContext filterContext)
         {
             var actionDescriptor = filterContext.ActionDescriptor;
 
