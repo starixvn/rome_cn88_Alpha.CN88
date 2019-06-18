@@ -135,6 +135,7 @@ body {
 
         a {
             padding: 0 15px;
+
             &:hover {
                 background-color: #fff;
                 cursor: default;
@@ -146,7 +147,6 @@ body {
         margin: 6px 0;
     }
 }
-
 
 // Mobile friendly
 
@@ -295,7 +295,6 @@ body {
     }
 }
 
-
 // For Phone
 body.phone {
     .header {
@@ -311,23 +310,31 @@ body.phone {
         padding-top: 68px;
     }
 
-     .menubar-mobile {
+    .menubar-mobile {
         display: block;
     }
 
     .username-mobile {
         display: block;
+
+        .divider {
+            display: none;
+        }
+    }
+
+    .dropdown-menu li.lnk-nickname {
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .hide-desktop {
         display: block;
     }
-    
-    .menubar .list-menu  .sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
-        display: none;
+
+    .menubar .list-menu .sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
         float: none;
-        background-color: transparent; 
-        margin: 0; 
+        background-color: transparent;
+        margin: 0;
 
         a {
             color: #ca9d48 !important;

@@ -351,9 +351,8 @@
                 $("body").removeClass("modal-open");
             });
 
-            var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-            if (iOS) {
-                $('body').backtop();
+            if (indexManager.elements.isDevice) {
+                $('body').backtop({ mainFrameId: 'main' });
             }
         }
     },
@@ -544,7 +543,6 @@
         $("#" + currentPage.mainMenu).addClass("active");
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.removeClass("has-submenu");
-
         indexManager.elements.subMenuItems.removeClass("active");
         let subMenu = $(".sub-menu[data-main-menu='" + currentPage.mainMenu + "']");
         if (subMenu && subMenu.length) {
