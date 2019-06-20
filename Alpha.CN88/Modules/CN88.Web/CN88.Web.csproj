@@ -61,6 +61,14 @@
       <HintPath>..\..\..\packages\Fanex.Logging.2.0.0\lib\net461\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Logging.Extensions, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Logging.Extensions.1.0.6\lib\net461\Fanex.Logging.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging.Extensions.Web, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Logging.Extensions.Web.1.0.7\lib\net461\Fanex.Logging.Extensions.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Products, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Products.1.0.0.5\lib\net461\Fanex.Products.dll</HintPath>
       <Private>True</Private>
@@ -105,6 +113,7 @@
     <Compile Include="Criteria\CheckBelongingCommand.cs" />
     <Compile Include="Criteria\CheckHeadlineBelongingCommand.cs" />
     <Compile Include="Criteria\GetSubAccountListCriteria.cs" />
+    <Compile Include="Criteria\LogoutCommand.cs" />
     <Compile Include="Criteria\ReCheckinCommand.cs" />
     <Compile Include="Filters\AfterLoginFlowFilter.cs" />
     <Compile Include="Filters\CheckSubAccBelongingFilter.cs" />

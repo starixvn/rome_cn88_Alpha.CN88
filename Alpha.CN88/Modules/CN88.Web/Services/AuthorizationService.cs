@@ -1,7 +1,9 @@
 ﻿namespace CN88.Web.Services
 {
+    using System;
     using System.Linq;
     using Configurations;
+    using Fanex.Logging.Extensions.Web;
     using Models;
 
     public interface AuthorizationService
@@ -17,6 +19,8 @@
         CustomerStatus CheckCustomerStatus(BelongingContext belongingContext);
 
         bool IsKickedOut(BelongingContext belongingContext);
+
+        void Logout(BelongingContext belongingContext);
     }
 
     public class AuthorizationServiceImpl : AuthorizationService
@@ -145,5 +149,22 @@
                 belongingContext.SubAccountId,
                 belongingContext.OnlineUserId,
                 belongingContext.CachedExpireTime);
+
+        public void Logout(BelongingContext belongingContext)
+        {
+            try
+            {
+                customerService.Logout(
+                    belongingContext.OnlineUserId,
+                    string.IsNullOrWhiteSpace(belongingContext.SubUserName) ? belongingContext.ActorName : belongingContext.SubUserName,
+                    belongingContext.ActorRoleId,
+                    belongingContext.ServerId,
+                    belongingContext.NickName);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
+        }
     }
 }

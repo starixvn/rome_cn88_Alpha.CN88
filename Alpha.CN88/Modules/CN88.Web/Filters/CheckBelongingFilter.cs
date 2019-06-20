@@ -49,6 +49,7 @@
 
                     if (customerStatus.IsKickedOut(belongingContext.CustomerStatus))
                     {
+                        authorizationService.Logout(belongingContext);
                         UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, customerStatus.GetErrorResourceKey());
                         return;
                     }
@@ -56,6 +57,7 @@
                     if (!AppSettings.DisabledCheckDuplicationLogin
                         && authorizationService.IsKickedOut(belongingContext))
                     {
+                        authorizationService.Logout(belongingContext);
                         UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "SessionKickedOut");
                     }
                 }

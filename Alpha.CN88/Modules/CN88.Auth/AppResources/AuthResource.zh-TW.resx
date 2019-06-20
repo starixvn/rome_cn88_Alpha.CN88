@@ -121,7 +121,7 @@
     <value>您沒有使用此功能的權限.</value>
   </data>
   <data name="AccountStatusChangedError" xml:space="preserve">
-    <value>You have been kicked out because your account status has been updated. Please log in again.</value>
+    <value>您的帳戶已更新，導致被系統踢出。請重新登入。</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>回上一頁</value>
@@ -160,13 +160,13 @@
     <value>您的帳戶已關閉，強制登出。請聯繫您的上線取得幫助。</value>
   </data>
   <data name="CustomerInactiveError" xml:space="preserve">
-    <value>Your account has been inactive. Please contact your upline for assistance.</value>
+    <value>您的帳戶已失效。請聯繫您的上線啟用帳號。</value>
   </data>
   <data name="CustomerLockedError" xml:space="preserve">
-    <value>Your account has been locked due to multiple failed security check attempts. Please contact your upline to unlock.</value>
+    <value>多次認證輸入失敗，已鎖定您的帳戶。請聯繫您的上線進行解鎖。</value>
   </data>
   <data name="CustomerSuspendedError" xml:space="preserve">
-    <value>Your account has been suspended. Please contact your upline to activate your account!</value>
+    <value>您的帳戶已停用。請聯繫您的上線啟用帳號。</value>
   </data>
   <data name="HintPasswordRules" xml:space="preserve">
     <value>密碼必須至少為8個字元且沒有空格，並且至少包含以下3個條件：
@@ -322,6 +322,6 @@
     <value>管理</value>
   </data>
   <data name="SubAccountLockedError" xml:space="preserve">
-    <value>Your sub account has been locked due to multiple failed security check attempts. Please contact the main account user to unlock.</value>
+    <value>認證連續輸入失敗，已鎖定您的子帳戶。請聯繫主帳號用戶上線進行解鎖。</value>
   </data>
 </root>

@@ -6,13 +6,9 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using CN88.Helpers;
-    using CN88.Models;
     using global::CN88.Auth.AppResources;
-    using global::CN88.Auth.Constants;
     using MediatR;
-    using Models;
     using Requests.Authentication;
-    using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Utilities;
 
     public class AuthController : Controller
@@ -54,20 +50,6 @@
 
         public ActionResult Kickout(string reason)
         {
-            IUser user = new User(new UserSessionExt());
-            var query = new LogoutQuery(user)
-            {
-                Reason = LogoutReason.Kickedout
-            };
-
-            mediator.Send(query);
-            Session.RemoveAll();
-
-            if (!Session.IsCookieless)
-            {
-                FormsAuthentication.SignOut();
-            }
-
             var resourceManager = new ResourceManager(typeof(AuthResource));
             var message = resourceManager.GetString(reason);
 

@@ -22,6 +22,14 @@
         bool IsKickedOut(int custId, int subAccId, int onlineUserId, int cacheInSeconds);
 
         bool IsSubAccBelonging(int custId, int subAccId);
+
+        void Logout(
+            int onlineUserId,
+            string userName,
+            byte roleId,
+            int serverId,
+            string nickname,
+            string reason = " Kicked out: Session Changed");
     }
 
     public class CustomerServiceImpl : CustomerService
@@ -138,5 +146,15 @@
 
         private void SetAbsoluteExpiration<T>(string key, T value, int cacheInSeconds)
             => cacheService.Set(key, value, new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(cacheInSeconds)));
+
+        public void Logout(
+            int onlineUserId,
+            string userName,
+            byte roleId,
+            int serverId,
+            string nickname,
+            string reason = " Kicked out: Session Changed")
+            => dynamicRepository.Execute(
+                new LogoutCommand(onlineUserId, userName, roleId, serverId, nickname, reason));
     }
 }

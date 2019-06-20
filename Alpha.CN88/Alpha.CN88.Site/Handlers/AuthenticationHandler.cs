@@ -2,7 +2,6 @@
 {
     using System;
     using Fanex.Logging.Extensions.Web;
-    using global::CN88.Auth.Constants;
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.Authentication;
     using global::CN88.Auth.Services;
