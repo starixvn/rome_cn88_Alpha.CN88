@@ -3,16 +3,16 @@
     @Model.CustName
     <span class="icon-chevron-down"></span>
 </a>
-<ul class="dropdown-menu">
+<ul class="dropdown-menu">    
+    @if (!string.IsNullOrWhiteSpace(Model.NickName))
+    {
+        <li class="lnk-nickname"><a href="javascript:;"><strong>@CN88.Auth.AppResources.AuthResource.NickName: @Model.NickName</strong></a></li>        
+    }
     @if (Model.IsInternal)
     {
         <li class="lnk-nickname"><a href="javascript:;"><strong>@CN88.Auth.AppResources.AuthResource.Admin: @Model.AdminName</strong></a></li>
     }
-    @if (!string.IsNullOrWhiteSpace(Model.NickName))
-    {
-        <li class="lnk-nickname"><a href="javascript:;"><strong>@CN88.Auth.AppResources.AuthResource.NickName: @Model.NickName</strong></a></li>
-        <li role="separator" class="divider"></li>
-    }
+    <li role="separator" class="divider"></li>
     @if (Model.MySettingPath.Length != 0)
     {
         <li><a id="lnk-my-setting" href="@Model.MySettingPath" target="main">@Resources.MySettings</a></li>
