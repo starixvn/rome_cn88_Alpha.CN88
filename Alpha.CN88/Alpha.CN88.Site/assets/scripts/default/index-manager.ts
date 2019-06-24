@@ -249,34 +249,22 @@
         $("#sub-menu-OLDREPORT")
             .parent()
             .off("click touchend")
-            .on("click touchend", () => {
-                $.blockUI();
-                indexManager.currentState.isOpenPopup = true;
-                const $this = $(this);
-                indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
-                $.unblockUI();
-                indexManager.currentState.isOpenPopup = false;
+            .on("click touchend", (event) => {
                 indexManager.viewOldReport();
+                event.stopPropagation();
+                return false;
             });
 
-        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", () => {
-            $.blockUI();
-            indexManager.currentState.isOpenPopup = true;
-            const $this = $(this);
-            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
-            $.unblockUI();
-            indexManager.currentState.isOpenPopup = false;
+        $("#sub-menu-WAGERMONITORINGCONSOLE").parent().off("click touchend").on("click touchend", (event) => {
             indexManager.viewWagerMonitoringConsole();
+            event.stopPropagation();
+            return false;
         });
 
-        $("#sub-menu-TROUBLESHOOTING").parent().off("click touchend").on("click touchend", () => {
-            $.blockUI();
-            indexManager.currentState.isOpenPopup = true;
-            const $this = $(this);
-            indexManager.subMenuClick($this.find(">.redirect-item:first").attr("id"));
-            $.unblockUI();
-            indexManager.currentState.isOpenPopup = false;
+        $("#sub-menu-TROUBLESHOOTING").parent().off("click touchend").on("click touchend", (event) => {
             indexManager.viewTroubleshooting();
+            event.stopPropagation();
+            return false;
         });
 
         $("#main").on("load", () => {
