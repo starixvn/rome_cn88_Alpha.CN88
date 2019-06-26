@@ -142,7 +142,7 @@
     <value>密碼未正確確認。</value>
   </data>
   <data name="ConfiguredNickNameSuccessfully" xml:space="preserve">
-    <value>您的暱稱設定成功</value>
+    <value>您的登入賬號已成功配置</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>確認密碼</value>
@@ -192,25 +192,25 @@
     <value>新密碼</value>
   </data>
   <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
-    <value>您的密碼不得包含您的用戶名或暱稱。</value>
+    <value>您的密碼不得包含您的用戶名或登入賬號。</value>
   </data>
   <data name="NewPwdSameOldOneError" xml:space="preserve">
     <value>您的新密碼必須與當前密碼不同。</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>暱稱</value>
+    <value>登入賬號</value>
   </data>
   <data name="NickNameNote" xml:space="preserve">
-    <value>暱稱一旦創立後即無法變更。請在下次登錄時使用新創立的暱稱。原始的代理用戶代碼僅用於識別目的。</value>
+    <value>登入賬號一旦創立後即無法變更。請在下次登錄時使用新創立的登入賬號。原始的代理用戶代碼僅用於識別目的。</value>
   </data>
   <data name="NickNameRule1" xml:space="preserve">
-    <value>暱稱不可重複，且必須由5-20個字母或數字組成。</value>
+    <value>登入賬號不可重複，且必須由5-15個字母或數字組成。</value>
   </data>
   <data name="NickNameRule2" xml:space="preserve">
-    <value>您的暱稱不得包含任何空格。</value>
+    <value>您的登入賬號不得包含任何空格。</value>
   </data>
   <data name="NickNameStatement" xml:space="preserve">
-    <value>請創立一個您可以輕鬆記住的暱稱。</value>
+    <value>請創建一個您可以輕鬆記住的登入賬號。</value>
   </data>
   <data name="NickNameTitle" xml:space="preserve">
     <value>創建簡易登入賬號</value>
