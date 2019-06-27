@@ -42,6 +42,8 @@
 
         bool ClearClientData { get; set; }
 
+        byte CustomerStatus { get; }
+        
         string AdminName { get; }
     }
 }

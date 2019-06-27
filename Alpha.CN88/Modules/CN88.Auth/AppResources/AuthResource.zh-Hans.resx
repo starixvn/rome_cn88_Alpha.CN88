@@ -120,6 +120,9 @@
   <data name="AccessDeny" xml:space="preserve">
     <value>您没有使用此功能的权限.</value>
   </data>
+  <data name="AccountStatusChangedError" xml:space="preserve">
+    <value>您的帐户已更新，导致被系统踢出。请重新登入。</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>回上一页</value>
   </data>
@@ -155,6 +158,15 @@
   </data>
   <data name="CustomerClosed" xml:space="preserve">
     <value>您的帐户已关闭，因此您被迫退出。 请联系您的上线获取帮助。</value>
+  </data>
+  <data name="CustomerInactiveError" xml:space="preserve">
+    <value>您的账户已失效。请联系您的上线激活账号。</value>
+  </data>
+  <data name="CustomerLockedError" xml:space="preserve">
+    <value>多次认证输入失败，已锁定您的账户。请联系您的上线进行解锁。</value>
+  </data>
+  <data name="CustomerSuspendedError" xml:space="preserve">
+    <value>您的账户已停用。请联系您的上线激活账号。</value>
   </data>
   <data name="HintPasswordRules" xml:space="preserve">
     <value>密码必须至少为8个字符且没有空格，并且至少包含以下3个条件：
@@ -308,5 +320,8 @@
   </data>
   <data name="Admin" xml:space="preserve">
     <value>管理</value>
+  </data>
+  <data name="SubAccountLockedError" xml:space="preserve">
+    <value>认证连续输入失败，已锁定您的子账户。请联系主账号用户上线进行解锁。</value>
   </data>
 </root>

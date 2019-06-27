@@ -10,13 +10,16 @@
 
         public int Inactive { get; private set; }
 
-        public int Suspened { get; private set; }
+        public int ViewOnly { get; private set; }
+
+        public int Suspended { get; private set; }
 
         public void Add(StatusSummary s)
         {
             Active += s.Active;
             Inactive += s.Inactive;
-            Suspened += s.Suspened;
+            ViewOnly += s.ViewOnly;
+            Suspended += s.Suspended;
         }
     }
 }

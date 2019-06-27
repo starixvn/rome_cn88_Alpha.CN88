@@ -120,6 +120,9 @@
   <data name="AccessDeny" xml:space="preserve">
     <value>You are not authorized on this function.</value>
   </data>
+  <data name="AccountStatusChangedError" xml:space="preserve">
+    <value>You have been kicked out because your account status has been updated. Please log in again.</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -155,6 +158,15 @@
   </data>
   <data name="CustomerClosed" xml:space="preserve">
     <value>Your account was closed so you're forced to logout. Please contact your upline for the assistance.</value>
+  </data>
+  <data name="CustomerInactiveError" xml:space="preserve">
+    <value>Your account has been inactive. Please contact your upline for assistance.</value>
+  </data>
+  <data name="CustomerLockedError" xml:space="preserve">
+    <value>Your account has been locked due to multiple failed security check attempts. Please contact your upline to unlock.</value>
+  </data>
+  <data name="CustomerSuspendedError" xml:space="preserve">
+    <value>Your account has been suspended. Please contact your upline to activate your account!</value>
   </data>
   <data name="HintPasswordRules" xml:space="preserve">
     <value>Password must be at least 8 characters without white-space and contain at least 3 of the following:
@@ -308,5 +320,8 @@ Notes: your password is cAsE sEnSiTiVe</value>
   </data>
   <data name="Admin" xml:space="preserve">
     <value>Admin</value>
+  </data>
+  <data name="SubAccountLockedError" xml:space="preserve">
+    <value>Your sub account has been locked due to multiple failed security check attempts. Please contact the main account user to unlock.</value>
   </data>
 </root>

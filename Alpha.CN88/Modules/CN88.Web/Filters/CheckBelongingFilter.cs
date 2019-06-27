@@ -45,15 +45,19 @@
 
                 if (belongingContext.EnableKickout)
                 {
-                    if (!authorizationService.IsCustomerActive(belongingContext))
+                    var customerStatus = authorizationService.CheckCustomerStatus(belongingContext);
+
+                    if (customerStatus.IsKickedOut(belongingContext.CustomerStatus))
                     {
-                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "CustomerClosed");
+                        authorizationService.Logout(belongingContext);
+                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, customerStatus.GetErrorResourceKey());
                         return;
                     }
 
                     if (!AppSettings.DisabledCheckDuplicationLogin
                         && authorizationService.IsKickedOut(belongingContext))
                     {
+                        authorizationService.Logout(belongingContext);
                         UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "SessionKickedOut");
                     }
                 }

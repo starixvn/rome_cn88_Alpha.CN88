@@ -70,6 +70,15 @@ namespace CN88.Auth.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have been kicked out because your account status has been updated. Please log in again..
+        /// </summary>
+        public static string AccountStatusChangedError {
+            get {
+                return ResourceManager.GetString("AccountStatusChangedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin.
         /// </summary>
         public static string Admin {
@@ -183,6 +192,33 @@ namespace CN88.Auth.AppResources {
         public static string CustomerClosed {
             get {
                 return ResourceManager.GetString("CustomerClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account has been inactive. Please contact your upline for assistance..
+        /// </summary>
+        public static string CustomerInactiveError {
+            get {
+                return ResourceManager.GetString("CustomerInactiveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account has been locked due to multiple failed security check attempts. Please contact your upline to unlock..
+        /// </summary>
+        public static string CustomerLockedError {
+            get {
+                return ResourceManager.GetString("CustomerLockedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account has been suspended. Please contact your upline to activate your account!.
+        /// </summary>
+        public static string CustomerSuspendedError {
+            get {
+                return ResourceManager.GetString("CustomerSuspendedError", resourceCulture);
             }
         }
         
@@ -573,6 +609,15 @@ namespace CN88.Auth.AppResources {
         public static string SubAcc {
             get {
                 return ResourceManager.GetString("SubAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your sub account has been locked due to multiple failed security check attempts. Please contact the main account user to unlock..
+        /// </summary>
+        public static string SubAccountLockedError {
+            get {
+                return ResourceManager.GetString("SubAccountLockedError", resourceCulture);
             }
         }
         

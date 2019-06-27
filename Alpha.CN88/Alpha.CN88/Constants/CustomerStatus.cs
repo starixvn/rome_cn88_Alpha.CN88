@@ -2,9 +2,10 @@
 {
     public static class CustomerStatus
     {
-        public const int All = 0;
-        public const int Open = 1;
-        public const int Suspended = 2;
-        public const int Closed = 3;
+        public const byte All = 0;
+        public const byte Active = 4;
+        public const byte ViewOnly = 3;
+        public const byte Suspended = 2;
+        public const byte Inactive = 1;
     }
 }

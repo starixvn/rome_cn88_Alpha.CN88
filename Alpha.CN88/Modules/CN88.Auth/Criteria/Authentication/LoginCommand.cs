@@ -61,7 +61,7 @@
         public string CountryCode { get; }
 
         public override string GetSettingKey()
-            => "Age_LoginClaimDownline";
+            => "CS_LoginClaimDownline";
 
         public override bool IsValid()
             => CustId > 0

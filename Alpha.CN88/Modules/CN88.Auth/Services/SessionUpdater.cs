@@ -187,7 +187,7 @@
 
             SetCustomerStatusToUserSession(userSession, custId, adminId, systemLogin);
 
-            AddCustomDataToSession();
+            AddCustomDataToSession(outputParams);
         }
 
         private int GetOnlineUserId(
@@ -240,9 +240,10 @@
             }
         }
 
-        private static void AddCustomDataToSession()
+        private static void AddCustomDataToSession(Hashtable outputParams)
         {
             SessionHelper.Add(SessionKeys.ClearClientData, true);
+            SessionHelper.Add(SessionKeys.CustomerStatus, outputParams["status"]);
         }
     }
 }

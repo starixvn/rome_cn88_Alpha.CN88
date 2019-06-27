@@ -12,7 +12,7 @@
             OnlineUserId = viewer.OnlineUserId;
             NickName = viewer.NickName;
             ServerId = viewer.ServerId;
-            Reason= LogoutReason.Normal;
+            Reason = LogoutReason.Normal;
         }
 
         public int OnlineUserId { get; }

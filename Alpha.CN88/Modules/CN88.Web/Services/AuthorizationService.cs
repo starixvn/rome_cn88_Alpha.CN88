@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Configurations;
+    using Fanex.Logging.Extensions.Web;
     using Models;
 
     public interface AuthorizationService
@@ -15,9 +16,11 @@
 
         bool IsAuthorized(BelongingContext belongingContext);
 
-        bool IsCustomerActive(BelongingContext belongingContext);
+        CustomerStatus CheckCustomerStatus(BelongingContext belongingContext);
 
         bool IsKickedOut(BelongingContext belongingContext);
+
+        void Logout(BelongingContext belongingContext);
     }
 
     public class AuthorizationServiceImpl : AuthorizationService
@@ -92,9 +95,10 @@
 
         public bool IsAuthorized(BelongingContext belongingContext)
         {
-            var subAccHasPermissionToViewUrl = belongingContext.SubAccountId == 0 || CheckSubAccHasPermissionToViewUrl(belongingContext);
+            var accountHasPermissionToAccessUrl = GetAccountPermissionInstance(belongingContext.SubAccountId)
+                .IsAuthorized(belongingContext, GetMatchCurrentUrl(belongingContext));
 
-            if (subAccHasPermissionToViewUrl)
+            if (accountHasPermissionToAccessUrl)
             {
                 var deniedpages = DeniedPageHelper.GetDeniedPages(belongingContext.ActorRoleId);
 
@@ -123,18 +127,18 @@
             return null;
         }
 
-        private static bool CheckSubAccHasPermissionToViewUrl(BelongingContext belongingContext)
+        private static AccountPermission GetAccountPermissionInstance(int subAccountId)
         {
-            var pageAccess = GetMatchCurrentUrl(belongingContext);
+            if (subAccountId == 0)
+            {
+                return new AccountStatusPermission();
+            }
 
-            return pageAccess == null
-                || pageAccess.Permission
-                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Any(item => belongingContext.SubPageAccess.GetPermission(item));
+            return new SubAccountPermission();
         }
 
-        public bool IsCustomerActive(BelongingContext belongingContext)
-            => customerService.IsCustomerActive(
+        public CustomerStatus CheckCustomerStatus(BelongingContext belongingContext)
+            => customerService.CheckCustomerStatus(
                 belongingContext.ActorId,
                 belongingContext.SubAccountId,
                 belongingContext.CachedExpireTime);
@@ -145,5 +149,22 @@
                 belongingContext.SubAccountId,
                 belongingContext.OnlineUserId,
                 belongingContext.CachedExpireTime);
+
+        public void Logout(BelongingContext belongingContext)
+        {
+            try
+            {
+                customerService.Logout(
+                    belongingContext.OnlineUserId,
+                    string.IsNullOrWhiteSpace(belongingContext.SubUserName) ? belongingContext.ActorName : belongingContext.SubUserName,
+                    belongingContext.ActorRoleId,
+                    belongingContext.ServerId,
+                    belongingContext.NickName);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.Handle(ex);
+            }
+        }
     }
 }

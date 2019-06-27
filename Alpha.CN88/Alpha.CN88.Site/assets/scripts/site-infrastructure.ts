@@ -165,5 +165,6 @@ window.top.cn88CancelCallback = function () {
 }
 
 window.top.cn88SaveAndNewCallback = function () {
-    location.reload(true);
+    const mainiFrame: JQuery = window.top.$("#main");
+    mainiFrame.attr("src", mainiFrame.attr("src"));
 }

@@ -244,4 +244,7 @@
   <data name="Language" xml:space="preserve">
     <value>語言</value>
   </data>
+  <data name="ViewOnly" xml:space="preserve">
+    <value>僅供檢視</value>
+  </data>
 </root>

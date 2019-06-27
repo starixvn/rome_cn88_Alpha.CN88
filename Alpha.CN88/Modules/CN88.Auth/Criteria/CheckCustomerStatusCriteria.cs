@@ -1,10 +1,10 @@
-﻿namespace CN88.Web.Criteria
+﻿namespace CN88.Auth.Criteria
 {
     using Fanex.Data.Repository;
 
-    internal class CheckCustomerActiveCommand : NonQueryCommand
+    public class CheckCustomerStatusCriteria : CriteriaBase
     {
-        internal CheckCustomerActiveCommand(int custId, int subAccId)
+        public CheckCustomerStatusCriteria(int custId, int subAccId)
         {
             CustId = custId;
             SubAccId = subAccId;
@@ -14,10 +14,8 @@
 
         public int SubAccId { get; }
 
-        public bool IsActive { get; set; }
-
         public override string GetSettingKey()
-            => "Age_CustomerStatusSel";
+            => "CS_CustomerStatusSel";
 
         public override bool IsValid()
             => CustId > 0

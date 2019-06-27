@@ -1,6 +1,7 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System;
+    using System.Resources;
     using System.Web.Mvc;
     using System.Web.Security;
     using CN88.Models;
@@ -14,9 +15,8 @@
 
     public class ReCheckinController : CN88BaseController
     {
-        private const int AccessDenyErrCode = 1;
-        private const int CustomerClosedErrCode = 2;
-        private const int SessionKickedOutErrCode = 3;
+        private const int AccessDenyErrCode = 10;
+        private const int SessionKickedOutErrCode = 11;
 
         private readonly IUser user;
         private readonly AuthenticationService authenticationService;
@@ -54,9 +54,19 @@
                 return SecurityResult.CreateErrorResult(AuthResource.SessionKickedOut, SessionKickedOutErrCode);
             }
 
-            if (!user.IsInternal && !authenticationService.IsActiveCustomer(user.Id, user.SubAccountId))
+            if (!user.IsInternal)
             {
-                return SecurityResult.CreateErrorResult(AuthResource.CustomerClosed, CustomerClosedErrCode);
+                var currentStatus = user.CustomerStatus;
+                var customerStatus = authenticationService.CheckCustomerStatus(user.Id, user.SubAccountId, currentStatus);
+
+                if (customerStatus.IsKickedOut(currentStatus))
+                {
+                    var authResource = new ResourceManager(typeof(AuthResource));
+
+                    return SecurityResult.CreateErrorResult(
+                        authResource.GetString(customerStatus.GetErrorResourceKey()),
+                        customerStatus.CustStatus);
+                }
             }
 
             return new SecurityResult();

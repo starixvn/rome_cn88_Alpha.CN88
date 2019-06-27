@@ -13,15 +13,23 @@
 
         BelongingInfo GetHeadlineBelongingInfo(int actorId, int custId);
 
-        bool IsCustomerActive(int custId, int subAccId);
+        CustomerStatus CheckCustomerStatus(int custId, int subAccId);
 
-        bool IsCustomerActive(int custId, int subAccId, int cacheInSeconds);
+        CustomerStatus CheckCustomerStatus(int custId, int subAccId, int cacheInSeconds);
 
         bool IsKickedOut(int onlineUserId);
 
         bool IsKickedOut(int custId, int subAccId, int onlineUserId, int cacheInSeconds);
 
         bool IsSubAccBelonging(int custId, int subAccId);
+
+        void Logout(
+            int onlineUserId,
+            string userName,
+            byte roleId,
+            int serverId,
+            string nickname,
+            string reason = " Kicked out: Session Changed");
     }
 
     public class CustomerServiceImpl : CustomerService
@@ -68,33 +76,33 @@
             return new BelongingInfo(command.IsActive, command.RoleId);
         }
 
-        public bool IsCustomerActive(int custId, int subAccId)
+        public CustomerStatus CheckCustomerStatus(int custId, int subAccId)
         {
-            var command = new CheckCustomerActiveCommand(custId, subAccId);
-            dynamicRepository.Execute(command);
+            var customerStatus = dynamicRepository.Get<CustomerStatus>(new CheckCustomerStatusCriteria(custId, subAccId));
+            customerStatus.IsSubAccount = subAccId > 0;
 
-            return command.IsActive;
+            return customerStatus;
         }
 
-        public bool IsCustomerActive(int custId, int subAccId, int cacheInSeconds)
+        public CustomerStatus CheckCustomerStatus(int custId, int subAccId, int cacheInSeconds)
         {
-            bool isActive;
+            CustomerStatus customerStatus;
             var key = string.Format(IsCustomerActiveCacheKey, custId, subAccId);
 
-            if (!cacheService.TryGet(key, out isActive))
+            if (!cacheService.TryGet(key, out customerStatus))
             {
                 lock (isCustomerActiveSyncLock)
                 {
-                    if (!cacheService.TryGet(key, out isActive))
+                    if (!cacheService.TryGet(key, out customerStatus))
                     {
-                        isActive = IsCustomerActive(custId, subAccId);
+                        customerStatus = CheckCustomerStatus(custId, subAccId);
 
-                        SetAbsoluteExpiration(key, isActive, cacheInSeconds);
+                        SetAbsoluteExpiration(key, customerStatus, cacheInSeconds);
                     }
                 }
             }
 
-            return isActive;
+            return customerStatus;
         }
 
         public bool IsKickedOut(int onlineUserId)
@@ -138,5 +146,15 @@
 
         private void SetAbsoluteExpiration<T>(string key, T value, int cacheInSeconds)
             => cacheService.Set(key, value, new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(cacheInSeconds)));
+
+        public void Logout(
+            int onlineUserId,
+            string userName,
+            byte roleId,
+            int serverId,
+            string nickname,
+            string reason = " Kicked out: Session Changed")
+            => dynamicRepository.Execute(
+                new LogoutCommand(onlineUserId, userName, roleId, serverId, nickname, reason));
     }
 }
