@@ -124,7 +124,7 @@
     <value>更改密碼</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>啟用</value>
+    <value>已啟用</value>
   </data>
   <data name="Suspended" xml:space="preserve">
     <value>暫停</value>
@@ -172,7 +172,7 @@
     <value>帳戶狀態</value>
   </data>
   <data name="Inactive" xml:space="preserve">
-    <value>停用</value>
+    <value>已失效</value>
   </data>
   <data name="AccountOverview" xml:space="preserve">
     <value>帳戶摘要</value>

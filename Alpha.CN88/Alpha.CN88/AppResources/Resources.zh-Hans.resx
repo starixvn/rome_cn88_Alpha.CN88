@@ -121,7 +121,7 @@
     <value>您没有使用此功能的权限.</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>启用</value>
+    <value>已激活</value>
   </data>
   <data name="Suspended" xml:space="preserve">
     <value>暂停</value>
@@ -175,7 +175,7 @@
     <value>帐户状态</value>
   </data>
   <data name="Inactive" xml:space="preserve">
-    <value>停用</value>
+    <value>已失效</value>
   </data>
   <data name="ChangeSecurityCode" xml:space="preserve">
     <value>更改安全码</value>
