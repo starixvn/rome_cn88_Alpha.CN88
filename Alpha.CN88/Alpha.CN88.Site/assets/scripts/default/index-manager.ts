@@ -32,7 +32,8 @@
         hamburgerIcon: null,
         isDevice: false,
         pageTitle: null,
-        announcementPath: null
+        announcementPath: null,
+        initMainFrameLink: null
     },
     currentState: {
         mainMenuId: null,
@@ -58,7 +59,11 @@
             siteInfrastructure.localStorage.clear();
         }
 
-        indexManager.restoreUrl();
+        if (indexManager.elements.initMainFrameLink == "") {
+            indexManager.restoreUrl();
+        } else {
+            $("#main").attr("src", indexManager.elements.initMainFrameLink);
+        }
     },
     cacheElements: function () {
         indexManager.elements.isNotHeadLine = parseInt($("#IsNotHeadLine").val());
@@ -95,6 +100,7 @@
         indexManager.elements.isDevice = $("#IsDevice").val() == "1";
         indexManager.elements.pageTitle = $("#page-title");
         indexManager.elements.announcementPath = $("#AnnouncementPath").val();
+        indexManager.elements.initMainFrameLink = $("#InitMainFrameLink").val();
     },
     bindEvents: function () {
         $(".changelanguage-link").on("click touchend", (event: JQueryEventObject) => {

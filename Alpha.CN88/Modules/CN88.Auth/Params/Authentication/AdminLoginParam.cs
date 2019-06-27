@@ -15,6 +15,8 @@
             long timeTicks,
             string language,
             string languageKey,
+            string afterLogInSite,
+            string afterLogInQuery,
             RequestInfo requestInfo)
         {
             AdminId = adminId;
@@ -23,6 +25,10 @@
             TimeTicks = timeTicks;
             Language = language;
             LanguageKey = languageKey;
+
+            AfterLogInSite = afterLogInSite;
+            AfterLogInQuery = afterLogInQuery;
+
             RequestInfo = requestInfo;
         }
 
@@ -39,6 +45,10 @@
         public string Language { get; }
 
         public string LanguageKey { get; }
+
+        public string AfterLogInSite { get; }
+
+        public string AfterLogInQuery { get; }
 
         public RequestInfo RequestInfo { get; }
     }

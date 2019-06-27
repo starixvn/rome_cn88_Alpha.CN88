@@ -5,6 +5,7 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
+    using Alpha.Web.Helpers;
     using CN88.Helpers;
     using global::CN88.Auth.AppResources;
     using MediatR;
@@ -62,7 +63,7 @@
         }
 
         private ActionResult ProcessLogin(LoginQuery message)
-        {          
+        {
             var isAdminLogin = message is AdminLoginQuery;
 
             if (message.IsInvalid())
@@ -98,8 +99,15 @@
                 Web.Validators.SessionValidator.AddSessionVerificationToken();
             }
 
-            Request.Cookies.Remove(CookieHelper.GetCookieNameOfCurrentPage(result.CustId, result.SubAccId, Encryption.PearsonEncode));
+            var cookieNameOfCurrentPage = CookieHelper.GetCookieNameOfCurrentPage(result.CustId, result.SubAccId, Encryption.PearsonEncode);
+            Request.Cookies.Remove(cookieNameOfCurrentPage);
+
             FormsAuthentication.RedirectFromLoginPage(userName, false, FormsAuthentication.FormsCookiePath);
+
+            if (!string.IsNullOrWhiteSpace(result.AfterLogInSite) && !string.IsNullOrWhiteSpace(result.AfterLogInQuery))
+            {
+                Response.Cookies.Set(new HttpCookie(cookieNameOfCurrentPage, AppPathHelper.GetAppPath(result.AfterLogInSite, result.AfterLogInQuery)));
+            }
 
             return Redirect(FormsAuthentication.DefaultUrl);
         }

@@ -83,7 +83,7 @@
                adminId: loginParam.AdminId,
                systemLogin: loginParam.SystemLogin);
 
-            return new AuthResult(custId, userSession.UserName);
+            return new AuthResult(custId, userSession.UserName, 0, null, "N/A", loginParam.AfterLogInSite, loginParam.AfterLogInQuery);
         }
 
         public void ClearUserSession()
