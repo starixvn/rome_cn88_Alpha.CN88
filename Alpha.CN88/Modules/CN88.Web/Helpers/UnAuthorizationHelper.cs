@@ -1,10 +1,12 @@
 ﻿namespace CN88.Web.Helpers
 {
     using System.Net;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
     using AppResources;
     using Configurations;
+    using Sunplus.Agent.Model.Entities;
 
     internal static class UnAuthorizationHelper
     {
@@ -28,16 +30,11 @@
             }
             else
             {
-                filterContext.Result = new RedirectResult(MicroSites.MainUrl($"{AuthorizationSection.Instance.KickoutUrl}?reason={message}"));
+                filterContext.Result = new RedirectResult(
+                    MicroSites.MainUrl($"{AuthorizationSection.Instance.KickoutUrl}?reason={message}&culture={UserSession.Current.Language}"));
             }
 
-            var session = filterContext.HttpContext.Session;
-            session.Clear();
-            session.Abandon();
-            if (!session.IsCookieless)
-            {
-                FormsAuthentication.SignOut();
-            }
+            ClearSession(filterContext.HttpContext.Session);
         }
 
         private static void UnAuthorizationAjaxResult(AuthorizationContext filterContext)
@@ -51,6 +48,17 @@
 
             response.TrySkipIisCustomErrors = true;
             response.End();            
+        }
+
+        private static void ClearSession(HttpSessionStateBase session)
+        {
+            session.RemoveAll();
+            session.Abandon();
+
+            if (!session.IsCookieless)
+            {
+                FormsAuthentication.SignOut();
+            }
         }
     }
 }
