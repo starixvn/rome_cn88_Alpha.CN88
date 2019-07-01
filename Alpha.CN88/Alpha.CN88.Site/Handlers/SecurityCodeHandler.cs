@@ -150,7 +150,12 @@
         }
 
         public ResetSecurityCodeViewModel Handle(ResetSecurityCodeQuery message)
-            => new ResetSecurityCodeViewModel(message.CustId, message.CustName, HashKey, message.Result);
+            => new ResetSecurityCodeViewModel(
+                message.CustId,
+                message.CustName,
+                HashKey,
+                message.Result,
+                message.IsDisableSaveButton);
 
         public VerifySecurityCodeViewModel Handle(VerifySecurityCodeQuery message)
         {

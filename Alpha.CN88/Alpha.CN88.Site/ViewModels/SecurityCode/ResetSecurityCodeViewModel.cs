@@ -9,12 +9,14 @@
             int custId,
             string custName,
             string hashKey,
-            SecurityResult result)
+            SecurityResult result,
+            bool isDisableSaveButton)
         {
             CustId = custId;
             CustName = custName;
             HashKey = hashKey;
             Result = result;
+            IsDisableSaveButton = isDisableSaveButton;
         }
 
         public int CustId { get; }
@@ -24,6 +26,8 @@
         public string HashKey { get; }
 
         public SecurityResult Result { get; }
+
+        public bool IsDisableSaveButton { get; }
 
         public string MainRootPath => UrlHelper.MapMainPath("~");
     }

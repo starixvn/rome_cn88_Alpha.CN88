@@ -10,13 +10,15 @@
             string custName,
             UserLevel custLevel,
             string hashKey,
-            SecurityResult result)
+            SecurityResult result,
+            bool isDisableSaveButton)
         {
             CustId = custId;
             CustName = custName;
             CustLevel = custLevel;
             HashKey = hashKey;
             Result = result;
+            IsDisableSaveButton = isDisableSaveButton;
         }
 
         public int CustId { get; }
@@ -28,5 +30,7 @@
         public string HashKey { get; }
 
         public SecurityResult Result { get; }
+
+        public bool IsDisableSaveButton { get; }
     }
 }
