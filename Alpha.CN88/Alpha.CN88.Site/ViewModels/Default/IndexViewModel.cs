@@ -37,6 +37,7 @@
             CurrentLanguage = message.Language;
             NickName = message.NickName;
             AdminName = message.AdminName;
+            ShowCN88SaveButton = message.ShowCN88SaveButton;
         }
 
         public double InitialScaleViewPort
@@ -128,5 +129,7 @@
                 return result;
             }
         }
+        
+        public bool ShowCN88SaveButton { get; }
     }
 }

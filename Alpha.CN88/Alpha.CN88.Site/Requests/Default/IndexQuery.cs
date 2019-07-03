@@ -14,6 +14,7 @@
             ClearClientData = viewer.ClearClientData;
             NickName = viewer.NickName;
             AdminName = viewer.AdminName;
+            ShowCN88SaveButton = viewer.CustomerStatus == Constants.CustomerStatus.Active && viewer.AccountManagementEditView;
         }
 
         public int OnlineUserId { get; }
@@ -25,5 +26,7 @@
         public string NickName { get; }
 
         public string AdminName { get; }
+
+        public bool ShowCN88SaveButton { get; }
     }
 }
