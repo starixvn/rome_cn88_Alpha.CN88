@@ -11,6 +11,7 @@ interface Window {
     showCN88CancelButton: boolean;
     cn88SaveAndNewCallback(): void;
     showCN88SaveAndNewButton: boolean,
+    showCN88SaveButton: boolean,
     $: JQueryStatic;
     main: any;
     siteInfrastructure: any;
@@ -18,6 +19,7 @@ interface Window {
 
 top.showCN88CancelButton = true;
 top.showCN88SaveAndNewButton = true;
+top.showCN88SaveButton = true;
 
 class Result {
     static warningCode: number = -1000;

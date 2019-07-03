@@ -10,12 +10,9 @@
         public ResetSecurityCodeQuery(IUser viewer)
             : base(viewer)
         {
-            IsDisableSaveButton = viewer.IsInternal || !viewer.AccountManagementEditView;
         }
 
         public SecurityResult Result { get; set; }
-
-        public bool IsDisableSaveButton { get; }
 
         public bool IsValidForceChangeFirstLogin()
             => base.IsValid()

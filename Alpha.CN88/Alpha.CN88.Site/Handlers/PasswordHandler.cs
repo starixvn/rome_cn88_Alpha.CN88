@@ -75,8 +75,7 @@
                 message.CustName,
                 message.CustLevel,
                 GetHashKey(),
-                message.Result,
-                message.IsDisableSaveButton);
+                message.Result);
 
         private string GetHashKey()
         {

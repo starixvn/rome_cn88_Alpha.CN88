@@ -154,8 +154,7 @@
                 message.CustId,
                 message.CustName,
                 HashKey,
-                message.Result,
-                message.IsDisableSaveButton);
+                message.Result);
 
         public VerifySecurityCodeViewModel Handle(VerifySecurityCodeQuery message)
         {
