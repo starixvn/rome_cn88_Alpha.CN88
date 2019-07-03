@@ -65,7 +65,6 @@
             $("#main").attr("src", indexManager.elements.initMainFrameLink);
         }
         
-        top.showCN88SaveButton = $("#ShowCN88SaveButton").val() === "1";
     },
     cacheElements: function () {
         indexManager.elements.isNotHeadLine = parseInt($("#IsNotHeadLine").val());

@@ -19,7 +19,6 @@ interface Window {
 
 top.showCN88CancelButton = true;
 top.showCN88SaveAndNewButton = true;
-top.showCN88SaveButton = true;
 
 class Result {
     static warningCode: number = -1000;
@@ -170,3 +169,7 @@ window.top.cn88SaveAndNewCallback = function () {
     const mainiFrame: JQuery = window.top.$("#main");
     mainiFrame.attr("src", mainiFrame.attr("src"));
 }
+
+$(function() {
+    window.top.showCN88SaveButton = window.top.$("#ShowCN88SaveButton").val() === "1";
+});
