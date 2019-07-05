@@ -121,13 +121,17 @@
                 return new AdminLoginParam();
             }
 
+            var language = loginParamsLength > 7 ? keyValuePairs[LanguageIndex] : ValidLanguages[0];
+            var validLanguageIndex = Array.FindIndex(ValidLanguages, item => item.Equals(language, StringComparison.OrdinalIgnoreCase));
+            var languageKey = validLanguageIndex > 0 ? ValidLanguageKeys[validLanguageIndex] : ValidLanguageKeys[0];
+
             return new AdminLoginParam(
                 adminId,
                 loginParamsLength > 3 ? keyValuePairs[3] : DefaultSystemLogin,
                 custName,
                 timeTicks,
-                ValidLanguages[0],
-                ValidLanguageKeys[0],
+                language,
+                languageKey,
                 loginParamsLength > 5 ? keyValuePairs[4] : string.Empty,
                 loginParamsLength > 5 ? keyValuePairs[5].Replace("|", "&") : string.Empty,
                 GetRequestInfo(GetRequest(), loginParamsLength >= 11 ? keyValuePairs[BrowserSizeIndex] : string.Empty));
