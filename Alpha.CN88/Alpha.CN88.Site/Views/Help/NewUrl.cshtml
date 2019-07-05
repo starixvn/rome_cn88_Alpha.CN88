@@ -36,5 +36,8 @@
 </div>
 @helper RenderLink(string link)
 {
-    <span class="new_list"><a href="@link" target="_blank">@link</a></span>
+    var formatLink = link.StartsWith("http://") ||
+        link.StartsWith("https://") ? link : "https://" + link;
+
+    <span class="new_list"><a href="@formatLink" target="_blank">@formatLink</a></span>
 }
