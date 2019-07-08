@@ -160,13 +160,13 @@
     <value>您的帳戶已關閉，強制登出。請聯繫您的上線取得幫助。</value>
   </data>
   <data name="CustomerInactiveError" xml:space="preserve">
-    <value>您的帳戶已失效。請聯繫您的上線啟用帳號。</value>
+    <value>您的帳戶已停用。請聯繫您的上線啟用帳號。</value>
   </data>
   <data name="CustomerLockedError" xml:space="preserve">
     <value>多次認證輸入失敗，已鎖定您的帳戶。請聯繫您的上線進行解鎖。</value>
   </data>
   <data name="CustomerSuspendedError" xml:space="preserve">
-    <value>您的帳戶已停用。請聯繫您的上線啟用帳號。</value>
+    <value>您的帳戶已禁止登入。請聯繫您的上線啟用帳號。</value>
   </data>
   <data name="HintPasswordRules" xml:space="preserve">
     <value>密碼必須至少為8個字元且沒有空格，並且至少包含以下3個條件：
