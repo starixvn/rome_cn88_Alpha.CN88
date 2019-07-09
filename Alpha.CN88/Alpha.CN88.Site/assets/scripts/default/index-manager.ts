@@ -586,6 +586,8 @@
                     siteInfrastructure.logout();
                     alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
                 } else if (xhr.status === 401 || xhr.status === 403) {
+                    const message: string = xhr.responseText ? JSON.parse(xhr.responseText).message : "";
+                    message && alert(message);
                     siteInfrastructure.logout();
                 }
             },

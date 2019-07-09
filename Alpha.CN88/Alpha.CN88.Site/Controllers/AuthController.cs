@@ -27,7 +27,15 @@
         {
             Session.Abandon();
 
-            return Redirect(Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl);
+            string beforeLoginUrl = Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl;
+            string baseUrl = Sunplus.Agent.Model.BL.Definitions.AppSettings.BaseUrl;
+
+            if (beforeLoginUrl != baseUrl)
+            {
+                return Redirect(beforeLoginUrl);
+            }
+
+            return new EmptyResult();
         }
 
         [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
