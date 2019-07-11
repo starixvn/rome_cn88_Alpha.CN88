@@ -11,6 +11,7 @@ interface Window {
     showCN88CancelButton: boolean;
     cn88SaveAndNewCallback(): void;
     showCN88SaveAndNewButton: boolean,
+    showCN88SaveButton: boolean,
     $: JQueryStatic;
     main: any;
     siteInfrastructure: any;
@@ -168,3 +169,7 @@ window.top.cn88SaveAndNewCallback = function () {
     const mainiFrame: JQuery = window.top.$("#main");
     mainiFrame.attr("src", mainiFrame.attr("src"));
 }
+
+$(function() {
+    window.top.showCN88SaveButton = window.top.$("#ShowCN88SaveButton").val() === "1";
+});

@@ -1,6 +1,8 @@
 ﻿namespace Alpha.CN88.Site.Controllers
 {
     using System;
+    using System.Globalization;
+    using System.Linq;
     using System.Resources;
     using System.Web;
     using System.Web.Mvc;
@@ -25,7 +27,15 @@
         {
             Session.Abandon();
 
-            return Redirect(Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl);
+            string beforeLoginUrl = Sunplus.Agent.Model.BL.Definitions.AppSettings.BeforeLoginUrl;
+            string baseUrl = Sunplus.Agent.Model.BL.Definitions.AppSettings.BaseUrl;
+
+            if (beforeLoginUrl != baseUrl)
+            {
+                return Redirect(beforeLoginUrl);
+            }
+
+            return new EmptyResult();
         }
 
         [OutputCache(VaryByParam = "*", Duration = 0, NoStore = true)]
@@ -49,15 +59,18 @@
             return RedirectToAction(nameof(Index));
         }
 
-        public ActionResult Kickout(string reason)
+        public ActionResult Kickout(string reason, string culture)
         {
+            var cultureInfo = GetCultureInfo(culture);
             var resourceManager = new ResourceManager(typeof(AuthResource));
-            var message = resourceManager.GetString(reason);
 
-            if (string.IsNullOrWhiteSpace(message))
-            {
-                message = AuthResource.AccessDeny;
-            }
+            var message = string.IsNullOrWhiteSpace(reason)
+                ? string.Empty
+                : resourceManager.GetString(reason, cultureInfo);
+
+            message = string.IsNullOrWhiteSpace(message)
+                ? resourceManager.GetString("AccessDeny", cultureInfo)
+                : message;
 
             return View(message as object);
         }
@@ -139,6 +152,16 @@
                     responseCookies.Add(cookie);
                 }
             }
+        }
+
+        private static CultureInfo GetCultureInfo(string cultureName)
+        {
+            var validCultureName = new[] { "en-US", "zh-Hans", "zh-TW" };
+            var culture = !string.IsNullOrWhiteSpace(cultureName)
+                ? validCultureName.FirstOrDefault(c => c.Equals(cultureName, StringComparison.OrdinalIgnoreCase))
+                : null;
+
+            return new CultureInfo(culture ?? validCultureName[0]);
         }
     }
 }

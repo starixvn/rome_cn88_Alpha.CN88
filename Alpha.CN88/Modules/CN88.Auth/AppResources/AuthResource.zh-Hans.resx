@@ -142,7 +142,7 @@
     <value>密码未正确确认。</value>
   </data>
   <data name="ConfiguredNickNameSuccessfully" xml:space="preserve">
-    <value>您的昵称已成功配置</value>
+    <value>您的登入账号已成功配置</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>确认密码</value>
@@ -160,13 +160,13 @@
     <value>您的帐户已关闭，因此您被迫退出。 请联系您的上线获取帮助。</value>
   </data>
   <data name="CustomerInactiveError" xml:space="preserve">
-    <value>您的账户已失效。请联系您的上线激活账号。</value>
+    <value>您的账户已停用。请联系您的上线启用账号。</value>
   </data>
   <data name="CustomerLockedError" xml:space="preserve">
     <value>多次认证输入失败，已锁定您的账户。请联系您的上线进行解锁。</value>
   </data>
   <data name="CustomerSuspendedError" xml:space="preserve">
-    <value>您的账户已停用。请联系您的上线激活账号。</value>
+    <value>您的账户已禁止登入。请联系您的上线启用账号。</value>
   </data>
   <data name="HintPasswordRules" xml:space="preserve">
     <value>密码必须至少为8个字符且没有空格，并且至少包含以下3个条件：
@@ -192,25 +192,25 @@
     <value>新密码</value>
   </data>
   <data name="NewPwdContainsUserNameOrNickNameError" xml:space="preserve">
-    <value>您的密码不得包含您的用户名或昵称。</value>
+    <value>您的密码不得包含您的用户名或登入账号。</value>
   </data>
   <data name="NewPwdSameOldOneError" xml:space="preserve">
     <value>您的新密码必须与当前密码不同。</value>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>昵称</value>
+    <value>登入账号</value>
   </data>
   <data name="NickNameNote" xml:space="preserve">
-    <value>昵称一旦创立后即无法变更。请在下次登录时使用新创立的昵称。原始的代理用户代码仅用于识别目的。</value>
+    <value>登入账号一旦创立后即无法变更。请在下次登录时使用新创立的登入账号。原始的代理用户代码仅用于识别目的。</value>
   </data>
   <data name="NickNameRule1" xml:space="preserve">
-    <value>昵称不可重复，且必须由5-20个字母或数字组成。</value>
+    <value>登入账号不可重复，且必须由5-15个字母或数字组成。</value>
   </data>
   <data name="NickNameRule2" xml:space="preserve">
-    <value>您的昵称不得包含任何空格。</value>
+    <value>您的登入账号不得包含任何空格。</value>
   </data>
   <data name="NickNameStatement" xml:space="preserve">
-    <value>请创建一个您可以轻松记住的昵称。</value>
+    <value>请创建一个您可以轻松记住的登入账号。</value>
   </data>
   <data name="NickNameTitle" xml:space="preserve">
     <value>创建简易登入账号</value>

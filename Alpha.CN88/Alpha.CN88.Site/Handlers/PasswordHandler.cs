@@ -70,7 +70,12 @@
             => new ChangePasswordViewModel(GetHashKey(), message.Result);
 
         public ResetPasswordViewModel Handle(ResetPasswordQuery message)
-            => new ResetPasswordViewModel(message.CustId, message.CustName, message.CustLevel, GetHashKey(), message.Result);
+            => new ResetPasswordViewModel(
+                message.CustId,
+                message.CustName,
+                message.CustLevel,
+                GetHashKey(),
+                message.Result);
 
         private string GetHashKey()
         {
