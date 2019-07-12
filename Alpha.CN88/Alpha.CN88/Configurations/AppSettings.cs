@@ -36,6 +36,8 @@
 
         public static string[] AgentSiteLinks => GetConfigValue("URL:AgentSiteLink").Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
+        public static bool HideSubAccountMenu => GetConfigValue("HideSubAccountMenu") == "1";
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()

@@ -18,7 +18,7 @@
             ["TotalBetsMenuItem"] = () => new MenuStatus(Current.SubPageAccess.ViewTotalBets),
             ["AccountManagementMenuItem"] = () => new MenuStatus(Current.SubPageAccess.ViewMemberInfo || Current.SubPageAccess.UpdateAccount),
             ["ReportMenuItem"] = () => new MenuStatus(() => Current.SubPageAccess.ViewReports, null),
-            ["SubAccountMenuItem"] = () => new MenuStatus(!Current.IsSubAcc)
+            ["SubAccountMenuItem"] = () => new MenuStatus(!Configurations.AppSettings.HideSubAccountMenu && !Current.IsSubAcc)
         };
 
         public static readonly IDictionary<string, Func<string>> MenuItemDisplayNameRules = new Dictionary<string, Func<string>>
