@@ -29,7 +29,7 @@
             byte roleId,
             int serverId,
             string nickname,
-            string reason = " Kicked out: Session Changed");
+            string reason = " {KickOutSessionChanged}");
     }
 
     public class CustomerServiceImpl : CustomerService
@@ -153,7 +153,7 @@
             byte roleId,
             int serverId,
             string nickname,
-            string reason = " Kicked out: Session Changed")
+            string reason = " {KickOutSessionChanged}")
             => dynamicRepository.Execute(
                 new LogoutCommand(onlineUserId, userName, roleId, serverId, nickname, reason));
     }
