@@ -298,7 +298,7 @@
     <value>安全码验证</value>
   </data>
   <data name="SessionKickedOut" xml:space="preserve">
-    <value>您已注销，您的账户于其他设备登录。若对此登录行为没有印象，请联系您的上线取得协助。</value>
+    <value>您已登出，您的账户于其他设备登录。若对此登录行为没有印象，请联系您的上线取得协助。</value>
   </data>
   <data name="ShowPassword" xml:space="preserve">
     <value>显示密码</value>
