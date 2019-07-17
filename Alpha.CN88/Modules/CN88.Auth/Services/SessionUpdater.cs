@@ -244,6 +244,7 @@
         {
             SessionHelper.Add(SessionKeys.ClearClientData, true);
             SessionHelper.Add(SessionKeys.CustomerStatus, outputParams["status"]);
+            SessionHelper.Add(SessionKeys.IsAllDownline, outputParams["isalldownline"]);
         }
     }
 }

@@ -7,5 +7,7 @@
         public const string ClearClientData = "CLEARCLIENTDATA";
 
         public const string CustomerStatus = "CUSTOMERSTATUS";
+
+        public const string IsAllDownline = "ISALLDOWNLINE";
     }
 }

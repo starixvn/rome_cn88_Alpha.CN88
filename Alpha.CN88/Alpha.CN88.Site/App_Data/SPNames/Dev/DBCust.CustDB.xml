@@ -10,7 +10,7 @@
     </Setting>
   </Function>
   <Function Name="Login">
-    <Setting Key="CS_LoginClaimDownline" SpName="CS_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_LoginClaimDownline" SpName="CS_LoginClaimDownline_xtest" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_LoginDownline_Admin" SpName="CS_LoginDownline_Admin" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Nick Name">
