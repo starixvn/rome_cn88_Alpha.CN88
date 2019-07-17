@@ -2,8 +2,8 @@
 {
     public static class LogoutReason
     {
-        public const string Normal = " Logout Success";
+        public const string Normal = " {LogOutSuccess}";
 
-        public const string Kickedout = " Kicked out: Session Changed";
+        public const string Kickedout = " {KickOutSessionChanged}";
     }
 }
