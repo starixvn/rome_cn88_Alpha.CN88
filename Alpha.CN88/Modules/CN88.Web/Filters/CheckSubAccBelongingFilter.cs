@@ -2,10 +2,9 @@
 {
     using System;
     using System.Web.Mvc;
-    using Configurations;
     using Helpers;
-    using Models;
     using Services;
+    using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
@@ -13,34 +12,24 @@
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (UserSession.Current?.CustId == 0 ||
-                filterContext.Result is HttpUnauthorizedResult)
+            IUserSession userSession = new UserSessionExt();
+            var actorId = userSession.CustId;
+
+            if (actorId == 0 || filterContext.Result is HttpUnauthorizedResult)
             {
                 UnAuthorizationHelper.UnauthorizeOrLogin(filterContext);
                 return;
             }
 
-            var belongingContext = new BelongingContext(
-                httpRequest: filterContext.HttpContext.Request,
-                currentUrl: GetCurrentUrl(filterContext));
-
-            if (belongingContext.IsValid)
+            if (!userSession.IsInternal)
             {
-                AuthorizationService authorizationService = new AuthorizationServiceImpl();
+                var authorizationService = new AuthorizationServiceImpl();
 
-                if (!authorizationService.IsSubAccBelonging(belongingContext))
+                if (!authorizationService.IsSubAccBelonging(filterContext.HttpContext.Request, actorId))
                 {
                     UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "AccessDeny");
-                    return;
                 }
             }
-        }
-
-        private static string GetCurrentUrl(AuthorizationContext filterContext)
-        {
-            var actionDescriptor = filterContext.ActionDescriptor;
-
-            return $"{actionDescriptor.ControllerDescriptor.ControllerName}/{actionDescriptor.ActionName}";
         }
     }
 }

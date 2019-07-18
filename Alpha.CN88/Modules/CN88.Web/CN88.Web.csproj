@@ -124,11 +124,12 @@
     <Compile Include="Helpers\BrowserHelper.cs" />
     <Compile Include="Helpers\MicroSites.cs" />
     <Compile Include="Helpers\UnAuthorizationHelper.cs" />
-    <Compile Include="Models\BelongingContext.cs" />
+    <Compile Include="Models\AccountPermissionParam.cs" />
+    <Compile Include="Models\BelongingParam.cs" />
     <Compile Include="Models\BelongingInfo.cs" />
     <Compile Include="Models\CustomerStatus.cs" />
+    <Compile Include="Models\LogoutContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AccountPermission.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\RequestContext.cs" />

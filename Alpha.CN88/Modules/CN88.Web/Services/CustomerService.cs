@@ -23,17 +23,12 @@
 
         bool IsSubAccBelonging(int custId, int subAccId);
 
-        void Logout(
-            int onlineUserId,
-            string userName,
-            byte roleId,
-            int serverId,
-            string nickname,
-            string reason = " {KickOutSessionChanged}");
+        void Logout(LogoutContext logoutContext);
     }
 
     public class CustomerServiceImpl : CustomerService
     {
+
         private const string IsCustomerActiveCacheKey = "CN88.Web.Services.IsAccountActiveCacheKey_{0}_{1}";
         private const string RecheckinCacheKey = "CN88.Web.Services.RecheckinCacheKey_{0}_{1}_{2}";
 
@@ -147,14 +142,7 @@
         private void SetAbsoluteExpiration<T>(string key, T value, int cacheInSeconds)
             => cacheService.Set(key, value, new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(cacheInSeconds)));
 
-        public void Logout(
-            int onlineUserId,
-            string userName,
-            byte roleId,
-            int serverId,
-            string nickname,
-            string reason = " {KickOutSessionChanged}")
-            => dynamicRepository.Execute(
-                new LogoutCommand(onlineUserId, userName, roleId, serverId, nickname, reason));
+        public void Logout(LogoutContext logoutContext)
+            => dynamicRepository.Execute(new LogoutCommand(logoutContext));
     }
 }

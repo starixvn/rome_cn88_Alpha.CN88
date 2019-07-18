@@ -2,23 +2,18 @@
 {
     using Fanex.Data;
     using Fanex.Data.Repository;
+    using Models;
 
     internal class LogoutCommand: NonQueryCommand
     {
-        internal LogoutCommand(
-            int onlineUserId,
-            string userName,
-            byte roleId,
-            int serverId,
-            string nickname,
-            string reason)
+        internal LogoutCommand(LogoutContext logoutContext)
         {
-            OnlineUserId = onlineUserId;
-            UserName = userName;
-            RoleId = roleId;
-            ServerId = serverId;
-            Nickname = nickname;
-            Reason = reason;
+            OnlineUserId = logoutContext.OnlineUserId;
+            UserName = logoutContext.UserName;
+            RoleId = logoutContext.RoleId;
+            ServerId = logoutContext.ServerId;
+            Nickname = logoutContext.NickName;
+            Reason = logoutContext.Reason;
         }
 
         [SpParam(SqlParamName = "on_userid")]
