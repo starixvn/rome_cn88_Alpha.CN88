@@ -36,6 +36,7 @@
     [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules", "SP2100:CodeLineMustNotBeLongerThan", Justification = "Reviewed.")]
     public class BrowserHelperImpl : BrowserHelper
     {
+        private const string HTTP_USER_AGENT = "HTTP_USER_AGENT";
         private const int mobileVersionLength = 4;
 #pragma warning disable S103 // Lines should not be too long
         private static Regex mobileCheck = new Regex(@"ipad|playbook|tablet|kindle|nexus|android|(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino", RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Compiled);
@@ -51,9 +52,9 @@
 
         public bool IsMobile()
         {
-            if (HttpContext.Current.Request != null && HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] != null)
+            if (HttpContext.Current.Request != null && HttpContext.Current.Request.ServerVariables[HTTP_USER_AGENT] != null)
             {
-                var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
+                var u = HttpContext.Current.Request.ServerVariables[HTTP_USER_AGENT];
 
                 if (u.Length < mobileVersionLength)
                 {
@@ -73,9 +74,9 @@
 
         public bool IsTablet()
         {
-            if (HttpContext.Current.Request?.ServerVariables["HTTP_USER_AGENT"] != null)
+            if (HttpContext.Current.Request?.ServerVariables[HTTP_USER_AGENT] != null)
             {
-                var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
+                var u = HttpContext.Current.Request.ServerVariables[HTTP_USER_AGENT];
 
                 if (u.Length < mobileVersionLength)
                 {

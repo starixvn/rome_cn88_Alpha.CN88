@@ -4,7 +4,7 @@
 
     public class LogoutContext
     {
-        public LogoutContext(IUserSession userSession, string reason = " Kicked out: Session Changed")
+        public LogoutContext(IUserSession userSession, string reason = " {KickOutSessionChanged}")
         {
             OnlineUserId = userSession.OnUserId;
             UserName = userSession.IsSubAcc ? userSession.SubUserName : userSession.UserName;

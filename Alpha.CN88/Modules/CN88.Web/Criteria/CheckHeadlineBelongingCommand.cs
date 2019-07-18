@@ -4,11 +4,9 @@
 
     internal class CheckHeadlineBelongingCommand : NonQueryCommand
     {
-        internal CheckHeadlineBelongingCommand(
-            int sessionCustId,
-            int custId)
+        internal CheckHeadlineBelongingCommand(int actorId, int custId)
         {
-            SessionCustId = sessionCustId;
+            SessionCustId = actorId;
             CustId = custId;
         }
 

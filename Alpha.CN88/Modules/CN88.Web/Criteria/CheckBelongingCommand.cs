@@ -2,12 +2,10 @@
 {
     internal class CheckBelongingCommand : CheckHeadlineBelongingCommand
     {
-        internal CheckBelongingCommand(
-            int sessionCustId,
-            int custId,
-            int subAccountId) : base(sessionCustId, custId)
+        internal CheckBelongingCommand(int actorId, int actorSubAccountId, int custId)
+            : base(actorId, custId)
         {
-            SubAccountId = subAccountId;
+            SubAccountId = actorSubAccountId;
         }
 
         public int SubAccountId { get; }

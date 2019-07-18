@@ -9,7 +9,7 @@
 
     public interface CustomerService
     {
-        byte GetBelongingCustRoleId(int actorId, int custId, int subAccountId);
+        byte GetBelongingCustRoleId(int actorId, int actorSubAccountId, int custId);
 
         byte GetHeadlineBelongingCustRoleId(int actorId, int custId);
 
@@ -52,9 +52,9 @@
             return subAccounts.Any(i => i == subAccId);
         }
 
-        public byte GetBelongingCustRoleId(int actorId, int custId, int subAccountId)
+        public byte GetBelongingCustRoleId(int actorId, int actorSubAccountId, int custId)
         {
-            var command = new CheckBelongingCommand(actorId, custId, subAccountId);
+            var command = new CheckBelongingCommand(actorId, actorSubAccountId, custId);
             dynamicRepository.Execute(command);
 
             return command.RoleId;
