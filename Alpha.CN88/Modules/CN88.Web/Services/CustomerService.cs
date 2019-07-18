@@ -9,9 +9,9 @@
 
     public interface CustomerService
     {
-        BelongingInfo GetBelongingInfo(int actorId, int custId, int subAccountId, long transId);
+        byte GetBelongingCustRoleId(int actorId, int custId, int subAccountId);
 
-        BelongingInfo GetHeadlineBelongingInfo(int actorId, int custId);
+        byte GetHeadlineBelongingCustRoleId(int actorId, int custId);
 
         CustomerStatus CheckCustomerStatus(int custId, int subAccId);
 
@@ -28,7 +28,6 @@
 
     public class CustomerServiceImpl : CustomerService
     {
-
         private const string IsCustomerActiveCacheKey = "CN88.Web.Services.IsAccountActiveCacheKey_{0}_{1}";
         private const string RecheckinCacheKey = "CN88.Web.Services.RecheckinCacheKey_{0}_{1}_{2}";
 
@@ -53,22 +52,20 @@
             return subAccounts.Any(i => i == subAccId);
         }
 
-        public BelongingInfo GetBelongingInfo(int actorId, int custId, int subAccountId, long transId)
+        public byte GetBelongingCustRoleId(int actorId, int custId, int subAccountId)
         {
-            var command = custId == 0
-                ? new CheckBelongingCommand(actorId, subAccountId, transId)
-                : new CheckBelongingCommand(actorId, custId, subAccountId, transId);
+            var command = new CheckBelongingCommand(actorId, custId, subAccountId);
             dynamicRepository.Execute(command);
 
-            return new BelongingInfo(command.IsActive, command.RoleId);
+            return command.RoleId;
         }
 
-        public BelongingInfo GetHeadlineBelongingInfo(int actorId, int custId)
+        public byte GetHeadlineBelongingCustRoleId(int actorId, int custId)
         {
             var command = new CheckHeadlineBelongingCommand(actorId, custId);
             dynamicRepository.Execute(command);
 
-            return new BelongingInfo(command.IsActive, command.RoleId);
+            return command.RoleId;
         }
 
         public CustomerStatus CheckCustomerStatus(int custId, int subAccId)

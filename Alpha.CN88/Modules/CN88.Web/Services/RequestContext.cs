@@ -6,9 +6,7 @@
 
     public interface RequestContext
     {
-        long GetTransId(HttpRequestBase httpRequest);
-
-        int GetCustId(
+        int GetCustIdFromHttpRequest(
             HttpRequestBase httpRequest,
             string[] custIdQueryStringParamNames,
             string[] custIdJsonParamNames);
@@ -16,21 +14,7 @@
 
     internal class RequestContextImpl : RequestContext
     {
-        public long GetTransId(HttpRequestBase httpRequest)
-        {
-            long transId;
-
-            if (long.TryParse(httpRequest["transid"], out transId))
-            {
-                return transId;
-            }
-
-            long.TryParse(httpRequest["refno"], out transId);
-
-            return transId;
-        }
-
-        public int GetCustId(
+        public int GetCustIdFromHttpRequest(
             HttpRequestBase httpRequest,
             string[] custIdQueryStringParamNames,
             string[] custIdJsonParamNames)
