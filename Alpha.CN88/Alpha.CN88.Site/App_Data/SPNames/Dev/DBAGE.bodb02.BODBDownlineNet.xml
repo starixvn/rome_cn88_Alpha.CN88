@@ -8,6 +8,5 @@
     <Setting Key="CS_CustomerSelCheckBelonging" SpName="CS_CustomerSelCheckBelonging_xtest" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_CustSubPageAccessSel" SpName="Age_CustSubPageAccessSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
     <Setting Key="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" SpName="Age_Rpt_CustomerConsolidatedGroup_CheckBelonging" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
-    <Setting Key="Age_CustomerStatusSel" SpName="Age_CustomerStatusSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>
