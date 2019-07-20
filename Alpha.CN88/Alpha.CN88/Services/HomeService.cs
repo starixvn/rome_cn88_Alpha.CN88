@@ -6,7 +6,7 @@
 
     public interface HomeService
     {
-        Tuple<IEnumerable<AccountOverview>, IEnumerable<StatusSummary>> GetGeneralInformation(int custId);
+        Tuple<IEnumerable<AccountOverview>, IEnumerable<StatusSummary>> GetGeneralInformation(int custId, int subAccId, bool isAllDownline);
 
         IEnumerable<AccountingPeriod> GetAccountingPeriods();
     }

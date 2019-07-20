@@ -64,12 +64,12 @@
 
         public IndexViewModel Handle(IndexQuery message)
         {
-            var onlineMember = defaultService.GetOnlineMember(message.ViewerId);
+            var onlineMember = defaultService.GetOnlineMember(message.ViewerId, message.SubAccountId, message.IsAllDownline);
 
             return new IndexViewModel(message, browserHelper, onlineMember, getDefaultUrl, encodeDataFunction);
         }
 
         public long Handle(TotalOnlineMember message)
-            => defaultService.GetOnlineMember(message.ViewerId);
+            => defaultService.GetOnlineMember(message.ViewerId, message.SubAccountId, message.IsAllDownline);
     }
 }

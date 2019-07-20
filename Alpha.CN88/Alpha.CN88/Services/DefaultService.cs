@@ -2,6 +2,6 @@
 {
     public interface DefaultService
     {
-        long GetOnlineMember(int viewerId);
+        long GetOnlineMember(int viewerId, int subAccId, bool isAllDownline);
     }
 }

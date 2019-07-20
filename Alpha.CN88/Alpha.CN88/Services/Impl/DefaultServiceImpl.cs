@@ -12,8 +12,7 @@ namespace Alpha.CN88.Services.Impl
             this.repository = repository;
         }
 
-        public long GetOnlineMember(int viewerId)
-            => repository.Get<int>(new GetTotalMemberOnlineCriteria { CustId = viewerId });
-
+        public long GetOnlineMember(int viewerId, int subAccId, bool isAllDownline)
+            => repository.Get<int>(new GetTotalMemberOnlineCriteria(viewerId, subAccId, isAllDownline));
     }
 }

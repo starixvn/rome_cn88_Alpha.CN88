@@ -36,6 +36,8 @@
 
         public string SubUserName => viewer.SubUserName;
 
+        public bool IsAllDownline => viewer.IsAllDownline;
+
         public string IP => viewer.IP;
 
         public string Language => viewer.Language;

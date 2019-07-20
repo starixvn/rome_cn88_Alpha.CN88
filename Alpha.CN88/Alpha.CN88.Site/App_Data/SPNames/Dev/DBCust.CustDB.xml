@@ -1,6 +1,6 @@
 ﻿<Functions SiteId="115" SiteName="CN88">
   <Function Name="Home">
-    <Setting Key="CS_Customer_Homepage_Sel" SpName ="CS_Customer_Homepage_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_Customer_Homepage_Sel" SpName ="CS_Customer_Homepage_Sel_xtest" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0">
       <Mapping DataField="cntActive" ObjectProperty="Active"></Mapping>
       <Mapping DataField="cntViewOnly" ObjectProperty="ViewOnly"></Mapping>
       <Mapping DataField="cntSuspended" ObjectProperty="Suspended"></Mapping>
