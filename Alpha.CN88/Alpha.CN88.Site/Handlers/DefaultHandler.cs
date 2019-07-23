@@ -1,14 +1,14 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
     using System;
-    using CN88.Models;
-    using Helpers;
+    using global::CN88.Web.Helpers;
+    using global::CN88.Web.Models;
+    using global::CN88.Web.ViewModel;
     using MediatR;
     using Requests;
     using Requests.Default;
     using Services;
     using Sunplus.Agent.Utilities;
-    using ViewModels;
     using ViewModels.Default;
     using Web.Helpers;
 

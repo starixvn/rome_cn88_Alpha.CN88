@@ -5,7 +5,7 @@
 
     public interface BrowserHelper
     {
-        bool IsMobile(bool isOnlyTablet);
+        bool IsMobileTablet(bool isOnlyTablet = false);
 
         BrowserViewModel CheckSupportedBrowsers();
 

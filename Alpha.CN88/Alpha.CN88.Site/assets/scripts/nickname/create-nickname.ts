@@ -10,22 +10,20 @@ class NickName {
     }
 
     init(): void {
-        let self: any = this;
-
         this.$nickName = this.$("#nickName");
         this.$nickName.focus();
         this.$messsageContainer = this.$("#message-container");
         this.nickNameRule1 = this.$("#nickNameRule1").html();
 
-        this.$("#frmNickName").submit(function (): boolean {
-            self.$.blockUI();
+        this.$("#frmNickName").submit((): boolean => {
+            this.$.blockUI();
             const nickNameRule: RegExp = new RegExp(/^[a-zA-Z0-9]{5,20}$/i);
-            const isMatch: boolean = nickNameRule.test(self.$.trim(self.$nickName.val()));
+            const isMatch: boolean = nickNameRule.test(this.$.trim(this.$nickName.val()));
 
             if (!isMatch) {
-                self.$.unblockUI();
-                siteInfrastructure.showError(self.$messsageContainer, self.nickNameRule1);
-                self.$nickName.focus();
+                this.$.unblockUI();
+                siteInfrastructure.showError(this.$messsageContainer, this.nickNameRule1);
+                this.$nickName.focus();
             }
 
             return isMatch;

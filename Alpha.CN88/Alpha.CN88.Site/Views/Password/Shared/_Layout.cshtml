@@ -16,7 +16,7 @@
     @StaticResources.AssetStyles.Render("/bundles/site-cn88/security")
     @RenderSection("Styles", required: false)
 </head>
-<body @(Html.Raw(Alpha.CN88.Site.Helpers.BrowserManager.BuildMobileHtmlClass()))>
+<body @(Html.Raw(CN88.Web.Helpers.BrowserManager.BuildMobileHtmlClass()))>
     @RenderBody()
     @Html.Hidden("please-enter-oldPassword", AuthResource.RequiredInputOldPwdError)
     @Html.Hidden("password-cannot-empty", AuthResource.RequiredPasswordError)

@@ -8,7 +8,7 @@
     using Sunplus.Agent.Model.Entities;
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public sealed class CheckSubAccBelongingFilter : AuthorizeAttribute
+    public sealed class CheckSubAccBelongingFilterAttribute : AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {

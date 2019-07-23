@@ -1,7 +1,7 @@
 ﻿namespace Alpha.CN88.Services
 {
     using System.Collections.Generic;
-    using Models;
+    using global::CN88.Web.Models;
     using Models.Menus;
 
     public interface SiteMenuService

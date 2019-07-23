@@ -1,9 +1,25 @@
 ﻿"use strict";
 class ChangeSecurityCode {
+    readonly codeLength = 6;
+
     $: JQueryStatic;
     top: Window;
-    resources: any;
-    elements: any;
+    resources: {
+        oldSecurityCodeEmpty: string,
+        securityCodeEmpty: string,
+        securityCodeWrongRule: string,
+        errorSecurityCodeConfirm: string,
+        sameSecurityCode: string
+    };
+    elements: {
+        oldSecurityCode: JQuery,
+        securityCode: JQuery,
+        confirmSecurityCode: JQuery,
+        messsageContainer: JQuery,
+        hashKey: string,
+        salt: string,
+        token: string
+    };
 
     constructor($: JQueryStatic, top: Window) {
         this.$ = $;
@@ -11,44 +27,42 @@ class ChangeSecurityCode {
     }
 
     init(): void {
-        let self: any = this;
         this.cacheElements();
 
-        this.$("#formSecurityCode").submit(function (): boolean {
-            self.$.blockUI();
-            let $oldSecurityCode: JQuery = self.elements.oldSecurityCode;
-            let $securityCode: JQuery = self.elements.securityCode;
-            let $confirmSecurityCode: JQuery = self.elements.confirmSecurityCode;
+        this.$("#formSecurityCode").submit((): boolean => {
+            this.$.blockUI();
+            const $oldSecurityCode: JQuery = this.elements.oldSecurityCode;
+            const $securityCode: JQuery = this.elements.securityCode;
+            const $confirmSecurityCode: JQuery = this.elements.confirmSecurityCode;
 
-            if (!self.validateSecurityCodes($oldSecurityCode, $securityCode, $confirmSecurityCode)) {
-                self.$.unblockUI();
+            if (!this.validateSecurityCodes($oldSecurityCode, $securityCode, $confirmSecurityCode)) {
+                this.$.unblockUI();
                 return false;
             }
 
-            let hashKey: string = self.elements.hashKey;
-
+            const hashKey = this.elements.hashKey;
             if ($oldSecurityCode.length > 0) {
-                let oldSecCode: string = $oldSecurityCode.val().hash(self.elements.salt, self.elements.token);
+                const oldSecCode: string = $oldSecurityCode.val().hash(this.elements.salt, this.elements.token);
                 $oldSecurityCode.val(oldSecCode);
             }
 
-            let secCode: string = $securityCode.val().encrypt(hashKey);
+            const secCode: string = $securityCode.val().encrypt(hashKey);
             $securityCode.val(secCode);
             $confirmSecurityCode.val(secCode);
 
             return true;
         });
 
-        this.$("#buttonCancel").click(function (): void {
-            if (self.$("#mainRootPath").length > 0) {
+        this.$("#buttonCancel").click((): void => {
+            if (this.$("#mainRootPath").length > 0) {
                 siteInfrastructure.logout();
             } else {
-                self.top.indexManager.hideUserMobileDropdown();
-                self.top.popupManager.close();
+                this.top.indexManager.hideUserMobileDropdown();
+                this.top.popupManager.close();
             }
         });
 
-        let focusField: JQuery = this.elements.oldSecurityCode.length > 0
+        const focusField: JQuery = this.elements.oldSecurityCode.length > 0
             ? this.elements.oldSecurityCode
             : this.elements.securityCode;
         focusField.focus();
@@ -75,10 +89,10 @@ class ChangeSecurityCode {
     }
 
     validateSecurityCodes(oldSecurityCode: JQuery, securityCode: JQuery, confirmSecurityCode: JQuery): boolean {
-        let isChangeSecurityCodePage: boolean = oldSecurityCode.length > 0;
-        let oldSecurityCodeValue: string = isChangeSecurityCodePage ? oldSecurityCode.val() : "";
-        let securityCodeValue: string = securityCode.val();
-        let confirmSecurityCodeValue: string = confirmSecurityCode.val();
+        const isChangeSecurityCodePage: boolean = oldSecurityCode.length > 0;
+        const oldSecurityCodeValue: string = isChangeSecurityCodePage ? oldSecurityCode.val() : "";
+        const securityCodeValue: string = securityCode.val();
+        const confirmSecurityCodeValue: string = confirmSecurityCode.val();
 
         if (isChangeSecurityCodePage && oldSecurityCodeValue.length === 0) {
             siteInfrastructure.showError(this.elements.messsageContainer, this.resources.oldSecurityCodeEmpty);
@@ -119,38 +133,29 @@ class ChangeSecurityCode {
     }
 
     isValidSecurityCode(securityCode: string): boolean {
-        let securityCodeLength: number = securityCode ? securityCode.length : 0;
-
-        if (securityCodeLength !== 6) {
+        const securityCodeLength: number = securityCode ? securityCode.length : 0;
+        if (securityCodeLength !== this.codeLength) {
             return false;
         }
 
-        let regex: RegExp = /^([0-9])(?!\1+$)[0-9]+$/;
-        let result: boolean = securityCode.search(regex) !== -1;
-
-        if (result) {
-            let isForwardRun: boolean = true;
-            let isBackwardRun: boolean = true;
-            let forward: number = 0;
-            let backward: number = 0;
-            forward = backward = parseInt(securityCode.charAt(0));
-
-            for (let i: number = 1; i < securityCodeLength; i++) {
-                let current: number = parseInt(securityCode.charAt(i));
-
-                if (++forward !== current) {
-                    isForwardRun = false;
-                }
-
-                if (--backward !== current) {
-                    isBackwardRun = false;
-                }
-            }
-
-            result = !(isForwardRun || isBackwardRun);
+        const regex: RegExp = /^([0-9])(?!\1+$)[0-9]+$/;
+        if (securityCode.search(regex) === -1) {
+            return false;
         }
 
-        return result;
+        let isForwardRun = true;
+        let isBackwardRun = true;
+        let forward = parseInt(securityCode.charAt(0));
+        let backward = forward - 1;
+        for (let i = 1; i < securityCodeLength; i++) {
+            forward++;
+            backward--;
+            const current: number = parseInt(securityCode.charAt(i));
+            isForwardRun = isForwardRun && (forward === current);
+            isBackwardRun = isBackwardRun && (backward === current);
+        }
+
+        return !(isForwardRun || isBackwardRun);
     }
 }
 

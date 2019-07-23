@@ -1,11 +1,15 @@
 ﻿namespace Alpha.CN88.Site.App_Start
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
     using CN88.Models;
     using Controllers;
     using Fanex.Data.Repository;
     using global::CN88.Auth.DataAccesses;
     using global::CN88.Auth.Services;
-    using Helpers;
+    using global::CN88.Web.Helpers;
     using MediatR;
     using Models;
     using Services;
@@ -16,10 +20,6 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Web.Helpers;
     using Web.Helpers.Impl;
 
