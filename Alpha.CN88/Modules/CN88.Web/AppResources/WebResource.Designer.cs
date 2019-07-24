@@ -88,7 +88,7 @@ namespace CN88.Web.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MasterAgent.
+        ///   Looks up a localized string similar to Master Agent.
         /// </summary>
         internal static string MasterAgent {
             get {

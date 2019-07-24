@@ -201,4 +201,7 @@
   <data name="troubleshooting" xml:space="preserve">
     <value>故障及疑難排解</value>
   </data>
+  <data name="masterAgent" xml:space="preserve">
+    <value>總代理</value>
+  </data>
 </root>
