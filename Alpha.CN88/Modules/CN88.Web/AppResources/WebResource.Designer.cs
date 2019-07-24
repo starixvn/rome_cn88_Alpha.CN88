@@ -68,50 +68,5 @@ namespace CN88.Web.AppResources {
                 return ResourceManager.GetString("AccessDeny", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Agent.
-        /// </summary>
-        internal static string Agent {
-            get {
-                return ResourceManager.GetString("Agent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Headline.
-        /// </summary>
-        internal static string Headline {
-            get {
-                return ResourceManager.GetString("Headline", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Master Agent.
-        /// </summary>
-        internal static string MasterAgent {
-            get {
-                return ResourceManager.GetString("MasterAgent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Member.
-        /// </summary>
-        internal static string Member {
-            get {
-                return ResourceManager.GetString("Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Super.
-        /// </summary>
-        internal static string Super {
-            get {
-                return ResourceManager.GetString("Super", resourceCulture);
-            }
-        }
     }
 }

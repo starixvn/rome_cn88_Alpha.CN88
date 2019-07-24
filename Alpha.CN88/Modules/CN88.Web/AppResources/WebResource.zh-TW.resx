@@ -120,31 +120,4 @@
   <data name="AccessDeny" xml:space="preserve">
     <value>您沒有使用此功能的權限.</value>
   </data>
-  <data name="Super" xml:space="preserve">
-    <value>超級</value>
-  </data>
-  <data name="MasterAgent" xml:space="preserve">
-    <value>總代理</value>
-  </data>
-  <data name="Agent" xml:space="preserve">
-    <value>代理商</value>
-  </data>
-  <data name="Member" xml:space="preserve">
-    <value>會員</value>
-  </data>
-  <data name="Headline" xml:space="preserve">
-    <value>總監</value>
-  </data>
-  <data name="MasterAgent" xml:space="preserve">
-    <value>總代理</value>
-  </data>
-  <data name="Agent" xml:space="preserve">
-    <value>代理商</value>
-  </data>
-  <data name="Super" xml:space="preserve">
-    <value>超級</value>
-  </data>
-  <data name="Member" xml:space="preserve">
-    <value>會員</value>
-  </data>
 </root>

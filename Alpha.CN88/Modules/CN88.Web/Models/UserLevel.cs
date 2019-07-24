@@ -1,7 +1,6 @@
 ﻿namespace CN88.Web.Models
 {
     using System;
-    using CN88.Web.AppResources;
 
     [Serializable]
     public class UserLevel : Enumeration
@@ -58,7 +57,7 @@
             => (downlineLevel != null) && IsUplineOf(downlineLevel.Value);
 
         public bool IsEqualOrUplineOf(Enumeration custLevel)
-           => this.Value == custLevel.Value || IsUplineOf(custLevel.Value);
+           => Value == custLevel.Value || IsUplineOf(custLevel.Value);
 
         public UserLevel GetDirectUplineLevel() => FromValue<UserLevel>((byte)(Value + 1));
 
@@ -74,35 +73,5 @@
 
         private static int GapBetweenTwoLevels(byte uplineLevelValue, byte downlineLevelValue)
             => uplineLevelValue - downlineLevelValue;
-
-        public string DisplayNameInMultipleLanguage
-        {
-            get
-            {
-                if (IsSuperLevel())
-                {
-                    return WebResource.Super;
-                }
-
-                if (IsMasterLevel())
-                {
-                    return WebResource.MasterAgent;
-                }
-
-                if (IsAgentLevel())
-                {
-                    return WebResource.Agent;
-                }
-
-                if (IsMemberLevel())
-                {
-                    return WebResource.Member;
-                }
-
-                return IsHeadlineLevel()
-                    ? WebResource.Headline
-                    : "Unknown";
-            }
-        }
     }
 }
