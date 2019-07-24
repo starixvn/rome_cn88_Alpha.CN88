@@ -135,4 +135,16 @@
   <data name="Headline" xml:space="preserve">
     <value>总监</value>
   </data>
+  <data name="MasterAgent" xml:space="preserve">
+    <value>总代理</value>
+  </data>
+  <data name="Agent" xml:space="preserve">
+    <value>代理商</value>
+  </data>
+  <data name="Super" xml:space="preserve">
+    <value>超级</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>会员</value>
+  </data>
 </root>
