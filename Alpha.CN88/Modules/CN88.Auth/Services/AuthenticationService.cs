@@ -1,11 +1,13 @@
 ﻿namespace CN88.Auth.Services
 {
     using System;
+    using System.Diagnostics;
     using Configurations;
     using Criteria;
     using Criteria.Authentication;
     using DataAccesses;
     using Fanex.Data.Repository;
+    using Fanex.Logging.Extensions.Web;
     using Models;
     using Params.Authentication;
 
@@ -66,6 +68,9 @@
 
             var outputParams = authenticationDataAccess.ExecuteNonQuery(criteria);
             var errorCode = Convert.ToInt32(outputParams["errcode"]);
+            var errorMsg = outputParams["errmsg"] as string;
+
+            HandleAfterLoginFailed(errorCode, errorMsg, loginParam);
 
             return errorCode != 0
                 ? new AuthResult()
@@ -149,6 +154,23 @@
                 }
 
                 return customerStatus;
+            }
+        }
+
+        private static void HandleAfterLoginFailed(int code, string message, LoginParam loginParam)
+        {
+            if (code != 0)
+            {
+                var errorMessage = $"After Login failed: " + Environment.NewLine +
+                    $"date={DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff tt")}; " + Environment.NewLine +
+                    $"errCode={code}; " + Environment.NewLine +
+                    $"errMsg={message}; " + Environment.NewLine +
+                    $"custid={loginParam.CustId}; " + Environment.NewLine +
+                    $"nickname={loginParam.NickName}; " + Environment.NewLine +
+                    $"domain={loginParam.RequestInfo.LoginDomain}; " + Environment.NewLine +
+                    $"IP={loginParam.RequestInfo.LoginIP}";
+
+                ExceptionHandler.Handle(new Exception(errorMessage), TraceEventType.Information);
             }
         }
     }
