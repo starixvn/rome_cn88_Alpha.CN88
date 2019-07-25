@@ -47,9 +47,8 @@
       <HintPath>..\..\packages\Alpha.Utilities.3.0.0.1\lib\net40\Alpha.Utilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.2.1-cn88\lib\net461\Alpha.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Alpha.Web, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.3.4\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.7.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.7\lib\net40\Couchbase.dll</HintPath>
