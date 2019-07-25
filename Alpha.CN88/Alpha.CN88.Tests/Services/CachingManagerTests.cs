@@ -345,42 +345,42 @@
         public void GetOrAddTwoParam_Always_CallGetOrAddWithDefaultExpiryDateTime()
         {
             // Arrange
-            var sub = Substitute.For<CachingManagerImpl>();
+            var sub = Substitute.ForPartsOf<CachingManagerImpl>();
             var mng = sub;
 
             // Act
             mng.GetOrAdd<int>("temp", getIntValue);
 
             // Assert
-            mng.Received(1).GetOrAdd<int>("temp", getIntValue, Arg.Any<DateTimeOffset>());
+            mng.Received(1).GetOrAdd<int>("temp", getIntValue, DateTimeOffset.Now);
         }
 
         [Test]
         public void GetOrAddWithDateTimeOffset_Always_CallGetOrAddWithCachePolicy()
         {
             // Arrange
-            var sub = Substitute.For<CachingManagerImpl>();
+            var sub = Substitute.ForPartsOf<CachingManagerImpl>();
             var mng = sub;
 
             // Act
             mng.GetOrAdd<int>("temp", getIntValue, expireTime);
 
             // Assert
-            mng.Received(1).GetOrAdd<int>("temp", getIntValue, Arg.Any<CacheItemPolicy>());
+            mng.Received(1).GetOrAdd<int>("temp", getIntValue, new CacheItemPolicy());
         }
 
         [Test]
         public void GetOrAddWithTimespan_Always_CallGetOrAddWithCachePolicy()
         {
             // Arrange
-            var sub = Substitute.For<CachingManagerImpl>();
+            var sub = Substitute.ForPartsOf<CachingManagerImpl>();
             var mng = sub;
 
             // Act
             mng.GetOrAdd<int>("temp", getIntValue, timeSpan);
 
             // Assert
-            mng.Received(1).GetOrAdd<int>("temp", getIntValue, Arg.Any<CacheItemPolicy>());
+            mng.Received(1).GetOrAdd<int>("temp", getIntValue, new CacheItemPolicy());
         }
     }
 
