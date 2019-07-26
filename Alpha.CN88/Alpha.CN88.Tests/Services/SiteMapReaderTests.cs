@@ -8,24 +8,23 @@
     [TestFixture]
     public class SiteMapReaderTests
     {
-        SiteMapProvider provider;
-        SiteMapNode siteMapNode;
+        private SiteMapProvider provider;
+        private SiteMapNode siteMapNode;
+        private SiteMapReaderImpl siteMapReader;
 
         [SetUp]
         public void SetUp()
         {
             provider = Substitute.For<SiteMapProvider>();
             siteMapNode = Substitute.For<SiteMapNode>(provider, "test");
+            siteMapReader = new SiteMapReaderImpl();
         }
 
         [Test]
         public void GetRootNode_NotNullRootNode_ReturnRootNode()
         {
-            // Arrange
-            var reader = new SiteMapReaderImpl();
-
             // Act
-            var result = reader.GetRootNode(siteMapNode);
+            var result = siteMapReader.GetRootNode(siteMapNode);
 
             //Assert
             Assert.AreEqual(siteMapNode, result);

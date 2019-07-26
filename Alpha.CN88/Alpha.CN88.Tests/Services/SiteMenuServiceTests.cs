@@ -13,10 +13,10 @@
     [TestFixture]
     public class SiteMenuServiceTests
     {
-        CompareLogic compareLogic;
-        CachingManager cachingManager;
-        SiteMapReader siteMapReader;
-        MenuItemBuilder menuItemBuilder;
+        private CompareLogic compareLogic;
+        private CachingManager cachingManager;
+        private SiteMapReader siteMapReader;
+        private MenuItemBuilder menuItemBuilder;
 
         [SetUp]
         public void SetUp()

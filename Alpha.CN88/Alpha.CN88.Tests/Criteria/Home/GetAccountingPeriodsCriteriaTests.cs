@@ -6,6 +6,7 @@
     [TestFixture]
     public class GetAccountingPeriodsCriteriaTests
     {
+
         [Test]
         public void GetSettingKey_Always_ReturnsValidSettingKey()
         {
