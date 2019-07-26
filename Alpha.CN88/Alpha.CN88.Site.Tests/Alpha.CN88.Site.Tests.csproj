@@ -161,6 +161,7 @@
     <Compile Include="Handlers\AuthenticationHandlerTests.cs" />
     <Compile Include="Handlers\DefaultHandlerTests.cs" />
     <Compile Include="Handlers\HomeHandlerTests.cs" />
+    <Compile Include="Handlers\LanguageHandlerTests.cs" />
     <Compile Include="Helpers\UrlHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Authentication\LoginQueryTests.cs" />

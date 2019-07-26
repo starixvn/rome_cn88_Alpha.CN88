@@ -21,6 +21,7 @@
         BrowserHelper browserHelper;
         DefaultService defaultService;
 
+        UserTest user;
         DefaultHandler Sut;
         CompareLogic compareLogic;
 
@@ -31,6 +32,7 @@
             browserHelper = Substitute.For<BrowserHelper>();
             defaultService = Substitute.For<DefaultService>();
 
+            user = new UserTest();
             Sut = new DefaultHandler(sessionManager, browserHelper, defaultService);
             compareLogic = new CompareLogic();
         }
@@ -40,7 +42,6 @@
         {
             // Arrange
             sessionManager.Get<bool>(Arg.Any<string>()).Returns(true);
-            var user = new UserTest();
             var query = new BrowserQuery(user);
             var expectedResult = new BrowserViewModel();
 
@@ -53,11 +54,40 @@
         }
 
         [Test]
+        public void HandlerBrowserQuery_SawBrowserWarningPageSessionKeyIsTrue_CheckSupportedBrowsers()
+        {
+            // Arrange
+            var query = new BrowserQuery(user);
+            sessionManager.Get<bool>(Arg.Any<string>()).Returns(false);
+            browserHelper.CheckSupportedBrowsers().Returns(new BrowserViewModel());
+
+            // Act
+            Sut.Handle(query);
+
+            // Assert
+            browserHelper.Received().CheckSupportedBrowsers();
+        }
+
+        [Test]
+        public void HandlerBrowserQuery_SawBrowserWarningPageSessionKeyIsTrue_CallsSessionmanagerAdd()
+        {
+            // Arrange
+            var query = new BrowserQuery(user);
+            sessionManager.Get<bool>(Arg.Any<string>()).Returns(false);
+            browserHelper.CheckSupportedBrowsers().Returns(new BrowserViewModel());
+
+            // Act
+            Sut.Handle(query);
+
+            // Assert
+            sessionManager.Received().Add("DefaultHandler.SawBrowserWarningPageSessionKey", true);
+        }
+
+        [Test]
         public void HandlerIndexQuery_Always_ReturnIndexViewModel()
         {
             // Arrange
             defaultService.GetOnlineMember(Arg.Any<int>(), Arg.Any<int>(), false).Returns(5);
-            var user = new UserTest();
             var query = new IndexQuery(user);
             var expectedResult = new IndexViewModel(query, browserHelper, 5, FunctionRegistry.GetDefaultUrl, Encryption.PearsonEncode);
 
@@ -74,7 +104,6 @@
         {
             // Arrange
             defaultService.GetOnlineMember(Arg.Any<int>(), Arg.Any<int>(), false).Returns(99);
-            var user = new UserTest();
             var query = new TotalOnlineMember(user);
             var expectedResult = 99;
 
