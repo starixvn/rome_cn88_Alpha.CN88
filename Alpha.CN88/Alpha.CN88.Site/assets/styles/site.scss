@@ -24,6 +24,14 @@ body {
     color: #333333;
 }
 
+.btn .multiselect-selected-text {
+    text-transform: none;
+}
+
+.multiselect-container.dropdown-menu label.radio {
+    display: block;
+}
+
 .filter .multiselect .multiselect-selected-text {
     width: 130px;
 }
@@ -98,55 +106,12 @@ body {
     }
 }
 
-.btn .multiselect-selected-text {
-    text-transform: none;
-}
-
-.multiselect-container.dropdown-menu label.radio {
-    display: block;
-}
 
 #tbl-master, #tbl-agent, #tbl-member {
     width: 100%;
 }
 
-.sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
-    float: right;
-    background-color: #ca9d48;
-    margin: 2px 16px 0 0;
 
-    a {
-        color: #fff !important;
-        padding: 7px 16px 8px;
-    }
-
-    &:hover {
-        background-color: darken(#ca9d48, 5%);
-
-        &:after {
-            content: none;
-        }
-    }
-}
-
-.dropdown-menu {
-    li.lnk-nickname {
-        margin: 6px 0;
-
-        a {
-            padding: 0 15px;
-
-            &:hover {
-                background-color: #fff;
-                cursor: default;
-            }
-        }
-    }
-
-    .divider {
-        margin: 6px 0;
-    }
-}
 
 // Mobile friendly
 
@@ -221,15 +186,16 @@ body {
         color: #fff;
     }
 
+    .dropdown-menu > li:not(:first-child),
+    .list-lang > li:not(:first-child) {
+        border-top: 1px solid #e5e5e5;
+    }
+
     .dropdown-menu {
         right: 12px;
         overflow: auto;
         margin-top: 0;
         border-radius: 0 0 1px 1px;
-
-        > li:not(:first-child) {
-            border-top: 1px solid #e5e5e5;
-        }
 
         li > a {
             padding: 14px 15px;
@@ -253,10 +219,6 @@ body {
             position: relative;
         }
 
-        > li:not(:first-child) {
-            border-top: 1px solid #e5e5e5;
-        }
-
         li > a {
             display: block;
             padding: 8px 15px 8px 42px;
@@ -277,6 +239,44 @@ body {
             content: "\e914";
             color: #689A67;
             font-size: 21px;
+        }
+    }
+}
+
+.dropdown-menu {
+    li.lnk-nickname {
+        margin: 6px 0;
+
+        a {
+            padding: 0 15px;
+
+            &:hover {
+                background-color: #fff;
+                cursor: default;
+            }
+        }
+    }
+
+    .divider {
+        margin: 6px 0;
+    }
+}
+
+.sub-menu .sub-menu-item[data-submenu="wagermonitoringconsole"] {
+    float: right;
+    background-color: #ca9d48;
+    margin: 2px 16px 0 0;
+
+    a {
+        color: #fff !important;
+        padding: 7px 16px 8px;
+    }
+
+    &:hover {
+        background-color: darken(#ca9d48, 5%);
+
+        &:after {
+            content: none;
         }
     }
 }
