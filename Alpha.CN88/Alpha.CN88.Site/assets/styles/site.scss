@@ -171,6 +171,27 @@ body {
     }
 }
 
+
+.dropdown-menu {
+    li.lnk-nickname {
+        margin: 6px 0;
+
+        a {
+            padding: 0 15px;
+
+            &:hover {
+                background-color: #fff;
+                cursor: default;
+            }
+        }
+    }
+
+    .divider {
+        margin: 6px 0;
+    }
+}
+
+
 .username-mobile {
     position: relative;
     height: 32px;
@@ -186,10 +207,7 @@ body {
         color: #fff;
     }
 
-    .dropdown-menu > li:not(:first-child),
-    .list-lang > li:not(:first-child) {
-        border-top: 1px solid #e5e5e5;
-    }
+    
 
     .dropdown-menu {
         right: 12px;
@@ -241,24 +259,10 @@ body {
             font-size: 21px;
         }
     }
-}
 
-.dropdown-menu {
-    li.lnk-nickname {
-        margin: 6px 0;
-
-        a {
-            padding: 0 15px;
-
-            &:hover {
-                background-color: #fff;
-                cursor: default;
-            }
-        }
-    }
-
-    .divider {
-        margin: 6px 0;
+    .dropdown-menu > li:not(:first-child),
+    .list-lang > li:not(:first-child) {
+        border-top: 1px solid #e5e5e5;
     }
 }
 
