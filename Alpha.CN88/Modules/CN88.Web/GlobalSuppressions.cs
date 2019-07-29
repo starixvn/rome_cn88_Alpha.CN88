@@ -59,3 +59,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1449:Culture should be specified for \"string\" operations", Justification = "<Pending>", Scope = "member", Target = "~M:CN88.Web.Helpers.BrowserHelperImpl.CheckSupportedBrowsers~CN88.Web.ViewModel.BrowserViewModel")]
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2325:Methods and properties that don't access instance data should be static", Justification = "<Pending>", Scope = "member", Target = "~M:CN88.Web.Models.BelongingParam.GetUserSession~Sunplus.Agent.Model.Entities.IUserSession")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "<Pending>", Scope = "member", Target = "~M:CN88.Web.Helpers.BrowserHelperImpl.CheckSupportedBrowsers~CN88.Web.ViewModel.BrowserViewModel")]
+

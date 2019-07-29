@@ -47,7 +47,7 @@
             {
                 var browserName = browserHelper.GetDevice().Info.BrowserName.ToLowerInvariant();
                 var userAgent = browserHelper.GetUserAgent().ToLowerInvariant();
-                var isTablet = browserHelper.IsMobileTablet(isOnlyTablet: true);
+                var isTablet = browserHelper.IsTablet();
 
                 var isSmallScale = browserName.Contains("chrome") &&
                     userAgent.Contains("android") &&
@@ -90,7 +90,7 @@
 
         public bool ClearClientData { get; }
 
-        public bool IsDevice => browserHelper.IsMobileTablet() && !browserHelper.IsMobileTablet(isOnlyTablet: true);
+        public bool IsDevice => browserHelper.IsMobile();
 
         public string TroubleshootingPath => UrlHelper.MapMainPath("~/Help/Troubleshooting");
 
@@ -130,7 +130,7 @@
                 return result;
             }
         }
-        
+
         public bool ShowCN88SaveButton { get; }
     }
 }

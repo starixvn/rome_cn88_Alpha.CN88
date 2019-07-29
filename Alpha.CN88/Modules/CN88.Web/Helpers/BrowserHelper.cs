@@ -7,7 +7,11 @@
 
     public interface BrowserHelper
     {
-        bool IsMobileTablet(bool isOnlyTablet = false);
+        bool IsMobile();
+
+        bool IsTablet();
+
+        bool IsMobileOrTablet();
 
         bool IsAndroidNativeBrowser(string userAgent);
 
@@ -60,23 +64,26 @@
             return userAgent != null && userAgent.Length >= mobileVersionLength;
         }
 
-        public bool IsMobileTablet(bool isOnlyTablet = false)
+        public bool IsMobile() => IsMobileOrTablet() && !IsTablet();
+
+        public bool IsTablet()
         {
+            var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
+
+            return IsValidAgent() && tabletCheck.IsMatch(u);
+        }
+
+        public bool IsMobileOrTablet()
+        {
+            var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
+
             if (!IsValidAgent())
             {
                 return false;
             }
-            var userAgent = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
-            var isTablet = tabletCheck.IsMatch(userAgent);
 
-            if (isOnlyTablet)
-            {
-                return isTablet;
-            }
-
-            var isTabletOrMobile = mobileCheck.IsMatch(userAgent) || mobileVersionCheck.IsMatch(userAgent.Substring(0, mobileVersionLength));
-
-            return isTabletOrMobile && !isTablet;
+            return mobileCheck.IsMatch(u) ||
+                mobileVersionCheck.IsMatch(u.Substring(0, mobileVersionLength));
         }
 
         public bool IsAndroidNativeBrowser(string userAgent) => androidNativeBrowserCheck.IsMatch(userAgent);
@@ -86,7 +93,7 @@
             var browserViewModel = new BrowserViewModel();
             var currentRequest = HttpContext.Current.Request;
 
-            if (IsMobileTablet())
+            if (IsMobileOrTablet())
             {
                 return browserViewModel;
             }
@@ -121,7 +128,7 @@
         }
 
         public BrowserInfo GetBrowserInfo()
-            => new BrowserInfo(IsMobileTablet(), IsMobileTablet(true));
+            => new BrowserInfo(IsMobile(), IsTablet());
 
         public Device GetDevice()
         {

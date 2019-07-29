@@ -24,7 +24,7 @@
         {
             var menuItems = siteMenuService.GetMenuByUserLevel(message.UserLevel, message.IsCookieLess);
 
-            return new MenuBarViewModel(menuItems, browserHelper.IsMobileTablet());
+            return new MenuBarViewModel(menuItems, browserHelper.IsMobileOrTablet());
         }
     }
 }
