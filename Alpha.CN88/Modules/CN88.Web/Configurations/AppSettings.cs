@@ -3,14 +3,12 @@
     using System;
     using System.Collections.Specialized;
     using System.Configuration;
-    using System.Diagnostics.CodeAnalysis;
 
     internal static class AppSettings
     {
         [ThreadStatic]
         private static NameValueCollection appSettingValues;
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Reviewed")]
         internal static NameValueCollection AppSettingValues
         {
             get { return appSettingValues ?? ConfigurationManager.AppSettings; }
@@ -18,13 +16,29 @@
             set { appSettingValues = value; }
         }
 
-        internal static string MainAppPath => GetConfigValue("MainAppPath");
+        public static string SessionVerificationTokenCookie
+            => GetConfigValue("SessionVerificationTokenCookie") ?? "__SessionVerificationToken_";
 
-        internal static bool DisabledCheckDuplicationLogin
-            => GetBoolConfigValue("DisabledCheckDuplicationLogin");
+        public static bool EnableSessionValidation
+            => GetConfigValue("EnableSessionValidation") != null && bool.Parse(GetConfigValue("EnableSessionValidation"));
 
-        internal static bool IsIntegrationTest
-            => GetBoolConfigValue("IsIntegrationTest");
+        public static bool EnableKickOutWhenSessionInvalid
+            => GetConfigValue("EnableKickOutWhenSessionInvalid") != null && bool.Parse(GetConfigValue("EnableKickOutWhenSessionInvalid"));
+
+        public static bool EnableAntiXSRF
+            => GetConfigValue("EnableAntiXSRF") != null && bool.Parse(GetConfigValue("EnableAntiXSRF"));
+
+        public static string MainAppPath => GetConfigValue("MainAppPath");
+
+        public static string AssetAppPath => GetConfigValue("AssetAppPath");
+
+        public static string MessageAppPath => GetConfigValue("MessageAppPath");
+
+        public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
+
+        public static string StaticResourcesVersion => GetConfigValue("AssetsApp:StaticResourcesVersion");
+
+        internal static bool DisabledCheckDuplicationLogin => GetBoolConfigValue("DisabledCheckDuplicationLogin");
 
         private static bool GetBoolConfigValue(string configName)
             => GetConfigValue(configName) == "1";

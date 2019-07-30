@@ -10,7 +10,6 @@
     using Services;
     using Sunplus.Agent.Utilities;
     using ViewModels.Default;
-    using Web.Helpers;
 
     public class DefaultHandler :
         IRequestHandler<BrowserQuery, BrowserViewModel>,

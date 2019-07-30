@@ -3,11 +3,9 @@
     using System;
     using System.Web;
     using CN88.Helpers;
-    using Configurations;
     using global::CN88.Web.Helpers;
     using Helpers;
     using Requests.Default;
-    using Web.Helpers;
 
     public class IndexViewModel
     {
@@ -82,11 +80,11 @@
 
         public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=1");
 
-        public string OnlineMembersPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/CustomerList/OnlineMembers");
+        public string OnlineMembersPath => MicroSites.FeaturesUrl("~/CustomerList/OnlineMembers");
 
-        public string OldReportsPath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/OldReports/Index?DisplayMode=1");
+        public string OldReportsPath => MicroSites.FeaturesUrl("~/OldReports/Index?DisplayMode=1");
 
-        public string WagerMonitoringConsolePath => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, "~/WagerMonitoring/Index");
+        public string WagerMonitoringConsolePath => MicroSites.FeaturesUrl("~/WagerMonitoring/Index");
 
         public bool ClearClientData { get; }
 
@@ -103,9 +101,7 @@
 
         public string MySettingPath
             => IsShowMySettingPath
-            ? AppPathHelper.GetAppPath(
-                AppSettings.FeaturesAppPath,
-                $"~/CN88CustomerSetting/ViewCN88CustomerSetting/MySetting?customerLevel={RoleId}&isCreateNew=false&productId=1")
+            ? MicroSites.FeaturesUrl($"~/CN88CustomerSetting/ViewCN88CustomerSetting/MySetting?customerLevel={RoleId}&isCreateNew=false&productId=1")
             : string.Empty;
 
         public string NickName { get; }

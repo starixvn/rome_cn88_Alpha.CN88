@@ -20,8 +20,6 @@
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
-    using Web.Helpers;
-    using Web.Helpers.Impl;
 
     public static class DependencyConfig
     {

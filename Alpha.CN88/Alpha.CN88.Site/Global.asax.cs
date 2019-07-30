@@ -7,18 +7,17 @@
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Alpha.CN88.Site.Helpers;
     using App_Start;
     using Configurations;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
     using global::CN88.Web.Configurations;
-    using Helpers;
+    using global::CN88.Web.Filters;
+    using global::CN88.Web.Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
-    using Web;
-    using Web.Filters;
-    using Web.Helpers;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
 
     public class MvcApplication : System.Web.HttpApplication
@@ -47,7 +46,7 @@
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
             GlobalFilters.Filters.Add(new CheckUMFilter());
-            GlobalFilters.Filters.Add(new NoCacheFilter());
+            GlobalFilters.Filters.Add(new NoCacheFilterAttribute());
 
             StaticResources.Init(GetBuildVersion());
         }

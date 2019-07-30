@@ -6,7 +6,6 @@
     using Alpha.CN88.Site.Requests.Default;
     using Alpha.CN88.Site.Tests.TestModels;
     using Alpha.CN88.Site.ViewModels.Default;
-    using Alpha.Web.Helpers;
     using global::CN88.Web.Helpers;
     using global::CN88.Web.ViewModel;
     using KellermanSoftware.CompareNetObjects;

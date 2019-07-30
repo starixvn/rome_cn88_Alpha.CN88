@@ -5,8 +5,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web;
-    using Configurations;
-    using Web.Helpers;
+    using global::CN88.Web.Helpers;
 
     public static class UrlHelper
     {
@@ -107,12 +106,8 @@
 
             return link + $"&{paramName}={paramValue}";
         }
-       
-
-        public static string GetFeaturesAppPath(string virtualPath = "~/")
-            => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, virtualPath);
 
         internal static string GetLink(string action, string currentQuery)
-            => GetFeaturesAppPath(action + currentQuery);
+            => MicroSites.FeaturesUrl(action + currentQuery);
     }
 }

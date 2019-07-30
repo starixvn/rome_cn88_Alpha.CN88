@@ -2,9 +2,15 @@
 {
     using Configurations;
 
-    internal static class MicroSites
+    public static class MicroSites
     {
-        internal static string MainUrl(string virtualPath = "~/")
+        public static string MainUrl(string virtualPath = "~/")
             => AppPathHelper.GetAppPath(AppSettings.MainAppPath, virtualPath);
+
+        public static string MessageUrl(string virtualPath = "~/")
+            => AppPathHelper.GetAppPath(AppSettings.MessageAppPath, virtualPath);
+
+        public static string FeaturesUrl(string virtualPath = "~/")
+            => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, virtualPath);
     }
 }
