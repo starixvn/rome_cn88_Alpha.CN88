@@ -12,13 +12,14 @@
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
+    using global::CN88.Web.Configurations;
     using Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
     using Web;
+    using Web.Filters;
     using Web.Helpers;
     using ExceptionHandler = Fanex.Logging.Extensions.Web.ExceptionHandler;
-    using Web.Filters;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -76,7 +77,7 @@
             var currentCustomer = UserSession.Current;
 
             if (ex is FormatException &&
-                Request.Params.AllKeys.Any(key => Auth.Configurations.AuthorizationSection.Instance.CustIdQueryStringParamNames.Any(cf => string.Equals(key, cf, StringComparison.OrdinalIgnoreCase))))
+                Request.Params.AllKeys.Any(key => AuthorizationSection.Instance.CustIdQueryStringParamNames.Any(cf => string.Equals(key, cf, StringComparison.OrdinalIgnoreCase))))
             {
                 return;
             }
