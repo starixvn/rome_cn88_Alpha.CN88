@@ -19,13 +19,18 @@
             this.dynamicRepository = dynamicRepository;
         }
 
-        public Tuple<IEnumerable<AccountOverview>, IEnumerable<StatusSummary>> GetGeneralInformation(int custId)
+        public Tuple<IEnumerable<AccountOverview>, IEnumerable<StatusSummary>> GetGeneralInformation(int custId, int subAccId, bool isAllDownline)
         {
             var currentPeriod = GetCurrentPeriod();
-            var criteria = new GetHomeInformationCriteria(custId, currentPeriod.FromDate, currentPeriod.ToDate);
+            var criteria = new GetHomeInformationCriteria(
+                custId,
+                subAccId,
+                isAllDownline,
+                currentPeriod.FromDate,
+                currentPeriod.ToDate);
 
             return dynamicRepository.FetchMultiple<AccountOverview, StatusSummary>(criteria);
-        }       
+        }
 
         public AccountingPeriod GetCurrentPeriod()
             => GetAccountingPeriods().FirstOrDefault(p => p.IsCurrentPeriod);

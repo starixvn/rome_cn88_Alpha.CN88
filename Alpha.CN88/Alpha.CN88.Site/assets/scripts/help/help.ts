@@ -2,6 +2,8 @@
 class Help {
     $: JQueryStatic;
     $backToTop: JQuery;
+    topMaxHeight = 50;
+    animateDuration = 500;
 
     constructor($: JQueryStatic) {
         this.$ = $;
@@ -11,17 +13,16 @@ class Help {
         this.$backToTop = this.$("#back-to-top");
         this.$backToTop.hide();
 
-        let self = this;
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 50) {
-                self.$backToTop.fadeIn();
+        $(window).scroll(() => {
+            if ($(window).scrollTop() > this.topMaxHeight) {
+                this.$backToTop.fadeIn();
             } else {
-                self.$backToTop.fadeOut();
+                this.$backToTop.fadeOut();
             }
         });
 
         this.$backToTop.on("click touchend", () => {
-            $("html,body").animate({ scrollTop: 0 }, 500);
+            $("html,body").animate({ scrollTop: 0 }, this.animateDuration);
         });
     }
 }

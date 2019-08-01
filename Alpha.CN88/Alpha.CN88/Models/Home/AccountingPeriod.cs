@@ -14,5 +14,12 @@
         public DateTime ToDate { get; }
 
         public bool IsCurrentPeriod => FromDate <= SystemTime.Today && SystemTime.Today <= ToDate;
+
+        public AccountingPeriod()
+        {
+            FromDate = SystemTime.Today;
+            ToDate = FromDate;
+            Year = FromDate.Year;
+        }
     }
 }

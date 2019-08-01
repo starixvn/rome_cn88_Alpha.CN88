@@ -5,14 +5,25 @@
 
     public class GetHomeInformationCriteria : CriteriaBase
     {
-        public GetHomeInformationCriteria(int custId, DateTime fromDate, DateTime toDate)
+        public GetHomeInformationCriteria(
+            int custId,
+            int subAccId,
+            bool isAllDownline,
+            DateTime fromDate,
+            DateTime toDate)
         {
             CustId = custId;
+            SubAccId = subAccId;
+            IsAllDownline = isAllDownline;
             FromDate = fromDate;
             ToDate = toDate;
         }
 
         public int CustId { get; }
+
+        public int SubAccId { get; }
+
+        public bool IsAllDownline { get; }
 
         public DateTime FromDate { get; }
 

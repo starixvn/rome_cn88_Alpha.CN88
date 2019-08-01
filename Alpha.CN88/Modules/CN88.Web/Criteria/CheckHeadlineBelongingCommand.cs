@@ -4,11 +4,9 @@
 
     internal class CheckHeadlineBelongingCommand : NonQueryCommand
     {
-        internal CheckHeadlineBelongingCommand(
-            int sessionCustId,
-            int custId)
+        internal CheckHeadlineBelongingCommand(int actorId, int custId)
         {
-            SessionCustId = sessionCustId;
+            SessionCustId = actorId;
             CustId = custId;
         }
 
@@ -16,14 +14,10 @@
 
         public int CustId { get; }
 
-        public bool IsActive { get; set; }
-
-        public string UserName { get; set; }
-
         public byte RoleId { get; set; }
 
         public override string GetSettingKey()
-            => "CS_Customer_CheckBelonging_Sel";
+            => "CS_HeadlineSelCheckBelonging";
 
         public override bool IsValid()
             => SessionCustId > 0 && CustId > 0;

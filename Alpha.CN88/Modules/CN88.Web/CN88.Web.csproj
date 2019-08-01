@@ -113,7 +113,10 @@
     <Compile Include="Criteria\CheckBelongingCommand.cs" />
     <Compile Include="Criteria\CheckHeadlineBelongingCommand.cs" />
     <Compile Include="Criteria\GetSubAccountListCriteria.cs" />
-    <Compile Include="Criteria\LogoutCommand.cs" />
+    <Compile Include="Criteria\LogoutCommand.cs">
+      <!-- Exclude the file from analysis -->
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Criteria\ReCheckinCommand.cs" />
     <Compile Include="Filters\AfterLoginFlowFilter.cs" />
     <Compile Include="Filters\CheckSubAccBelongingFilter.cs" />
@@ -124,14 +127,22 @@
     <Compile Include="Helpers\BrowserHelper.cs" />
     <Compile Include="Helpers\MicroSites.cs" />
     <Compile Include="Helpers\UnAuthorizationHelper.cs" />
-    <Compile Include="Models\BelongingContext.cs" />
-    <Compile Include="Models\BelongingInfo.cs" />
-    <Compile Include="Models\CustomerStatus.cs" />
+    <Compile Include="Models\AccountPermissionParam.cs" />
+    <Compile Include="Models\BelongingParam.cs" />
+    <Compile Include="Models\LogoutContext.cs" />
+    <Compile Include="Models\CustomerStatus.cs">
+      <!-- Exclude the file from analysis -->
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Models\Device.cs" />
+    <Compile Include="Models\DeviceInfo.cs" />
+    <Compile Include="Models\Enumeration.cs" />
+    <Compile Include="Models\UserLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AccountPermission.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
     <Compile Include="Services\RequestContext.cs" />
+    <Compile Include="ViewModel\BrowserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -152,12 +163,12 @@
     <EmbeddedResource Include="AppResources\WebResource.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
+    <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\..\packages\SonarAnalyzer.CSharp.7.14.0.8411\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -67,7 +67,9 @@
 
         public byte CustomerStatus
             => SessionHelper.Get<byte>(SessionKeys.CustomerStatus);
-            
+
         public string AdminName => userSession.AdminName;
+
+        public bool IsAllDownline => userSession.GetProperty<bool>("ISALLDOWNLINE");
     }
 }

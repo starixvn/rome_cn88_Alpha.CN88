@@ -4,26 +4,32 @@ declare var Sha256: any;
 
 class VerifySecurityCode {
     $: JQueryStatic;
-    top: any;
-    resources: any;
-    elements: any;
+    top: Window;
+    resources: {
+        securityCodeEmpty: string
+    };
+    elements: {
+        securityCode: JQuery,
+        messsageContainer: JQuery,
+        salt: string,
+        token: string
+    };
 
-    constructor($: JQueryStatic, top: any) {
+    constructor($: JQueryStatic, top: Window) {
         this.$ = $;
         this.top = top;
     }
 
     init(): void {
-        let self: any = this;
         this.cacheElements();
 
-        this.$("#formSecurityCode").submit(function (e: any): void {
+        this.$("#formSecurityCode").submit((e: JQueryEventObject): void => {
             e.preventDefault();
-            self.verifySecurityCode(self.$(this));
+            this.verifySecurityCode(e.target);
         });
 
         this.elements.securityCode.focus();
-        self.top.popupManager.setLatestPopupTitle(this.$("#securityCodeTitle").val());
+        this.top.popupManager.setLatestPopupTitle(this.$("#securityCodeTitle").val());
     }
 
     cacheElements(): void {
@@ -39,10 +45,10 @@ class VerifySecurityCode {
         };
     }
 
-    verifySecurityCode(form: JQuery): void {
+    verifySecurityCode(form: Element): void {
         this.$.blockUI();
 
-        let $securityCode: JQuery = this.elements.securityCode;
+        const $securityCode: JQuery = this.elements.securityCode;
         let securityCodeValue: string = $securityCode.val();
 
         if (securityCodeValue.length === 0) {
@@ -54,54 +60,52 @@ class VerifySecurityCode {
         }
 
         securityCodeValue = securityCodeValue.hash(this.elements.salt, this.elements.token);
-        this.submitForm(form.attr("method"), form.attr("action"), securityCodeValue);
+        this.submitForm(form.attributes["method"].nodeValue, form.attributes["action"].nodeValue, securityCodeValue);
     }
 
     submitForm(method, url, securityCode: string): void {
-        let self: any = this;
-
         this.$.ajax({
             type: method,
             url: url,
             headers: this.setupAntiXSRF(),
             data: { securityCode: securityCode },
             dataType: "json",
-            success: function (data: any) {
+            success: (data: CodeResponse) => {
                 if (data.Code === 0) {
-                    self.elements.securityCode.attr("disabled", "disabled");
-                    self.$("#btnSubmit").remove();
-                    self.top.popupManager.revertLatestPopupTitle();
-                    self.afterVerifed();
+                    this.elements.securityCode.attr("disabled", "disabled");
+                    this.$("#btnSubmit").remove();
+                    this.top.popupManager.revertLatestPopupTitle();
+                    this.afterVerifed();
                 }
-                else if (data.Code === 2) { // account is closed
+                else if (data.Code === AccountStatusCode.CLOSE) { // account is closed
                     alert(data.Message);
                     siteInfrastructure.logout();
                 }
                 else {
-                    siteInfrastructure.showError(self.elements.messsageContainer, data.Message);
-                    self.elements.securityCode.focus();
+                    siteInfrastructure.showError(this.elements.messsageContainer, data.Message);
+                    this.elements.securityCode.focus();
                 }
             },
-            error: function (xhr: any) {
-                if (xhr.status === 401) {
-                    alert((<HTMLInputElement>document.getElementById("errorMessage")).value);
+            error: function (xhr) {
+                if (xhr.status === HttpStatusCode.UNAUTHORIZED) {
+                    alert(siteInfrastructure.getInputElementvalue("errorMessage"));
                     siteInfrastructure.logout();
                 }
             },
-            complete: self.$.unblockUI
+            complete: this.$.unblockUI
         });
     }
 
-    setupAntiXSRF(): any {
-        let token = this.$("input[name=__RequestVerificationToken]").val();
-        let headers = {};
+    setupAntiXSRF(): object {
+        const token = this.$("input[name=__RequestVerificationToken]").val();
+        const headers = {};
         headers["__RequestVerificationToken"] = token;
 
         return headers;
     }
 
     afterVerifed(): void {
-        let redirectUrl = this.getUrlVars()["redirectUrl"];
+        const redirectUrl = this.getUrlVars()["redirectUrl"];
         if (redirectUrl) {
             if (this.detectDCSUrl(redirectUrl) && this.detectIE()) {
                 this.top.indexManager.elements.mainFrame.load(this.top.indexManager.locationReload);
@@ -115,7 +119,7 @@ class VerifySecurityCode {
             && this.top.popupManager.popupOptions
             && this.top.popupManager.popupOptions[this.top.popupManager.popupOptions.length - 1]
             && this.top.popupManager.popupOptions[this.top.popupManager.popupOptions.length - 1].preUrl) {
-            var preUrl = this.top.popupManager.popupOptions[this.top.popupManager.popupOptions.length - 1].preUrl as string;
+            const preUrl = this.top.popupManager.popupOptions[this.top.popupManager.popupOptions.length - 1].preUrl;
             this.top[preUrl]();
             this.top.popupManager.close();
             return;
@@ -126,9 +130,9 @@ class VerifySecurityCode {
 
     getUrlVars() {
         let hash;
-        let vars = [];
-        let url = window.location.href;
-        let hashes = url.slice(url.indexOf("?") + 1).split("&");
+        const vars = [];
+        const url = window.location.href;
+        const hashes = url.slice(url.indexOf("?") + 1).split("&");
 
         for (let i = 0, max = hashes.length; i < max; i++) {
             hash = hashes[i].split("=");

@@ -1,6 +1,6 @@
 ﻿<Functions SiteId="115" SiteName="CN88">
   <Function Name="Home">
-    <Setting Key="CS_Customer_Homepage_Sel" SpName ="CS_Customer_Homepage_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0">
+    <Setting Key="CS_Customer_Homepage_Sel" SpName ="CS_Customer_Homepage_Sel_xtest" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0">
       <Mapping DataField="cntActive" ObjectProperty="Active"></Mapping>
       <Mapping DataField="cntViewOnly" ObjectProperty="ViewOnly"></Mapping>
       <Mapping DataField="cntSuspended" ObjectProperty="Suspended"></Mapping>
@@ -10,7 +10,7 @@
     </Setting>
   </Function>
   <Function Name="Login">
-    <Setting Key="CS_LoginClaimDownline" SpName="CS_LoginClaimDownline" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_LoginClaimDownline" SpName="CS_LoginClaimDownline_xtest" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_LoginDownline_Admin" SpName="CS_LoginDownline_Admin" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Nick Name">
@@ -34,7 +34,10 @@
     <Setting Key="Age_GetSubAccountSecurityCode" SpName="Age_CustomerSelSecurityCode_Sub" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
   <Function Name="Check belonging">
-    <Setting Key="CS_Customer_CheckBelonging_Sel" SpName="CS_Customer_CheckBelonging_Sel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+    <Setting Key="CS_HeadlineSelCheckBelonging" SpName="CS_HeadlineSelCheckBelonging_xtest" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
     <Setting Key="CS_CustomerStatusSel" SpName="CS_CustomerStatusSel" DbName="DBCust.CustDB.BODBDownlineNet" Plain="0" />
+  </Function>
+  <Function Name="Check Belonging For Sub Acc">
+    <Setting Key="CS_CustSubSel" SpName="CS_CustSubSel" DbName="DBCUST.CustDB.BODBDownlineNet" Plain="0" />
   </Function>
 </Functions>

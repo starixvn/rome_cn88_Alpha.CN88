@@ -28,7 +28,7 @@
         [ConfigurationProperty("isviewedbygroupheadline", DefaultValue = false)]
         public bool IsViewedByGroupHeadline => (bool)this["isviewedbygroupheadline"];
 
-        [ConfigurationProperty("isdenyupdate", DefaultValue = false)]
-        public bool IsDenyUpdate => (bool)this["isdenyupdate"];
+        [ConfigurationProperty("ischeckaccountstatus", DefaultValue = false)]
+        public bool IsCheckAccountStatus => (bool)this["ischeckaccountstatus"];
     }
 }

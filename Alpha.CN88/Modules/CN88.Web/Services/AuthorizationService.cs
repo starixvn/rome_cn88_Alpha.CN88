@@ -2,121 +2,156 @@
 {
     using System;
     using System.Linq;
+    using System.Web;
     using Configurations;
     using Fanex.Logging.Extensions.Web;
     using Models;
+    using Sunplus.Agent.Model.Entities;
 
     public interface AuthorizationService
     {
-        bool IsSubAccBelonging(BelongingContext belongingContext);
+        bool IsSubAccBelonging(HttpRequestBase httpRequest, int actorId);
 
-        bool IsBelonging(BelongingContext belongingContext);
+        bool IsBelonging(HttpRequestBase httpRequest, BelongingParam belongingParam);
 
-        bool IsAuthorized(string url);
+        bool IsAccountHasPermissionOnURL(AccountPermissionParam accountPermissionParam);
 
-        bool IsAuthorized(BelongingContext belongingContext);
+        bool IsAuthorized(string currentURL);
 
-        CustomerStatus CheckCustomerStatus(BelongingContext belongingContext);
+        CustomerStatus CheckCustomerStatus(int custId, int subAccountId);
 
-        bool IsKickedOut(BelongingContext belongingContext);
+        bool IsKickedOut(int custId, int subAccountId, int onlineUserId);
 
-        void Logout(BelongingContext belongingContext);
+        void Logout(LogoutContext logoutContext);
     }
 
     public class AuthorizationServiceImpl : AuthorizationService
     {
+        private const byte MemberRoleId = 1;
+        private const byte SuperRoleId = 4;
+
         private readonly RequestContext requestContext;
         private readonly CustomerService customerService;
+        private readonly AuthorizationSection authorizationSection;
 
         public AuthorizationServiceImpl(
             RequestContext requestContext = null,
-            CustomerService customerService = null)
+            CustomerService customerService = null,
+            AuthorizationSection authorizationSection = null)
         {
             this.requestContext = requestContext ?? new RequestContextImpl();
             this.customerService = customerService ?? new CustomerServiceImpl();
+            this.authorizationSection = authorizationSection ?? AuthorizationSection.Instance;
         }
 
-        public bool IsSubAccBelonging(BelongingContext belongingContext)
+        public bool IsSubAccBelonging(HttpRequestBase httpRequest, int actorId)
         {
-            var subAccId = requestContext.GetCustId(
-                belongingContext.HttpRequest,
-                belongingContext.CustIdQueryStringParamNames,
-                belongingContext.CustIdJsonParamNames);
+            var subAccId = requestContext.GetCustIdFromHttpRequest(
+                httpRequest,
+                authorizationSection.CustIdQueryStringParamNames,
+                authorizationSection.CustIdJsonParamNames);
 
-            return customerService.IsSubAccBelonging(belongingContext.ActorId, subAccId);
+            return customerService.IsSubAccBelonging(actorId, subAccId);
         }
 
-
-        public bool IsBelonging(BelongingContext belongingContext)
+        public bool IsBelonging(HttpRequestBase httpRequest, BelongingParam belongingParam)
         {
-            var pageAccess = GetMatchCurrentUrl(belongingContext);
+            var pageAccess = GetMatchPageAccessByURL(belongingParam.ActorRoleId, belongingParam.CurrentURL);
 
-            if (pageAccess != null && pageAccess.IsCheckBelonging)
+            if (pageAccess?.IsCheckBelonging == true)
             {
-                var custId = requestContext.GetCustId(
-                    belongingContext.HttpRequest,
-                    belongingContext.CustIdQueryStringParamNames,
-                    belongingContext.CustIdJsonParamNames);
-                var transId = requestContext.GetTransId(belongingContext.HttpRequest);
+                var custId = requestContext.GetCustIdFromHttpRequest(
+                    httpRequest,
+                    authorizationSection.CustIdQueryStringParamNames,
+                    authorizationSection.CustIdJsonParamNames);
 
-                if (custId > 0 || transId > 0)
-                {
-                    return IsBelongingOnPage(custId, transId, pageAccess, belongingContext);
-                }
+                return IsBelonging(custId, belongingParam, pageAccess);
             }
 
             return true;
         }
 
-        private bool IsBelongingOnPage(int custId, long transId, PageAccessElement pageAccess, BelongingContext belongingContext)
+        private bool IsBelonging(int custId, BelongingParam belongingParam, PageAccessElement pageAccess)
         {
-            // Allow customers to update by themselves.
-            if (belongingContext.ActorId == custId)
+            if (custId <= 0)
+            {
+                return true;
+            }
+
+            if (belongingParam.ActorId == custId)
             {
                 return pageAccess.IsAllowToDoByThemselves;
             }
 
-            BelongingInfo belongingInfo;
+            byte custRoleId;
 
-            if (belongingContext.ActorRoleId == 0)
+            if (belongingParam.IsHeadline)
             {
-                belongingInfo = customerService.GetHeadlineBelongingInfo(belongingContext.ActorId, custId);
+                custRoleId = customerService.GetHeadlineBelongingCustRoleId(belongingParam.ActorId, custId);
 
-                return belongingInfo.IsValid();
+                return IsValidRoleId(custRoleId);
             }
 
-            belongingInfo = customerService.GetBelongingInfo(belongingContext.ActorId, custId, belongingContext.SubAccountId, transId);
+            custRoleId = customerService.GetBelongingCustRoleId(
+                belongingParam.ActorId,
+                belongingParam.ActorSubAccountId,
+                custId);
 
-            return belongingInfo.IsValid() && belongingInfo.RoleId < belongingContext.ActorRoleId;
+            return IsValidRoleId(custRoleId) && custRoleId < belongingParam.ActorRoleId;
         }
 
-        public bool IsAuthorized(string url)
-            => IsAuthorized(new BelongingContext());
+        private static bool IsValidRoleId(byte roleId)
+            => MemberRoleId <= roleId && roleId <= SuperRoleId;
 
-        public bool IsAuthorized(BelongingContext belongingContext)
+        public bool IsAccountHasPermissionOnURL(AccountPermissionParam accountPermissionParam)
         {
-            var accountHasPermissionToAccessUrl = GetAccountPermissionInstance(belongingContext.SubAccountId)
-                .IsAuthorized(belongingContext, GetMatchCurrentUrl(belongingContext));
+            var pageAccess = GetMatchPageAccessByURL(accountPermissionParam.ActorRoleId, accountPermissionParam.CurrentURL);
 
-            if (accountHasPermissionToAccessUrl)
+            if (pageAccess == null)
             {
-                var deniedpages = DeniedPageHelper.GetDeniedPages(belongingContext.ActorRoleId);
-
-                return !deniedpages.Any(item => belongingContext.IsCurrentUrlContains(item.Url));
+                return true;
             }
 
-            return false;
+            if (IsRestrictedURL(accountPermissionParam.CurrentURL, accountPermissionParam.ActorRoleId)
+                || IsInvalidAccountStatus(accountPermissionParam, pageAccess))
+            {
+                return false;
+            }
+
+            return accountPermissionParam.ActorIsMainAccount
+                || IsValidSubAccountPermission(accountPermissionParam.ActorSubPageAccess, pageAccess);
         }
 
-        private static PageAccessElement GetMatchCurrentUrl(BelongingContext belongingContext)
+        private static bool IsRestrictedURL(string currentURL, byte actorRoleId)
         {
-            foreach (var groupPageAccess in belongingContext.GroupPageAccessList)
+            var deniedpages = DeniedPageHelper.GetDeniedPages(actorRoleId);
+
+            return deniedpages.Any(item => currentURL.IndexOf(item.Url, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        private static bool IsInvalidAccountStatus(AccountPermissionParam accountPermissionParam, PageAccessElement pageAccess)
+            => pageAccess.IsCheckAccountStatus && accountPermissionParam.IsHttpPost && accountPermissionParam.ActorStatusIsNotActive;
+
+        private static bool IsValidSubAccountPermission(PageAccess actorSubPageAccess, PageAccessElement pageAccess)
+            => pageAccess
+                .Permission.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Any(item => actorSubPageAccess.GetPermission(item));
+
+        public bool IsAuthorized(string currentURL)
+            => string.IsNullOrWhiteSpace(currentURL)
+            || IsAccountHasPermissionOnURL(new AccountPermissionParam(currentURL, false));
+
+        private PageAccessElement GetMatchPageAccessByURL(byte actorRoleId, string currentURL)
+        {
+            var groupPageAccessList = authorizationSection.GroupPageAccessList;
+
+            foreach (var groupPageAccess in groupPageAccessList)
             {
-                if (groupPageAccess.RoleId <= belongingContext.ActorRoleId)
+                if (groupPageAccess.RoleId <= actorRoleId)
                 {
                     foreach (PageAccessElement pageAccess in groupPageAccess.PageAccesses)
                     {
-                        if (belongingContext.IsCurrentUrlContains(pageAccess.Url))
+                        if (currentURL.IndexOf(pageAccess.Url, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
                             return pageAccess;
                         }
@@ -127,39 +162,17 @@
             return null;
         }
 
-        private static AccountPermission GetAccountPermissionInstance(int subAccountId)
-        {
-            if (subAccountId == 0)
-            {
-                return new AccountStatusPermission();
-            }
+        public CustomerStatus CheckCustomerStatus(int custId, int subAccountId)
+            => customerService.CheckCustomerStatus(custId, subAccountId, authorizationSection.CachedExpireTime);
 
-            return new SubAccountPermission();
-        }
+        public bool IsKickedOut(int custId, int subAccountId, int onlineUserId)
+            => customerService.IsKickedOut(custId, subAccountId, onlineUserId, authorizationSection.CachedExpireTime);
 
-        public CustomerStatus CheckCustomerStatus(BelongingContext belongingContext)
-            => customerService.CheckCustomerStatus(
-                belongingContext.ActorId,
-                belongingContext.SubAccountId,
-                belongingContext.CachedExpireTime);
-
-        public bool IsKickedOut(BelongingContext belongingContext)
-            => customerService.IsKickedOut(
-                belongingContext.ActorId,
-                belongingContext.SubAccountId,
-                belongingContext.OnlineUserId,
-                belongingContext.CachedExpireTime);
-
-        public void Logout(BelongingContext belongingContext)
+        public void Logout(LogoutContext logoutContext)
         {
             try
             {
-                customerService.Logout(
-                    belongingContext.OnlineUserId,
-                    string.IsNullOrWhiteSpace(belongingContext.SubUserName) ? belongingContext.ActorName : belongingContext.SubUserName,
-                    belongingContext.ActorRoleId,
-                    belongingContext.ServerId,
-                    belongingContext.NickName);
+                customerService.Logout(logoutContext);
             }
             catch (Exception ex)
             {

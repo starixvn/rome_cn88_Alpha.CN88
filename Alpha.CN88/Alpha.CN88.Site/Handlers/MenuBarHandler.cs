@@ -1,6 +1,6 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
-    using Alpha.CN88.Site.Helpers;
+    using global::CN88.Web.Helpers;
     using MediatR;
     using Requests.Default;
     using Services;
@@ -24,7 +24,7 @@
         {
             var menuItems = siteMenuService.GetMenuByUserLevel(message.UserLevel, message.IsCookieLess);
 
-            return new MenuBarViewModel(menuItems, browserHelper.IsMobile(false));
+            return new MenuBarViewModel(menuItems, browserHelper.IsMobileOrTablet());
         }
     }
 }

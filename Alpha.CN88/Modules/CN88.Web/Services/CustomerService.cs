@@ -9,9 +9,9 @@
 
     public interface CustomerService
     {
-        BelongingInfo GetBelongingInfo(int actorId, int custId, int subAccountId, long transId);
+        byte GetBelongingCustRoleId(int actorId, int actorSubAccountId, int custId);
 
-        BelongingInfo GetHeadlineBelongingInfo(int actorId, int custId);
+        byte GetHeadlineBelongingCustRoleId(int actorId, int custId);
 
         CustomerStatus CheckCustomerStatus(int custId, int subAccId);
 
@@ -23,13 +23,7 @@
 
         bool IsSubAccBelonging(int custId, int subAccId);
 
-        void Logout(
-            int onlineUserId,
-            string userName,
-            byte roleId,
-            int serverId,
-            string nickname,
-            string reason = " {KickOutSessionChanged}");
+        void Logout(LogoutContext logoutContext);
     }
 
     public class CustomerServiceImpl : CustomerService
@@ -58,22 +52,20 @@
             return subAccounts.Any(i => i == subAccId);
         }
 
-        public BelongingInfo GetBelongingInfo(int actorId, int custId, int subAccountId, long transId)
+        public byte GetBelongingCustRoleId(int actorId, int actorSubAccountId, int custId)
         {
-            var command = custId == 0
-                ? new CheckBelongingCommand(actorId, subAccountId, transId)
-                : new CheckBelongingCommand(actorId, custId, subAccountId, transId);
+            var command = new CheckBelongingCommand(actorId, actorSubAccountId, custId);
             dynamicRepository.Execute(command);
 
-            return new BelongingInfo(command.IsActive, command.RoleId);
+            return command.RoleId;
         }
 
-        public BelongingInfo GetHeadlineBelongingInfo(int actorId, int custId)
+        public byte GetHeadlineBelongingCustRoleId(int actorId, int custId)
         {
             var command = new CheckHeadlineBelongingCommand(actorId, custId);
             dynamicRepository.Execute(command);
 
-            return new BelongingInfo(command.IsActive, command.RoleId);
+            return command.RoleId;
         }
 
         public CustomerStatus CheckCustomerStatus(int custId, int subAccId)
@@ -147,14 +139,7 @@
         private void SetAbsoluteExpiration<T>(string key, T value, int cacheInSeconds)
             => cacheService.Set(key, value, new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(cacheInSeconds)));
 
-        public void Logout(
-            int onlineUserId,
-            string userName,
-            byte roleId,
-            int serverId,
-            string nickname,
-            string reason = " {KickOutSessionChanged}")
-            => dynamicRepository.Execute(
-                new LogoutCommand(onlineUserId, userName, roleId, serverId, nickname, reason));
+        public void Logout(LogoutContext logoutContext)
+            => dynamicRepository.Execute(new LogoutCommand(logoutContext));
     }
 }

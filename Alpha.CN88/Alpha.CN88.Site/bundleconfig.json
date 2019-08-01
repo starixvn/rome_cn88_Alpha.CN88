@@ -49,7 +49,8 @@
       "assets/scripts/site-infrastructure.js",
       "assets/scripts/aes.js",
       "assets/scripts/security-helper.js",
-      "assets/scripts/securitycode/verify-securitycode.js"
+      "assets/scripts/securitycode/verify-securitycode.js",
+      "assets/scripts/account-status.js"
     ]
   },
   {

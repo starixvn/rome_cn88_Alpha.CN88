@@ -2,8 +2,21 @@
 class ChangePassword {
     $: JQueryStatic;
     top: Window;
-    resources: any;
-    elements: any;
+    resources: {
+        pleaseEnterOldPassword: string,
+        passwordCannotEmpty: string,
+        confirmPasswordNotCorret: string,
+        newPassMustbeDiffOldPass: string,
+        passwordDoesNotMeetMinimunRequirement: string
+    };
+    elements: {
+        currentPassword: JQuery,
+        newPassword: JQuery,
+        confirmPassword: JQuery,
+        messsageContainer: JQuery,
+        hashKey: string
+    };
+    minPasswordComplication = 2;
 
     constructor($: JQueryStatic, top: Window) {
         this.$ = $;
@@ -11,28 +24,26 @@ class ChangePassword {
     }
 
     init(): void {
-        let self: any = this;
         this.cacheElements();
+        this.$("#formPassword").submit((): boolean => {
+            this.$.blockUI();
+            const $currentPassword: JQuery = this.elements.currentPassword;
+            const $newPassword: JQuery = this.elements.newPassword;
+            const $confirmPassword: JQuery = this.elements.confirmPassword;
 
-        this.$("#formPassword").submit(function (): boolean {
-            self.$.blockUI();
-            let $currentPassword: JQuery = self.elements.currentPassword;
-            let $newPassword: JQuery = self.elements.newPassword;
-            let $confirmPassword: JQuery = self.elements.confirmPassword;
-
-            if (!self.validatePasswords($currentPassword, $newPassword, $confirmPassword)) {
-                self.$.unblockUI();
+            if (!this.validatePasswords($currentPassword, $newPassword, $confirmPassword)) {
+                this.$.unblockUI();
                 return false;
             }
 
-            let hashKey: string = self.elements.hashKey;
+            const hashKey = this.elements.hashKey;
 
             if ($currentPassword.length > 0) {
-                let currentPwd: string = $currentPassword.val().encrypt(hashKey);
+                const currentPwd: string = $currentPassword.val().encrypt(hashKey);
                 $currentPassword.val(currentPwd);
             }
 
-            let newPwd: string = $newPassword.val().encrypt(hashKey);
+            const newPwd: string = $newPassword.val().encrypt(hashKey);
             $newPassword.val(newPwd);
             $confirmPassword.val(newPwd);
 
@@ -40,15 +51,15 @@ class ChangePassword {
         });
 
         this.$("#buttonCancel").click(() => {
-            if (self.$("#mainRootPath").length > 0) {
+            if (this.$("#mainRootPath").length > 0) {
                 siteInfrastructure.logout();
             } else {
-                self.top.indexManager.hideUserMobileDropdown();
-                self.top.popupManager.close();
+                this.top.indexManager.hideUserMobileDropdown();
+                this.top.popupManager.close();
             }
         });
 
-        let focusField: JQuery = this.elements.currentPassword.length > 0
+        const focusField: JQuery = this.elements.currentPassword.length > 0
             ? this.elements.currentPassword
             : this.elements.newPassword;
         focusField.focus();
@@ -73,10 +84,10 @@ class ChangePassword {
     }
 
     validatePasswords(currentPassword: JQuery, newPassword: JQuery, confirmPassword: JQuery): boolean {
-        let isChangePasswordPage: boolean = currentPassword.length > 0;
-        let currentPasswordValue: string = isChangePasswordPage ? currentPassword.val() : "";
-        let newPasswordValue: string = newPassword.val();
-        let confirmPasswordValue: string = confirmPassword.val();
+        const isChangePasswordPage: boolean = currentPassword.length > 0;
+        const currentPasswordValue: string = isChangePasswordPage ? currentPassword.val() : "";
+        const newPasswordValue: string = newPassword.val();
+        const confirmPasswordValue: string = confirmPassword.val();
 
         if (isChangePasswordPage && currentPasswordValue.length === 0) {
             siteInfrastructure.showError(this.elements.messsageContainer, this.resources.pleaseEnterOldPassword);
@@ -117,20 +128,20 @@ class ChangePassword {
     }
 
     isValidPassword(password: string) {
-        let whiteSpace: RegExp = /^\S*$/;
-        let whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
+        const whiteSpace: RegExp = /^\S*$/;
+        const whiteSpaceCase: boolean = password.search(whiteSpace) !== -1;
 
-        let regex1: RegExp = /^(?=.{6,12}$).*\d/i;
-        let regex2: RegExp = /^(?=.{6,12}$).*[a-z]/;
-        let regex3: RegExp = /^(?=.{6,12}$).*[A-Z]/;
-        let regex4: RegExp = /^(?=.{6,12}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
+        const regex1: RegExp = /^(?=.{6,12}$).*\d/i;
+        const regex2: RegExp = /^(?=.{6,12}$).*[a-z]/;
+        const regex3: RegExp = /^(?=.{6,12}$).*[A-Z]/;
+        const regex4: RegExp = /^(?=.{6,12}$).*[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,]/i;
 
-        let case1: number = password.search(regex1) !== -1 ? 1 : 0;
-        let case2: number = password.search(regex2) !== -1 ? 1 : 0;
-        let case3: number = password.search(regex3) !== -1 ? 1 : 0;
-        let case4: number = password.search(regex4) !== -1 ? 1 : 0;
+        const case1: number = password.search(regex1) !== -1 ? 1 : 0;
+        const case2: number = password.search(regex2) !== -1 ? 1 : 0;
+        const case3: number = password.search(regex3) !== -1 ? 1 : 0;
+        const case4: number = password.search(regex4) !== -1 ? 1 : 0;
 
-        return (case1 + case2 + case3 + case4 >= 2) && whiteSpaceCase;
+        return (case1 + case2 + case3 + case4 >= this.minPasswordComplication) && whiteSpaceCase;
     }
 }
 

@@ -1,10 +1,7 @@
 ﻿"use strict";
 class Kickout {
     init() {
-        const messageElement = document.getElementById("message");
-        const message = messageElement != null
-            ? (messageElement as HTMLInputElement).value
-            : (document.getElementById("errorMessage") as HTMLInputElement).value;
+        const message = siteInfrastructure.getInputElementvalue("message") || siteInfrastructure.getInputElementvalue("errorMessage");
 
         alert(message);
         siteInfrastructure.logout();

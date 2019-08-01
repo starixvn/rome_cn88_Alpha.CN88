@@ -117,7 +117,7 @@
                 font-weight: bold;
 
                 &:before {
-                    font-family: 'CN88Icon' !important;
+                    font-family: 'CN88Icon', sans-serif !important;
                     position: absolute;
                     left: 10px;
                     content: "\e900";
@@ -293,4 +293,3 @@ body{
         margin-bottom: 3px;
     }
 }
-

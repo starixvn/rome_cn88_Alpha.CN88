@@ -4,6 +4,7 @@
     using System.Web;
     using CN88.Helpers;
     using Configurations;
+    using global::CN88.Web.Helpers;
     using Helpers;
     using Requests.Default;
     using Web.Helpers;
@@ -44,9 +45,9 @@
         {
             get
             {
-                var browserName = browserHelper.GetDevice().Info.BrowserName.ToLower();
-                var userAgent = browserHelper.GetUserAgent().ToLower();
-                var isTablet = browserHelper.IsMobile(isOnlyTablet: true);
+                var browserName = browserHelper.GetDevice().Info.BrowserName.ToLowerInvariant();
+                var userAgent = browserHelper.GetUserAgent().ToLowerInvariant();
+                var isTablet = browserHelper.IsTablet();
 
                 var isSmallScale = browserName.Contains("chrome") &&
                     userAgent.Contains("android") &&
@@ -89,7 +90,7 @@
 
         public bool ClearClientData { get; }
 
-        public bool IsDevice => browserHelper.IsMobile(isOnlyTablet: false) && !browserHelper.IsMobile(isOnlyTablet: true);
+        public bool IsDevice => browserHelper.IsMobile();
 
         public string TroubleshootingPath => UrlHelper.MapMainPath("~/Help/Troubleshooting");
 
@@ -129,7 +130,7 @@
                 return result;
             }
         }
-        
+
         public bool ShowCN88SaveButton { get; }
     }
 }

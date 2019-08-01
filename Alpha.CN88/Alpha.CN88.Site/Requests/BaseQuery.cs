@@ -1,6 +1,7 @@
 ﻿namespace Alpha.CN88.Site.Requests
 {
     using CN88.Models;
+    using global::CN88.Web.Models;
 
     public class BaseQuery
     {
@@ -35,6 +36,8 @@
         public int SubAccountId => viewer.SubAccountId;
 
         public string SubUserName => viewer.SubUserName;
+
+        public bool IsAllDownline => viewer.IsAllDownline;
 
         public string IP => viewer.IP;
 

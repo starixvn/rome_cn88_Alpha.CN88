@@ -1,68 +1,87 @@
 ﻿namespace CN88.Web.Filters
 {
     using System;
+    using System.Web;
     using System.Web.Mvc;
     using Configurations;
     using Helpers;
     using Models;
     using Services;
+    using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
 
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
     public sealed class CheckBelongingFilter : AuthorizeAttribute
     {
+        private static readonly AuthorizationSection AuthorizationSectionInstance = AuthorizationSection.Instance;
+
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (UserSession.Current?.CustId == 0 ||
-                filterContext.Result is HttpUnauthorizedResult)
+            IUserSession userSession = new UserSessionExt();
+
+            if (userSession?.CustId == 0 || filterContext.Result is HttpUnauthorizedResult)
             {
                 UnAuthorizationHelper.UnauthorizeOrLogin(filterContext);
                 return;
             }
 
-            var belongingContext = new BelongingContext(
-                httpRequest: filterContext.HttpContext.Request,
-                currentUrl: GetCurrentUrl(filterContext));
-
-            if (belongingContext.IsValid)
+            if (userSession.IsInternal)
             {
-                AuthorizationService authorizationService = new AuthorizationServiceImpl();
+                return;
+            }
 
-                if (belongingContext.EnableCheckBelonging)
+            var currentURL = GetCurrentUrl(filterContext);
+            var request = filterContext.HttpContext.Request;
+            var authorizationService = GetAuthorizationService();
+
+            // 1. Check belonging.
+            if (AuthorizationSectionInstance.EnableCheckBelonging)
+            {
+                var belongingParam = new BelongingParam(currentURL, userSession);
+
+                if (!authorizationService.IsBelonging(request, belongingParam))
                 {
-                    if (!authorizationService.IsBelonging(belongingContext))
-                    {
-                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "AccessDeny");
-                        return;
-                    }
+                    UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "AccessDeny");
+                    return;
+                }
+            }
 
-                    if (!authorizationService.IsAuthorized(belongingContext))
-                    {
-                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "AccessDeny");
-                        return;
-                    }
+            if (EnableKickout)
+            {
+                // 2.1. Check account status is Active can do Update action.
+                // 2.2. Check sub account permission.
+                var accountPermissionParam = new AccountPermissionParam(currentURL, IsHttpPost(request), userSession);
+
+                if (!authorizationService.IsAccountHasPermissionOnURL(accountPermissionParam))
+                {
+                    UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "AccessDeny");
+                    return;
                 }
 
-                if (belongingContext.EnableKickout)
+                // 3. Check account status is changed by Admin or Upline.
+                var customerStatus = authorizationService.CheckCustomerStatus(
+                    accountPermissionParam.ActorId,
+                    accountPermissionParam.ActorSubAccountId);
+
+                if (customerStatus.IsKickedOut(accountPermissionParam.ActorStatus))
                 {
-                    var customerStatus = authorizationService.CheckCustomerStatus(belongingContext);
+                    authorizationService.Logout(new LogoutContext(userSession));
+                    UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, customerStatus.GetErrorResourceKey());
+                    return;
+                }
 
-                    if (customerStatus.IsKickedOut(belongingContext.CustomerStatus))
-                    {
-                        authorizationService.Logout(belongingContext);
-                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, customerStatus.GetErrorResourceKey());
-                        return;
-                    }
-
-                    if (!AppSettings.DisabledCheckDuplicationLogin
-                        && authorizationService.IsKickedOut(belongingContext))
-                    {
-                        authorizationService.Logout(belongingContext);
-                        UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "SessionKickedOut");
-                    }
+                // 4. Check duplication login.
+                if (!AppSettings.DisabledCheckDuplicationLogin
+                    && authorizationService.IsKickedOut(accountPermissionParam.ActorId, accountPermissionParam.ActorSubAccountId, userSession.OnUserId))
+                {
+                    authorizationService.Logout(new LogoutContext(userSession));
+                    UnAuthorizationHelper.UnauthorizeOrKickout(filterContext, "SessionKickedOut");
                 }
             }
         }
+
+        private static AuthorizationService GetAuthorizationService()
+            => new AuthorizationServiceImpl(authorizationSection: AuthorizationSectionInstance);
 
         private static string GetCurrentUrl(AuthorizationContext filterContext)
         {
@@ -70,5 +89,11 @@
 
             return $"{actionDescriptor.ControllerDescriptor.ControllerName}/{actionDescriptor.ActionName}";
         }
+
+        private static bool IsHttpPost(HttpRequestBase request)
+            => request.HttpMethod.Equals("POST", StringComparison.OrdinalIgnoreCase);
+
+        private static bool EnableKickout
+            => !string.IsNullOrWhiteSpace(AuthorizationSectionInstance.KickoutUrl);
     }
 }

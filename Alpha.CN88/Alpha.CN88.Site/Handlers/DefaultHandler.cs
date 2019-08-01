@@ -1,14 +1,14 @@
 ﻿namespace Alpha.CN88.Site.Handlers
 {
     using System;
-    using CN88.Models;
-    using Helpers;
+    using global::CN88.Web.Helpers;
+    using global::CN88.Web.Models;
+    using global::CN88.Web.ViewModel;
     using MediatR;
     using Requests;
     using Requests.Default;
     using Services;
     using Sunplus.Agent.Utilities;
-    using ViewModels;
     using ViewModels.Default;
     using Web.Helpers;
 
@@ -64,12 +64,12 @@
 
         public IndexViewModel Handle(IndexQuery message)
         {
-            var onlineMember = defaultService.GetOnlineMember(message.ViewerId);
+            var onlineMember = defaultService.GetOnlineMember(message.ViewerId, message.SubAccountId, message.IsAllDownline);
 
             return new IndexViewModel(message, browserHelper, onlineMember, getDefaultUrl, encodeDataFunction);
         }
 
         public long Handle(TotalOnlineMember message)
-            => defaultService.GetOnlineMember(message.ViewerId);
+            => defaultService.GetOnlineMember(message.ViewerId, message.SubAccountId, message.IsAllDownline);
     }
 }
