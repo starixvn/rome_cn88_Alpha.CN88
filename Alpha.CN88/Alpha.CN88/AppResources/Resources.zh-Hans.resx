@@ -208,7 +208,7 @@
   <data name="Headline" xml:space="preserve">
     <value>总监</value>
   </data>
-  <data name="MasterAgent" xml:space="preserve">
+  <data name="Master" xml:space="preserve">
     <value>总代理</value>
   </data>
   <data name="Member" xml:space="preserve">

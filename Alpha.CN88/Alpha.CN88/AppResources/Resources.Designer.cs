@@ -271,9 +271,9 @@ namespace Alpha.CN88.AppResources {
         /// <summary>
         ///   Looks up a localized string similar to Master Agent.
         /// </summary>
-        public static string MasterAgent {
+        public static string Master {
             get {
-                return ResourceManager.GetString("MasterAgent", resourceCulture);
+                return ResourceManager.GetString("Master", resourceCulture);
             }
         }
         
