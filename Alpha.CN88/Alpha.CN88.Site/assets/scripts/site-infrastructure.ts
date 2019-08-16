@@ -307,3 +307,20 @@ window.top.cn88SaveAndNewCallback = function () {
 $(function () {
     window.top.showCN88SaveButton = window.top.$("#ShowCN88SaveButton").val() === "1";
 });
+
+$(() => {
+    $.ajaxSetup({
+        beforeSend: function (xhr) {
+            var antiXSRFToken = document.getElementsByName("__RequestVerificationToken");
+            if (antiXSRFToken.length > 0) {
+                xhr.setRequestHeader("__RequestVerificationToken", (<HTMLInputElement>antiXSRFToken[0]).value);
+            }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            if (xhr.status === 401) {
+                alert('Oops... you are here because of a system error, please notify the administrators.');
+                siteInfrastructure.logout();
+            }
+        }
+    });
+});
