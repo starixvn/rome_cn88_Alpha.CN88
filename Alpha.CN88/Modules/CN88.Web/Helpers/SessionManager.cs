@@ -103,12 +103,12 @@
         {
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
 
             if (string.IsNullOrWhiteSpace(key))
             {
-                throw new ArgumentOutOfRangeException("key", @"Cache keys cannot be empty or whitespace");
+                throw new ArgumentOutOfRangeException(nameof(key), @"Cache keys cannot be empty or whitespace");
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿namespace Alpha.CN88.Site.Requests
 {
     using CN88.Models;
-    using global::CN88.Web.Models;
+    using global::CN88.Common.Models;
 
     public class BaseQuery
     {

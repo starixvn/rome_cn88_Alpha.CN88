@@ -3,8 +3,8 @@
     using System;
     using System.Web.Mvc;
     using System.Web.Security;
+    using CN88.Common.Models;
     using CN88.Web.Helpers;
-    using CN88.Web.Models;
     using CN88.Web.Validators;
 
     [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]

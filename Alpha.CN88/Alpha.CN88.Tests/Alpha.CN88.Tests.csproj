@@ -111,6 +111,10 @@
       <Project>{32F77ACD-7726-49D0-8B2A-78CAF55F6073}</Project>
       <Name>Alpha.CN88</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\CN88.Common\CN88.Common.csproj">
+      <Project>{ebc26e53-875c-4181-b94b-6a1c0a895dca}</Project>
+      <Name>CN88.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\CN88.Web\CN88.Web.csproj">
       <Project>{B9E4BDA2-5B82-4E85-8A80-9B470D8B1F2D}</Project>
       <Name>CN88.Web</Name>

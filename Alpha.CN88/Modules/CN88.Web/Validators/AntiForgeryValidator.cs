@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.Helpers;
+using CN88.Common.Models;
 using CN88.Web.Configurations;
-using CN88.Web.Models;
 
 namespace CN88.Web.Validators
 {

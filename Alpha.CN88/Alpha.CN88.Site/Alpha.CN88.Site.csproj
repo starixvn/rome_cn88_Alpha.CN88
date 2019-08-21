@@ -1049,6 +1049,10 @@
       <Project>{382efae7-d5be-4344-92f1-1f95e8e35903}</Project>
       <Name>CN88.Auth</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\CN88.Common\CN88.Common.csproj">
+      <Project>{ebc26e53-875c-4181-b94b-6a1c0a895dca}</Project>
+      <Name>CN88.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\CN88.Web\CN88.Web.csproj">
       <Project>{b9e4bda2-5b82-4e85-8a80-9b470d8b1f2d}</Project>
       <Name>CN88.Web</Name>

@@ -1,7 +1,7 @@
 ﻿namespace Alpha.CN88.Models.Home
 {
     using Alpha.CN88.AppResources;
-    using global::CN88.Web.Models;
+    using global::CN88.Common.Models;
 
     public class StatusSummary
     {
