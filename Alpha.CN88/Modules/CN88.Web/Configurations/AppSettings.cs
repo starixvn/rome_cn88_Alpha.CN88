@@ -36,6 +36,12 @@
 
         public static string FeaturesAppPath => GetConfigValue("FeaturesAppPath");
 
+        public static string ViewLogAppPath => GetConfigValue("ViewLogAppPath");
+
+        public static string TotalBetAppPath => GetConfigValue("TotalBetAppPath");
+
+        public static string AccountAppPath => GetConfigValue("AccountAppPath");
+
         public static string StaticResourcesVersion => GetConfigValue("AssetsApp:StaticResourcesVersion");
 
         internal static bool DisabledCheckDuplicationLogin => GetBoolConfigValue("DisabledCheckDuplicationLogin");

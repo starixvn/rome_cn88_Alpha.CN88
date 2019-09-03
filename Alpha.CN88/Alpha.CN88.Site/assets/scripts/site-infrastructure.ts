@@ -309,15 +309,17 @@ $(function () {
 });
 
 $(() => {
+    const unauthorizedCode = 401;
+
     $.ajaxSetup({
         beforeSend: function (xhr) {
-            var antiXSRFToken = document.getElementsByName("__RequestVerificationToken");
+            const antiXSRFToken = document.getElementsByName("__RequestVerificationToken");
             if (antiXSRFToken.length > 0) {
-                xhr.setRequestHeader("__RequestVerificationToken", (<HTMLInputElement>antiXSRFToken[0]).value);
+                xhr.setRequestHeader("__RequestVerificationToken", (antiXSRFToken[0] as HTMLInputElement).value);
             }
         },
         error: function (xhr, textStatus, errorThrown) {
-            if (xhr.status === 401) {
+            if (xhr.status === unauthorizedCode) {
                 alert('Oops... you are here because of a system error, please notify the administrators.');
                 siteInfrastructure.logout();
             }
