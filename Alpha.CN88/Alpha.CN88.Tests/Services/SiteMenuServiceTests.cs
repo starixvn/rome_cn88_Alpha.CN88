@@ -5,7 +5,7 @@
     using Alpha.CN88.Models.Menus;
     using Alpha.CN88.Services;
     using Alpha.CN88.Services.Impl;
-    using global::CN88.Web.Models;
+    using global::CN88.Common.Models;
     using KellermanSoftware.CompareNetObjects;
     using NSubstitute;
     using NUnit.Framework;

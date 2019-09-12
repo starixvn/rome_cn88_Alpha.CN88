@@ -204,4 +204,7 @@
   <data name="masterAgent" xml:space="preserve">
     <value>總代理</value>
   </data>
+  <data name="problemAccount" xml:space="preserve">
+    <value>問題帳戶</value>
+  </data>
 </root>

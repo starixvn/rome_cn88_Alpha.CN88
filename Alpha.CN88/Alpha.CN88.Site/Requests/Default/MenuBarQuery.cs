@@ -1,7 +1,7 @@
 ﻿namespace Alpha.CN88.Site.Requests.Default
 {
     using System.Web;
-    using global::CN88.Web.Models;
+    using global::CN88.Common.Models;
     using MediatR;
     using ViewModels.Default;
 

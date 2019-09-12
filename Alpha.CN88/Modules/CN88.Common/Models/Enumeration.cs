@@ -1,4 +1,4 @@
-﻿namespace CN88.Web.Models
+﻿namespace CN88.Common.Models
 {
     using System;
     using System.Collections;

@@ -7,9 +7,10 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
-    using Alpha.Web.Helpers;
     using CN88.Helpers;
     using global::CN88.Auth.AppResources;
+    using global::CN88.Web.Helpers;
+    using global::CN88.Web.Validators;
     using MediatR;
     using Requests.Authentication;
     using Sunplus.Agent.Utilities;
@@ -109,7 +110,7 @@
                 var cookie = new HttpCookie("detecas-username") { Value = userName };
                 Response.Cookies.Add(cookie);
 
-                Web.Validators.SessionValidator.AddSessionVerificationToken();
+                SessionValidator.AddSessionVerificationToken();
             }
 
             var cookieNameOfCurrentPage = CookieHelper.GetCookieNameOfCurrentPage(result.CustId, result.SubAccId, Encryption.PearsonEncode);

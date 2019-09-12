@@ -4,13 +4,13 @@
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.SecurityCode;
     using global::CN88.Auth.Services;
+    using global::CN88.Web.Helpers;
     using MediatR;
     using Requests.SecurityCode;
     using SecurityCode.Web;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
     using ViewModels.SecurityCode;
-    using Web.Helpers;
 
     public class SecurityCodeHandler :
         IRequestHandler<ChangeSecurityCodeCommand, SecurityResult>,

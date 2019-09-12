@@ -4,14 +4,14 @@
     using System.Text.RegularExpressions;
     using System.Web;
 
-    internal static class AppPathHelper
+    public static class AppPathHelper
     {
-        internal static string GetAppPath(string appName, string virtualPath)
+        public static string GetAppPath(string appName, string virtualPath)
         {
             return GetAppPath(appName, virtualPath, null, null);
         }
 
-        internal static string GetAppPath(
+        public static string GetAppPath(
             string appName,
             string virtualPath,
             Func<HttpContext> getCurrentContext,

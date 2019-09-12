@@ -1,6 +1,6 @@
 ﻿namespace CN88.Web.ViewModel
 {
-    using CN88.Web.Models;
+    using CN88.Common.Models;
 
     public class BrowserViewModel
     {

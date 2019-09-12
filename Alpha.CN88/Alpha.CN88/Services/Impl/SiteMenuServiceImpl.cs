@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-    using global::CN88.Web.Models;
+    using global::CN88.Common.Models;
     using Models.Menus;
 
     public class SiteMenuServiceImpl : SiteMenuService

@@ -4,9 +4,9 @@
     using System.Linq;
     using CN88.Models.Home;
     using Configurations;
+    using global::CN88.Web.Helpers;
     using Helpers;
     using Requests.Home;
-    using Web.Helpers;
 
     public class HomeViewModel
     {

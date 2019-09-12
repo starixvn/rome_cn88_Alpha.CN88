@@ -35,20 +35,9 @@
     <CodeAnalysisRuleSet>Alpha.CN88.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Auth, Version=3.0.2.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Auth.3.0.2.1\lib\net461\Alpha.Auth.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Alpha.SubAccount, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Alpha.Utilities, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Utilities.3.0.0.1\lib\net40\Alpha.Utilities.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.3.4\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.2.7.0, Culture=neutral, PublicKeyToken=05e9c6b5a9ec94c2, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CouchbaseNetClient.1.2.7\lib\net40\Couchbase.dll</HintPath>
@@ -252,6 +241,10 @@
     <EmbeddedResource Include="AppResources\SitemapLabels.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Modules\CN88.Common\CN88.Common.csproj">
+      <Project>{ebc26e53-875c-4181-b94b-6a1c0a895dca}</Project>
+      <Name>CN88.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\CN88.Web\CN88.Web.csproj">
       <Project>{b9e4bda2-5b82-4e85-8a80-9b470d8b1f2d}</Project>
       <Name>CN88.Web</Name>

@@ -1,7 +1,7 @@
 ﻿namespace Alpha.CN88.Site.ViewModels.Password
 {
     using global::CN88.Auth.Models;
-    using global::CN88.Web.Models;
+    using global::CN88.Common.Models;
 
     public class ResetPasswordViewModel
     {

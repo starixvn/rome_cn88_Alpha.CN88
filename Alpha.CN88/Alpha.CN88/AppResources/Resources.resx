@@ -211,7 +211,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="Headline" xml:space="preserve">
     <value>Headline</value>
   </data>
-  <data name="MasterAgent" xml:space="preserve">
+  <data name="Master" xml:space="preserve">
     <value>Master Agent</value>
   </data>
   <data name="Member" xml:space="preserve">

@@ -3,12 +3,12 @@
     using global::CN88.Auth.Models;
     using global::CN88.Auth.Params.Password;
     using global::CN88.Auth.Services;
+    using global::CN88.Web.Helpers;
     using MediatR;
     using Requests.Password;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
     using ViewModels.Password;
-    using Web.Helpers;
 
     public class PasswordHandler :
         IRequestHandler<ChangePasswordCommand, SecurityResult>,
