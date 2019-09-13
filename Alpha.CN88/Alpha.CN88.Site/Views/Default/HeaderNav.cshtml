@@ -2,17 +2,18 @@
 @model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
 @if (Model.IsDevice)
 {
-    <div class="menubar-mobile">
-        <div id="hamburger-container" class="hamburger-container">
-            <div class="hamburger-icon" id="hamburgerIcon">
-                <span class="line line-1"></span>
-                <span class="line line-2"></span>
-                <span class="line line-3"></span>
-            </div>
+<div class="menubar-mobile">
+    <div id="hamburger-container" class="hamburger-container">
+        <div class="hamburger-icon" id="hamburgerIcon">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
         </div>
-        <div class="page-title" id="page-title"></div>
-        <span class="icon-bell"></span>
     </div>
+    <div class="page-title" id="page-title"></div>
+    <span class="icon-account-notification" data-toggle="tooltip" title="@Resources.problemAccount"></span>
+    <span class="icon-bell"></span>
+</div>
 
     <div class="username-mobile">
         <div class="dropdown">
@@ -46,7 +47,7 @@ else
             @if (Model.ShowProblemAccountIcon)
             {
                 <li class="header-item" id="lnk-problem-account">
-                    <a href="@Model.ProblemAccountPath" target="main"><span class="icon-bell" data-toggle="tooltip" title="@Resources.problemAccount"></span></a>
+                    <a href="@Model.ProblemAccountPath" target="main"><span class="icon-account-notification" data-toggle="tooltip" title="@Resources.problemAccount"></span></a>
                 </li>
             }
             <li class="header-item" id="lnk-personal-announcement">
