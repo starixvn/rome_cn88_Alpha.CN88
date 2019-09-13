@@ -134,6 +134,7 @@ let indexManager: IndexManager = {
             $("#lnk-problem-account").on(siteInfrastructure.clickEvent, function () {
                 $.blockUI();
                 indexManager.activeMainMenu("menu-ACCOUNTMANAGEMENT");
+                indexManager.activeSubMenu("sub-menu-PROBLEMACCOUNT", "menu-ACCOUNTMANAGEMENT");
                 $("#main").attr("src", $(this).children("a").attr("href"));
             });
 
