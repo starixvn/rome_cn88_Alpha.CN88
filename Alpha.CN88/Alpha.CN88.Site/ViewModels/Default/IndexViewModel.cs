@@ -80,6 +80,8 @@
 
         public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=1");
 
+        public string ProblemAccountPath => MicroSites.AccountsUrl("~/ProblemAccount/Index");
+
         public string OnlineMembersPath => MicroSites.FeaturesUrl("~/CustomerList/OnlineMembers");
 
         public string OldReportsPath => MicroSites.FeaturesUrl("~/OldReports/Index?DisplayMode=1");

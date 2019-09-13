@@ -131,6 +131,12 @@ let indexManager: IndexManager = {
                 $("#main").attr("src", $(this).children("a").attr("href"));
             });
 
+            $("#lnk-problem-account").on(siteInfrastructure.clickEvent, function () {
+                $.blockUI();
+                indexManager.activeMainMenu("menu-ACCOUNTMANAGEMENT");
+                $("#main").attr("src", $(this).children("a").attr("href"));
+            });
+
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
