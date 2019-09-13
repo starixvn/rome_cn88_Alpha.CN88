@@ -15,7 +15,9 @@
             NickName = viewer.NickName;
             AdminName = viewer.AdminName;
             ShowCN88SaveButton = viewer.CustomerStatus == Constants.CustomerStatus.Active && viewer.AccountManagementEditView;
-            ShowProblemAccountIcon = viewer.CustomerStatus == Constants.CustomerStatus.Active && viewer.AccountManagementViewOnly;
+            ShowProblemAccountIcon = ActorLevel.IsSuperLevel()
+                && viewer.CustomerStatus == Constants.CustomerStatus.Active
+                && viewer.AccountManagementViewOnly;
         }
 
         public int OnlineUserId { get; }

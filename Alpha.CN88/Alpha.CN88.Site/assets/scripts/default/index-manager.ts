@@ -37,7 +37,8 @@ let indexManager: IndexManager = {
         isDevice: false,
         pageTitle: null,
         announcementPath: null,
-        initMainFrameLink: null
+        initMainFrameLink: null,
+        problemAccountPath: null,
     },
     currentState: {
         mainMenuId: null,
@@ -106,6 +107,7 @@ let indexManager: IndexManager = {
         indexManager.elements.pageTitle = $("#page-title");
         indexManager.elements.announcementPath = $("#AnnouncementPath").val();
         indexManager.elements.initMainFrameLink = $("#InitMainFrameLink").val();
+        indexManager.elements.problemAccountPath = $("#ProblemAccountPath").val();
     },
     bindEvents: function () {
         $(".changelanguage-link").on(siteInfrastructure.clickEvent, (event: JQueryEventObject) => {
@@ -327,7 +329,14 @@ let indexManager: IndexManager = {
                 indexManager.closeMenuBarOnMobile();
             });
 
+            $(".icon-account-notification").on(siteInfrastructure.clickEvent, () => {
+                indexManager.activeMainMenu("menu-ACCOUNTMANAGEMENT");
+                indexManager.activeSubMenu("sub-menu-PROBLEMACCOUNT", "menu-ACCOUNTMANAGEMENT");
+                indexManager.elements.mainFrame.attr("src", indexManager.elements.problemAccountPath);
+            });
+
             $(".icon-bell").on(siteInfrastructure.clickEvent, () => {
+                indexManager.activeMainMenu("menu-ANNOUNCEMENT");
                 indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
             });
 

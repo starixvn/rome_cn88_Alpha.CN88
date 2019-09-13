@@ -2,18 +2,18 @@
 @model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
 @if (Model.IsDevice)
 {
-<div class="menubar-mobile">
-    <div id="hamburger-container" class="hamburger-container">
-        <div class="hamburger-icon" id="hamburgerIcon">
-            <span class="line line-1"></span>
-            <span class="line line-2"></span>
-            <span class="line line-3"></span>
+    <div class="menubar-mobile">
+        <div id="hamburger-container" class="hamburger-container">
+            <div class="hamburger-icon" id="hamburgerIcon">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </div>
         </div>
+        <div class="page-title" id="page-title"></div>
+        <span class="icon-account-notification"></span>
+        <span class="icon-bell"></span>
     </div>
-    <div class="page-title" id="page-title"></div>
-    <span class="icon-account-notification" data-toggle="tooltip" title="@Resources.problemAccount"></span>
-    <span class="icon-bell"></span>
-</div>
 
     <div class="username-mobile">
         <div class="dropdown">

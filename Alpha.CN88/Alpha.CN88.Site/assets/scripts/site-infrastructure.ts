@@ -193,7 +193,8 @@ class IndexManager {
         isDevice: boolean,
         pageTitle: JQuery,
         announcementPath: string,
-        initMainFrameLink: string
+        initMainFrameLink: string,
+        problemAccountPath: string
     };
     currentState: {
         mainMenuId: string,
