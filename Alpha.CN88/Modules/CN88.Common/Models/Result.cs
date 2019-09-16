@@ -21,9 +21,15 @@
 
         public int ErrCode { get; set; }
 
+        public bool IsSuccess => ErrCode == 0;
+
         public static Result GetAccessDeniedResult(string message)
-        {
-            return new Result(AccessDeniedCode, message);
-        }
+            => new Result(AccessDeniedCode, message);
+
+        public static Result CreateSuccessResult(string message = "")
+            => new Result(SuccessResultCode, message);
+
+        public static Result CreateErrorResult(int code = 1, string message = "")
+            => new Result(code, message);
     }
 }

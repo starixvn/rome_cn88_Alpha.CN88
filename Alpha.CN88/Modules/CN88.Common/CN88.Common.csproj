@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Models\Enumeration.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\UserLevel.cs" />
