@@ -373,7 +373,12 @@
     <Content Include="App_Data\SPNames\UAT\DBPRO.bodb02.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Themes\Apo\IpInfo\IPInfo.min.css" />
+    <Content Include="App_Themes\Apo\IpInfo\IPInfo.css">
+      <DependentUpon>IPInfo.scss</DependentUpon>
+    </Content>
+    <Content Include="App_Themes\Apo\IpInfo\IPInfo.min.css">
+      <DependentUpon>IPInfo.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\auth\kickout.js" />
     <Content Include="assets\bundles\auth\kickout.min.js">
       <DependentUpon>kickout.js</DependentUpon>
@@ -926,6 +931,7 @@
     <Content Include="Alpha.CN88.Site.Debug.ruleset" />
     <Content Include="Alpha.CN88.Site.ruleset" />
     <Content Include="assets\styles\help.scss" />
+    <Content Include="App_Themes\Apo\IpInfo\IPInfo.scss" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>

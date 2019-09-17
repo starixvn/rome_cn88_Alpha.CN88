@@ -26,5 +26,9 @@
   {
     "outputFile": "assets/styles/help.css",
     "inputFile": "assets/styles/help.scss"
+  },
+  {
+    "outputFile": "App_Themes/Apo/IPInfo/IPInfo.css",
+    "inputFile": "App_Themes/Apo/IPInfo/IPInfo.scss"
   }
 ]
