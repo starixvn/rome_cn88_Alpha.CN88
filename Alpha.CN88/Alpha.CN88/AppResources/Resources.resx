@@ -250,4 +250,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="ViewOnly" xml:space="preserve">
     <value>View Only</value>
   </data>
+  <data name="problemAccount" xml:space="preserve">
+    <value>Problem Account</value>
+  </data>
 </root>

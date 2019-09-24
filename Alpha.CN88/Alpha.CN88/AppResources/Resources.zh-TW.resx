@@ -247,4 +247,7 @@
   <data name="ViewOnly" xml:space="preserve">
     <value>只能看帳</value>
   </data>
+  <data name="problemAccount" xml:space="preserve">
+    <value>問題帳戶</value>
+  </data>
 </root>

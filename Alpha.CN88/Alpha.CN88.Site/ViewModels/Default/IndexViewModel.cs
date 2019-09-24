@@ -37,6 +37,7 @@
             NickName = message.NickName;
             AdminName = message.AdminName;
             ShowCN88SaveButton = message.ShowCN88SaveButton;
+            ShowProblemAccountIcon = message.ShowProblemAccountIcon;
         }
 
         public double InitialScaleViewPort
@@ -79,6 +80,8 @@
         public string CurrentURLCookieName => CookieHelper.GetCookieNameOfCurrentPage(CustId, SubAccId, encodeDataFunction);
 
         public string PersonalMessagePath => MicroSites.MessageUrl("~/MessageHistory/Index?messageType=1");
+
+        public string ProblemAccountPath => MicroSites.AccountsUrl("~/ProblemAccount/Index");
 
         public string OnlineMembersPath => MicroSites.FeaturesUrl("~/CustomerList/OnlineMembers");
 
@@ -128,5 +131,7 @@
         }
 
         public bool ShowCN88SaveButton { get; }
+
+        public bool ShowProblemAccountIcon { get; }
     }
 }

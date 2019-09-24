@@ -12,5 +12,8 @@
 
         public static string FeaturesUrl(string virtualPath = "~/")
             => AppPathHelper.GetAppPath(AppSettings.FeaturesAppPath, virtualPath);
+
+        public static string AccountsUrl(string virtualPath = "~/")
+            => AppPathHelper.GetAppPath(AppSettings.AccountAppPath, virtualPath);
     }
 }
