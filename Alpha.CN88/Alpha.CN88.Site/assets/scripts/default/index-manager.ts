@@ -616,6 +616,7 @@ let indexManager: IndexManager = {
         }, reloadTimeout);
     },
     activeSubMenu: (id: string, mainMenuId: string) => {
+        indexManager.elements.subMenuItems.removeClass("active");
         indexManager.elements.subMenu.slideUp("fast");
         indexManager.elements.menuBar.addClass(classHasSubMenu);
         const subMenu = $(`.sub-menu[data-main-menu='${mainMenuId}']`);
