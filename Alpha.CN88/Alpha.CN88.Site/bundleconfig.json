@@ -14,6 +14,7 @@
   {
     "outputFileName": "Assets/bundles/default-index.js",
     "inputFiles": [
+      "assets/scripts/http-status.js",
       "Assets/scripts/site-infrastructure.js",
       "Assets/scripts/default/index-manager.js"
     ]
