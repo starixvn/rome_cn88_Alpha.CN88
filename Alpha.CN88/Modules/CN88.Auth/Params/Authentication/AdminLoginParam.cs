@@ -17,7 +17,8 @@
             string languageKey,
             string afterLogInSite,
             string afterLogInQuery,
-            RequestInfo requestInfo)
+            RequestInfo requestInfo,
+            bool isHideTopMenu)
         {
             AdminId = adminId;
             SystemLogin = systemLogin;
@@ -30,6 +31,7 @@
             AfterLogInQuery = afterLogInQuery;
 
             RequestInfo = requestInfo;
+            IsHideTopMenu = isHideTopMenu;
         }
 
         public int AdminId { get; }
@@ -51,5 +53,7 @@
         public string AfterLogInQuery { get; }
 
         public RequestInfo RequestInfo { get; }
+
+        public bool IsHideTopMenu { get; }
     }
 }

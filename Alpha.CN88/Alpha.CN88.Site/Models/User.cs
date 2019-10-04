@@ -71,5 +71,7 @@
         public string AdminName => userSession.AdminName;
 
         public bool IsAllDownline => userSession.GetProperty<bool>("ISALLDOWNLINE");
+
+        public bool IsHideTopMenu => userSession.GetProperty<bool>("IsHideTopMenu");
     }
 }
