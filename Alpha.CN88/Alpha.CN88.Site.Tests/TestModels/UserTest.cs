@@ -58,5 +58,7 @@
         public string AdminName { get; private set; }
 
         public bool IsAllDownline { get; private set; }
+
+        public bool IsHideTopMenu { get; }
     }
 }

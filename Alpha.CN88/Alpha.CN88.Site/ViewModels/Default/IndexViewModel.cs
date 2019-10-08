@@ -38,6 +38,7 @@
             AdminName = message.AdminName;
             ShowCN88SaveButton = message.ShowCN88SaveButton;
             ShowProblemAccountIcon = message.ShowProblemAccountIcon;
+            IsHideTopMenu = message.IsHideTopMenu;
         }
 
         public double InitialScaleViewPort
@@ -133,5 +134,7 @@
         public bool ShowCN88SaveButton { get; }
 
         public bool ShowProblemAccountIcon { get; }
+
+        public bool IsHideTopMenu { get; }
     }
 }
