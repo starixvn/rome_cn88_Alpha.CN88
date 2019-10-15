@@ -32,6 +32,7 @@
         private const int NickNameIndex = 4;
         private const int IsNickNameIndex = 5;
         private const int LanguageIndex = 7;
+        private const int HideTopMenuIndex = 8;
         private const int DeviceIndex = 9;
         private const int BrowserSizeIndex = 10;
         private const int EncryptCodeIndex = 11;
@@ -124,6 +125,8 @@
             var language = loginParamsLength > 7 ? keyValuePairs[LanguageIndex] : ValidLanguages[0];
             var validLanguageIndex = Array.FindIndex(ValidLanguages, item => item.Equals(language, StringComparison.OrdinalIgnoreCase));
             var languageKey = validLanguageIndex > 0 ? ValidLanguageKeys[validLanguageIndex] : ValidLanguageKeys[0];
+            var resultBool = false;
+            var isHideTopMenu = bool.TryParse(keyValuePairs[HideTopMenuIndex], out resultBool);
 
             return new AdminLoginParam(
                 adminId,
@@ -134,7 +137,8 @@
                 languageKey,
                 loginParamsLength > 5 ? keyValuePairs[4] : string.Empty,
                 loginParamsLength > 5 ? keyValuePairs[5].Replace("|", "&") : string.Empty,
-                GetRequestInfo(GetRequest(), loginParamsLength >= 11 ? keyValuePairs[BrowserSizeIndex] : string.Empty));
+                GetRequestInfo(GetRequest(), loginParamsLength >= 11 ? keyValuePairs[BrowserSizeIndex] : string.Empty),
+                isHideTopMenu);
         }
 
         private static HttpRequest GetRequest()

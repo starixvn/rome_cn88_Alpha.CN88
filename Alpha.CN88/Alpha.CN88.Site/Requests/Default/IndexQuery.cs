@@ -18,6 +18,7 @@
             ShowProblemAccountIcon = ActorLevel.IsSuperLevel()
                 && viewer.CustomerStatus == Constants.CustomerStatus.Active
                 && viewer.AccountManagementViewOnly;
+            IsHideTopMenu = viewer.IsHideTopMenu;
         }
 
         public int OnlineUserId { get; }
@@ -33,5 +34,7 @@
         public bool ShowCN88SaveButton { get; }
 
         public bool ShowProblemAccountIcon { get; }
+
+        public bool IsHideTopMenu { get; }
     }
 }

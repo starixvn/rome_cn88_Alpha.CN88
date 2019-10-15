@@ -47,5 +47,7 @@
         byte CustomerStatus { get; }
 
         string AdminName { get; }
+
+        bool IsHideTopMenu { get; }
     }
 }

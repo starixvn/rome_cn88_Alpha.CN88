@@ -74,6 +74,7 @@
             userSession.Language = loginParam.Language;
             userSession.LangKey = loginParam.LanguageKey;
             userSession.IsInternalWebVPN = false;
+            userSession.SetProperty("IsHideTopMenu", loginParam.IsHideTopMenu);
 
             SetUserSessionValues(
                userSession,
