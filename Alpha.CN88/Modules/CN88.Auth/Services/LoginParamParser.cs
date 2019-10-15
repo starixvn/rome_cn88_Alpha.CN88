@@ -126,7 +126,15 @@
             var validLanguageIndex = Array.FindIndex(ValidLanguages, item => item.Equals(language, StringComparison.OrdinalIgnoreCase));
             var languageKey = validLanguageIndex > 0 ? ValidLanguageKeys[validLanguageIndex] : ValidLanguageKeys[0];
             var resultBool = false;
-            var isHideTopMenu = bool.TryParse(keyValuePairs[HideTopMenuIndex], out resultBool);
+            var isHideTopMenu = false;
+
+            try
+            {
+                isHideTopMenu = bool.TryParse(keyValuePairs[HideTopMenuIndex], out resultBool);
+            }
+            catch
+            {
+            }
 
             return new AdminLoginParam(
                 adminId,
