@@ -69,7 +69,6 @@ let indexManager: IndexManager = {
         } else {
             $("#main").attr("src", indexManager.elements.initMainFrameLink);
         }
-
     },
     cacheElements: function () {
         indexManager.elements.isNotHeadLine = parseInt($("#IsNotHeadLine").val());
@@ -124,21 +123,21 @@ let indexManager: IndexManager = {
             indexManager.viewOnlineList();
         });
 
+        $("#lnk-personal-announcement").on(siteInfrastructure.clickEvent, function () {
+            $.blockUI();
+            indexManager.activeMainMenu("menu-ANNOUNCEMENT");
+            $("#main").attr("src", $(this).children("a").attr("href"));
+        });
+
+        $("#lnk-problem-account").on(siteInfrastructure.clickEvent, function () {
+            $.blockUI();
+            indexManager.viewProblemAccount();
+        });
+
+        $("#link-LiveChat").on(siteInfrastructure.clickEvent, indexManager.openLiveChat);
+
         indexManager.elements.mainMenu.on(siteInfrastructure.clickEvent, function (event) {
             event.type === 'touchend' && $(this).off('click');
-
-            $("#lnk-personal-announcement").on(siteInfrastructure.clickEvent, function () {
-                $.blockUI();
-                indexManager.activeMainMenu("menu-ANNOUNCEMENT");
-                $("#main").attr("src", $(this).children("a").attr("href"));
-            });
-
-            $("#lnk-problem-account").on(siteInfrastructure.clickEvent, function () {
-                $.blockUI();
-                indexManager.activeMainMenu("menu-ACCOUNTMANAGEMENT");
-                indexManager.activeSubMenu("sub-menu-PROBLEMACCOUNT", "menu-ACCOUNTMANAGEMENT");
-                $("#main").attr("src", $(this).children("a").attr("href"));
-            });
 
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
@@ -163,20 +162,6 @@ let indexManager: IndexManager = {
             event.stopPropagation();
         });
 
-        $("#lnk-new-url").on(siteInfrastructure.clickEvent, () => {
-            $("#menu-HELP").click();
-        });
-
-        $("#lnk-live-chat").on(siteInfrastructure.clickEvent, () => {
-            window.open(indexManager.urls.liveChat, "LiveChat", "height=600,width=800");
-        });
-
-        $("#lnk-contact-us").on(siteInfrastructure.clickEvent, () => {
-            indexManager.elements.mainMenu.removeClass("active");
-            indexManager.elements.subMenu.slideUp("fast");
-            indexManager.elements.menuBar.removeClass(classHasSubMenu);
-            indexManager.elements.mainFrame.attr("src", indexManager.urls.contactUs);
-        });
         $("#menu-back").on(siteInfrastructure.clickEvent, () => {
             const history = siteInfrastructure.localStorage.get(indexManager.elements.currentURLCookieName);
             let historyIndex = history ? parseInt(history, 0) : 0;
@@ -315,6 +300,7 @@ let indexManager: IndexManager = {
         });
         indexManager.initForMobile();
     },
+
     initForMobile: () => {
         if (indexManager.elements.isDevice) {
             $(document).on("touchmove", () => { indexManager.currentState.isScrolling = true; });
@@ -329,16 +315,14 @@ let indexManager: IndexManager = {
                 indexManager.closeMenuBarOnMobile();
             });
 
-            $(".icon-account-notification").on(siteInfrastructure.clickEvent, () => {
-                indexManager.activeMainMenu("menu-ACCOUNTMANAGEMENT");
-                indexManager.activeSubMenu("sub-menu-PROBLEMACCOUNT", "menu-ACCOUNTMANAGEMENT");
-                indexManager.elements.mainFrame.attr("src", indexManager.elements.problemAccountPath);
-            });
+            $(".icon-account-notification").on(siteInfrastructure.clickEvent, indexManager.viewProblemAccount);
 
             $(".icon-bell").on(siteInfrastructure.clickEvent, () => {
                 indexManager.activeMainMenu("menu-ANNOUNCEMENT");
                 indexManager.elements.mainFrame.attr("src", indexManager.elements.announcementPath);
             });
+
+            $(".icon-livechat").on(siteInfrastructure.clickEvent, indexManager.openLiveChat);
 
             $('.username-mobile .dropdown').on('show.bs.dropdown', function () {
                 $(indexManager.selector.mobileMenuDropdown).show();
@@ -427,6 +411,13 @@ let indexManager: IndexManager = {
         } else {
             indexManager.currentState.wagerMonitoringWindow.focus();
         }
+    },
+    viewProblemAccount: () => {
+        const menuAccountManagementId = "menu-ACCOUNTMANAGEMENT";
+
+        indexManager.activeMainMenu(menuAccountManagementId);
+        indexManager.activeSubMenu("sub-menu-PROBLEMACCOUNT", menuAccountManagementId);
+        indexManager.elements.mainFrame.attr("src", indexManager.elements.problemAccountPath);
     },
     mainMenuClick: (id: string) => {
         indexManager.currentState.isMainMenuClick = true;
@@ -689,6 +680,11 @@ let indexManager: IndexManager = {
     selector: {
         firstItemRedirect: ">.redirect-item:first",
         mobileMenuDropdown: ".username-mobile .dropdown-menu"
+    },
+    openLiveChat: () => {
+        if (window.lpTag && window.lpTag.taglets && window.lpTag.taglets.rendererStub && window.engagementId) {
+            window.lpTag.taglets.rendererStub.click(window.engagementId);
+        }
     }
 };
 

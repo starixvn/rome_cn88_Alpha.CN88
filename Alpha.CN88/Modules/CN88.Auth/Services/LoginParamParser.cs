@@ -125,16 +125,9 @@
             var language = loginParamsLength > 7 ? keyValuePairs[LanguageIndex] : ValidLanguages[0];
             var validLanguageIndex = Array.FindIndex(ValidLanguages, item => item.Equals(language, StringComparison.OrdinalIgnoreCase));
             var languageKey = validLanguageIndex > 0 ? ValidLanguageKeys[validLanguageIndex] : ValidLanguageKeys[0];
-            var resultBool = false;
-            var isHideTopMenu = false;
 
-            try
-            {
-                isHideTopMenu = bool.TryParse(keyValuePairs[HideTopMenuIndex], out resultBool);
-            }
-            catch
-            {
-            }
+            var isHideTopMenu = keyValuePairs.Length > HideTopMenuIndex
+                && bool.TryParse(keyValuePairs[HideTopMenuIndex], out bool resultBool);
 
             return new AdminLoginParam(
                 adminId,

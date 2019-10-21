@@ -106,12 +106,9 @@ body {
     }
 }
 
-
 #tbl-master, #tbl-agent, #tbl-member {
     width: 100%;
 }
-
-
 
 // Mobile friendly
 
@@ -178,8 +175,16 @@ body {
         top: 0;
         font-size: 18px;
     }
-}
 
+    .icon-livechat {
+        position: absolute;
+        right: 74px;
+        color: #fff;
+        padding: 10px;
+        top: 0;
+        font-size: 18px;
+    }
+}
 
 .dropdown-menu {
     li.lnk-nickname {
@@ -200,7 +205,6 @@ body {
     }
 }
 
-
 .username-mobile {
     position: relative;
     height: 32px;
@@ -215,8 +219,6 @@ body {
     .dropdown-toggle {
         color: #fff;
     }
-
-    
 
     .dropdown-menu {
         right: 12px;

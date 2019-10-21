@@ -390,6 +390,10 @@
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\default\le-mtagconfig.js" />
+    <Content Include="assets\bundles\default\le-mtagconfig.min.js">
+      <DependentUpon>le-mtagconfig.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\error-page.css" />
     <Content Include="assets\bundles\error-page.min.css">
       <DependentUpon>error-page.css</DependentUpon>
@@ -990,6 +994,7 @@
     <TypeScriptCompile Include="assets\scripts\account-status.ts" />
     <TypeScriptCompile Include="assets\scripts\auth\kickout.ts" />
     <TypeScriptCompile Include="assets\scripts\default\index-manager.ts" />
+    <Content Include="assets\scripts\default\le-mtagconfig.js" />
     <TypeScriptCompile Include="assets\scripts\help\help.ts" />
     <TypeScriptCompile Include="assets\scripts\http-status.ts" />
     <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />

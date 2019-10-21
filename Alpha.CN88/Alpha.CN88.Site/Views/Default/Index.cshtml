@@ -18,8 +18,12 @@
     <!--[if lt IE 9]>
       @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
+    <script>
+        var site=@Alpha.CN88.Configurations.AppSettings.LivePersonAccountNumber;
+    </script>
+    @StaticResources.RenderScripts("~/assets/bundles/default/le-mtagconfig")
 </head>
-<body @(Html.Raw(CN88.Web.Helpers.BrowserManager.BuildMobileHtmlClass()))>
+<body @(Html.Raw(CN88.Web.Helpers.BrowserManager.BuildMobileHtmlClass())) id="element">
     @if (!Model.IsHideTopMenu)
     {
         <div id="header" class="header">

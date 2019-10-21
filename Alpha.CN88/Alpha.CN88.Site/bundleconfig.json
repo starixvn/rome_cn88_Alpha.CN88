@@ -111,5 +111,11 @@
     "inputFiles": [
       "assets/styles/help.css"
     ]
+  },
+  {
+    "outputFileName": "assets/bundles/default/le-mtagconfig.js",
+    "inputFiles": [
+      "assets/scripts/default/le-mtagconfig.js"
+    ]
   }
 ]

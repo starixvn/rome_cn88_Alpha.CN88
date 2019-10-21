@@ -38,6 +38,8 @@
 
         public static bool HideSubAccountMenu => GetConfigValue("HideSubAccountMenu") == "1";
 
+        public static string LivePersonAccountNumber => GetConfigValue("LivePersonAccountNumber");
+
         public static string GetConfigValue(string configName) => AppSettingValues[configName];
 
         public static void Verify()
