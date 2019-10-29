@@ -190,7 +190,9 @@
     <Compile Include="Criteria\GetTotalMemberOnlineCriteria.cs" />
     <Compile Include="Criteria\SuggestionCriteria.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
-    <Compile Include="FunctionRegistry.cs" />
+    <Compile Include="FunctionRegistry.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\SystemTime.cs" />
@@ -263,7 +265,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

@@ -682,8 +682,8 @@ let indexManager: IndexManager = {
         mobileMenuDropdown: ".username-mobile .dropdown-menu"
     },
     openLiveChat: () => {
-        if (window.lpTag && window.lpTag.taglets && window.lpTag.taglets.rendererStub && window.engagementId) {
-            window.lpTag.taglets.rendererStub.click(window.engagementId);
+        if (window["lpTag"] && window["lpTag"].taglets && window["lpTag"].taglets.rendererStub && window.engagementId) {
+            window["lpTag"].taglets.rendererStub.click(window.engagementId);
         }
     }
 };

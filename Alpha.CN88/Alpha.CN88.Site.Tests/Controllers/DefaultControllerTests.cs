@@ -15,8 +15,8 @@
     [TestFixture]
     public class DefaultControllerTests : ControllerTestTemplate<DefaultController>
     {
-        IMediator mediator;
-        UserTest user;
+        private IMediator mediator;
+        private UserTest user;
 
         protected override DefaultController EstablishContext()
         {
@@ -65,6 +65,20 @@
 
             // Assert
             mediator.Received().Send(message);
+        }
+
+        [Test]
+        public void Index_UnSupportBrowsers_ReturnsUnSupportedBrowsersView()
+        {
+            // Arrange
+            var message = new IndexQuery(user);
+            mediator.Send(Arg.Any<BrowserQuery>()).Returns(new BrowserViewModel { IsUnsupportedBrowser = true });
+
+            // Act
+            var view = Sut.Index(message) as ViewResult;
+
+            // Assert
+            Assert.AreEqual("UnsupportedBrowsers", view.ViewName);
         }
 
         [Test]

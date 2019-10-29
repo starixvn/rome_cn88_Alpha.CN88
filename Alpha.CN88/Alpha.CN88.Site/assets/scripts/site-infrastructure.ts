@@ -14,7 +14,6 @@ interface Window {
     siteInfrastructure: SiteInfrastructure;
     indexManager: IndexManager;
     popupManager: PopupManager;
-    lpTag: any;
     engagementId: number;
 }
 
