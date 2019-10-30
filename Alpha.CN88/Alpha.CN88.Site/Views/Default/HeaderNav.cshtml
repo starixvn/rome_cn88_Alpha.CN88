@@ -11,12 +11,14 @@
             </div>
         </div>
         <div class="page-title" id="page-title"></div>
-        <span class="icon-livechat" id="LP_DIV_1572247027858"></span>
-        @if (Model.ShowProblemAccountIcon)
-        {
-            <span class="icon-account-notification"></span>
-        }
-        <span class="icon-bell"></span>
+        <div class="icon-container">
+            <span class="icon icon-bell"></span>
+            @if (Model.ShowProblemAccountIcon)
+            {
+                <span class="icon icon-account-notification"></span>
+            }
+            <span class="icon icon-livechat" id="LP_DIV_1572247027858"></span>
+        </div>
     </div>
 
     <div class="username-mobile">
