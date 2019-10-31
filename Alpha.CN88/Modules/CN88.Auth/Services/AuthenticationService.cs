@@ -49,7 +49,9 @@
 
         public AuthResult Login(string requestParam, string ibckeyPath)
         {
-            var keyValuePairs = loginParamParser.DecryptString(requestParam, ibckeyPath);
+            var keyValuePairs = loginParamParser
+                .DecryptString(requestParam, ibckeyPath)
+                .Split('&');
             var loginParam = loginParamParser.ToObject(keyValuePairs);
 
             var criteria = new LoginCommand(

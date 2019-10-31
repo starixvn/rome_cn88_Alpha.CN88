@@ -220,6 +220,7 @@
       <!-- Exclude the file from analysis -->
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
+    <Compile Include="Models\InternalLoginModel.cs" />
     <Compile Include="Params\Authentication\AdminLoginParam.cs" />
     <Compile Include="Models\AuthResult.cs" />
     <Compile Include="Params\Authentication\LoginParam.cs" />
