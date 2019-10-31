@@ -35,7 +35,7 @@
             // arrange
             var message = new HomeQuery(viewer);
             var model = Tuple.Create<IEnumerable<AccountOverview>, IEnumerable<StatusSummary>>(
-                new List<AccountOverview>() { new AccountOverview() },
+                new List<AccountOverview>() { new AccountOverview(150m, 5m, 2, DateTime.Now, DateTime.Now) },
                 Enumerable.Empty<StatusSummary>());
             homeService.GetGeneralInformation(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<bool>())
                .Returns(model);

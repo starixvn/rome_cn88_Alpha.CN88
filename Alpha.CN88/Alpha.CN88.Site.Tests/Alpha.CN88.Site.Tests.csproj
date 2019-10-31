@@ -167,7 +167,9 @@
     <Compile Include="Handlers\PasswordHandlerTests.cs" />
     <Compile Include="Handlers\SecurityCodeHandlerTests.cs" />
     <Compile Include="Handlers\SuggestionHandlerTests.cs" />
+    <Compile Include="Helpers\QueryEntityModelBinderTests.cs" />
     <Compile Include="Helpers\UrlHelperTests.cs" />
+    <Compile Include="Models\UserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Authentication\LoginQueryTests.cs" />
     <Compile Include="Requests\Authentication\LogoutQueryTests.cs" />
