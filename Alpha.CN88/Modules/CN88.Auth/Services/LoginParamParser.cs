@@ -65,15 +65,13 @@
         public LoginParam ToObject(string[] keyValuePairs)
         {
             // LoginParams: custId, subAccId, loginTime, password, nickName, isNickName, __utms, language, no cross cookie.
-            int custId;
-            int subAccId;
-            long timeTicks;
+
             var loginParamsLength = keyValuePairs.Length;
 
             if (loginParamsLength < 12
-                || !int.TryParse(keyValuePairs[CustIdIndex], out custId)
-                || !int.TryParse(keyValuePairs[SubAccIdIndex], out subAccId)
-                || !long.TryParse(keyValuePairs[TimeTicksIndex], out timeTicks))
+                || !int.TryParse(keyValuePairs[CustIdIndex], out int custId)
+                || !int.TryParse(keyValuePairs[SubAccIdIndex], out int subAccId)
+                || !long.TryParse(keyValuePairs[TimeTicksIndex], out long timeTicks))
             {
                 ExceptionHandler.Handle(
                     new Exception("Verify customer information failed. " + string.Join(";", keyValuePairs)),
@@ -84,8 +82,7 @@
 
             var password = AesExtension.Decrypt(keyValuePairs[PasswordIndex], keyValuePairs[EncryptCodeIndex]);
 
-            bool isNickName;
-            bool.TryParse(keyValuePairs[IsNickNameIndex], out isNickName);
+            bool.TryParse(keyValuePairs[IsNickNameIndex], out bool isNickName);
 
             var language = keyValuePairs[LanguageIndex];
             var validLanguageIndex = Array.FindIndex(ValidLanguages, item => item.Equals(language, StringComparison.OrdinalIgnoreCase));
@@ -109,15 +106,13 @@
         public AdminLoginParam ToAdminObject(string[] keyValuePairs)
         {
             // AdminLoginParams: custName, adminId, loginTime, systemLogin: optional.
-            int adminId;
-            long timeTicks;
             var custName = keyValuePairs[AdminCustNameIndex];
             var loginParamsLength = keyValuePairs.Length;
 
             if (loginParamsLength < 2
                 || string.IsNullOrEmpty(custName)
-                || !int.TryParse(keyValuePairs[AdminIdIndex], out adminId)
-                || !long.TryParse(keyValuePairs[AdminTimeTicksIndex], out timeTicks))
+                || !int.TryParse(keyValuePairs[AdminIdIndex], out int adminId)
+                || !long.TryParse(keyValuePairs[AdminTimeTicksIndex], out long timeTicks))
             {
                 return new AdminLoginParam();
             }
