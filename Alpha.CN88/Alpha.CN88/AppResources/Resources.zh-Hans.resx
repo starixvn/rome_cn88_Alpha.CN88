@@ -250,4 +250,7 @@
   <data name="problemAccount" xml:space="preserve">
     <value>问题账户</value>
   </data>
+  <data name="LiveChat" xml:space="preserve">
+    <value>24/7 在线客服</value>
+  </data>
 </root>

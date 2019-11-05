@@ -28,17 +28,5 @@
            ControllerContext controllerContext,
            ModelBindingContext bindingContext,
            Type modelType) => base.CreateModel(controllerContext, bindingContext, modelType);
-
-        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
-        {
-            var boundModel = CallBaseBindModel(controllerContext, bindingContext);
-
-            return boundModel;
-        }
-
-        protected virtual object CallBaseBindModel(
-           ControllerContext controllerContext,
-           ModelBindingContext bindingContext)
-            => base.BindModel(controllerContext, bindingContext);
     }
 }

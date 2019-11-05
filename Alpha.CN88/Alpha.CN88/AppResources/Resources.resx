@@ -253,4 +253,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="problemAccount" xml:space="preserve">
     <value>Problem Account</value>
   </data>
+  <data name="LiveChat" xml:space="preserve">
+    <value>Live Chat</value>
+  </data>
 </root>

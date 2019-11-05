@@ -14,6 +14,7 @@ interface Window {
     siteInfrastructure: SiteInfrastructure;
     indexManager: IndexManager;
     popupManager: PopupManager;
+    engagementId: number;
 }
 
 top.showCN88CancelButton = true;
@@ -155,7 +156,6 @@ class SiteInfrastructure {
 
         window.top.$("#main").attr("src", data.currentPage);
     };
-
 }
 
 class IndexManager {
@@ -235,6 +235,8 @@ class IndexManager {
 
     viewWagerMonitoringConsole: () => void;
 
+    viewProblemAccount: () => void;
+
     mainMenuClick: (id: string) => void;
 
     subMenuClick: (id: string) => void;
@@ -273,6 +275,8 @@ class IndexManager {
         firstItemRedirect: string,
         mobileMenuDropdown: string
     };
+
+    openLiveChat: () => void;
 }
 
 class PopupManager {
@@ -294,7 +298,6 @@ class ResponseError {
 }
 
 const siteInfrastructure = new SiteInfrastructure();
-
 
 window.top.cn88SuccessfulUpdatingCallback = siteInfrastructure.returnCurrentPage;
 

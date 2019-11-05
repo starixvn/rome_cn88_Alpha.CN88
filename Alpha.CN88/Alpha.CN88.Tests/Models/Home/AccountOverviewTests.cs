@@ -1,5 +1,6 @@
 ﻿namespace Alpha.CN88.Tests.Models.Home
 {
+    using System;
     using Alpha.CN88.Models.Home;
     using NUnit.Framework;
 
@@ -7,16 +8,24 @@
     public class AccountOverviewTests
     {
         [Test]
-        public void LastLoginDateStr_Always_ReturnCorrectValue()
+        public void Constructor_Always_ReturnCorrectValue()
         {
             // Arrage
-            var overview = new AccountOverview();
-            var expectedValue = "0001-01-01";
+            var lastLoginDate = new DateTime(2019, 10, 31);
+            var lastChangePwdDate = new DateTime(2019, 10, 30);
+
             // Act
-            var result = overview.LastLoginDateStr;
+            var overview = new AccountOverview(10m, 5m, 2, lastLoginDate, lastChangePwdDate);
 
             // Assert
-            Assert.AreEqual(expectedValue, result);
+            Assert.IsTrue(
+                overview.Credit == 10m
+                && overview.CreditBalance == 5m
+                && overview.NewMembers == 2
+                && overview.LastLogin == lastLoginDate
+                && overview.LastPasswordChangedDate == lastChangePwdDate
+                && overview.LastLoginDateStr == "2019-10-31"
+                && overview.LastPasswordChangedDateStr == "2019-10-30");
         }
     }
 }

@@ -66,7 +66,7 @@
         }
 
         public byte CustomerStatus
-            => SessionHelper.Get<byte>(SessionKeys.CustomerStatus);
+            => userSession.GetProperty<byte>(SessionKeys.CustomerStatus);
 
         public string AdminName => userSession.AdminName;
 

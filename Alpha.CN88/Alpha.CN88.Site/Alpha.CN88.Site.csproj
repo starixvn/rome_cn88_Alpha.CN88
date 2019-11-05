@@ -390,6 +390,10 @@
     <Content Include="assets\bundles\default.min.css">
       <DependentUpon>default.css</DependentUpon>
     </Content>
+    <Content Include="assets\bundles\default\le-mtagconfig.js" />
+    <Content Include="assets\bundles\default\le-mtagconfig.min.js">
+      <DependentUpon>le-mtagconfig.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\error-page.css" />
     <Content Include="assets\bundles\error-page.min.css">
       <DependentUpon>error-page.css</DependentUpon>
@@ -835,9 +839,15 @@
     <Content Include="_IPInfo\IPInfo.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\DependencyConfig.cs" />
-    <Compile Include="App_Start\LoggingConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="App_Start\LoggingConfig.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HelpController.cs" />
@@ -990,6 +1000,7 @@
     <TypeScriptCompile Include="assets\scripts\account-status.ts" />
     <TypeScriptCompile Include="assets\scripts\auth\kickout.ts" />
     <TypeScriptCompile Include="assets\scripts\default\index-manager.ts" />
+    <Content Include="assets\scripts\default\le-mtagconfig.js" />
     <TypeScriptCompile Include="assets\scripts\help\help.ts" />
     <TypeScriptCompile Include="assets\scripts\http-status.ts" />
     <TypeScriptCompile Include="assets\scripts\nickname\create-nickname.ts" />
@@ -1152,16 +1163,17 @@
   </Target>
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.2\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <PropertyGroup>
-    <PostBuildEvent>cd $(ProjectDir)
-cd ..
-cd ..
-cd build
-assets.build.cmd
+    <PostBuildEvent>
+      cd $(ProjectDir)
+      cd ..
+      cd ..
+      cd build
+      assets.build.cmd
       if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
       start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
-</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

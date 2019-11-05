@@ -12,7 +12,7 @@
     [TestFixture]
     public class AuthControllerTests : ControllerTestTemplate<AuthController>
     {
-        IMediator mediator;
+        private IMediator mediator;
 
         protected override AuthController EstablishContext()
         {

@@ -260,6 +260,15 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live Chat.
+        /// </summary>
+        public static string LiveChat {
+            get {
+                return ResourceManager.GetString("LiveChat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string Logout {

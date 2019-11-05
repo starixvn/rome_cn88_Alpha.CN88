@@ -3,7 +3,6 @@
     using System.Web.Mvc;
     using MediatR;
     using Requests.Home;
-    using System.Web.SessionState;
 
     public class HomeController : SiteBaseController
     {

@@ -21,8 +21,22 @@
                 ["URL:MemberSite"] = "t,,tu;i",
                 ["URL:MemberSiteMobile"] = "12,1,t;o;;,,",
                 ["URL:AgentSiteLink"] = "1,,t,hht:,;k;;j",
-
+                ["HideSubAccountMenu"] = "1",
+                ["LivePersonAccountNumber"] = "123"
             };
+        }
+
+        [Test]
+        public void Verify_HasEnoughSettings_PassVerify()
+        {
+            var passVerify = false;
+
+            // Act
+            AppSettings.Verify();
+            passVerify = true;
+
+            // Assert
+            Assert.True(passVerify);
         }
 
         [Test]
@@ -153,6 +167,26 @@
 
             // Assert
             Assert.AreEqual(expectValue, result);
+        }
+
+        [Test]
+        public void HideSubAccountMenu_Always_ReturnCorrectSetting()
+        {
+            // Act
+            var result = AppSettings.HideSubAccountMenu;
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void LivePersonAccountNumber_Always_ReturnCorrectSetting()
+        {
+            // Act
+            var result = AppSettings.LivePersonAccountNumber;
+
+            // Assert
+            Assert.AreEqual("123", result);
         }
     }
 }

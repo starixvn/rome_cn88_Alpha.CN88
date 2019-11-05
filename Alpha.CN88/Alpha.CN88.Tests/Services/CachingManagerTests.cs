@@ -9,12 +9,12 @@
     [TestFixture]
     public class CachingManagerTests
     {
-        CachingManagerImpl cachingManager;
-        CacheItemPolicy policy;
-        TimeSpan timeSpan;
-        DateTimeOffset expireTime;
-        Func<string> getStringValue;
-        Func<int> getIntValue;
+        private CachingManagerImpl cachingManager;
+        private CacheItemPolicy policy;
+        private TimeSpan timeSpan;
+        private DateTimeOffset expireTime;
+        private Func<string> getStringValue;
+        private Func<int> getIntValue;
 
         [SetUp]
         public void SetUp()
@@ -51,7 +51,6 @@
         [TestCase("      ")]
         public void GetCacheItem_KeyEmptyOrWhiteSpace_ArgumentOutOfRangeException(string key)
         {
-
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => cachingManager.Get<string>(key));
         }
@@ -368,5 +367,4 @@
             mng.Received(1).GetOrAdd<int>("temp", getIntValue, new CacheItemPolicy());
         }
     }
-
 }
