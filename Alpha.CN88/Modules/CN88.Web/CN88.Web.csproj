@@ -129,7 +129,9 @@
     <Compile Include="Configurations\GroupPageAccessElement.cs" />
     <Compile Include="Configurations\PageAccessCollection.cs" />
     <Compile Include="Configurations\PageAccessElement.cs" />
-    <Compile Include="Controllers\CN88BaseController.cs" />
+    <Compile Include="Controllers\CN88BaseController.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Criteria\CheckCustomerStatusCriteria.cs" />
     <Compile Include="Criteria\CheckBelongingCommand.cs" />
     <Compile Include="Criteria\CheckHeadlineBelongingCommand.cs" />
@@ -139,19 +141,43 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Criteria\ReCheckinCommand.cs" />
-    <Compile Include="Filters\AfterLoginFlowFilter.cs" />
-    <Compile Include="Filters\AntiXsrfFilter.cs" />
-    <Compile Include="Filters\CheckSubAccBelongingFilter.cs" />
-    <Compile Include="Filters\CheckBelongingFilter.cs" />
-    <Compile Include="Filters\NoCacheFilter.cs" />
-    <Compile Include="Filters\RestrictHeadlineFilter.cs" />
+    <Compile Include="Filters\AfterLoginFlowFilter.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</Compile>
+    <Compile Include="Filters\AntiXsrfFilter.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Filters\CheckSubAccBelongingFilter.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Filters\CheckBelongingFilter.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Filters\NoCacheFilter.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Filters\RestrictHeadlineFilter.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Helpers\AppPathHelper.cs" />
-    <Compile Include="Helpers\BrowserHelper.cs" />
-    <Compile Include="Helpers\MicroSites.cs" />
-    <Compile Include="Helpers\SessionManager.cs" />
-    <Compile Include="Helpers\StaticResources.cs" />
-    <Compile Include="Helpers\UnAuthorizationHelper.cs" />
+    <Compile Include="Helpers\AppPathHelper.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Helpers\BrowserHelper.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Helpers\MicroSites.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Helpers\SessionManager.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Helpers\StaticResources.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Helpers\UnAuthorizationHelper.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Models\AccountPermissionParam.cs" />
     <Compile Include="Models\BelongingParam.cs" />
     <Compile Include="Models\LogoutContext.cs" />
@@ -164,11 +190,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\AuthorizationService.cs" />
-    <Compile Include="Services\RequestContext.cs" />
-    <Compile Include="Helpers\ShareSession.cs" />
-    <Compile Include="Validators\AntiForgeryValidator.cs" />
-    <Compile Include="Validators\SessionValidator.cs" />
-    <Compile Include="Validators\ValidationLogger.cs" />
+    <Compile Include="Services\RequestContext.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Helpers\ShareSession.cs">
+		<SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Validators\AntiForgeryValidator.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Validators\SessionValidator.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="Validators\ValidationLogger.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="ViewModel\BrowserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
