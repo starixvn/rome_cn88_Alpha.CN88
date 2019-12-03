@@ -3,8 +3,10 @@
     using System;
     using System.Diagnostics;
     using System.Web;
+    using CN88.Auth.Models;
     using Fanex.Cryptography.Aes;
     using Fanex.Logging.Extensions.Web;
+    using Newtonsoft.Json;
     using Params.Authentication;
     using RSACryptoPad;
     using Sunplus.Agent.Model.Common;
@@ -14,11 +16,11 @@
 
     public interface LoginParamParser
     {
-        string[] DecryptString(string requestParam, string ibckeyPath);
+        string DecryptString(string requestParam, string ibckeyPath);
 
         LoginParam ToObject(string[] keyValuePairs);
 
-        AdminLoginParam ToAdminObject(string[] keyValuePairs);
+        AdminLoginParam ToAdminObject(string keyValuePairs);
     }
 
     public class LoginParamParserImpl : LoginParamParser
@@ -32,20 +34,14 @@
         private const int NickNameIndex = 4;
         private const int IsNickNameIndex = 5;
         private const int LanguageIndex = 7;
-        private const int HideTopMenuIndex = 8;
         private const int DeviceIndex = 9;
         private const int BrowserSizeIndex = 10;
         private const int EncryptCodeIndex = 11;
 
-        private const int AdminCustNameIndex = 0;
-        private const int AdminIdIndex = 1;
-        private const int AdminTimeTicksIndex = 2;
-        private const string DefaultSystemLogin = "NAP";
-
         private static readonly string[] ValidLanguages = { "en-US", "zh-Hans", "zh-TW" };
         private static readonly string[] ValidLanguageKeys = { "E", "CN", "CT" };
 
-        public string[] DecryptString(string requestParam, string ibckeyPath)
+        public string DecryptString(string requestParam, string ibckeyPath)
         {
             var encryption = new EncryptionThread();
 
@@ -56,10 +52,10 @@
             catch
             {
                 ExceptionHandler.Handle(new Exception("Cannot verify request key " + GetRequest().RawUrl));
-                return new string[0];
+                return string.Empty;
             }
 
-            return requestParam.Split('&');
+            return requestParam;
         }
 
         public LoginParam ToObject(string[] keyValuePairs)
@@ -103,38 +99,23 @@
                 string.IsNullOrWhiteSpace(deviceId) ? "N/A" : deviceId);
         }
 
-        public AdminLoginParam ToAdminObject(string[] keyValuePairs)
+        public AdminLoginParam ToAdminObject(string keyValuePairs)
         {
-            // AdminLoginParams: custName, adminId, loginTime, systemLogin: optional.
-            var custName = keyValuePairs[AdminCustNameIndex];
-            var loginParamsLength = keyValuePairs.Length;
-
-            if (loginParamsLength < 2
-                || string.IsNullOrEmpty(custName)
-                || !int.TryParse(keyValuePairs[AdminIdIndex], out int adminId)
-                || !long.TryParse(keyValuePairs[AdminTimeTicksIndex], out long timeTicks))
-            {
-                return new AdminLoginParam();
-            }
-
-            var language = loginParamsLength > 7 ? keyValuePairs[LanguageIndex] : ValidLanguages[0];
-            var validLanguageIndex = Array.FindIndex(ValidLanguages, item => item.Equals(language, StringComparison.OrdinalIgnoreCase));
+            var internalLoginModel = JsonConvert.DeserializeObject<InternalLoginModel>(keyValuePairs);
+            var validLanguageIndex = Array.FindIndex(ValidLanguages, item => item.Equals(internalLoginModel.Language, StringComparison.OrdinalIgnoreCase));
             var languageKey = validLanguageIndex > 0 ? ValidLanguageKeys[validLanguageIndex] : ValidLanguageKeys[0];
 
-            var isHideTopMenu = keyValuePairs.Length > HideTopMenuIndex
-                && bool.TryParse(keyValuePairs[HideTopMenuIndex], out bool resultBool);
-
             return new AdminLoginParam(
-                adminId,
-                loginParamsLength > 3 ? keyValuePairs[3] : DefaultSystemLogin,
-                custName,
-                timeTicks,
-                language,
+                internalLoginModel.AdminId,
+                internalLoginModel.SystemLogin,
+                internalLoginModel.AdminName,                
+                internalLoginModel.TimeTick,
+                internalLoginModel.Language,
                 languageKey,
-                loginParamsLength > 5 ? keyValuePairs[4] : string.Empty,
-                loginParamsLength > 5 ? keyValuePairs[5].Replace("|", "&") : string.Empty,
-                GetRequestInfo(GetRequest(), loginParamsLength >= 11 ? keyValuePairs[BrowserSizeIndex] : string.Empty),
-                isHideTopMenu);
+                internalLoginModel.AfterLogInSite,
+                internalLoginModel.AfterLoginQuery,
+                GetRequestInfo(GetRequest(), internalLoginModel.BrowserSize),
+                internalLoginModel.IsHideTopMenu);
         }
 
         private static HttpRequest GetRequest()
