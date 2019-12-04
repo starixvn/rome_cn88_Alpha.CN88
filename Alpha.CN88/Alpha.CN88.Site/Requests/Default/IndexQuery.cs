@@ -33,9 +33,11 @@
         public bool IsHideTopMenu { get; }
 
         public bool ShowProblemAccountIcon
-            => ActorLevel.IsHeadlineLevel()
-                || (ActorLevel.IsSuperLevel()
-                    && viewer.CustomerStatus == Constants.CustomerStatus.Active
-                    && viewer.AccountManagementViewOnly);
+            => ActorLevel.IsHeadlineLevel() || IsSuperHasViewAccountPermission;
+
+        private bool IsSuperHasViewAccountPermission
+            => ActorLevel.IsSuperLevel()
+                && viewer.CustomerStatus == Constants.CustomerStatus.Active
+                && viewer.AccountManagementViewOnly;
     }
 }
