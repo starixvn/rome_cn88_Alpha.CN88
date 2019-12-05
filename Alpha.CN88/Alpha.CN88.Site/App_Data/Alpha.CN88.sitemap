@@ -15,11 +15,11 @@
 
       <siteMapNode resourceKey="wagerMonitoringConsole" appPath="FeaturesAppPath" url="javascript:void(0);"></siteMapNode>
     </siteMapNode>
-    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[H]" roles="4,3,2">
-      <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles=""></siteMapNode>
+    <siteMapNode resourceKey="accountManagement" menuItemType="AccountManagementMenuItem" functionType="[H]" roles="">
+      <siteMapNode resourceKey="downlineList" appPath="FeaturesAppPath" url="CustomerList/Index" roles="4,3,2"></siteMapNode>
       <siteMapNode resourceKey="subAccount" menuItemType="SubAccountMenuItem" appPath="FeaturesAppPath" url="SubAccount/Index" roles="4,3,2"></siteMapNode>
-      <siteMapNode resourceKey="problemAccount" appPath="AccountAppPath" url="ProblemAccount/Index" roles="4"></siteMapNode>
-      <siteMapNode resourceKey="viewLog" appPath="ViewLogAppPath" url="Setting"></siteMapNode>
+      <siteMapNode resourceKey="problemAccount" appPath="AccountAppPath" url="ProblemAccount/Index" roles="4,0"></siteMapNode>
+      <siteMapNode resourceKey="viewLog" appPath="ViewLogAppPath" url="Setting" roles="4,3,2"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="reports" menuItemType="ReportMenuItem" functionType="[E]" roles="">
       <siteMapNode resourceKey="wagerReport" appPath="FeaturesAppPath" url="Reports/Index?DisplayMode=1"></siteMapNode>

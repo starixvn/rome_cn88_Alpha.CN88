@@ -15,9 +15,6 @@
             NickName = viewer.NickName;
             AdminName = viewer.AdminName;
             ShowCN88SaveButton = viewer.CustomerStatus == Constants.CustomerStatus.Active && viewer.AccountManagementEditView;
-            ShowProblemAccountIcon = ActorLevel.IsSuperLevel()
-                && viewer.CustomerStatus == Constants.CustomerStatus.Active
-                && viewer.AccountManagementViewOnly;
             IsHideTopMenu = viewer.IsHideTopMenu;
         }
 
@@ -33,8 +30,14 @@
 
         public bool ShowCN88SaveButton { get; }
 
-        public bool ShowProblemAccountIcon { get; }
-
         public bool IsHideTopMenu { get; }
+
+        public bool ShowProblemAccountIcon
+            => ActorLevel.IsHeadlineLevel() || IsSuperHasViewAccountPermission;
+
+        private bool IsSuperHasViewAccountPermission
+            => ActorLevel.IsSuperLevel()
+                && viewer.CustomerStatus == Constants.CustomerStatus.Active
+                && viewer.AccountManagementViewOnly;
     }
 }
