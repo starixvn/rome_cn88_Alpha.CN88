@@ -253,4 +253,7 @@
   <data name="LiveChat" xml:space="preserve">
     <value>24/7 在線客服</value>
   </data>
+  <data name="HomePageSMA" xml:space="preserve">
+    <value>SMA 首頁</value>
+  </data>
 </root>

@@ -256,4 +256,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="LiveChat" xml:space="preserve">
     <value>Live Chat</value>
   </data>
+  <data name="HomePageSMA" xml:space="preserve">
+    <value>SMA Home</value>
+  </data>
 </root>
