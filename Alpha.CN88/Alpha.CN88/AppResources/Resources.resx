@@ -221,7 +221,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Super</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>Home</value>
+    <value>HL Home</value>
   </data>
   <data name="MySettings" xml:space="preserve">
     <value>My Settings</value>
