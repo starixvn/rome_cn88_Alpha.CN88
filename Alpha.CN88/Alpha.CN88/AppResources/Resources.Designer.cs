@@ -88,7 +88,7 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Manager Site.
+        ///   Looks up a localized string similar to Agency Site.
         /// </summary>
         public static string agentSiteLink {
             get {
