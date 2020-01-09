@@ -88,7 +88,7 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Manager Site.
+        ///   Looks up a localized string similar to Agency Site.
         /// </summary>
         public static string agentSiteLink {
             get {
@@ -205,11 +205,20 @@ namespace Alpha.CN88.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Home.
+        ///   Looks up a localized string similar to HL Home.
         /// </summary>
         public static string HomePage {
             get {
                 return ResourceManager.GetString("HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SMA Home.
+        /// </summary>
+        public static string HomePageSMA {
+            get {
+                return ResourceManager.GetString("HomePageSMA", resourceCulture);
             }
         }
         

@@ -218,7 +218,7 @@
     <value>超级</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>首页</value>
+    <value>HL 首页</value>
   </data>
   <data name="MySettings" xml:space="preserve">
     <value>我的设定</value>
@@ -239,7 +239,7 @@
     <value>手机会员端</value>
   </data>
   <data name="agentSiteLink" xml:space="preserve">
-    <value>新版管理端</value>
+    <value>管理端</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>语言</value>
@@ -252,5 +252,8 @@
   </data>
   <data name="LiveChat" xml:space="preserve">
     <value>24/7 在线客服</value>
+  </data>
+  <data name="HomePageSMA" xml:space="preserve">
+    <value>SMA 首页</value>
   </data>
 </root>

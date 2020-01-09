@@ -179,7 +179,7 @@ let indexManager: IndexManager = {
             indexManager.restoreUrl();
         });
 
-        $("#lnk-my-setting").on(siteInfrastructure.clickEvent, () => {
+        $("#lnk-my-setting").on(siteInfrastructure.clickEvent, (event) => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
@@ -191,7 +191,7 @@ let indexManager: IndexManager = {
             indexManager.clearAllActiveMenu();
         });
 
-        $("#lnk-change-password").on(siteInfrastructure.clickEvent, () => {
+        $("#lnk-change-password").on(siteInfrastructure.clickEvent, (event) => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();
@@ -208,7 +208,7 @@ let indexManager: IndexManager = {
             });
         });
 
-        $("#lnk-security-code").on(siteInfrastructure.clickEvent, () => {
+        $("#lnk-security-code").on(siteInfrastructure.clickEvent, (event) => {
             if (indexManager.currentState.isScrolling) {
                 indexManager.currentState.isScrolling = false;
                 event.stopPropagation();

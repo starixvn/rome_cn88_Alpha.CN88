@@ -1,13 +1,14 @@
 ﻿@model Alpha.CN88.Site.ViewModels.Default.IndexViewModel
 @{
     Layout = null;
+    var homePageTitle = Sunplus.Agent.Model.Entities.UserSession.Current.RoleId == 0 ? Resources.HomePage : Resources.HomePageSMA;
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@Resources.HomePage</title>
+    <title>@homePageTitle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
     @StaticResources.AssetStyles.RenderCommon("/bundles/common/common")
