@@ -46,6 +46,8 @@
 
         internal static bool DisabledCheckDuplicationLogin => GetBoolConfigValue("DisabledCheckDuplicationLogin");
 
+        public static string GoogleAnalyticId => GetConfigValue("GoogleAnalyticId");
+
         private static bool GetBoolConfigValue(string configName)
             => GetConfigValue(configName) == "1";
 
