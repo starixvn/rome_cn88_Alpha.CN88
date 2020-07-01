@@ -17,5 +17,6 @@
     @StaticResources.AssetScripts.Render("/bundles/site-cn88/default")
     @RenderSection("Scripts", required: false)
     @Html.Raw(Fanex.Logging.LogManager.RenderJavascriptLogger())
+    @CN88.Web.Helpers.GoogleAnalyticHepler.Render()
 </body>
 </html>

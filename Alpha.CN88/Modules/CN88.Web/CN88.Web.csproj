@@ -142,8 +142,8 @@
     </Compile>
     <Compile Include="Criteria\ReCheckinCommand.cs" />
     <Compile Include="Filters\AfterLoginFlowFilter.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
-	</Compile>
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Filters\AntiXsrfFilter.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
@@ -161,22 +161,23 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\AppPathHelper.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Helpers\BrowserHelper.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
+    <Compile Include="Helpers\GoogleAnalyticHepler.cs" />
     <Compile Include="Helpers\MicroSites.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Helpers\SessionManager.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Helpers\StaticResources.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Helpers\UnAuthorizationHelper.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Models\AccountPermissionParam.cs" />
     <Compile Include="Models\BelongingParam.cs" />
@@ -194,7 +195,7 @@
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Helpers\ShareSession.cs">
-		<SonarQubeExclude>true</SonarQubeExclude>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="Validators\AntiForgeryValidator.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
