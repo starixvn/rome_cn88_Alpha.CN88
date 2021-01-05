@@ -14,7 +14,7 @@
         {
             Message = query;
             HasAccountManagement = query.HasAccountManagement;
-            OverView = overView;
+            OverView = overView ?? new AccountOverview();
 
             if (HasAccountManagement)
             {
